@@ -1,0 +1,95 @@
+# Anki Flashcards — Cache-Through Patterns (Supplementary)
+# Format: Question;Answer (semicolon-separated)
+# Append these to your main flashcards-anki.txt or import separately
+
+# ============================================
+# WRITE-THROUGH PATTERN
+# ============================================
+
+What is the Write-Through cache pattern?;App writes to cache, which synchronously writes to DB. Both updated together. Strong consistency, higher write latency.
+
+What is the main advantage of Write-Through?;Strong consistency — cache and DB are always in sync. Reads always serve fresh data.
+
+What is the main disadvantage of Write-Through?;Higher write latency (double-hop: cache then DB) and cache pollution (every write cached, even if never read).
+
+When should you use Write-Through?;Read-heavy workloads where consistency is critical — user profiles, financial settings, account info, configuration data.
+
+When should you NOT use Write-Through?;Write-heavy workloads (every write pays double latency) or rarely-read data (wastes cache memory).
+
+What happens in Write-Through if the DB write fails after cache write succeeds?;Cache and DB diverge. Must either roll back cache write or implement two-phase commit. This is a known weakness.
+
+# ============================================
+# READ-THROUGH PATTERN
+# ============================================
+
+What is the Read-Through cache pattern?;App reads only from cache. On miss, the CACHE (not app) fetches from DB. App code unaware of misses.
+
+How does Read-Through differ from Cache-Aside?;In Cache-Aside, APP handles miss logic. In Read-Through, CACHE LIBRARY transparently fetches from DB. Read-Through hides complexity from app.
+
+When should you use Read-Through?;When you want simple app code (looks like direct DB access) and have a cache framework that supports it (Spring Cache, Hibernate, EhCache).
+
+What's an example of Read-Through in practice?;Hibernate Second-Level Cache and Spring @Cacheable annotation — declarative caching where the framework handles cache misses transparently.
+
+What is the trade-off of Read-Through vs Cache-Aside?;Read-Through: simpler app code, less flexibility per-query. Cache-Aside: more app code, more control over caching logic per use case.
+
+# ============================================
+# WRITE-BEHIND (WRITE-BACK) PATTERN
+# ============================================
+
+What is the Write-Behind cache pattern?;App writes to cache (returns immediately). Cache asynchronously batches writes to DB later. Extremely fast writes, eventual consistency.
+
+What is the main advantage of Write-Behind?;Ultra-low write latency (microseconds) and high throughput via batching. DB protected from write spikes.
+
+What is the main risk of Write-Behind?;Data loss if cache crashes before flushing queued writes to DB. Eventual consistency.
+
+How can you reduce data loss risk in Write-Behind?;Use Write-Ahead Log (WAL) on disk, replicate cache state across nodes, and only remove from queue after DB ACK.
+
+When should you use Write-Behind?;Write-heavy workloads where eventual consistency is OK — view counts, analytics, metrics, gaming leaderboards, log aggregation.
+
+When should you NOT use Write-Behind?;Financial transactions, audit data, anything where data loss is unacceptable.
+
+What triggers the batch flush in Write-Behind?;Time interval (e.g., every 5s), write count threshold (e.g., 1000 writes), or memory pressure on the cache.
+
+# ============================================
+# WRITE-AROUND PATTERN
+# ============================================
+
+What is the Write-Around cache pattern?;App writes directly to DB, bypassing cache. Cache only populated on read (cache-aside style for reads).
+
+When should you use Write-Around?;Write-once-read-rarely data — audit logs, archives, bulk imports — to avoid polluting cache with rarely-read data.
+
+What is the main benefit of Write-Around?;Cache memory contains only data that has been READ at least once — efficient memory usage.
+
+What is the drawback of Write-Around?;First read after write always misses cache (slow). Need TTL or events to handle data staleness if data changes.
+
+How does Write-Around handle bulk data imports well?;Bulk inserts go straight to DB without flooding cache with millions of unread rows. Cache stays clean for hot data.
+
+# ============================================
+# COMPARING PATTERNS
+# ============================================
+
+Which cache pattern has the lowest write latency?;Write-Behind — writes return after hitting cache only, DB write happens async in background.
+
+Which cache pattern has the strongest consistency?;Write-Through — cache and DB updated synchronously, always in sync.
+
+Which pattern is best for write-heavy workloads?;Write-Behind — batches writes, returns immediately, smooths out spikes.
+
+Which pattern is best for write-once-read-rarely data?;Write-Around — keeps cache memory efficient by not caching write-only data.
+
+Which pattern simplifies application code the most?;Read-Through — app treats cache like a DB, library handles miss logic transparently.
+
+Can you mix cache patterns in one system?;Yes — and you should. Real systems use Write-Through for critical data, Cache-Aside for catalog, Write-Behind for counters, Write-Around for logs.
+
+What's the universal trade-off across all cache patterns?;Consistency vs Latency vs Operational Complexity. Strong consistency means higher latency; low latency means eventual consistency.
+
+# ============================================
+# REAL-WORLD EXAMPLES
+# ============================================
+
+What real systems use Write-Through caching?;DynamoDB Accelerator (DAX), Azure Cache for Redis with SQL integration.
+
+What real systems use Write-Behind caching?;Linux page cache (default), Apache Ignite, Hazelcast, Redis with AOF buffering.
+
+What frameworks use Read-Through pattern?;Hibernate Second-Level Cache, Spring Cache (@Cacheable), EhCache, Caffeine with loader.
+
+When would Netflix use Write-Around?;For viewing history archive — written once per session but rarely re-read for old sessions.

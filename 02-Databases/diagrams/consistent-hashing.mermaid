@@ -1,0 +1,26 @@
+graph TB
+    subgraph "Hash Ring 0 to 360 degrees"
+        K1[Key order_123<br/>hash = 120]
+        K2[Key user_456<br/>hash = 200]
+        K3[Key product_789<br/>hash = 50]
+        
+        N1[Node A<br/>token 90]
+        N2[Node B<br/>token 180]
+        N3[Node C<br/>token 270]
+        N4[Node D<br/>token 360]
+    end
+    
+    K3 -->|clockwise to next node| N1
+    K1 -->|clockwise to next node| N2
+    K2 -->|clockwise to next node| N3
+    
+    N2 -.replica 1.-> N3
+    N2 -.replica 2.-> N4
+    
+    Note1[Adding Node E at token 135 only<br/>moves data between 90 and 135<br/>from Node B to Node E]
+    
+    style N1 fill:#e1f5ff
+    style N2 fill:#ffe1e1
+    style N3 fill:#fff4e1
+    style N4 fill:#e1ffe1
+    style Note1 fill:#ffffcc

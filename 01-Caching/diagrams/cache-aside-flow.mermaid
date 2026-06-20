@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Redis
+    participant DB as Database
+
+    rect rgb(220, 255, 220)
+        Note over App,DB: Cache HIT scenario
+        App->>Cache: GET product:123
+        Cache-->>App: Return cached data
+    end
+    
+    rect rgb(255, 220, 220)
+        Note over App,DB: Cache MISS scenario
+        App->>Cache: GET product:123
+        Cache-->>App: NULL (miss)
+        App->>DB: SELECT FROM products WHERE id=123
+        DB-->>App: Product data
+        App->>Cache: SET product:123 EX 3600
+        Cache-->>App: OK
+    end
+    
+    rect rgb(220, 220, 255)
+        Note over App,DB: Write scenario
+        App->>DB: UPDATE products SET price=90
+        DB-->>App: OK
+        App->>Cache: DEL product:123
+        Cache-->>App: OK
+    end

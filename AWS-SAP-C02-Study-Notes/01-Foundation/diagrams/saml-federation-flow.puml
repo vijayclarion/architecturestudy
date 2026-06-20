@@ -1,0 +1,101 @@
+@startuml SAML_Federation_Flow
+title AWS SAML 2.0 Federation — Complete Flow
+
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 200
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+actor "Employee" as User
+participant "Browser" as Browser
+participant "Corporate IDP\n(ADFS / Okta / Azure AD)" as IDP
+participant "AWS Sign-In\n(SAML endpoint)" as AWS
+participant "AWS IAM\n(SAML Provider\n+ IAM Role)" as IAM
+participant "AWS STS" as STS
+participant "AWS Console" as Console
+
+== ONE-TIME SETUP (done by admin) ==
+note over IAM
+  **Pre-requisite trust configuration:**
+  1. Upload IDP's SAML metadata XML to IAM
+     → Creates a SAML Identity Provider
+     → Stores IDP's public certificate
+  2. Create IAM Role with trust policy
+     (see policy example below)
+  3. Configure IDP with AWS as a
+     "Relying Party" + role mapping
+end note
+
+== LOGIN FLOW ==
+
+User -> Browser : 1. Navigate to AWS Console
+Browser -> AWS  : 2. GET sign-in page
+AWS --> Browser : 3. HTTP 302 Redirect to IDP\n(includes AssertionConsumerServiceURL\n= https://signin.aws.amazon.com/saml)
+
+note right of Browser
+  Browser now knows it must
+  authenticate at the IDP and
+  return SAML to the AWS URL.
+end note
+
+Browser -> IDP : 4. GET /saml?SAMLRequest=...\n&ACSUrl=signin.aws.amazon.com/saml
+IDP --> Browser : 5. Login page
+User -> Browser : 6. Enter username + password
+Browser -> IDP : 7. POST credentials
+
+note right of IDP
+  IDP validates credentials against
+  Active Directory / LDAP / its own store
+end note
+
+IDP -> IDP : 8. Validate + look up\nrole-mapping attributes
+
+note right of IDP
+  IDP builds SAML assertion containing:
+  • NameID (user identity)
+  • Role ARN(s) the user can assume
+  • SAML provider ARN
+  • Audience = signin.aws.amazon.com/saml
+  Then **digitally signs** the XML
+  using its **private key**.
+end note
+
+IDP --> Browser : 9. HTML form with signed SAMLResponse\n+ auto-submit JavaScript
+
+Browser -> AWS : 10. POST SAMLResponse\nto signin.aws.amazon.com/saml
+
+note over AWS
+  AWS receives SAML and validates:
+  • Signature matches IDP's public cert
+    (from the SAML Provider config)
+  • Audience matches expected value
+  • Assertion not expired / not replayed
+  • Role ARN exists and trust allows IDP
+end note
+
+AWS -> IAM : 11. Look up SAML Provider\n+ verify signature
+IAM --> AWS : 12. Signature valid ✓
+
+AWS -> STS : 13. AssumeRoleWithSAML(\n  RoleArn,\n  PrincipalArn=SAML Provider ARN,\n  SAMLAssertion\n)
+
+note right of STS
+  STS checks Role's trust policy.
+  If "Federated" principal matches the
+  SAML Provider ARN, STS issues
+  temporary credentials.
+end note
+
+STS --> AWS : 14. Temporary credentials\n(AccessKey, SecretKey,\nSessionToken — 1–12 hr)
+
+AWS --> Browser : 15. Set session cookie\n+ Redirect to AWS Console
+Browser -> Console : 16. GET console with session
+Console --> User : 17. ✅ User logged in\n(operating as assumed Role)
+
+== ONGOING USAGE ==
+note over User, Console
+  User now has Console session with role's permissions.
+  When session expires, full flow repeats — no AWS
+  password ever stored in AWS for this user.
+end note
+
+@enduml

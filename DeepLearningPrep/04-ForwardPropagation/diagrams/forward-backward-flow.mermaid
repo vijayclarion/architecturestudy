@@ -1,0 +1,28 @@
+```mermaid
+graph LR
+    subgraph Forward["FORWARD PROPAGATION"]
+        X[Input X] --> Z1["Z[1] = W[1]·X + b[1]"]
+        Z1 --> A1["A[1] = ReLU(Z[1])"]
+        A1 --> Z2["Z[2] = W[2]·A[1] + b[2]"]
+        Z2 --> A2["A[2] = ReLU(Z[2])"]
+        A2 --> ZL["Z[L] = W[L]·A[L-1] + b[L]"]
+        ZL --> AL["ŷ = Sigmoid(Z[L])"]
+        AL --> Loss[Loss = L(ŷ, y)]
+    end
+    
+    subgraph Backward["BACKWARD PROPAGATION"]
+        Loss2[Loss] --> dZL["dZ[L] = ŷ - y"]
+        dZL --> dWL["dW[L], db[L]"]
+        dZL --> dAL1["dA[L-1] = W[L]^T · dZ[L]"]
+        dAL1 --> dZ2["dZ[2] = dA[2] × g'(Z[2])"]
+        dZ2 --> dW2["dW[2], db[2]"]
+        dZ2 --> dA1["dA[1] = W[2]^T · dZ[2]"]
+        dA1 --> dZ1["dZ[1] = dA[1] × g'(Z[1])"]
+        dZ1 --> dW1["dW[1], db[1]"]
+    end
+    
+    Loss -.-> Loss2
+    
+    style Forward fill:#e1f5ff
+    style Backward fill:#ffe1e1
+```

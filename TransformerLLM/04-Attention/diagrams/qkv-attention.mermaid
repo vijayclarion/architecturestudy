@@ -1,0 +1,27 @@
+```mermaid
+flowchart TB
+    X["Input vectors X\n(seq_len × d_model)\nafter embedding + position"]
+    
+    subgraph Proj["Linear projections — learned weight matrices"]
+        Q["Q = X · Wq\nQuery\n'What am I looking for?'\n(seq_len × d_k)"]
+        K["K = X · Wk\nKey\n'What do I contain?'\n(seq_len × d_k)"]
+        V["V = X · Wv\nValue\n'What info do I pass on?'\n(seq_len × d_v)"]
+    end
+    
+    Scores["QKᵀ / √d_k\nAttention scores\n(seq_len × seq_len)\nOne score per token pair"]
+    SM["softmax row-wise\nAttention weights\nEach row sums to 1.0\n'How much to attend to each token?'"]
+    Out["× V\nAttention output\n(seq_len × d_v)\nWeighted mix of values"]
+
+    X --> Q & K & V
+    Q --> Scores
+    K --> Scores
+    Scores --> SM --> Out
+    V --> Out
+
+    style X fill:#EEEDFE,color:#3C3489
+    style Q fill:#E1F5EE,color:#085041
+    style K fill:#FAEEDA,color:#633806
+    style V fill:#FAECE7,color:#4A1B0C
+    style SM fill:#7F77DD,color:#EEEDFE
+    style Out fill:#E1F5EE,color:#085041
+```

@@ -1,0 +1,32 @@
+```mermaid
+graph TB
+    Cost[Original Cost J<br/>= 1/m Σ L ŷ, y] --> Choice{Add<br/>Regularization?}
+    
+    Choice -->|L2 default| L2[J + λ/2m × ‖W‖²]
+    Choice -->|L1 sparsity| L1[J + λ/2m × ‖W‖₁]
+    Choice -->|No| Plain[Original cost only<br/>May overfit]
+    
+    L2 --> L2Effect[Weights stay small<br/>but rarely zero<br/>= weight decay]
+    L1 --> L1Effect[Many weights = 0<br/>= sparse model<br/>= feature selection]
+    
+    L2Effect --> Update2[Update: W = W·1-αλ/m - α·dW<br/>W shrinks each step]
+    L1Effect --> Update1[Update has subgradient<br/>pushes weights to 0]
+    
+    style L2 fill:#c8e6c9
+    style L1 fill:#fff9c4
+    style L2Effect fill:#a5d6a7
+    style L1Effect fill:#fff59d
+```
+
+## Effect of λ (Lambda)
+
+```
+λ value      | Effect              | Result
+-------------|---------------------|----------
+λ = 0        | No regularization   | Original loss (overfits)
+λ = 0.001    | Very mild           | Slight smoothing
+λ = 0.01     | Mild (default)      | Good for most cases
+λ = 0.1      | Moderate            | Stronger regularization
+λ = 1.0      | Strong              | Significant weight decay
+λ = 100      | Too strong          | Underfits (bias too high)
+```

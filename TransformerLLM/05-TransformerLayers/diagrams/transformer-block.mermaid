@@ -1,0 +1,29 @@
+```mermaid
+flowchart TD
+    In["Input x\n(seq_len × d_model)"]
+    
+    LN1["① Layer Norm\nmean=0, std=1\nStabilises activations"]
+    
+    MHA["② Multi-Head Self-Attention\nEvery token attends to every other\nH parallel heads\nMixes info ACROSS tokens"]
+    
+    Add1(["③ Residual + \nx = x + attn_output\nSkip connection\nGradient highway"])
+    
+    LN2["④ Layer Norm\nStabilise again"]
+    
+    FFN["⑤ Feed-Forward Network\nFFN = max(0, xW₁+b₁)W₂+b₂\n4× wider than d_model\nTransforms each token INDEPENDENTLY"]
+    
+    Add2(["⑥ Residual +\nx = x + ffn_output\nAnother skip connection"])
+    
+    Out["Output x\nSame shape as input\nReady for next block\nRepeat × N (96 in GPT-3)"]
+
+    In --> LN1 --> MHA --> Add1 --> LN2 --> FFN --> Add2 --> Out
+    In -.->|"skip"| Add1
+    Add1 -.->|"skip"| Add2
+
+    style In fill:#EEEDFE,color:#3C3489
+    style MHA fill:#7F77DD,color:#EEEDFE
+    style FFN fill:#FAEEDA,color:#633806
+    style Add1 fill:#FAECE7,color:#4A1B0C
+    style Add2 fill:#FAECE7,color:#4A1B0C
+    style Out fill:#E1F5EE,color:#085041
+```

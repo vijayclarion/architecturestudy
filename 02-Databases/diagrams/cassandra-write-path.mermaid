@@ -1,0 +1,39 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant CO as Coordinator Node
+    participant R1 as Replica Node 1
+    participant R2 as Replica Node 2
+    participant R3 as Replica Node 3
+    participant CL as Commit Log
+    participant MT as MemTable
+    participant SS as SSTable
+
+    C->>CO: INSERT order_123
+    
+    Note over CO: Hash partition key<br/>Identify 3 replicas
+    
+    par Parallel write to replicas
+        CO->>R1: Forward write
+        R1->>CL: Append (durability)
+        R1->>MT: Write to memory
+        R1-->>CO: ACK
+    and
+        CO->>R2: Forward write
+        R2->>CL: Append
+        R2->>MT: Write
+        R2-->>CO: ACK
+    and
+        CO->>R3: Forward write
+        R3->>CL: Append
+        R3->>MT: Write
+        R3-->>CO: ACK
+    end
+    
+    Note over CO: Wait for consistency level<br/>QUORUM = 2 of 3
+    
+    CO-->>C: SUCCESS
+    
+    Note over MT,SS: Background async
+    MT->>SS: Flush when MemTable full
+    Note over SS: SSTable is immutable<br/>Compaction merges later

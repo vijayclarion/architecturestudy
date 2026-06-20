@@ -1,0 +1,243 @@
+@startuml HttpClient_End_To_End
+title HttpClient: end-to-end request flow — from C# code to the NIC and out onto the wire
+
+skinparam backgroundColor #FFFFFF
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 220
+skinparam noteBackgroundColor #FAEEDA
+skinparam noteBorderColor #BA7517
+skinparam participantBackgroundColor #E6F1FB
+skinparam participantBorderColor #185FA5
+skinparam ParticipantPadding 12
+skinparam BoxPadding 10
+
+' ===================== PARTICIPANTS =====================
+box "User space (ring 3, managed)" #EAF3DE
+    actor "Your code" as APP
+    participant "HttpClient" as HC
+    participant "SocketsHttpHandler\n(connection pool)" as SHH
+    participant "SslStream\n(TLS)" as TLS
+end box
+
+box "Kernel space (ring 0, privileged)" #FCEBEB
+    participant "Socket API\n(syscall layer)" as SOCK
+    participant "TCP/IP stack\n(transport + network)" as STACK
+    participant "NIC driver\n(kernel module)" as DRV
+end box
+
+box "Hardware" #F1EFE8
+    participant "NIC\n(physical chip)" as NIC
+end box
+
+participant "Remote API server" as SRV
+
+' ===================== ROLES =====================
+note over APP
+  ROLE: Application layer.
+  Thinks only in HTTP terms — URL,
+  method, headers, JSON body.
+  Zero awareness of sockets/ports/bytes.
+end note
+
+note over HC
+  ROLE: Thin managed wrapper.
+  Stores handler ref, timeout,
+  cancellation. Delegates ALL
+  real work to the handler.
+end note
+
+note over SHH
+  ROLE: The real engine.
+  Owns the connection pool keyed by
+  (scheme, host, port). Serialises
+  HTTP. Reuses TCP connections.
+  Crosses into the OS via P/Invoke.
+end note
+
+note over SOCK
+  ROLE: Syscall boundary.
+  socket(), connect(), send(), recv().
+  Allocates fd, port, kernel buffers.
+  Enforces ring 3 -> ring 0 transition.
+end note
+
+note over STACK
+  ROLE: Protocol implementation.
+  Wraps data: TCP header -> IP header
+  -> Ethernet frame (encapsulation).
+end note
+
+note over DRV
+  ROLE: Hardware translation.
+  Writes frame to DMA ring buffer,
+  signals the NIC, handles interrupts.
+end note
+
+note over NIC
+  ROLE: Physical conversion.
+  Bytes -> electrical / optical signals.
+  Not OS — pure hardware.
+end note
+
+' ===================== FLOW: REQUEST =====================
+== 1. Application issues request ==
+APP -> HC : PostAsync(url, jsonBody)
+note right of APP #E6F1FB
+  HttpRequestMessage created:
+  method=POST, headers, body string.
+end note
+
+HC -> SHH : SendAsync(request)
+note right of HC #E6F1FB
+  Wrapper hands the request to the
+  handler pipeline. Nothing OS-level
+  has happened yet.
+end note
+
+== 2. Connection pool check (the critical step) ==
+SHH -> SHH : lookup idle connection\nfor (https, host, 443)
+alt connection exists in pool (handler reused)
+    note over SHH #EAF3DE
+      HIT: reuse existing TCP+TLS
+      connection. Skip steps 3-6
+      entirely. ~0ms setup cost.
+    end note
+else no connection (new HttpClient per call)
+    note over SHH #FCEBEB
+      MISS: must build a brand-new
+      connection. This is the path
+      taken on EVERY call when you
+      do new HttpClient() per request.
+    end note
+
+    == 3. DNS resolution ==
+    SHH -> SOCK : getaddrinfo("api.example.com")
+    SOCK -> STACK : resolve hostname
+    STACK --> SOCK : 203.0.113.42
+    SOCK --> SHH : IP address
+    note right of SOCK #FAEEDA
+      DNS result cached in the handler.
+      .NET ignores TTL — long-lived
+      clients risk stale DNS.
+    end note
+
+    == 4. Socket creation ==
+    SHH -> SOCK : socket() + connect()
+    note over SOCK #FAEEDA
+      Kernel allocates:
+      - file descriptor (fd=7)
+      - TCP control block (TCB)
+      - ephemeral port (e.g. 54231)
+      - send/recv buffers (~87KB each)
+      Updates port -> process table.
+    end note
+
+    == 5. TCP 3-way handshake ==
+    SOCK -> STACK : initiate handshake
+    STACK -> NIC : SYN
+    NIC -> SRV : SYN (on wire)
+    SRV --> NIC : SYN-ACK
+    NIC --> STACK : SYN-ACK
+    STACK -> NIC : ACK
+    NIC -> SRV : ACK
+    note over STACK, SRV #FAEEDA
+      Connection state: ESTABLISHED.
+      Costs 1 full round trip (~20-100ms).
+    end note
+
+    == 6. TLS handshake (HTTPS) ==
+    SHH -> TLS : authenticate
+    TLS -> SRV : ClientHello
+    SRV --> TLS : ServerHello + Certificate
+    TLS -> SRV : key exchange
+    SRV --> TLS : Finished
+    note over TLS, SRV #FAEEDA
+      1-2 more round trips. Session keys
+      derived. Channel now encrypted.
+      Windows: Schannel. Linux: OpenSSL.
+    end note
+end
+
+== 7. Serialise + send HTTP bytes ==
+SHH -> TLS : write HTTP request bytes
+note right of SHH #E6F1FB
+  "POST /v1/driver HTTP/1.1\r\n
+   Host: api.example.com\r\n
+   Content-Type: application/json\r\n
+   \r\n
+   {"driverId":"abc123"}"
+end note
+TLS -> SOCK : encrypted bytes -> send()
+
+== 8. Encapsulation (each layer adds a header) ==
+SOCK -> STACK : hand bytes to TCP layer
+note over STACK #FAEEDA
+  TCP:      + src port 54231, dst port 443,
+            seq, ack, checksum
+  IP:       + src IP, dst IP, TTL, proto=6
+  Ethernet: + src MAC, dst MAC (router!),
+            FCS checksum
+  Result: [Eth][IP][TCP][TLS][HTTP][FCS]
+end note
+
+== 9. Hand frame to NIC driver ==
+STACK -> DRV : dev_queue_xmit(skb)
+note right of STACK #EAF3DE
+  This is a direct C function call,
+  NOT a message. Same memory space —
+  a pointer to the buffer is passed.
+end note
+
+== 10. DMA to hardware ==
+DRV -> NIC : write frame to DMA ring buffer\nsignal "frame ready"
+note over DRV, NIC #FAEEDA
+  NIC reads bytes from RAM via DMA —
+  CPU not involved in the copy.
+end note
+
+== 11. Out onto the wire ==
+NIC -> SRV : serialise bytes -> electrical/optical signals
+note over NIC #F1EFE8
+  1 Gbps = 1 billion voltage changes/sec.
+  Travels to router, then across internet.
+end note
+
+' ===================== FLOW: RESPONSE =====================
+== 12. Response — the entire path reverses ==
+SRV -> NIC : response signals on wire
+NIC -> DRV : DMA write to RX ring\n+ raise hardware interrupt
+note over NIC, DRV #FAEEDA
+  CPU pauses current work, runs the
+  interrupt handler to receive data.
+end note
+DRV -> STACK : pass frame up
+STACK -> STACK : strip Ethernet -> IP -> TCP headers
+STACK -> SOCK : deliver payload to socket buffer
+SOCK -> TLS : encrypted bytes
+TLS -> SHH : decrypted HTTP response bytes
+SHH -> HC : HttpResponseMessage
+HC --> APP : return response
+note right of APP #E6F1FB
+  Your ReadAsync() / await completes.
+  You get status code + headers + body.
+end note
+
+' ===================== DISPOSAL =====================
+== 13. Disposal — where the leak happens ==
+alt handler reused (IHttpClientFactory)
+    note over SHH #EAF3DE
+      Connection returned to pool,
+      kept alive for the next request.
+      No socket closed. No TIME_WAIT.
+    end note
+else new HttpClient() abandoned per call
+    APP -> SOCK : (eventually) GC finalizer -> close(fd)
+    note over SOCK #FCEBEB
+      Socket enters TIME_WAIT (~60-120s).
+      Port unavailable for reuse.
+      At high req/s -> port exhaustion
+      -> SocketException.
+    end note
+end
+
+@enduml

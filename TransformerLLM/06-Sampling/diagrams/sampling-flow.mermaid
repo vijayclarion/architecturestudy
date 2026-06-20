@@ -1,0 +1,26 @@
+```mermaid
+flowchart TD
+    FV["Final transformer vector\n(d_model dimensions)"]
+    
+    Unembed["Unembedding / output head\nLinear: d_model → vocab_size\nOne logit (raw score) per token"]
+    
+    Temp["Temperature scaling\nlogits / T\nT=0.1 → very sharp\nT=0.7 → balanced\nT=2.0 → flat/random"]
+    
+    SM["Softmax\np(token) = exp(logit/T) / Σ exp\nAll probs sum to 1.0"]
+    
+    subgraph Strategy["Sampling strategy (choose one)"]
+        Greedy["Greedy (T≈0)\nargmax → always top token\nDeterministic\nBest for: code, SQL, maths"]
+        TopK["Top-K\nKeep top K tokens\nRenormalise\nK=40-50 typical"]
+        TopP["Top-P / Nucleus\nKeep min tokens where\ncumsum ≥ p (e.g. 0.9)\nDynamic cutoff\nBest for: general chat"]
+    end
+    
+    Token["Sampled token ID\ne.g. 9822 → 'Paris'"]
+    
+    FV --> Unembed --> Temp --> SM --> Strategy --> Token
+
+    style FV fill:#EEEDFE,color:#3C3489
+    style Token fill:#E1F5EE,color:#085041
+    style SM fill:#7F77DD,color:#EEEDFE
+    style Greedy fill:#FAEEDA,color:#633806
+    style TopP fill:#E1F5EE,color:#085041
+```

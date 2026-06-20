@@ -1,0 +1,30 @@
+```mermaid
+graph TB
+    Start[Need to pick<br/>activation function] --> Q1{Hidden or<br/>Output Layer?}
+    
+    Q1 -->|Hidden| Q2{Modern<br/>architecture?}
+    Q2 -->|Yes, default| ReLU[ReLU<br/>max 0, z]
+    Q2 -->|Dying ReLU?| LeakyReLU[Leaky ReLU<br/>max 0.01·z, z]
+    Q2 -->|RNN/LSTM| Tanh[Tanh<br/>-1 to 1]
+    Q2 -->|Transformer| GELU[GELU<br/>modern variant]
+    
+    Q1 -->|Output| Q3{What kind<br/>of prediction?}
+    Q3 -->|Binary 0 or 1| Sigmoid[Sigmoid<br/>1/1+e⁻ᶻ]
+    Q3 -->|Multi-class| Softmax[Softmax<br/>probabilities sum to 1]
+    Q3 -->|Real number| Linear[Linear<br/>no activation]
+    Q3 -->|Probability| Sigmoid2[Sigmoid<br/>output in 0,1]
+    
+    ReLU --> Done([Use this])
+    LeakyReLU --> Done
+    Tanh --> Done
+    GELU --> Done
+    Sigmoid --> Done
+    Softmax --> Done
+    Linear --> Done
+    Sigmoid2 --> Done
+    
+    style ReLU fill:#c8e6c9
+    style Sigmoid fill:#fff9c4
+    style Softmax fill:#bbdefb
+    style Linear fill:#f8bbd0
+```

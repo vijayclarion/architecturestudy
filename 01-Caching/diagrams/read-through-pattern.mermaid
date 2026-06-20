@@ -1,0 +1,28 @@
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Cache Layer
+    participant DB as Database
+
+    rect rgb(220, 255, 220)
+        Note over App,DB: READ HIT - Direct cache response
+        App->>Cache: GET product:123
+        Cache-->>App: Return data
+    end
+    
+    rect rgb(255, 220, 220)
+        Note over App,DB: READ MISS - Cache fetches transparently
+        App->>Cache: GET product:124
+        Note over Cache: Cache library handles miss<br/>App code unaware
+        Cache->>DB: SELECT FROM products
+        DB-->>Cache: Data
+        Cache->>Cache: Store internally
+        Cache-->>App: Return data
+    end
+    
+    rect rgb(220, 220, 255)
+        Note over App,DB: WRITE - App writes DB directly
+        App->>DB: UPDATE products
+        DB-->>App: ACK
+        Note over Cache: Cache invalidated via<br/>TTL or external event
+    end

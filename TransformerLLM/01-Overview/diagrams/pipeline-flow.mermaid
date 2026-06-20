@@ -1,0 +1,36 @@
+```mermaid
+flowchart TD
+    Prompt["User prompt\n'What is the capital of France?'"]
+    
+    Tok["Tokenizer\nBPE splits text into tokens\n[What, is, the, capital, of, France, ?]"]
+    
+    IDs["Token IDs\n[2061, 374, 279, 6864, 315, 9822, 30]"]
+    
+    Emb["Embedding layer\nEach ID → 4096-dim vector\nfrom learned lookup table"]
+    
+    Pos["Positional encoding\nAdd position signal to each vector\nso model knows token order"]
+    
+    Layers["N Transformer layers\nEach layer: Attention + FFN\nEvery token attends to every other\n96 layers in GPT-4 class models"]
+    
+    Head["Output head\nFinal vector → 50K-dim logits\none score per vocab token"]
+    
+    Sample["Sampling\nsoftmax(logits / temperature)\n→ probability distribution\n→ pick next token"]
+    
+    Token["Next token: 'Paris'"]
+    
+    Done{"End of\nresponse?"}
+    
+    Append["Append token to input\nRun forward pass again"]
+    
+    Response["Complete response:\n'The capital of France is Paris.'"]
+
+    Prompt --> Tok --> IDs --> Emb --> Pos --> Layers --> Head --> Sample --> Token --> Done
+    Done -->|No| Append --> Layers
+    Done -->|Yes| Response
+    
+    style Prompt fill:#EEEDFE,color:#3C3489
+    style Layers fill:#7F77DD,color:#EEEDFE
+    style Sample fill:#FAEEDA,color:#633806
+    style Response fill:#E1F5EE,color:#085041
+    style Token fill:#FAEEDA,color:#633806
+```

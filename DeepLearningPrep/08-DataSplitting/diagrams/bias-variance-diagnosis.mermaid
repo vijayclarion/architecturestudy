@@ -1,0 +1,23 @@
+```mermaid
+graph TB
+    Start([Train your model<br/>Measure errors]) --> CheckBias{Training error<br/>close to human<br/>level error?}
+    
+    CheckBias -->|NO<br/>training error high| HighBias[HIGH BIAS<br/>Underfitting]
+    CheckBias -->|YES<br/>training error low| CheckVar{Dev error<br/>close to<br/>training error?}
+    
+    CheckVar -->|NO<br/>big gap| HighVar[HIGH VARIANCE<br/>Overfitting]
+    CheckVar -->|YES<br/>small gap| Perfect[Both Low ✅<br/>Ship it!]
+    
+    HighBias --> FixBias[Fix bias:<br/>• Bigger network<br/>• More layers<br/>• Train longer<br/>• Better architecture]
+    HighVar --> FixVar[Fix variance:<br/>• More training data<br/>• L2 regularization<br/>• Dropout<br/>• Smaller network<br/>• Early stopping]
+    
+    FixBias --> Start
+    FixVar --> Start
+    
+    style Start fill:#e3f2fd
+    style HighBias fill:#ffcdd2
+    style HighVar fill:#fff9c4
+    style Perfect fill:#c8e6c9
+    style FixBias fill:#f8bbd0
+    style FixVar fill:#fff59d
+```

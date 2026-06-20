@@ -1,0 +1,46 @@
+graph TB
+    subgraph "Pattern 1 - Cache-Aside (App manages)"
+        direction LR
+        A1[App] -->|1 read| C1[Cache]
+        C1 -.miss.-> A1
+        A1 -->|2 read| D1[(DB)]
+        A1 -->|3 populate| C1
+        A1 -->|write| D1
+        A1 -.invalidate.-> C1
+    end
+    
+    subgraph "Pattern 2 - Read-Through (Cache reads)"
+        direction LR
+        A2[App] -->|read| C2[Cache]
+        C2 -->|on miss internal| D2[(DB)]
+        D2 -.-> C2
+        A2 -->|write direct| D2
+    end
+    
+    subgraph "Pattern 3 - Write-Through (sync to DB)"
+        direction LR
+        A3[App] -->|write| C3[Cache]
+        C3 -->|sync write| D3[(DB)]
+        A3 -->|read| C3
+    end
+    
+    subgraph "Pattern 4 - Write-Behind (async to DB)"
+        direction LR
+        A4[App] -->|write fast| C4[Cache]
+        C4 -.async batch.-> D4[(DB)]
+        A4 -->|read| C4
+    end
+    
+    subgraph "Pattern 5 - Write-Around (skip cache on write)"
+        direction LR
+        A5[App] -->|write| D5[(DB)]
+        A5 -->|read| C5[Cache]
+        C5 -.miss.-> A5
+        A5 -->|fetch + populate| D5
+    end
+    
+    style C1 fill:#ffe1e1
+    style C2 fill:#e1f5ff
+    style C3 fill:#ccffcc
+    style C4 fill:#fff4e1
+    style C5 fill:#f0e1ff

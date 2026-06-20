@@ -1,0 +1,46 @@
+graph TB
+    subgraph "Source of Truth"
+        DB[(Database)]
+        LOG[Transaction Log / WAL]
+        DB --> LOG
+    end
+    
+    subgraph "Change Data Capture"
+        DEB[Debezium CDC]
+        LOG -.read.-> DEB
+    end
+    
+    subgraph "Message Broker"
+        MQ[Kafka / RabbitMQ]
+        DEB --> MQ
+    end
+    
+    subgraph "Consumers"
+        C1[Redis Invalidator]
+        C2[CDN Invalidator]
+        C3[Search Index Updater]
+        MQ --> C1
+        MQ --> C2
+        MQ --> C3
+    end
+    
+    subgraph "Cache Layers"
+        R[(Redis)]
+        CDN[CDN Edge Nodes]
+        ES[Elasticsearch]
+        C1 -->|DEL key| R
+        C2 -->|Purge API| CDN
+        C3 -->|Update doc| ES
+    end
+    
+    subgraph "Failure Handling"
+        DLQ[Dead Letter Queue]
+        C1 -.fail.-> DLQ
+        C2 -.fail.-> DLQ
+        C3 -.fail.-> DLQ
+        DLQ --> ALERT[Alert System]
+    end
+    
+    style DB fill:#f0e1ff
+    style MQ fill:#ffe1e1
+    style DLQ fill:#ffcccc

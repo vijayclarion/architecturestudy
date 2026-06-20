@@ -1,0 +1,33 @@
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Cache
+    participant DB as Database
+
+    rect rgb(220, 255, 220)
+        Note over App,DB: WRITE - Bypass cache entirely
+        App->>DB: INSERT audit_log
+        DB-->>App: ACK
+        Note over Cache: Cache NOT polluted<br/>with write-only data
+    end
+    
+    rect rgb(255, 220, 220)
+        Note over App,DB: FIRST READ - Cache miss
+        App->>Cache: GET audit_log:42
+        Cache-->>App: MISS
+        App->>DB: SELECT
+        DB-->>App: Data
+        App->>Cache: SET (only NOW it caches)
+        Cache-->>App: OK
+    end
+    
+    rect rgb(220, 220, 255)
+        Note over App,DB: SUBSEQUENT READS - Hit cache
+        App->>Cache: GET audit_log:42
+        Cache-->>App: HIT (return data)
+    end
+    
+    rect rgb(255, 240, 220)
+        Note over App,DB: KEY BENEFIT
+        Note over Cache: Cache contains ONLY data<br/>that has been READ at least once<br/>= efficient memory usage
+    end

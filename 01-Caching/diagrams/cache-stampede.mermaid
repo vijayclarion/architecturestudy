@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant Users as 50,000 Users
+    participant Cache as Redis
+    participant DB as Database
+
+    Note over Cache: Key product:hot expires at T=0
+    
+    rect rgb(255, 200, 200)
+        Note over Users,DB: PROBLEM - Stampede
+        Users->>Cache: GET product:hot (all simultaneous)
+        Cache-->>Users: MISS (all)
+        Users->>DB: 50,000 simultaneous queries
+        Note over DB: 💥 Database overwhelmed
+    end
+    
+    rect rgb(200, 255, 200)
+        Note over Users,DB: SOLUTION - Mutex Lock
+        Users->>Cache: GET product:hot
+        Cache-->>Users: MISS
+        Users->>Cache: SETNX lock:product:hot
+        Note over Cache: Only User 1 gets lock
+        Cache-->>Users: Lock acquired (User 1 only)
+        Users->>DB: SELECT (only User 1)
+        DB-->>Users: Data
+        Users->>Cache: SET product:hot + DEL lock
+        Note over Users: Other 49,999 retry GET
+        Users->>Cache: GET product:hot
+        Cache-->>Users: HIT
+    end

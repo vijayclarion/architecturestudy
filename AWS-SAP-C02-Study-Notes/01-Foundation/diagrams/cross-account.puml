@@ -1,0 +1,155 @@
+@startuml
+title Cross-account S3 access: Account A assumes IAM Role in Account B
+
+autonumber
+
+actor "User / Application\nAccount A" as User
+participant "IAM Principal\nAccount A" as PrincipalA
+participant "AWS STS" as STS
+participant "IAM Role\nDataReader\nAccount B" as RoleB
+participant "IAM Policy\nEvaluation Engine" as IAM
+participant "S3 Bucket\nsecret-bucket\nAccount B" as S3
+
+User -> PrincipalA: Use Account A credentials
+
+PrincipalA -> STS: AssumeRole\nRoleArn = arn:aws:iam::ACCOUNT_B_ID:role/DataReader\nExternalId = unique-id-12345
+
+note right of PrincipalA
+Account A identity-based policy
+
+This policy is attached to the IAM user or role
+in Account A.
+
+It allows the Account A principal to call
+sts:AssumeRole on the Account B role.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::ACCOUNT_B_ID:role/DataReader"
+    }
+  ]
+}
+end note
+
+STS -> IAM: Evaluate caller permissions
+
+note right of IAM
+AWS checks whether the Account A principal
+is allowed to call sts:AssumeRole.
+
+Evaluation can include:
+
+1. Identity-based policy
+2. Permission boundary, if any
+3. SCP, if AWS Organizations is used
+4. Explicit deny checks
+
+Explicit Deny always wins.
+end note
+
+IAM --> STS: sts:AssumeRole is allowed
+
+STS -> RoleB: Check role trust policy
+
+note right of RoleB
+Account B role trust policy
+
+This policy is attached to the IAM role
+in Account B.
+
+It defines WHO can assume the role.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::ACCOUNT_A_ID:root"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "unique-id-12345"
+        }
+      }
+    }
+  ]
+}
+end note
+
+RoleB --> STS: Trust policy allows Account A principal
+
+STS -> STS: Generate temporary security credentials
+
+STS --> PrincipalA: Return temporary credentials\nAccessKeyId + SecretAccessKey + SessionToken
+
+note over PrincipalA, STS
+After AssumeRole succeeds, Account A receives
+temporary credentials for the Account B role.
+
+The effective identity becomes:
+
+arn:aws:sts::ACCOUNT_B_ID:assumed-role/DataReader/session-name
+
+The caller now accesses S3 using the temporary
+credentials of the Account B role.
+end note
+
+PrincipalA -> S3: GetObject request\nSigned with temporary role credentials
+
+S3 -> IAM: Authorize S3 request
+
+note right of S3
+Permission policy attached to Account B role
+
+This defines WHAT the assumed role can do.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": "arn:aws:s3:::secret-bucket/*"
+    }
+  ]
+}
+end note
+
+IAM -> IAM: Evaluate final access decision
+
+note right of IAM
+For S3 access, AWS evaluates:
+
+1. Explicit Deny
+2. SCPs
+3. Permission boundary
+4. Session policy, if passed during AssumeRole
+5. Role permission policy
+6. S3 bucket policy
+7. KMS key policy, if object uses SSE-KMS
+
+For AWS Professional exam:
+
+S3 permission alone is not enough if the object
+is encrypted with a customer-managed KMS key.
+The role also needs kms:Decrypt permission,
+AND the KMS key policy must permit the role.
+end note
+
+alt Access allowed
+    IAM --> S3: Allow
+    S3 --> PrincipalA: Return object
+else Access denied
+    IAM --> S3: Deny
+    S3 --> PrincipalA: AccessDenied
+end
+
+@enduml

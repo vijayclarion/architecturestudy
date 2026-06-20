@@ -1,0 +1,51 @@
+@startuml AWS_Federation_With_OnPrem_AD
+title AWS Resource Access via Federation with On-Premises AD Trust
+
+actor "User\n(On-Prem Employee)" as User
+participant "Browser /\nAWS CLI" as Client
+participant "On-Premises\nActive Directory" as OnPremAD
+participant "AD FS\n(Identity Provider)" as ADFS
+participant "AWS Managed\nMicrosoft AD" as ManagedAD
+participant "AWS STS\n(Security Token Service)" as STS
+participant "AWS IAM" as IAM
+participant "AWS Resource\n(e.g., S3, EC2)" as Resource
+
+== Authentication Phase ==
+User -> Client: 1. Access AWS Console / Service
+Client -> ADFS: 2. Redirect to Identity Provider
+ADFS -> User: 3. Prompt for corporate credentials
+User -> ADFS: 4. Submit username/password
+ADFS -> OnPremAD: 5. Validate credentials (Kerberos/LDAP)
+OnPremAD -> ADFS: 6. Authentication success + user attributes
+
+note over OnPremAD, ManagedAD
+  Trust relationship exists between
+  On-Prem AD and AWS Managed AD
+  (via VPN or Direct Connect)
+end note
+
+== Token Generation Phase ==
+ADFS -> ADFS: 7. Generate SAML assertion\n(signed with IdP cert)
+ADFS -> Client: 8. Return SAML token\n(with role mappings)
+
+== AWS Authorization Phase ==
+Client -> STS: 9. AssumeRoleWithSAML\n(SAML assertion + Role ARN)
+STS -> IAM: 10. Validate SAML trust\n& check role policy
+IAM -> STS: 11. Role validation success
+STS -> STS: 12. Generate temporary\ncredentials (1hr default)
+STS -> Client: 13. Return temp credentials\n(AccessKey, SecretKey, SessionToken)
+
+== Resource Access Phase ==
+Client -> Resource: 14. API call with temp credentials
+Resource -> IAM: 15. Verify permissions
+IAM -> Resource: 16. Authorization decision
+Resource -> Client: 17. Return requested data
+Client -> User: 18. Display result
+
+note over User, Resource
+  No passwords stored in AWS.
+  Credentials expire automatically.
+  Access revoked when user disabled in On-Prem AD.
+end note
+
+@enduml

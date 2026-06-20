@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Redis Cache
+    participant DB as Database
+
+    rect rgb(220, 255, 220)
+        Note over App,DB: WRITE - Synchronous, both updated together
+        App->>Cache: PUT product:123 (data)
+        Cache->>DB: INSERT/UPDATE products
+        DB-->>Cache: ACK
+        Cache-->>App: SUCCESS
+        Note over Cache,DB: Cache + DB always in sync
+    end
+    
+    rect rgb(220, 220, 255)
+        Note over App,DB: READ - Always from cache
+        App->>Cache: GET product:123
+        Cache-->>App: Return cached data
+    end
+    
+    rect rgb(255, 220, 220)
+        Note over App,DB: FAILURE scenario
+        App->>Cache: PUT product:124
+        Cache->>DB: INSERT (fails!)
+        DB-->>Cache: ERROR
+        Cache-->>App: FAILURE
+        Note over Cache: Cache write rolled back<br/>OR cache and DB diverge
+    end

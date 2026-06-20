@@ -1,0 +1,58 @@
+## Autoregressive Generation Loop
+
+```mermaid
+flowchart TD
+    Start(["User prompt\n'What is the capital of France?'"])
+    
+    Tok["Tokenize prompt\n→ integer IDs"]
+    
+    FP["Full forward pass\nAll N transformer layers\nEvery token attends to all prior tokens"]
+    
+    Sample["Sample next token\nsoftmax(logits / T)\n→ 'Paris'"]
+    
+    EOS{"Generated\nEOS token?"}
+    
+    Max{"Reached\nmax_tokens?"}
+    
+    Append["Append token to sequence\nnew_tokens = [prompt_tokens + 'Paris']"]
+    
+    Done(["Response complete\n'The capital of France is Paris.'"])
+
+    Start --> Tok --> FP --> Sample --> EOS
+    EOS -->|No| Max
+    Max -->|No| Append --> FP
+    EOS -->|Yes| Done
+    Max -->|Yes| Done
+
+    style Start fill:#EEEDFE,color:#3C3489
+    style Done fill:#E1F5EE,color:#085041
+    style Sample fill:#FAEEDA,color:#633806
+    style EOS fill:#FAECE7,color:#4A1B0C
+    style Max fill:#FAECE7,color:#4A1B0C
+```
+
+---
+
+## KV Cache — Making Generation Fast
+
+```mermaid
+flowchart LR
+    subgraph NoCa["❌ Without KV Cache"]
+        direction TB
+        T50["Token 50 arrives"]
+        RC["Recompute K,V\nfor tokens 1 → 50\nO(n) work per step\nO(n²) total"]
+    end
+    
+    subgraph Ca["✅ With KV Cache"]
+        direction TB
+        T50b["Token 50 arrives"]
+        LC["Load cached K,V\nfor tokens 1 → 49\nfrom memory\n(no recomputation)"]
+        NC["Compute K,V only\nfor token 50\nO(1) compute per step\nO(n) total"]
+    end
+
+    NoCa ~~~ Ca
+
+    style RC fill:#FAECE7,color:#4A1B0C
+    style LC fill:#E1F5EE,color:#085041
+    style NC fill:#E1F5EE,color:#085041
+```

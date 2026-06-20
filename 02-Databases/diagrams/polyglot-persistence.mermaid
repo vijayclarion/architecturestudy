@@ -1,0 +1,35 @@
+graph TB
+    APP[Application Layer]
+    
+    APP -->|Transactional data<br/>ACID needed| SQL[(PostgreSQL / MS SQL)]
+    APP -->|High write volume<br/>Time-series| CASS[(Cassandra)]
+    APP -->|Sub-ms latency<br/>Session/cache| REDIS[(Redis)]
+    APP -->|Full-text search| ES[(Elasticsearch)]
+    APP -->|Object storage<br/>Files/images| S3[(S3 / Blob Storage)]
+    
+    subgraph "SQL Use Cases"
+        SQL --> SQL1[User profiles]
+        SQL --> SQL2[Orders source of truth]
+        SQL --> SQL3[Payments / billing]
+        SQL --> SQL4[Restaurant menus]
+    end
+    
+    subgraph "Cassandra Use Cases"
+        CASS --> C1[Driver location updates]
+        CASS --> C2[Order status timeline]
+        CASS --> C3[Activity logs]
+        CASS --> C4[Real-time analytics]
+    end
+    
+    subgraph "Redis Use Cases"
+        REDIS --> R1[Session cache]
+        REDIS --> R2[Real-time leaderboards]
+        REDIS --> R3[Rate limiting counters]
+        REDIS --> R4[Pub-sub notifications]
+    end
+    
+    style SQL fill:#e1f5ff
+    style CASS fill:#ffe1e1
+    style REDIS fill:#ccffcc
+    style ES fill:#fff4e1
+    style S3 fill:#f0e1ff

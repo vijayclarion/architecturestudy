@@ -1,0 +1,18 @@
+```mermaid
+graph TB
+    Start([Start]) --> Init["1. Initialize parameters<br/>W and b random small values"]
+    Init --> Forward["2. Forward propagation<br/>Compute predictions ŷ"]
+    Forward --> Cost["3. Compute cost J<br/>How wrong are predictions?"]
+    Cost --> Backward["4. Backward propagation<br/>Compute gradients dW, db"]
+    Backward --> Update["5. Update parameters<br/>W = W - α·dW"]
+    Update --> Check{Cost low<br/>enough?}
+    Check -->|No| Forward
+    Check -->|Yes| End([Done!<br/>Use trained model])
+    
+    style Init fill:#fff3cd
+    style Forward fill:#cfe2ff
+    style Cost fill:#f8d7da
+    style Backward fill:#d1e7dd
+    style Update fill:#e2d4f3
+    style End fill:#d4edda
+```

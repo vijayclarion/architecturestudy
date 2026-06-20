@@ -1,0 +1,36 @@
+graph TB
+    subgraph "B-Tree (SQL - PostgreSQL, MySQL)"
+        BR[Root Node]
+        BR --> BL1[Branch 1]
+        BR --> BL2[Branch 2]
+        BL1 --> BD1[Leaf Data]
+        BL1 --> BD2[Leaf Data]
+        BL2 --> BD3[Leaf Data]
+        BL2 --> BD4[Leaf Data]
+        
+        BW[Write] -.update tree.-> BR
+        BW -.random I/O.-> BD1
+        
+        BREAD[Read O log n] -.fast lookup.-> BD3
+    end
+    
+    subgraph "LSM Tree (Cassandra, RocksDB)"
+        LW[Write] --> CL[Commit Log Sequential]
+        LW --> MT[MemTable RAM]
+        MT -->|flush| S1[SSTable 1 Immutable]
+        MT -->|flush| S2[SSTable 2 Immutable]
+        MT -->|flush| S3[SSTable 3 Immutable]
+        S1 -.compact.-> CS[Compacted SSTable]
+        S2 -.compact.-> CS
+        S3 -.compact.-> CS
+        
+        LREAD[Read] -.check.-> MT
+        LREAD -.bloom filter.-> S1
+        LREAD -.merge.-> S2
+    end
+    
+    style BW fill:#ffcccc
+    style BD1 fill:#ffcccc
+    style LW fill:#ccffcc
+    style MT fill:#ccffcc
+    style CS fill:#ccffcc

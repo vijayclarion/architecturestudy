@@ -1,0 +1,188 @@
+# Anki Flashcards — Caching & Databases
+# Format: Question;Answer (semicolon-separated, one per line)
+# Import into Anki: File → Import → choose this file → field separator = semicolon
+# Or use Quizlet / RemNote — same format works
+
+# ============================================
+# CACHING — BASIC CONCEPTS
+# ============================================
+
+What is the Cache-Aside pattern?;App checks cache first. On miss, fetches from DB and populates cache. App manages the cache.
+
+When does Cache-Aside work best?;Read-heavy workloads where only a subset of data is frequently accessed (product catalogs, user profiles).
+
+What is the main drawback of Cache-Aside?;First request always hits DB (cold start) and stale data risk between writes and TTL expiry.
+
+What is Write-Through caching?;Every write goes to both cache and DB synchronously. Stronger consistency but slower writes and cache pollution.
+
+What is Write-Behind caching?;Write to cache first, persist to DB asynchronously. Fastest writes but risk of data loss if cache fails before DB write.
+
+What is Read-Through caching?;Cache library/proxy fetches from DB on miss. App treats cache as if it's the data source. Simpler app code than Cache-Aside.
+
+# ============================================
+# CACHE STAMPEDE
+# ============================================
+
+What is a cache stampede (thundering herd)?;When a popular cache key expires, thousands of simultaneous requests hit the DB at once, potentially crashing it.
+
+How does a mutex/lock prevent cache stampede?;Only one request acquires the lock to rebuild the cache. Others wait, then read the freshly rebuilt value.
+
+What is probabilistic early expiry?;Refresh cache asynchronously BEFORE it expires, so there's never an expiry gap that causes a stampede.
+
+What is TTL jitter?;Adding random offset to TTL so similar keys don't expire at the same moment, preventing synchronized stampedes.
+
+What is stale-while-revalidate?;HTTP cache directive — serve stale content immediately while refreshing in the background. Zero user-facing latency.
+
+# ============================================
+# CDN AND HTTP CACHING
+# ============================================
+
+What does Cache-Control max-age=3600 mean?;Browser/client caches the resource for 3600 seconds (1 hour) before requesting again.
+
+What is the difference between max-age and s-maxage?;max-age applies to all caches (browser + CDN). s-maxage applies only to shared/CDN caches and overrides max-age for them.
+
+What does Cache-Control no-cache mean?;Cache can store the response but must revalidate with the origin server before serving (using ETag/Last-Modified).
+
+What does Cache-Control no-store mean?;Never cache anywhere. Used for sensitive data like banking info or auth tokens.
+
+What is the difference between private and public in Cache-Control?;private = only browser can cache (not CDN). public = both browser and CDN can cache.
+
+What is an ETag?;A unique identifier for a resource version. Client sends If-None-Match header; server returns 304 Not Modified if unchanged.
+
+How do versioned URLs help with cache invalidation?;Each version of a resource gets a unique URL (e.g., app.a1b2c3.js). Old URL cached forever — irrelevant. New URL = new resource.
+
+Why are versioned URLs better than CDN purge APIs?;Versioned URLs are instant globally. CDN purge takes 30s-2min to propagate. No propagation delay or stale content risk.
+
+# ============================================
+# CACHE INVALIDATION
+# ============================================
+
+What are the two hard things in computer science (Phil Karlton)?;Cache invalidation and naming things.
+
+What is event-driven cache invalidation?;DB change publishes an event to a message broker. Consumers asynchronously invalidate Redis, CDN, etc.
+
+What is CDC (Change Data Capture)?;A pattern where DB transaction log is read by a tool (like Debezium) to publish change events without app code changes.
+
+What does Debezium do?;Reads DB transaction logs (MySQL binlog, Postgres WAL) and publishes change events to Kafka/RabbitMQ.
+
+What is the Outbox Pattern?;Write business events to an outbox table in the same transaction as the data change. A relay publishes them to message broker.
+
+When should you use Outbox over direct CDC?;When you need business-semantic events with rich payloads instead of raw DB row changes. When multiple consumers need different event shapes.
+
+Why are idempotent consumers important?;Message brokers may deliver same event twice. Idempotent processing (e.g., DELETE key) produces same result regardless of how many times it runs.
+
+What is a Dead Letter Queue (DLQ)?;Failed messages after retries go to DLQ for manual review or delayed retry. Prevents poison messages from blocking the queue.
+
+# ============================================
+# SQL vs NoSQL
+# ============================================
+
+What data structure do SQL databases (PostgreSQL, MySQL) use for indexes?;B-Tree (balanced tree, sorted, supports O(log n) reads).
+
+What data structure does Cassandra use?;LSM Tree (Log-Structured Merge Tree).
+
+Why is LSM Tree better for writes?;All writes are sequential (commit log + MemTable). No random disk I/O. No locks on write path.
+
+Why are LSM Tree reads more complex?;Data for one key may live across multiple SSTables. Read must merge/reconcile results from MemTable + multiple SSTables.
+
+What is a MemTable in Cassandra?;An in-memory sorted structure where recent writes live before being flushed to disk as immutable SSTables.
+
+What is an SSTable?;Sorted String Table — an immutable on-disk file in Cassandra holding flushed MemTable data.
+
+What is compaction in Cassandra?;Background process that merges multiple SSTables into one to reduce read amplification and remove tombstones.
+
+What is a Bloom Filter and how does Cassandra use it?;A probabilistic data structure. Cassandra uses it to quickly check if a key MIGHT be in an SSTable, avoiding unnecessary disk reads.
+
+What is CAP theorem?;In a distributed system, you can guarantee at most 2 of: Consistency, Availability, Partition Tolerance.
+
+Is Cassandra CP or AP?;AP — chooses Availability and Partition Tolerance over strong Consistency. Offers eventual consistency.
+
+Is SQL (single node) CA or CP?;CA on single node. Becomes CP when distributed (e.g., master-slave with sync replication).
+
+What is eventual consistency?;After a write, all replicas will EVENTUALLY have the same value, but reads may temporarily return stale data.
+
+# ============================================
+# CASSANDRA DATA MODELING
+# ============================================
+
+What is the partition key in Cassandra?;The first part of the primary key. Determines which node stores the data via consistent hashing.
+
+What is the clustering key in Cassandra?;The second part of the primary key. Determines sort order within a partition on the same node.
+
+Why does Cassandra require query-first data modeling?;No JOINs, no ad-hoc queries. Query patterns must be known upfront. Tables are designed per query.
+
+What is denormalization in Cassandra?;Duplicating data across multiple tables, each optimized for a specific query. Trade-off: storage and write amplification vs read performance.
+
+What is a Cassandra anti-pattern: ALLOW FILTERING?;Forcing Cassandra to scan all partitions to find data. Catastrophic performance — never use in production.
+
+What is a tombstone in Cassandra?;A marker for deleted data. Actual deletion happens during compaction. Too many tombstones slow down reads.
+
+# ============================================
+# CONSISTENCY LEVELS
+# ============================================
+
+What is consistency level ONE in Cassandra?;Coordinator waits for 1 replica to acknowledge before returning. Fastest but riskier.
+
+What is consistency level QUORUM?;Majority of replicas must acknowledge. (RF=3 → 2 must ack). Balanced choice.
+
+What is consistency level ALL?;All replicas must acknowledge. Strongest but slowest. Loses availability if any replica is down.
+
+What is LOCAL_QUORUM?;Quorum of replicas in the LOCAL datacenter. Used in multi-DC setups to avoid cross-region latency.
+
+What is the formula for strong consistency in Cassandra?;R + W > N (where N = replication factor, R = read CL, W = write CL).
+
+What does RF=3, R=QUORUM, W=QUORUM give you?;Strong consistency: 2+2 > 3. Each read sees the latest write.
+
+# ============================================
+# PARTITIONING AND DISTRIBUTION
+# ============================================
+
+How does SQL partitioning differ from Cassandra partitioning?;SQL partitioning is a performance optimization within ONE server. Cassandra partitioning is the fundamental distribution mechanism across MULTIPLE servers.
+
+What is consistent hashing?;Nodes and keys placed on a hash ring. Keys travel clockwise to their node. Adding/removing a node moves minimal data (only the affected range).
+
+Why is consistent hashing better than hash mod N?;hash % N remaps almost ALL keys when N changes. Consistent hashing only moves data in the affected ring section (~1/N of data).
+
+What are virtual nodes (vnodes) in Cassandra?;Each physical node owns many small token ranges (default 256). Enables even distribution and faster rebalancing.
+
+What is the gossip protocol?;Decentralized protocol where every node periodically shares its state with 1-3 random peers. Within seconds, the entire cluster has consistent view.
+
+What information is gossiped in Cassandra?;Node status (UP/DOWN), token assignments, load metrics, schema version, view of other nodes.
+
+What is the Phi Accrual Failure Detector?;Cassandra's algorithm that calculates a probabilistic suspicion level (phi) for each node, adapting to network conditions instead of binary up/down.
+
+What happens when a new node joins a Cassandra cluster?;1) Contacts seed node 2) Gets assigned tokens 3) Gossips its presence 4) Neighbors stream relevant data 5) Starts serving requests. Zero downtime.
+
+# ============================================
+# WHEN TO USE WHAT
+# ============================================
+
+When should you use Cassandra over SQL?;Writes > 50k/sec sustained, time-series data, multi-region active-active writes, linear horizontal scaling needs, query patterns known upfront.
+
+When should you use SQL over Cassandra?;Need ACID transactions, complex JOINs/reporting, strong consistency mandatory, moderate scale, schema flexibility for ad-hoc queries.
+
+What is polyglot persistence?;Using multiple databases in one system, each optimized for specific data shapes (e.g., Postgres + Cassandra + Redis + Elasticsearch).
+
+Why is polyglot persistence the modern standard?;No single database is optimal for all workloads. Trade-off: operational complexity for performance and fit-to-purpose.
+
+Give an example of polyglot persistence for Zomato.;PostgreSQL for orders/users/menus, Cassandra for driver tracking and order status timeline, Redis for sessions, Elasticsearch for restaurant search, S3 for images.
+
+When is MS SQL partitioning sufficient and Cassandra unnecessary?;Moderate scale (<50k writes/sec), single region, complex queries needed, ACID required, team has strong SQL expertise.
+
+What is the architect's universal answer pattern?;1) Clarify requirements 2) State the trade-off explicitly 3) Make the recommendation 4) Note the limits / escape hatch.
+
+# ============================================
+# REAL-WORLD ANCHORS
+# ============================================
+
+What does Facebook use for caching?;Memcached at massive scale with cache-aside pattern. Reduced DB load by 99%.
+
+What does Netflix use Cassandra for?;Viewing history, user preferences, A/B test data. World's largest Cassandra deployment (10,000+ nodes).
+
+What does Discord use Cassandra for?;Storing billions of chat messages, partitioned by channel_id.
+
+What does LinkedIn use for cache invalidation?;Databus — their CDC system that propagates DB changes to caches, search indexes, and analytics.
+
+What does Cloudflare do at the edge?;Serves 50M+ HTTP requests/second from global edge locations, reducing origin load by 50-70%.
+
+What does Netflix Open Connect do?;Places CDN edge servers inside ISP networks so video streams from inside the user's ISP, reducing bandwidth costs.

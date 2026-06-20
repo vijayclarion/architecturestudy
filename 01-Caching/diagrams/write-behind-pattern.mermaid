@@ -1,0 +1,36 @@
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Cache
+    participant Q as Write Buffer Queue
+    participant DB as Database
+
+    rect rgb(220, 255, 220)
+        Note over App,DB: WRITE - Ultra fast, async to DB
+        App->>Cache: PUT view_count:video_99
+        Cache->>Q: Queue write
+        Cache-->>App: SUCCESS (microseconds!)
+        Note over App: User-facing latency<br/>extremely low
+    end
+    
+    rect rgb(255, 240, 220)
+        Note over App,DB: ASYNC BATCH FLUSH
+        Note over Q: Trigger - every 5s OR 1000 writes
+        Q->>DB: BATCH INSERT/UPDATE (1000 rows)
+        DB-->>Q: ACK
+        Q->>Q: Remove ACKed writes
+    end
+    
+    rect rgb(220, 220, 255)
+        Note over App,DB: READ - From cache always
+        App->>Cache: GET view_count:video_99
+        Cache-->>App: Return latest value
+    end
+    
+    rect rgb(255, 200, 200)
+        Note over App,DB: FAILURE RISK
+        App->>Cache: PUT view_count:video_100
+        Cache->>Q: Queue write
+        Note over Cache: 💥 Cache crashes here
+        Note over DB: Queued writes LOST<br/>unless WAL/replication used
+    end

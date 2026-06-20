@@ -1,0 +1,224 @@
+@startuml
+title S3 object access using SSE-KMS customer managed key (SINGLE ACCOUNT)
+
+autonumber
+
+note across
+SCENARIO: single account. Here Account A OWNS both the S3 bucket
+and the customer managed KMS key, and the principal also lives in
+Account A. (This differs from the cross-account file, where Account A
+is the consumer and Account B owns the resources.)
+
+For cross-account: Account B would own the bucket + CMK, the CMK key
+policy would name Account A's role explicitly, and Account A's IAM
+policy would allow kms:Decrypt / kms:GenerateDataKey on B's key ARN.
+end note
+
+actor "User / Application" as User
+participant "IAM Principal\nUser or Role\nAccount A" as Principal
+participant "IAM Policy\nEvaluation Engine" as IAM
+participant "Amazon S3 Bucket\nsecure-bucket\nAccount A" as S3
+participant "AWS KMS" as KMS
+participant "CloudTrail" as CT
+
+== One-time setup ==
+
+User -> Principal: Use AWS credentials
+
+Principal -> KMS: CreateKey\nKey type = symmetric encryption key
+
+note right of KMS
+Important exam point:
+
+For S3 SSE-KMS, use a SYMMETRIC
+encryption KMS key.
+
+S3 cannot use an asymmetric KMS key
+for SSE-KMS object encryption.
+end note
+
+KMS -> KMS: Create customer managed key
+
+Principal -> KMS: CreateAlias\nalias/s3-prod-key
+
+Principal -> KMS: Configure key policy
+
+note right of KMS
+KMS key policy
+
+The key policy is the primary
+authorization control for a KMS key.
+For a CMK you OWN this policy, so you
+must grant access here explicitly.
+
+"Resource": "*" inside a key policy means
+"this key" — a key policy already scopes
+to the key it is attached to.
+
+Example key policy allowing an
+application role to use the key:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAppRoleToUseKeyForS3",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::ACCOUNT_A_ID:role/AppRole"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:GenerateDataKey"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:ViaService": "s3.REGION.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
+
+Note: kms:GenerateDataKey is required to
+UPLOAD SSE-KMS objects; kms:Decrypt is
+required to DOWNLOAD them.
+end note
+
+Principal -> Principal: Attach IAM policy
+
+note right of Principal
+IAM policy attached to user or role
+
+This allows the application principal
+to read objects from S3 and use the
+KMS key for cryptographic operations.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowReadFromS3Bucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": "arn:aws:s3:::secure-bucket/*"
+    },
+    {
+      "Sid": "AllowKMSDecryptForS3",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt"
+      ],
+      "Resource": "arn:aws:kms:REGION:ACCOUNT_A_ID:key/KEY_ID"
+    }
+  ]
+}
+end note
+
+Principal -> S3: Configure default bucket encryption\nSSE-KMS with alias/s3-prod-key
+
+note right of S3
+S3 bucket default encryption
+
+Objects uploaded to this bucket
+can be encrypted using SSE-KMS
+with the customer managed KMS key.
+
+Bucket policy can also enforce
+SSE-KMS by denying PutObject
+requests that do not specify
+aws:kms encryption.
+end note
+
+== Upload object with SSE-KMS ==
+
+Principal -> S3: PutObject\nx-amz-server-side-encryption = aws:kms\nx-amz-server-side-encryption-aws-kms-key-id = alias/s3-prod-key
+
+S3 -> IAM: Authorize s3:PutObject
+
+note right of IAM
+For upload with SSE-KMS, AWS evaluates:
+
+1. Explicit Deny
+2. SCPs
+3. Permission boundary
+4. IAM identity policy
+5. S3 bucket policy
+6. KMS key policy
+7. KMS-related IAM permissions
+
+The caller commonly needs:
+- s3:PutObject
+- kms:GenerateDataKey
+end note
+
+IAM --> S3: S3 write allowed
+
+S3 -> KMS: GenerateDataKey\nfor customer managed KMS key
+
+KMS -> IAM: Evaluate KMS permissions\nkms:GenerateDataKey
+
+IAM -> KMS: Check key policy
+
+alt#Gold #LightBlue KMS allowed
+    KMS --> KMS: Key policy allows use
+    KMS --> S3: Return plaintext data key\nand encrypted data key \nusing customer managed KMS master key
+    S3 -> S3: Encrypt object using plaintext data key
+    S3 -> S3: Store encrypted object\nand encrypted data key in metadata
+    S3 -> CT: Log KMS and S3 activity
+    S3 --> Principal: PutObject success
+else  #Pink KMS denied
+    KMS --> S3: AccessDenied
+    S3 --> Principal: PutObject failed
+end
+
+== Download object encrypted with SSE-KMS ==
+
+Principal -> S3: GetObject\nsigned with IAM principal credentials
+
+S3 -> IAM: Authorize s3:GetObject
+
+note right of IAM
+For download with SSE-KMS, AWS evaluates:
+
+1. Explicit Deny
+2. SCPs
+3. Permission boundary
+4. IAM identity policy
+5. S3 bucket policy
+6. KMS key policy
+7. KMS-related IAM permissions
+
+The caller needs:
+- s3:GetObject
+- kms:Decrypt
+end note
+
+IAM --> S3: S3 read allowed
+
+S3 -> KMS: Decrypt encrypted data key\nusing customer managed KMS master key
+
+KMS -> IAM: Evaluate KMS permissions\nkms:Decrypt
+
+IAM -> KMS: Check key policy
+alt#Gold #LightBlue Decrypt allowed
+    KMS --> KMS: Key policy allows decrypt
+    KMS --> S3: Return plaintext data key
+    S3 -> S3: Decrypt object using plaintext data key
+    S3 -> S3: Remove plaintext data key from memory
+    S3 -> CT: Log KMS Decrypt and S3 GetObject
+    S3 --> Principal: Return decrypted object
+else #Pink KMS Decrypt denied
+    KMS --> S3: AccessDenied
+    S3 --> Principal: AccessDenied
+end
+
+note right of KMS
+1. KMS Responsible to store customer managed key or master key
+2. KMS Responsible to decrypt the data key using master key
+3. Encrypted data key is saved in S3 Object metadata
+end note
+@enduml
