@@ -1,0 +1,90 @@
+@startuml Topic4_Loop_Control
+' ============================================================
+' TOPIC 4: Loop Control (keep it safe & bounded)
+' EXAM-CRITICAL: turn budget = CODE in orchestration layer,
+' NOT a prompt instruction. Never trust the model to self-limit.
+' ============================================================
+title Topic 4 — Loop Control\n(Bound the loop: termination + turn budget (in CODE) + escalation)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+:Agent loop running (Topic 3);
+
+' ---- The runtime guard wraps every turn ----
+partition "ORCHESTRATION / RUNTIME LAYER (real code)" {
+  :Increment turn counter;
+  if (Turn budget exhausted?\n(e.g. > 10 iterations)) then (YES)
+    #Pink:**STOP: budget exhausted**;
+    note right
+      TURN BUDGET = programmatic guard in CODE.
+      * Counts LOOP ITERATIONS (turns), not tokens
+      * NOT a polite prompt instruction
+      * Never trust the model to limit itself
+      * EXAM TRAP: prompt "please stop soon" is WRONG;
+        must be enforced in orchestration/runtime code
+    end note
+    stop
+  endif
+}
+
+if (External **stop signal** received?) then (YES)
+  #Pink:**STOP: stop signal**;
+  stop
+endif
+
+if (Task complete?\n(termination condition met)) then (YES)
+  #LightGreen:**STOP: task complete**;
+  stop
+endif
+
+if (**Error threshold** crossed?) then (YES)
+  #Pink:**STOP: error threshold**;
+  stop
+endif
+
+' ---- Progress vs spinning detection ----
+if (Repeated IDENTICAL tool calls\nAND identical observations?) then (YES = SPINNING)
+  #Yellow:Detected: NOT making progress;
+  note right
+    == PROGRESS vs SPINNING ==
+    * Progress = state CHANGES turn to turn
+    * Spinning = same call -> same result, repeatedly
+    Failure modes that cause infinite loops:
+    1. Missing stop condition
+    2. Always-failing tool (retries forever)
+    3. Circular reasoning
+  end note
+  if (Authorization boundary /\nMissing info /\nHuman judgment needed?) then (YES)
+    #LightBlue:**ESCALATE** to human / higher authority;
+    note left
+      Escalation = DESIGNED SAFETY VALVE, not a failure.
+      Escalate at: authorization boundary,
+      missing information it can't get,
+      or need for human judgment.
+    end note
+    stop
+  else (NO — recoverable)
+    :Adjust approach and continue;
+  endif
+else (NO — real progress)
+  :Continue to next turn (loop back to Topic 3);
+endif
+
+stop
+
+floating note left
+  == FOUR CLEAN STOP REASONS ==
+  1. Task complete
+  2. Error threshold crossed
+  3. Budget exhausted
+  4. External stop signal
+  ----
+  == ITERATE vs ESCALATE ==
+  Iterate (try again yourself) by default.
+  Escalate only at: authorization boundary /
+  missing info / human judgment required.
+end note
+
+@enduml

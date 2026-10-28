@@ -1,0 +1,56 @@
+@startuml Topic2_Tool_Use_Lifecycle
+' ============================================================
+' TOPIC 2: The Tool Use Lifecycle (the roundtrip)
+' TRAP: The MODEL never executes the tool — the APP does.
+' ============================================================
+title Topic 2 — Tool Use Lifecycle\n(One tool call = one ROUNDTRIP. Model REQUESTS, App EXECUTES.)
+
+skinparam defaultFontSize 13
+skinparam sequenceMessageAlign center
+
+actor "User" as U
+participant "Your Application\n(developer's code)" as App
+participant "Model (LLM)\n(emits tokens only)" as LLM
+participant "Tool\n(API / DB / code)" as Tool
+
+== 1. Request (App sends definitions) ==
+U -> App: "Should I bring an umbrella in London?"
+App -> LLM: user message + **TOOL DEFINITIONS**\n(name, description, input schema)
+note right of App
+  Developer SENDS the tool definition
+  inside the request. Description quality
+  drives whether/how the model uses it.
+end note
+
+== 2. Model decides -> TOOL CALL ==
+LLM --> App: stop_reason = **"tool_use"**\n+ **tool_use block**\n(get_weather, city="London")
+note left of LLM
+  Model does NOT run anything.
+  It only REQUESTS the call.
+end note
+
+== 3. Application EXECUTES (client tool) ==
+App -> Tool: actually call get_weather("London")
+Tool --> App: "rainy, 16C"
+
+== 4. Return result (OBSERVATION) ==
+App -> LLM: **tool_result block** = "rainy, 16C"\n(+ full prior context)
+
+== 5. Model continues ==
+LLM --> App: final text:\n"Yes, bring an umbrella."
+App -> U: reply
+
+note over App, Tool
+  == CLIENT vs SERVER TOOLS ==
+  * **Client tool**: YOUR app executes (e.g. weather API)
+  * **Server tool**: Anthropic executes on their side
+    (e.g. web search) — you run nothing
+  ----
+  == WORKFLOW vs ROUNDTRIP judgment ==
+  Pre-fetch (skip roundtrip) when: you ALWAYS need it
+  AND already know the inputs.
+  Use the roundtrip when: (a) need is uncertain,
+  (b) inputs only known at runtime, (c) multi-step/adaptive.
+end note
+
+@enduml

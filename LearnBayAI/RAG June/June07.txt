@@ -1,0 +1,2344 @@
+Hi,
+00:10
+
+everyone. Good morning.
+03:09
+
+Okay, so let me start. So we have started RAG, right?
+03:50
+
+I said there are two parts. Part number one is indexing.
+04:15
+
+Means you have to do document loader. You can do chunking,
+04:31
+
+embedding, and vector database storage. Okay.
+04:46
+
+Part two, I said you have to do retrieval, augmentation,
+05:00
+
+and generation. Okay. So there are three elements you have to do here. Yeah?
+05:13
+
+Now, the part one, I have discussed document
+05:26
+
+loader, right? Document loader. And I have shown you the different approach, right? So by the help of LangChain framework.
+05:39
+
+We have seenYeah? It provides various of documents loader techniques where you can upload the documents in the same format.
+05:58
+
+Correct? So what happened here? What you have noticed that whenever you can use the document loader, right? There are certain tasks they will do. The first part, you can load the
+06:10
+
+document. Load the document into memory.
+06:23
+
+Second part, what document loader will do, it will parse the document. Parse the document. Right? And the third part,
+06:36
+
+it will return output in a unified
+06:50
+
+format. Mm-hmm? What is meaning of unified format? You have seen whenever you have any documents there, right, whether it's a PDF or a CSV file or TXT file or .SRT file or
+07:05
+
+HTML or website, right, or YouTube, anything you can pick it, what they will do the document, they will give you the page content. Page content.
+07:19
+
+Okay? And that's why we prefer to use LangChain. So it will give any documents, they will convert into two parts. One is called page content, and second is called metadata. Page content means what happened?
+07:32
+
+You will get the text of the document. Of the documents. Documents. Metadata means you will get what is the source, from where the
+07:47
+
+document comes, what is the size, right? What is the page, et cetera, into dictionary format. So if you wanted to do a key search and all, you can go by the metadata.
+08:02
+
+So there are two things happen. I hope all my friend, and the function you have seen, the point number four we can see function we have seen, we can say .load. Right? So this is the functionality there.
+08:16
+
+You can say functionality. Functionality. Right? So we have something called .load,
+08:29
+
+or you can say lazy load. Okay? So you have to just load them, and then you can see the result and all. Right? So what happened,
+08:43
+
+the document has a piece of text content, right, and associated metadata. Page content and associated metadata you will get. LangChain has a loader for almost every
+08:56
+
+possible document format. Anything you can give, by the help of LangChain framework, you can upload in your system, and they will convert into these two format. That is the main thing that you have to remember. Right?
+09:09
+
+Document loader provide load functionality, right? Loads method for loading the documents and configure the source. Right? They will convert what is the source of the data, all these things you will get.
+09:22
+
+Okay, that is what you have seen. Now, I have covered different approaches. Like you have seen the loader type would be
+09:35
+
+CSV file. Yeah? You have seen text file. You have seen JSON file. Yeah, you have seen PDF. You have seen web-based. Mm-hmm.
+09:48
+
+You have seen Excel, CSV. Yeah, different formats there, et cetera. And there are more than hundreds of documents you have
+10:03
+
+seen it. Yeah? I have also covered the code part. Good. And I told you, you have to go and explore more. Everybody, are you with me? Can you give me yes, all my
+10:19
+
+friend? So far, so good? Hmm? Let me open the Jupyter Notebook.
+10:31
+
+Okay. So document loader provide a standard interface for reading data from different source, such as Slack, Notion, Google Drive, from LangChain document format.
+11:16
+
+LangChain document format means they will give you the page content and metadata. This ensure the data can handle consistently, regardless of the source. So you need not to worry whether the
+11:28
+
+source is PDA or HTML or what, right? Document loader API, each document loader may define its own parameter, but these here are the common API. One is load and lazy load. What is this?
+11:42
+
+It's a functionality, right? So there are two functionality you can use. Load means load all documents at once. Yeah? And lazy load?A stream document lazily useful for large data sets. So when you have a huge data set, that time you can go and use it.
+11:55
+
+You can go and read the documentation. Examples. What are the examples there? So if you have all documents, you can say loader.this, or for large data set, lazily load documents. It will take some time, but you can just use the loop function, and one
+12:11
+
+by one, you can use the loader.lazy and print the document. Document Loader provide load method for loading data as document from the configured source, means you can say page content and metadata. The optionally implemented lazy load
+12:27
+
+as well for lazily loading data into memory. This is also, sometime you will see the engineers or architectures, they are using this, who develop the architecture, they will suggest you can go and do it.
+12:43
+
+Mostly, you will use load only. Like text loader, what you do, you can just install the function. You can give the path and load this. Our data get loaded, and they will convert into page content and metadata. If you have a CSV file, you can say CSV loader.
+12:56
+
+You can load the data. If you have HTML, you can say unstructured HTML loader, give the path and load them. If Beautiful Soup, you can first install the
+13:12
+
+Beautiful Soup, say web-based loader, give the path, and you can load the data. If it is JSON file, you can simply say JSON loader. You can give the path, you can give the schema. So schema, it depends. You can go on that
+13:25
+
+sheet first, and then you have to do. Here I have just taken example, but yesterday you have seen when I have taken in my JSON format, it's given product. So I have given product. And in product, what I want the content I have given,
+13:40
+
+the descriptions. So I have taken descriptions. And then you load them. Similarly, PDF, you can say PyPDFLoader, and you can load them. If it is file directory, so you can go and use the all directory. Let's say you have all .srt file there, all
+13:53
+
+PDF there. So you can go and use this. So here you can write a globe, and here you can say star., let's say markdown format there, you can take all markdown format. YML there, you can put .yml. If HTML there, you can say
+14:08
+
+.html. PDF, .pdf. Like that you have to give in all data, you can do it. If you have a YouTube transcription loader, you wanted to do it, so you can just click it and you will get it. I have given some examples also.
+14:22
+
+So you can go in this YouTube. This is the founder, LangChain founder. They have delivered a speech. So if you have a bandwidth, you can go and watch it. So this guy,
+14:35
+
+Sam Alsaman and paid this. So there are some videos there. And I have done some part also. So coding, you can see CSV file, how I have done it. The load web pages, how you will do
+14:48
+
+the web pages. Parsing web pages, how you will do the parsing also. If you wanted to do it, you can go and do the separator. You can see, you can separate by the pipe symbol means, step by step you can do it.
+15:02
+
+Then you can see .srt file, how you will do it. All the srt file, how you will do it. If YouTube there, how you can extract it. So similar examples I have given. Audio also, if you guys wanted to go and
+15:14
+
+see the audio part, how you can do this part. So load YouTube audio, you can download it and just explore. I didn't get time to write code, but it's simple. You can first install the package, and then you can use it. It will work.
+15:28
+
+Okay? So this is called Document Loader. Next part what I told you, you have to go and read this
+15:43
+
+documents. You can go and read this documents. Here you will get more than 108 files, and all the types, which class is there, how you will use it, everything is given there. So whenever you have a bandwidth, or there is no
+15:57
+
+requirement that you have to go one by one, but in future, if anything comes, definitely you can go and see what kind of classes we have, and accordingly, you can go and do this. See? Note, this, Azure, Helpords, URL.
+16:11
+
+So any format they will give you, you need not to worry. You will get it. You have a email, you have a Reddit, you have Athena. You have Base, Braves, Pythons, Python format also there. You can easily do it. So all this thing is possible.
+16:26
+
+Okay, all format is there. ESB, WhatsApp chat. So you can just go here, click this, and then you can explore it. Right here you can see Facebook chat, Tutor Chat, Google Drive.
+16:40
+
+So let's say Facebook chat you wanted to do it. You can go here, read the documentation, how it works, and then you can just see the path, load all functionalities there. Okay? So this is called the
+16:53
+
+Document Loader. Now, coming to the part number two, it's called Chunking. Okay, now I'm jumping into second strategy, which is called Document Splitter or Chunking.
+17:07
+
+Document splitter and chunking.
+17:28
+
+Or we can say transformers, or here you can say chunkers or transform.
+17:43
+
+Okay, so first thing first, you have to understand, what is document splitter? Why we are doing it? What is the benefit? You have to understand that part. So guys, when we say chunking-Chunking
+17:58
+
+is the process of
+18:13
+
+breaking down a large document into a smaller,
+18:28
+
+more manageable pieces called
+18:43
+
+chunk. Okay? So this is what you have to remember it. Anybody say why we are doing chunking? You can say when we have large document there. Okay, we have more documents there,
+18:57
+
+millions of documents there. LLM had some limitations. They have some context limitations. So they cannot read it, right? So for that, what we are doing, we are using this method.
+19:11
+
+Okay? So what you can say why we are doing chunking? Yeah. Chunking means what it will do, they will split the data, right? They will split the data so that
+19:25
+
+the splitting techniques, what it will do? If the large document-- So it will never
+19:39
+
+bridge the content limit. Okay? And the second benefit is it will avoid
+19:54
+
+the lost in the middle problem. What does it mean by middle problem? Normally, whenever you have a documents there.
+20:08
+
+So first, the LLM, if you don't do chunking, and you can directly go and jump into embedding part, they will remember the first and last part, and they forget this part.
+20:23
+
+That's why we say middle problem. So if you don't do chunking, if you don't do a splitting, they will pick some first few line of sentence, last few line of sentence, and middle, they will
+20:35
+
+missed it. And because they are missing it, that means if the user will ask questions, they will not give the answer. Right? So content, one is content limit. Content limit means LLM had some limitations.
+20:48
+
+They cannot read more than that. So let's say some of the models, some of the context, let's say GPT. So you have a total vocabulary is 20 million token. You have total 20 million tokens there.
+21:02
+
+And the GPT model had some limitations. They will see maximum 200K token. Now what happened? Whatever the remaining left there, they forget it.
+21:15
+
+And that means we are breaching the content limit. So we have a limitations. If you have a more than that, what happen? You will lose the other information. Second, even we have less than, let's say, two-- GPT model
+21:27
+
+200K is there, and let's say you have only 100K tokens there. You can say, "No problem." But here, what is the problem happen? If you don't do chunking, they will remember the first and last, and no other
+21:43
+
+they may forget. That is the biggest challenge there. So what we are doing? The process is, let's say you have a documents here. You have a big document.
+21:55
+
+So many information is there, why not we can split them into certain pieces of token? This strategy is called chunking strategy.
+22:08
+
+So I will say, okay, certain part, I will take one chunk, two chunk, three chunk, four chunk. Like that, I will do it. So what happen if you have a huge knowledge source there? This is knowledge source.
+22:23
+
+By the help of document loader you have taken. Now this knowledge source, why not we can convert into-- We can say we will convert into five. Let's say five
+22:39
+
+document split. Okay? Means five chunking strategy we will use it. Chunking strategy we will use.
+22:54
+
+Okay, we will use this. So one PDF, you have to divide into multiple chunking size. Okay? Now what is the benefit is they will not miss the middle problems. Second, there is a limitations
+23:07
+
+there. That limitations also they will not forget. That is the benefit is this in a simple language. Are you guys with me, everyone?
+23:22
+
+Hmm? So please remember, whenever you are using the RAG system- RAG, okay?
+23:34
+
+It always retrieve only the most relevant chunks
+23:47
+
+instead of entire document. It will ensure you can say ensuring
+24:00
+
+efficiencySecond benefit is it will take lower cost and
+24:13
+
+better answer quality. So anybody asks you why you are doing chunking? So one part you can say, "Boss, we are doing
+24:27
+
+chunking, right? Because the larger documents there, we can convert into a smaller document. That's the chunking approach, so that the LLM can read all the documents. LLM had some content limitations.
+24:40
+
+That limitation will not occur. Second, the middle problem will not occur." Why we are doing chunking? Because, boss, when we are building the architecture, the RAG architecture, if I will not do chunking and I will give, let's say,
+24:55
+
+all the documents here, when I will retrieve the informations, when I will RAG,
+25:10
+
+retrieve only the most relevant chunks. Means if we have so many documents there.
+25:24
+
+If you do chunking and any user is asking query, by the help of retrieval system, they will only fetch the relevant informations. They will not fetch all the entire data by the
+25:36
+
+help of retrieval systems. We can only take, okay, the user query pertaining to this paragraph or this paragraph or this chunking. They will take only those information. If you don't do chunking, retrieval will take all as it is, and
+25:52
+
+then it is very costly. So here, chunk benefit is it is lower cost because only few documents. Context will come only very less. It will give the ensure efficiency.
+26:06
+
+So LLM is very fast then. If you give four or five documents, and that is also a very smaller one, and user is asking query, LLM quickly give the answer. So it will ensure the efficiency. Sometime you will see latency issues happen. So how you will handle?
+26:21
+
+By the help of chunking. And third is better answer quality. So you will avoid hallucination problem, and they will give the better articulated answer rather than they can fetch all the documents.
+26:35
+
+That is the main benefit is. Now there are some challenges also you will see. The better chunking strategy you have to remember there is
+26:48
+
+a key trade-off between recall and precision.
+27:02
+
+So what is meaning of this? Recall and precision, guys, you all know recall and precision. You have seen in machine learning. I have covered that part. Classification problem when you predict.
+27:17
+
+Yeah, recall means whatever the actual answer is given, how much correctly you have predicted. Precision means what is the predicted answer you are getting, this is the factual
+27:32
+
+correct. So what happened? I use the word trade-off. Means if you have a large chunks there. If you have a large chunks there, means you have a huge documents there.
+27:45
+
+Large chunks there. Then you will experience high recall. But low precision.
+27:59
+
+If you have a small chunk, a small chunks, then you will experience low recall, but
+28:15
+
+high precision. Okay? That is what the experience you will notice. So what we are doing? There are certain strategy there
+28:29
+
+to fix chunk size. You have to do the fixed chunk size. So you can split the document into chunk of the fixed size. Based on the set of number of the character or token
+28:41
+
+or paragraph or sentences, you will do like that. So it is simple to implement and fast to execute, and it is good starting point. That is what the benefit is. Okay? Please remember, anybody ask you why we are doing chunking, because
+28:55
+
+there are some limitations there. Now if you have a huge documents, what happen? You can say, I will use the large chunk. My recall value would be very high, but precision. So, but you need not to worry about this. This evaluation metrics we are not doing.
+29:10
+
+Once there is a latency there, then only we will check this part. Okay? So I'll show you when I will go in the observability and all. I'll show you that part. But broader perspective is this. Now there are lots of strategy there.
+29:25
+
+There are lots of strategy there. How you can do the chunking and all. What is the best way there? So, let me say,
+29:40
+
+let's say you have one PDF there. And in this PDF, let's say you have 1,000 page there. 1,000 pages there.
+29:56
+
+Now, if you give entire PDF, 1,000 pages to LLM. What happen? In each pages, you have lots of tokens there, lots of words there. So it
+30:10
+
+mayexceed token limit. Token limit, right? When you ask any questions, retrieval become
+30:23
+
+very slow. Right? And next part is the important information, information
+30:39
+
+may get lost. Hmm? So you know how we can handle this? For that, we are using a different chunking strategy. Okay?
+30:53
+
+So different chunking strategy. One chunking strategy is length-based splitting.
+31:06
+
+Okay? Length-based splitting. So what length-based splitting will do? The document, whatever the 1,000 pages documents there, right? They will split the fixed number of character.
+31:19
+
+You can say the fixed number of, fixed number of character or words or tokens.
+31:33
+
+Tokens. Okay? So you can say, "I will fix the word". So means when I do the chunk, when we do the chunk, I can say the first chunk, I will take one to
+31:47
+
+200 vocabulary. When I will go in the chunk strategy chunk two, I will go 201 to 400. Chunk three,
+32:00
+
+401 to 600. Chunk four, 601 to 800. And chunk five equal to 801 to 1,000. Okay?
+32:13
+
+So that 1,000 pages, you will split into fixed number of chunks, and that's what is called length-based splitting. Hmm? Just think about this like that. If you have 2,000 pages, if you have 5,000 pages, you can say chunk size
+32:28
+
+equal to 500. Yeah? You can say splits size equal to 500 vocabulary. They will do like that. That's what is there. Now when you can use this length-based splitting? So when you have a large plain text there, please remember.
+32:43
+
+When you have a text data only there, then you can go and use the length-based part. So here I'm writing when you can use when you have text files there. Right? When you are building a POC.
+32:58
+
+Right? So sometime in organizations, client will come, and they can say, "Okay, these are the information I wanted." So whenever you know the next meeting happen, you will create a POC, and you can show them. Yeah? So that time, we have seen the length way splitting, we are using
+33:13
+
+it. Right? Where there is no data structures there. It's on a structure format there. Okay? You will get some transcript, you will get some lags, then we are using length-based.
+33:28
+
+And what is the advantage here? What is the advantage here? It is very simple tricks. Very simple tricks, guys. It is very simple, very elegant. It is very, very fast.
+33:40
+
+Anybody can use it, right? It is very easy to implement it. Right? And it works with text data very nicely. So you can
+33:52
+
+say these are the benefits there. These are the benefits there. There are some challenges also there. I have seen there are some challenges also there when you use the length-based
+34:05
+
+splitting. Right? So challenge it is, sometime the lower retrieval quality comes. Sometime you will see if the different kind of data set there, right? It's not text only. Let's say you have some
+34:18
+
+numerical data is there, some graph there. Right? Some different kind. So it can break sentence in middle. That is also happening. What is meaning of it can't break in the middle?
+34:31
+
+Let's say I'm writing it, and I say chunk size equal to 10. So if it word will come one, two, three, four, five, six, seven, eight, nine, 10. Right? Or let's say five I will give. One, two, three, four, five. They will break here itself.
+34:43
+
+And which has no meaning. Right? So that is the challenges there. Okay? Next part is, guys, next part is called
+34:56
+
+text structure-based splitting or chunking.
+35:09
+
+Chunking. Right? So what happened? What text structure-based will do? This is more popular, right? We can handle the paragraph. It can split based the paragraph. It can split the basis the
+35:21
+
+sentences. It can handle by new lines. New lines. It can handle by section by section. Right? So instead of fixed length, you can say, why not I
+35:36
+
+can split basis the paragraph-wise? Why not I can split basis the sentence by sentence, new line by new line? Right? Section by section we can do it. So that is the benefit is there. So if you have, let's
+35:50
+
+say you have some articles there. You have some articles there, you have some blogs there. Okay? You have some research paper there, research paper there. You have some documents there. Right?
+36:03
+
+So you can go and use this text-based part. Yeah? The advantage is it will always preserve the exact meaning.Yeah? It will complete
+36:17
+
+the complete sentence. It will give the complete or context informations. Right? It is very easy to implement. Again, easy, everything is very simple, but it is very easy. Yeah? And I have seen in industry, they are using text-based structure format
+36:32
+
+also. Right? So if you have something called financial-related data, something called documents reading is there, then people are going and doing it.
+36:48
+
+Make sense? Everyone. Yeah. Of course, there are some rules there, like you will see there is if character there,
+37:00
+
+you can just simply write the double quotes. If we have a vocabulary there, words there, if you wanted to go by letter by letter, you can say, and here you have to write underscore.
+37:15
+
+If you have, let's say you wanted to see the lines by lines. You can say, "I wanted to read a line by line," then you can say--
+37:27
+
+And here you can say, "New line." If you wanted to go paragraph by paragraph, you can simply say, "New line, new line." So if you write two times this one, they will read
+37:41
+
+complete paragraph by paragraph. That is also happening. Okay? We have other method is called document structure-based method.
+37:56
+
+Document structure-based chunking.
+38:11
+
+Yeah. So, if you have a documents there, please remember. If you have a documents there, and in documents you have a heading there, so you wanted to read heading separately, you have something
+38:24
+
+called footnote there. Okay, you wanted to read separately. You can say we have subheading there. Okay? You can read separately. In the documents, you have some
+38:37
+
+tables there. Okay, you can say, "I wanted to go tables by table." There are some chapter by chapter there. Some of the novels when you read it, guys, you have seen there are chapters by chapters there. Right?
+38:50
+
+They can say chapter one, chapter two, chapter three. Especially some motivational books you will read, they will give some Gian unsolicited Gian, chapter one, chapter two, chapter three.
+39:04
+
+If you read some holy books. There also they have written some chapter by chapters. So if you go and do that part, you can go and do the document structure-based method.
+39:16
+
+Right? You are working in organizations, let's say. So, there is a documents there where in, especially when you join the organizations, you will get some leave policy, sickly policies, casual leave policy, travel policies,
+39:29
+
+reimbursement policies. Right? Some data security or breach policies. You will get some different kind of policies there. So that time you can go and use the documented structures. Right?
+39:45
+
+So either you have a PDF, you have a Word document, you have a policies, you have standard operating processing, you have regulatory documents, you have a text or anything. You can go and use this doc structure-based method.
+39:58
+
+Right? It works great with the RAG system. Yeah, especially if you're building a RAG architecture and where you wanted to do a chunking, of course you can go and use the documented structure-based method. Yeah, I'm not saying that, okay,
+40:11
+
+if you do this method, then it will not work. It will work, but in case you are not getting better result, when you do the evaluation metrics or your client will say that, "Okay, can you enhance? There is a latencies there.
+40:25
+
+Can I enhance it?" Then you can change this test structure-based versus this one. All method is applicable, but you can go and change it. That is not a big deal. You can do it.
+40:37
+
+We have another chunking strategy. It's called semantic chunking. Semantic chunking.
+40:49
+
+Semantic similarity based splitting. Right? Or chunking.
+41:03
+
+This is also very famous, yeah? So, you can say instead of looking a length-based model or a headline-based model or sub-headlines based method, why not I can give liberty to my
+41:18
+
+systems, right? So there is a method called tick-token methods, right? So you can just go and-- AI looks like some meaning of the text, right? So actually chunks created when topic change.
+41:31
+
+So, they will give a permission to the LLM that, okay, you can go and do the basis your analysis. So, GPT has developed one tick-token method.
+41:45
+
+You can go and use this. So I'll show you this. GPT tick-token methods. Okay, so this is tick-token
+41:57
+
+tokenizers there. So you can see here, if I'm going here and you can pass something, the tokenizations happened. So the Times of India
+42:11
+
+editorial, and let's say taking thisPaste.
+42:25
+
+Okay. You can go pass here, and you can see how many token it created, 194 in this. Right? So you can go GPT 3.5, you can see this, GPT legacy is 208.
+42:39
+
+Yeah? So you have to change it, and you can see all tokens have a different character. So this is something, like that they will do it. Okay, so there is limitations there. Yeah? Or you can just leave this part for
+42:54
+
+LLM, you can decide how we can do it, so that also. So open here large language model process text using token which are common sequence character found in the set of text. And so you can also go and use that part. All right?
+43:08
+
+So that also I have seen, we will use it. Right? So, it is basically working with the topic-wise. Right? So that's why I've used the word semantic similarity. Right?
+43:23
+
+Semantic meaning means similar in English. Right? So, it will do the topic awareness, topic-wise. Yeah? It has very high retrieval accuracy.
+43:37
+
+Retrieval accuracy. Right? It is very better when you extract the context. Context preservation.
+43:53
+
+Okay, so these are the benefits there. But of course, sometime I have seen it is very slow with the basic chunking also. Yeah? Sometime it will give the inconsistency chunking. So here you can see this, you
+44:06
+
+may say that this is inconsistency, right? Because here word by word is coming. So there are some methods there. Sometime it works well, sometime not. So, you have to be flexible and you can change as per your
+44:20
+
+requirement. Yeah? Similarly, we have something called LLM-based models there. LLM-based splitting.
+44:33
+
+Yeah? So if you are using a GPT, we have different split there. We have Cloud, you have a different there. You have a Gemini. Right? Gemini, we have a different, we have a Microsoft, we have a Meta.
+44:46
+
+Meta, we have a different thing. So like that you can do it, right? So they will decide how to split the documents. You can leave that for them, and they will take decisions, right? So the model understand the content, and then they will create the intelligent
+45:00
+
+chunk. Right? So if you go and blindly go and use this, let's say you have some ambiguity or let's say you are not clear that which chunking would be the better one, you can just go and use the LLM-based
+45:14
+
+splitting. Yeah, it will work very well. Only challenge is some slowness you will see that. Right? Cost-wise also because I'm using a Gemini or a GPT and Cloud, so there are some cost involved there.
+45:27
+
+But if you go and use the other method. Other method in the sense not semantic, anything, either document structures or text structures or length-based, there is no cost. It's completely free of cost.
+45:42
+
+Okay, here there is no cost involved. Accuracy-wise, if you ask me, LLM-based, the better accuracy you will get it. Yeah, semantic similarity, you will get good accuracy.
+45:56
+
+Not better, LLM-based always giving better. Yeah? If you are using domain-specific task, my suggestion is always go by the LLM-based. Don't worry about the cost and all.
+46:09
+
+But customer would say, "Okay, I can manage the cost part." Yeah? Or they are very specific, no cost. It's a startup company, don't give too much. Then you can go and use the document structure-based model.
+46:23
+
+Now, what I'm going to do here, let me open the documents, then I will go with the question answer. I'll show you some example also. Chunker.
+46:39
+
+Okay, so chunking text data. Introduction of chunking. So you can see I have already discussed, right? So why chunking matters? So notice that after you load the document object from the source, you
+46:54
+
+end up with a string by grabbing from the page content. Right? So page content, the document loader will give you by the help of LangChain. In certain situations, the length of the
+47:08
+
+string may be too large to feed into a model, both embedding and chat model. So I told you no, the biggest challenge with the chunking is, right? The biggest challenge with the chunking is you always remember it.
+47:22
+
+Never breach the content limit and avoid this part. So these two problems there. Problems there. How we can tackle them? We can tackle large document to a smaller one.
+47:36
+
+But when you do a smaller one, there are challenges there. Yeah, there is a trade-off between recall and precision. Yeah? Now,
+47:51
+
+whenever you build a RAG architecture, if you don't do chunking, then you may face the cost issue, the quality issues, the efficiency
+48:04
+
+issues, right? So these challenges happen. So that's why we are doing chunking. Yeah? It's a most relevant approach there. How you will do? That approach I said. So now, note LLM have fixed maximum
+48:17
+
+context window. Right? Means what is meaning of maximum context window? Like I said, we have one million token, but LLM, let's say GPT, has a fixed 200K tokens.That much maximum capability is
+48:30
+
+there. If your document contains more tokens than the maximum context window size, let's say this is and you are getting more than that. Then what happen? The LLM won't be able to process it.
+48:45
+
+Let's say here I'm saying 100 million tokens there. Now what happen? So if lesser there, then fine. But if your content, your token is more than the context window,
+49:01
+
+so it is important to break the document into chunk so that they can read all these things. Now, good chunk strategy is what? High retrieval accuracy. So if you use the better chunking strategy, you will get better accuracy.
+49:14
+
+Bad chunk means LLM hallucinations comes and incomplete answers comes. Yeah, these problems, because one is called context limit and second is called middle problems. Yeah? Chunk is 50%
+49:29
+
+of RAG performance. So your RAG performance is not working well. This is interview question, or interviewer ask you. My RAG is not giving better answer. Yeah, there is a latency issue there. The first thing first you can say, "I will go back to my preprocessing
+49:43
+
+approach and I will see chunking is working fine or not." Yeah? Is chunking doing good job or not? Which chunking strategy I have used? Okay, so you can say, "I will go and use the LLM-based chunking or
+49:59
+
+semantic similarity chunking." Right? Basis the documents and all, and will improve. So please remember, whenever you build it, you have to keep in mind these things. Now,
+50:13
+
+what is chunking? You already know it. So once you have loaded the document, you will often want to transform them to better suit your application. The simplest example is you may want to split a long
+50:26
+
+document into a smaller chunk that can fit into your model context window. LangChain has a number of built-in document transformers that make it easy to split, combine, filter,
+50:38
+
+and otherwise manipulate documents. When you want to deal with the long pieces of text, it's necessary to split up into text into chunks. As simple as this sound,
+50:52
+
+there is a lot of potential complexity here. Ideally, you want to keep the semantically related pieces of text together. What is semantically related mean?
+51:06
+
+Would depend on the type of text. So this notebook shows several way to do. Okay, so I have just created all these things, you can see. So think of
+51:19
+
+it like organization has a massive book into chapters and sections. When someone ask a questions, you only retrieve the relevant chapter, not the entire book, making retrieval faster and
+51:31
+
+more accurate. Okay? So let's say you have math books there, and each books we have multiple chapters there, addition, subtraction, multiplication, division, right? If the question relate pertaining to multiplication,
+51:44
+
+they will fetch only those data, not the entire one, right? So a good chunk, one clear idea, not five unrelated things. Only you will extract this part. This one you can avoid it. Your system automatically become very fast.
+51:58
+
+Okay? Just one minute. Next part, guys. The long enough to contain useful information.
+52:13
+
+Not too long for the embedding models and fit for the retrieval, like frequent asked questions, legal documents, code need to different chunks. Now you can see we have something. It's given very nicely. This link given by Greg
+52:30
+
+Tammet. So let me click here and see this. So here, if you have these documents there, right? These documents there. Now here you have two methods there. One is called chunk size, another is called chunk overlap.
+52:45
+
+And what are the strategy there? You can see character splitter. Mm? You can see token splitter. You can see sentence splitter. Recursive splitter. Recursive character. Code language. So let's say I'm saying Python. Okay, you can go and use the Python.
+53:00
+
+And here you can just go and do it. So see, chunk size equal to I have given 100, right? So what have 200? So they have counted the 200 like that.
+53:16
+
+This one. But you have noticed one thing. Even though I have given 200, but the total character is coming this, right? So what they did, the system, they combined. They read all the vocabulary, how many is there, right?
+53:29
+
+So they found, okay, 26 this. And then they divided by 200. And then they said that, "Okay, total we have 18 chunks there, and average chunk size is 145."
+53:42
+
+Because somewhere is less than 200 vocabulary also there, and this is what we did. If you change this part, you can see character test. You can see character by character. So it's one, two, three, like that it's coming. Right?
+53:54
+
+You can see I will go by the token size. You can see token size. So this is one, this is two, this is three. So color by color is coming. If you go and do something else, sentence, so you can see sentence by sentence.
+54:08
+
+Wherever fill in the blank, a full stop is there. So this is my one sentence. This is my another sentence. This is another sentence. So these are the token by token, color-wise. They have given it very nicely.
+54:20
+
+Okay? So please go and explore it. I'll share this code with you. You can please refer. How chunking works? Split the text up into a smallSemantically meaningful
+54:33
+
+chunks, often sentences. Start combining these small chunks into a larger chunk until you reach to the certain level. Once you reach to the size, make the chunk its own pieces of this.
+54:48
+
+How the text is split and how the chunk size works. A small chunks, you can consider 200 to 500 token. Medium chunks, when you have more data, you can say balance approach, good for general question answer. So you can go 500 to 1,000 tokens.
+55:02
+
+And preserve more context, better for complex reasoning, but retrieval more text. So if you have a huge documents and all, go large chunks, 1,000-plus. So you can say chunk size equal to this. So,
+55:18
+
+what are the tips there? Here chunk size equal to, you can put 1,000, and chunk overlap equal to, you can give maximum 20%. I would suggest 10% is fine, but 20% also you can do. Now, what is this meaning of chunk size and chunk
+55:32
+
+overlap? Chunk size means, guys, when you say chunk size equal to, let's say I'm writing chunk size equal to 10. So if I'm saying, "Hi,
+55:45
+
+I am going to teach you LangChain and
+55:58
+
+RAG system today." Now here chunk size I have given 10, so they will read word by one, two, three, four, five, six, seven, eight, nine, 10.
+56:10
+
+And they will stop here. Now what happened? First chunk will consider, "Hi, I am going", G-O-I. Okay, this. Second chunk
+56:24
+
+will come, N-G, "to teach". Okay, so one, two, three, four, five, six, seven, eight, nine, 10. T-H-C only. Then again, H.
+56:36
+
+So like that it is coming. So to avoid this, we can do overlaps. Overlap, what it will do? What overlap will do, guys? They can go back. So if I say overlap equal to, let's say, 10.
+56:50
+
+So they will go back and they will start from the 10 words. So, they will go back here and they can say one, two, three, four, five, six, seven, eight, nine, 10. So they will start from, "I am
+57:03
+
+going" to this. Like that it will go. Again, third sentence, they will go back 10. So that what happened, contextual meaning will come. Okay, that is what we are saying this part. Now you can see what are the methods there.
+57:18
+
+So we have length-based splitting, text structure-based splitting, document structure-based splitting. So these are no cost involved. Length-based splitting,
+57:31
+
+text structure-based splitting, document structure-based splitting. But if there is a cost involved for semantic and LLM-based. Yeah, so please remember, I'm just writing this for your reference.
+57:45
+
+So you can say we have something called length-based, text-based,
+57:59
+
+document-based, semantic, similarity-based, and LLM-based. Okay? These are
+58:15
+
+the five things you have to remember, and you can speak in interview. I have seen lots of question will come in interview related chunking strategy.
+58:29
+
+So you can say speed-wise, it is very, very slow. Yeah? It is very fast. It is
+58:42
+
+fast. It is medium, and this is also medium. But this is giving better performance, but slow. Cost-wise,
+58:54
+
+very low. Nothing. Low, low. This is medium, and this is high. There is a cost there because we are using
+59:10
+
+Gemini model, Meta model, GPT model, Cloud model. So they will charge them. Accuracy-wise, you can say
+59:24
+
+you will not get better performance. This is medium or low. Document is giving high, so for all three, my suggestion, go with documents. This is very high,
+59:37
+
+and this is the best. Okay? So if any client, they can say, "No, no, I want it perfect answer," go LLM-based, but you can clearly say, "Boss, there is a slowness will come because we have a huge data.
+59:50
+
+And if I'm building this one, there are slowness there." Where you can use the best use cases? You can say when you have a simple text.
+60:03
+
+Yeah, you can say when we have articles. We have a blogs. When you have a PDFs there. You have policies documents there.
+60:17
+
+Here when you have a knowledge base there. Yeah. And you can say it's a domain-specific. Domain-specific documents there,
+60:31
+
+like legal documents there, finance documents there, healthcare documents thereYeah, mostly you will use this only because sometimes slowness, of course, is coming, but slowness also
+60:46
+
+I'll teach you some other techniques to handle it. So these are the chunking types there. Chunking types, they're broadly. If you read some books, they have mentioned so many chunking strategy,
+60:59
+
+but these are the broader chunkings there that you have to remember, guys, for interview perspective. If you're a beginner, you can go and use the length-based, text-based and document-based.
+61:15
+
+Most of the RAG applications, we prefer to use document-based chunking because cost-wise low, right? And accuracy-wise high good. And documents, mostly you will get PDF and policy documents, so we prefer to do
+61:27
+
+this. But you can do the semantic chunking also. You can do LLM-based chunking also. LLM-based chunking, if you are using some enterprise data, some big organizations who are working it, they are giving--
+61:42
+
+you are using cloud and all, you can blindly go and use this. So Azure, you will get Azure AI Search. So in Azure AI Search, you can just connect with, let's say, and use this, everything get indexed, rescues, everything gets created
+61:58
+
+inside. Okay? Now I'll show you the coding part, guys. You can see the documents here, everything I have written. Now, this is length-based, when you use what we
+62:11
+
+have to do, so everything is given. This is the simplest method. They're split based on the character. Measure the chunk length, number of the character. There are two methods there. One is called token-based and another is called character-based.
+62:25
+
+Character-based, how the text is split by a single character by character, and you have to put the chunk size, how many number of character you wanted to do. Yeah, some code is there. I'll discuss this part, but before I jump into coding part,
+62:39
+
+let me take a pause. Let me see anybody have any questions, and then I will go ahead. First discuss the query, and then I will go ahead with coding part.
+62:53
+
+What is PoC? Proof of concept. Thanks. What is the--
+63:05
+
+What the question is there? Prashant is saying, sir, how to decide length size, 200 to 500. That I told you no? So 200 to 500, you can just see this part. Prashant, I hope you got the answer.
+63:18
+
+Yeah, choosing chunk size. So if you have a small chunk, let's say lesser documents there, go 200 to 500, anything you can decide. Medium chunk, you can go this, and large chunk, you can go this.
+63:32
+
+What other question is there? What is the limit size? I'll take a question answer. Nothing is there. Who has raised hand? Lots of friend.
+63:48
+
+Sahana? Go ahead. Hello, sir. Yeah. So here in chunking, like we saw the chunking size, if there is
+64:01
+
+some paragraph, based on the chunking size it will divide into groups, different chunks. Correct. So also, is it based on cosine similarity? Like if there is-
+64:14
+
+No, cosine similarity different thing. No, no, no. Cosine similarity is different thing. Cosine similarity, what it will do? The formula is, that is embedding techniques or similarity search. So it will say, what is the length of A and B?
+64:27
+
+What is the length of A and B by the length of A? The dot product of A and B and length of B. Okay, like that we are doing, and then here you can say
+64:41
+
+cosine similarity equal to this. So theta equal to it will go cos inverse and something like that. You know that. Mm. So I'll show you this part in the retrieval when I do similarity search, that time we are using cosine.
+64:54
+
+Yeah, because as we say- This is simple techniques. This is simple techniques. You can go here- Okay ... and you can say, I wanted to do chunking like that. So I have to set up how many chunk size I wanted to give. You can say I wanted to give 10 chunks. Okay?
+65:06
+
+I wanted to give- Okay ... 10 chunks, and then character. So you can see 10 words is coming, and then another 10, then another 10, like that it comes. Okay.
+65:21
+
+So see- So they are either word by word, sentence by sentence, paragraph by paragraph. Yeah. Mm-hmm. That is what is chunking. So let's say if there is a repetitive paragraph, then it again divides into two different chunks, sir.
+65:34
+
+Repetitive is there and all, that's not the chunking rule. Chunking rule is whatever vocabulary is there, they will do this part. Okay. That is LLM will search. When you use the- Maybe in LLM-based, this part will be handled-
+65:48
+
+I will come there. No, I will-- LLM will handle it. Yeah, okay. When you do vector database that time you have to make sure. So I will tell you that word that time, not now. Okay. Right now- Okay, thank you ... chunking means simply
+66:01
+
+whatever the vocabulary there or paragraph there or pages there, they will split like that. Okay. Pooja?
+66:15
+
+Yes. Hi, sir. So, suppose I have 10 chunks and out of 10, 7 chunks contains the relevant data. Ah. But we are giving the value of K,
+66:27
+
+means whatever chunks we have to pass for the further process is 5. Mm. So does that means we will get the incomplete or partial response? Not incomplete.
+66:43
+
+If you give K equal to 5, let's say when you do the retrieval partThose five, what of seven? You are saying seven, where the user asks query that is relevant, that is mentioned there on the seven chunks. Correct? Yeah. But you have given K equal to five, so
+66:57
+
+they will check the probability part. So all the seven chunks, let's say chunk one, two, three, four, five, six, seven. So when user asks query, that query answer is given in these
+67:13
+
+seven. Out of 1,000, let's say. But you have given K equal to five, so what they will do? They will see where the probability is high, that question is coming. So they are using the probability method.
+67:26
+
+So let's say documents one is giving 80% information, this is giving 90% information, this is giving 93%, this is giving 73%, this is giving 60%, this will give, let's say 50%. So what they will do?
+67:39
+
+They will search which is the highest one. So highest one is three. So first they will do three, then second, then one, then four, and then five. And these chunks they will give, and on that basis, LLM will give the answer.
+67:53
+
+Okay. Okay? Thank you. Who else? Badri. Is Badri?
+68:06
+
+Sir, can you be able to hear me? Mm-hmm. Yeah. So, my question is pretty basics. When we are chunking the data, so at that time,
+68:23
+
+you said all the data will get split into multiple chunks. Sir. When we try to retrieve those data,
+68:36
+
+all the splitted chunks will get retrieved or only what we have asked question, base relevant answer only will come?
+68:49
+
+Retrieval when I will go, then I will talk retrieval part. Yeah. Right now, just focus on chunking, otherwise class will get deviated. Yes. I have not started retrieval. So first focus on chunking. Are you clear the chunking part, whatever the strategy I told you?
+69:03
+
+Yeah, I got it. The small question- So when I go in the retrieval, I'll show you. Yeah. Thank you. So what happen when we retrieve, we are giving the probability value and then we are calculating it. Sometime retrieval not work. So there are some different strategy I will use.
+69:17
+
+We have something called RAG Fusion. There are something method called re-ranking method. Hybrid search methods, BM25 methods. So semantic search method, different techniques
+69:31
+
+there. So I will talk that part. Just wait. Here, just I'm talking, document loader, they loaded the data in your system. Correct? Now that documents everything. Let's say there are 50 source there.
+69:44
+
+Everything they loaded into same format by the help of LangChain. Now that whole data, if you give to LLM, will they remember? No, right? There are lots of challenges happen. If you do entire embedding and directly you can store into vector database.
+69:57
+
+Whenever LLM will go, they will fetch all the data. So you can just think how costly it is. And you will not get the right information also. So then there is a strategy called a splitting strategy. So why not that documents we can split into a small bucket?
+70:10
+
+We are splitting paragraph-wise, we are splitting sentence-wise, we are splitting page-wise, we are splitting number of length equal to this. So like that you can do it. And then you have to do the embedding and then ask LLM or retrieval part to go and fetch it.
+70:25
+
+So I will come step by step. This is second step only. Clear? Yeah, sure, sir. Sure. So, when you said the cost is low when we do chunking, so the same amount of token is available also in the
+70:41
+
+large document also, right? So how we will measure the cost will be less in that case? Cost, I will tell you. Right now, you have to just remember that if you use this chunking method, LLM base, the
+70:55
+
+cost would be high. If you go a use document, cost would be less. This is what the architecture you have to remember right now, the flowchart. And when I will build the end-to-end RAG, I'll show you how much cost comes and all.
+71:09
+
+Got it, sir. Thank you. Right now, there is no point to discuss cost. Just I told you the high level. Okay, sir. Thank you. And who else?
+71:24
+
+Himanshu. Yes, Himanshu. Hello, sir. Good morning. Sir, document loader is good for PDFs. What if PDF has images, will it be able to access or chunk them?
+71:37
+
+It will. So PyPDF will not work. For that, there are techniques called OCR methods. Okay. So when I pick the multimodal system, I'll show you how it works. Understood. Second part is, you mentioned
+71:51
+
+LLM-based splitting or chunking is the most costliest one. If I have the setup, can I use the local LLMs to do the splitting always?
+72:04
+
+Local LLM means what? What do you mean by local? I have Ollama deployed in my machine, I can run some- No, you can do it. Okay. It is capable. Okay, understood. The third question is, when you say
+72:17
+
+the token size, is it the same, if I'm able to relate it correctly, each token will do a-- like for example, if it's a BERT model, it will scale down to 768 dimensions, and then accordingly do
+72:32
+
+the attention and dot product for other semantic meaning? Correct. So if you go and use the transformer, their limitation is there 567 maximum. Okay. If you go the BERT model, there are two BERT model there.
+72:46
+
+One is base BERT, and another is advanced. Small and large, yes. Yeah. Small means you will get 764, and large is 1,024.Then the GPT model came in 2020. Okay? The
+73:00
+
+GPT-3 models, they are saying 1,500 maximum you can read the token. And now we have a capability, how many token? 8,192 tokens you can do it. Okay.
+73:15
+
+Fantastic. Thank you. So that much token you can go and take it. So that's why we always give the lesser one. This is the threshold value, you have to remember it. Understood. And when we say the chunk size, it means that in one go,
+73:28
+
+a semantic context will be determined based on one single chunk so that it has the semantic embedding rather than initial embedding. It is based on the chunk. Okay. Yeah. Thank you.
+73:41
+
+Okay. Thank you, everyone. Now still I can see three hands. My God! When I say question answers. Rishabh, what's your? Hello.
+73:54
+
+Hmm. Yeah, sir, I just wanted to understand one thing. This semantic similarity, the best use case is knowledge base and the LLM base you are saying domain specific. So can you just explain a little bit on that?
+74:06
+
+What is the domain base? Because it looks similar to me for both. Domain base means if you are working some project specific. Let's say you are working in healthcare dataset only,
+74:21
+
+right? So only you can say, I wanted to build the healthcare things. So on that case, you can go, let's say, the doctor prescription is there, the medicine information
+74:34
+
+is there. So only those details is there. You can go and use the LLM-based model. There clearly you can write a prompt, you can say, act as this one. So you will write a persona, and then accordingly it
+74:47
+
+works. Mm-hmm. Okay? So they will only fetch those details, and then it is giving the better context, right? When they split the data, they will go like that.
+75:00
+
+So some doctors' information is there, so they will take first doctor's is one context, second doctor information is second chunking, third chunking, like that they will do it.
+75:12
+
+Mm-hmm. Okay. And the knowledge- It is actually doing a hybrid approach. So whenever you do the retrieval, the better retrieval accuracy happen, the better contextual precision you will get.
+75:25
+
+The hallucination comes very less because the LLM-based model you are using. LLM-based chunking model means we are combining. What is combining? You can say when I use this word,
+75:38
+
+I can say like that. LLM-based meaning is-- LLM-based meaning
+75:52
+
+is you can say whatever the documents there, plus we can say semantic. Semantic chunking,
+76:05
+
+plus LLM validation. So if you use LLM-based, by default this part is there.
+76:18
+
+Mm-hmm. Okay, so this semantic similarity, when I say knowledge base, knowledge base is already there. The document's already there. There you are using this technique, semantic part. So if you remember deep learning, I'm just telling you, if you know deep
+76:30
+
+learning, there is an optimization method there. Optimization is called ADAM. Right. So if you use ADAM, what is the benefit is there? What is the benefit is there? Other part, momentization, momentum also there.
+76:45
+
+We have a momentum also there. We have other method also there. AdaGrad, AdaDelta, MSProp. All this thing is already there. So that is why we prefer. Similar thing happen in chunking. This is the state-of-the-art model.
+77:00
+
+It will always give the better answer. So that's why I use the word domain specific. So if you are working healthcare domain project, financial domain project, telecom industry domain project, you can go and use the
+77:16
+
+LLM-based. So LLM act like that, only the expert part. So semantic meaning, of course, similar. They will take the similar. Here also you will get a knowledge database, along with you will get some specific things.
+77:30
+
+Okay? Okay. But knowledge database doesn't mean that you will get domain specific only. Knowledge base means you have combine of PDF, article, simple text also there, no? Mm-hmm. If a different source of data there, why I will spend unnecessary high
+77:44
+
+cost? I can go semantic meaning, so they will read it and they can give the answer. But it's domain specific. All the entire documents related hospitals only, related the research paper only. Why not I can go and build the
+77:58
+
+LLM-based? Yeah. Sir, one more thing. So let's say if this is just one experimental that we were doing. So, basically I have some documents, which is from the code base,
+78:12
+
+the MD files and the PDFs, and mostly the Python code and some other code base. So can I build a RAG system for that also? No, you will. I'll show you that part. Don't worry.
+78:29
+
+Okay. So in that, the semantic similarity chunking we will do? Once you practice, first know this, I will not give the answer. Once you know that concept, once you go in the
+78:45
+
+RAG, anything comes there, you have to use your computers, and you can decide, okay, what is the best one? So you can try to do it. Till that time, you will blindly go and use this, the method, and you will able
+78:58
+
+to do it. So don't worry. When I will teach the RAG, you will see how it works.Okay. Chalo, guys, I'm doing coding because nothing is there that I can see people still raise their hands, so nothing is there that I can pick.
+79:14
+
+Few friends, they have raised hand. Arisa, please undraise your hand. I will unmute later. Ed, Iris, and Rupesh is there. I'll raise it in a few while. Okay? So let me do here, I'm
+79:31
+
+picking some data set here. Let's say this is the data set. Copy this. And I'm saying
+79:45
+
+data set equal to... This is the data set.
+79:58
+
+Okay, so let's say this is the data set there. Now, I'm doing text splitter.
+80:12
+
+So what you do here, you can say from langchain_text_splitter. Import
+80:26
+
+Character Text Splitter.
+80:39
+
+Okay, this is the functions. So, I'm doing here the length-based, text-based, document-based. Please remember this part
+80:51
+
+here. This is the first is character, word, line, paragraph. So I'm just going character or word, anything, you can put it that part. So what I'm going to do here, I'm saying, okay, go and use the character-based.
+81:04
+
+Copy this. You can write here splitter equal to Character Text Splitter, parenthesis, bracket. And you can see, Shift+Tab, here it's saying
+81:18
+
+separator equal to what? Comma. You can see Shift+Tab, keyword arguments there. Okay? This keyword arguments, you
+81:32
+
+have to give two things. Things number one is called chunk size and chunk overlap. Okay? So let me do here.
+81:47
+
+Chunk size equal to, and second is called chunk overlap equal to. Okay?
+82:00
+
+So I'm just using here, the first approach is called length-based. So you can say length function equal to what?
+82:18
+
+Length function equal to, I'm writing length. Okay? Chunk size equal to, let's say I'm writing here 50.
+82:32
+
+Overlap equal to, let's say I'm writing 0. And separator equal to, I'm writing this. Okay? So what I'm doing here, character separator,
+82:44
+
+length. You know basis the length they will go and do it, and you can execute here. Okay, this split part done. Now copy this and say
+82:57
+
+chunks equal to splitter.split_text, and you have to pass here this text data set. You can go and pass the data set.
+83:09
+
+Now, you can say print chunks, print and
+83:24
+
+print number of chunks equal to, what is the length?
+83:38
+
+What is the length of chunks we have? Close this.
+83:52
+
+Execute here. So guys, see this. When I have done this chunking, this part I have passed it. When I have done chunking. This is the chunking happen. So you can see chunk by chunk. This is my one chunk.
+84:05
+
+You can see this is 50. This is another 50. This is another 50. This is another 50. Yeah? And how many number of chunks? 19 chunks they have done it.
+84:19
+
+Okay, this is what is called text splitter chunking. So 19 chunks happen. Now you can say, okay, can you make this in a different color so that
+84:33
+
+I can easily understand this is my one chunk, this is my another chunk, this is my another chunk. How it is given here. Can you do here? I'll show you for a better perspective. From
+84:46
+
+termcolor import colors and Colored from random
+84:58
+
+import choice. Print what are the colors there?Okay,
+85:11
+
+so randomly they have given black is 30, gray is 30, red is 31. Mm-hmm. 32. Like that they have given some coding. Now, what I'm going to do here, I'm saying color list equal to
+85:23
+
+colors, list equal to list. You can see here colors.dotkeys.
+85:38
+
+And let's say, I'm saying anything is coming from 2 to 8. That much color you have to give me. Colors
+85:53
+
+list equal to-- So I'm getting red, green, yellow, blue, magenta, and cyan. This color is there. Now you can go and this color you have to implement here. Mm-hmm. So I'm writing here
+86:06
+
+define display color, colors chunks equal to
+86:18
+
+colors list equal to list, you can say equal to this.
+86:33
+
+Now, you can say print this.
+86:47
+
+Now for number and chunk in enumerate chunks.
+87:00
+
+Start with one. You can say print chunk
+87:14
+
+number equal to length chunk
+87:26
+
+characters. Print colored
+87:44
+
+text equal to chunk, color equal to choice,
+87:58
+
+color list and end equal to, here I'm saying, new line,
+88:11
+
+new line. Execute this. Now, display color parenthesis bracket,
+88:24
+
+and I'm just passing this chunks. See guys. So what happened here, total number of chunk 19.
+88:36
+
+It's saying total number of chunk 19. The chunk one, what is the limit I have given? I have given 50. You can see the first chunk is coming 49. Why? Because there are some white space there. That's why 49 is there.
+88:49
+
+Second length is 49, third is 50. Right? There is no white space, it's coming 50 here, so it's taken. Yeah. The second length is 50, then 49, like that. So you can see they have split it. Now all the 19 chunks, what are the
+89:03
+
+vocabularies there? Yeah, they have taken all these things. This is what is the chunking strategy that we split the data in like that, and you have to go and do it. Okay, that is the chunking strategy there, that you can go and do
+89:18
+
+it. Are you guys with me? Now you can see similar thing I have done here also. Similar thing I have done here also. So let me go here.
+89:32
+
+Code, see. So what I did, text loader. This is the file there, text file. So if I can go here.
+89:46
+
+Chamko. This is the data. In data, we have miscellaneous files there. In miscellaneous file, we have a text data there. So you can see these are my text data. Okay. So I've just written, this is pretty much what's happened so far,
+90:02
+
+Rose in love with Rachel since forever. Every time they-- Something like that, some sentence I have given. Now, when I'm going and asking this, right? I'm loading. So first, this is the loader part. Right? Document loader, I have loaded them.
+90:15
+
+So when you load this, this is what I have loaded it. Now what I'm doing, I'm using character splitter. Right? Now, character splitter here, I have written separator equal to dash underline underline. What is this meaning, guys?
+90:28
+
+Anybody? Can you say this meaning is paragraph? This meaning is paragraph. Separator equal to this. Yeah? So I have used the paragraph here. And then chunk size, let's say I have given 100 overlap equal to zero, and when I'm
+90:42
+
+doing it, you can see. So they have how many chunks there? Paragraph is there. Accordingly, they have-- So if you use the more vocabulary, they have taken 100, and then accordingly, they divided and they said, "Okay, total number of
+90:57
+
+indexes this." You can say, what is the first index? This is what the first index is. Yeah. How many vocabulary is there? So first index, 83, second, 83, and this is coming. Like that, they converted it. Okay, this is what the chunking
+91:11
+
+strategy there that you can go and use the character text splitter.Are you guys with me? Come on. Simple, difficult?
+91:26
+
+Simple, difficult, guys?
+91:41
+
+Did we preserve metadata information as well during chunking? I don't know. We are just doing basis this method. Metadata is already there. When I ask them, it will give the answer.
+92:01
+
+So in answer you can say, "Yes, we are preserving it," then only you will extract the data. But right now you don't worry about this. You can just understand the chunking strategy.
+92:17
+
+How chunk size, how we can decide? Like here you have taken. How we shall decide? Now this is the techniques I said, whenever you do the chunking, you can do either small chunks, medium chunks, large chunks versus the documents.
+92:30
+
+Right? If you have simple, the better to a specific factual questions reduce noise for retrieval. Normally we are going 250 to this. Balance approach, good for general question answer.
+92:43
+
+Most of the time you will see chunk size equal to, we write 500 to 1,000. Anything you can do it. There is no research paper, no documents saying that is the fixed number you have to give it. And normally we prefer to give chunk size equal to
+92:58
+
+1,000 and the overlap equal to this. So here I can show you the overlap also. So when I'm writing this. If I'm saying overlap equal to, let's say five.
+93:12
+
+Execute this. Execute this. And now if I do here, then I've done overlap. This last again comes here.
+93:28
+
+You can say these words again is coming here from here because I've given five only, so five vocabulary they have taken. The last five vocabulary is coming, this one.
+93:42
+
+RA, NSF. Transformer. Here, the lobby. Here, these travelers. So this is called overlap.
+93:55
+
+Overlap is one of the best strategy that also you can try and do it. Make sense? Everybody
+94:14
+
+challenging? Raghav has raised hand. Yes, Raghav
+94:29
+
+. Raghav? No question? No problem. Dheeraj has raised hand. Yes, Dheeraj? Yeah. Hi sir. How are you?
+94:52
+
+Good, good. Yes. My question is that, specific related to the first chunking. So when we say the LLM based chunking, so is that we are using the native chunking model for the
+95:05
+
+particular cloud or particular LLM based like Gemini or something? Is that the reason? Yes. That's what I have mentioned. No. What I have mentioned, sir, here?
+95:21
+
+When I say LLM based chunking means what I mentioned, GPT chunking, cloud chunking, Gemini chunking, Meta chunking. And vector AI search or vector search which normally our
+95:33
+
+various tools are using. sir. Vector search is something else. When I do embedding that time I will talk. No? Okay. I simply said- I just, I'm thinking of that, is that the vector search is also related to this or
+95:47
+
+it is totally a different concept from this? Different. audible? Yeah. That is totally different, sir. Vector is based different thing, this is different thing.
+96:01
+
+Okay. Sir, last question, sir. That means we are converting text to number, then vector will come. Okay. Sir, last question, sir. Actually, if we have a use case, we have to load the
+96:15
+
+data from some of the software like medicine software, whether we have a chemist software. So we need authentication. So how it is possible in case of document loader?
+96:28
+
+Do we have any kind of a tool available? Sorry. What is your question? The question is that, for example, we have to load a documentation or load some of the data from some specific software.
+96:40
+
+Like for example, we have a software for the chemist medicines. We want to load that data as a document loader. So do we have a certain kind of tool available which do authentication and load the data for us?
+96:53
+
+There are lots of things there. There are API concept there. So you can just see from where we are loading it. So if any containers, there are lots of approach there. There is something called DuckDuckGo.
+97:09
+
+So you can go and use this DuckDuckGo and you have to fetch the data. So that is also very fast, very accurate you will get it. There are some tools there that also you can do itDuck duck
+97:21
+
+go. Okay, what is this? The internet privacy company. They empower you to seamlessly take control of your personal information online without any trade-off, and you can fetch the data.
+97:36
+
+And here you will get API method, and you can go and download it. Go and read this- And sir- API methods and all ... yeah. And authentication part, does it handle the authentication part also?
+97:49
+
+Yes, sir. Okay. Okay. Thank you. Thanks. Rupesh, you have also raised hand.
+98:03
+
+Sir, very basic questions I have from the previous discussion. You said that LLM will have a limitation of the token, right? In the first.
+98:19
+
+Mm-hmm. That's why we are doing the chunking. Right. Right. So what is the limitation? Every model will have some limitation, so what is that limitation? You said that 200 to 500, right?
+98:31
+
+No, that is a strategy. That is token size. Limitation means, let's say you have a PDF. In this PDF, let's say you have 500,000 vocabulary there.
+98:46
+
+Words there. Mm-hmm. Now you are using some model, right? So let's say Gemini model you are using. That model has some limitations. They can maximum token at one go, they
+98:58
+
+can read it 8192. Now, if you give 500,000 tokens to the system, do you think they will read it? No, they will not be. They will not- So they will only read that one, and after that, all these things will go on toss,
+99:11
+
+and you will get the wrong information. So why not this 500 tokens I can split into each bucket we can take maximum 5K.
+99:27
+
+And like that, I have created a 100 or 1,000 token. Right. So you had given somewhere like 1,000, right? The high one is the 1,000 one. Okay.
+99:40
+
+So this is fine. And also when I have a documentation, somebody has already asked this question. So one paragraph, second paragraph, kind of that, I have done the chunking. But somewhere I will have some repeated information, so it will not create a chunk
+99:54
+
+for that particular information? That will create. I have already given the answer. Chunking has no matter. Chunking is not looking whether it's a duplicate or what. Big data or no. Chunking, just looking the words. So you mean to say I'm writing, "Hi, my name is Sundaram." Second line again,
+100:09
+
+given, "Hi, my name is Sundaram. Hi, my name is Sundaram." Hardly matter. Chunking will go, this is one chunk, this is second chunk, this is third chunk. Okay. Chunking will not read this part. Chunking means only a splitting.
+100:24
+
+Chunking means only a big documents you are splitting by. That's why the image is split into a small pieces. This is called chunking. Now here what information there, same information here given or here given, that is
+100:37
+
+not the chunking work. That is your LLM work. Fine. The big augmentation, that time you will write in case the same information is coming, make sure you can take only once.
+100:53
+
+That's where augmentation has a big role. Okay. Sure. One more small question. You overlap, I didn't understand that. You said that also- Overlap means I said, sir, if I'm saying chunk size equal to, let's
+101:06
+
+say 10, or here I have written 50. Mm-hmm. 10, 50. So can I say first chunk is this? Okay. Second chunk, when we start, they will read this sentence last
+101:19
+
+five words, and they will start from this last. So this is. Again it will get a stop. I have given five, they will go back and read from here five, and then it will get started. That is called overlapping. Why I'm doing this?
+101:33
+
+So that contextual meaning would be there. We will not miss the contextual meaning. Otherwise, you can think, no, I'm writing, "My name is
+101:47
+
+Sundaram." Mm-hmm. And here I'm saying chunk size equal to, let's say 10. Now what happened? 1, 2, 3, 4, 5,
+102:00
+
+6, 7, 8, 9, 10. Right? 11, 12, 13, 14, 15, 16, 17, 18, let's say. Here, let's say if I give 15.
+102:12
+
+Now what happened? They will take till here. Right. First chunks they will give, so what name they are saying? S-U-N-D only. Which is factually incorrect, no? So next time when they will go back, they will read from previous
+102:28
+
+vocabulary. So I said overlap- Overlap ... overlap equal to you can take five words. So they will go back, they can say 1, 2, 3, 4, 5 space, so they can say, "Sundaram," and then they will start this.
+102:43
+
+So when your LLM will read, they can read, "My name is S-U-N-D." Then again they will go in the next, they can show S-U-N-D-R-A-M, means Sundaram is there. Right. Overlap. So what is the recommendation? It's always use 5 or 10, something like that?
+102:55
+
+5 or 10%. So my suggestion is don't give zero. Whatever chunk size you will give- Mm-hmm ... there, 10 to 20% you can give overlap. Lesser you will give, better performance is there.
+103:10
+
+If you don't give, speed-wise it's good. If you don't give overlap, speed is fast, right? Mm-hmm. But accuracy-wise, can I say overlap if you give, then accuracy-wise good? Yeah.
+103:23
+
+Yeah. So sometime RAG will give the latency because of this reason also Okay, sure. Another part you told, it will read only first line and the last line. Middle line it will skip. That concept I didn't understand, sir.
+103:35
+
+In your slide only. Yeah. I said, sir, that is the challenge. If you don't do chunking, normally what LLM do, LLM has this training that is what's seen in research paper and
+103:52
+
+all. That they said LLM is very good to reading first few line of sentences. LLM is very good to read the last sentences, but if you ask in middle any questions,
+104:04
+
+that is the problem. So middle problems comes. That's why I have written here that these are the biggest challenge there. Avoid the lost in the middle problems. Because LLM has, if you don't do a splitting, what happen?
+104:16
+
+They can miss or forget this part. So to avoid this, we are splitting it. Why it will forget? It will not read the complete document. It will not read the complete because let's say you have a huge documents, let's
+104:29
+
+say 20 million documents there, right? Mm-hmm. Some limitations. Let's say the limitation is 5,000 only. Yeah? Mm-hmm. And you have document is 50,000. Now how they will read the 5,000?
+104:42
+
+First few 2,500 they will read and 2,500. Oh. And then they can make 5,000 and remaining 45,000 they forget it. Okay. That will make a Okay.
+104:55
+
+So if you split it, 5,000, 5,000 like that you will do, you will not miss the middle problems. Okay. Got it, sir. Thank you so much.
+105:07
+
+Who else? Ravi Srivastava. Yes, Ravi? Any doubt even now, Ravi, after explaining all this to you? All my friend, even after explaining such a small topic, you people still have
+105:22
+
+doubt? Guys, explained so many things, but still you feel there is
+105:39
+
+a doubt. It's clear, no? Okay. KCW, sir, why not you are changing your name? I think you are Prashant, right?
+105:55
+
+Unmuted. Code is hard, theories make sense. Okay. Code is simple, no? Very simple. See, chunk size, overlap,
+106:08
+
+length function, separator equal to this. Or separator equal to what I have given, separator equal to this, chunk size, overlap. That's it.
+106:23
+
+Next, guys, you can see here. Other parties call, you can say, okay, I can go by the from_tiktoken_encoder. Tiktoken encoder is
+106:38
+
+a method, which is given. This is, you can see here. Apply the splitter, character splitter, then merge chunk with tiktoken from these functions.
+106:50
+
+Note that a split from the method can larger than the chunk size measured by the tiktoken. So automatically they can handle. You need not to give separator equal to what? Whether they will go by the paragraph separator,
+107:02
+
+or they can go by the word separator or sentence separator. Let's say you have ambiguity. Now what you do? You can simply say from_tiktoken_encoder, encoder name you can say ck-cl1000-base-model. Okay?
+107:15
+
+This is the model name. The argument, this the model name is GPT-4 has given this tiktoken model, and you can blindly go and use it. What is encoding name represent? It specify which tokenizer.
+107:28
+
+Token encoder schema should we use to count and split the tokens. So blindly you can go and do it. They will specify token vocabulary, use many open AI model. If you wanted to read this model more, I have given link here, click this,
+107:42
+
+and go and read in GitHub. In here they have given the tiktoken. This is the BPE tokenizer method is there. All details they have given it. So if you are interested, please go and read this.
+107:58
+
+This is byte pair encoder. Token by token they will go and do it. So I have used this one. And you can see I am using this. So they are splitting by
+108:11
+
+chunk size. First token is here chunk size I have given only 20 because a smaller data there, and you can do it. So this is what it happen. Or you can say model name equal to directly you can
+108:26
+
+put a GPT-4. You can go and use it, then automatically it will do it. Okay, that is also feasible. Here I have written wherever you can see this part, this means please understand
+108:38
+
+what is this meaning, guys? This meaning is paragraph wise chunking. Okay, you wanted to do a paragraph wise chunking. Okay? What is this meaning, the second part is?
+108:51
+
+What is this meaning second? So please refer this notes. When I will share this part in your this, so you can see wherever this one means line by line you wanted to do it. Line by line. This means character by character.
+109:05
+
+Some space. This is no space. And underscore if you give, that means you can think about this word by word. Each vocabulary by vocabulary you can do it.
+109:20
+
+So there is a method called recursive character methods. So here I use this. This is my data set.Here I'm using recursive character, and I'm passing separator equal to paragraph, line by line,
+109:33
+
+word by word. You can say word by word with a space, without a space and all, and then chunk size equal to 100, separator equal to zero, text separator documents. You can see a similar thing happen.
+109:48
+
+Here you can say, "Okay, I will go, but I can use the LLM model because I don't know which is the best approach, whether I can go by paragraph method, I can go by word method, I can do..."
+110:02
+
+So in between recursive text here you can say encoding name equal to CL 1000k base model, and you can go. Automatically, they will search in what is the best way there. They will give you the five token, and you can get it like that.
+110:15
+
+Similarly, we have document structure base. So you can go do this. This is the data set I have loaded here. Now you can see. You can see this is
+110:30
+
+the documents there, the data, and you can do this part. So this is the content. Good. Now same data, whatever informations I
+110:43
+
+have taken in above. And here I say, markdown text splitter. So this is the data set, data. Execute this. See, these are the documents there.
+110:55
+
+When I have done the markdown. Text, you can say this is the text information. That part I'm passing here,
+111:08
+
+and I'm saying, okay, do the simple MD splitter, split text markdown. When I'm doing it, markdown header text splitter. So header one, header two, header three, like that.
+111:21
+
+And like that, you have to write it. They have converted this part. So all the header parts they have taken and given it. What is the chunk size and all? They said chunk size this, this, this. Automatically they will consider it.
+111:33
+
+If you go HTML header, you can try to do it. This is my data set. Okay. And here I said HTML header text splitter. Header you can see header one, H1, H2, H3. Like that you will write HTML.
+111:46
+
+And here you can simply say HTML this. So, it is actually called page by page documents they will take it, the number of documents they are giving this. So you will get that details.
+112:03
+
+Okay? Now see this. Recursive JSON format. You can see text loader. JSON file,
+112:17
+
+and then you can say recursive JSON splitter, use this maximum chunk size equal to this overlap also if you wanted to give. You can see here chunk, minimum chunk size, maximum chunk size. Over size if you wanted, you can just say comma,
+112:29
+
+over chunk size or overlap or underscore chunk equal to what, and then you can do it. I've not given means zero, and they are considering it to total number of documents 28. We have something called code splitter.
+112:43
+
+So this is the data set. Now language recursive characters. Here language equal to Python. Chunk size equal to 50, overlap equal to 10. You can go and do this. So let me do it.
+112:57
+
+If you wanted to do a metadata, you can consider all the documents, 100% all 10 SRT file I have taken. And here you can see page content, metadata also I wanted to do it.
+113:13
+
+Text splitter this, you can pass the document in metadata both. I think someone asked me this question. I said, "Yes, metadata also required." So you can go and take the metadata as well, and there also chunking happen, and then you have to do the embedding
+113:26
+
+part. Okay, this is possible. It's up to you which one, which method you wanted to do it. Your choice. You can go and do it. Are you guys with me or not?
+113:39
+
+This is called chunking strategy. Clear? Now let me show you one LLM method, which is very famous.
+113:54
+
+So first let me go here. Semantic Text Splitter.
+114:08
+
+Let me take this. Control. Paste. Let's say this is my text data.
+114:44
+
+This is my text data. Now,
+114:58
+
+you can go and say from langchain_experiment_experimental.textsplitter
+115:12
+
+import semantic_chunker. Okay?Now from
+115:33
+
+langchain_openai import OpenAI. I'll leave this part. Let me do this one first.
+115:46
+
+Now here, what I'm doing is, I'm saying copy this semantic chunk. You can say, is splitting, splitter equal to
+116:01
+
+this parenthesis bracket, and you can say Shift+Tab. Right? You can see embedding also coming. Right? You can say embedding.
+116:15
+
+Now which embedding? So you have to use the LLM approach. So you have to go which embedding techniques you wanted to use it. So I'm using, let's say, OpenAI. So you can say from langchain_openai
+116:28
+
+import OpenAI Embeddings. Okay? And here you can say, openai_embedding equal to OpenAI embedding.
+116:41
+
+All right? This method. Comma. Shift+Tab.
+116:54
+
+Buffer size and the starting index number, breakpoint threshold type. So let me take the threshold type
+117:09
+
+equal to. You can see, I don't know. So you have to go and check the standard deviation. Okay, there are three methods there. Standard deviation, interquartile range, and percentile method.
+117:22
+
+So if you know a stats method, that's why I said it is a semantic. Right? So here, what word I have used here? Semantic similarity. Yeah. So basis the
+117:37
+
+context they will read, they will find the semantic similarity. Yeah, and what is the standard deviation, how closer that is. You can use interquartile range also, you can use percentile also, no problem.
+117:50
+
+And then you can do it. And then breakpoint threshold amount. So you can say, I will go, let's say, 0.1. Okay, 1% you can give it.
+118:02
+
+Execute this. Uh, it is throwing an error. So OpenAI API key they are asking it. So let me give the OpenAI API key.
+118:18
+
+Import getpass. From getpass import operating system.
+118:33
+
+Then you can say os OpenAI API equal to getpass.getpass.
+118:47
+
+Put your OpenAI API key here. Enter.
+119:01
+
+The function is-- Why it's not taking? This.
+119:16
+
+Key, where is key? Control, paste.
+119:33
+
+And then os.environment OpenAI API key
+119:45
+
+equal to OpenAI API key. Environment.
+119:58
+
+OS has no attribute environment.
+120:16
+
+Okay, done. So see? Here I have done it, so it's working fine. Right? So now you can go and do this. You can see chunk.
+120:30
+
+Chunks equal to a splitter.split text. You need not to do anything. Your system will automatically handle it.
+120:43
+
+So this is frequently you will use it, guys. You can remember this. You will use this approach very frequently. You can say print
+120:56
+
+chunk. So this is the chunk. What is the length? Length chunks,
+121:08
+
+you can see four. So they have automatically system did the four chunking. Okay? And then accordingly, you can go and do it. Yeah. Let me do this part as well. I have done that one.
+121:21
+
+So this one, copy, paste. Go hereSee? So it's four chunk. First length they have taken 427, that is the first chunk. Second
+121:38
+
+length is out of the sofas, and third length this, and this. Automatically, the system did it. That is called similarity methods. And then on that basis, you can go and do it. Yeah? One more concept is called, guys, which is called
+121:54
+
+the LLM-based chunking. LLM-based
+122:09
+
+chunking. So you can see here, from
+122:21
+
+langchain_openai.chat_models import ChatOpenAI
+122:35
+
+from pydantic import BaseModel. Pydantic is, please remember, the customized one, how you wanted to do it.
+122:50
+
+From langchain.core.documents import Document.
+123:04
+
+And then from langchain_core.prompts import
+123:17
+
+ChatPromptTemplate. Okay? Always don't use direct OpenAI, always use ChatOpenAI. Don't use PromptTemplate, always use ChatPromptTemplate.
+123:30
+
+Now, you can see this is what the text data we have. This is the text data we have. Now you can directly go and use this. You can say, I'm using a pydantic method, so you can say
+123:43
+
+Class Chunk parenthesis bracket BaseModel equal to
+123:56
+
+ChunkText is a string format. Summary, whatever the result I will get, that also comes into a string format.
+124:11
+
+Second class, ChunkBaseModel, you can say chunks equal to, it will give into list format
+124:24
+
+of chunk. Okay? I'm just connecting both. So I have just created the oops method. So what it will do? Pydantic class for a structure output. I will get into this format. Now you have to use the model. So I'm using model
+124:38
+
+equal to ChatOpenAIModel. And which model? You can say model equal to GPT. Any model you can take. Let's say 5 mini
+124:53
+
+model I'm using, or 4o mini model, you can use it. llm Chunk = model.with_structure_output
+125:07
+
+schema equal to, you have to pass the chunker. Chunker. Execute this now. So this is my model. Okay? What I have done, LLM model, I'm
+125:35
+
+using model. So there is a cost involved, okay? Please remember. This is the pydantic method. Pydantic means customized one, customized.
+125:51
+
+Now I'm using prompt. Prompt. Okay? So you can say prompt equal to ChatPromptTemplate.
+126:06
+
+It's a little lengthy, but believe me, this will give the best result comparatively anyone. So whatever method I have shown you out of this LLM model will always give the best result. Yeah? But there is a
+126:18
+
+slowness you will get it because the algorithm works, but accuracy-wise, the best. Cost-wise, of course there is higher, but this will give the best result. So if your client will say, or cost is not a
+126:31
+
+concern at all, go and use this code. So here, I'm writing ChatPromptTemplate parenthesis bracket message equal to,
+126:45
+
+you can say first message is system. You can say, "You are an export
+126:58
+
+text chunker that splits the given text and outputs them
+127:14
+
+as a list of strings. You understand the
+127:28
+
+natural topics boundaries-Of text, and also
+127:42
+
+do not change the existing text. You just split the text
+127:55
+
+wherever. Okay, very well. Applicable. Once you
+128:07
+
+create the chunk, you also generate a one or a two-line summary
+128:20
+
+of the chunk as well. Okay. See what I'm writing, comma,
+128:33
+
+second message is human. You can see. Human equal to.
+128:45
+
+Human equal to. You can say split the given text into chunks.
+129:00
+
+New line, text. Here you can pass the text. That's it. Close this.
+129:13
+
+Close this, comma. Input variables equal to. You have to pass the text data.
+129:25
+
+You can pass the text data. Over here, it's saying incomplete input.
+129:38
+
+Why incomplete input? Text is this. I don't think it's a string you have defined below. In the fourth parameter, chat prompt template.
+129:51
+
+Chat prompt template? Split the text into chunks and then you should define it as a string, right? Hmm.
+130:07
+
+Chunk test string. Summary this. Text I have taken a string. Chunk equal to base model, I have done this.
+130:20
+
+Now, I'm using this message I have taken. Template format equal to this, name equal to this. Just input this. So input variable equal to.
+130:32
+
+Input variable equal to writing now. You're using a dynamic variable text, right? In the fourth parameter. Split the given text into chunks. No, here I have not closed the parenthesis.
+130:47
+
+Okay. Okay. Yeah, working fine. Okay, you can see this is working fine now because I'm using LangChain, you can say.
+131:01
+
+Chain method means LangChain expression, expression language. So you can see model equal to model chain
+131:16
+
+equal to, first you have to write prompt. Pipe symbol means connecting chain, and then I'm passing the LLM chunk.
+131:29
+
+You can see response equal to model chain.invoke parenthesis bracket. And if I'm passing the text,
+131:43
+
+I'm getting the result to text format only. Close, close. Response.
+131:57
+
+So see it's taking time. Bad request error. Bad request error. What is errors? Error code 400. Unsupported value, temperature does
+132:11
+
+not support 0.7. A temperature I have not given. Why they are saying temperature not supported? I use GPT-4o mini.
+132:25
+
+So it's working fine. Okay. So problem with the dataset. So you can see this is what the chunking happened. Now you can see response.chunk.
+132:47
+
+Okay, so this is the chunks. We are getting one chunks, two chunks, three chunks. Are you guys able to see that? So automatically system will do what is the best fit for this.
+133:03
+
+Yeah, this is the domain specific. So you can anybody ask you, how you will do it and all. You can say, "Boss, I will go by this." Yeah? Now I can show this one. Go with the color one. Display.
+133:18
+
+And here if I pass here a response chunk, you can see this. Number of chunk is this. Length is not coming, one minute.
+133:33
+
+So I can say chunks equal to response chunks. And here simply I'm writing chunksChunk has limitations.
+133:47
+
+So let me write this.
+134:02
+
+Chunks.chunk_text for chunk in
+134:15
+
+chunks. Oh, it's not working. One minute.
+134:27
+
+Control paste. So color list equal to one to this,
+134:46
+
+length equal to this, for chunk one. Can I change this too? Length equal to this and this. Try is equal to this. Chunk color this.
+135:01
+
+With this. Colors. No.
+135:16
+
+So see, we have number of chunk is three. First chunk is this, second chunk is this, and third chunk is this. Okay, like that. And all you can see the full stop, complete sentence they have taken. We were checking out the hotel Singapore last year. Right?
+135:33
+
+And second was the people won of this one. We have full stop and then second. So this automatically LLM model, of course there is a cost involved, but believe me, it will work better than any other model. Okay, so these are the techniques there, guys.
+135:49
+
+Length-based, text-based, document-based, semantic-based, and LLM-based. If you really worry about the price, then you can go by the documents part. If you really worry about documents part will give the very good result also, the
+136:02
+
+accuracy, and cost price very less. But there are some limitations there. If you have domain specific and all, you will not get very good accuracy. But if you are worry about the price, it's better.
+136:17
+
+There is a charges there because anyway we are using LLM here also. But it is not too costly like this one. But here how you will control the cost and all? By this semantic method.
+136:31
+
+So this is all about the chunking method. If you go for interview, please mark my word, they will ask you RAG related questions. And in RAG, they will say they will ask you how you will handle the latency problem. So first answer you can say chunking.
+136:43
+
+They will ask you what chunking is this. Then they will ask you how many types of chunking is there. Can you explain what is this meaning? Length chunking, text-based chunking, document-based chunking, semantic similarity-based chunking, and large language model-based chunking
+136:58
+
+method. You can tell them you have to remember it. Code is this two, three times. Believe me, if you remember, you will write it, you will able to do it. If you are using no-code, low-code, or you are using cloud, then there is no need to remember these methods.
+137:14
+
+But idea is if you really serious about the developer roles, architecture roles, some different roles in
+137:28
+
+GenAI domain, you have to do this practice. Okay? So now I'll take a pause. We have already 12:21. I have to cover today, guys, embedding method, so that next class
+137:42
+
+I will go end-to-end RAG system where I will discuss retrieval, augmentation, generation, and one real-time case study. Meanwhile, let me take one query. Farhan is there? Yes, Farhan?
+137:56
+
+Yeah. Hi, sir. Sir, while we were discussing semantic, you said it should be similarity, right? So actually it was splitted four part and with unequal part. So on what basis we'll
+138:11
+
+consider it as similar? As I said, it's a LLM model, so if you go in the basis then they are just looking the similarity basis, as name suggests. So semantic means whatever the sentence there, if that is coming in the same
+138:25
+
+format, they will consider that one. Okay, so- So if you read the sentence and they can find that, okay, which paragraph fits where, which paragraph fits where, which paragraph fits where, like that they will do it. So this all one paragraph fits here.
+138:40
+
+Mm-hmm. Second paragraph on the sofas. Third paragraph in the lobby, this. Fourth paragraph is this. Like that they will do. This is just a dummy example I have taken for your reference. But when you have knowledge database, means huge data there.
+138:54
+
+So that time, maybe there are some documents which is pertaining to hospitals. There are certain documents pertaining to finance. Certain documents, so they will split like that. Okay, domain by domain, they will pick and they can split it.
+139:08
+
+Okay. Okay? So one documents, let's say simply you can think one documents, there are 100 pages there, and first 200 pages talking about hospital. Second talking about management.
+139:22
+
+Third they are talking about marketing. Fourth they are talking about revenue generation. So they will pick one, two, three, four, like that. Okay. And LLM based is it will automatically,
+139:34
+
+when we design it, it will automatically consider and it will automatically split it, right? Or it will chunk into different parts. Automatically. So we cannot fix any numbers, like so whatever the embeddings or whatever the- You cannot fix here also- ... number
+139:47
+
+... and here also you cannot fix itHere, only why I will not trust more in semantic method because this is a statistics method, a standard deviation. Mm-hmm. So standard deviation is a specific. Percentile is a specific method.
+139:59
+
+It's not that always it is appreciated. Oh. Will you always appreciate this is a standard deviation interquartile method you have learned in descriptive statistics- Yeah ... not the inferential one, right? So these all method is coming.
+140:12
+
+Four method they are giving, percentile, standard deviation. Percentile is what? There is a data set there. When normally we are doing this is called minimum point, this is called maximum point, this is called quartile
+140:24
+
+one, this is quartile three, this part is called interquartile range. Thank you. Yeah. Right? Equal to Q3. And outlier part, whatever coming, that is what is there. So that time we are looking the percentile so that you can see what is my minimum and maximum point there. That is what the percentile is.
+140:39
+
+Standard deviation when you have learned the mean, mode, median, right? Okay. When you see that mean, mode, median, so that time you can say, okay, PDF, probability density function's there, what is mean, mode, median is there, and what the standard deviation is coming from one data to another data.
+140:53
+
+So on that basis, you can say it's similar or different. Interquartile range is nothing- Thank you ... between Q3 and this. Yeah. And gradient, you have learnt in deep learning methods. A gradient descent. So gradient descent is nothing.
+141:09
+
+You can say, or in linear regression you have learned this part if you have attended ever my linear regression classes where I cover OLS method, ordinary least square method. So you can put a multiple lines, thousands
+141:23
+
+of line. Which line is the best fit by the help of gradient descent, it will give the best one. So this method, they have used the traditional method. That's why if you ask me, cost-wise little lesser because somehow there is no cost involved. This is a statistics method.
+141:36
+
+LLM method, you have to pay. That's only differences. Otherwise, you have some link also given. You can go and read it. You will get many more insight. Mm. Well, my friend.
+141:51
+
+Thank you. So now time has come for break. I could not realize it's 12:25. It's going on, but very interesting topic. So shall we take a break, guys, everyone?
+142:04
+
+Hmm? Very detailed I have covered document loader, chunking. Now I will go into embedding. Yeah? So I'm not worry if it is taking time. It's fine, guys. Yeah? But you have to learn very thoroughly.
+142:17
+
+Hmm? So once I complete this basic part, now after that, it's very easy for me to discuss about the agentic AI, all these things. Yeah? Agentic RAG and all, because I have a confident that you guys know
+142:31
+
+this chunking, embedding, all parts. So now the time has come for break. We'll take a 20 minutes break and any
+142:44
+
+tips. Tips is you have to practice it. You have tips is whatever I'm writing, you also have to write in your notebooks. And Saturday, Sunday, whenever you sit idle, pick pen and copy and just sit with anyone, any friends and all, and do it.
+142:56
+
+Okay? Feynman techniques, I told you, you can follow the Feynman techniques. What Feynman suggested, if anybody is there from physics background, what they suggested, go pick anybody in your family, they know the local language,
+143:11
+
+not the English language, and whatever the new topic you are learning, please explain them in your local language. And then you can see whether you are able to understand or not. So just follow this. How to decide chunk size?
+143:25
+
+How many times I told you? Watch recording, Kumud Sir. Already I said three, four times. So shall we
+143:38
+
+connect 12:40, guys? Not 40, 50, sorry. Connect on 50. Okay? Then I will pick the embedding part. Embedding. Okay, I'll try to cover the embedding today,
+143:52
+
+or maybe I'll pick some simple RAG where I can show you all part in embedding and retrieval, augmentation, and generation. I'll show you in the next class very deep dive. Today, I'll show you some sample RAG, how it works.
+144:05
+
+Okay? Bye, guys. See you at 12:50.All
+144:18
+
+right. I'm back now. Are you there, everybody? All my friend? Yes. Cool.
+166:55
+
+Meanwhile, anybody have any questions, please go ahead, ask me. Badri has raised hand. Let me unmute Badri. Yes, Badri. Hi, sir. So, I just
+169:32
+
+want to clarify my understanding regarding the semantic chunking. So, semantic chunking is a concept where it will
+169:48
+
+group all the meaningful things, right? For example, if you have a number of paragraphs, so it will group
+170:03
+
+all the meaningful section based on the topic, right? Based on the topic. Based on the context, yes.
+170:16
+
+Yeah. Sure. So even if it is in multiple section also, it will- It will
+170:31
+
+work. It will work. Right. Yeah. Mm-hmm. Okay. Thank you.
+170:45
+
+Okay. So document loader done, chunking done. Now embedding parts. Okay? So let me show you the embedding.
+171:15
+
+I'll show you the code today. It's very simple. The theory is a little complicated because math is there. So can I pick the maths later, maybe in the Saturday?
+171:43
+
+Guys? Yeah, because so many things there that I wanted to talk in embedding part. Yeah. So let me go in the coding part. So
+171:56
+
+you can see from langchain_text_splitter
+172:09
+
+import RecursiveCharacterTextSplitter.
+172:22
+
+From langchain_community.document_loaders
+172:41
+
+import PyPDFLoader. From langchain_openai
+172:57
+
+import OpenAIEmbeddings from import
+173:16
+
+operating system. Okay. Now,
+173:31
+
+paste.
+173:57
+
+Embedding, whenever you do, you have to pay money. Okay? Please remember. You can say, "Do we have any other method?" There are so many methods there. Yeah. We have something called the paper published in 2013, first embedding techniques, which is called Word2Vec
+174:19
+
+by Google. Okay? Second came GloVe by Stanford University. Third came FastText,
+174:35
+
+okay, by Facebook. Okay? Meta company. So this paper published in 2013, this paper published in 2015, this paper published in 2016.
+174:47
+
+Okay? Then 2017, transformer paper came. Transformer, which is called Attention All You Need. Very, very
+175:02
+
+famous paper. This is the foundation of GenAI, okay, by Google. Then 2018, GPT model came and BERT model came, Bidirectional Encoder Representation Model.
+175:15
+
+Okay, these two. So this is for generation part, and this is for fill in the blank. These two are the very famous. I worked extensively in BERT and GPT
+175:31
+
+those time in 2019, '20, right? So these models, these are the papers there where they talk about the embedding, and now we are talking about the OpenAI embedding model, which is very,
+175:44
+
+very powerful. So simple, right now please understand the definition. Anybody asks you what do you mean by embedding and all? Yeah.
+175:58
+
+The simple definition of embedding, guys, text data I'm converting into number. Okay? Text data I'm converting into number. That's the meaning of embedding techniques. Okay? Simple intuitions. What embedding do?
+176:13
+
+Embedding means if you have a text data, can I convert into number? Yeah. This is the-- No? So vector format we can do it. Now, it's very hard to understand. Yeah. So what is this, how it works and
+176:28
+
+all, I will cover that part in the coming session so that you will get to know. Just very simple code I'm showing you, how that is working, how you can leverage and utilize it. So you can go here, sayThe
+176:43
+
+models, there are three models available there in OpenAI.
+176:59
+
+Text embedding OpenAI. So you can see there are three models available there. One is called text embedding,
+177:11
+
+small. Second is
+177:24
+
+text embedding large. Yeah? So let me take a snippet. So these three models there, guys.
+177:39
+
+If you ask me, we always prefer to go and use this model, text embedding small. If the larger data are there, only then I'm
+177:52
+
+going with the large, otherwise text small. This is older one. Yeah? So I don't want to use this, but sometimes some people they used it, so that doesn't mean you can't see. Pages per dollar.
+178:04
+
+Right? So per dollar, that much embedding they are charging it. Performance M table model. So you can see this is 12,500. This is 62,500 pages you can see, then
+178:17
+
+$1 you have to pay it. That means in Indian rupees, let me just consider it is 1996 rupee something is there that much, including tax and all 100 rupees you can say.
+178:32
+
+So this is very efficient, yeah? Second is performance-wise. Of course, large has a better performance, yeah? But this one is efficient performance comparatively this one. This is 61%, they can-- The performance 63%.
+178:44
+
+Maximum input, they can also generate 8192. That's the maximum token they can read at one go. And that is why we are doing chunking so that embedding when you do it, there is a limitations there, so you can remember it.
+178:59
+
+So anyone you can go and use it. So let's say I'm using here model s small equal to text
+179:14
+
+embedding three small. Three small. Model
+179:27
+
+large equal to text embedding three large. Okay? So these two models there.
+179:40
+
+Now, I'm just creating a embedding model. Right? So I'm saying creating embedding models.
+179:53
+
+So you can say embedding a small model, you can use the OpenAI embedding model, parenthesis bracket,
+180:06
+
+and here model equal to you have to simply write model s small.
+180:20
+
+Similarly, copy, paste, and second, embedding large equal to you can say model large. Okay, I have just used both the model.
+180:33
+
+Done. Now, you can see how they will change it. Hmm? So let's say, I'm going in here, I'm copying this. So this is the text data.
+180:47
+
+Control V. So I'm saying text equal to this. So my text is this. Hmm? Now this is the text how
+181:01
+
+system can understand. You have to convert into number, then only system algorithm works. Yeah? So once you do the chunking, right? Whatever the chunking text data there, you have to pass it to
+181:16
+
+embedding format. So you can say embedding a small equal to-- You can put here embedding a small dot embed query. Okay? That's the functions there.
+181:31
+
+Parenthesis bracket. Here they are asking what is the text there. You can say text equal to text data. Text equal to the text data. This text. That's it, guys.
+181:46
+
+Enter. Embedding done. Now, when I have done this embedding that much data, you can see length how much embedding they have generated.
+181:59
+
+You can see the length they have generated, 1536. Yeah? That is the minimum they have generated. You can increase also, but you can see
+182:13
+
+this embedding size. Text embedding three small, minimum size.
+182:25
+
+So what it's saying? You can see default dimension by default they are taking 1536. Maximum they will go, maximum context window, 8192. You can reduce
+182:43
+
+256 also. Yeah? So I have not given anything. By default, they have taken this oneBy default, they have taken that much. Now, this is what? It's a number. This is what? It's a number. You can see the number.
+182:57
+
+If I show you this, this whole data gets converted into number. Now, this is completely a black box for you guys. If you see this, you have no idea what is this.
+183:09
+
+It's a completely black box. But what is the maths behind that? How these calculations happen and all, I'll show you in the coming session. Make sense
+183:22
+
+everybody? Hmm? Similarly, I can do here copy-paste, and instead of saying a small, I'm saying large. Embedding large equal to--
+183:34
+
+Embed this model. Enter. And you can say copy-paste. Length of.
+183:49
+
+Copy-paste this. So you can see by default they have taken 3,072. So if you go by the large, by default sizes.
+184:02
+
+Large, by default sizes. How compare accuracy between this to this? So by default, here the model natively produced 3,072 dimension, but OpenAI allow developer to
+184:15
+
+trade off cost and performance by sorting them with two. Say if you are cost-specific things, you can reduce it. You can say, "I don't want to generate that much because that much token get generated for that particular sentence." You can see how many there,
+184:30
+
+3,072 numbers there. That numbers there. Okay, this is what the embedding model happen. Now you can say, is it possible the entire document I can do?
+184:45
+
+Is it possible? I can do embedding? Yeah. Let me pick one PDF. So we have PDF here.
+184:58
+
+Embedding. Let's say I'm taking a data.
+185:14
+
+Data equal to, let's say, "Attention is all you need." Okay, this has paper, I'm taking it. Now this data, can copy this. Copy the path.
+185:34
+
+Here I'm using this, I'm saying loading PDF data set. Okay. So you can go and load the PDF data set.
+185:46
+
+So you can say here loader equal to py PDF loader
+186:02
+
+parenthesis bracket file path equal to-- You have to pass here this.
+186:14
+
+Remove this, and that you have to give attention paper. Documents equal to loader.load.
+186:30
+
+And documents equal to, you can see this. So I have load by the help of-- See, LangChain always give you the metadata and the
+186:45
+
+page content. Where is page content? Yeah, page content. Are you able to see that? So these two are the common things whenever you load by the help of document loader. So they have given all this thing.
+186:57
+
+Now, this is part one. Like sample use cases.
+187:13
+
+Okay. So what is the first approach? Step one. Document loader.
+187:28
+
+Okay. Now step two. Chunking. Chunking method.
+187:46
+
+Go and do the chunking. So let's say I'm doing, chunkers equal to
+188:02
+
+recursive character text splitter. And here you can give
+188:15
+
+separator equal to separator lib, give a blank none, whatever there they can do. So simply you can say chunk size equal to let's say 500. Okay?
+188:28
+
+Chunk overlap equal to-- Oh, 500. 20% is how much guys? 500, 10% is 50. 20. Oh, 100.
+188:41
+
+Okay. So let's say 100. 100 is too much, no? Let me give the 50.Okay, I'm giving 50.
+188:57
+
+Set chunks equal to shankar.split_document.
+189:10
+
+And here you can pass these documents. Okay, so all PDF I'm passing here, and I'm just using this one. Now, how many chunks get created? You can see length of
+189:24
+
+chunks, 93. So total, how many pages there? How many total pages there? I think 15. Total pages, guys, 15. Yeah? Total, we have 15
+189:39
+
+pages there. And these 15 pages I have given to my system. Okay, and it gets converted 15 to 93 pages where each chunk size is there, 500 or less than 500 token you will
+189:54
+
+get it. Now here you can go and use the embedding model. Step number three. Step number three is called embedding methods.
+190:09
+
+Like that you will do the RAG system, okay? You can just understand the step by step. So you can say, embed documents. All 93 documents you can convert into a number because this
+190:24
+
+is nothing. This is nothing. It's a character only. Right. This is nothing. It's a text data only. So you can say this is my one chunking.
+190:38
+
+Right. You can see another chunking. You can see another document chunking. Another document chunking. Right, everywhere document metadata page content is coming. Another chunking. Right, metadata, so all this thing is coming.
+190:51
+
+So like that, there are 93 documents get created out of 15 pages. Now all 93 documents you have to convert into a number. So you can say text_document
+191:05
+
+equal to doc.page_content. Okay? You have to take a page content, right? So whatever the page content there, you can say each document I wanted to take a
+191:21
+
+page content. For doc in, where this is there? You can say in the chunk there. So in chunk we have 93 documents there, all one by one I wanted to read it.
+191:34
+
+You can say print what is the length. So it will say 93. 93. Okay? Now you can go and say
+191:46
+
+document embedding equal to, you have to go and use the large or a small anything you can do it.
+192:01
+
+Let me go the small one or large one. Your choice. My suggestion is go smaller. So let's say large.embed_documents.
+192:14
+
+What do I-- Now simple or difficult, guys? You have some idea, right? I have taken a PDF. I have loaded them. I have chunked them. Now I am doing this. So initially when I cover the topic, you may feel difficulties, but believe me, if you practice twice, thrice more, you will
+192:29
+
+feel very, very comfortable. And in RAG, multi-RAG, conversable RAG, agentic RAG, graph RAG, everywhere I'll do the similar approach, you will feel very comfortable then. Of course, their architecture is difficult. The dataset would be different, right?
+192:44
+
+But you will remember these basic foundations. It will help you a lot. Here you can say text equal to, you can pass this text document. That's it.
+192:59
+
+Close this. Enter. So these 93 documents, they have taken it. These 93 documents, they have taken it. Why it is showing error?
+193:11
+
+List of object embed documents, it's showing error. Okay.
+193:24
+
+So let me put these 93 documents there. All the text documents I have first converted one by one. So this is coming, see? I have just removed the metadata.
+193:49
+
+I have just taken that part. Okay, so 93, I have taken it. Now, what is the 93 now? Here I'm saying document
+194:03
+
+embeddings equal to... Let's say I'm taking a smaller one only.
+194:18
+
+Text document. So it's a document. So let me go and do .embed_documents.
+194:33
+
+This function is not working. Why? Shift and tabIs there any problem?
+195:00
+
+Embed documents. Langchain hugging face. Embed documents equal to documents. It's there, no? What is this?
+195:23
+
+Text document. Saying list object, no attribute. So I convert this. Text equal to...
+195:42
+
+List object has no attributes called this. So they're not able to read that dataset properly. Okay.
+195:59
+
+So if they are not able to read it, let me do one thing. Let me save this.
+196:14
+
+Junk.
+196:28
+
+Junk. Now if I pass this, unable to read it.
+196:43
+
+List object has no attributes called amend doc-- embed documents. Saying not there.
+197:07
+
+Embed documents is not there. What happened? Is there any changes there in the code? Embed model integration.
+197:22
+
+One minute, guys. It's saying the-- this is not there. Why? Is there any changes in the versioning?
+197:40
+
+So your code this, the Python expect embedding small do something. Model equal to this. Embed small.
+198:00
+
+Small. .embed_documents. Python.
+198:13
+
+Text document.
+198:28
+
+It can embed, no? What happened? No problem, I'll change the original documents then.
+198:46
+
+PDF, I have taken PDF, I have converted this to list format. Excel sheet is working fine, PDF is not working fine.
+199:26
+
+Sir, if you can go above- Can I go here? Sir, if you can go above, if you can see that you have used the same variable. Why it is not reading this? Embedding the- No, embedding, no problem.
+199:42
+
+No, sir. Since coming into list format. In the above example, you have actually defined that reuse the same variable. So if you see above, embedding small, if you go above, I think this is the problem. You have actually defined in the same embedding small.
+199:55
+
+So now the embedding small object itself is changed. That is why you're not able to find the embed document function because you are reassigning it to back to embedding small, right?
+200:09
+
+To... Correct. Yeah. So name I have given same, so that is the reason. Yeah. If you can just change the embedding small also, that might- Let me check this.
+200:22
+
+So here I'm writing one. One. Execute this. Now if I try
+200:36
+
+embed small. Because same name I have given, so maybe that's the reason. See. So guys, see what is the problem happen.
+200:48
+
+Here I have written model small equal to this, and here I have given embedding a small, right? And when I use it embedding this part, I have stored in the same name. Okay, so that is why the problem happened.
+201:01
+
+Now it is working fine. Now you can see if I go hereAre you able to see that? Everything get converted into number. Okay? Everything get converted into number.
+201:16
+
+Now, what is the length there? You can see the length. The length. Just keep going on. It's very big.
+201:31
+
+The star is there, it's keep going on. Yeah. So to avoid this, there is a cost involved here. So to avoid this, better you have to give the dimension. Right?
+201:46
+
+So you can write a dimension part. Okay, so how you will do the dimension, that is what I'm showing you. Just wait, its execution happen.
+201:58
+
+So when you use this one, this part. Let's show you this.
+202:14
+
+Oh, it's going on. All 93 documents get convert into number. Everything get convert into number.
+202:30
+
+Okay, let me stop this. Otherwise, keep going on.
+202:55
+
+Interrupt kernel.
+203:08
+
+So in the meantime, I can expect this to be a 93 by 1536 kind of a embedding. 153. I'll multiply this. So it will go- It will go to 93. Okay ... 93 multiply
+203:27
+
+1535. 35 or 30, whatever there by default, this much come. Mm-hmm. So this part you can reduce it, you can say dimension equal to 256,
+203:40
+
+and then you can try it. So it's a huge difference. You can reduce like that. So this is also one of the way to reduce the latency part. So this is the second idea I told you. Please use these words.
+203:52
+
+Please remember. Someone ask you how to handle the latency, first part is chunking, second part is embedding. We can reduce the dimension part. Are you guys with me, everybody?
+204:06
+
+Yes? No? But, sir, with this won't the context get lost, like if I reduce the dimension? It will not lose the context. They will convert that part into numerical to that much 1535 to
+204:20
+
+256 only. Okay. Okay? So you have seen the word2vec. If you know Skip Gram or CBOW method, there also by default that is coming maximum 300.
+204:35
+
+But we can reduce to 50 also when we are using deep learning method. So it's not reducing the context base. They are reading all these things. Only thing is that much particular sentence they are converting on
+204:49
+
+that much only. Mm-hmm. So, accuracy-wise, you can see somewhere you will see the slightly deviation, you will get it. The higher dimension you will give, the better answer will come.
+205:02
+
+But you are building a large language model, so two things always keep in mind, cost and time. Mm-hmm. So sometime cost is not a big issue, but time is a big issue. Latency is a big issue. So no customer wanted to wait.
+205:15
+
+You can ask one question and system will wait five minutes and then responding it. So they said, okay, you can go and use the large model, but reduce the dimension and give the answer. Right.
+205:30
+
+So that time accuracy may get suffered. You will not get 96% accuracy. You will get 88%, but this is very good. But your efficiency get improved.
+205:42
+
+Understood. Okay, you can see just one PDF, 93 documents I have given, my system get hanged here. It's keep going on. Still embedding is going on.
+205:55
+
+Yeah. One more question in the meantime. This one chunk will have some number of tokens. Won't that result into a separate vector?
+206:08
+
+How come it is showing only one vector per chunk? Shouldn't it compute multiple vectors per to- That part I will cover. That theory part I'll cover. These questions- Okay ... I'll take it next Saturday.
+206:21
+
+Understood. But this is there in my-- When I cover the theory, you will be able to understand, oh, this is what the back end there. That's why it's working like that. Understood.
+206:34
+
+Oh, why I'm not able to do kernel reset, interrupt kernel? Things happening. Meanwhile, I'm taking questions. John is saying today's class is entertaining and overwhelming at the same time.
+206:48
+
+How much more we'll cover today? Would be nice if we can finish now. Yeah, it's completed by the way. John, this is what I wanted to show. One just code I will write, the dimension, but I will reduce the dimension
+207:03
+
+and I'll show you. Okay, that's it. I'm going to share this. So embedding coding part is done. Theory I'll cover next Saturday. And then direct I will jump into RAG, where I'll show you the different retrieval techniquesAugmentation is nothing.
+207:15
+
+This is just a prompt engineering technique I already have covered. Yeah? And generation is nothing. It's LLM will generate. So the main part is the retrieval part, and then work done. So I will cover the simple RAG, one end-to-end RAG I will cover,
+207:30
+
+and then I will jump into advanced RAG system. Okay. So my target is next week, 13, 14. 20, I will cover the-- 21st you can take
+207:44
+
+it, I will cover the advanced RAG. Okay? Next, 27th, I will go in either fine-tuning or agentic RAG, not agentic RAG, agentic AI model. Agentic RAG, I will cover here itself. I will go agentic.
+207:57
+
+I'll show you Autogen, CrewAI, LangGraph, and then MCP AKA, then Guardrail, Observability. So yeah, July end, August mid, I will
+208:11
+
+cover your syllabus. Okay? Guys, it's taking time, so just I'm telling you, my system got hanged here. Just I'm telling you, when you do this part, to avoid
+208:25
+
+these challenges and all, what you do, simply here, okay, whatever the things there, model equal to model is small. Please write equal to dimension equal to 256 or 512. This part only you can add it, that's it, work done.
+208:38
+
+And then if you apply it, it will not take that much time. Are you guys with me? Hugging Face will come in between on this. Hugging Face is nothing, it's open. You just log in, you can just register yourself.
+208:54
+
+Yeah, and go and take the model. That's it. So it's just one-hour session. Hugging Face, I'll cover it in one hour, and I'll show you how you can Hugging Face, Ollama. These are the nothing, but you can just
+209:06
+
+go log in and use it. I will cover, Yasin. LangSub, I will cover when I will cover the observability.
+209:21
+
+Okay. So can I share this code? It's going on. Once it will come close, I will share it. Yeah?
+209:33
+
+I would say make a copy of this in your local machine, in your folder, and then maybe open it separately, a new file altogether, which is a copy. That is only we can do.
+209:59
+
+So this part I'm saying you can copy this.
+210:29
+
+I did mistake. I am not supposed to use CPU monitor. I have to use always GPU embedding onwards. So that is why my system got hanged now.
+210:42
+
+Okay, this is learning, guys. Please don't use embedding part here. So here what I'm saying, you can go and...
+210:55
+
+Okay. So here you can go here and say a small two, let's say. Model equal to a small model, comma.
+212:20
+
+Comma. Here you can say dimension equal to 256. Okay? That's it. Remaining whatever there, you can do that part, work done. So it will control
+212:33
+
+the latency problem. Okay? And it can reduce 105 to this also. If you have a GPU machine, you are using Hugging Face, you are using NVIDIA, you have taken
+212:45
+
+H100 or something called RTX. Then, of course, you can go and increase it, no problem. Yeah, if you really focus on the accuracy part, too
+212:58
+
+good accuracy and all, you can go and use it. Take the H100 or NVIDIA machine. Yeah, GPU advanced NVIDIA machine, and you can do it. So this is called embedding part, okay?
+213:11
+
+Let me share this.All
+213:23
+
+right. So that's it, guys. Thank you very much all. Bye. Enjoy. Take care. See you on Saturday. Meanwhile, anybody wanted to connect to me, please feel free to ping me on LinkedIn. Yeah.
+213:54
+
+If that is simple one, I will definitely give the answer. If I feel that, okay, need to connect, then I think we will connect it. Raghav Mitra, LinkedIn profile, please. Search me.
+214:09
+
+No, just type Kumar Sundaram. You will get my details. Or anybody, please help. Just provide if you have my profile there. Any other question, guys? Anyone have?
+214:21
+
+No? So that's it then. Right. I can see nobody. Yes, Badri? Yes, sir. So just wanted to know a little thing, like what is the difference between the Hugging Face and the LangChain, because LangChain is a
+214:34
+
+framework, I understood, but both- Hugging Face is a community. Hugging Face is a community. Hugging Face is a platform where you can go and they are all open source. So tomorrow you build a model and you wanted to
+214:49
+
+put in the open source, you can just go and post there in Hugging Face. Anybody can. They can use your pre-trained model and use it. LangChain- Okay. It's like a- You can't do like that. It's just like a GitHub kind of things.
+215:03
+
+There you will- Okay ... get lots of use cases. So Hugging Face is a company. Hugging Face is a community. Hugging Face is all the open source, all the model available there in one platform. LangChain, you will not get it. LangChain is a
+215:17
+
+complete framework. That LangChain, you can use it in Hugging Face or Llama, anywhere. So Hugging Face is not a model, please remember. Hugging Face is a platform- Platform. Yeah ... where you can choose the different models.
+215:31
+
+Okay? So yeah. I thought both are providing models also, that's why I just wanted to ask. Yeah. Got it, sir. Thank you. Okay, guys. Bye. Take care. See you again on Saturday.
+215:47
+
+Till then, enjoy. Thank you

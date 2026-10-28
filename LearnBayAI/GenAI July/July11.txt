@@ -1,0 +1,1888 @@
+Hi,
+00:20
+
+everyone. Good morning. How are you, my friend? Eddie, good morning. Good morning. Good morning. Great. Okay, let me share my screen.
+04:14
+
+Okay. Please confirm if it's visible. Okay.
+04:30
+
+Good.
+04:42
+
+Okay. So guys, what we have to cover today, transformer, right? Transformer Bert fine-tuning.
+05:07
+
+Yeah. So, let...
+05:19
+
+Attention is all you need. Okay.
+05:41
+
+This is called Transformer paper. So what is the name for paper? "Transform Attention Is All You Need,"
+05:54
+
+Transformer paper, developed by Google researcher in 2017.
+06:07
+
+That's the foundation of GenAI, you can think. Okay? So actually, GenAI get started in 2017 onwards. Guys, I'm going more deeper. Okay?
+06:21
+
+And I'll ensure that going forward, any interview you can appear, GenAI or deep learning-related, 100% they will ask questions related. Attention Is All You Need paper,
+06:34
+
+BERT model, right? GPT model. That's the foundation since there. So you have to understand. Wherever you have a doubt, please feel free to raise hand. I'm more than happy to take your queries, and then only I will go ahead the next part, right?
+06:47
+
+This is one of the most viewed paper, right? If you go in the YouTube or you can go any in any platform, right? Most of the researcher, developer, their complaint is, this paper
+07:00
+
+is a very difficult paper. But I can guarantee once I complete it, you all feel very comfortable. You will able to understand what is this. Yeah? So be attentive, and wherever you have a doubt, please don't hesitate. Please ask your doubt. Don't think, "Oh, it's a simple question, can I ask or not?"
+07:14
+
+Don't think like that. Yeah? So if you understand this paper, you understand the foundation behind GPT. You understand the foundation behind Microsoft Copilot, Claude, Gemini, Llama,
+07:29
+
+Rag. Yeah? Agentic AI. You can take name. So that's the foundation things. That's why it's mandatory. Yeah? It's paramount significant, you have to know it. So, like I said, this is the original paper. Yeah?
+07:43
+
+The name is called "Attention Is All You Need," and that was published by Google researcher in the year of 2017, right? And they have introduced the concept called Transformer Architecture. Yeah?
+07:56
+
+This Transformer Architecture, they actually replaced the concept called RNN, which you guys have seen, right? I have given some glance in the last week.
+08:10
+
+And LSTM, Long Short-Term Memory. They have actually replaced it. Replaced it. Okay?
+08:22
+
+It's completely-- These RNN, LSTM with the model, right? Which is mainly for entirely replaced by attention mechanism. What is attention mechanism? That is nothing, it's called...
+08:34
+
+That is replaced by, you can say, attention mechanism. Attention mechanism.
+08:49
+
+Mechanism. Okay? If you guys please go here in Google, and I wanted everybody, please download this. Okay? This paper. Please go to
+09:03
+
+Google, type here, "Attention Is All You Need" paper. Okay? This is the neural IPS, right? You can click here or you can go here.
+09:18
+
+So let me click this. Here we have view PDF. And this is the paper there, right? This is the revised paper. The date is coming 2nd August, because this is the revised one, but they have taken the same paper. Or if you wanted the older one, you can go here,
+09:31
+
+pick this, right? So anything, right? You can go and pick it. So this is the research paper there that you have to take it. All my dear friend, I'm going to discuss this architecture line by line, what
+09:46
+
+is this and all. But can I expect everybody have this paper? Please.
+09:58
+
+Hmm? Great. Great. I have already uploaded, very good. It's not there? Please make sure you should have this paper. Now, why it is important? Why I'm saying it's very important?
+10:21
+
+Because to understand the foundation, right, when we talk about the maths, when we say the GPT, Claude, right? Gemini or even the
+10:35
+
+foundation of large language model. So this paper actually a foundation. Foundation of large language model.
+10:47
+
+Now, first question comes in your mind. First question comes in your mind, why the Transformer, Transformer
+11:00
+
+paper is important or significant? Hmm? Now, you just relate it.
+11:16
+
+Before Transformer, yeah? Before Transformer, guys, we were using natural language processing, NLP. Okay? For text-related queries. And wherever there is a query there, right?
+11:28
+
+Text-related problems there, we primarily using the concept called RNN. Yeah? RNN is nothing, it's called Recurrent Neural Network.
+11:42
+
+Recurrent Neural Network. So this is neural network, but the special kind of network which can handle the text or NLP kind of problems. Now, what happen in RNN? Let's say I'm writing
+11:57
+
+I- Love learning AI. Okay, let's say this is the word there. Now, what RNN will do? They process word by word.
+12:11
+
+So they can consider that this is my first word, W1, this is W2, this is W3. This is W4. So they are reading word by word.
+12:24
+
+RNN, how RNN process? Word by word. Like reading a book one word at a time. So that is exactly how RNN do. Now, then
+12:37
+
+the next concept came LSTM. What LSTM do? They improved version. Then next came LSTM. LSTM is nothing, it's a part of RNN, but you can say it's an improved RNN.
+12:49
+
+It is the improved version. Improved version of RNN or a type of RNN which can enhance their capabilities. RNN has limitations, they cannot remember
+13:04
+
+the past word. LSTM has some capability, they can remember a few words. They remember the information longer, not just like one sentence. So if I ask a questions, you know anything you can go and ask
+13:17
+
+them that, "Hey, the animal didn't cross the road because it was..." Let's say, I'm just writing, it was, fill in the blank. So what happened? LSTM, they can understand the past sentence, the
+13:32
+
+context and basis, they can say, "Okay, what would be the next word?" So LSTM, they try to remember the animal, the road. These things there. Let's say I'm saying here example,
+13:46
+
+the animal didn't cross the road
+13:59
+
+because it was tired, let's say. Now what LSTM do? What is the nature of LSTM?
+14:12
+
+They remember the words. What are the words there? Animal is there. You can say road there.
+14:26
+
+Tired there. So these are the vocabulary, they remember it. But what is the problem? The first problem is, if I go in the RNN, you can say RNN is very, very slow. This is
+14:38
+
+very slow, and they cannot remember the past vocabulary also, past sentence also. You have to wait long time, one by one word processing happen. You have to wait a long time.
+14:51
+
+This is just like my friend, you have a 2G. You can just think about, if you go in or 3G network there. If you wanted to watch one movie, how much time it will take, ideally? Huh?
+15:06
+
+So there is a latest version came called long-term memory, but they have also some limitations there. RNN forget immediately, LSTM forget gradually.
+15:22
+
+So they have enhanced it, but it's very difficult. And because they are very difficult, we are unable to scale them. Because there are, you have seen in deep learning, CNN itself, you have seen there
+15:36
+
+are millions or billions of parameters there. LSTM, you have seen, billions of parameters there. Even trillions of parameter there are lots of LLM models there. Now what happened?
+15:51
+
+These model is completely failed. They can maximum generate 30 words. And that is also very slow. Better than
+16:03
+
+RNN, but this is also very slow, and that is the biggest challenge there, guys, in the LSTM and RNN. And then, the revolutionary happened, a revolution
+16:17
+
+happened in 2017 when Google published a paper, and they have used that method. So
+16:30
+
+what transformer introduce? Let me change the color. What transformers
+16:44
+
+introduce it, the first part they introduce attention mechanism. The second part they have introduced called parallel processing.
+16:58
+
+The third part they have introduced call better context
+17:11
+
+understanding. Fourth, it's much faster training comparatively to RNN and LSTM.
+17:24
+
+So any natural language-related problems there, if you go with the traditional deep learning method, and you can try to use the transformer model, you will get much faster, and you will get better accuracy.
+17:39
+
+So in a nutshell, anybody ask you that why transformer? If anybody ask you this question, why- Please remember, you can say why? Because they have introduced the attention mechanism.
+17:55
+
+They have introduced the parallel processing. RNN, LSTM is a sequential processing. This is parallel processing. At one go, all the parts work together. That is better context understanding, right?
+18:10
+
+So if you apply the transformer model, they can understand context and generate better answer. Yeah? And it is very fast for training and better accuracy. I'll justify this part. Yeah? But are you clear why, guys?
+18:22
+
+Come on. If anybody asks you, are you in the positions to tell them? All, my dear friend. Hmm. So,
+18:36
+
+what is this meaning is, you may ask this question, that what is special? My friend, if you can go and use the RNN or LSTM,
+18:50
+
+right? What happen? If we have a word one, first they have to process this, then they will go to the word two. This is completed, then word three. This is completed, then word four,
+19:04
+
+and so on it will go. But if I use transformer model, word one will go separately, word two will go separately, word three will go separately, word four will go separately, and so on.
+19:18
+
+Everything will happen parallel processing. Yeah? All will done at once. At once. Or you can say
+19:32
+
+all at once. This is the benefit there in transformer. Hmm? Why? Because it's a parallel processing. This is, it's a sequential processing. First,
+19:45
+
+sequential processing, you can say. Now here, I use the word called attention mechanism. Hmm? Why it is called attention? The paper name is, why it is called attention is all you need. Yeah, what is the
+19:58
+
+purpose here, attention? So, before transformer, this attention paper got published, right? It's not that it's a new thing, right? Already people, they have started using it.
+20:13
+
+I'm just giving a perspective so that you all feel connected. Okay? All my friend, till now, are you clear whatever I'm talking? No ambiguity words, I'm using it very simple.
+20:27
+
+Yes, no? Great. So before, what happened, guys? If you see the architecture, right? If you see the architecture and all,
+20:40
+
+normally what happen, let's say there is a sentence there, I'm saying, "Hey, I am learning
+20:52
+
+large language model." Okay? Now how system works, actually. They can system, they will add two more vocabulary here, a starting point,
+21:05
+
+and they have end of the sentence. End the sentence. And when they process it, they can say, "Hey, this is my starting point." This will go, this is called encoder input data, processing
+21:21
+
+it, and then it gets generated, call I. Then again, this I, they will put it here. I. Okay? And this again, it will go. They will process here. This means neural networks.
+21:34
+
+And then they will fetch the another word called M. Again, the M will come here, M, and they will process this, and everywhere there is a weight there. Hmm? And then it will come learning,
+21:49
+
+and so on, my friend. And so on like that it is going on. Yeah? This is the biggest challenge there. Okay? That's the biggest challenge there. So word by word, they have to remember it.
+22:03
+
+Word by word, they have to remember it, guys. Hmm? They can remember the text word by word and then giving the answer. Now, this is what happened. Then, what happened,
+22:15
+
+in 2014 there were one paper came, the name called sequence to sequence model. Sequence to
+22:30
+
+sequence learning with neural network. Okay? I wanted you guys, if you have a bandwidth, are you really interested to see how industry grow and all?
+22:42
+
+Please go here, type this, sequence to sequence learning with neural network paper.
+22:57
+
+Okay? 2014. This is the paper there, guys. Let me share this paper to all of you. If you have a bandwidth, you can go. Not mandatory, just I'm giving a perspective, but if you are really
+23:10
+
+interested, it's published, again by Google only, sequence to sequence learning with neural network. You can see the architecture here. Right? What happened? They are passing all the vocabulary
+23:24
+
+one, two, three, four, five, like that. Please understand. Yeah? They have passed, let's say here, "Hi, I'm learning machine learning. I'm learning deep learning." So all the sentences will go one by one, one by one, one by one. Everything get connected here.
+23:38
+
+That's the sequence. They can say, "I wanted to know the sequence." First problem is it's a sequential process. That's why the name call sequence. Means one step get completed, then second step. Second step get completed, then third step. Third step get completed then, right?
+23:54
+
+It's also called sequence to sequence is also called very popular name called encoder-decoder. Encoder-decoder. So this sequence to sequence is also called encoder-decoder.
+24:08
+
+Okay? What encoder-decoder do? All the sentences, input data, they will pass at one go. All the sentence they will pass at one.
+24:25
+
+Yeah? Means they are encapsulate representation of input, as in encapsulate representation of input. Once input get processed, everything they are gathering here.
+24:38
+
+They remember it. This is called context vector. Okay? And then that all vocabulary they are changing context
+24:52
+
+to output means, let's say here the sentence is in English. English is a input, and I wanted to get a French language. What is the meaning of French, right? So they have to convert into decoder.
+25:05
+
+Yeah, that's the decoder part there, and that's the output they will get it. This is what the output is there. So decoder uses the context vector, and they are taking the previous token, right? And then finally they are generating, at one point of
+25:19
+
+time. So if you see here, all the input data, come on my friend, all the input data they are passing at one go. And then they are converting everything here. Right? End of the sentence, everything they are converting into
+25:34
+
+context vector, embedding part you can say. And this embedding, once it came, then they are passing here, and then finally the translation happen. A, B, C is denoted at X, Y, Z. Yeah? Like that, and
+25:48
+
+then end of the sentence it is coming. Right? Now you can say what is special in this paper, in this entire paper when I learn it, what is the
+26:01
+
+special things? Guys. The pros here. The pros here in this paper. They have very nicely explained sequence to sequence
+26:14
+
+mechanism. Sequence to sequence mechanism or input-output, input-output relationship, or encoder-decoder concept.
+26:30
+
+Decoder concept. First, I will appreciate them. Hmm. This process, it is very useful, very suitable for
+26:42
+
+translation problem. Translation problem, summarization problem. Okay? Summarization problem, and question-answer problem. Question-answer problem.
+26:55
+
+It is very good. But what are the cons here? First biggest challenge here is both,
+27:11
+
+my friend, this architecture and this architecture, encoder and decoder, both follow the architecture here when they use the neural network,
+27:24
+
+the neural network, neural network. Right? They are using the same concept what RNN handle. So you can say both encoder and decoder
+27:36
+
+uses RNN or LSTM architecture. LSTM architecture. Now you understood what this neural network is.
+27:51
+
+That's why I have given some perspective here, what this challenge is in this architecture, right? It is very slow. It is very slow, right? They can easily forget the
+28:03
+
+password. They have to remember maximum few words, and also they can generate maximum 30 words only. Yeah, it's an enhanced version, but there is no drastically changes. Okay? It can generate the fixed length.
+28:15
+
+What is the another challenge is? Second con says it can generate fixed length
+28:31
+
+context vectors, which leads to
+28:44
+
+information loss. Okay? Which leads to information loss, guys. For long sentence
+28:58
+
+or for long sequence, if you have a bigger sequence there, that is the biggest challenge there. They don't remember it. Just imagine, no, I'm just telling you in simple language, guys.
+29:13
+
+This is your architecture. Input data. You can say here encoder I'm using, encoder or input.
+29:26
+
+Hmm. So what happened? There are multiple words you will write, word one, word two, word three, word four, right? You can say word one, word two, word three, word four, word five, let's say, word six. I'm writing here six. Huh?
+29:38
+
+Let's say I'm saying, "Hey, how are you?" Yeah? Or, "Hi, I am learning LLM model." Let's say this is what I'm doing. Each time your model they have to use
+29:55
+
+the neural network is called? RNN. Hmm. RNN.
+30:07
+
+And everything is connected because past weight also comes. RNN or LSTM, anything you can write it, my friend. RNN.
+30:24
+
+Okay? Now, once the sentence gets completed, then they started processing here. They can say, now I have to read the
+30:38
+
+context vector. I will convert everything into context vector. That is the vector, numerical format you will put it. And that numerical format will go here, where? In the another architecture, which is called
+30:51
+
+decoder architecture. Hmm? Decoder or output.
+31:06
+
+Right? So how things will work, whatever they collate, they will write some starting point. You can see the architecture. They will start from the starting point. So we can say, hey, this is
+31:19
+
+the starting point. A start. Again, same architecture you can use, same neural network, RNN, and they will give the final answer called, let's say, T1.
+31:32
+
+Another RNN. Yeah, like that, you have to build. RNN, RNN, RNN.
+31:45
+
+Okay? This T1 will come here. T1, then T2. This T2 will come again here, then it will generate T3.
+31:59
+
+This T3 will come here, then generate the T4, and then finally, this T4 will come here, and you can say that's the end of the sentence. It's not mandatory, but I'm just saying, end of the sentence.
+32:11
+
+Otherwise, it's keep going on. Yeah? So sequence of sequence model, they tried to do it. Okay, they tried to do it in 2014. But because the challenge there, they are using the neural network called
+32:25
+
+RNN, LSTM only, and that's the biggest failure there. Just imagine, guys, I said, hey, you have one book. Simple, where you have 1,000 pages there.
+32:38
+
+You can read at one go, and then I will ask anything in any page. Is it possible you remember everything, guys? Tell me. You read 1,000 page, and I'm saying, hey, page by page.
+32:50
+
+Is it possible you remember everything? This is what exactly doing. They are reading all the book, and then they are starting converting it. So they forget it. Yeah, their accuracy is not good. They are not doing perfect job.
+33:03
+
+Yeah? So biggest challenge is, first we are collating reading. Let's say there are 10 movies there. You have to watch all 10 movie, and then the question answer will come. It's very difficult. You can watch one movie, ask questions, answer.
+33:16
+
+I'm ready to give the answer. But I'm saying no. First, you watch 100 movies. First, you watch 10 movies, and then you have to convert into Hindi and all. How they remember it? Okay. Next, guys, just one or two years.
+33:30
+
+Hmm, I can say one year because this paper published in 2014, December, and another paper they published in 2015. 2015. The paper was
+33:45
+
+on natural or neutral machine translation by
+33:58
+
+joint learning to align and translate. Okay?
+34:11
+
+This is proposed by the name called, guys, Bahandu. Okay. Some something name is there, very...
+34:24
+
+So they have just used the concept. They have used the concept. They said, hey, whatever the architecture there, this context part, I don't want to use it. What I will use, they have given the very good concept.
+34:39
+
+They said, this part encoder is okay. Encoder is okay. Whatever things you are saying here, let's say these are the things I'm giving here. Yeah?
+34:54
+
+W1, W2, W3, and so on. I'm okay. I can use RNN, RNN, RNN. Okay?
+35:08
+
+Now, decoder also will come like that. This is called decoder.
+35:22
+
+Decoder. Okay? RNN, RNN, RNN.
+35:34
+
+T1, T2, T3. Okay, a start point. This is T1, this is T2,
+35:47
+
+and so on. Only changes what they have done, guys. They have changed this part. They have changed this part. Okay. They have created a concept called attention.
+36:01
+
+They have created a- Attention mechanism. And they said here, whatever the point at word one I'm giving it by the help of RNN, we can get the output, and here itself I will convert into encoding.
+36:17
+
+Here what they did, first they are collating everything. You can say collate. They collate everything, and then they are converting. Context vectorizations happen. They said, "No, we are passing it, convert this.
+36:30
+
+Pass to another words, convert it. Pass three, convert it." And like that you have to do it. And similar way, whatever the things they are saying, "Why not I can connect with this? Why not I can connect with this? Why not I can connect with this?" Like that it is there.
+36:43
+
+In 2015, they have introduced the concept called attention, guys, in 2015. This is the year the attention. Attention is not new for transformer when it came.
+36:58
+
+So they have dynamically adjusted the attention weight. The model can focus the important word. They are focusing the leading words. They are focusing to how more accurate translation happen.
+37:13
+
+And translation is not new. In 2016, '17, '18, '19, Google doing fantastic job. They started doing translations and all.
+37:27
+
+Attention, they become actually scalable. So by this method, huge difference it happen. Only they change that part and this Bahdanau. What is Bahdanau? Some name is there. Bahdanau.
+37:39
+
+Something name is there, I'm forgetting the name. Let me see, what is the name there?
+38:00
+
+Attention Bahdanau. Bahdanau. It is name there. This is
+38:13
+
+attention paper. Paper 2015. Okay. So this is the paper there, guys. Neural Machine Translation Jointly Learning by Aligning to the Translator.
+38:26
+
+Let me share this paper as well. All of you. Okay?
+38:40
+
+Please go and read this book. So what is the name here, the researcher's? Bahdanau, I think. Very difficult name.
+38:52
+
+Okay. It's called B. No. Okay. So this is the researcher there. They have given it, and very nicely they have
+39:04
+
+explained the attention concepts. If you go and see their architecture, only changes they have done it. You can see phase by phase,
+39:19
+
+word by word, they have done it. So some other paper also you can see it, but here if you see in the crux of the thing is.
+39:31
+
+So you can see this part, each word by word, they are generating it and giving. So you can just go and read it what happened. That's what they said from probabilistic perspective, translation equivalent, this, this, this, something some technical word they have used it.
+39:46
+
+But they have also done one blunder. You know what? They have used the neural network, and their concept they have used RNN/LSTM only.
+40:01
+
+And what RNN/LSTM is, it's a sequence-to-sequence model. Means one get completed, then only others will come. Others get completed, then others will come. That means they are totally depend on the previous words, previous
+40:15
+
+sentence. That is the biggest challenge there. And this problem in 2017 got resolved by the help of attention
+40:29
+
+mechanism. Attention all you need. So what attention all you need did it, they said, "Hey, you can give the input data."
+40:42
+
+You can give the input data. Input data. I will first embed them. I will first
+40:56
+
+do embeddings. They will convert into number. In embedding, they have added few more things called positional. Positional embedding
+41:09
+
+or encoding. Once positioning encoding done, they will do encoder stack.
+41:22
+
+After that, they will get encoder output. Encoder output. So this is the phase one. So if I can go
+41:37
+
+here in this paper, attention all you need paper, you can see here. You can see the paper, guys. There is input data. They will do the input embedding first.
+41:52
+
+After embedding, they will do positioning encoding, then they will do the addition for both encoded stack, and then finally, combining all these things, and they are getting the encoder output.
+42:04
+
+Encoder output. Why? To get a decoder stack. Yeah, to get a decoder stack. So we have a multi-head attention, then addition and normalization, feed forward neural network.
+42:19
+
+Yeah, they will do all kind of things. So you can see here, after encoder output, whatever they got it, we wanted decoder stack.
+42:32
+
+And there they have used the linear layer. On the top of it, they have used softmax.
+42:50
+
+And then finally they will predict words. And irrespective of how many words, they hardly matter. You can see,
+43:03
+
+guys. Once this part done, so whatever the output they got it, the output, shift right, output embedding, positional encoding, everything.
+43:16
+
+On the top of it, they have used internal. Internal part, I'll explain you in a while. They have used it, you can see, then they have applied the linear, then softmax, and then output probability. Like that, the Transformer architecture works.
+43:28
+
+Now you can say, "Can you please explain more?" Let me go deeper. Let me go deeper.
+43:43
+
+Let's say there is input data there, is called, I'm writing here, the cat sat. Yeah? Now what happened, this is the input data.
+43:55
+
+First this sentence get convert into number. So we can say input embedding, you have to do it. Once input get convert into number, on the top of it, you have to also give
+44:08
+
+the significant of positional input. Positional encode. Yeah? What is meaning of positional encode? How it works?
+44:23
+
+So you have to understand that part also. Okay? So positional encoder, how it will work, where it will reach, what all things we have to do it, how we know that. So all things I'm going to discuss in a while.
+44:36
+
+What is meaning of positional, this one and all. Guys, till now, so far so good? Everybody, you are with me?
+44:51
+
+Hmm? Great. So, you can see what happened here. The positional encoder will go, and they will say what
+45:06
+
+positions there, and then finally they are combining together, and that's what is coming called encoder part, overall encoder. Means you can say this is the data set there.
+45:20
+
+This is the data set there, architecture there. If I'm writing here, the cat sat. Okay? So this is the input data. First thing first, you have to do the embedding.
+45:36
+
+You can use that time, we were using Word2vec or GloVe method. This method. Now you can think about, let's say I'm using text embedding. Text embedding
+45:49
+
+3s model. Okay, let's say this is our ADA 002, you have to use it. So it get convert number. So this cat sat on the-- So you can say you have to write some number, 0.5,
+46:05
+
+0.01, 0.5, like that you have to write some number. Next part is what? Positional encoding. What is positional encoding? Position encoding means they will give the positions,
+46:18
+
+at which position that vocabulary is there. So if it is given, so it will write E0 position, E embedding one position, embedding two position, like that it will go. That is called positional embedding. Yeah?
+46:30
+
+And then they are adding it, both the values. So both are number, they will add it, and then finally the value will come. That's what happen. And then on the top of it, once encoding done,
+46:43
+
+we are using multi-head attention. So the researcher, what they have given?
+46:57
+
+Once this get added, and here it will reach the embedding value, they have used the multi-head attention mechanism. Okay, multi-head attention mechanism whenever works. Yeah, whenever it works,
+47:09
+
+we have to do feed forward. What is feed forward? You all know it.
+47:21
+
+If you guys remember, I have covered that part. You have input data X1, X2, X3, and here let's say we have neurons there. So what happen? When this model get connected with the neuron,
+47:34
+
+connected with the neuron, then here the calculation happen, and the activation function, calculation and activation function. And you will get the output. Then this output again connected with this, and here again same,
+47:49
+
+and this finally you will get the output. Guys, did you remember? Can I say this approach is called feed forward, Abdu? Feed forward? Yes or no? Exactly same thing happen when you apply the multi-head attention.
+48:03
+
+Yeah? Then we can say I will do the feed forward, this, and then this part you have to repeat. You can say repeat it Repeated n times.
+48:17
+
+n times. This is the architecture for encoder architecture. This is called encoder architecture. See this architecture, guys? The cat sat on the desk or on the bench, right?
+48:31
+
+Let's say on the table. We have to convert input embedding. You can give the positional embedding, add both the data, it will come here, apply the multi-head attention, right? Multi-head attention, they have given add and normalization, means you have to
+48:46
+
+normalize them. So that's what normally we are doing, right? We have to do the normalization here also, you know that. Because output will come, so you can say batch normalization. Right? We use the method called batch normalization, so you have to
+49:00
+
+do, and here additions will come. So that part, they said addition and normalization. And then the feed forward neural network. Why feed forward neural network? Because I wanted to see the loss value. If there is a loss there, it will go back propagation.
+49:12
+
+Back propagation method. So back propagation is nothing, it's called chain rule. By the chain rule, we derive them, and then we have to do memoization. Memoization method. Right?
+49:25
+
+So we can fix certain value. This value, I don't want to repeat again and again. Because every time they will cross here, whether X1, X2, X3, they will cross, and that gets summit. And then you have to use
+49:40
+
+the activation function. So this is what exactly happen here. Right? Feed forward neural network. And this part, you have to, how many times you can iterate? n times. Means four times, five times, 100 times, you can do it. This is the requirement.
+49:53
+
+Now, decoder architecture, how it looks like. Output shift data. Right? So this is nothing, the same method of positional encoding. Here you can see mask attention. So they are using...
+50:09
+
+This is called decoder. So first they use masked attention.
+50:22
+
+This plus we can say cross-attention. Okay, so we are not only using this, we are also using
+50:37
+
+cross-attention mechanism as well. Yeah? And then on the top of it, you can use feed forward neural network. Forward neural network.
+50:50
+
+Yeah, only difference is here you can see multi-head attention there. Here we have a mask multi-head attention, here multi-head attention. Same thing. Yeah, but and this part is nothing, it's called cross-attention mechanism. So whatever things there, it is coming here.
+51:05
+
+And then on the top of it, you can use this. And how many times? n times you can do it. You have to do n times. And once that part done, you can say feed forward
+51:20
+
+repeated n times. Then on the top of it, you have to apply linear layer, and after linear layer, my friend, you have to use
+51:33
+
+softmax activation function, and you will get the output. You will get output word. That's how the process there.
+51:47
+
+Now I'm going to explain you line by line, guys, so that all my dear friend who is coming from non-tech background, you can understand the meaning, right? What happened. One part you clear, right? When I say attention here, you got the clarity.
+52:01
+
+That attention here instead of all word I have to collect here and then we are converting into number, rather than I can do, why not I can pass word by word? And that's how the attention mechanism. Means you are giving equal importance for each words,
+52:15
+
+and every words you are using it. That's what the meaning of attention. Right? Now here how things works. Let me take a very simple example so that you can understand. Badri, I will unmute. Okay, don't worry, just wait for a while, and then we'll go ahead.
+52:30
+
+Okay. So guys, what is converting? Let's say I'm writing here the word called dog. Just think about I'm writing a word called dog. I'm writing a word called dog. Now, this dog,
+52:47
+
+you have to first convert into embedding. Now this embedding, what it will do? Can I write this, some number will there? 0.2, 0.75, 0.34, -0.38. Yeah,
+53:02
+
+up to soon. Can I say this is called embedding, guys? All my friend agree? Yeah. Why we are doing it? Why embedding?
+53:17
+
+Because you know computer. Computers understand numbers only. So if you give dog, computers will not understand. Yeah?
+53:30
+
+Computers know only this, not word. Not words. Only numbers. Only numbers.
+53:45
+
+Right? So each person has, similar you can say, each person has own PAN card, own Aadhaar card, own voter ID, own ID card. Embedding is just like a ID card. So each vocabulary has a different identity number.
+53:58
+
+They are not giving one embedding, otherwise confusion happens, so that's why multiple agent. But please remember, each vocabulary has a different ID. Okay, so let's say I'm getting this number.
+54:13
+
+What is the next step? Positional encoding. You can go, this is part one, part two Positional
+54:26
+
+encoding. Hmm? What positional encoding will do, guys? Transformers see all word together. It does not know order. Please remember, transformer does not know the
+54:38
+
+order. They see all words together only. That's why it's parallel process we can say. So if we can write here example called, let's say, "Dog bite man,"
+54:52
+
+and here I'm writing, "Man bites dog." Okay. What happened? What happened in this sentence? It contains the same word, but very different meaning or not,
+55:05
+
+guys? Tell me, dog bites a man, man bites a dog. Very different. Right? So you can say in the first words, this is the position one, this is the position two, this is the position three. That's what the position is there.
+55:19
+
+Right. So what happened? They will do the parallel processing. Everything they will consider and they pass it at one go. Everything they will consider and pass it all. Machine never do like that, that okay, if I'm giving first
+55:35
+
+word by word, vocabulary by vocabulary, how RNN works, it will not work like that. Each words looks, right? Every other words, they can connect the dot, they can see that, okay, what happen, how it works and all.
+55:49
+
+Right. Let's say here a bank there. Now, if I'm writing here river. So river bank also is a word, right? And if I write financial bank.
+56:01
+
+Financial bank. So if you go by the word by word, right? Bank, you may get confused, your machine get confused. But if you go by the context word, then machine can understand, and that's how the
+56:14
+
+self-attention mechanism works. Yeah? Self-attention mechanism works. So if I write here, let's say here vocabulary is bank I have given, and here I'm writing a word called river. Hmm? Here I'm
+56:28
+
+writing here water. Here I'm writing, let's say money. Money. Here I'm saying road. Now this bank related to these four out of four, which one, guys?
+56:40
+
+Can I say? Bank cannot bank road or road bank, money bank, water bank, river bank. So you can say it will come as a river bank, right? So if the vocabulary or the sentence they can read previously, they can easily
+56:54
+
+understand it. And like that it works. So positionally what they will do, they can also see the positions. Yeah? So dog bites man or man bites dog. You cannot say the man bites.
+57:08
+
+No, dog bites man. So if you know the position, you can give the importance, hey, the position one, two, three. Here position one, two, three. So like that they will read actual vocabulary, the context, and they also understand the word position by
+57:22
+
+position, and then they can say, if anybody's writing bites, fill in the blank and fill in the blank, machine can read what is the context there. So who bites? So dog bites. Yeah?
+57:36
+
+If in the paragraph it's mentioned dog bites man, and then if you go and ask bites, who bites whom? So machine can read the context and they can say, who bites dog, whom? Then they can say, man. Like that it works.
+57:48
+
+So positional invading or encoding has another significant, and that is why we are using it. Please, please, please remember this. Are you guys with me?
+58:02
+
+Hmm? Now let me come here the PPT. So
+58:15
+
+that I can go more granular.
+58:27
+
+Okay. So see here, guys. This is what some definition I have given here. So first difference is you can see traditional model versus language model. So what is model?
+58:39
+
+Yeah? Model is a relationship captured between input and output. So if you are writing here X, and you are getting Y, what is the relationship there? That is called model. That relationship who built by the help of model.
+58:53
+
+Only you can build a relationship what is input and output, what is the relationship there. Whether it's a rule-based, it's a machine learning-based, it's a deep learning-based, whatever. Yeah? What is language model? The model that capture
+59:06
+
+the sequential relationship between word and sentence of a language is called as a language model. Right? So if you are writing a context and they can understand and then making a sentence, that's what is called language model.
+59:21
+
+If you can model a language, what you can do? So build, there is a method called auto-complete feature, summarize the text, build better chatbot, build a question answer system, et cetera, et cetera. You can do it. So these are the problems for language models there.
+59:34
+
+Now how this language model works. So anybody, any model you have seen, first thing first, they need a huge amount of data. Then they need a huge amount of powerful architecture. They have to build a very, very good architecture, just like
+59:57
+
+the transformer and all. Then on the top of it, they have to use the language modeling techniques, right? Powerful architecture, if you go by the older one, RNN, LSTM, and transformer. RNN and LSTM, some problem is there because
+60:12
+
+sequencer it's a parallel methods, it's very good. Language modeling techniques, we have auto-regressive task, we have auto-encoded task there. These are the older fundamental things there, but just understand. What is meaning of order?
+60:26
+
+Auto-regressive language model means you have to predict the next word. Auto-encoding language model means you have to predict the fill in the blank. Yeah, please understand this. So let me go here. Yeah, you can see I'm learning mask
+60:41
+
+learning. So this is the fill in the blank. You can go auto-encoding. If I can say what is the next word, right? So you can say autoregressive methods. Right? Now till 2023, I have already discussed
+60:54
+
+artificial neural network or deep neural network or multi-model, multi-layer perceptron model, then CNN model, right? Static language model or classical ML, right? Regression classification, we have seen.
+61:09
+
+Word2vec is another embedding method, and this is neural, RNN-LSTM, right? So neural language model, or you can say NLP model by the help of RNN-LSTM. So you have seen it.
+61:22
+
+Now coming back to the-- This is some older one there. Let me skip this. So this is CiBAO, Skipgram, this is also basic things there. Let me come here, the main paper.
+61:34
+
+This one. Yeah? So first thing first, what is the advantage there, guys? What is the advantage there in transformer paper? It's a parallel and scalable there. Here we have a multi-model input-output there. Multi-model means what?
+61:46
+
+The same concept what I told you, you have to apply multiple times. Okay, you can go and apply the multiple times. That's what is called multi-model system. So anybody say, what do you mean by multi-model? Hm? What actually multi-model do?
+62:01
+
+So multi-model means human brain looks like many perspective. Yeah? Transformer does too. They are also doing the exactly same. Yeah? So one person in our human brain, right, how much
+62:16
+
+neurons there? Similar way multi, why not we can use it? Yeah? Multi-head means different head learn from different things. Yeah? You can say first, let's say, I'm saying grammar, right?
+62:32
+
+So some people, they can say, "Hey, it's a verb." Some people, they can see the relationship between what is the parts of a speech tagging there. Some person, they can say what is name entity recognitions there. Right? So there are multiple analogy they can think about this.
+62:46
+
+That's how the multi-model. So in all perspective, they are looking the sentence and then giving the answer. There is a disadvantage there, huge computer resources you need it, huge amount of data you need it to build this. There is a chances there over-fitting because you will do back propagation method.
+63:00
+
+Energy also too much required there. Okay. That's what happened, but please understand. Can I go, guys? Or anybody let me take a question first, and then I will go deeper. Yeah?
+63:16
+
+Who is asking questions, please raise hand. Let me see if your fundamental is okay or not. Till now, guys, are you with me? Badri, go ahead, unmute it.
+63:31
+
+Yes, sir. Good morning. So, regarding this multi-head attention, the mask multi-head attention, right? So I just want to know the difference between
+63:50
+
+that. Like, as you already discussed on that. So I'm not able to understand that part alone. Okay. See, multi means what? Same pattern you have to use, like multi-RAG system.
+64:02
+
+What happen, there are different type of input data is coming. Yes or no? Text data, image data, audio data, video data, graph data, tabular data. Correct? Yeah. That's called multi.
+64:16
+
+Mask multi-head attention is what? What they will do, actually, a simple analogy is they will mask some word.
+64:29
+
+So there is a sentence there, in between they will mask it, and then they will check whether there are some answer is coming correctly or not. That's why they are just checking, right, inside itself. It's called auto-complete method. So I'm writing here a sentence.
+64:41
+
+I'm writing a sentence. I am fill in the blank learning LLM model. So the- Sir, your voice is too low, sir.
+64:56
+
+Okay. Now is it okay? Yeah. Okay. So what I'm saying, mask means you have to mask some words. So let's say here I am learning, right? So it is words you have to mask it, and then you have to give a training.
+65:10
+
+Here, there is a vocabulary there. They can mask it, they can mask it, they can mask it. And then they can do a training, and they can see, hey, what is happening, whether I'm getting the correct answer or not. Okay. Okay? So models should not know the future words.
+65:23
+
+If first the training, when they do a training, that time itself, they will mask few words, and they will predict whether they are getting correct response or not. If they are getting it, only then they do it. So that's the only meaning of mask multi-head.
+65:38
+
+Okay, sir. Yeah. So, yeah, I got it. So, I'll just rephrase. I'll just tell what is the attention mechanism means. It will take all the
+65:53
+
+words, right? Like if, for example, the cat sat means it will take all the words and store it in a
+66:06
+
+story tester embedding, right? So when we try to retrieve that, we'll just give the name. We'll just give any one of the word so that it will take from the embedding, and it will fill, right?
+66:19
+
+Or it will search for the meaningful word, like- Correct. Yeah. Yes. But they are doing differently. They are not using RNN-LSTM architecture. That's why they have mentioned the positional also.
+66:33
+
+Like I said, dog bites man or man bites dog. Both are different thing. So they are reading the complete sentence and then giving the answer. Yeah. Okay. Yeah. Sure, sir. So yeah, that's it.
+66:45
+
+Thank you, sir. Okay. Amuran? Sir, in that architecture diagram, the self-attention
+67:01
+
+architecture diagram- Mm-hmm ... they have mentioned that the output as a right shift like that. Can you go to the diagrams?
+67:16
+
+This one? Yeah, this one. Yeah. Shifted right, they have mentioned, right? Why that is shifted to right? We can directly take and write the outcome. Why we are doing the shifted right?
+67:29
+
+Okay. So you don't go like that. You can see here. One minute.
+67:43
+
+I'll tell you that part anyway, but I'm just showing you the architecture. See this. So when this model works, we are giving all the vocabulary, then embedding happen, and here something is coming, and that word is
+68:04
+
+passing here. Okay? Yeah. So same thing happen here also. When you see that, this architecture, what happen?
+68:19
+
+These two frames, they have used it. So let's say you are getting something. Right? Getting something. So they can also say this is just a output shifted right. So same thing, let's say, we are getting something output, let's say.
+68:32
+
+Or you can say, okay, I speak English. Now, this sentence with the transfer, , let's say in Hindi, we can say and translate it.
+68:46
+
+Here they are using the same method because it's a text again. Text, what they do? How here input embedding we are saying, here output embedding they are doing it. Because you can translate Hindi to English, English to Hindi also, right?
+69:00
+
+So they are looking whether whatever the output is there, I'm getting the similar answer or not. Then they have used the position. So there are two architecture there. Okay, these two architecture. This is called encoder architecture.
+69:14
+
+This is called decoder architecture. Okay. Decoder, how they did it? Same thing, embedding, positional embedding. They first check it, right? So they are doing the mask, so they fill some words. And then multi-attention, whatever there, they applied it.
+69:26
+
+Attention, addition, and normalization, they again applied it. Again, multi-head attention, they use it, this. And then on the top of feed forward neural network. And here, finally, they are calculating, giving the answer. Like that it works.
+69:42
+
+But I'll come there. I'm talking the first part only, the encoder method. Okay. Yeah, you will understand that part. Yeah. And also why we need the two times that multi-head attention? Here we have masked the multi-head attention and
+69:56
+
+also the multi-head attention. I will tell you in a while. Okay. Okay? I will tell you in a while. Okay, sir. And whatever the things that you have showed- Let me finish first the architecture, then- Okay ... your doubt, most of the doubt get cleared.
+70:10
+
+Okay. Will it cover the self-attention part also? Yeah, of course. Okay. Okay, sir. Thank you. Okay.
+70:25
+
+Yes, Dheeraj? Yes, sir. Sir, this part is clear, but I'm always confused when I learn this history, right? Starting from NLP and the models simultaneously.
+70:37
+
+So particularly in this paper, when we say input embedding, are we doing word to word glove? Because this time, we don't have that small text embedding how we're using the GPT model, right? So they must be using something like glove-
+70:51
+
+Word2vec, they have used it. Yeah, glove, FastText, they try to use it ... Because NLP evolution and transition happen in parallel with this model, right? Correct. So yeah, that is always getting confused.
+71:05
+
+Like what is the order of this NLP techniques as the model evolves, right? And in that particular thing, I always get confused. No problem. So initially that was there, but now we are
+71:18
+
+not using it. Correct. Yeah, we are not using word because that is very time-taking. And when we say positional, they are just adding a index for a particular vector
+71:33
+
+which they have identified, right? Correct. Yeah. Position only. So embedding one, two, three, four, five, like that. Okay. Okay? Okay, fine. So guys, there are few analogy there. Okay?
+71:47
+
+Arvind has raised hand. Let me take their query as well. Yes, Arvind? Sir, here NX means what exactly at this point
+72:01
+
+in this figure? NX means how many number of times they are repeating the same thing. So N can be 10, 100, or any value? 10 times 6 times they have used it. So if you go and read the paper, no?
+72:15
+
+Even you read the paper, they have used 6 times that part. So N means- Okay ... six. So encoder, decoder concept, how many times? Six times they have used it, the same concept.
+72:29
+
+Okay. Okay, and that all six time what? Parallel, not a sequential. It's not one completed then, six times they executed it, and then they worked on it. Okay. Yeah?
+72:42
+
+Thank you. Guys, please concentrate and then I'll take a query. Hmm? Otherwise, people keep asking. Sahana, just wait. You will get most of the things,
+72:55
+
+and then I will give you opportunity again. So guys, there are few things there. I have written everything in notes, and I will share that notes with you guys. You can just go through it. But you can see here what is
+73:07
+
+the-- This is the very simple analogy there. So encoder is good for understanding text, and decoder is good for generating text. Right? You guys have seen Alexa.
+73:20
+
+What Alexa do? That's actually a natural language processing. Know natural language processing takes data. So what happen? There is a understanding also first, natural language understanding, NLU.
+73:32
+
+It's called encoding. So when you are saying, "Hey Alexa, what is the weather now?" So Alexa will give, right? So first they understand. So that is called encoding concept. And then they are generating it. So it's called NLG, natural language
+73:45
+
+generation. That is called decoder part. Yeah? Same thing happen here also. This is called encoder, is understanding text. Google has developed a ChatGPT that is encoder-based model.
+73:59
+
+OpenAI had developed the model called GPT model that is called decoder model. Decoder is good for generating text. So what happen? Input data, input embedding and positional embedding, and then they are using self-attention with the multi-head.
+74:13
+
+Yeah? Self-attention with the multi-head model. What is self-attention? You can see self-attention with multi-head. Positional encoding, you understood, right? Add the notion. Notion means one, two, three, four, five. You can give the position for a sequential information.
+74:29
+
+Self-attention with multi-head means attention replace need of recursive and makes a process of embedding. What attention do? They said, "Hey, I will not collate the data, and then I will do the embedding.
+74:44
+
+I will convert into context vector." No. Each word by word, they are converting it. That's called attention. So that's why we say replace need of recurrence, and makes a process of embedding, calculating parallel.
+74:57
+
+Attention mechanism will find how each word relate to all other words in a sequence, and generate context embedding, and that's what is called sentence self-attention mechanism.
+75:10
+
+What is self-attention mechanism? Attention means context vector, right? Word by word, we replace the recurrent neural network or LSTM, and self means they are also reading the context, right? By the help of positional embedding plus actual embedding.
+75:23
+
+So these two part, when happen, then we can say self-attention. And this part we are using repetitive times, that's why we can say multi-head. Right? How to find the word similarity? Attention will run dot product, right?
+75:39
+
+Between word vector, and determine the strongest relationship of word with all other vocabulary, all other words. That's how the relationship they are doing. You may say cosine similarity, you may say,
+75:54
+
+HNSW, what you have seen in RAC. Yeah, you can say by the help of k-nearest neighbor. These things you can say, similarity search, you can say it. How to speed up the calculation? For each attention sub-layer,
+76:09
+
+the original transformer model run not only one, but eight attention mechanism in parallel to speed up the calculation. Eight times they will work it. And in
+76:23
+
+parallel to speed up the calculation, this process is done using multi-head attention. So at one go, they are executing six times each. Six times how many times they are using? Right?
+76:37
+
+They can say one, but eight attention mechanism works. So at one go, they are giving the eight embedding vocabulary, right? And then works, it happen. Fully connected positional-wise feed forward, feed forward neural network.
+76:51
+
+You already know it. Yeah? So this is the intuitions there. Now attention all you need 2017, a scalar. What are the benefits there? It's very scalable.
+77:06
+
+It's a parallel training. It's a revolution in NLP with LLM model. It is unified deep learning approach for text, image, audio, and video dataset. It is multi-model, and it will accelerate and accurate
+77:20
+
+the GenAI project. Encoder is great for understanding text, adds self-attention with multi-head and feed forward neural network, right? It is good for both. And decoder is mask self-attention and cross.
+77:36
+
+Mask means they are predicting it, so that's why the name called great for generating text, so GPT-1. Feed forward neural network. That's the basic difference there. Okay, you always remember that part. You can bifurcate it, and you can say, "Hey, the first part is this, second part
+77:50
+
+is this." Encoder means this, decoder means this. Right? Now you can see the building block, how they are working. So let's say input, they are getting output. This output, right? We are adding it. Now, same architecture, we can use input data, but
+78:05
+
+we are saying, "Hey, this is called my decoder data." Just one minute, guys. I'm getting one call.
+78:19
+
+Okay. So let me go here in this. Yeah. So now I'll go a little deeper. What is self-attention mechanism is, how it works, and all. So you can see some of the
+80:32
+
+example I have mentioned here, like the sentence one is, "He got bit by a python." Second sentence is there, "Python is my favorite programming language." Now what happen, each vocabulary has a relationship with each words.
+80:45
+
+You can say, "He got bit by a python." Here also I have written he got this. Now wherever this is connections there, where you can see the more thickness there, that means more weight is there. Their chances would be high. That bit after that we need a python.
+81:01
+
+Here if I'm giving programming, so python programming. So this is just a weight analysis. So how they can understand which word will come next, so that we can understand the context, and then accordingly we can give the answer.
+81:16
+
+For that, there are some maths there so that you can understand this. Yeah? Now see here. Each vocabulary had some, you can say,
+81:30
+
+this word is nothing. It's called coefficient there or slope there, or you can say weight there. 0.5 is nothing, it's called weight. So what is the weight of python, execute, this? So let's say python.
+81:43
+
+What is the analogy there? If I say my friend python, relation with python,
+81:58
+
+execute, and quickly. So what is this? Python is a very close relation with python only. That's why there probability value is higher. Then python next probability is execute, and then
+82:10
+
+quickly. That's the first by the help of neural network, they used it, and they have given the weight value. Similarly, if you go in the execute. So you can see execute word is there, and that execute has a relation
+82:24
+
+with python also, execute only, and quickly also. So definitely execute versus execute is the higher. Execute versus python is lesser, and execute versus quickly is the lesser, so that's the weight they have given it.
+82:37
+
+And this weight, how it is calculated by the help of soft max, by the help of probability value, so that we can accumulate when you say it is 100%. Similarly, when you say
+82:51
+
+quickly, so quickly has a relationship with quickly is a more higher, and then execute and python they have given 10%. Yeah? So this is what first they will calculate the weight, each words. Second, what they do, they
+83:03
+
+are converting this part, the vocabulary part into embedding. Okay, they do it. So we are saying e-python versus e-python, e-python versus e-execute, e-execute versus this.
+83:19
+
+So here, we already have a weight value there. Yeah, and this is, let's say, embedding we are getting something else. So it's average. There are so many there, we are calculating it. And each vocabulary, you will get it.
+83:31
+
+Similar thing, second sentence also works like that. Mm-hmm? Second sentence also works like that. Now, you can see here, this e-python embedding value,
+83:43
+
+we are passing here, it's called a static embedding, so we are adding all the value. Finding the relationship with e-python versus e-python, e-python versus e-execute, e-python versus e-quickly. Similarly, if you go this, e-execute versus e-python, e-execute
+83:57
+
+versus e-execute, e-execute versus quickly. If you go e-quickly, e-quickly with python, e-quickly with execute, and e-quickly with this. Yeah? Now this vocabulary, this things is called key,
+84:13
+
+query, and value. Okay? There are three things are the very significant, that is called self-attention mechanism. What is this? Query, key,
+84:26
+
+and value. Q, K, V. Yeah? Most important interview questions there. In mechanism, if they ask transformer, they will ask you what is self-attention
+84:40
+
+mechanism, how we can calculate it. Please remember by the help of query, key, and value, we calculate it. If you don't do it, you will not get the semantic meaning. Yeah?
+84:56
+
+So what happened, let's say- I am asking a query. Okay, I'm asking a query. I'm saying: What are you searching? What are you
+85:08
+
+searching for? Let's say. Hmm? My answer is coming. My answer is there, let's say, machine learning. Machine learning.
+85:21
+
+Now, the key is, what is meaning of key? This is query, right? Key means they will search from where, let's say, book title. Book title. Okay? So say what are they searching for, and let's say I'm saying machine
+85:37
+
+learning. So they will, you know what key will do, they will learn it. And here, they can find machine learning, fundamental. That's the book title there. Machine learning,
+85:53
+
+fundamental. Okay? So they will go and pick that keywords. Now, value will come. Value means actual content.
+86:06
+
+Actual content. So what actual content is? Whatever the machine learning fundamental books there, you can say entire. Entire book is the value.
+86:21
+
+Hmm? So each word create, please try to understand. In transformer, each word create query, key and value. Okay? Query, key and value.
+86:34
+
+Now, let's say I'm writing here, the animal was tired. Okay?
+86:50
+
+Now what happen? This is the example there. Now what happen? It create first query.
+87:03
+
+Hmm? We have to identify. We can say first we can calculate the score, where I will get the maximum score. So query into key will come. Okay? And of course you can say transport so that
+87:16
+
+both are vector, so it get converted. Now where the higher score will come, higher score will come, that is the more relevant. That is more relevant. More
+87:29
+
+relevant. Okay? The higher score will come, the more relevant is this. Yeah. So let's say here I'm writing the animal was tired. So
+87:44
+
+it word is there, it connected with animal, or it connected with, let's say, road. Now if you see, they will read the sentence, the word the
+87:57
+
+animal was tired, so it is a animal. So here chance is, let's say, 95%. Here chance is 0.1%, let's say. This is how the transformer focus on animal words, right?
+88:10
+
+And how they are doing, they are using officially, they are using dot product. Dot product. Okay? So, you know, dot product attention mechanism, they are giving it. So the formula is, formula is
+88:23
+
+attention 2KV equal to softmax of 2 transpose 2K
+88:37
+
+transpose divide by root under D. Okay? D. And then you have to calculate their values. So you can say, okay, this value is what?
+88:51
+
+So how things works, first thing first, you can find what is the query. Then you have to do the dot product of transpose. Whatever result you will get, divide by, you can say D.
+89:04
+
+Okay? On the top of it, whatever the value will come, you can say here I'm going to use the softmax value. Any probability value will come, right? That's the new representations. That's the new
+89:16
+
+representations value there. And that's how the score get calculated and that's what is called value. And they will calculate which is the highest value, right? That is called attention. That is called self-attention.
+89:29
+
+Self-attention. Yeah. So, you know like that they are working. So self-attention, step by step, anybody ask you, "Hey, what is this?" You please understand self-attention. If I'm writing I love
+89:44
+
+AI, yeah? First you can say I will calculate query, key value. Let's say here love is there, and love has what? Right? They will find the calculate the similarity words.
+89:57
+
+So similarity word, let's say I'm writing here I or AI, which is the more similar, right? They can calculate the similarity word. So this is coming, let's say, 0.4, this is 9.
+90:10
+
+So you know this is the highest probability there. On the top of it, we will use the softmax. So what softmax will do? I has 30%, 35%, let's say, and this is 65%.
+90:23
+
+Yeah? That's the softmax score they will give it, means I chance is 35% and AI chance is 65%. So love understand the context word, they wanted to see love AI.
+90:37
+
+Love I, you know that is less significant in this context. The context is I is there. And one head is not enough, right? This approach is not enough. We are using multiple neurons, right?
+90:52
+
+So human brain, just like many prospective, transformer doing exactly the same thing, yeah? So single head, they are not using it, they are using multi-head. Yeah, multi-head means they have different perspectives there,
+91:05
+
+and then they can finalize what is the answer there. This normally happens. So if you go here, and you can see there is a vocabulary they are calculating. This is one example only given like that. We have all vocabulary execute, they will also do it.
+91:20
+
+This also they will do it. And then they are getting some values. Yeah? How value work? You can say this is called query. This is called key.
+91:35
+
+And then they are getting the dot product of this. So dot product, how is it happen? You can say divide by D. D is nothing, guys. Normally, we are considering 64, because 64 is a perfect square root.
+91:47
+
+Right? You can say 8x8 are 64. You can say, can we put 256? That also you can do it, but in this research paper, they have taken 64. And then whatever the value will come, that is the value there. And on the top of it, they are applying the softmax.
+92:01
+
+So what happened, there is a weight value there. There is a value comes, and then whatever calculation happened, that is called Jade Python, that is called contextual embedding. Yeah, that is called contextual embedding, or you can say, like that we are
+92:16
+
+calculating it. This part clear, guys? Everybody, can you chat window? Are you clear?
+92:28
+
+No? Super.
+92:42
+
+So you can see, we have given a color also. So this is called dynamic embedding. So after that, whatever you are getting, that's the final part is there. This color means this is called query. So Python is the query, so everywhere you can say Python.
+92:55
+
+If execute, then execute will come everywhere. Yeah? So this is query. This is one example. Like that, how many architecture you can build? Three. One for execute, another for quickly. So whatever sentence there, parallelly it will process. Yeah, all will work.
+93:10
+
+And then they are doing the dot product, dividing by the D means 64, yeah, so that they will get better answer, and that's the value. And on the top of it, they are applying the softmax so that they can get a probability value. Weight plus whatever the probability value there,
+93:26
+
+I calculate it, and that's the final result you will get it. Okay? This is what is called query key value. Yeah? This is interview question I have seen.
+93:40
+
+Note these two question extensively coming. They ask you what is QKV? You can say Q represent a query, represent what information the model is trying to extract. Key means key represent the content or a feature that the
+93:52
+
+model can pay attention, right? And value means represent the actual information that is passed along one attention has been calculated. So by computing do dot product between
+94:08
+
+query of one token and the key another, the model determine the relevance or importance. Yeah, why we are doing it? Because that's the reason there. Now question is why QKV? That is again very interesting is. Yeah?
+94:21
+
+Now if you were to use the token embedding directly without a transformation into query key value, guys, this is just like I have mentioned here, bank, and if I'm saying bank equal to let's say
+94:36
+
+100, that's the embedding number there. Next time if the here it's given riverbank, right here bank river, and another sentence is given financial
+94:52
+
+river, financial bank, right? And this is riverbank. Believe me, riverbank, each time the bank denoted 100 only, and which is
+95:04
+
+factually incorrect. Right? You have to change basis the context only. So you can't fix the bank equal to this. So here they are saying if you were using token embedding directly without this transformation into query key value,
+95:19
+
+the model would be limited to just one fixed way to compute a relationship between token. Like I said, bank is denoted by 100, then 100 entire model, right? By introducing separate linear, you just think, no.
+95:35
+
+If I go here, my dear friend, I can say, hey, is it okay? Here I'm getting the probability value is higher if I'm saying my query is Python, so Python versus this,
+95:50
+
+you know we'll get something else. If I write execute versus Python, execute versus this, something else, right? Some other value will come. So you don't fix it. Okay, that is the first part. Second is why we are not fixing, then
+96:02
+
+we can understand the context meaning. By introduce separate linear transformation for query key and value, the model gains flexibility. It allows the model to learn different representation of relationship, enabling more
+96:18
+
+nuanced and complex interactions between tokens. This separation is crucial for capturing different type of relationship, like syntactic dependency or semantic connection within the
+96:31
+
+input sequence. Are you guys clear? This question I have seen extensively interviewer ask you. Very important. I'll share this PPT. Please two, three times you can go and read it,
+96:43
+
+guys. Hmm? Transformer typically use multi-head attention where multiple set of query key and value projection
+96:58
+
+are learned independently. This allows the model to focus on different aspects in input Sequence simultaneously capturing a richer set of relationship. Without QKV separation, the model wouldn't be able to
+97:11
+
+perform these parallel attention operations, which are essential for capturing diverse pattern in the data. That is why we are using it. Are you guys clear or not clear? Come on.
+97:27
+
+Then you can see same thing I've done here. So we have some vocabularies there. Let's say we have some of this. So we are getting weight Q, weight K, weight V value. It gets updated. During the backpropagation, let's say we are getting it, so we can say here we are
+97:43
+
+getting some value. Here we have a key, here we have a python. So these things we are getting. Again, we are applying this dot product. Divide by that, 64, root 164, then you will get value one, value two, value three on
+97:58
+
+the top of it. You can do softmax, and then weight plus what value, and that is what is there. Okay, this is what is called QK value. How self-attention works. So query.key, you are
+98:13
+
+getting weight. Query.key. Everywhere the calculation query equal to key value equal to everywhere they calculate it, and then finally divide by DEs. Nothing, it's a 64.
+98:28
+
+Return the matrix of the safety by T introducing, we can think. So here you can see, and like that multiple. That's multi-head attention. So this not one approach, multiple approach they have applied it. Initially they have used
+98:40
+
+six only in transformer, but you will see more than that. And GPT model and all, they are using the same architecture, but multiple times. So you can see this is called encoder.
+98:55
+
+Yeah, this is all about the architecture there. Are you guys with me?
+99:08
+
+I'll tell you the perspective also, in GenAI and all, but entire generative AI and all, you have seen how they remember the context actually, how they remember in giving the correct answer because of transformer paper.
+99:21
+
+Okay. Now, we have something called the paper number called BERT and their evaluation metrics. I'll explain you that part, as well as I'll go for some basic understanding. And tomorrow I'll pick the PEFT model and other
+99:36
+
+stuff called LoRA and QLoRA model, so that you can understand. So I'll take a couple of questions, and then we'll go for break. Yes, Himanshu.
+99:51
+
+Himanshu, go ahead, ask questions. So there are two architecture there, please remember. One is encoder architecture, another is decoder architecture.
+100:07
+
+Why feed-forward neural network is needed? Because if you don't do feed-forward neural network, how you know that what is the highest values there, and how you know the loss value backpropagation method? So multi-layer perceptron model is required with
+100:23
+
+this. Then only you will know no, the context is coming correctly or not. Okay. Shall we take a break, guys?
+100:38
+
+Sir, continuation to this one. So but after we have done the multi-head attention, we are passing this, the context vector to the forward feed neural network, right?
+100:51
+
+Correct, yes. Okay. Okay. So that they are calculating the loss value, and accordingly, if there is a problem in loss, they are updating the weight, reducing the loss, and getting the
+101:04
+
+more accurate context answer. That is what you can do in RNN also. You can do CNN also. So MLP is mandatory. Multi-layer perceptron. And sir, when we look at the encoder architecture, decoder architecture,
+101:17
+
+decoder is also taking the encoder input for the cross- Decoder is same thing, no different. Same thing. So they are just taking the similar thing, and they are using it. Only thing what they do, they are mainly for generation purpose, not
+101:31
+
+for understanding only. So they have mask it also. One additional thing they do it. So internally they are giving some sentence, mask few things, and then checking how it works. That explanation there in BERT model.
+101:44
+
+Since the next slide is BERT only, I'll explain you how that will work. But sir, they are taking input from the encoder part also for the multi-head attention. So some way, because in this architecture I can see-
+101:57
+
+Multi-head attention is what? It's a part of QKV only, no? No. They are giving. See, no connections there, multi-head and all. No connections there.
+102:09
+
+So here, just what is there, you can just see. Same thing they have what written. Input and output shifted. Same input they are putting here. Let's say the cat sat, so here the cat sat is there.
+102:21
+
+Same input and embedding they are using it. Same positional encoding using it. Here when we use multi-head attention, here also multi-head attention. So multi-head attention, anyway they are using it.
+102:35
+
+Here additional things. Here, only multi-head attention works. Here, they are adding one more thing, it's called mask multi-head. Means they wanted to see whenever I'm speaking, can I fill that words and then see whether that words my machine is
+102:47
+
+fetching or not. Just like a random forest model, how random forest works. They are hiding. They are leaving some columns. They are leaving some row, and then they are making it. Okay. When we are- So what- ... doing a sample data, they are doing like that. So same thing they are doing it.
+103:02
+
+So they're hiding some words, and then checking whether my model works or not, and on the top of it, they use multi-layer perceptron also, so that they can find the loss value. They can see all this one So in this architecture, what is the input which is going from
+103:17
+
+encoder to the multi-head attention and decoder? So this is- Yes, both are same architecture. Same, just they define it. So we are knowing transformer, they are trying to use encoder method and decoder method also, and then finally giving the answer.
+103:31
+
+So little- Yeah. Now what happened when GPT model came, they said, "I will not use this at all. I will only use this part," and we can see whether I'm getting the right answer or not. When both model, both paper released, they said, "I will
+103:45
+
+not use this one. I will use only because I'm getting the answer. What is the purpose to mask it? Why not I can just do it and give this?" Got you. Okay. Okay.
+103:58
+
+Yes, Himanshu? You have raised hand, any question? No. Uh, Sahana, go ahead. Yes, sir. So here, self-attention mechanism,
+104:10
+
+this happens in encoding part, right? That Q- Self-attention mechanism happen not only in coding, decoding part also, because here also multi-head attention there, no? Oh. So multi-head attention means what? Self-attention mechanism,
+104:24
+
+QKV. So once QKV calculated an encoding part, we'll send it to the decoding part, and then also the- Decoding is a different... No, no, no, not like that. I told you, no.
+104:37
+
+This is one architecture, and this is another architecture. So same thing they got the output, right? Same thing they got the output. Now they are saying output shifted, so they are taking it. This is a connection only.
+104:52
+
+Okay. This is just a connection. But they are using the same, but they are saying output. So let's say here, whatever output coming. Here, I'm saying, "Hi, how are you?" How are you? Let's output, I'm getting,
+105:05
+
+Now this they are giving, let's say here. And then they are checking whether I'm getting, how are you? How are you? Hmm. Or not. So same architecture they are doing it, but suddenly some additional
+105:19
+
+part- No ... they have done it. That's it. But you don't think like that. You can say there are two different architecture there. One is encoder architecture, another is decoder architecture. Simple. Okay. Decoder architecture.
+105:31
+
+Yeah. It's only here mask part they have added. That's it. Okay. Okay. Got it. And one more thing is, in determining key,
+105:44
+
+it identifies with all other items in the input data, right? It identifies the word with the other input data.
+105:59
+
+Hmm? Hello? No, no, I could not understand. What do you mean? So in key determination part- Okay ... so it identifies the word with all other
+106:15
+
+input- Ah, correct. They are just making a relationship and finding what is the closest word is there. So how they will find it? They will do a maths. No. Yeah. Yeah. This time one words, let's say I have given a Python.
+106:28
+
+So Python, then which word is the next word? Whether Python versus Python, or Python versus execute, or Python versus this. Basis this, they are calculating the probability score value.
+106:41
+
+Yeah. The value is the actual meaning of whole input- Yes ... which we are calculating. Then only we can see the context. No, otherwise, like I said, bank has a relation with river or bank has a relation with financial.
+106:54
+
+If you only do encoding, right, you get confused. When you do this key, so that means you are looking context and seeing the relationship, and then you will get the value. So value only comes when you apply the query plus key.
+107:07
+
+Key is nothing, each vocabulary, they are making the relationship. Okay. Okay? Hmm. Got it. Badri, you have raised hand again?
+107:22
+
+Yes, sir. So you have explained about the formula, right? So what is the square root value of D? So, uh- See, this is nothing why we are scaling it.
+107:35
+
+Without scaling, the value is a very big, no? If you don't scale and you can do some calculation. You have seen in multi-layer perceptron, we are also doing one, once we are getting the output,
+107:49
+
+we are using the batch normalization. So means we are doing a feature scaling, similar thing. D is nothing, it's called a scaling actually. So anybody say what is D? When you say root
+108:02
+
+100D, right? Divide by K into V, or K into query. What is D? D is nothing, it's a scaling, feature scaling. Now, a scaling, without a scaling, let's say value is coming 200, value is coming 400, value is coming 600. It's a very big number, no?
+108:15
+
+So how you will get the probability? When you say softmax, softmax is too extreme, right? So what we do, the engineers, the researcher, they have scaled them. So if you read the research paper, it's clearly mentioned there.
+108:31
+
+Let me show you. Control. Control V, D.
+108:46
+
+D value. Key.query divided by root 100. How I will write the root 100? So D is there, I'll show you. Wait.
+109:03
+
+So scale dot product. Yeah, you can see here. So left scale dot product. Multi-head attention consist of several attention layer running in parallel query with all key
+109:22
+
+divided each by root 100 DK. Apply the softmax function to obtain the weights to the value. Yeah? Now in practice, we compute the attention function to set off query simultaneously packed together into
+109:35
+
+query. Key and value pack this. We compute matrix, and we are doing it. Now, here you can see the two most commonly used attention function are additive attention and dot product attention. Dot product attention is identical to our algorithm,
+109:51
+
+except this scaling of this. While the small value D of two mechanism perform similarly, additive this. Where it is written? I read one Jai Alamar
+110:06
+
+editorial. I'll show you. Jai Alamar transformer block. Okay. Very nicely they have explained it.
+110:20
+
+You can see how they divide its encoder model, this is decoder model. Here input is written in French, and the English is coming, "I am a student." So first they explain the encoder model. Second, they have explained this part. So self-attention and feed forward.
+110:35
+
+Self-attention is nothing, the same QK query value. Okay, they've mentioned very nicely. I'm big fan when I learned, right, these editorials. Long back story, I'm telling you, 2019 or somewhere
+110:50
+
+2018 end. And that's why I like his editorial, but book also he has written LLM, but that is not up to the mark. So here they see how they can find the context. So they're making a relationship.
+111:04
+
+So each query, they're giving a key value and matching, right, where the highest weight value there. Now that weight, how they can normalize it based is the D value, scaled them. Okay, they scaled here.
+111:19
+
+So they have this, this is called query one, query two, query three, like that. And they have calculated, and they are getting some value. So you can see. Now divide by eight, right? So root 164 they have given.
+111:31
+
+So if you read here, you can see the third and fourth step, divide S4 by eight, the square root of dimension of the key vector used in paper 64. And in paper, they have used 64. The leads
+111:46
+
+to having more stable gradient. These could be other possible value here, but this is default. So what researcher did it, they have taken. Initially, I also did it. So when you go and see that,
+111:59
+
+initially they have taken a 64 here. Initially they have taken a 64. Yeah, dimension. In this work, we employ H equal to eight parallel attention layer or head. For each of these we use
+112:13
+
+this dimension equal to 64 root under. Due to reduced dimension of each head, the total computational cost is similar to the single-head attention fully dimensional. So what happened? Initially, when they have given something else, no, it is taking too much
+112:28
+
+time. So they found 64 is a very good, right? It's a complete square root. It's eight value, eight is a two to the power three, and binary computer knows the binary value. So 2N, N equal to three is their
+112:43
+
+optimal value, they have given it. But when they try to explore something, let's say 60 they have given, root 160, root under 200, root under 500. Right? Root under, you can say four. That time, their efficiency
+112:57
+
+was lesser. Hence, they finalized on paper, they said, "I will take a D equal to 64," and a square is nothing itself, just a square root means it scaled them. So it works well. That's the logic there. Understood?
+113:11
+
+Yes, sir. If anybody asks you why, you can say why, because it's a scaled them. And why part, you have not explored, right? They have explored. I'm reading the research paper. So what research paper said? They have tried hit-and-trial methods,
+113:26
+
+multiple values they have taken, but later they found 64 would be the ideal, and they are more efficient comparatively other value. That is why they have given that value. Simple ideology. Yes. Yeah.
+113:40
+
+Understood? Understood. Thank you. So guys, no, nothing? Shall we take a break then? Sir, sorry, my mic was not working. So, here,
+113:52
+
+this QKV, query, key and value. This- Mm-hmm ... is something that is computed during the model training, right? For which- Absolutely. Yeah. And this is based on the learning rate, right?
+114:06
+
+It basically compute the loss function and then accordingly try to minimize it and- Full, yeah. Feed forward neural network, yeah. Understood. So it's not like every word is multi. So Python execute quickly, it's not like Python is
+114:18
+
+multiplied with Python. It will be like the query will be multiplied, WK will be multiplied. Yeah, absolutely. WK, yeah. Python means Python, no. The query, whatever query there. So I'm saying Python, let's say.
+114:34
+
+So Python, we'll see the relation with each keywords. So Python versus Python, Python versus query, Python versus quickly, like that. So what is this? Okay. Your analogy would be one query. Second is key.
+114:46
+
+And then on the top of it, we scale them, and then getting the value. Once you get the value, then you have to again apply the softmax. And then whatever the result will come, that value plus their weight get calculated, and that is what is the self-attention mechanism word is.
+115:00
+
+Okay. And when we say multi-head attention, what are the different perspective or directions? Can you give some example like- So, same architecture, if you see this. Mm-hmm. So when I say multi-head, means what?
+115:15
+
+Here, just I have taken one example, no? Right. When I have taken this example, I said one part only. So let's say there are three vocabulary there. Ideally, we have to build three more architecture here.
+115:29
+
+Right. One, two, three The way I said E-Python, I can also say E-Execute versus E-Python. Second is here instead of Python, we can say E-Execute, here E-Execute,
+115:42
+
+here E-Execute, Embedding Execute. Right? Right. Third part, what happened here? What you will write it? Embedding of? Embedding of quickly. Quickly, yes.
+115:55
+
+Multiply with Python. Embedding with quickly then execute. Embedding with quickly then execute quickly. Right? So this same architecture you will draw three times, no? Yes. And these three times how it works? Sequence by sequence or parallel?
+116:07
+
+You can say parallel. Parallel, yeah. Yeah. That's the intuitions there. Like that it works. Understood. And then you will get the context embedding. Then you will get self-attention mechanism, which word will come next.
+116:21
+
+Okay. Got it. This is clear. Thank you. Okay, guys. So nothing else, then we can take a break. Yeah, it's at 12:26. We'll back at 12:45,
+116:34
+
+and then I'll try to complete our board paper as well. Yeah, so today I have covered four paper. Now it's your responsibility, yeah, when you get the time, my dear friend, please go and read those papers. Right?
+116:48
+
+If you're really interested, please go and read those papers. It will really help you. Okay? So first paper, what was the first paper, guys? Anybody?
+117:01
+
+2014 paper. Attention all you need. No, that was 2017. Sequence to sequence, right? Sequence to sequence. Ah, sequence to sequence. Encoder, decoder paper, you have to read it. Yeah.
+117:16
+
+If you have a band width then, otherwise it's not mandatory. Second is? What is the researcher name? Very pathetic name? Several machine translations. Baham, Bah, Bahandu, what something name is there.
+117:30
+
+So you can read their paper. They have introduced the attention words. Hmm. If you guys remember chemistry, right, there is a Dalton's theory there. Did you remember Dalton's theory?
+117:44
+
+Ninth, 10th standard you have learned? Or 11th? I don't remember, when I was there in... Their student, their Bohr's model. Hmm, Dalton made a mistake. They only made a mistake, they said the nucleus, the electron is
+117:57
+
+going, and each time they are losing their electron, right? Losing their energy, and the time will come they will lose. No, this part will come here, and their world is no more then. Bohr model came, they said, no, they're not using, no, they're not losing their
+118:12
+
+energy and electrons and all. They are moving on the certain directions only. Just modified it. Same thing happened here also. The Google engineers, they have seen their paper. They said, "Oh, attention mechanism is fantastic idea they have given."
+118:26
+
+Yeah, by this way, I can remove this, collating all this thing and give the answer. Why not I can each words I will give the embedding value. Yeah. Only challenges they have seen, they still use the sequential model called
+118:40
+
+RNN-LSTM. So they said completely removed it and go by the concept called key-query value. Query, key, and value. Okay? Means self-attention mechanism architecture.
+118:53
+
+Okay, please remember this vocabulary, these words, this meaning, your work done. Simple? Cello. So break
+119:07
+
+20 minutes. 12:30 is there. We'll be back at 12:50, guys. Thank you all.
+119:20
+
+All right, my friend, I'm back now. So Dheeraj has raised hand. Yes, Dheeraj?
+140:58
+
+Okay. So guys, now going to discuss BERT model, okay? So BERT is nothing-- Am I audible, everybody? Can you chat window say yes?
+141:11
+
+Yeah. Okay. So BERT came exactly one year later. So Google has published again. So you can see this.
+141:27
+
+BERT also developed by Google in 2018. This is called context-based embedding model. So what is the meaning of BERT? Means Bidirectional Encoder Representation from Transformer.
+141:40
+
+It's a T means transformer only. Similar like GPT. GPT is nothing, this T means transformer. Transformers, okay? So this transformer is
+141:54
+
+nothing, generative pre-trained transformer model. Okay? So what they have done, they try to understand the relationship. So if you
+142:06
+
+are writing, "He got a bit by a python," so they are reading from left to right and then right to left also, so that they can understand the contextual meaning, they cannot miss any
+142:19
+
+things happen. So you can see this. BERT model is a pre-trained on a huge corpus using two interesting task, called Mask Language Modeling and Next Sentence Prediction. So what they have done, first they
+142:34
+
+mask also, and then they are predicting it, and the next sentence prediction also. I remember till 2022, BERT had the upper hand, guys. Hmm? But to 2022 when GPT
+142:48
+
+3.5 came, the more lots of people they started giving more attention on GPT. It's not that Google has not developed. They have also developed Gemini.
+143:03
+
+Yeah? But that time what mistake Google did, they have not done too much promotion. But the GPT Open AI company, they have done lots of promotions, so people, everybody is giving more attention on GPT.
+143:18
+
+Yeah? But Gemini itself is a omni model. Here we have a GPT 4.0 model is a omni model. Gemini came before that only. Yeah? But that's the challenge there. Now, for any task,
+143:32
+
+say question answer, instead of training BERT from a scratch, we will use pre-trained BERT model and adjust fine-tuning and its waste. Now there are two things there, guys. One is called pre-trained model. Pre-trained means what? Model already exist.
+143:44
+
+Someone has developed the model. We are just going and changing certain weight and giving it. That's called transfer learning. Transfer learning means instead of building your own model from a scratch, why not we can take a liberty, why not we can take
+143:59
+
+a leverage, and we have to use the existing model, and there I will do some tweaks called fine-tuning model. Yeah, and this fine-tuning, I'll show you in the GenAI also. Yeah, so that's why I said it's a foundation, you have to know it.
+144:13
+
+So what happened in BERT, you can see this, BERT is same architecture now. Only difference what they have done from transformer to this. In transformer, we have taken six encoder method.
+144:28
+
+Here, there are two model they have given, BERT base and BERT large model. Okay? BERT base model, they have taken 12 encoder layers. Each encoder layer, they have a 12 attention heads there.
+144:41
+
+In transformer, eight attention head there. Means 8-9 multi-head attention mechanism worked. Here they are using 12 attention mechanism. And how many encoder? 12 encoder model. Okay?
+144:55
+
+There they have used maximum 524 hidden layer. Right? Hidden units. But in this fine feed forward neural network, the BERT model, they have used 768 hidden layer.
+145:09
+
+Embedding size is 768. Yeah? BERT large is even bigger. So if you have a more dataset, very big dataset and all, then you can go and use the BERT large model. Not a base model, you can use BERT large model.
+145:22
+
+Large, instead of 12 encoder, you have to use 24 encoder. Yeah? Instead of giving 12 multi-head attention mechanism, you have to give 16 multi-head attention mechanism.
+145:37
+
+Instead of giving 768 hidden layer, you have to give 1,024 hidden layer. This will take almost 110 million parameter. The BERT large takes 340 million parameter,
+145:49
+
+three times higher, guys. Hmm? So that is what the model is there. Now there are two types of model there. One is called BERT unseized model, other is called BERT
+146:05
+
+seized model. Unseized model means all token are lowercase. First they have convert everything into lowercase, and then they have built a model. So if you go and use the pre-trained model called BERT unseized, means your model first it will take time. Why?
+146:17
+
+Because internally the pipeline, they have convert lowercase. So your dataset also get convert into lowercase and then only it works. If you go blindly use the seized dataset means- Token are not lowercase and
+146:32
+
+used directly from the training data set. As it is data you can give it. So this is, I have seen interviewer ask deep dive questions, right? So they will ask you: what is the difference between transformer and BERT?
+146:47
+
+First thing you can say, boss, BERT is a part of transformation model. BERT can do bidirectional encoder representation on transformer, means they can look left to right and right to left also, so that they will not miss the context.
+147:00
+
+That's why we prefer to use BERT model early 2020. Yeah, early 2022, we were using this one. Now there are two types of model there.
+147:13
+
+One is called BERT uncased, another is called BERT cased. Uncased means all the data, first you have to convert into lowercase, then you have to convert into embedding, and then on the top of it you can find the multi-attention mechanism and all.
+147:25
+
+BERT cased means as it is. Data, we are not changing it. If it is caps, caps, you can do embedding. If it is lower, lower, you can do it. Now in both of the data, you have a two option. You can go either BERT base model or you can go BERT large model.
+147:39
+
+BERT base model means you have a 12 encoder layer. Transformer, we have a six encoder layer, and BERT large, we have a 24 encoder layer there. BERT we are using 12 attention or multi-head
+147:53
+
+attention mechanism. BERT large, we are using 16 multi-head attention mechanism. Transformer, we were using eight attention mechanism. Yeah? Here we are getting 110 billion parameters, so this part, you have to
+148:08
+
+remember it. All my friends, so far so good. Can you use yes? Give me yes, everybody. Yeah? Super. Transformer is the main paper that you have to remember. Now, how it works, guys.
+148:21
+
+There you have seen there is a one approach called when you do the embedding, when you get the input data, first what we are doing, we are using generic embedding method, right? Like word2vec tokenization, and then positional encoding.
+148:35
+
+Here they are adding one more feature, which is called segment embedding. So first part, token embedding. Let's say there are two sentence there. I am learning Genie, second is BERT is powerful. First thing first, they can combine both the word.
+148:48
+
+That is called token embedding. So I am learning Genie. They will write, they will add both the data. I am learning Genie, a BERT is a powerful. Okay, that's what they will do. Then when they start it, first they
+149:03
+
+will write a classification, CLS. And at the end of the sentence, they can say separator. And after separator, they will add these words, and then one sentence get completed, separator. This is what exactly happen input data, you can
+149:16
+
+see CLS classifications, they have written initial starting point. I am learning Genie. Sentence get completed, separator. Again, the next word, BERT is a powerful, and then sentence get completed,
+149:32
+
+separator. Let's say one more vocabulary there, one more sentence there. Again, it will go and then separator. Like that it works. Yeah? This is called the first approach, and then on the top of it, they will convert into number embedding. So this is called token embedding
+149:44
+
+method. All right? You can say this part I have seen in transformer also. Very good. This part is a new thing, segment embedding. Segment embedding, what they will do, they will segregate, here this
+149:59
+
+sentence is a A sentence, this sentence is a B sentence. So when we do a embedding, we can say this comes under embedding A. This comes under embedding A. This comes under embedding A. This comes under. So this will give segment, means what? Grouping, right?
+150:11
+
+Segment, you guys have learned cluster. Right? So segment is nothing, it's called grouping. So what they do, they will group themselves that this sentence or this paragraph or this books or this context belongs in the A group.
+150:26
+
+Second belongs in the B group. So when anybody do a hybrid search, there is a key search also there. So key search will do exactly the segment embedding. And that's what happen. Next, guys, next third part is called positional embedding.
+150:39
+
+Positional embedding already I told you. So this is what position. So they will combine all, and then they can say, this is position one, this is position two, this is position two, three, four, five. Like that you have to write it. So positional embedding means you can see they will give a position one,
+150:54
+
+two, three, four, five, six. So total vocabulary, how much there, so that they can in case they are going left to right or right to left, this is what, and that's the final representation of embedding. Token embedding, plus segment embedding, plus positional embedding, and what is the
+151:10
+
+final embedding there? That is what is there, and then only on the top of it, multi-head attention mechanism will work. Or mask multi-head attention mechanism works, and then on the top of it, you can say feed forward neural network works.
+151:25
+
+Simple, clear? Now, there is one more algorithm there or features there, which is called word piece tokenizer. What is word piece tokenizer, guys? Word piece means they have initially when they
+151:40
+
+trained the model, they have taken 30,000 tokens initially. BERT vocabulary size is 30,000 for training data they have taken. Let's say someone is writing pre-training.
+151:54
+
+And that pre-training vocabulary is not there in this 30,000, then they will bifurcate it. They will split it. So they can say, hey, pre is a one word, train is the another word, ing is the another word. Now pre, they will check whether that vocabulary
+152:10
+
+is there or not, train is there or not, and ing is there or not. If that is there, well and good. If not there, then again let's say ing is not there. So they can say I is a one word, n is a another word, and g is a another word.
+152:24
+
+And this 30,000 vocabulary, 100% ing somewhere is there Yeah? Because ING is a vocabulary. So any sentence they will make or any vocabulary they have taken, somewhere is their ING. So like that, it works. That approach is called
+152:38
+
+wordpiece tokenizer. So what happen when they do a tokenization apart from this approach, how they are doing, they are using the actual algorithm, it's called wordpiece tokenizer. So it follow the subword tokenizer scheme.
+152:51
+
+It helps handle out-of-vocabulary words. Yeah, you guys know it. Word2vec, GloVe, and fastText.
+153:05
+
+This paper published by Google in 2013, this paper published by Stanford University in 2015, and this paper published by Meta or Facebook company by 2016.
+153:18
+
+These all paper is giving semantic meaning. Yeah? Syntactic meaning. But the problem is they are not able to handle the out-of-vocabulary problems. Now, the Transformer and BERT paper, they can handle it, and that's why LLM become so popular.
+153:32
+
+Yeah? So what they have done, they said, let us start pre-training the model token, let us start pre-- So let's say "let" is a one word, "us" is another word, "start" is another word. "Pre-train" let's say not there. So let's say here pre is a one word,
+153:46
+
+training is the another word. So pre they have taken, and then training there, two hash sign there. So wherever system will see two hash sign means they can understand it's a subword tokenization method. Means somewhere the multiple vocab there and then making
+154:01
+
+some another word. So that's why double hash there. ING there, double hash. Means that's also part of subword tokenization or wordpiece tokenization. And then the model is there. So that's a example. Now adding what we do, we can add a
+154:16
+
+classification in the beginning and separator at the end. So wherever there is a sentence, there you can say classification I will write here, and then separator I will write here. Okay, that's what the input tokenization get convert.
+154:30
+
+How it works? First it checks whether that word is present in the word vocabulary. Means 30,000 vocab that is there or not. If the word is present in the vocabulary, use it as it is, how they have used it. Because I'm not changing, I'm using pre-train model first.
+154:43
+
+Otherwise, the word is splitted into subword, and we check if the subword is present in the vocabulary or not. So let's say here pre-train. So train, they will check whether that is
+154:59
+
+there or not. In case that is also not there, again, we will bifurcate it. Yeah, you can see if not the subword is again splitted, our example pre-train is splitted into subword pre plus train plus
+155:13
+
+ING. Note that hash sign before the token indicate that it is a subword. Yeah, how simple notes there, guys, I would request everybody, please go through two, three times, read it by your own.
+155:26
+
+Believe me, you will able to understand all these things. Yeah? And I have seen interviewer asking these questions. So that time don't get confused. Now what is this? BERT trained from scratch.
+155:39
+
+So what they have done when the BERT model came in 2018, they have taken all the Wikipedia data and all the Google blogs. Means huge data set when the Google trained it. Yeah, why Google is claiming? They are saying, I have more data than
+155:52
+
+any world country claim them. See if America tomorrow say, "I have a more data." Modi ji say, "I have a more data." No, Google has a more data. Google is tracking every bit and pieces, what you are doing, at what time you are
+156:07
+
+going it, what time you are sleeping, how many steps you walk. Yeah, everything they are counting it. So they have more data. They understand your nature. They understand which application you are watching more.
+156:20
+
+Yeah? So, they can understand your movement. You can go in the YouTube, by default, they will give you those video which you are interested. If you go in the Facebook, by default, you will get only those video which you are interested. So they have all, they know
+156:34
+
+patterns. So what BERT do? First, initially in 2018, they have taken all the Wikipedia and all the Google blogs. Then they have taken encoder-only transfer, powerful architecture. They have used the Transformer architecture, parallel processing, not of
+156:49
+
+sequential processing, multi-head attention mechanism, self-attention mechanism. No? And then they have solved two types of problem. One is called mask language model, and another is called next sentence prediction model.
+157:05
+
+Mask means they have taken, I am learning modeling. So here they mask them. That what vocabulary will come, and then they are checking it. And how they are doing it? There is a method called 15%. So you can say 85% and 55%
+157:18
+
+method there. So given the input token, ML-SM, we mask 15% of token. This 15%, they divide it into 10, 80, 10 and 10 also. So 80% out of 15%,
+157:33
+
+what they are masking it, 80%, let's say 100 vocabulary is there. Yeah? 100 vocabulary there, which is called 15% of total vocabulary. Total vocabulary, let's say 1,200 there.
+157:45
+
+Or 1,100 there. Just hypothetical example I'm giving. Let's say 1,000 is there. Yeah? So 1,000 vocabulary, they are 15%, they are taking 150. This is the
+157:58
+
+150 words there. Now out of 150, they are 80%, means you can say almost 100 words they will mask it, 100. Remaining, let's say 50 vocabulary there.
+158:10
+
+That 50, they divide 25 by 25. This 25, randomly they will mask it. And 25, they will not mask it at all. That's the concept there. Yeah, someone ask you this question also. I have seen in interview. So
+158:26
+
+given input token in MLM, we mask 15% of the token in training the network to the predict mask token. Encoder Reads the sentence in both directions and tries the
+158:39
+
+predict to mask token. Now, what is next sentence? Next sentence means you have to write a sentence, and then you have to predict what would be the next word. Like that, next sentence working, same encoder method, sigmoid, and then getting the output method.
+158:54
+
+Same architecture, you can say transformer architecture. Only difference is mask language model means first they are training it, so they mask certain words and then checking whether my machine able to identify or not. If yes, then GPT,
+159:08
+
+Gemini model will able to do it. Next word prediction means if you are writing, "Hey, who is the Modi?" So what will give the answer Modi is the Prime Minister of India. He born in Gujarat, something they can say. He is serving the third term
+159:23
+
+tenure. Like that we'll get it. So these two type of problem you can solve it. Now, there is one more interesting things, their activation function. Most of the model you have seen activation functions, we are using ReLU.
+159:38
+
+Right? Here they use GeLU. Yeah. Gaussian Error Linear Unit. Slightly difference there. Why GeLU? Because they have fixed some value. Right? You can go in the activation function, type in Google "GeLU activation function,"
+159:51
+
+comparing with the ReLU, and then you can see the difference. Right? So please remember, GeLU is the activation function. Okay? So Gaussian Error Linear Unit, it is a smoother end result in
+160:08
+
+a stable training when compared to the ReLU. So they found this is a special kind of model, hence ReLU is not suffice, not giving the better result, hence I have to go something else, and they have used the GeLU. Yeah, if you guys know
+160:22
+
+the story, how Leaky ReLU comes, how GeLU model comes and all, you know it, otherwise you can leave it or you can just read the Wikipedia. Now here, what is 80-10-10 rule, guys? So let's say 15% is a 150 words there, right?
+160:38
+
+So what 150 do? 80% there, 80% they will mask it. Yeah, so out of 150, there are 80%, let's say 100 vocabulary there, that they will mask it out of the entire paragraph. Then 10% they will replace the random token.
+160:52
+
+Okay, so they can write something else. They can see what happened. So when I say brown, and here I'm writing dog, here I'm writing cat, here I'm writing fox, here I'm writing lion.
+161:06
+
+Now by default, brown fox will come, right? Because fox comes multiple times. Right? So they will replace fox to cat. They say brown cat, and then they wanted to see how LLM works.
+161:18
+
+Yeah, that's the meaning of random token. And 10%, they are not changing it. Yeah? And then you can see any word. Let's say I'm writing, "Hi, I'm learning a LLM." So first they can do a positional encoding. They are doing the segmentations, they are doing the
+161:32
+
+taken embedding, everything they are adding it. Once they add, then initially they are saying here classification, and at the time of separations, and then they are using the same transformer model, multi-head attention
+161:46
+
+mechanism 12 times, right? In all parallel only, and then whatever the result they are getting, yeah, there they have to use linear activation functions and sigmoid activation functions.
+161:59
+
+And in it been right here when they are using embedding and all attention mechanism, find a feed forward neural network, they have used the GeLU activation function. Please remember this.
+162:12
+
+Okay? So this is all about the BERT, guys, right? What is the conclusion? The BERT is a context-based model, unlike Word2vec.
+162:26
+
+Word2vec, which is context-free, this is, BERT is a special kind of. Why? Because they can handle out-of-vocabulary problem also. There can be a different BERT configuration. We have a BERT base and BERT large. BERT base,
+162:38
+
+right? BERT base is nothing. You know 110 million parameter there. Here 340 billion parameter there. Here we have 12 encoder, here 24 encoder. Here 12 attention, here 60 attention mechanism.
+162:51
+
+Here 768 neurons. We are using it in hidden layer. Here you are using 1,024. Here we have how many embedding token get generated, 768, here 1,024. Yeah? What kind of
+163:05
+
+task we can do? We can do MLM task, mask language model, as well as next sentence prediction. Right? How mask language model works? 15%. What 15%? 80-10-10. Right? BERT uses sub-word
+163:20
+
+tokenization, which is called Wordpiece algorithm. Yeah? That much thing you have to remember, guys. If you know very good, you are in the better shape. You know any questions they can ask, you are in the better position, you can give
+163:35
+
+the answer. Now how you will judge the model? So for that, there are certain rules there. One is called perplexity, bilingual, right? BLEU score. BLEU score is a very famous, right? You will see BLEU score will go like that.
+163:47
+
+BLEU score will go like that. So this is BLEU score. We have something called METER. We have something called ROG. We have GLUE. GLUE is a, please remember, a matrix. GeLU is a activation function. Here people get confused. GLUE is a matrix.
+164:00
+
+Now GLUE is a very good things. GLUE is a benchmark used for evaluation NLP model performance on variety of language understanding task. It uses set of diverse task like sentiment analysis, sentence
+164:15
+
+similarity understanding. Model is evolved in each task and program. So GLUE is a activation, not activation function. GLUE is a matrix optimization method. GeLU is activation function.
+164:29
+
+ROG is for what? It evaluate the text summarizations. METER is what? It addition to extract matches, considers synonyms, stemming This one.
+164:43
+
+Blue is for, blue is a matrix used for. So everything, all part I have mentioned here, please read it. And last but not least, that's the GLUE activation function entirely BERT model is follow.
+164:55
+
+Right? So there is GLUE means it's a matrix. So GLUE has multiple things: QULA, SST, MRPC, STB, QQP, MLN.
+165:08
+
+Right? If you go and read this vocabulary, you will understand. So by this combination of this thing, GLUE handle all the problems. So include the variety of task that test the different language understanding. QULA is for what? It determine the grammatical
+165:20
+
+correctness there or not. SST is what? It will see binary sentiment classification, true or false there or not. MRPC determine whether the two sentence are paraphrase to each other or not. Right? So they will see the context also.
+165:35
+
+Both sentence is there, connections there or not. Then LLM generate the answer. Right? SSTB, it will measure the semantic similarity between two sentences. So how similar the sentence is.
+165:51
+
+Right? QQP is major semantic similarity of two questions. So they can say, okay, whatever the questions they have asked, user ask, is there any similarity there so that we can generate a similar answer? Or is there any difference? MLN is a confined
+166:03
+
+premise and hypothesis, add entail contexted neutral. This QLN determine if the sentence contains answer given the question. RT is a binary classification, whether a given hypothesis. You know for hypothesis you know, right?
+166:18
+
+The true positive or true negative. Yeah, we have alternative hypothesis, and we have a null hypothesis. Then WNI, right? The reasoning about the pronouns, all these things. So they have explained also paraphrase, premise, hypothesis, entail
+166:33
+
+this. So this is all about, guys, transformer in BERT. This is the most thing that everybody should know this concept. Right? Till here is a paramount significant. You all have to know it, irrespective of which domain you are
+166:47
+
+working in GenAI, irrespective of you are a data scientist, but you are not doing a deep learning, you are doing a machine learning and GenAI, you have to know this part. Make sense? There are a few more evaluation metrics there which I will cover later,
+167:03
+
+when I will cover the evaluation metrics called all these things. But this is what I wanted to know all of them. So this is all, guys. Can I share this notes? Full theory today. Tomorrow I'll go, and I will give you some
+167:18
+
+hands-on session. I'll cover the PEFT model, I'll cover the LoRA model, I'll cover the QLoRA model, what is the maths there, and how you can solve the GenAI problems.
+167:33
+
+Make sense, my dear friend, everybody? Hmm. Good. So that's it for today, guys. Tomorrow again, our session will start
+167:46
+
+at 10:30. Yeah. I'm little late tomorrow, so same thing will happen. Do we have project session? We have a project session. Project session is pending. We will cover the project session.
+168:01
+
+So today is more about hands-on session, not a theory. Theory part already I have covered it. So if you guys know, AI Landing Zone I have covered end to end, so that everybody who understood what are the services there in Azure, what is meaning of
+168:18
+
+that services for both the prospective, right? Cosmos DB, storage, blob storage, connections, Foundry, right? Everything I have discussed. Applications. Yeah. What layers you have to do it. So all part we'll cover.
+168:33
+
+Today, I'll go more hands-on. I'll show you how you can create a pipeline, and then you have to solve the problem. So please join the session. Yeah? One question. What is the difference between the GPT?
+168:48
+
+You have shown the BERT model, right? It is the implementation of encoder. And since- All the differences, BERT follow the encoder architecture, GPT follow the decoder architecture. Means in GPT there is one more layer there, which is called mask
+169:02
+
+multi-head attention. That's it. Understood? But masking concept we have seen in BERT also, no? BERT they have used especially by the training of embedding, and then they have trained it.
+169:18
+
+So they have extra part they did it. Then it's coming 80/10/10% rule. First 15% they are taking it and giving the training and all. But what architecture they have used? Encoder architecture. GPT model, what they have done? They have taken decoder architecture and then solve
+169:31
+
+it. So decoder architecture is even better than encoder architecture. Why? Because in training time itself, they have used the mask multi-head attention mechanism. Understood? Okay.
+169:46
+
+Hmm. Who is there? Sowmya Gupta. Yes, Sowmya?
+169:59
+
+So prefer making notes while studying. Can you tell me how did you make your handwritten notes? Did you use any software or app? What you think? This is what?
+170:12
+
+It looks like very real that you have written in a notebook with a pen, but I think it's- And then I have taken- Oh ... then I have taken a screenshot. Screenshots. Oh, okay.
+170:26
+
+I thought you used some app because the handwriting is quite clear and the scanning is also clear. Thank you. So actually it's application, Sowmya. If you have iLaptop, Apple laptop, there you will get that features.
+170:39
+
+Okay. Okay. Yeah. Thank you Where is this 11th? It said July, right? July 2027, '26.
+170:53
+
+Guys, please start looking job now. You guys are very close. You have understanding of other part also. So I definitely motivate now, because when you start looking, it will take 15, 20 days. And believe me, there are openings
+171:12
+
+there in Junior Agentic AI role. Lots of vacancies there. If you're really serious to get a job and all, please just start looking now, because you have an idea. Maybe the coming two, three weeks, you will learn many
+171:27
+
+more things. Because my next target is, we'll cover MCP part, we'll cover some evaluation metrics, we'll cover tool calling, function calling, and then optimization method.
+171:39
+
+Then nothing else. You can go enjoy. And project batch, you guys have already started. Here also, I'm trying to do a project. So anybody that are not joining my evening batch, no worry. Here itself, I'll cover the project, guys, same timing.
+171:53
+
+Yeah? So that's it. Thank you, everybody. If no questions, then please enjoy your day. If anybody have questions, you can raise hand.
+172:07
+
+No? Only Dheeraj has raised. Dheeraj already asked. Manoj, go ahead. Yeah. It's not a question. It's just that last week you told us that you're going to provide a certain book name for to read and that.
+172:22
+
+I will give you. Okay. Thank you for reminding it. I'll give you- Papa, paper pen last. Okay. Sure.
+172:35
+
+So you will add it in the Drive, or you will provide us here only, just class, the book? That book is, I will not give you a soft copy, because that is very costly book. You can go and buy it.
+172:47
+
+Yeah, even name works. Even name works. My favorite authors there. I definitely want it. You guys also go and read it. I'll give you tomorrow, class notes.
+173:02
+
+Okay. Okay, 11th. Chalo. Thank you, guys. Thank you, everybody. Have you uploaded your whiteboard notes? Whiteboards notes- Okay. I can only see your other
+173:14
+
+notes No, I'll do it that part also in one minute. Yeah. Okay. My handwriting is very poor, by the way, so I hope you guys are writing your own notes. Otherwise, it's very difficult.
+173:28
+
+Print. I'll upload it in a minute. You can download it.
+173:47
+
+Okay, uploaded, guys. Class note also uploaded. Please download it. See you tomorrow. Thank you, everybody.

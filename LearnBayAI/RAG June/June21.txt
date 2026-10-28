@@ -1,0 +1,1735 @@
+Hi,
+00:10
+
+everyone. Good morning. How are you guys? All well? Okay. Very good morning. Good morning.
+03:59
+
+Cool. So let me share my screen. Can you please confirm, is my system visible?
+04:13
+
+Yes. Okay, good. So Colab. So what I'll do, quickly I'm going to multi-model RAG
+04:34
+
+system. So some issue happened in the package. So I have just installed it. Now it is working fine. So let me...
+04:49
+
+Okay. So let me finish this topic today, and then I'll give you some perspective about agentic AI. Yesterday, I have given some idea that what is agentic AI. I have given one task also that you have to explore what is AI agent and what
+05:21
+
+is agentic AI. The purpose is very easy because whenever you go for interview, interviewer frequently asking question, what is difference between AI and agentic AI? So agentic AI, you guys understood thoroughly Now,
+05:36
+
+AI agent is nothing. That is also a simple one. There is only agent there. Agent, when you ask questions, only then they can give the answer. So whatever the tool you guys have seen, either it's a Gemini or a ChatGPT or Perplexity or Claude,
+05:50
+
+these all are AI agent. That is not agentic AI. So when you ask a question, it is getting connected with LLM, and LLM is connecting with tools or API, and then they're fetching the information and giving the answer.
+06:06
+
+But agentic AI, how it works, there are four parameters I told you. If you remember, model, memory, tools, and then we have something called resources planning and reasoning.
+06:20
+
+So that's the four pillars there. On that basis, agent works. And no any pillar or no any parameter is connecting to each other. So you can say model can connect with memory,
+06:34
+
+or model can connect with tool, or model can connect with reasoning or performance or analysis. No, that's not possible. So their agent is there, and they are coordinating, collaborating with
+06:47
+
+all four pillars and then giving the response. So basic minute difference there. So please remember, and when someone asks you these questions, you have to give the similar answer. So that's why I said you have to
+07:01
+
+explore. So when you explore, that means you will go through it. You will understand that what is happening, how things work. So please remember, anywhere they use the AI agent, please understand I'm talking about
+07:15
+
+the ChatGPT, the Gemini part. Agentic AI means you are building it. You are giving the tools, you are giving the memory and all. So AI agent is nothing, just like
+07:31
+
+a task you wanted to do it, and for that you are calling to the LLM by the help of API or by the help of tools, you can say. Now coming back to the multi-model system. Let me quickly complete this topic so that I will
+07:45
+
+discuss more about the other part. Very good, Farhan. AI agent doesn't do reasoning or memory rather than agentic AI does. Great.
+07:59
+
+Now, even if you go and ask to your bot anywhere, you can explore, please mention these things. Does AI agent also doing it? So guys, let me finish this. So what is this
+08:11
+
+multi-model RAG system? So you guys know it. Multi-model RAG system is nothing where we have a different kind of text data there, input data there. Not text, input data there. So input data in the sense we
+08:26
+
+have a text data, we have a image data, we have tables. We have audio, we have a video. Then these are called multi-model system. What is the purpose here? I wanted to build a bot, and the bot can give
+08:40
+
+answer bases that document. You can say it's a vanilla RAG. But vanilla RAG means only one type of input data there. Traditional RAG means only one type of input data there. If your input would be different, then what happen?
+08:54
+
+So you can say if we have more than one type of input data there, then we can consider as a multi-model system. Are you guys with me?
+09:11
+
+So there are dependencies there. Let me go change the GPU machine, connect with the system.
+09:27
+
+These are the packages there. Let me download
+09:47
+
+multi-model RAG system.
+10:15
+
+Runtime, save, connect.
+10:28
+
+John is saying, "Is Robo an agentic AI?" That we'll consider as an agentic AI platform.
+10:55
+
+So your answer is yes. That is considered as an agentic AI.
+11:07
+
+Because you will see the connections, you will see that they are easily connecting with Confluence, Jira and other stuff. So tool and all, you can easily connect with this.
+11:22
+
+Okay. Let me run one by one.
+11:37
+
+What is agent harness? Yeah. We'll cover that part. Just wait
+11:49
+
+Restart the system.
+12:09
+
+Just wait, guys. I'm just installing the dependency package, and then I'll explain to you what all things we did it.
+14:32
+
+Okay. So this is the additional package I have downloaded, PDFMiner 0.6, and the version I have taken, 20221105. It will solve the purpose.
+15:22
+
+Okay, done. So now on the top of it, you have to install this.
+15:45
+
+Okay. Remove the dataset. Upload the dataset.
+16:02
+
+Yeah. So you can see what I have done. I have used the lancs and community.documentloader on a structure. So this part is throwing an error.
+16:26
+
+Yes, the previous one, when I was using the 404 error comes, so we have installed this part. Now it is working fine. So everything gets loaded. See, 100% successfully loaded. Okay?
+16:46
+
+So there is no problem now.
+17:01
+
+Nalini, what is your query? You have raised hand. Go ahead.
+17:17
+
+Nalini, are you there? You have raised hand, unmuted. Please go ahead, ask your query. No question?
+17:35
+
+Okay, no problem. So guys, you can see this now it is working fine. Yeah? So just a dependency, you have to install this, pip install this, as well as you can say PDFMiner 0.6 equal to this version. Okay?
+17:51
+
+It will work, and once it is done Make sure you have to install this package, okay? And then it is working. So now I'm explaining you what all things I have done it. Yeah? So let me quickly explain you all part.
+18:06
+
+You can see this. So these are the dependency package here, you can see here. So
+18:24
+
+this is my raw data, okay? Raw data means we have a PDF where we have image, where we have tables and text data. Yeah, multiple data there. I have used unstructured_pdf_loader,
+18:39
+
+file equal to this documents. This PDF I have given it. Strategy equal to high_resolution. I wanted to extract the best response. Extract_image_in_pdf, yes. So in this PDF, do we have
+18:51
+
+image? Do you want to extract? I'm saying yes. Do you want to extract table also? I'm saying yes. Then mode equal to element, you have to chunk them or split them element-wise. Yeah, and all the images you have to store into figure. Yeah?
+19:03
+
+So you can see here we have folder got figure, and here the figure we have all the images got extracted here, everything. And you can see how nicely it got extracted. Okay, it's very neat and clean image get extracted, just like
+19:19
+
+how you can do the cropping. You can see image number two, image number three. Yeah, image number four, image number five. Okay, so all the image part that got
+19:34
+
+extracted in my system. All right? Now I have load this data, loader.load, because I'm using
+19:47
+
+LangChain. Now I am saying, okay, the metadata, wherever table is there, can you give me? So there are two tables there. Now you can see the data set also.
+19:59
+
+So there is table one and there is a table two. Okay? The image one, image one, image two, image three,
+20:25
+
+image four and image five. All five image that got appended in my system. One, two, three, four, five. Yeah? So that means what we did here, right? What we did here, we extracted that part. So table.
+20:39
+
+Now these two table, I'm storing into table only. So I'm saying table equal to this. Yeah, this part is not required. Let me... Or this is also you can say. Now what I'm doing here, I'm saying, okay,
+20:55
+
+documents is remain same. I wanted to extract image, I wanted to extract table, and I'm giving the chunking strategy also. So I'm saying, okay, you can go ahead and do the chunking as well. How you will do it? By the title-wise.
+21:09
+
+So each documents, whatever the title, their disclaimer, this is my one chunking. Yeah? Similarly, issue of the for Congress, this is another chunking. This is configurations is another chunking. This is another.
+21:22
+
+So like that also you can do a chunk. So chunk strategy equal to title, right? It's called section-based chunking. Maximum character one. 4,000 you can reduce it. You can say 1,000, I'm taking it. Yeah?
+21:37
+
+Now, after number of character 1,000. Yeah, that's my preference size. You can increase also. You can put 5,000, you can put 8,000, but don't go more than 8,000, yeah? But here only three page there, so hardly matter why I will give four in
+21:52
+
+this. And I'm saying after combining, right, anything less than, then you have to say I will go maximum 500. Okay, smaller chunks, less than 500, that would be fine. Element-wise, and the same path if you can say I wanted
+22:07
+
+to give it. I wanted to give the same path where my data actually got stored. Where my data actually got stored. This is not mandatory. Yeah, even if you don't do this, no problem at all. No problem at all.
+22:23
+
+You can say I will go ahead. Yeah? So this figure, .figure means inside whatever there, I wanted to take it. So you can see, and that part I'm storing into text.
+22:37
+
+So in our strategy here, here I have not used the chunking method. Here I have done the chunking method. Okay?
+22:50
+
+Now, so we have total 14 text there. So if you go and see title-wise, right? So total we are getting 14 chunking. One, two, three, four,
+23:17
+
+yeah? Five, six, seven, eight, nine. So like that they have done 10, right? They have done 14 chunking. So that's what the 14 chunking there.
+23:31
+
+Now I'm saying okay, without chunking whatever the tables there, right? So those two tables, plus these 14 data I wanted to add into data, and then I'm saying how many total? So we have a 16 there.
+23:43
+
+Because two table plus 14 text, and that data I'm taking it. Right? Now you can say this data how looks like. So you can see, if you see the data, the main purpose is I'm
+23:57
+
+showing you the LangChain format. You can see document. We have a metadata- Yeah, we have a metadata and we have page content. Where is page content? Yeah.
+24:12
+
+Page content. Yeah, this one. See? So two things, any documents, it gets converted into documents, and it will reflect metadata and page content. That means the LangChain is working perfectly fine, and all the
+24:27
+
+data, everything comes into same format. Yeah. You can say everything came into same format. So like that, my documents here. Again, we have a metadata, right? And then again, we are getting. So this is table, right?
+24:42
+
+So table, how it looks like, you can say text as HTML. That's the table is there. Yeah. Again, if text data are there, there you will get page content. Wherever you will get something else, you can consider that is my
+24:54
+
+text to HTML format will come. This is page content, means text data. Make sense, all my friend? Yeah. So everything get converted perfectly fine.
+25:10
+
+Now, let me hide this. Next part, what I'm doing, basic Python. Display, I wanted to display into HTML format, display
+25:24
+
+in Markdown format so that it looks very good. So I'm going here, I'm saying, okay, this data
+25:38
+
+if I go here in the first, this is my document one,
+25:51
+
+where page content is coming here. When I go to the document two, yeah, page content is there. Document three, this is coming HTML.
+26:04
+
+So if I write document 012. Okay. So data two.
+26:18
+
+Data0. So you can say this is coming page content. If I go data1, this is coming again, page content, and data2.
+26:34
+
+This is page content, data3. And this is coming text as HTML.
+26:49
+
+Data5. This is again page content. Data4, page content. Data6,
+27:03
+
+page content. 7, page content. 8, page content, right? Total we have 14 there. So you can say 9,
+27:17
+
+page content. If I write 14. Okay? So 14 is again giving text to this. So there are two tables there. I'm saying, okay, page number, let's say,
+27:32
+
+data5, page content. Okay, so they are giving wildfire these details. All the details we are getting here.
+27:46
+
+If I am saying data14, you can say this is the page content, the HTML format I'm getting here. So rather than here only 14 there, you may ask this
+27:58
+
+question that, okay, if we have 100 page content there, thousands page content there, 5.000 page contents there, how I will check it? So you have to filter basically text HTML part. Okay? So you can just go and filter it,
+28:12
+
+basically. So I am saying, okay, let's say 5 metadata text as HTML format. If you do it, you can see text HTML is not existing. Okay, not existing. So you can say data, metadata,
+28:27
+
+index number 4, 14. Yeah. So 14 is coming. So this is my HTML format is coming. Now let me show you how it looks like, 14.
+28:44
+
+So you can see this is how the information is coming table part. So let's say this is the tables there. Annual wildfire report 2018 to '22.
+28:59
+
+2018 to '22. And like that, I'm getting the details. Okay? So how many is there? It's very difficult. So you can say I wanted to check that part. You can say import HTML table
+29:13
+
+2 Markdown format. This is the package there that you have to remember it. Yeah. Since unstructured extract from text from the table without any border, we can use HTML text and put it directly
+29:30
+
+to the prompts. LLM understand HTML tables well, or even better, convert HTML table to Markdown table as below. Yeah, this is the way you have to handle it. So it's very easy.
+29:43
+
+If it gets converted into Markdown, you can easily do the chunking, easily do the embedding part. So here I'm saying, okay, my this, convert this table. Let's say here I'm writing 14.
+29:55
+
+Markdown text to HTML. When you do it, the same format. Okay. Right now it's coming as a table, how it is written this This part gets converted into Markdown format.
+30:09
+
+This is the Markdown format, guys. This part is called Markdown format. Okay? So you can say, okay, here, this is just the information I have taken it. Can I take all the tables separately?
+30:23
+
+Yeah. So I said documents equal to blank, table equal to blank. Okay? Documents means you can consider text data. Table means we can say tables. I am saying for doc in documents, if metadata category equal to table is there.
+30:36
+
+Wherever metadata equal to table comes, then please append in the table. Now, how many tables there? This is just a basic, right? Three pages there we have understanding one and two. Yeah? But just imagine if we have 5,000 pages there, how you will
+30:51
+
+remember? So you can just filter basis the metadata. You can say metadata, and that's why LangChain has a big role here. Yeah. Because any data get converted, it gets loaded by the help of document loader
+31:05
+
+or unstructured iFormat. What happens? They convert actually into document, and they provide two things. One, metadata, and another is page content. If that is text or table, then it will say text to HTML.
+31:18
+
+So I'm saying, okay, metadata variable category equal to table, or metadata category equal to composite elements is coming, then please do it. Now, what is composite element? Yeah, what is composite element? So let me show you this.
+31:31
+
+See, guys. So this is my metadata. Okay? This is my metadata is there. Now, let me pick the table part. So this one. You can see metadata.
+31:50
+
+Yeah? And what is this? It's a table. Yeah, you can say it's a table. Now, similarly, if I come here, right? If I come here, page content is
+32:05
+
+coming. So you can see here it is coming category equal to composite element. Yeah? So composite element means you can consider text data and wherever table there. Okay, wherever there is a tables there, then we can consider that
+32:19
+
+is actually a table there. Yeah, that's the things that you have to keep in mind. So here, what I have done here, you can see. We consider we created a two blank index
+32:34
+
+object, right? The list object. One is documents, another is table. I am saying documents you can append when there is a composite element, there are text there. And tables you can append where there is a tables there.
+32:50
+
+When I execute here, you can see total 14 composite is coming, means text data there, chunking there. And there are two tables there. Yeah? Now, what are the tables there? I have not given any index number.
+33:04
+
+I simply say HTML table to Markdown, convert table, and table.metadata. What I filter it, I said text as HTML. How you know that? You have seen above.
+33:19
+
+Yeah, how you know that? Text to HTML. So you can filter that part. When I filter here, my friend, when I'm filtering here, you can see
+33:32
+
+four table in this. And now I wanted to see, I said table in tables. Can you give me the page content for table? You can see the first table is this, 2018, '19, 2020, '21, '22.
+33:45
+
+First table is 2018, '19, '22. Number of fires and acre burned in million. Number of fires and acre burned in million. And everything it convert into README file. Okay?
+33:59
+
+You can say Markdown file. Second table is table number two, loss statistics. We have 2019, 2020, '21, this. Structure, burned percentage of residence. 2019, 2020,
+34:12
+
+'21, '22, structure burned and this and that also get converted into Markdown. So your system is ready to fetch the data. If you don't do this part, you can say, "No, I don't want to do this additional activities. I can simply it automatically get converted into text.
+34:26
+
+I don't want to change it." You will get very pathetic result if questions comes related the HTML. So there are so many cases happen in industry, right, when you do the real-time job,
+34:42
+
+and you don't have visibility actually, right? That how many-- Because you have thousands of documents you will get it. Sometime when you do the real-time project, they will give you 1 lakh, 50,000, 2 lakh PDF documents, Excel, different
+34:55
+
+kind of documents they will give you. Now, if you don't handle this part, you will not get good result. Yeah? Either you get hallucination result, either you get wrong information, your accuracy will-- evaluation metrics will also
+35:11
+
+suggest that accuracy is not very, very close to 100% or between 90% to 100%. They will give you pathetic result, 70%, 72%, like that. So that time you have a scope. You can enhance your
+35:24
+
+efficiency, and you please consider that maybe the table my LLM is not able to find properly. So can I convert that part, yeah, HTML to Markdown table to Markdown format? Make sense, guys?
+35:38
+
+This part, everybody. Okay, please remember this. So this additional task, just write this line. Okay, you can first go and you can say, I wanted to filter it.
+35:52
+
+Yeah, so you can just filter it. And then this table part, whatever there, you can say, I wanted to convert table into text to HTML format. And then you can check it get convert into Markdown
+36:07
+
+format. And Markdown means this easily your LLM can make a sentence just like a human being. Yeah? Now coming back to another one is image part, view image
+36:19
+
+part. So whatever the image is here, one, two, three, five, how it looks like. So you can say LS Linux -l, and you can say figures. So what are the figure? We got it. So there are five images we got it.
+36:32
+
+Figure 1.1, 1.2, 1.3, 2.4, and 2.5. So these are the nomenclatures got added here. You can see 1.1, 1.2, 1.3, 2.4, 2.5. Yeah, that's the image there.
+36:44
+
+In slide one, we have a three image there. In slide two, we have two images there, right? Slide three, we don't have. So that's why it's coming. Page number one, image one, two, three. Page number two, image four and five. Yeah? How it looks like?
+36:58
+
+You can say the image one. This is coming. Yeah, you can see the first image, this image. Yeah. Second image and third image.
+37:11
+
+When you go in the page number two, you have first image and second image, means fourth image and fifth image. You can say, "I wanted to see the second image," this is the second image. Third image, this is the third image.
+37:24
+
+Yeah, like that you can say, "I wanted to see the fourth image, fifth image," you have to go and do it. You can say this, this, 2.4
+37:38
+
+and 2.5. 2.5. Okay. Execute it. So this is 2.4, and this is 2.5. So these are the images is coming. Yeah? Means
+37:51
+
+now how you will handle it, right? So what approach I told you, whenever there is a image there. Whenever there is a image there, right? First thing first, by the help of unstructured.io and OCR method, right? My system, they can easily identify
+38:05
+
+the image and store it separately. Now, what techniques I can do it so that the image get summarized it, and they can speak the same language how human can speak. Yeah? So you can say, "Okay, fine, I will try that part also." Okay?
+38:20
+
+I will try that part also. So let me go here.
+38:35
+
+So you have to give a credential first. Get pass. You have to give your credential. You can use the connect with operating system.
+39:00
+
+Here you can use GPT-4o. O means omini model. I'm using not mini. Mini also you can try it, but 4o a little costly, but you will get very good result. Yeah?
+39:15
+
+So we will use GPT-4 to produce table and take summary. Text summarize are advised using a large chunk size. Right? At set off, we use 4K or token chunk, right?
+39:27
+
+Summarize can be increased. So you can increase, right? You can say, I can use 1,000, 2,000, 3,000,
+39:39
+
+4,000, up to? Up to 8,000 token. Okay? Don't go more than that. Then it is difficult to read it. Because if you go here and see
+39:52
+
+what is the token size in embedding model LLM, so they will give you maximum.
+40:06
+
+So that's the openAI text. You can say one, three, that is the minimum is there. Maximum you will get 8,192. If I'm using text embedding large, you will get maximum 3,000 by default they will give, but there
+40:21
+
+also maximum is there this. Yeah, you can see cohere 1,000 dimension and any other different model, that is by default, but maximum you will go it. Here you can say openAI maximum token,
+40:35
+
+gnomic embed text messages, and multi this, that is even lesser. Right? So you please keep in mind that more than 8,000 is not appreciated, yeah. You can go, otherwise you will lose the information. So
+40:50
+
+this part, now what I'm going to do, I have already used this. Now you can see there are basic things. Now from here, you can see similarity, how you have done the traditional RAG system, the same way you can do here also.
+41:04
+
+So we have something called a structure output parser. Means any bot when user will ask a questions,
+41:20
+
+yeah, here something happen, retrieval, augmentation, generation, right? All the concept. And here you have a vector database there. This question get connected. First this
+41:32
+
+will come here, and then it will go there, because embedding also happen, and then finally it get converted, and then they will give this part. Whatever the output will come, that output I wanted,
+41:46
+
+a string format will come, means text output will come. So you can say multi-model input data is multiple. We have a text, we have a table, and we have a image.
+42:01
+
+Here I'm using the algorithm. This is my input data connecting with the model, right? Algorithm. And the output will come, and the output would be text data. That's the meaning.
+42:15
+
+Now, whenever you build a RAG system, you have to write augmentation parts. I'm saying which prompt you will write? Chat prompt. Means I wanted to give a system persona also. I wanted to give some sample few-shot learning also.
+42:29
+
+I wanted to give some chain of thought as well. So you can go and use the chat prompt. Which model, which LLM you are using? Chat OpenAI LLM. And because I am using iterations, user will keep asking question, and
+42:43
+
+each time the same architecture works. For that, what techniques there? LangChain for runnable means iterations. Runnable pass-through. So each time the parameter get passed through, each time when user will ask questions, there is a cost involved because
+42:57
+
+you have to convert into embedding. The model will go and search it from here, and then finally it will give the answer. Yes, I'm using runnable pass-through. Next part, guys.
+43:12
+
+What prompt we have written said, you are an assistant task with summarizing table and text particularly for semantic retrieval. Okay? So I'm using hybrid search. Now, this is the persona. So I clearly mentioned you are an assistant task.
+43:25
+
+With what is the role? To do the summarization of the table and the text. So any text data there or tables there, please go and summarize it. Right now I'm focusing only two part. I have not touched the image. I have just shown you how image looks like. But image part, I'll show you later.
+43:40
+
+First, you can see I'm saying summarizing table and text particularly for semantic retrieval. This summary will be embedded. Whatever the summarizations will come for table or text data,
+43:56
+
+we have to do a embedding. And the user use to retrieve the raw text or table element. So why we are doing embedding? Because when user will ask questions, that time there is a retrieval process there, and then on the top of it, we are doing
+44:08
+
+augmentation. So retrieval will give the context. So how it will works? When the data is embed there. So I'm saying, okay, go and do the embedding part. Give a detailed summary of the table or text below that is
+44:23
+
+well-optimized for retrieval. Okay? For any table, also add in one line description of what the table is about beside the summary. Okay, so if you pick out of two tables, here only two
+44:36
+
+there, but let's say we have 50 tables or 1,000 tables, you have to just write one-line summary or maybe footnote something about what is this all about the table. Do not add redundant work like summary.
+44:51
+
+Okay, so I don't want you can write a specific summary. The other way it looks very odd. You can simply give the details. Don't add the summary or someone saying descriptions and all. I don't. Just output the actual summary
+45:04
+
+content. Don't hallucinate them. If the information is there, please extract, otherwise leave it. And then table or text chunk element. So element by element, or you can say composite element
+45:19
+
+by composite element, or chunk by chunk data you have to pick it. So how many total? 16 is there. You can go and apply it. I'm using LangChain method. So I said, okay, element by element. So all 16 item, they will go and read it.
+45:31
+
+There they will apply the prompt. Then we are building a model. LLM model, and then finally they will generate the output parser. Okay? Now here I said, okay, whatever the summary got created, the LLM, they will summarize them.
+45:46
+
+The text data get stored in text summary, table summary get stored into table summary. You can give me the overall also. So whatever the 14 composite elements there, all 14 you can consider and take it into text. And to the tables, both
+46:02
+
+the table you have to store here in the table document. So there are two things. Once we process this part, document, page, content, docs in this, so all the 14 composite element,
+46:17
+
+I wanted to store into text summary. So what we are doing here, I said summarize, chain.batch, text, documents, and here maximum concurrency five times they can do iterations, and then they will filter it.
+46:29
+
+They will give human feedback response, how the summary comes, how it looks like. So that's why I have given five concurrency. If you don't give it, then it's also fine. But sometime first time, it is not giving better result.
+46:43
+
+So it's a kind of fine-tuning. Five times I'm iterating it and then giving the answer. It will not take much time, it's very fast. But you know what is the benefit for this parameter is? The parameter means one thing you can
+46:57
+
+speak and the same thing you can speak five times. Definitely your version get changed. So you can record your voice or record your script, and then you have to hear again. So what happens second time, you can say, "Can I
+47:12
+
+modify this?" So this is what maximum concurrency do. So whatever the summarization happen, they can say, okay, iterate five more times, and then you have to give me the clear summary what is all about.
+47:25
+
+For both text as well as table. So how many? So text we have, you can see this.
+47:40
+
+So total we have 14 text there and total we have table. We have done the summarizations. Now you can see the summary. So I'm saying, what is the text one? This is the summary table. Now you can see table. So guys, this is the table there.
+47:53
+
+And now you can see how nicely the system did it. Here how you read it, table one. You can say we have 2018 to 2022 years there. These are the columns. There are two sections there.
+48:07
+
+One is called number of files, where we have federal, FS, date of interest, others, and second is non-federal. And overall, I'm getting it. So this report is for number of files, which is considered as 1,000. So I can say 12,500.
+48:20
+
+This is 5,600. And the second Is there acre burned in million? Right? So, where again all the same parameter, but this is given into million. Right? Now you can see the table provide data.
+48:35
+
+How you will read it, guys? How you will read, same like a human can also read it. See if I can show you here. See this.
+48:49
+
+The table provide the data of the number of fires and acre burned from 2018 to '22, categorized by federal and non-federal resources. Is it correct?
+49:02
+
+2018 to '22, number of fires, right, and acre burns. So they said exactly, categorized by federal and non-federal resources. Categorized by federal and non-federal resources.
+49:14
+
+Now, for the number of fires, federal resources included Forest Services, DOI, and other, with FS following the significant increase 2022, 59,000
+49:31
+
+fires. So they are giving the details also. Right? How the value get increased and all these things. So federal, you can see how these things works. Mm-hmm.
+49:45
+
+The total number of fires peaked at 69,000 in 2020 to 69,000 peaks. Right? The total is coming. Next, for acre burned.
+49:58
+
+Federal resources again included this. Yeah, number of increase 48 million acres in 2020. So 2020, 40.
+50:10
+
+This is federal. Yes. 41, right? 41 four point and 41 million in 2022. So see, four point and four point one is coming here. Non-federal acre burned were this.
+50:23
+
+So they can easily translate into text format. Yeah. Another one you can try this. If I say table number two. Table number two.
+50:38
+
+Here you can say table number. Yes. Now this is the table number two. 2019 to '22. In the table representing the number of structures burned in the percentage, those were residents 2019 to '22.
+50:53
+
+2019, 600, 963 structures burned with 46%. 963 and 46%. Yeah, like that they have written it. Can I say yes? Absolutely right, guys.
+51:09
+
+The table actually get convert into text part, and if it is text part, it is very easy for us to do the chunking, embedding and all this stuff.
+51:22
+
+Mm-hmm. Everyone, can I say yes? Table very nicely it get convert into text format how human can read it, even better than.
+51:37
+
+Okay, so that means whatever the raw data we have there in this PDF, my machine, my system, my LLM is able to convert text data, and the table part also get convert into text format.
+51:53
+
+Yeah? So this is just a part one. Now I'm saying, okay, please go ahead and target the image part also. So now I'm targeting the image. So I said image base64,
+52:07
+
+operating system, core message, human message. What I'm saying, first you have to open the image, and you have to read as a binary factor. Image is a pixel. Please remember. Image is nothing. It's a pixel. Mm?
+52:20
+
+Means image you already have a number. So reading image is very easy. Please remember this. Reading image is very easy. Yeah? Because that is number already there. That is why
+52:34
+
+if you have seen in deep learning, there is a concept. I think deep learning, I have not covered it. I'll cover maybe once Agentic I completed. So we have multi-layer perceptron,
+52:47
+
+we have convolutional neural network, and we have recurrent neural network. Okay? Multi-layer perceptron is also called artificial neural network
+52:59
+
+or deep neural network. Deep neural network. Computer vision is also part of CNN. Computer
+53:12
+
+vision. Okay? And RNN, their sub-layer is LSTM, long short-term memory, or gated recurring unit.
+53:24
+
+Gated recurring unit, GRU. Now this part, if you have simple structure data there. Structure data means you have tables there, we have columns, and we have
+53:37
+
+rows there. Yeah? How you can solve the machine learning problem. If you are doing any machine learning activities, classification problem or regression problem, you can go and use the multi-layer perceptron. Multi-layer perceptron is very important to understand the further concept.
+53:51
+
+Yeah, whether it's a CNN or RNN or LSTM or GRU or anything. So multi-layer perceptron, you have to know why, because there is a forward propagations there and backward propagation method there. Yeah? Backward propagation method is very famous.
+54:06
+
+The Geoffrey Hinton, he's the father of modern deep learning, he has given it. So this part is for tabular data. CNN is basically handle the image part.
+54:20
+
+Yeah, image is nothing. It's called pixel. It's a cell value. So maximum cell value is zero to 255. Please remember, any pixel, their cell value is zero to 255.
+54:33
+
+And there are two types of channels there. Channel means color there. So one is called gray channel, another is called RGB channel, red, green, blue channel. By the mix of RGB, means whatever the cell value there, if I
+54:46
+
+say R equal to let's say zero, green equal to let's say 100, and blue equal to 100, then it get mixed and you will get a new color. So how many color computer
+55:00
+
+provide a functionality? Gray means you will get black and white only. RGB means you can say 256, because zero to 255 range there, this cell value,
+55:14
+
+256 there, power is Q. Means R also you can generate. Red color you can generate zero to this, multiply this, multiply this. That much color coding
+55:27
+
+you can do by the help of this computer vision. There are so many amazing models there, AlexNet, ResNet, VGG-16, right?
+55:39
+
+Lots of algorithm there. Similarly, RNN is basically for text data. So any unstructured data there, text data there. Let's say I wanted to understand the sentiment analysis.
+55:51
+
+Who has written, if you go in the Amazon or Flipkart, who has given the positive feedback or negative feedback? You can go and use that method also. But these have some limitations there. I'm not talking about limitation and all, just high level I told you that in deep
+56:06
+
+learning, one part is for simple machine learning problem. If machine learning is not able to give the correct answer, and that is too much data there, where machine learning get stuck, random forest get hanged, then please go and use the multi-layer perceptron gradient descent model.
+56:21
+
+We have something called RMSProp or Adam optimization method. You can apply it, it will give very good result. Don't use the manual approach. Machine learning is a manual approach. Deep learning is automation approach.
+56:36
+
+If you have image-related questions, you can go and use the CNN. If you have a text-related problem, you can go and do it. Now, why I'm telling you this perspective? Because CNN, computer vision, and all, they can easily
+56:48
+
+handle the image part. Why? Because image has a pixel value. So each cell value have some values there. So right now, whatever in the PDF we have image there, I have a confident,
+57:02
+
+right? Because that is image. Image means my machine can easily handle, and they can combine the relationship between RGF. Why RGB? Because this is color image. This is not a gray image. So all are the
+57:14
+
+color image, so we can easily do it. So you can go ahead. You can see what I have done here, guys. I'm saying first you can read the binary file, return base
+57:30
+
+encoder image read. Second part I say image summarize. So once my machine can read the image, read the pixel value, understand their RGB value, red, green, blue
+57:43
+
+values. They can do the summarization. To do a summarization, we need LLM model. So which LLM I'm using? GPT-4.0 model. So I said, okay, once you invoke means once
+57:55
+
+you progress, I said text equal to text and prompt equal to prompt. And any image you will give it, wherever there is a image there, whether the extension is JPG or
+58:09
+
+PNG or PEG. Anything is there, my machine can fetch. They can understand what is this, how human can read it. LLM is very smart. They can also read it, and they will give the
+58:22
+
+summarization. So you can see this is what we did it. I said generate image summarization. How? First you can take the image, then you have to do a summary. Both is empty. I don't know which image is there.
+58:34
+
+I don't know what summary I got it. So first you can give a blank. Here encoded image means you can just think about the pixel value. Now prompt, I'm saying you are an assistant tasked with summarizing image for retrieval.
+58:48
+
+Remember, these image could potentially contain graphs, chart, or table also. So what is there in image? I clearly mentioned, this is called few-shot learning. This summary will be embedded and used to
+59:01
+
+retrieve the raw image for question answer. Give a detailed summary of the image that is well-optimized for retrieval. So whenever user will ask question and they can say, "Please tell me in the year of 2015, how
+59:14
+
+much acre burned?" So machine can read it and they can say, "Hey, 2015, total 10.13 billion acre burned." That means how many times fires happened, number of fires, 68.2
+59:28
+
+thousand fires happened. So that detail you can easily get it. Anybody ask you, okay, in this line graph, please tell me which year the maximum fire happened or maximum fire increases. So you can see one is called this year
+59:41
+
+1996, another is 2004 or 2005, like that. Which year the least one? You can say least is 2013. That time fire burn is very less. So
+59:55
+
+like that you can understand. So you can say, okay, apply the image. I said apply wherever the end part is .PEG. You can see .JPG is there. If you have a more, you can say comma, you can give
+60:08
+
+.PNG or .JPEG. Anything you can give the extension. Operating system, whatever the image there, everything you can take it, take their encoder pixel value, append in the image, and then
+60:22
+
+the pixel value machine can easily read it. I'm saying to LLM, please go and summarize it, and once you summarize, give which image and what is the summary. Yeah?
+60:36
+
+Here I said, okay, this is the figure path. Here you have an image there. Please go and fetch the image pixel value, give the summary, and finally you can generate it. Let me go ahead.
+60:49
+
+Okay. Done, guys. Now you can see there are total five image there, and five summary also got generated. Now, interesting thing you can see, guys. You can see now, I'm displaying this.
+61:11
+
+So this is my second image. This is first image, this is second image. So what happened? They returned the image first, and I wanted to see the summary also. So I'm saying, "Can you give me the summary?" Now see the summary,
+61:27
+
+guys. And you will appreciate me, you can say, "Wow, what a nice result I'm getting here." So this visualization, and this is the text I got it. Now read, guys.
+61:40
+
+Line and area chart. This is area chart. Okay, this graph, right? The shaded line is area chart, and this red line is a line chart. So they clearly identify there are two
+61:53
+
+visualizations there, or graphs there. One is called line and other is called area chart, depicting the number of fires and acre burned from 1992 to 2022. So what
+62:06
+
+depicting? Acre burned, right, from 1993 to 2022. Just see the sentence. The left y-axis represent fires occurrence. The left y-axis, means this one, is
+62:20
+
+represent fire occurrence. While the right y-axis shows acre burned in million. While the right y-axis represent acre burned millions. Yeah, you can see this.
+62:34
+
+The x-axis spans the year 1993 to 2022. The horizontal line is representing, x-axis representing 1993 to 2002. A red line indicate the number of fires.
+62:47
+
+The red line means this one. It is indicating the fires. Peaking around 1996, where the higher value is there, and 2006.
+63:01
+
+Yeah, you can see how human can read, they are also reading it. With fluctuations throughout the period, right? It's keep going in the seasonal manner, right? It's not stable. A gray-shaded area represent acre burned.
+63:14
+
+Gray shade area chart, right? Now they are talking about area that is represent acre burned. With notable peak around 2006, 2012 and '22. 2000,
+63:28
+
+you can say six. This year, the highest value is there. 2012, the highest value is there, and similarly 2000. They said 2020, this is 2020. Here the highest value is there.
+63:40
+
+Yeah, they have just highlighted. The chart highlight trend in the fire occurrence and extent to the land affected by this. You can see how nicely they are giving the result, guys. Yeah, you can see how nicely. This is just a example.
+63:53
+
+If I can say, "Okay, can you give me the image number two? Can you give me the image number two summary?" And you can go and see the image number two, guys. This is image number two. This is image number two, and you can see here 2007 to this.
+64:07
+
+Read it. You can just read, and you can say, "Yeah, very good." They have given absolutely right answer. Bar chart. What they are saying? It's a bar chart. You can see here. It's a bar chart.
+64:23
+
+Yeah. So it's saying bar chart display the data acre burns and the number of fires of a specific year. The year listed 2015, 2020,
+64:41
+
+2017, 2006, and 2007. Acre burned are 2007 is 9.33. Considering the number of fires shown the orange color, right? This is orange color. 2015 we have 68.2,
+64:54
+
+2020 59, 71.5 and 90. See the result in all. The chart from horizontal bar represent acre burns, right? This horizontal line acre burns with the
+65:09
+
+numerical value display at this. Yeah. Guys, all my dear friend, can I say yes? They have very nicely, they summarized it to the image part also. Can I say very nicely they are doing it?
+65:23
+
+Forget too long context. They will not forget, right? That's why we did the preprocessing, Mohammed, please remember. If you give all the data and if you don't do this part right, they definitely forget, and you will get pathetic result. That's why multimodal is appreciated in industry.
+65:36
+
+Yeah. I know there is a-- The tough part is there, but it is very, very good. Actually, LSTM. Yeah. They maximum remember 30 words, right? You are absolutely right. That's why we can say long-- no short-term memory loss.
+65:52
+
+So they can only remember the last part. If you go little, five, six sentence prior, they will not remember it. Guys, all my friend. So image part done, table done,
+66:06
+
+text, anyway, LLM has a capability, they can read it. All three part we have converted into this part. This is the way you can handle when you do in organization. Yeah? If you get a cloud, then it's very easy because simply
+66:19
+
+you can load the data in your block storage, or you can give the connections to your resource. And then what happen? AI search engine. I'll show you in Azure AI part. You can easily go and fetch it, and you will handle it.
+66:33
+
+Hmm. But you have to understand how back-end works, what we are doing it. Now I'm saying okay to handle the cache part also. So Redis and DocStore. Why I'm doing?
+66:47
+
+So you can use other database or cache as a doc store to store the raw text table in this. So to storing the cache I have used here, I am storing it to Redis.
+67:01
+
+But there are some other also there. You can use it. So you will see that. When I will use the Azure, I'll show you how you can use the Cosmo DB. How you can use the Foundry, and then you can connect with the Cosmo DB, and you can fetch all the details from there.
+67:13
+
+But here I'm using Redis so that these five image, why I will go and store into vector database? Why not I can go and store into Redis so that easily we can fetch it. It will not take much time.
+67:29
+
+Only two tables there. Why unnecessary I will go and search from vector database? That is there, but I wanted to store these things in my cache memory. So you can go and install this part. So this is
+67:45
+
+the way when you do in organization, guys, please copy-paste this one, pseudo. So this is just a package there. You can see here call HTML package this pseudo PNG. What are the dependencies required? I have taken all these things.
+67:58
+
+Now, how you will do the embedding part? I'm using text embedding 3small. Execute this. How many total documents there? We have total 16 documents there,
+68:13
+
+plus five images, so 21. Now you can say I wanted to create a vector store and document store as well. So import UUID. UUID is nothing. I wanted to check here itself, in my system itself.
+68:26
+
+You can say, "Can I check here?" Langchain retrieval multi-vector. So I'm using multi-vector retrieval. Why multi-vector retrieval? Because image we can do a separately, table we can do separately, and text we can do separately.
+68:40
+
+Now, storage. Which storage I'm creating it? One is Redis. One is Chroma database, another is Redis. Chroma database for vector database, Redis for we wanted to create a cache memory.
+68:55
+
+You can say community.utility.redis.GetClient. This is just for checking purpose. Chroma database, documents, OpenAI embedding model, basic. I'm passing here whatever the document is stored there, vector is stored there,
+69:11
+
+text summarization there, text there, table there, tables, image. So I'm taking all the data source. Key ID equal to anything you can write. Document ID I have written here. I'm using multi vector retrieval. Vector store means vector store. All the dataset, whatever given,
+69:26
+
+I wanted to take everything. I wanted to take all part, guys. You can see this image part. I wanted to take a table part. I wanted to take table summary. So you can
+69:41
+
+go and use here document store ID equal to document ID. Anything you can put it. Now you can say, okay, I'm writing a helper function. So I say define, add a document. So what are the documents? Retriever.
+69:55
+
+These documents, whatever the vector there and doc is stored there. The path is there. Document summary and document content. Now I'm saying, okay, go and use the UUID this for documents and summary equal to metadata ID key equal to ID
+70:10
+
+and enumerate means it will go from scratch. Retrieval vector documents, I have retrieved it. Document also, I have added. Now I said, okay, if the text data there, then you have to retrieve, and
+70:24
+
+you can take only text and text summary. If it is table, you can take table summary or tables only. If it is image, you can take image summary and image only from where retrieval part. So three things I have done it and then return the retrieval part.
+70:37
+
+See, the beauty is if I have done that part, that also get stored into Redis. So it's very fast. Your system become very fast. This is also one of the trick there. You can justify, you can tell to your interviewer that, "Boss, I
+70:51
+
+can handle this part. I can handle the latency issues." Now I have used Chroma database. I'm saying, okay, our part is done. Now can I create a Chroma database and store it? So I have given Multimodal RAG, Chroma database name.
+71:06
+
+Right now there is nothing multimodal RAG is there. So I said, okay, please create a collection name, multimodal RAG, embedding function equal to OpenAI, embedding model. So what embedding model? Text embedding 3small only.
+71:21
+
+And how the selection happen? HNSW equal to cosine similarity. What HNSW will do, guys? They will not do all this part. They will search only the similarity part, and
+71:35
+
+wherever the similarity there that they can store it. And then I'm giving a get client equal to Redis. This is the local host. You can change the host number also. Redis store equal to, I'm saying, client equal to whatever the client ID you have
+71:47
+
+given. And here I'm creating a retrieval function. I said, okay, how create multi-vector retrieval model? This is my functions. I have created here my function. So I'm saying, okay, this create multi-vector retriever, whatever
+72:00
+
+the document's there, that get connect with the Redis store, especially for image and tables that get considered by the vector database only. And in vector database, I am giving a text data, I am giving a
+72:15
+
+table data, and I am giving image data. If you have audio and video, you can append like that. And you can go and execute it. Don't worry about error. Error is coming because we have given Redis also.
+72:30
+
+Retrieval vector. You can see retrieval vector and here Langchain community storage Redis object got created here. Here Langchain Chroma vector store got created here. If I can go here, if I can refresh this
+72:46
+
+Okay. So, my system actually. Right? So, here you can see the system actually get connecting here. So both multi-retrieval vector LangChain connecting with Chroma
+73:03
+
+database, LangChain connecting with the Redis store. Means your permanent vector database as well as your cache memory both got connected here. Yeah. Now you can say, okay, I wanted to build a multimodal RAG system.
+73:17
+
+I wanted to build a multimodal RAG system. Anyway, it will come. You can see my system is showing it. Now here what I have done, I said, okay, this is a
+73:31
+
+basic Python function, HTML display image, Python image library. I said, okay, image there, you can handle the image part. Whenever there is a image-related question there, what system will do? They can first read as an encoder part.
+73:45
+
+They can understand. Byte per second IO is nothing. Cell by cell values, they are picking it, and then they will open it, and they display what image this
+74:00
+
+is. Now, I'm asking questions here. Analyze the wild fire trend with the acre burned over the year. Retrieval multimodal invoke. This is retrieval function.
+74:13
+
+You can see how context will come. So how many total four format is there? If I can go here, what is docs? So these are the four documents we are getting here.
+74:25
+
+Okay, these details they have taken, and they are giving the response. You can say this not looks good. First you can show me the image. So which image they have taken? This image they have taken. And that part they have converted into text part.
+74:38
+
+Yeah, this is called context. Now, next question is tell me about percent of residents in 2022. You can go here, in 2022 they have taken this.
+74:52
+
+Okay? So they have taken this detail, and then they are giving the result. So this is just a kind of retrieval part where I wanted to see how the result is coming, whether my retrieval system is working fine or not.
+75:04
+
+Okay? Now utilize the separate retrieval element. So you can say: Okay, can you please do it? So here just I have used the regular expression method, guys. Yeah.
+75:20
+
+You guys have learnt in Python. So I said, okay, only take the letter A to Z, caps or a small letter or number. Anything apart from that, please ignore it. Right? That's what I said, rematch if anywhere matching it.
+75:33
+
+So regular expression base this. Here I have given the different images. So I have given JPG format, PNG format, GI format, JPG. Any image you can give, my machine is able to find it.
+75:47
+
+Yeah. Try header equal to. Sometime what happens? Some challenging happens, so I just say, okay, this part and 8 is nothing, it's a byte only. So first eight byte, I said four signature format in image signature items, and they have to find their signature.
+76:00
+
+What signature is? These are the signature there. If the extension is coming this, then please, if anywhere you can find the extension is there, out of these four you can consider take this, otherwise you can say false.
+76:16
+
+When false comes, don't generate a error, you can just generate a message. So I said accept exception, return only false. Yeah, if error comes. Second, split image types. So how you will split it?
+76:28
+
+I said documents. In the documents you can see wherever there is a image there, then please that image you have to convert into text and append there. Yeah? You can go ahead and do this. Now when I ask this question, tell me
+76:42
+
+about this. What is the documents? So these details they are giving it. Is it true or false? They are saying false. That information is not there.
+76:56
+
+Yeah? This is the image, how the image looks like. So this is images coming. So this is just a check part, guys. So you can say what all things you have noticed? One, we have a raw data. I have load them by the help of
+77:08
+
+unstructured.io. Yeah? By the help of unstructured IO, I have done chunking here itself. Then this part, there are three sections there.
+77:23
+
+One is called text, another is called image or table. Right? And third is called image. Text, there is no problem.
+77:35
+
+Table, how you handle it? Text to HTML and HTML to Markdown. The techniques I have applied it. Image, what I have done, I have used
+77:49
+
+the OCR method and I extracted it by the help of unstructured IO only. And then all three part we have done summary. And then any user is asking
+78:03
+
+query, this summary, we did the embedding, and we have stored into vector database. One is called Chroma vector database, and another is called Redis. Right? Redis for latencies who will not come. So any image there, retrieval will not go here
+78:16
+
+and they will fetch it. They will directly come here and they will give the answer immediately. Yeah, because only those sections is available there. So your system become very fast. When user is asking question, it is hitting to the retrieval system.
+78:31
+
+Retrieval is fetching the data from Chroma database and Redis and giving the response. That response is working perfectly fine. Now you can say, okay, fine. Can I go ahead and build the end-to-end architecture for RAG system, RAG? Hmm.
+78:44
+
+Let me go here. So you can say building end-to-end multimodal RAG pipeline. Item getter, runnable lambda and runnable passthrough,
+79:00
+
+both are the system. So each time user will ask questions. Yeah. The LLM model, what it will do? They will use the chaining methodology, and it will iterate again and again, and whatever the human message you will set up, that will go and give the answer.
+79:12
+
+So what human message? I said, "Create a multi-model prompt with both text and image context. This function format provide context data dictionary which contains table, text, and images. It join the text with the
+79:27
+
+table portion and prepare the image in the base encoder format." This. Yeah, this is just information. I said, "Okay, please join all the text part, variable text there, and that you have to store into message."
+79:41
+
+Adding this part, I said, "Okay, wherever there is image there, and that is JPG format or base any image there, you have to append in the message only." That summary part. Now I am saying, adding the text. So type text. I'm saying the persona, you are an analyst
+79:54
+
+tasked with understanding detailed information and trend from text document, data table, and chart and graph in the image. You will be given the context information below, which will be mix
+80:10
+
+of text table and image usually of chart and graph. Yeah. This is called augmentation part, guys. Use this information to provide answer related to the user question. Analyze all context information including table, text, image to
+80:22
+
+generate the answer. Do not make up answer. Use the provided context document below and answer the questions to the best of ability. And what is the questions and what the documents context we are getting, and on the basis of user question and
+80:37
+
+basis the retrieval context, my LLM will give the answer. I said, "Okay, message append. Human message equal to whatever the message user will ask," then you can build a RAG system. So augmentation part also applied.
+80:52
+
+Now how RAG works, user will ask questions, retrieval will fetch the context. It happen continuously, right? Every time, every iterations. And then whatever the context we are getting,
+81:06
+
+on the top of it, we are applying the ChatGPT. Means already the system here, right? They will use the augmentation, and the LLM will generate this part, and then finally they will give the text result.
+81:20
+
+You can see retrieval document input, retrieval multi-vector. It will iterate again and again because you can give a provision to user ask question again and again. So I said multimodal RAG source equal to runnable passthrough, align this,
+81:33
+
+multitask, and go ahead. Okay? This is your final code, guys. This is called end-to-end RAG system, multimodal RAG system. Now if I ask question, tell me a detailed statistics of top five years with the largest wildfire
+81:47
+
+acre burned. Multi-model RAG source. Invoke when you are asking questions. You can see all the details you will get in your plate. This is the input. User has ask a questions. They found these are the
+82:02
+
+context, and here they have given the text detail. Here they have given the text detail. Yeah, you can see the text detail. You can say, "I'm okay with this. The response is fine. Yeah, it is coming properly. But can you please display the
+82:15
+
+image also? Can you please display the source also? Can you please display the text also?" Everything. So you can say define multimodal RAG. Any user is asking questions, the system LLM model will
+82:30
+
+invoke, and they will give the answer. How they will give the answer? Only answer you have to give me. You can also give me the source from where which image or which table or which text data they have taken. Yeah.
+82:43
+
+These are the source response we have given here. Go and execute it. And when I ask this question, you can see, guys, how nicely they're doing it. So when I ask, "Tell me a detailed statistics of top five
+82:56
+
+years with the largest wildfire," this. They have given answer based on 2015. This is the answer they are giving, 2015, 2020, '17, '26, '27. Yeah?
+83:09
+
+206, 207. So here 2000, this acre burned, this number of this. 2020 acre burned, number of this. 2027, this. And these statistics reflect the one line also. Right above I have written. And this is the source also they are giving, from where
+83:21
+
+they have taken the source. Yeah, I think last session, Himanshu, you have asked me, if I'm not wrong, that how I wanted to get a source and all. You can see they are giving the source as well. Yeah?
+83:37
+
+And they are giving the image also, which image they have taken. You can see everything they are giving it. Everything. If I give the MCP connections, they will give the external link as well. And finally, guys, you can go and ask, analyze this part.
+83:49
+
+They will give you the answer. They will give you the source. They will give you the image. From here they have taken, so there are two image there. So they have taken two images. Yeah, that's the source, National Integration Coordination Centre. Years burned in this, this, this.
+84:04
+
+Source equal to this, and the another source equal to this. They have given the answer. And that's the answer. And how nicely they're articulating it, just see that. You can go and ask something else questions, right?
+84:19
+
+You can see here one more question I ask about this wildfire 2022, granular details in table now. These two are the image, now table. They are giving the answer 2020, the total this structure were this.
+84:32
+
+And from where the table number two they have taken, and this is the 2022 where they got it, 2000. That is what I ask. Tell me about a percentage of residents burned in wildfire this. So they have taken it.
+84:45
+
+Any question, any granular detail you can go and ask it. You can say, "Table one, can you explain the 2021 report?" Okay? So you can say
+84:58
+
+question Can you explain the details? Can you explain the
+85:12
+
+details about year 2022 in table one? And when I'm asking this question, and I'm saying, "Okay, go ahead and ask these
+85:26
+
+questions, guys." Ask these questions, you can see. So they can easily fetch the details. You can see the table two they have taken, and here the
+85:42
+
+2020 I have asked, they explained this part. So they said, in 2020, according to table one, annual wildfire and acre burned, the following provided: number of fires, federal this, this, this, and all details they have taken it,
+85:55
+
+right? 14.4, 6.7, 7.6, 0.1, this, this. Again, this is 7.1C. Acre burned, here 7.1, 4.1, here they have taken 14 point
+86:10
+
+this, 6.7, 7 point this, 0.1, 44. All details, and in summary also they have given, and from where they have taken a source and all, that details also they have given along with the table.
+86:22
+
+If I go and ask something else, they will not generate the hallucination. I am saying, can you suggest who
+86:35
+
+won the IPL match 2026? If I ask, they can say, sorry.
+86:51
+
+I'm sorry, but I can't provide information about IPL match in 2026 based on the given context. The context provide the related wildfire statistics and does not contain any information about IPL match. Right? And the source because I have given, so they have
+87:07
+
+just taken this. Some example they have taken, and they said, "Okay, these are the information. If you go and ask me, I'm happy to give it. Other information, I'm sorry, I will not give you."
+87:22
+
+Interesting, guys? Are you clear how this is? I know little tough, but are you clear? Memory is there. No? Shahana.
+87:35
+
+Redis I have created, no? It's a memory. They are storing it. Coding-wise heavy. Not too heavy, but you don't take load and all, right? When you go in the cloud, you will not use this part also.
+87:52
+
+So what happened to the caches? So new information, then they will take it from the vector database. But the same answer, if you ask next time, they will not take it from there.
+88:22
+
+Make sense? Okay, so now question answer, guys. Anybody have any questions, you can go ahead and ask me, and then we'll go for break.
+88:34
+
+Okay. So let me unmute them. Who is this? Prashant Kumar. Yes, Prashant. Ask your query, my friend. Sir, what is the difference between this Redis and Chroma database, sir?
+88:46
+
+Because- Chroma database is your vector database. Redis is a cache memory. Okay, initially the Redis will be empty, right? Like before- Yes ... starting the conversation.
+89:00
+
+Yeah. So what I have done, the image part I have stored there. Okay. Image and table. Okay, in Redis we can store initially our documents also? Yes, yes. And then conversation also, if you wanted, you can do it.
+89:13
+
+Sir, in Redis, data will be stored in the form of embeddings or how, sir? Embeddings. Okay. Sir, one more doubt. The output of multimodal rag will be every time by default
+89:27
+
+text only or how, sir? Mm-hmm. The output you said, the output of the multimodal rag will be a text. Mm. So it will be by default text or we can have- No, no, not default. I have given. No. Why you are saying default?
+89:41
+
+I have given a structure output, a string format. Okay. I'll show you. It's not by default. Okay. As we need, like as we are creating a conversation-
+89:59
+
+What you will give, that response only you will get it. Okay, sir. Fine. Sir, one more doubt. Maximum concurrency five we gave, right? It is
+90:12
+
+similar to epoch, data will be trained five times or it is different, sir? No, five time they will iterate, and then finally, whatever the summarization there, that they will give the answer.
+90:24
+
+Okay. The entire data will be iterated five times. Mm-hmm. Okay, sir. Fine. Thank you. Who else?
+90:38
+
+Naresh? Hi, sir. Here, I got confused little bit about Redis. What kind of data we are storing?
+90:53
+
+Basically summary of this- Yes ... image and table we are storing in the Redis, initial part of this loading. Correct.
+91:05
+
+Okay. We are not storing that exact documents, right? The documents will be stored, isn't it, as a part of vector database? Chrome. Chrome, everything it store.
+91:18
+
+Like everything, so we are storing in both Redis as well as Chrome? See, Chrome is what? Chrome is your vector database, no? Yes. Yeah. Wherever you can do and relax. Whatever there, first
+91:30
+
+you have to do embedding and you can store there, no? Yeah. See- Mm-hmm ... Redis can store the different. What I did once, I have stored into Chroma database. Now I said, "Okay, there are few data are unique data, like
+91:45
+
+image." Table. So these part, whenever any questions pertaining to this, why not I can store in there? Okay. Other than text-related data, we are keeping in a Redis, right?
+92:01
+
+What is happening, no, Redis is- Mm-hmm ... they will, that is also called cache memory. Yeah. Easily they can fetch and give the answer. Yes. That's the beauty. That's why I have taken it.
+92:15
+
+One additional part we added. So whenever you build a multimodal system or a graph RAG system or agentic RAG system, it's better you can use it. Okay. We are keeping that both document as well as summary of
+92:29
+
+this, other than text part of the data, right? In this example, image and table, we are keeping both document as well as summary data. So here, what happens? See what happen.
+92:44
+
+User will ask questions. Yes. These questions, what happen, it will go to the retrieval. Yes. Normally. Yes. Retrieval, what is their nature? They are connecting with the vector database.
+92:56
+
+Now, vector database, again, I have used a very good method, HNSW- Yes ... you have seen that? Yes. Right? Yeah. So we can fetch it, and they will give the context. But can I say here we have millions of documents available there?
+93:09
+
+Yes. Millions of chunks there or embedding there. Mm-hmm. Embedding is nothing, it's a chunk only. Mm-hmm. Few details like image or table are unique. Mm-hmm. Only we have five to seven there. Yes. I said, why not I can create a Redis memory here?
+93:21
+
+Okay. Any image part will come. Mm-hmm. This retrieval, rather they can go and do here this system, why not I can fetch here? And whatever pertaining there, that context will come. Okay. So answer will, generated base is this, so it will store.
+93:36
+
+Next time, now forget about image part, okay? Mm-hmm. Forget about image part. Forget about table part. Yeah. You just about here we have a millions of chunks there. You are asking, "What is your name?" So what retrieval will go,
+93:51
+
+they can go and fetch it, and that question coming, "What is your name?" They will give the context, and then LLM saying, "Your name is Kumar Sundaram." Mm-hmm. One time we have given this question, go and store here in Redis.
+94:06
+
+Okay. Next time you see here, "What is your name?" They will not go and search it here. They can directly fetch and give the answer. Okay. So user will ask questions. Okay. Things already generated by GPT model or-
+94:18
+
+Yes. It get stored where in? Redis cache memory. Okay. And next time any user will ask questions, there is no need to do formality. Give here from here only.
+94:34
+
+Okay. What happened? The benefit is, anybody ask you what is the benefit is? The benefit here is, let me write it because this is very good point, and interviewer, especially I have seen they ask this question.
+94:48
+
+So if they say: What is the benefit? Benefits of Redis.
+95:01
+
+You can say one, lower cost. Two, faster response. Three,
+95:16
+
+reduce LLM calls. Are you clear? Yes. Four, it is storing
+95:29
+
+on memory. On Redis memory. So next time anybody ask you if in your hard disk, I'm saying: What is two plus two? So without taking time, immediately you say, "No, two plus two is
+95:42
+
+four." Mm-hmm. Yes. Yeah. You will not go and search it and you do some mathematics. Yeah. Yeah. So that is the benefit. Second part is this storage, Redis memory, what? Can I say vector storage?
+95:57
+
+Yes. Vector storage. Just say no, you are asking question that is going and connecting to the vector storage. Whatever the chunks there, that exact chunk come here in a store here or not?
+96:12
+
+So that is also a kind of vector storage. Yes. Hmm. So that is the benefit is there. So, in interview they ask you, so you can say Redis is nothing, it's a kind of in-memory, NoSQL data store.
+96:26
+
+Yeah. Which is used for caching, which is used for session management, which is used for real-time analytics, which is used for queue memory, which is used for vector storage. Yeah? Okay. What it will do, it will support the data structure such as a
+96:41
+
+string, passage, list. You can say metadata. Yeah, you can say, store it into set format, store it into huge question answer, right?
+96:56
+
+Mm-hmm. So this is how you can imagine it. So Redis is a high-speed memory database. Okay? Okay. Which will benefit the lower cost than this. So you can say high speed-
+97:10
+
+In-memory database. This is also a database. Please remember this. Fine? Yeah. And are we storing this question and answer right now in this
+97:27
+
+code base into a Redis as well? We asked some questions till now, one or two questions. Are we storing that- So you can go and ask it.
+97:40
+
+Is it also stored in Redis now? Can you suggest what
+97:56
+
+response have you given for IPL match 2006? Correct. Mm-hmm.
+98:09
+
+See, the context provided does not contain any information. The data analysis focus this one. This is what the information they have given? Yes. Is it coming from- I'm sorry ... Redis or is it coming from Redis?
+98:24
+
+It is coming from Redis. Okay. Okay? How- You can see this. But- Last. Yeah. Yes But in real time when you do it, when you can see the cloud and all, I'll show you how Cosmos DB works, how you will store it in the memory and
+98:37
+
+all. You will get more visibility there. Right now- Okay. We have limited, right? We have only 12 GB RAM using it. Okay. In Cosmos DB, we are replacing Redis in this context, like what we are
+98:50
+
+talking with- We are talking memory storage. Yeah. Memory storage. Where we use a memory storage there, there we will use it. Okay. And this, how long it persists the data like, sir, this in the Redis usually? It is permanently. That's why when you use the cloud, they will charge.
+99:05
+
+There are some charges there, so if I can show you. Okay. What is charges or cost for Cosmos DB?
+99:20
+
+Okay. Here, this is Google Colabs. If I close it, everything will go in the wind. Yeah. You won't have vector database, you don't have memory and all. Mm-hmm. If you use the real time, you can see there is a cost involved.
+99:33
+
+Are you able to see that? It's your Cosmos DB charge depend on your workload and chosen model. Pricing is broken into provisional thought. Serverless, pay as you execute. So a standard rate is zero point per million. So if you store per million, a storage rate memory,
+99:46
+
+you have to pay that much. So like that the charges goes. What is this? It's a storage. What is this? Multi-region replications. So how it works? It's nothing. It's API type, NoSQL, MongoDB, Cassandra, tables,
+100:02
+
+anything you can store it. We'll show you that part later. Yes. But these are charges there. Okay. In general, Redis, it will hold for longer duration as well, right? If it is system like that for software is-
+100:17
+
+You can. Yeah. Okay. Thank you, sir. Animesh? Yeah. Hi, sir. I just have one question over here.
+100:30
+
+So right now just said, supposedly ask what is our name and it will give the result which is stored in Redis. But suppose I recorrected it, suppose I accidentally
+100:43
+
+misspelled my name, and I'm again saying, "Okay, my name is this and this." But next time when I ask the same question, like what is my name? I have updated my answer. But it will go and fetch from Redis, so it
+100:58
+
+will be a wrong answer, right? But they will not take answer from your, no. They always take the information from vector database, whatever the data you will give it. It's not a ChatGPT. So you can say, "Hey, my name
+101:11
+
+is Sundaram," and first time I'm making a spelling mistake, second time I'm saying this. It's not working like that. Sundaram comes from where? It's there in the documentation. So they will always fetch the data from vector database.
+101:24
+
+Okay. So whatever the documents you will give that, they will take it. Make sense? Mm-hmm. Okay. Yeah. What question you are asking, that is LLM. Simple. So they don't know.
+101:40
+
+And there you are saying, "Hey, my name is Sundaram." If I'm going in the chatbot and here I'm saying, "Hey, my name is Sundaram," then it can say, "Hi, my
+101:53
+
+name is Sundaram." Let's say I'm writing it. Okay, I missed the S. So they said, "Hi, Sundaram." Said, "My
+102:05
+
+name is Sundaram and not Sunram." Okay? So apologize, Sundaram. Thank you for this. Now if I ask, "What is my name?"
+102:17
+
+So they will correct it and they can say your name is Sundaram. But this is why it is happening, because I have not created anything. I have not given any dataset.
+102:31
+
+What information I'm giving to them, then on that basis, they are working on it. When you build such kind of application, what you have seen now, that means what is your raw data? Raw data is in these
+102:44
+
+documents. From there, they have taken the data. That's why when I ask questions, "Hey, who won the IPL match?" They simply denied. Make sense? Mm-hmm. Okay. And that answer, if you want, they can store it
+102:56
+
+in the Redis. So when I ask question, what question I have answered, the bot has given. Can you suggest what response have you given for IPL match? So they said, "I have given this answer." Clear?
+103:12
+
+Yes, sir. Got it. Thank you. Uh, who else? Dheeraj? Yeah. You have already asked question. Please unraise your hand.
+103:26
+
+Yeah. Sir, this is quite a long code. So I followed you until you have saved the Redis memory and the vector database, which you have created using ChromaDB. So after that, during the retrieval part, architecturally,
+103:41
+
+how the search is retrieval is happening? Is it happening parallelly, the request is going in parallel to both the vector database and the cache memory to do the retrieval? How it is happening? Can you show me that code again once, just on a high level?
+103:57
+
+I don't want to walk through the code, but at the high level, architecturally, how it is happening? Code already I explained you line by line. High level architecture, how it happened, this is the first part is vector database.
+104:10
+
+After preprocessing, vector database come. Any user is asking query- No ... this query is going to the retriever. Retriever is connecting with this vector database, giving the context, how you have learned in the
+104:24
+
+RAG system, and this query. On the top of it, augmentation works. On the top of it, LLM works, and the LLM is generating a response. Got it. This generation part get stored into Redis.
+104:40
+
+Mm-hmm. Okay? So whatever the output you are getting here, whatever the output you are getting, that output get stored here in Redis also. Next time user is asking similar question,
+104:56
+
+they will not go and fetch to the vector database. They will directly take it from here and give the response. That's the benefit. But on the runtime-- Sorry to interrupt. But on the runtime, how the system knows that he has to go to
+105:10
+
+Redis and not to the vector database? It's the LLM you are using. So LLM has already sensed. No? When they have already seen, they can give answer immediately or not, how much time they will take.
+105:24
+
+LLM is trained with the billions or trillions of data, and you have just given thousands of documents. Here, I have just given one PDF. But even imagine, in your organization how many data you will get it? Maximum five lakh?
+105:37
+
+Five lakh- Correct ... I'm saying too much. Not more than that. But somewhere we have to inform or like mention to the LLM. Next time, what they will do? Next time when user will ask question,
+105:49
+
+first, they will not hit this one. They will go and search here. If that information is not there, then they will come back. Then it will come back- Got you ... and then again, they will follow this approach. Again, user will ask question.
+106:02
+
+The system, any user will question this retrieval. Retrieval will not go here. Retrieval will go first here, whether that information is there in my Redis cache memory or not. If it is there, immediately they will give the answer.
+106:16
+
+So can I say here, whatever the HNSW do, whatever the cosine similarity do, whatever the re-ranking or RAG fusions or other stuff you have learned, can I say we can skip that part?
+106:29
+
+Correct. If the information is not there, then retrieval will go and hit here. Correct. So that's the additional task we did here. But that will happen automatically, or we have to say the prompt that if the information is there, then go to Redis?
+106:41
+
+No, automatically. I have given connection and all everything, my friend. Why you are saying automatically? I have given. No? I said Redis- Sorry, I don't remember the code very much. That's why I'm asking question. Code we have to walk through again to see what will happen.
+106:55
+
+These are just a basic preprocessing. Okay? This is just I wanted to show you. But you can see when I use the Redis part here. This is just a augmentation part, right? This is augmentation. And I said output, I wanted a string format.
+107:09
+
+So that part, I defined it. Okay, this is image. This is image, how we can read it, how we can give the summary and all. And here, I have given the Redis store.
+107:25
+
+This is what I have given the connections. Are you able to see this? Yes. So that's the additional. So that's what I said. When you do it, you can just copy-paste. This is the another. You can use other database or cache, but I am
+107:38
+
+using here for Redis right now, and you can do it. Other means you can do Cosmo DB when you do that, just give a connection, enable them. Whatever document is stored is there, that get connect with them. And when the Foundry you will use it, Foundry you have to connect with this part.
+107:54
+
+I'll show you when I use the Cosmo DB. Okay? You will get more clarity there. But here, I have done it. And then I'm saying, right, then I'm saying the Redis part, Langchain community is stored with this,
+108:08
+
+Langchain Chroma data input by this. Makes sense? Mm-hmm. Yeah. When I'm saying create multi vector retrieval. Multi vector retrieval for what?
+108:22
+
+For the Redis also. And then I said, okay, these details you have to take and retrieve. And for the Chroma database also. I've done both. No?
+108:35
+
+Chroma data as well as Redis part. Makes sense? Yeah. It's clear. Retrieval will do the both of the part, and then they will give the answer. So you can see here, create multi vector.
+108:48
+
+They're not talking. So you can see create multi vector retrieval. What I have done? The retrieval first they will search from Redis. If the information is not there, then they will go to the Chroma database. Makes sense?
+109:05
+
+Yes. Yeah. So that I have given the connections. Then only it's going, not automatically. Okay. Good. What else? Who is the other candidate? My God, so many hands
+109:19
+
+there. Mm. Sahana, what is your query? Sir, in the same part, what you were showing in 60 at
+109:34
+
+time. So the retriever has LLM, right? Because, for example, you asked IPL-based question, but the second time you didn't ask the same exact question.
+109:47
+
+Retriever has a LLM because embedding anyway you are doing it. So what retrieval will do? What retrieval will do? They can find this, right? Yeah. They can use the LLM. Which model? Embedding model.
+110:00
+
+So one user will ask question that is actually text. So that text get convert into embedding, and that embedding you have to search either from Redis or you can search from Redis or search from Chroma database.
+110:14
+
+Yeah. This is my another question. In Redis, I have used Redis, it stores key value pairs. But here, is it storing the embedded number
+110:29
+
+in the Redis? How it is storing? See, embedded is nothing. It's a Chroma. It's a chunk only, no? Yeah. So that part also they can store it.
+110:44
+
+But currently- As well that, I have also mentioned that. I have also mentioned that what all things you have to store it. So that part I have clearly mentioned, the UID ID. What are the- Okay ... key you have to store it. What other thing you have to store? Vector store.
+110:57
+
+So your question, yes. Can I say embedding also I'm storing here? Yeah. Yeah. So on that basis, we are finding it and doing this. Okay. Yeah. Okay?
+111:12
+
+Okay. Thank you, sir. No problem. Pranali? Hello. Sir, can you hear me? Yes.
+111:24
+
+I can. Okay. So my question is, in real time, do we use ChromaDB or we use the Pine- Pinecone, yeah. Yes. Real-time ChromaDB also we can use.
+111:37
+
+Pinecone also we can use. Blob storage also we are using it, so depends what is the client requirement is there. You have to be ready for that. Okay. So sir, can we have just one example with the Pinecone
+111:51
+
+DB, please? I will show you. Okay. Sure. Okay. Thank you. Farhan?
+112:05
+
+Hi, sir. Sir, actually I could see one question related to this one. So when 100 user ask for the same question, so which one- 100 time they will not go and search it.
+112:19
+
+Only one time- Yeah, so will it- ... get stored in the memory and- Yeah, it was an interview question, I could see from my friend. So will it use Redis or it'll... We have- Redis. That's why we are creating a memory.
+112:32
+
+So the reason they asked is, so for when 100 time when the same question asked, so it should not increase the tokenization thing and it should be reducing the cost. So when I find a similar thing. So what are all the other
+112:46
+
+kind of Redis kind of thing we have, sir? Like storage. What is the other question? No. Similar to Redis, what are the other thing we have
+113:01
+
+for storing- Chroma database. Chroma. Okay. Yeah. Chroma database is very useful. Okay.
+113:13
+
+Yeah. So all applications, right? All cloud you will get different kind of things. Okay. Thank you, sir. Mm-hmm.
+113:26
+
+What others, guys? Chroma database is very popular actually when you use the Azure and all. But there are so many things there that you can use it.
+113:40
+
+Now, last couple of questions, I'll take it. Manoj? Hello, sir. Can you hear me? Yes. So yeah, my question is that, suppose, and this is about RAG,
+113:57
+
+suppose we have a document about machine learning, and since we write a question like, who won the IPL, it will only give a answer. But suppose in that we upload a new
+114:10
+
+document which contain even with machine learning this detail that certain team have won the IPL in 2026. And if we upload that and then we ask the question, will we get the answer as it is ideally present in the
+114:23
+
+document even though it's not relevant to the document which we upload? Oh, it will give, no. So if you give the documents, you can load them. That means it is there somewhere in the Chroma database because you will do the same preprocessing. If you create a pipeline, whenever you give the data, what it
+114:38
+
+will do? LLM always works, first they do the preprocessing pipeline, vector database they create, store into Chroma database, and then they will search it. They will give the answer who won the- So even if we add some irrelevant data in the document, it will still
+114:53
+
+give us the answer? Yes. Yeah, sir. That's it. Thank you. Prashant already asked questions. Who else?
+115:08
+
+Himanshu, you are keep raising hand. Are you there or no? Yes. Go ahead. Yeah. So my doubt comes from the retrieval part.
+115:23
+
+If you can go to the actual retrieval. So this is, you recreated the retrieval, but when you are doing the retrieval You can go there. Yes. Okay, this is the invoke. Can you
+115:36
+
+show me the chain once? Okay, the final one? Yeah. Yes, just a moment. Yeah. So you have multiple resources, you have retrieval.
+115:48
+
+Okay. Can you go a little above wherein you are creating the chain? Yes. So you have the question and the-- Basically, if you can see this, the retrieval docs, you are doing the retrieval
+116:03
+
+multi-vector. I think, and I strongly believe that it basically computes the summary chunks and then retrieve that main document from the doc store to show the document. I'm not sure on the part wherein when you said that
+116:18
+
+when next time you give the query, it will store in the Redis part. That part is not clear to me. Where is that- That part I have given the connection. So wherever you go, the context in question is coming, and that is
+116:34
+
+passing to multi-model prompt function ChatGPT in this. Mm-hmm. Now what happened? This retrieval multi-vector, and then runnable passthrough split the image part. Now, I'll show you this.
+116:48
+
+So that part I have done here in beginning itself. Mm-hmm. Here, you can see this. What happened? Retrieval multi-vector.
+117:10
+
+Mm-hmm. What retrieval will do? Create a retrieval. So how retrieval works? They will go create multi-vector retrieval. They will search from this, they will search from this, and there we have all these
+117:22
+
+details given. Correct? Whenever user is asking questions, what you think? Here you can see the pipeline now.
+117:36
+
+Retrieve documents, input data, where it will go? Retrieval multi-vector. And retrieval multi-vector, what two things there? First- Right ... I have given Redis, and second, I have given Chroma database.
+117:50
+
+Chroma. Correct. So can I say that data get stored there? Redis is beginning, it's empty. You don't say empty. Here I have given the connection for text and image, table and image. But forget, I'm not giving it, let's say.
+118:02
+
+Can I say when you ask questions that go and sit there, and then again they will check? So what no RAG will do? First, they will give a preference to Redis, then they will go and search from this
+118:15
+
+one. If Redis they will get it, they will skip the second part and they will give the answer. Okay. So basically we are saying that we are creating the exact replica in both the databases. So that- We have it and then we are doing it.
+118:28
+
+Okay. Okay. Okay. What is the difference between this vector store and doc store then? Above, you are creating a document store and a vector store.
+118:43
+
+Which one you are saying? If you can say Redis, when you created the Redis, when you are running the bash script, there you have defined Redis as a doc store.
+118:56
+
+Above only. When you are creating the Redis instance above in the bash script, when you are initiating the bash- Which one you are saying? No, above only. Go above. Above. When you are creating the Redis instance.
+119:14
+
+Above only. At the top. It is yet to come. Yeah. See, add to vector store and doc store. When you say this one, your doc store is Redis.
+119:28
+
+So if you can scroll below, see, you are storing the Redis as your doc store. So what is the difference between a doc store and a vector store then? Vector store is a Chroma database.
+119:41
+
+Redis store is your- It's just the name ... doc store is a Redis. Oh, there is no difference. No difference. No. Okay, name only. Okay. This is clear then. Mm-hmm.
+119:54
+
+Thank you, sir. Okay, read the documents also. I have given here multi-vector retrieval concept here, document summarization, how it works. So you can go and read that documentation as well, LangChain, how they are using it. And then someone used the harness, I will use the harness word later,
+120:06
+
+but if you are interested, you can go and read it, how the things works actually. The real documents when you read, you will get many more things. Sure. Okay. Any other question, guys? Still people are raising hand.
+120:21
+
+John? Chalo. So if no question, guys, I'll take a break now. John, you can go and ask questions, then I'll take a break. Yeah. Thanks, sir. My question is, when we
+120:36
+
+load the documents in Google Colab, you can actually check if the document has been loaded or not, right? And
+120:50
+
+at that point, so if I load 100 documents, where is it stored? I have not defined a vector storage at that point. Where- Oh, I will store no. Chroma database I have created here. Chroma database.
+121:02
+
+But even before that, if you load the files and you are still able to see that files. If you give a variable, store the loader equal to, you use that function to load, and then if you want
+121:17
+
+to see the documents, you are able to see it. The page content. But this is even before you create the vector database. So where actually this- This is preprocessing only. These are the preprocessing I have done it.
+121:33
+
+Now once I complete the preprocessing part, what you have to do here? How I have divided this? Can you say I've divided text summary, table summary, correct? Mm-hmm. Similarly, I have stored the data into
+121:46
+
+image part, image base, and image summary. Now, these data, here I have given a connection, no? Here I have given. So when I create this,
+122:00
+
+I have given this Redis is my one storage, document storage, vector storage, and what I have stored there? Text summary, text document, table summary, table documents, image summary, image document. I've given a-
+122:15
+
+No, my question is, the moment when you load the document, if you are loading 100 documents, at that time when it is getting processed,
+122:28
+
+where is it getting processed? Does the LangChain has any memory or something like that? Where does it store? Probably, I'm not
+122:43
+
+explaining my question right. But before defining the vector database- This data you are saying, what I have uploaded here, this one? Yeah. That data, when you actually try to convert, when you try to load-
+122:55
+
+Ah ... where is it? In production. No, that is there in pipeline. Okay. So these are the pipelines there. So that part, you just think about this data somewhere loaded.
+123:11
+
+Can I say it's loaded in- Yeah ... C drive or D drive and all? Yeah. Now, who will read it? So you will create a pipeline. In pipeline, you will process them. So that part I have done here, and that data, once I clean the data, you
+123:23
+
+will store somewhere. Then I have created- Yes ... a chroma data, which there I stored it. Yeah. Chroma database, I understand that. That part was- There I have created Redis, and then I store it. Next time when user will ask questions, where that get stored? It get stored here.
+123:35
+
+Okay. This data right here, somewhere is when you load in process, that time it will not store. Loading part, pipeline is not loading it. We are in system, then we will doing the preprocessing.
+123:51
+
+Once this happen, then you have to store somewhere. But when you ask where it is, it is in object. Right now, it's there in object. So if I can ask this question,
+124:04
+
+I can show you this part. Just see here.
+124:16
+
+I have loaded the data here. Yeah. What name I have given? Documents. So document is my object. What is meaning of document? This PDF file. If I run this doc, D-O-C, they will say no, doc means
+124:28
+
+what? They will say doc means this. Yes or no? Yeah. Now, this doc part, how I have done it? I have extracted
+124:42
+
+the image. I have extracted the table. I have extracted the text data. Correct? That image, I have stored where? In this path. What is the path I have given? Figure. Okay. So everywhere I have defined it. It's not that new.
+124:55
+
+Everywhere I have created object. Now, whatever the tables there, I store where? In table. Now, if I execute table, they can say, "No, these table get stored here." Right. Makes sense? Whatever the text-
+125:10
+
+Now it makes sense. Yeah. Now, I was thinking why you're doing all this kind of stuff. Now it makes sense. Okay. Thank you. I am doing, because I have cleaned, and then only we have to do it. Okay.
+125:23
+
+Yeah. No problem. Yeah. Thanks. Hello, guys. Yeah, fine. Guys, shall we take a break now, everybody? Yeah. So we'll be back at 12:30, guys.
+125:36
+
+Enjoy your break. I know it's a little advanced topic, but that's how things work. So RAG looks like very easy, but to be very honest, it's not very easy, very tough. So if you don't do hands-on and all, maybe the challenge happen.
+125:48
+
+So thank you, guys. See you at 12:30. Enjoy.
+126:03
+
+All right, guys. I'm back now. Are you there, everybody? All my friend. Yes. Okay.
+150:23
+
+Yesterday, I have given the project also. Did you get chance to go through? Mm-hmm.
+150:37
+
+I've uploaded the prompt. Two tasks I have uploaded it. One is... so this is assignment for learning. Okay, so there are two assignment.
+150:49
+
+The assignment one, if you open it, this is the first assignment there. Okay, so what is the task is? Prompt-only pricing agent. So you have to use the prompt
+151:02
+
+techniques only. Build a simple LLM price recommended using prompt only. So you can refer my prompt classes. These are the information you have to give. Agent actions.
+151:17
+
+You can ask LLM to generate this. So example you can give it, and then you can see, understand LLM-only reasoning and prompt engineering, how getting the response and all. So this is very easy. Yeah, please try to explore your own
+151:30
+
+part. And another one is the older one. This is very easy. So this is just a kind of PoC. So you have to build a RAG system how I did it. Hmm. And these five question you can ask, and these three documents, three
+151:46
+
+research paper, in fact, I have uploaded here. So one research paper is attention mechanism paper. Another research paper is... Another is a RAG paper, right?
+152:00
+
+And the third is language model, few-shot learner. Okay, LLM. So these three paper I have uploaded it. This paper also developed by Google only, Google engineers.
+152:14
+
+So very good paper. If you have a bandwidth, you can go and read the paper also. Otherwise, you can just build a RAG chat one and ask simple question that please summarize the paper one, paper two, paper three, so that at least you will get some idea also how things works.
+152:28
+
+And so this one you can use vanilla RAG. Now you understood the multi-modal RAG, I would suggest go with the multi-modal RAG. Because there are some image also there. And the second one is the prompt engineering.
+152:42
+
+Yeah? Will you be able to do it, guys, this coming week? Can I expect you all will be able to do it? Everybody? Mm-hmm.
+152:57
+
+Great. So shall I start agentic AI system or what you suggest? Shall we pick on next week? Best topic, agentic AI.
+153:32
+
+Next week. Too much revise. Okay.
+153:52
+
+Yeah. So please revise this one. Yeah? And I'll pick next week. Next week, what I'll do, can I complete the agentic AI also and then I will go in the fine-tuning at one go? So that I'll show you how whether you use simple LLM, you
+154:08
+
+can use RAG system, you can use agentic AI system. How on the top of it you can use the fine-tuning model. Yeah, once fine-tuning completed, one topic is also left that is called evaluation metrics. Yeah?
+154:21
+
+So don't think that get completed. Evaluation metrics I'll cover, graph RAG I will cover, C-RAG I will cover, okay? And then agentic RAG is of course there.
+154:34
+
+Agentic RAG is a part of agentic AI only. So once I start agentic AI, I will cover the agentic RAG also. So I'll show you similar documents. I will take it, and agent will do. Yeah? And
+154:48
+
+cloud part is also pending, so I think so many things there, right? So, orchestration and MCP. Yeah, that is also there. I'll cover it.
+155:03
+
+Deep learning as well. Mm. Sure, no problem. I'll try my level best to complete all this thing. Okay. Question, answer, I'm late. Shall we, Niloptal, go ahead.
+155:15
+
+Push it. Hi, sir. Others, if you wanted to leave, you can leave. Enjoy your day. Yeah? And I'll see you on Saturday, 10:30. Okay? Please remember, Saturday 10:30, Sunday 10:00.
+155:27
+
+Hi, sir. Sir, in the recent I gave an interview, so sir, in that they asked me one question, that if models such as Gemini, like Claude, OpenAI provide APIs, then why does LangChain exist?
+155:47
+
+So what problems does the LangChain- LangChain is a framework, right? So LangChain is what? It's not a model, it's a framework only. So LangChain is a framework, what it will do, how we can utilize those
+156:02
+
+model, right? So if you build on Gemini and I wanted same model, same architecture, same application, I wanted to use it. But instead of using Gemini, I wanted to use OpenAI. So how you will do it? Then LangChain help us. LangChain is nothing, it's a unified version.
+156:15
+
+Please attend my LangChain classes. I have explained very nicely, very extensively that what is this, very explained way. So why LangChain exists? LangChain is a ecosystem. It's a framework. It's a wrapper where in one platform you can use any
+156:31
+
+LLM, hardly matter. Okay? Understood. And sir, the second question they asked you, sir, how will you enrich your RAG so that it gives accurate or relevant answers?
+156:47
+
+So they gave me an example. Suppose that you uploaded 100 PDFs in the database. So how will you ensure that the knowledge base is enriched with the relevant information?
+157:00
+
+How you will ensure? Yes. I will build a RAG system, RAG architecture. When I do the pipeline that I will do very carefully. I will do chunking very nicely. That's what we are using
+157:14
+
+RAG, no? So if you have hundreds of documents there when you do it, you have to do chunking, tokenization, embedding, vector database, very neat and clean. Once preprocessing part done, 80% job done. Then on the top of it, we'll use the retrieval.
+157:27
+
+If that is not working fine, then there are different techniques I taught you, hybrid search, right? Re-ranking methods, RAG fusion method, you can apply it. And on that basis, you have to retrieve and give the
+157:42
+
+answer. Now question will come how you will ensure. I will implement evaluation metrics, and I'll see how much accuracy I'm getting it. Sometime you will ask your client to provide a golden dataset. There I will check it, whether my answer is my LLM is giving similar kind of answer
+157:54
+
+or not. Mm-hmm. Right. Sir. Okay? Yeah. Okay. Sir, so what they told me is, that you have 100
+158:09
+
+PDFs uploaded, so they said you can create a meta-PDF here where you- Metadata already we are doing, no? That's why we are using the LangChain. So metadata also got created.
+158:23
+
+ID search by the help of ID search also I will get the answer. Okay. Understood, sir. Thank you
+158:37
+
+Gupta, Soumya Gupta is saying, "I am not able to see it." You can go here in the folder. There is a folder name is there, Assignment. Assignment for learning. If you go in the Assignment for learning, there you can see Assignment 2. Assignment 2, when you click it, you can see here
+158:52
+
+one, two, three PDF there, and this is image there where your project details there. Are you able to see this, Soumya Gupta?
+159:07
+
+Can you please upload the file multi-model? Huh, multi-model, I'm uploading it. So this is the multi-model.
+159:20
+
+21st June 2026, multi-model RAG system.
+159:44
+
+Download this. Okay. What else? Guys, please share the introduction in
+160:04
+
+the status. Okay. Kumud, sir, what is your question? Sir, I'm just now moving ahead, so that's one separate question.
+160:18
+
+Is this agent-to-agent protocol and agent conversations, are they both are a different topic, or this is the same one? Agent? Sorry. Agent conversations and agent-to-agent protocol.
+160:31
+
+Protocol is different thing. I will teach you A2A, agent-to-agent protocol or MCP part, Model Context Protocol. That is different topic. Agent conversation, I'll show you in the next session that how
+160:46
+
+agent can communicate to another agent and... I told you yesterday, if you remember- Yeah ... we have single agent, we have two agent, we have sequential agent, we have a group agent, we have a nested agent. So different agent, you can build it, and they both will talk like
+161:00
+
+us. So one agent, you can write a persona like a Sundaram. He's a faculty. Another agent you can make a persona like Kumud. So he's a candidate. How they will both know? I will write Sundaram is a expert engineer, and Kumud is a
+161:16
+
+learning. Now you can say, make 10 question or 20 questions. So now you will see Kumud will ask generative AI-related question only, and Sundaram agent, they will give.
+161:31
+
+All right, sir. Is my voice audible? Guys, am I audible?
+161:45
+
+Yes, yes, sir. You are audible now. Yeah. So like that you have to do it. So agent to agent is different thing. Agent-to-agent protocol is different thing. Yeah. Because I also have been appeared in one interview, and then it's
+161:57
+
+played a very fair, like he's clevered me, asked these questions, so I badly got stuck in DC. I thought it was the one only. One month later, you are expert. You will give all answers.
+162:11
+
+All right, sir. Thank you. Hmm. Okay. Mukherjee. Yes, sir. Hi, sir. Actually, I'm about to apply for the
+162:25
+
+job interviews and also would like to groom my CV and also like to connect with you regarding that. I pinged you in LinkedIn in- I will. I have seen there are, I think, 15 or 20 candidate, they
+162:38
+
+ping me. They have given a big question, answer related career and all. Mine is not big, sir. It's just a notification. No, just I'm telling you, but if I can open my LinkedIn, you will see how many reply I have to give it. So that's why what I suggest, I
+162:50
+
+will ask Manju or Simran, someone that I'll give in a week, two days or three days in a week. In evening, you can in office hour, you can connect me. So maybe that time you can call me for 10 to 15 minutes, and we will-
+163:04
+
+Okay, sir ... connect, then one and one we will discuss. So it's good for you guys also. Any questions you can individually, you can ask me. Some people, they feel reluctant to ask questions in group, especially the career-related, the next-
+163:18
+
+Specifically, sir, I would like to understand, as per my experience, I'm having around 14-plus years of experience and trying to grab the architect role in that side. So how much I need to just
+163:32
+
+cover it up so that I can apply and- We'll help you. Just wait. You can connect with Manju and just block some schedule, and we'll discuss. Okay, sir. Okay? I'll guide you. I'll help you how you can do it. That's my role, right?
+163:46
+
+So I will definitely guide you. Okay, sir. Theek hai. Thank you so much. Hmm. So, no, guys. So that's it for today. Thank you very much, all. If no question is there, then.
+164:02
+
+Prashant, sir, you have raised hand. Is there any specific question? Beginning itself, you have raised hand, you asked question, but you didn't un-raised it. Again, not asking. Chalo, I don't know.
+164:18
+
+You are typing, by the way, in chat. Sir, I have already un-raised my hand, sir. Now. So it's a Prashant K. is there on my screen. Yes, sir. Prashant K. is another one. I don't know.
+164:31
+
+Theek hai. Arvind? Hello, sir. How to learn all the codes, sir? Everything is so- You need not to learn code. You need not to learn code and all.
+164:46
+
+Why you will learn code today? When you have a wide coding available there. You have to understand the concept. Okay. Okay. Python only you have to know because you will crack the interview. So some of the company, they will take your written test, that is Python.
+165:00
+
+These things they will not ask you and mostly you only have to know the architecture, you only have to know the concept. And when you work in industry and all, you will work on cloud mostly. So don't worry about this part.
+165:14
+
+Cloud means the AI chatbot? AWS. No, not Anthropic. Okay. Cloud system. AWS, Azure or GCP this. Mostly Azure or AWS, anything is
+165:28
+
+okay. Okay. Sir. Thank you. So there if your concept is clear, you can easily enable the Chroma database, easily you can enable the storage. You will handle the
+165:41
+
+logs, the cache memory all part, the Foundry. Everything, AI search, indexing, everything you will able to do it. Okay. Mm-hmm. Okay. Thank you, sir.
+165:54
+
+Guys, please don't create any group, otherwise I will not enable your chat. I told you earlier also. Please don't do it. I'm just intentionally doing so that everybody can see each other questions.
+166:08
+
+It's clearly I got a restriction. I got instruction from LearnBy. They said, "Please don't do it." So I'm putting everyone so that everybody can see each other question and you can guide also. If I missed anything, other friend, they can respond
+166:21
+
+them. But that doesn't mean you can share your personal detail and all. Because I have seen some problem happening. I'm just sharing my experience what happened. They created a group. There are some girls also there,
+166:36
+
+an unwanted call happened, and then finally, it got revealed that from where the number they got it, and they are doing some-- So like that, it's happened. So please don't do that. Appreciated. Any questions, you can feel free to connect and ask them
+166:49
+
+to connect Sundaram one-to-one. Like that, if you wanted to talk to me, more than happy. But please don't share- Yeah ... don't make any group and all. Okay? This is not appreciated. Sir, just a little support, sir, if you can provide me.
+167:04
+
+Sir, one of the companies are asking for a-
+167:17
+
+You send me the friend request, no? Have you sent it? I messaged you, sir.
+167:52
+
+You have to send first request. No, I'll see the message. If it is there, I'll reply you. Okay, just send a reminder then. Actually, either I can only send mail or
+168:06
+
+I can't message further. See this, otherwise I'll send a request. Okay, sir. Sure. Bye. Thank you, sir. Thank you.
+168:22
+
+Sir. Hello? Yes. Sir, ping means what here exactly? To talk to you?
+168:35
+
+Ping means if you wanted any support, how you will connect me apart from Saturday, Sunday. LinkedIn? Where you will connect? On LinkedIn. No. Either in LinkedIn or LearnBy, you can talk to
+168:49
+
+your coordinator and ask them that, "I wanted to talk to Sundaram. Can you please set up a meeting?" Okay. So there are two method there. If it's long discussion, you can set up better, you can set up a call and then talk to me. If there is a generic things or any support, any guidance, any
+169:01
+
+materials you need, any documents you wanted to read, any PDF you wanted, you can ping me in LinkedIn. If I have, I'll share that documents and all. Okay. Okay? Thank you. Sure. Thank you, guys. Bye. Take care, everybody.

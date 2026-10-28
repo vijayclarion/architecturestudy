@@ -207,6 +207,108 @@ BREAK-EVEN:
 
 ---
 
+## Infrastructure Clarifications (How It Actually Runs)
+
+> These are the points that trip people up — the "where does it physically run" questions.
+
+```
+ECS ON EC2 — INFRASTRUCTURE FLOW:
+─────────────────────────────────────────────
+1. You create a CLUSTER (a logical grouping)
+2. You register EC2 instances to that cluster
+   (an ECS agent runs on each instance, reports to ECS)
+3. ECS SCHEDULER places tasks (containers) onto
+   instances that have capacity
+4. Image is pulled from ECR (or Docker Hub / any registry
+   named in the task definition) onto the instance
+5. Container runs on that EC2 instance
+
+→ YOU own & manage the servers. ECS just orchestrates.
+
+ECS ON FARGATE — INFRASTRUCTURE FLOW:
+─────────────────────────────────────────────
+1. You still create a CLUSTER (logical only — no visible hosts)
+2. You submit a TASK DEFINITION
+3. AWS provisions the compute behind the scenes
+   (no EC2 to see, register, patch, or SSH into)
+4. Image pulled from ECR the same way
+5. Container runs on AWS-managed infrastructure
+
+→ AWS owns the servers. You just hand over the task.
+```
+
+```
+IMAGE PULL (SAME FOR BOTH LAUNCH TYPES):
+─────────────────────────────────────────────
+Task definition names the image → ECS pulls from
+ECR / Docker Hub / other registry → launches container.
+The Execution Role grants ECS permission to pull from ECR.
+```
+
+```
+NETWORKING — WHERE DO CONTAINERS LIVE?
+─────────────────────────────────────────────
+ECS on EC2:
+  Networking comes from your EC2 setup — VPC, subnets,
+  security groups you already configured for the instances.
+
+ECS on Fargate:
+  Runs in YOUR OWN VPC (not an AWS-managed VPC).
+  You choose the VPC + subnets when creating the task.
+  With awsvpc mode, the task gets its OWN ENI attached
+  directly into your VPC. Security groups still apply.
+
+→ In both cases you control the VPC. Fargate is NOT a
+  separate AWS-managed network.
+```
+
+```
+SECURITY & IAM — TWO ROLES TO KNOW:
+─────────────────────────────────────────────
+Security Groups → control traffic in/out (network layer)
+
+TASK ROLE → permissions the CONTAINER has to call AWS
+   services (e.g. read S3, write DynamoDB)
+
+EXECUTION ROLE → permissions ECS needs to launch the task
+   (pull from ECR, push logs to CloudWatch)
+
+ON EC2: the container can use the EC2 INSTANCE PROFILE
+role, BUT best practice is to give each task its own
+Task Role (finer-grained, per-container permissions)
+rather than relying on the shared instance profile.
+```
+
+```
+SCALING — BOTH SUPPORT AUTO SCALING:
+─────────────────────────────────────────────
+ECS on EC2:
+  - Scale TASKS via Service Auto Scaling (CloudWatch alarms
+    on CPU / memory / ALBRequestCount)
+  - ALSO scale the EC2 INSTANCES underneath (ASG / Capacity
+    Providers) so there's room for the tasks
+  → two layers to scale
+
+ECS on Fargate:
+  - Scale TASKS only (set desired count / auto-scaling policy)
+  - AWS provisions the compute automatically
+  → one layer, no capacity planning
+
+Both: attach to an ELB (ALB/NLB) — the Service registers
+tasks as targets and traffic is distributed across them.
+```
+
+```
+COLD START (FARGATE):
+─────────────────────────────────────────────
+Fargate spins up containers ON DEMAND — a few seconds
+of provisioning delay. Tasks are NOT pre-warmed.
+Fine for most web/batch workloads; if you need instant
+response, keep a warm baseline count of running tasks.
+```
+
+---
+
 ## ECS Anywhere & EKS Anywhere
 
 ```

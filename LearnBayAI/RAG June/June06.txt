@@ -1,0 +1,2399 @@
+Hi, everyone. Good morning. Everybody, am I audible? Yes. Very good morning. Super. So guys, everybody, are you excited to learn RAG today?
+11:37
+
+One of the very significant topic. Any interview you can go without RAG, it's not possible. 80% time you will work on RAG only. 80% time, I'm telling you. If you get a job in--
+11:53
+
+Langchain is not completed. I'll cover Sana, lots of things. The Langchain pattern, how you will use Langchain, and you can use the document loader, chunking, embedding, all these things. So Langchain, just I have given a overview.
+12:09
+
+Now, by the help of Langchain, I will build all the structures and all.Yeah? Let me share my screen.
+12:24
+
+Please let me know if you are able to see my screen. Yes. One request to everyone, guys. Please ask relevant questions. That is request.
+12:42
+
+In beginning of the session itself, I am requesting, please ask RAG-related questions only. That is one. Yeah? Second, I would request,
+12:56
+
+please, anywhere you have doubt in RAG, please feel free to ask. Don't hesitate that, "Okay, shall I ask or not?" No, not required, okay? Please feel free to ask. Only request is
+13:08
+
+ask related topic only. If you deviate here and there, then there is a problem. Yeah? Don't worry, I know lots of friends there, they wanted that explanation also and all, but believe me, I will come, I'll explain you all the
+13:22
+
+topic. I'm not going to leave anything. Yeah, this session is mainly for job-oriented session. This is not something that I wanted to just complete a class and then work is done, you get a certificate and
+13:35
+
+tata, bye bye. No. You guys, once you complete this class, Gen AI, Agentic AI module, I will ensure that you can go in any interview, you will able to crack it. What are the things they will ask you? Everything I'll discuss.
+13:50
+
+But main thing is the foundation. Yeah? The understanding what is this, why we are using and all. Okay? So are you guys with me? Please
+14:05
+
+give me thumbs up. Shall I start RAG system today? Mm-hmm. Great. LangChain not completed. Again, I'm telling you, LangChain is there.
+14:19
+
+I told you in last session also that I can pick LangChain one month also. It's not a big deal. But how you will leverage LangChain, you can utilize it, that is the main focus there.
+14:34
+
+Okay? That is the main focus there. So if anybody missed it, please go watch the recording. If anybody joining, I can see there are people, they say, "It's my first class," so you are lucky I started with RAG, okay?
+14:46
+
+So you can just see how RAG works and what are the things I'm going to cover. Okay. Suresh said you have raised hand. I have seen your query. It's your first class, so no need to worry. Yeah. I am here, I'll help you.
+15:01
+
+Okay. But you will get recording also, so please, whenever you get a time, please watch recording. All right?
+15:15
+
+Jupyter Notebook. Raga Mittal, if you post your query in chat, it would be better. Otherwise, we'll go in the question answer itself.
+15:28
+
+And today's very significant topic.
+15:42
+
+By mistake, I raised hand. No problem. See, I appreciate everyone, please ask questions, right? But don't ask as and when. When I will tell you, "Okay, go ahead and ask questions," it's better.
+16:20
+
+So that that time I will focus on a question only. Right? Question answer. Otherwise, in between, if you type something, I'm writing or maybe I'll explaining you, it is a bit difficult for me.
+16:35
+
+Are you guys with me, everyone? Yes. So in general, guys, are you excited to learn RAG system?
+16:50
+
+I hope lots of talks you have heard about RAG. When you guys typing, are you going to cover deep dive? It's frustrating, actually. I told you multiple times,
+17:03
+
+you have not learned such RAG, right? The way I'm going to cover, nowhere you will learn like that. I'm going very deep dive. One time only you have to learn, and lifetime you need not to worry about the RAG.
+17:19
+
+Okay, so don't post these type of questions, "Are you going to cover deep dive and all?" Okay, then I feel that, okay, you are not concentrating.
+17:33
+
+Great. So let me start. Okay? Please, guys, at least 20 to 30 minutes you have to focus what I'm going to cover, right? And don't worry,
+17:45
+
+I will give you time, you will ask questions, right? Every 30 minutes, I'll take a pause for 10 minutes question answer. Again, 30 minutes question answer, like that the session will go. Yeah? But there are lots of things there that you have to know it.
+18:00
+
+So RAG stand for Retrieval Augmentation
+18:14
+
+Generation.Generation. Okay? RAG stands for Retrieval-Augmentation Generation. Okay? So, you know why we are using RAG? So today, I'm going to
+18:32
+
+cover why part, what is RAG, and how you will use RAG in your day-to-day life, and what are the types there.
+18:47
+
+Okay? These are the main focus there that I'm going to explain you. And then, of course, as I said, code. Okay, we'll show you the coding part also.
+19:00
+
+Hmm? Now, first thing first, you can understand why we need this. Hmm?
+19:13
+
+Because point number one, the need for RAG
+19:26
+
+in your LLM-powered product. So anything you are building, your organization dataset,
+19:40
+
+your own dataset, if you have, where you wanted to leverage, utilize LLM power applications, then we need RAG. Okay? Your own customized data. Please understand. Imagine you ask
+19:53
+
+her questions about your company policy, a company leave policy, let's say. Right? So what RAG will do, they will go, they will search the company documents, they will
+20:09
+
+find the policy, and they will give you the correct answer. They will not go in the external dataset, and then they will give the answer. Okay, that is the first part. Why we need RAG?
+20:22
+
+Please remember, because LLM has certain limitation. LLM has certain limitations. LLM actually trained with the open source data.
+20:35
+
+Open source data. Right? Now, if you go and ask questions related your organization, do you think LLM will give the correct answer if you don't give the right dataset? Tell me.
+20:50
+
+If you go and ask company-related information to LLM, tell me how many employees working in my organization, what is the current package for that employees? Do you think they have information? If you ask, what is the current policy in my organizations?
+21:05
+
+No, right? So that time LLM has limitations. So you can say, okay, one problem is knowledge limit. What is the problem? This is the problems there.
+21:20
+
+I'm talking about Y part, right? So what are the problems there? Limitations mean knowledge cutoff. Knowledge cutoff. Second problem is hallucination.
+21:34
+
+Hallucination. What is meaning of hallucination? They predict wrong response. Sometime you will see LLM behave that they know everything. But that is factually incorrect. Like I'm asking
+21:49
+
+Bank of India or bank of river. So you can understand one bank represent about financial institute. Second bank represent the
+22:05
+
+corner of river. So the word vocabulary cannot give the exact meaning. You have to read the complete context, then only you can predict what is the right
+22:19
+
+answer. Yes or no? So basically, please understand how we can avoid these problems, how we can avoid this problem, limitations problem, hallucination problem,
+22:32
+
+we are using. Right? We will take AI, artificial intelligence. We will search the document.
+22:47
+
+Search the document from where? The real dataset. Real dataset. Let's say I'm saying organization dataset. Organization dataset. And then on the top of it, I'm leveraging and
+23:00
+
+utilizing the LLM power. I'm utilizing this. And that is what equal to RAG. That is what equal to RAG. Make sense, my dear friend?
+23:14
+
+Simple. Very simple example I have given. Why we need it? Because if you go and ask questions. If you go and ask questions, what are the policies there in
+23:29
+
+my organization? AI can confidently give the wrong answer. You will see that sometime if you go in the ChatGPT, and you can ask questions, AI confidently they will give the wrong answer.
+23:42
+
+That is what is called hallucination. That is what is called hallucination, guys. So they will generate the hallucination. AI only know, LLM only know the training dataset.
+23:56
+
+Which is actually when the training happened, whatever the GPT model you are using, let's say GPT 4.0 I'm using it, or 5.4 I'm using it. There is a cutoff date data there. Till then, only they have learnt it.
+24:11
+
+So AI only knows training time dataset. They have no other data. Means if you go and ask questions that what happened just now? Or what is the new policy
+24:25
+
+recently published by HR? AI doesn't know. LLM doesn't know.And that's what is called knowledge cutoff problems. Yeah? And why this is happening? Because, my dear friend,
+24:39
+
+AI has certain limitations. AI means LLM. Okay, please don't get confused when I say AI. You can think about AI means I'm talking about LLM. If I go, my friend, and I'm saying LLM,
+24:53
+
+can LLM has no access to your data? Means I'm saying organization data,
+25:08
+
+migration data, like SharePoint, like your email,
+25:22
+
+your own PDFs, your own database. Hmm? Do you think they have access? LLM has visibility. Can you say no? They don't have visibility.
+25:36
+
+If you go and ask any questions from here, do you think LLM can give the answer? Can I say no, answer is not possible. Make sense, guys.
+25:52
+
+So here, sometime what happened, they can generate the wrong answer, okay? Or they will simply say, "I don't know," because if you handle
+26:06
+
+the hallucination, you write a prompt, you can clearly say, if the information is not there, simply say, "I don't know." So can I say? They can say, "I don't know." That means still they don't have a visibility of the right data set. Make sense. Come on, guys.
+26:18
+
+Simply, you are working in a financial institution, let's say bank, okay? Or, I'm asking questions. What is refund policy? Now what LLM will do, they will go and search, right?
+26:33
+
+Maybe they will search from Internet, and they can give the generic answer, which is maybe correct or not correct. Yeah? So why we are using LLM, everybody,
+26:48
+
+are you guys with me? Please give me yes. All my friend, are you clear why we are using RAG system? Because LLM has limitations, because LLM generate the hallucination
+27:00
+
+report, because LLM has no access. So please remember three bullet point. Anybody ask you why we are using RAG and all, please give the three bullet point, guys. You can say, "Boss, because we have
+27:15
+
+three biggest limitations there, limitation knowledge cutoff, hallucination, and the third part is no access to your data or organization data, or my own data." Like that you can say.
+27:29
+
+Now, how you will solve it? We will solve basis the RAG system. What RAG will do? The LLM, they will leverage the LLM concept. They will search the real-time data set,
+27:44
+
+and then they will build the question answer. They will give the right answer. That is what is called RAG system. Okay, I'll tell you the architecture also. Hmm? So let me go here and Y part is clear, everyone?
+27:57
+
+Yeah. Now I'm going to what part? What RAG will do. So, if you build a RAG system, if you build a RAG system,
+28:12
+
+you can follow two steps. Okay, one,
+28:28
+
+you can do a document processing and embedding.
+28:41
+
+Okay? And the second part, you can build, let's say, question answer, search, and generation.
+28:54
+
+Okay? So whatever the documents you have. Let's say, I'm working a organizations. My task is to build a question answer system. Okay, this is my policy documents.
+29:06
+
+Organization policy documents. Right? Now these organization policy documents, LLM has no visibility because it's internal data. So what you will do, you can build a RAG system. How you will do?
+29:20
+
+There are two approach. One, whatever the documents you have, you can do a processing. Yeah, processing means documents would be a structure, would be on a structured format. Hmm? Your document is
+29:33
+
+given into text format, image format, audio format, video format, any format they can give you. Hmm? So you have to do the preprocessing part first. Once you have completed the preprocessing, you can convert into number.
+29:45
+
+Yeah, embedding. I'll cover embedding very deep dive. That's why I told you RAG, I'll go very deep dive. So maybe this week and the next week also I'll go in the RAG only.
+29:59
+
+And once you complete this first part, then you can go and build the question answer search engine, and then generation part. That is what you can do it. Yeah? Why we are using RAG?
+30:12
+
+Because I wanted to used for building question answer chatbots
+30:25
+
+on custom document. Custom document. Yeah? Document. Custom means your own documents. That's why we are doing
+30:38
+
+it.Why we are using RAG? Because first step
+30:51
+
+before fine-tuning. As you guys know, fine-tuning, if you do the fine-tuning LLM, there are huge costs involved there. So how you will save the cost? First, you can build a RAG.
+31:05
+
+If RAG is not performing well, you are not getting the answer as per human expectation, then only you can go and do the fine-tuning. So why we are building RAG? Because I wanted to save company
+31:20
+
+money. I wanted to save cost, client cost. That is why we are building this.
+31:33
+
+Why we are using RAG, and what is RAG? You can say it will help. It will help the regular
+31:46
+
+LLM augment their information
+31:59
+
+with custom knowledge before generating answer.
+32:12
+
+Okay? So it will not go just like a LLM and they will fetch the data from internet and give the answer, no. First they will go, they will see the custom knowledge data source. There, they will find
+32:26
+
+augment means enhance prompt. So by the help of prompt engineering, they have to find the right information, and on that basis, they will go and generate the answer. That is what RAG do.
+32:40
+
+That is what RAG do. Okay, so by and large, what I'm trying to say here, you have something called external. You can say we have something called external.
+32:52
+
+Knowledge. Knowledge. Database. Database.
+33:08
+
+The LLM will go, and they will search from external database, and then they will take the user query. They will take a user query, whatever the user will ask query,
+33:20
+
+whatever the user will go and ask query. Right? How this works, user is asking query, it will go to connect to the LLM. LLM, what it will do, they will go search from the knowledge
+33:34
+
+database. They will fetch the information, and on that basis, they will give the response to the user. They will give the response to the user. Okay? This is the flow there, guys, that actually internally
+33:47
+
+they are doing. Now you can say, what do you mean by external dataset? External dataset would be anything. Please remember, it would be anything. You can say it would be raw files.
+34:01
+
+It would be PDF. It would be CSV file, Excel file. Mm? Text file. It would be database.
+34:14
+
+Right? It would be vector storage, vector stores. It would be JSON file. Or it would be API. Anything, guys. This is called external dataset.
+34:28
+
+This is confidential data, organization data. We have different things there. We have a Slack there. We have MongoDB there. We have a SQL dataset there. We have Milevus there.
+34:42
+
+We have Neons there. Any data source you can take a name. So what system will do, LLM will go connect with the external dataset. Whatever the user has asked query, by the help of RAG system, they will fetch the data, and then finally
+34:55
+
+they will generate the response. So actually, meaning if you ask me what is meaning of RAG, when I say R means retrieval, R means retrieval. Retrieval means, guys,
+35:11
+
+actually filtering. You can say fetching. From external knowledge base,
+35:25
+
+external database. That is what our role is. R stand for, there are three terms there. One is R, retrieval part. What retrieval will do?
+35:37
+
+They will go search the knowledge database, whatever the format there. Here already, we will do the preprocessing, and it will store into external database. They will search it, they will fetch it from the external database. And then by the help of augmentation.
+35:49
+
+By the help of augmentations. Augmentation. Augmentation means enhance your prompt. Enhance your prompt.
+36:05
+
+So whatever the prompt you are writing, you already know the prompt techniques, right? Few-shot learning, zero-shot learning, persona, chain of thought, ReAct, right? So by the help of augmentation means enhance your prompt. So what you will do, you can write
+36:21
+
+in such a way so that clear message you can give to LLM, "Boss, if the information is not given in the external dataset, please don't give answer. Don't unnecessarily articulate it. Simply say the information is not given in the database,
+36:36
+
+hence I'm not giving the answer." That is what the augmentation do.Clearly you can mention, please fetch the data from only and only external database, and then you have to give the context, give the information. And on that basis, you
+36:52
+
+can say the LLM, they will generate the output. This is called generation. Simple terms, guys. Generation means it will generate the response.
+37:07
+
+So if any user, they are coming here and they are asking questions to LLM, what LLM will do, they will connect to the retrieval system. The retrieval system first they will go and connect with the external
+37:21
+
+source data, external database. They will fetch the information, give to the-- And then give the augmentations. Whatever the context it will come, then it will give to the
+37:35
+
+augmentation. Augmentation can write a clear message, and then finally generation happen. And this generation will give the response. And that response, user will get it. That's the flow there in a high level.
+37:48
+
+I'm going more deeper, guys, but I wanted you all feel very comfortable. Can everybody tell me yes, no? Can everybody please write yes, no?
+38:01
+
+Hmm? Not very clear on AMG part? No problem, we'll explain you. This is just a terminology I told you.
+38:24
+
+R means what, A means what, and G means what. So R, what it will do, it will fetch the data from external dataset. Whatever the filtering, they will do it. Then you on the top of it, you can write a prompt and you can clearly say,
+38:36
+
+"Whatever the data I got it from external dataset, if user is asking questions, give answer from there only. Don't go and search again the millions of dataset." And if that information is given in the context, whatever retrieval find, if the
+38:48
+
+solution is there, give answer. Otherwise, say, "I don't know." That's what the augmentation do. Means augmentation, the main role is they can handle the hallucination part. Augmentation main role is they can clearly give the right answer. Okay, that is what the
+39:03
+
+augmentations do. They will clearly mention this. And on that basis, it will give the answer. Make sense? And generation is nothing, you know how LLM is generating.
+39:18
+
+Okay. John Phillips, I told you, no? Fine-tuning, I'll tell you later. We have a proper topics there where I will cover what is fine-tuning.
+39:34
+
+Before that, I'll go and I'll explain you transformer BERT model, then what is PEFT model, what is LoRA and QLoRA model. So you will get to know. Right now, just I told you high level. If you do a fine-tuning, there is a cost involved.
+39:49
+
+So that's why industry prefer to do RAG system rather than fine-tuning. Fine-tuning you can only do when RAG will not work. So first part is you understand RAG. Second part is we'll go in the fine-tuning.
+40:02
+
+Make sense? Yes. Okay, now.
+40:14
+
+What I'm going to do, guys, if you understood the broader perspective. I'm going to discuss RAG scenario.
+40:30
+
+RAG scenarios. Then I will discuss vanilla RAG.
+40:49
+
+I will discuss, here I have mentioned the two points. Document processing. So we'll discuss document
+41:02
+
+processing steps. Okay? So there are steps called
+41:16
+
+document loader, chunking method,
+41:28
+
+embedding method, and then finally vector database. Means storage.
+41:47
+
+And this whole process is also known as indexing. Okay, so part one, when I say part one,
+42:01
+
+part one is this. Once you complete the part one, we will go part two, and where I explain you the terminology, R,
+42:15
+
+A, and G. How you can utilize them. How you can use the retrieval on the top of it. So augmentation and generation. So how it works?
+42:28
+
+First we'll take a detailed session about embedding vectors. What are the embedding vectors there? How embedding works? And
+42:41
+
+the semantic similaritySimilarity. Okay? Semantic similarity. Okay, so we'll go semantic similarity.
+42:55
+
+Of course, we'll go some little advanced topics like re-ranking methods. Re-ranking methods, RAG fusion methods.
+43:09
+
+Fusion methods, right? Hybrid methods.
+43:23
+
+Similarity search. BM32. Hybrid
+43:36
+
+search. Hmm? Hybrid search. Okay? So these things we will discuss. Once you understand that part.
+43:50
+
+Once you understand that part, I will go ahead, and I'll also tell you what are the pros and cons of
+44:05
+
+semantic similarity there, and the need for
+44:19
+
+re-ranking and fusion. Fusion is... Okay. So when I cover this part, I'll tell you
+44:34
+
+pros and cons, and then, of course, I will discuss these parts. That's the agenda. Okay, that's the agenda to discuss this. Once you understand all part, then I will go
+44:46
+
+the types. What are the types there? What are the types? What all things we are going to learn, guys. What all things we are going to learn. So first,
+44:59
+
+we will learn traditional RAG. Traditional RAG, or you can say self RAG.
+45:11
+
+Hmm? So one is called a traditional RAG, second is called self RAG. Right? How that is working. Then, or you can say classic RAG. Someone
+45:23
+
+saying classic RAG. If you read some nice book, it is mentioned classic RAG. Once you are okay with this, I will jump into advanced
+45:37
+
+RAG. Okay? So first, multi-model RAG. Multi-model RAG.
+45:50
+
+Convertable RAG. Graph RAG. Baye complex.
+46:05
+
+Agentic RAG. Okay? So you will also see how I will build a multiple agent. And then that agent, they will go and fetch the data from different sources, and they will take it.
+46:22
+
+In between when I cover the graph RAG, agentic RAG, you will see some RAG tokenization, RAG sequence methods. These basic things also you will see fusion in decoder methods. All these things you will get to know.
+46:36
+
+How speculations RAG works. So these things, I may cover this. So these are the main things, guys, that I'm going to cover it. So one,
+46:51
+
+and two in the RAG. Side by side, how you can evaluate them. Eval them. So we will cover the deep
+47:03
+
+eval plus RAGs. So that this is the end-to-end journey plus guardrails.
+47:16
+
+Guardrails in RAG system. Okay.
+47:33
+
+So this is also I'm going to cover so that you feel very connected, that okay, these are the things are the mandatory that you have to know it.
+47:45
+
+Everyone happy? Not happy? Or too much detailed? Hmm? So when I cover the guardrail, I will go one more layer. As I told you, nowhere you will see
+47:59
+
+such detailed content and all. So more detail, I will also say observability plus guardrail part. Right?
+48:13
+
+And how you will use LLM as a judge as well. LLM as judge. How you will use it. Okay, so this is the main
+48:28
+
+things there that I'm going to cover it. Now I'll take a pause because I'm going deeper. I'll explain line by line, step by step these topics, the document processing, this part first. Yeah.
+48:42
+
+And I'll show you all these things, and then I will go here. So I wanted to give some time, you guys go and ask questions. As I told you, half an hour. So first, let me read the-Chat.
+48:57
+
+So RAG is a library to use evaluation RAG system. Yes, Yasin, RAG has deep evaluation both there. So when I cover this part, I will tell you how you can use the error analysis, how you can make the LLM as a judge.
+49:14
+
+How you will use the inferential optimizations method, observability, how you can implement the guardrail so that no challenges happen. Okay? So you will understand the RAG design or embedding design and all.
+49:28
+
+What is RAGs? When I come, Ganesh, I will tell you. Right now, just understand RAG is a evaluation matrix. Okay? There is a library there. By the help of this, we are doing this.
+49:44
+
+John is saying, "I have some questions as Arvind." Okay, let me go little up. What is this? So Dheeraj is saying, "You mentioned fine-tuning is expensive, that is why we use RAG. What fine-tuning means in high level?" We'll tell you, Dheeraj, okay?
+49:59
+
+Later, not now. Pampati Satish is saying, "You can take these questions at the end also. We need to give access or feed the LLM with company data every time it reads
+50:13
+
+data, or it will store in memory as a knowledge as a similar query." A good question. So, not every time they will go and connect with the LLM. One time only you have to do pre-processing, this document processing.
+50:27
+
+You can store somewhere, and then LLM will go and fetch the data from there only. So how they will fetch it? The R part will come, retrieval part. Okay? And by this, the cost saving happen, embedding will not happen again and again.
+50:40
+
+So these are the benefits there. Rupesh is saying, "When user prompt the query, R will query the external database or it's A?" A means
+50:54
+
+augmentation prompt. Okay, so R will go and fetch the data from external dataset database. But who will give the instruction to R? A will give the instruction. That's why we are saying augmentation. So augmentation, the semantic meaning, the
+51:09
+
+colloquial meaning in English is called enhanced prompt. That's the meaning of A. Arun is saying, "If prompting can reduce hallucinations, it will work on LLM too, except knowledge cut-off part."
+51:24
+
+But how you will control a hallucination, Arun? Because when you give the LLM freedom to fetch the data from external source, they can take from anywhere, no? You guys have seen in YouTube, there are videos there, the header is given
+51:40
+
+something, and when you go inside, you will see they are just doing nonsense. Nothing is pertaining to header. Some people, they wanted more views, so they will write a very prompting, very temptative heading.
+51:54
+
+Yeah? And when you go inside, you can see, oh, this is nothing. So, if they fetch the data from there also, you have no control, right? So definitely hallucination comes. So when you have own data, then only you can control it.
+52:06
+
+Okay? Because external data, how you will control it? You can control when the dataset is there. Internet data, you cannot do it, no?
+52:22
+
+Arvind, "Is RAG used only in company for personalized use, or it is used in general in all LLM?" In general, in all LLM, Arvind. LLM, you will not use direct ChatGPT.
+52:34
+
+Open source ChatGPT, you always build a customized ChatGPT, so that time RAG involved. That's why I told you 80 to 90% time you will work on RAG. Maybe different types. Maybe you will use multi-modal
+52:48
+
+RAG, conversable RAG, graph RAG, agentic RAG, traditional RAG, but mostly RAG. Okay? Vijay is saying, "RAG which send to..." So there is nothing, the
+53:01
+
+RAG which send to the context to prompt, is my understanding correct, but I have a lot of token use. We'll cover, Vijay. Once I come, I'll explain you all the doubts. So let me take one, two query, guys.
+53:15
+
+So who has raised hand? Let me see. There are five people has raised hand. Guys, listen others' questions also. That will help you to understand what they are asking. So Prashant Kumar. Go ahead, my friend.
+53:31
+
+And once I unmute, no, please unraise your hand. Okay. Yes, Prashant. Hi, sir. Yes, you. Can you hear me? Hello. Can you hear me, sir? Yes. Sir, normally we use LLMs to get the answer
+53:45
+
+from external database. But in RAG, we are connecting to our internal databases. So what is the need of LLM there? The LLM, without LLM, how? LLM actually trained with the million or
+53:58
+
+trillions of dataset, right? They know how we can treat it. Yes. Again, but- We are- ... we will get hallucination answers. When we- So for that, in organizations, if you have a customized data.
+54:12
+
+In organizations. So let's say you are working in the organization where you have 50,000 documents there. Okay. And that is completely your organization data. LLM has- Yes ... no visibility. Yes. Do you think human can read 50,000 documents and they will give the answer?
+54:24
+
+No. So they don't have memory, right? They will not remember- No ... all these things. So for that- Okay ... we are leveraging LLM and building it. So LLM- Okay ... we are utilizing it, but base is the defined structures, defined architecture, that is RAG.
+54:40
+
+Okay. Then those LLMs will be accessing our 50,000 data? They will access only your data. They have no connection with the external dataset. Okay. So we will use it by augmentations. Okay, fine, sir. So no doubt in augmentation, you said enhanced prompting, right?
+54:55
+
+So enhanced prompting will you be doing or user will be doing or internal any system will be doing? No, no. Internal also when you use cloud and all, I'll show you in Azure, but you have to understand the concept.
+55:12
+
+Don't worry about internal or how manually you will do or what. Of course, we have a techniques in some systems there, but you have to understand the concept. Okay, fine, sir. Thank you.
+55:24
+
+Amuran? Hello, sir. Regarding the process, can you go a little bit before?
+55:38
+
+When you have shown the diagram, user LLM. Yeah, this one. This one. Yeah, this one. This green color diagram. My query is, user will be giving the query to LLM, and LLM will be
+55:51
+
+giving that query to retrieval, then retrieval will be handling the augmentation, right? Our prompt. My understanding- I'll park these questions. I'll park these questions because this is what my next step. Okay. So I just taken a break, so I'll tell you architecture end to end.
+56:06
+
+So how actually RAG architecture works in detail, I am going to tell you this. Okay. Architecture. Okay? So just hold on, you will be able to understand. Okay, sir. Architecture. Okay. That's what my question. Thank you.
+56:22
+
+Of RAG. Okay? So I will go in detailed. Okay? So I'm just parking your query right now. I'll explain you. Sanjana? Sanjana M?
+56:34
+
+Hi, sir. So we have tool calls, right? So, we have tool calls in the AI model, which can access only the specific database which we want to access, right? So how is an AI model incorporated with a tool
+56:50
+
+call different from a RAG system? I'll show you. I'll show you. The tool call is nothing. You are writing your own functions, right? Define function and all, and you are just saying that, "Okay, go and fetch that data," and then you are giving it. So that's called tool calling.
+57:05
+
+Tool calling, everywhere you can use it. I'll show you that part. Don't worry. Okay. I just wanted to understand the difference between these two, an AI model with the tool call plus a RAG, because as you said, RAG is also
+57:19
+
+used to access one specific database, right? And tool call is also doing the same. So I'm not able to differentiate the two. You can use the first part. When I say no document processing and all, you can use their tool calling also so that they can fetch the data.
+57:31
+
+So when I say document processing steps, you may say that can I use the tools here? Can I use the tools calling here? Yeah, that is possible. Or if you are using MCP part, you have external data. Let's say live data you wanted to fetch it, that time you can
+57:46
+
+use the tool calling. So we'll cover that part. You will get to know. Okay. Whatever I told you in RAG, are you clear that part or not? Yeah, that is clear. Then just hold on. I'll go there, and will explain that part as well. Okay?
+58:02
+
+Yeah, sure. No problem. So who else I can unmute? I can see one, two, three, four, five hand still. So I'll take one more questions, okay?
+58:17
+
+And then I will write architecture. Again, I'll give opportunity. First these five people, you can ask, and then I will take other query. So who is this?
+58:30
+
+Naresh. Go, Naresh. Go ahead. Well, RAG is usually to retrieve the data, right? Basically, to do the read operation. Can we do the write operation as well? Consider we are all ready.
+58:42
+
+For now to read it, we connected to custom RAG to one of the database, MongoDB or Postgres. Can we do a write operation as well to the same database? We'll cover that part. So I have not started that part.
+58:57
+
+Read, write- No, just that is a concern only because RAG is for- You can do it. Oh, okay. Normally, you just think you have a policy documents. Tomorrow policy gets changed. Will you write it or not? Mm-hmm. Okay. Yeah. So you will replace it. So not only read, you can delete it, you
+59:12
+
+can add it, you can commit it. Mm-hmm. Three activities also you can do it with a RAG. Okay? Oh, thank you. So amendment also possible. Amendment also possible. Adding also possible. New data, you can add it, and deletion also
+59:27
+
+possible. All three part you can do it. Oh, thank you, sir. So, guys, now you can see how architecture works actually. Okay? So once you are clear with the architecture, it's very, very
+59:41
+
+easy for you to sync with how this is working, what is this, why we are using it, all. So, guys, what happen when you work in the organizations? When you work in the organizations,
+59:55
+
+first thing first, you will get a source data. You will get a source data. Source data. What is meaning of source data? Source data means
+60:11
+
+company-owned data, organization data, which LLM has no visibility. Yeah? So these source data would be Excel, would be Word, would be CSV, would be TXT file,
+60:25
+
+would be Outlook, would be SQL, would be MongoDB, would be JSON file, would be YML file.
+60:39
+
+It would be Twitter data, it would be LinkedIn data. It would be PDF, et cetera. It would be anything. So means source data
+60:54
+
+would be more than hundreds. More than hundreds.This is the source data. Okay. Now, for the time being, you can consider my source data as a
+61:08
+
+policy document. Policy documents. Okay, you have policy documents there. Now, the first part, what you will do. First part what you will do, once you get the source data.
+61:22
+
+Who will give this source data? Your client will give you. Your stakeholder will give you. Stakeholder will give you. Or you are working in the big company.
+61:36
+
+So they will have own data. Let's say you are working in bank, so bank has own data. They have own customer. So they will give you this data. Now, the part one,
+61:48
+
+what you will do, you can load this data. You can load this data in your system. Load. Okay? In your system.
+62:01
+
+In your system. How you will load it? By the help of LangChain. So here, the LangChain has a big role. LangChain
+62:14
+
+framework. Okay? So this load is, we are saying document loader. Document loader.
+62:28
+
+I mentioned here, you can see this, document loader. So what you will do, once you get the source data, you have to load them. This is the step number one. Once load part done,
+62:41
+
+because there are lots of documents there, lots of policy PDF there. One PDF, let's say we have 100 pages there or 1,000 pages there. Now, LLM has certain limitation.
+62:54
+
+LLM cannot read more than 8,192 vocabulary. Now, what happened? In your policy document, let's say we have one lakh vocabulary there in one PDF. Second PDF we have 50 lakh vocabularies there.
+63:08
+
+Do you think LLM has-- They will remember it? No. So what I will do, I will chunk them. So chunking or splitting.
+63:22
+
+Splitting, or you can say transform them. We will transform them. So next step is called chunking, transforming steps. These all are called step one. Please remember.
+63:36
+
+Step one means document processing, doc processing. So when you load the documents, when we load the documents, these documents when you load it,
+63:48
+
+in one document we have 100 pages, second document 1,000 pages, third document 5,000 pages. So what you will do, you can transform them. How you will do? With the small chunking.
+64:04
+
+You can split 100 pages into multiple pages. If anybody is coming from-- They know deep learning, even though I have not covered deep learning yet. But if you guys know, there is a batch size there.
+64:16
+
+Did you remember batch size? Whenever we are writing code, we are writing batch size equal to this, means I'm splitting it. That is what actually happening in the chunking. Chunking, we have a different methodology there.
+64:32
+
+Different techniques there. I'll cover all techniques. Document loader has a different techniques. PDF you can handle different document loader. You have some website there, you can use Beautiful Soup.
+64:45
+
+You can use different approach. Similarly, chunking has a different approach. But what chunking is, we are splitting these documents into multiple chunks. That is called chunking.
+64:58
+
+That is called transformation, transform approach. And once you chunk them, you split into small bucket. Where each document, if you give to LLM, they have a visibility, they can
+65:11
+
+read, where we have less than 8,192 vocabularies there. Yeah. LLM can read entire documents. So LLM read as one document.
+65:23
+
+Each chunk as a one documents. Correct? And they will not miss anything. They will not lose any information. They will remember everything. And once this chunking part done, guys, then
+65:36
+
+our rule is, then what we will do, we will convert into embedding part. We will convert into embedding.
+65:50
+
+Okay? So same data, add chunk there. Same chunk, I will convert into embed.
+66:06
+
+Embed meaning is, we'll convert text to vector. This is very interesting, full maths there. I'll explain you.
+66:22
+
+Full maths there. I'll explain you tomorrow. We will embed them. We will convert text to-- This is chunking means please remember text, and embedding means please
+66:34
+
+remember vector. Number. Guys, I'll share this PPT. Whatever I'm doing it, please make sure you have to make your own notes, draw like that. Because your target is
+66:47
+
+you can focus on the architecture role. So you have to know it. Now, once I complete this process, embedding part, then you can say, okay, one time only I wanted to do embedding. I will not do embedding again and again. So I will store somewhere.
+67:02
+
+I will store somewhere. And that storage part is called vector database.It's called vector database. Okay? This is called a store.
+67:16
+
+Vector database. So whatever the embedding there, that embedding you can store somewhere. That is called vector database. There are lots of approach there, Pinecone there, Facebook similarities there. We have Chroma database
+67:32
+
+there. So we have different methods there that we can do. This is the part number one, and this whole process is called indexing. Indexing.
+67:46
+
+Please understood, guys? Whatever I have written, document loader, chunking, embedding, and vector databases storage is called indexing. Are you clear how it works? Can everybody give me yes, no?
+68:01
+
+All my dear friend. Super. Very good. I'm very happy people are responding. Okay. Now, I will explain. Don't worry.
+68:16
+
+I'll explain line by line how document loader works, what are the methods there, how chunking works, what are the types there, what are the methods there, which strategy, which chunking I will go where, how you will do embedding, what are the embedding techniques there, what maths behind that, how
+68:32
+
+they are converting text to number, right? What is the mathematical intuitions behind that? So all these things we will discuss, and then how you can store into different vector database. Okay, that is what we can do it. And document loader, when I say they
+68:47
+
+have a feasibility, right? They can pick any datasets. If I can go, and I'll show you the presentations here. You can see this. Document loader
+69:01
+
+load document from many different source. LangChain provide over 100 different document loader, as well as integration with other major provided in their space, like Airbyte and Unstructured.io
+69:14
+
+frame, right? LangChain provide integration to load all type of document, whether it's HTML, PDF, code, from all type of location: private S3 bucket, public website, anything is there, everything is possible, guys.
+69:29
+
+This is the part number one. Are you guys clear when you see this architecture? When you see this architecture, are you clear? So what happened? First thing first, your organization will give the source data. Okay? Source data would be anything. What you will do, you will load the data
+69:44
+
+in your system. Here, the processing is started. Your job get started. Then what you will do, you can transform them. Means you can chunk them. You can split them. This document you can split into a small bucket. And whatever bucket there, you have to convert into number.
+69:59
+
+Which is called embedding techniques. And whatever the embedding there, you will not do again and again because there are lots of cost there, embedding. There is a charges involved. So you can save, you can store somewhere. Once you store it, then you have to use the retrieval
+70:14
+
+augmentation system there. So this part, if you are clear, can I go and talk about the second part, step number two?
+70:29
+
+Dheeraj, why are you worried? I will tell you. Organization has a different dataset. Here I will tell you myself. There will be a lot of different datasets. Why are you worry about this? Focus on learning. Don't worry.
+70:42
+
+If you are able to play six balls, are you not able to play 10 overs? And if you are able to play 20-20, are you not able to play 50-50? Or are you not able to play test match, five-days match?
+71:01
+
+Same pattern, same method. Same thing happen here also. If you are able to do with a small dataset, hardly matter for huge dataset. Only you need GPU machines, you need some more details.
+71:13
+
+So I'll show you that part. Don't worry. Guys, so this is part one. Part number two is? Part number two.
+71:28
+
+Okay. User will ask query. It will go and connect to the retrieval part.
+71:43
+
+It will go and connect with the retrieval part. It will not connect to the LLM first. What retrieval will do? Whatever the indexing is there. Knowledge database there, I'm just writing here. External
+72:00
+
+knowledge database. Guys, can I say this is the part number one? How you reach part number one, you are clear? How you reach here, this part?
+72:17
+
+Are you clear that part? So this whole process I'm giving in one bucket, which is called external database. Now, if user will go and ask a query, what retrieval
+72:33
+
+will do? They will go and fetch the data from here, which is called similarity search. Similarity search. Okay? Here I will teach you some different method also.
+72:45
+
+Re-ranking methods. We have something called RAG fuse methods. Hybrid methods or key search methods. So that part we will do. Let's say I'm saying similarity. So what it will do?
+72:58
+
+It will search. Whatever the user ask query, that is given in the external database or not. It looks like very simple, but believe me, it's very difficult. It's very hard. Because query is also into text format, please remember.
+73:11
+
+Here, external knowledge database into vector format.Okay, vector format. Embedding format. This is called embedding data, embedding format. So what happened? The way you have done embedding here, same thing, this query also get
+73:26
+
+embedded. That also get embed. And that embedding and this embedding, both are numbers, right? We will use some techniques here. I'll tell you what techniques there. Yeah, there are some key search there,
+73:39
+
+K value there, HNSs there, right? There are some different methods there. By this, we are going and finding it. Once you find it, you can take that information back. Yeah? You can take that information back.
+73:53
+
+You can say, "I wanted to take that information back in my system." Are you guys with me? What you will do? You can say, "I wanted to take that information back."
+74:08
+
+I wanted to take that information back. Yeah? So retrieval main work is they will go, whatever the user asking query, they will connect with the external database, and they will take the
+74:22
+
+relevant informations from there. What they will do? They will take the relevant informations from there. Okay, so you can say they will take a relevant information.
+74:36
+
+Relevant information. Information. Yeah? Now you may ask questions. What do you mean by relevant information? Hmm? What do you mean by relevant? Let's say, guys, you just think,
+74:49
+
+logically, my dear friend, if I ask this question, user is asking what is deep learning? Now, if we have in external dataset, there are thousands of books there or thousands of chunking there.
+75:03
+
+Everywhere this question is written there. What is deep learning? Can you say only few documents? Few chunking you will get some what is deep learning, yes or no? Hmm?
+75:16
+
+Otherwise, different documents has a different thought process there, right? So what they will do, they will use the relevant information by the help of-- There are some methods there,
+75:28
+
+my friend. By the help of relevant documents, you can say there is a concept called similarity search, right? There is a concept called similarity search, and when you write it
+75:40
+
+we have something called HNSW. HNSW. Okay? We have cosine similarity.
+75:56
+
+We have K parameter. Let's say I'm saying you can fetch only five documents. So by this logic, HNSW, what is this? I'll tell you. Or just park it for the time being. We will use the
+76:08
+
+cosine, and we will take the K equal to five document. That document is-- That document, these documents is called, five documents is called context.
+76:21
+
+So out of this external where you have a millions or billions or trillions of data there, or data means chunk there, embedding there, there they have to find and take the relevant document, relevant information,
+76:35
+
+relevant documents. Right? That relevant docs is nothing, it's called context. And then retrieval will give back to the system that, okay, this is the user query. This is the user query. I have find this context.
+76:50
+
+Okay? User ask this query. I have connected with the external datasets, and I have given the context here. Now you can go ahead and do the next part. Now here augmentation will come into picture. How?
+77:06
+
+Augmentation will come into picture. Augmentation. So what augmentation meaning is? What I told you, simple definition, simple
+77:20
+
+colloquial meaning, enhanced prompt. Enhanced prompt. Okay? So you have to write a prompt that, okay, if the user is asking question, that information is given in the context, give the answer.
+77:32
+
+Otherwise, simply say, "I don't know." Yeah? And don't assume, don't articulate like that. You have to give the realistic response. Yeah? Like that you have to write augmentation.
+77:47
+
+Once you write the augmentation, it's basically a prompt. But why we are writing augmentation? Because augmentation meaning is prompt you have to write advanced way, enhanced way. Yeah?
+77:59
+
+That is called augmentation, so that hallucination will not occur. And this part is done, then you can say, okay, fine. Then this augmentation get connected with LLM, large language model.
+78:13
+
+An LLM actually trained. You know that they will give the question answer, they will do all these things. So this LLM will generate the output. So part one
+78:27
+
+is R, part two is A, and part three is part G. And this generation part will give the output
+78:41
+
+response. And that response user will get back. This is the architecture, my dear friend. Anybody have any question? I'll take a pause now, and please go and
+78:54
+
+ask. So three, four members has raised hand, let me give opportunity for them first. Rupesh, sir, over to you. Sir, I'm bit clear there. When we are getting the context
+79:07
+
+means the relevant information from the external database to retrieval system, right? And-And query. So this query is the same query which
+79:21
+
+user has asked on the first step, right? And then I'm giving it to the augmentation system. So what it will do? It will enhance the query which user has written? It will enhance the query. So here when I say augmentation, first enhancements,
+79:34
+
+they can handle the hallucination part. Whatever the user has asked query, base is this context you will get it. Context means you are just copy-paste. Can I say some of the chunking it came here?
+79:48
+
+Right. Which is not like a human answer. Some information there. So what LLM will do? They can articulate like a human answer, and then it gets generated. So you are asking- One by one, sir.
+80:00
+
+So this query, the user query will be enhanced with the proper prompt, and I will get some chunk of relative information. Very good. Right? And then again you are giving to LLM, right?
+80:14
+
+Upesh, hold on. User query will not get enhanced. Okay? That is fusion method I will teach you. You will understand later. Right now you simply understand user can ask any question. Let's say you are a user. I build a chat.
+80:27
+
+Mm-hmm. So you will ask questions. Now, whatever the context you got it, this context is what? Can I say external database? Can I say some of the bucket they have just taken this information? Right. Can I say there are three box you got it?
+80:42
+
+Right. It's hypothetical, you can think about this three box you got it. Right. This three box is what? Just information there, it's not like a human answer. Right. Chunk. Now, here augmentation, what augmentation will do, they can
+80:56
+
+enhance this word to human-like answer. Uh-huh. So you are saying, first thing first, user is asking query if that is given in the context.
+81:09
+
+Mm-hmm. Whatever chunk you got it- Mm-hmm ... if that information is given here, then only you can give answer. Otherwise, you can say, "I don't know." Oh. Can I say hallucination part done?
+81:21
+
+Right. So you will- Second part you are saying- Right. Okay. Mm-hmm. Second part augmentation, what augmentation will do? They can say, "This information you have to articulate like a human answer." So you don't copy-paste that
+81:34
+
+this is generation. No. Then retrieval done, right? Mm-hmm. You can say this is maybe editorial, right? This is few pages. Mm-hmm. Let's say these are in one chunk you have a five page there. Another chunk you have seven page there. Another chunk you have 10 pages there.
+81:49
+
+Mm-hmm. So these part you can find the user query answer from these three documents, and then articulate like a human answer, so that LLM will see the prompt, and then accordingly they will generate the human answer.
+82:04
+
+So augmentation itself will do what answer user is looking for. So what is the role of LLM here? So augmentation is just a prompt. Prompt means what? Instruction, input. You are writing a design.
+82:18
+
+Who will do this? Who will make this human-like answer? LLM only, no? So augmentation means what? Instruction only, right? They are just prompt, means input. You are writing a input. What prompt do when you
+82:32
+
+are using- No. Input for whom, sir? Because for me, understanding is query is my input. Yes, Sirji. Wait. Let me go here.
+82:47
+
+This is the prompt. Okay? Prompt topic I have covered. Right. These are the prompt you have written. Mm-hmm. And this prompt you are passing to GPT, then only GPT is generating the output, no?
+83:08
+
+Yeah. Because I have a open data source, so that's why I'm asking here the model. So leave this open data or- No. Why it is related? Because I have already answered from the knowledge graph.
+83:20
+
+Okay, you are getting the chunk. Chunk you are giving it to the A, and when A is just getting the relevant information from that chunk- No. Here- Answer. Upesh, one thing. See,
+83:32
+
+here what you have seen, you can say the LLM has which dataset they are connecting? Open source dataset. Open source data. Are you with me? Right, sir.
+83:45
+
+And then whatever the prompt you are writing, that prompt you are giving to LLM? Correct. And then LLM is connecting with open data source and giving the answer? Right. Correct.
+83:57
+
+Now in RAG, what happened? In RAG what happened? Instead of open source data, you can say we have external. Not external, context data. Context data which retrieval will give. Can I say this is the information you are getting?
+84:09
+
+Right. Context. Now, here you are writing a prompt. That prompt you are giving to LLM, and that LLM get the information from where? Only context and giving the response. That is the only difference, no?
+84:23
+
+So this context, RAG will give it to the augmentation layer, and augmentation again will give it to the LLM? Correct. So how LLM get the instruction?
+84:38
+
+When you say open source data, LLM is getting instruction from prompt or not? Right. Similarly, here when you can say when I am going here, this LLM need some prompt. So that prompt,
+84:53
+
+LLM which data they will fetch? They will fetch from this data only. They will not fetch this data. They will fetch this data only. So A will not give the context to LLM or LLM will again contact to the context here?
+85:06
+
+How it would be? No. Same. So that's why I've given connection. So you can add one more boundary for your reference. Mm-hmm. LLM get instruction from augmentationInstruction from augmentation.
+85:21
+
+That okay, go and fetch the data only from context. Mm-hmm. Okay. And then they will generate out. Okay. So now it's- So that's the only difference. Got it. So LLM only can do this, right? When prompt has-- Augmentation layer already
+85:35
+
+have everything, it cannot process that, but LLM only has that out. Yes. That could do that. Okay. Yeah. Who else? Yogesh, you have already asked question, no?
+85:51
+
+Or no? Unmute it. No, sir, I have not asked. Okay. Okay. Go ahead. Yeah. See, in previous class sometime, I don't know in previous lessons, like you
+86:06
+
+explained, we write our own bot, our AI bot. And then, in that also we put some documents. We can put documents, we can attach whatever we want. Also URL.
+86:19
+
+Sorry? Which is called long context window. Yeah. So no, I'm just coming to that question. So there, what I understood is like we are training the LLM
+86:34
+
+using that data, that is what training the LLM, and we get the result based on this. But same thing we can do there also. Now you are telling here, RAG, we are custom- No, there you can't do. Okay, I'm coming what you are saying.
+86:46
+
+So see, there are two methods there, okay? There are two method. Guys, this is very good question he asked. Please remember. One, when I cover the prompt engineering, if you guys remember,
+87:00
+
+I have mentioned close domain question answer. Right? Or I use the word long context
+87:14
+
+window. So what happen? Long context window you can only use when you have a documents, right? Let's say PDF. First, only one.
+87:28
+
+Second, only text. Third, very less information. Then you can say to LLM
+87:42
+
+that whatever the information's there in this document, directly you can take it and give the answer. That we can do it. But you can imagine if you have a
+87:59
+
+multiple PDF. You can imagine you have image also. You have Excel also. You have table also. Do you think this method works?
+88:11
+
+Rupesh, sir? Not Rupesh, Yogesh. No. It will not work. You need to input lot of data. Then, sir, we need RAG. Mm. Okay, so this is one of the scenario there.
+88:24
+
+When you can say, "I have a small data and only text data there," why I will go and build some complex architecture? Why not I can directly pass all the data, only embedding is required. Correct? Mm-hmm. Only there I will convert into embedding, and then I will give to LLM.
+88:38
+
+LLM will read and give the answer. Here you can do it. But please remember, if user will ask 100 time question, 100 time embedding happen. Mm. So, one of the challenge is there.
+88:52
+
+Yeah. Yeah? Now I understood. Go and give the answer. So- Here, do embedding ... so what is the difference between then training the LLM? Say,
+89:05
+
+training the LLM means already now LLM is created and published to users. The LLM is trained already, and the data, whatever I am embedding or creating the vector data,
+89:18
+
+that is what is the training data to LLM. Training means LLM already trained, sir. You already know how to ride a bicycle. Now, if I give you any kind of
+89:31
+
+brand, you can easily ride it. If you know how to drive a car, other car I will give you, you can easily drive, no? But if I will give you-- You can just do something beyond this, which is not there in the training.
+89:44
+
+So LLM actually trained with the text data, image data set. So we are leveraging it, and we are giving the same kind of data, but it's an internal data. Yeah, we are saying you have to go and fetch the source data, and then you can connect from my vector
+90:00
+
+database, and on that basis, you can give the answer. That is only thing. So LLM already trained. When I say LLM means they-- You know, right? Any GPT model you can take, they have taken almost all the open source data,
+90:15
+
+and then the training happen. Then only your GPT or Cloud or Gemini or Perplexity, they are responding it. But they will not respond your internal information, organization
+90:28
+
+information. How you will tackle that? How you will leverage that LLM and you can utilize in your day-to-day life? So LLM is trained to handle text, image, or whatever in
+90:41
+
+general. They know what type of data, how to handle. Then when it comes to any data, you input your own personal data, then it can read that particular document instead
+90:54
+
+of open source, and it will give the answer. That is what is meant by training, right? LLM means algorithm. LLM means model. So if you have a text data-
+91:07
+
+Mm-hmm ... you have image data, you have audio data, you have video data, you have tabular data, table data, right? Let's say these are the things there.Which model you will use?
+91:20
+
+Will you use supervised machine learning model or deep learning model, or you will use advanced model? Can I say I will use LLM model? Mm-hmm. It will give the output. Output, again, the same format. Text format, image
+91:36
+
+format, audio format. You can say video format, like that you will get. So this LLM we are using. If you can say here we have
+91:51
+
+row and columns there. Right? We have tables there where we have multiple columns, multiple rows there, and all our numbers or some char there, and I wanted the answer, yes or no.
+92:03
+
+Can I say my model, my algorithm would be classification model? Correct or not? So you will go by the machine learning. But if your dataset, raw data is like that, then which model you will use? LLM model. Why LLM model?
+92:15
+
+Because they already trained with these kind of dataset. Now they trained with this kind of dataset, but not trained with your internal organization dataset or confidential dataset.
+92:29
+
+Understood or no? Yeah. Understood. Okay. Sai Ganesh, what is your query?
+92:46
+
+Yes, sir. So can you give one example from query to response? I couldn't able to understand while we are retrieving the relevant information, then what is the context it is going on? And
+92:58
+
+when this, again, this embedding is transformed into text and where it is transforming again? I didn't understand, sir, what you are saying. Sorry.
+93:11
+
+After getting relevant information from the external database- Yeah ... how again it is getting transformed from embedding into text, and where it is exactly,
+93:23
+
+in which step it is getting done? That is one of my questions. And another question is, can you give one example? I couldn't able to understand what is that context and query.
+93:37
+
+Context means relevant documents. Context is nothing. It's called relevant documents. These relevant documents, whatever you are filtering it, let's say K equal to five, so five documents you got it, that is called context.
+93:52
+
+Oh, okay. Then it is the same step as relevant docs information you have. Okay. Absolutely, yeah. So what retrieval will do, they will go and do the similarity search. They will filter it. Based this parameter, they
+94:04
+
+will fetch the five documents, and that documents they are giving, which is called context. And retrieval is saying that this user asked query, and on that basis, I got this context. Now your work. So augmentation will come into picture.
+94:17
+
+They will write a prompt here, so that hallucination will not come, and LLM can only fetch the context information. These two things, augmentation will give instruction to LLM, LLM will generate the answer, response gets generated,
+94:30
+
+query will come. For this prompt alone, can you give one example, like exactly what-- It's like a system prompt only, right? What example any give? For example, a query is asking what is deep learning. I will come, then I'll explain you. Yeah. Okay.
+94:44
+
+Okay, I will come and I'll explain you how you will write a prompt. So normally, whenever we are writing a prompt, we are saying, you are an assistant who is an expert in question answer task. Answer the following question.
+94:56
+
+Following question means whatever user is asking. Only give the information which is available in the context. If the answer is not given in the context, do not make up answer. Just say you don't know. Keep the answer as detailed as
+95:10
+
+possible, and answer would be just like a human language. It well-formatted based on the information. You can say whatever user asking query, on that basis, you can give the answer. This is what augmentation you will write it.
+95:26
+
+Okay. And at the final stage, where this embedding is transformed again into text? Here only, external dataset. Okay. So here, when generation saying, no generation is giving response in
+95:41
+
+the text format only. Okay. From a generation- LLM know this part. So here also the query is coming into text format. We will convert first embed. This embed will go to the retrieval.
+95:53
+
+Retrieval will give, and they will do some internal mathematics. They will give the context here, all these things. When LLM see this part, they will generate. That generate part is nothing. It's a text format.
+96:07
+
+So they will again convert back to your original format. That's what- So in the generation part only, that embedding is converted into text. said no. Oh, okay. Yes. That's it.
+96:19
+
+All examples I will show you. When I will pick the real-time case study, I'll show you line by line, step by step. It's not too difficult. So look, guys, I hope I have covered everything. I can see lots of hands are still there. I don't know why.
+96:31
+
+But I'm believing that you guys clear now. All step by step I explained you very detailed. Taleg, go ahead. One question I'll take. Himanshu is there. Himanshu, go ahead. What is your query?
+96:44
+
+Thank you, sir. I've been raising hand for a long time. So sir, I have three questions right now. First thing is, it will obviously increase your input token size, right? Like the input tokenization will increase because you're adding the context now.
+96:59
+
+So it's a hack. Can I say like that? It's a hack why? It's a hack because we are not fine-tuning. We are actually saying that read from that context, but we are not giving the user query. We are adding the context to it, which is nothing but increasing your
+97:14
+
+token size, the input token size. Is my understanding correct? Mm. Okay. That is first part. So increasing token size is fine. The second thing is when you say the similaritything will happen and
+97:29
+
+external knowledge database will retrieve the context. Let's say K is equal to five. We retrieve five chunks. Now, these chunks are nothing but actually embeddings. Will that be again moved to a
+97:42
+
+text so that the context can be added to the prompt, or will it remain in the embedding format when we pass into this one? Embedding format only, but LLM has the visibility. You don't have visibility. When I cover the embedding, I'll show you what is this meaning, because it's a
+97:55
+
+black box. Okay. But I'll show you how it happen. But LLM, they will fetch the embedding part only, and after, once the LLM generates the output, they will convert into a text format then give the response.
+98:08
+
+Understood. The third question is, when I add the LLM layer, it is only for generating the next word based on the context so that it doesn't-
+98:20
+
+Based on the context ... give me the external links. It will simply give me the precise output across the chunks. Is my understanding correct? Absolutely. External link means you can also say here in augmentation- Uh-huh ... response, whatever generation happen, you can also give me the citation.
+98:34
+
+So LLM can give that, okay, out of three, first documents, the query is pertaining there. So this is the documents. So citations- Understood ... it will give you, but they will not fetch out of the context information.
+98:48
+
+Got it. So if I have five chunks coming from different citations, basis the chunk, it can actually go into that link and give me that. It's a metadata kind of thing. Citation it will give. Yes. Understood. Thank you. We can proceed. Thank you so much.
+99:01
+
+Okay. So guys, let me see some query in chatbot also. Chat, what is this? Chetan is saying, Gemini AI search in google.com, classical example for RAG. Here the source is the website, but all happen in the
+99:16
+
+fraction of second. I don't know what you are saying. Gemini, OpenAI, Cloud, anything you can pick it. Those are just LLM model. So I'm not categorizing by company-wise, I'm categorizing whole.
+99:30
+
+So if you know RAG, you can go and implement any model you can picked it. Whether it's a fraction of second or it's a-- What is this? How can we decide K parameter? I will come.
+99:44
+
+Here, I'll tell you. Something is called reinforcement learning human feedback. So you can also give the human feedback. You can also think. Puja is saying, can we say RAG works with both internal vector database and LLM?
+99:57
+
+If you write augmentations here that, okay, fetch the information from context and external source also, then definitely this will work. But then what is the purpose for using RAG?
+100:12
+
+Hmm? Can we use RAG without LLM? No, you can't. Kumud, you can't. Kumud has raised hand for a long time. Are you there? Yes. Kumud, what is your query? Yeah.
+100:24
+
+You cannot use without RAG, LLM. So I just want to ask one thing, sir, is that on a traditional, like as in low-code platforms we generally use, let's
+100:36
+
+take my organization is building something that doesn't require the external answers, right? I just want internal repository, like as an HR buddy. Everything can be done with the internal chatbot.
+100:48
+
+So in that case also, I just want to use the RAG. I have a lot, many documents are there. See, one thing I wanted to tell you, whether you can use no-code, low-code platform, whether you can use cloud, Azure, AWS,
+101:02
+
+GCP, or you can use from scratch, in Python query, and then you have to build it your local external source, Chroma database, and you can build it. Everywhere, the same method works. So when you say low-code
+101:15
+
+platform, there also the same techniques work, sir. Internally, same setup there. No changes. All right. When you spoke about data studio. So in a normal chatbot also, sir, I would be requiring to go
+101:28
+
+ahead and use the RAG, and then I think the LLM, which you have explained, is basically is working as a transform and generation to the response, right? In that case, particularly. I got it, sir. Thank you. It's sorted.
+101:42
+
+Who else? Kumud, sir, just unraise your hand. Vani, you have raised hand for long time.
+101:59
+
+No? Vishwas? Yeah. So, can you just once tell me, wanted clarity regarding that. During
+102:21
+
+the augmentation, we are providing a enhanced prompt. So as a user, is the user providing that prompt, or we are
+102:34
+
+already giving that prompt while developing the- You will provide. User will not provide, you will provide. As a developer, you will build a RAG, you will provide it. User will not know the backend thing. Like during our architecture of the system, we will do it, right?
+102:48
+
+That time you will. Okay, sir. Got it. Thank you, sir. Sir, this side, Piyush. Vani, can you hear him? Yes, I can. Yeah. So, I have a question regarding chunking.
+103:01
+
+If suppose in my organization database, I have two document, and one document token size is 70 and other document token size is 30. And as a parameter, I am using chunking
+103:15
+
+size is 50. So, how many chunks it will- Can I park, Piyush? Can I park this question later? Because I told you- Okay ... no, I will speak you line by line, I'll explain you. First I will cover how document vector works-
+103:29
+
+Okay. Sure ... how chunking will work. Okay. Thank you. If I explain now, it will deviate the topic. So architecture-wise, everybody clear or not? Give me yes, no. Yes. Architecture-wise, are you clear or not?
+103:42
+
+Forget about the techniques. I'm here, I will explain. I'm not going to leave anything. All topic line by line, I'll go. But architecture-wise, you can close your eyes, and I can say, "Please tell me the RAG architecture." Are you not in the position you can
+103:55
+
+say, "Okay, we have a document here. What I will do, I will load the document, I will chunk the document. I will embed the document. I will embed them, and then finally, I will store somewhere."
+104:09
+
+Finally, I will store somewhere. This is called vector database. Vector database. This is my step one. It's called indexing. Now, user will ask query. User will ask
+104:23
+
+query. It will go to the retrieval. Retrieval will fetch the data from here by the help of similarity search. They will take the relevant information. They will take the relevant information. That relevant, let's say, document equal to five, that five documents is nothing.
+104:39
+
+It's called context. Whatever the user ask query, these two thing, context and query, RAG will give to the augmentation.
+104:53
+
+Now, augmentation, what it will do, it will write a prompt in certain way so that it will give instruction to LLM boss. LLM model, please only take information from here. Don't go anywhere else. Don't go in the vector source.
+105:05
+
+Don't go in the external source. Only fetch the data here. Whatever user is asking question, retrieval each time they will give you the context, and you can give the answer based this information only, and then LLM will generate the output. And that output is nothing.
+105:19
+
+It's a text format, same answer, response user will get it. Is it difficult to know this architecture, guys? Are you in the position or not? Will you speak the same language when you go for interview or not?
+105:33
+
+Hmm? Is it difficult, my friend? No. Architecture-wise, it is looking good, but one query if- You only have to concentrate architecture. I'll go deep dive.
+105:46
+
+I'll go, I'll tell you what is the loading method, what is chunking method, how you will do embedding, how you will do vector database, all part. Architecture-wise, if it's okay, fine. I wanted right now only this thing. I'm not worried about other part.
+106:01
+
+Yeah, but if we give confidential information to LLM, then how it will be restricted? That's what I don't know. For that, madam, what I have mentioned here. You guys are not listening, actually.
+106:13
+
+Did I mention somewhere here? Mm-mm. Did I mention here?
+106:32
+
+Once I complete this, I will also use the observability. I will make LLM as a judge. I will make a guardrail. I will use the evaluation metrics so that confidential data will not go disclose anywhere.
+106:46
+
+Okay. I will take all part. So I will tell you all part. No? Okay, sir. This is what I mentioned, guardrail in RAG system, guardrail observability, LLM as a judge, all these things, I'll cover it. Don't worry.
+107:00
+
+These are the things I said, no? Okay, sir. Understood, sir. Guys? All my friend? Hmm? Now, tomorrow onwards, anybody will ask this question that how
+107:13
+
+architectures or what is meaning of RAG, I will kill you. Okay, please remember retrieval augmentation generation. Theoretically, anybody ask you, please speak the same language and give the
+107:28
+
+answer. Now, inside how mathematically works and all, that part I'm going to cover now deeper. Deep dive, you will get more clarity. Okay? All happy?
+107:42
+
+Can we take a break now? And once we back, then I'll take the first part, loading part, then chunking, then embedding, all this thing. Great. Once you go for break, I would request everybody pick pen and copy.
+107:55
+
+You can take tea, coffee, anything, just draw this architecture so that you remember. It will come in your hard disk. This is just a simple RAG. I will go in the more difficult RAG, graph RAG or agentic RAG, where you will
+108:10
+
+build a router intelligence system and all. So now the time has come for break. We'll take 20 minutes break. So it's 11:45, 12:05 sharp, everybody please come so that I can start
+108:25
+
+the first topic called loading method with different document sources. So today's my target is I'll cover the document loader and chunking part. Chunking, I don't know whether I will, but loading, definitely I'll cover it. Hmm?
+108:39
+
+Thank you, guys. Sorry to interrupt. Mm-hmm. So for example, if the user asks what is RAG, explain in one line, but in the system, in the enhanced prompts, the system load, we are giving explain in detail whatever the query is asking, explain in
+108:54
+
+detail. Then how does the LLM responds, like in single line or in detail? If anybody ask you what is RAG, you can say LLM knows only open source data. If we have
+109:10
+
+a confidential data, how I can build a question answer system? For that we are using RAG methods, RAG architecture. So what RAG do? They can handle knowledge cutoff limitation, they can handle the privacy compliance data, they can reduce the
+109:25
+
+risk of hallucination, they can provide the source attributes data, they can handle the domain-specific answers, and they will generate the answer. These are the pointers you have to remember and tell one, two, three.
+109:40
+
+Don't go by the book's definition and all.Always go by these points. Will you not remember RAG is a system where we can handle the confidential data? LLM can see the organization data, and on that basis, they can give the information, so that knowledge cut a
+109:53
+
+problem or limitations handled, hallucination problem handles. It's a domain-specific question answer. Domain means if there are five departments there, HR department, finance department, marketing department, five different chatbot you can develop.
+110:08
+
+Okay? So one chatbot, they are trained only with HR questions. So if you go and ask that bot that, "Hey, can you tell me what is the financial documents? There are financial reports there for last year." "Sorry, I'm a HR bot. You can ask HR-related, policy-related, leave-related
+110:24
+
+question answer, I'm happy to give you. But if you wanted financial, I don't know." That is what RAG do. Make sense? Yes.
+110:39
+
+Guys, please take a break, enjoy, and come back. Please remember this is first session. You will not remember everything. Yeah? But gradually you will remember all these things. Okay, so just have patience. Go step by step.
+110:52
+
+Believe me, within a couple of sessions, you feel very comfortable. Yeah? Looks like simple architecture, but there are lots of things there. You will see the complexity, how complex it is.
+111:09
+
+Thank you, guys. See you at 12:05.All
+111:22
+
+right, I'm back now. Mohammed Yasin has mentioned document, knowledge base, document loader, chunking, embedding, text to vector, load vector database, find this
+127:03
+
+context, most relevant document, this most relevant human response, and very good. Super, Yasin. Okay. Guys, are you back?
+127:16
+
+I have to wait one more minute. Yes. Okay. Others are coming. In the meantime, I can see three hands there.
+127:31
+
+So let me take a query. Ashish, are you there? Ashish Kumar? No.
+127:43
+
+Paran? Paran, are you there? No. Rabi Srivastava?
+127:57
+
+Nobody there.Chalo, no problem. One more is there, Dheeraj Negi. Yes, Dheeraj? Yes, sir. I posted that question on the chat also. So I have a very basic thing. So in this context and query block,
+128:14
+
+when we retrieve the context from the embedding from the RAG system. So the RAG system, the context which we gave, we get in the embedding format or the text format? Embedding format.
+128:30
+
+Okay, so this embedding format plus the query which is in the text format is then passed on to LLM? Correct. So this context and this query will be converted into the embedding before passing on to the LLM, right?
+128:44
+
+Both are embedding, by the way. So how you got the context, as I told you. So if you go here, you can see the architecture. This query also gets converted into embedding and then similarity search happen, then relevant documents happen. So here context and query both into embedding
+128:58
+
+format. That is going to the LLM, but LLM has a visibility. The algorithm or a model has a visibility, what is this embedding meaning is. Because embedding is nothing, that is just a chunking.
+129:13
+
+And chunking is nothing, it's just a text. So once they give the response, they are giving into original format. Okay, so both are in the embedding format only. Both queries. Yes.
+129:26
+
+Great. Hmm, Rabi, are you there? No. Yes, sir, I'm here. I'm here, sir. You have asked some questions. Yeah, I have one question, sir. We are seeing
+129:38
+
+multiple time users can search, retrieve the document, whatever. Is there any cache- User will not retrieve. Your systems will retrieve. System. Yeah. Sorry, my bad. So I'm saying is there any
+129:53
+
+caching mechanism is also working in between? It's there. Yeah. It's there. Okay. So we will implement the caching because sometime what happen, the same questions. Let's say you have created a frequent asked questions.
+130:08
+
+Now, same question, if it ask again and again, what is the purpose to go and connect with the vector database unnecessary? They will search from there. Why not they can get it from caching? So caching also there. We'll tell you that part later. Okay.
+130:21
+
+Thank you. So guys, let me write few pointers so that you remember. The
+130:34
+
+need for RAG in your LLM-powered
+130:47
+
+product. Point number one you have to say, knowledge cutoff
+131:02
+
+limitation. Okay? Means LLMs have training
+131:17
+
+data cutoff. Okay? So any LLM you will use, they have some data cutoffs. Means, let's say, GPT-3.5, they trained with the Jan 2022 data only. Yeah? If you take the
+131:30
+
+GPT-4, they trained 2024 data only. But what happened in 2025? So similarly, they can't access-- Who is this? Yes, sir. No questions, I just wanted to know that my system is working or
+131:44
+
+not. Thank you. You can say can't access real-time or
+131:58
+
+recent information without external retriever. Without external
+132:15
+
+retriever. Okay? So why we need RAG? One is knowledge cutoff, second is privacy compliance.
+132:32
+
+Right? So let's say you have a sensitive data. So what happen? If you use the RAG, you can say keeps sensitive data
+132:46
+
+in controlled retrieval system, rather than
+133:00
+
+baked into model parameter. Okay? So if you build a RAG system, that means you are handling
+133:14
+
+the compliance part also. Point number three, what it will do? It will reduce the
+133:29
+
+risk of hallucination. Okay? So you can handle the hallucination part, means what it will do? It will provide
+133:42
+
+source attribution also. Like Himanshu asked. So it will give the citation from where they have taken the data. Okay, it will not connect with
+133:57
+
+internetData.
+134:10
+
+Okay? They will connect with the confidential data only. Fourth, what is benefit? You can build a domain-specific accuracy.
+134:22
+
+So if you have domain-specific bot, you can build a RAG. And what it will do? It enable access to
+134:38
+
+a specialized knowledge base that
+134:52
+
+general LLMs lacks. Okay? So you can say that I wanted to make an income tax chatbot. So in income tax, what are the provisions there? What are the documents there?
+135:06
+
+What kind of provisions there? What kind of articles there? So they have to read, and accordingly they will make a domain specific, which other ChatGPT will not give such answer. Okay?
+135:20
+
+What is the other things? You can handle long tail entities.
+135:34
+
+Okay? So LLM are known to not do well on the item that are rare in the training data set. Okay? Just simple question I'm asking. You can go and ChatGPT, and you can ask questions about the Einstein.
+135:47
+
+What you think, guys? There are lots of research paper, lots of documents available there in internet or not? If you go and ask about Einstein, you will get lots of research paper, lots of documents about Einstein.
+136:03
+
+But if you ask general some other professor detail, do you think you will get that much information? Any college you can take some, they are not very famous. So if you go and ask about that Professor A, B, C, D, right?
+136:17
+
+They will not give the answer. But if you ask about the Professor Einstein, right? You can say Professor Geoffrey Hinton. So there are lots of documents there you can easily get it. So it's more likely to get right answer about Einstein as
+136:31
+
+compared to assistant professor somewhere else. Make sense what I'm trying to say? You can say about the Arnav Goswami. Everybody can talk about. Nation wants to know and all.
+136:45
+
+But on the other hand, if you go and pick some other reporters, they are not very famous. Rarely you will get some videos and all. Are you guys with me?
+136:59
+
+Yes, no, full silent. My God. Too difficult topic. Okay. So next,
+137:13
+
+point number six. Why we are using RAG? You can say, RAG, what it will do? It is retrieving
+137:26
+
+external knowledge. Right? Means when you build a chatbot you can plug
+137:45
+
+knowledge gaps of LLM. Mm-hmm? Why? Because you can retrieving
+137:58
+
+context history. Yeah? Say if you wanted to make a long-term conversation on the same topic,
+138:12
+
+you can use the RAG system. Why we are using RAG? Because retrieving in context
+138:27
+
+training examples. So what it will do? It will help LLMs get
+138:41
+
+acquainted new task. Okay? So the context there on the basis you can go deeper, deeper, deeper. Right? And you can ask it. So these are the broader perspective there, that's why we are using RAG.
+138:56
+
+Please remember, make a proper notes. Whatever things I have mentioned, my writing is very poor, guys, as I told you in beginning itself. But please make a proper notes, RAG onwards. It will really help you. You will get to know.
+139:11
+
+Can I save this in PDF and can I share these things? And then I will go into document loader, the coding part. Yeah. So let me save this.
+139:25
+
+6th June 2026. Okay. Now let me go here, and I'll show you some notes also.
+139:52
+
+So you can go this documents also, you can see, guys. Introduction to retrieval-augmentation generation. Few issue with the LLM. Like I said, LLM like GPT lack the latest information,
+140:08
+
+right?Means you can say they have knowledge cutoff limitations part there, but this information is available via Wikipedia, Google, Bing, et cetera. Now if we can connect
+140:23
+
+our LLM with those sources, we can build much better application. Yeah, so in one part, knowledge limited. Second, many LLM application require user-specific data that is not part of the model. That means organization data and all
+140:36
+
+domain-specific data, all. So these are the challenges there. So what is the solution? Solution is the primary way to fix this issue is through retrieval-augmentation generation.
+140:51
+
+In this process, external data is retrieved and then passed to the LLM when doing the generation steps. Yeah? LangChain is the ecosystem. They provide all the building blocks for RAG application.
+141:05
+
+So whatever things I told you in the part one, document loader or chunking, embedding, vector storage, all these things I will get it from LangChain. That's why I told you LangChain is very big, and you will literally feel amazing if you know LangChain. Yeah?
+141:20
+
+Now from simple to complex task. These sections, the documentation cover everything related to the retrieval step. Example, the fetching the data. Although this sounds simple, it can be certainly complex.
+141:36
+
+That encompasses several key elements. So what are the key elements? Retrieval, augmentation, generation. What is meaning of retrieval? Fetching the data from external source. What is the meaning of augmentation?
+141:50
+
+Enhancement or improvement by incorporating retrieval information. Means enhancement prompt. Enhanced prompt. Generation means using a LLM-based model to generate human-like text.
+142:03
+
+Are you clear these three jargon words now? Yeah? So already I explained this. This is the part number one. So if you have a source data, you can load them, you can chunk them, you can embed them, you can store them, and then you
+142:17
+
+can apply the retrieval part. What retrieval will do, any user is asking query, it will go to the retrieval. Retrieval will search from the storage, and then they will get the information, and that information they will give to
+142:31
+
+user. So this query and this context, whatever they got, both they will give it, and then it will go to augmentation. Augmentation will give to LLM, and LLM will give to answer generation, and generation will give the response, and that response
+142:44
+
+user will get it. That's the whole architecture there. Now, first part is document loader. Okay, so let me pick this document loader.
+143:00
+
+Let me pick this document loader. Control.
+143:12
+
+Okay.
+143:29
+
+So document loaders.
+144:09
+
+Okay, so what is document loader, guys? As you already know that document loader is nothing. Document loader means whatever the source document, you will get it from customer. You have to take it from there, and then you can build it.
+144:21
+
+Okay, that is called source data. So let me show you how it is actually working. How it is actually working, what you have to do. So there are so many methods there.
+144:36
+
+Mohammed is saying, "Sir, can you explain how image table or graph will store into?" So I will come, no, Yasin? Why you are worried now? Did I jump into vector database directly?
+145:00
+
+I'm going step by step, no? Document loader. So I will go the image also, I will go all these things. When I will cover the multimodal, I will cover the image, I'll pick the image and all. Like that you will learn. If I go here and there, it's not
+145:12
+
+a TED Talk, no? So you can talk me anything and I can start speaking. It's a class you have to know, understand it, know end to end. When I'm doing TED Talk, I'm talking like that only. When I'm going in any speech there, you can ask open
+145:26
+
+question, answer. So first you understand, what is your purpose? You are learning here to get a job, so you understand all the concept, and then I will go. Don't worry.
+145:40
+
+Okay. So guys, you know what I'm going to do here? So, I'm picking some different source of data. So let's say we have text loaders there.
+145:56
+
+We have CSV data there. We have HTML data there. We have web-based
+146:10
+
+loaded data there, loaders data there. Right? You can say we have JSON files there. So any kind of data there hardly matter for us.
+146:24
+
+You can see any kind of data you will get it everywhere. You can go and easily implement it. It's just like a cakewalk for you. But how you will do it, that matters a lot.
+146:38
+
+How you can do that part, that is the main thing that you have to know it. Okay? So we have documents loaders there. You can say, okay, in documents loader, we
+146:51
+
+have a different source of data there, right? So how we can handle them? So let me go one by one. I'm explaining to you how you will do it. This is just a few set of data I have taken, which is
+147:06
+
+very famous. In an organization, you will work very frequently. PDF.
+147:19
+
+Some audio data. You will see these things. So I'm going to do one by one. Now, whenever you do, how you remember it, you can go in the internet. Initially, you can say here,
+147:34
+
+LangChain document loader. Okay, you can see here. So this is my document loader LangChain communities there. You can directly go here.
+147:50
+
+You can see, guys, these type of data, you can handle it. And we have a different format there, right? You can see different models also available there. You can integrate with different dataset.
+148:05
+
+These are the classes there. So let's say you have a CSV data there. You can pick the CSV. Click here, the CSV dataset, and you can get the complete code here.
+148:19
+
+Okay, complete code, how you will load them, how you will do it. So you just go and search it, what kind of data I have. Okay, what kind of data I have, how we can load them, what is the methods there. So you can just go here.
+148:33
+
+So reading documentation also help you. You can just go see different sources because 100 data you don't remember, right? All these things. So it's better you can go in the documentation,
+148:48
+
+see which kind of documents available there, and then accordingly. Let's say you have a PDF document there. You have unstructured data there, powered there. You have a PDF there. You can just click PyPDFLoader, and you can
+149:01
+
+see that how we can handle it. Click this, and then you can say this is what we have to install it, and then we can write PyPDFLoader. You can give the PDF file, and then you can get this answer.
+149:14
+
+So all documents, everything is there. This is the way to read it. So let me give this link also for your reference. So whenever you have a bandwidth, I definitely suggest my friend,
+149:27
+
+you can go it. Okay. So this is the reference there that you have to read it. Now I'm going one by one, line by line.
+149:43
+
+So first part is, let's say I'm saying text reader part. How you will use it. If you have a text data, how you can install this, and you will perform with the text dataset. Correct?
+149:55
+
+All my friend, you are with me? So what you will do the first part is you have to install the packages. Okay, whenever you do, you can install the packages. So LangChain already you have installed it.
+150:09
+
+Can I consider, yes, everybody, you have installed the LangChain? I have certain dataset. I have certain dataset I have taken for you guys. You can go and pick any dataset after this class.
+150:24
+
+So you can see data. So these are the data that we have a CSV dataset.
+150:39
+
+We have some .SRT dataset, TXT dataset. File one, file two. We have JSON format dataset. We have PDF dataset.
+150:52
+
+We have Excel dataset. We have our TXT file dataset. So different kind of dataset available there. All right? Now, what I'm going to do.
+151:05
+
+Embedding is with document loader and data. Okay. First thing first, you can say I will-- Let's say I'm taking a
+151:23
+
+loading one text file. Okay.
+151:35
+
+You can say from langchain_community. Why I'm using community? Because I'm taking external dataset. That is there outside my system. So I'm just external, say,
+151:51
+
+community, and here I'm saying document loaders. Import what document? You can say text_loaders.
+152:06
+
+Okay, this is the package, you have to remember it. Then cannot import text loader from LangChain community document loaders. So some changes happen. You have to go and check that
+152:19
+
+part alsoDocument loaders. Why it is not coming?
+152:33
+
+Spelling. Loader is missing. Sorry. Loa. Okay. So execute this.
+152:46
+
+Or in case any problem happens, just copy-paste and go into Google and search it. You will get the right one. So this is working fine. Now you can say dataset
+153:00
+
+path equal to, you can say you can set up a path here. Okay, you can say my path is, let me import the path also. So you can say from
+153:14
+
+paths library import Path. So what is the path here? You can say path, parenthesis bracket,
+153:29
+
+and you can go here, data, and let's say this is my transformation data TXT format there. You can see TXT format data is there. So this is the data there.
+153:42
+
+Or you can say text data, here we have file one, file two there. Anything. Or let's say I'm going here, and I'm searching something.
+153:56
+
+The Hindu newspaper editorial. Copy.
+154:11
+
+Paste. So like that you can see, I have information there. You can go and fetch the data from there.
+154:24
+
+Okay, you can take it. Control + C and control + V. Okay, this is what the dataset is there. Where I have saved it, file number two.
+154:36
+
+Let me go here, file number two, right-click, copy the path, paste here. Paste here. Okay. I have taken the data. Now
+154:51
+
+you can say from print import ep.
+155:07
+
+Our print model is not there. Leave this. So here, this is the path there now. If I say this data path, data path is not available. Okay.
+155:19
+
+So instead of doing this, I'm just putting here, leave this part. I'm directly passing a text loader,
+155:34
+
+parenthesis bracket, and where the data is, this is my dataset.
+155:50
+
+Copy the path and remove this part. Here you can remove it, say dot.
+156:03
+
+Okay. So are you able to see data path? Text loader is coming. When I say data path means able to fetch the data here. Langchain community document loader, they are able to fetch it.
+156:22
+
+Everybody, you are with me? Now if I say this document data, whatever the path there, what is coming here? What is coming?
+156:35
+
+So you can say, what is the type of the data? So it's saying it's a Langchain community document loader, text loader there. What is the length?
+156:50
+
+What is the length of the documents? Length, it's saying no attributes called length. Okay. So number of documents is not giving, no problem. Let me write here, this,
+157:02
+
+and I can filter it.
+157:17
+
+I'm doing one thing. You can say data equal to dataset
+157:29
+
+path.load. Okay. So you can see the difference, guys. Let me write this line in the second line. You can see the difference. When I have taken, they are fetching the data and giving Langchain,
+157:42
+
+community Langchain this. But when I convert this part, I'm just loading this data.
+157:57
+
+Oh, why it's not working? Errors excel text to. Data loading.
+158:11
+
+This, why it's not coming? Path is problem. This Langchain is coming perfectly fine. Langchain this,
+158:24
+
+and then I'm saying loading. OS error, operating system error.OS error, operating system error.
+158:37
+
+Okay. LangChain text loader this, dataset path equal to this. What happened?
+158:52
+
+Is there any changes? Actually, the versioning keeps changing, so just worried.
+159:07
+
+Here I'm writing a code. When you're doing the cloud and all, you directly load it, but you have to know from scratch. Text loader. Sir, where you're loading the file, can you put the regular expression there?
+159:20
+
+Because you are using backward slash. Text loader. One minute. I'm just seeing what happened. Is there any changes there? So, inherited, base loader, LangChain core, method load,
+159:35
+
+split. View source code. Text loader. Import logging, path, optional data. They are giving this.
+159:50
+
+LangChain core documents. Documents, base loader, document loaded helper, class text loading, argument is this.
+160:09
+
+Integer, define, section end this. Correct? No, what is the issues there, then? So what you are saying?
+160:24
+
+So where you are saying text loader and where you are giving the path, just write r regular expression. I think your path is not getting read correctly in line number 13.
+160:36
+
+Where you are saying path is not? Here? This one? Line number 13, yeah. Unicode
+160:53
+
+error. No. Fine. No, see, the path remains same. See, this is import os, os.getcwd .
+161:15
+
+So my path is same. Okay, GenAI. In GenAI, we have a folder called Data. In Data, I have a folder called...
+161:29
+
+We have text there and then file. Sorry, my mistake, guys. Here, whenever you write it, you have to write two slashes.
+161:42
+
+That's the problem. Because we have a Window machine. Okay? That is why the problem happened. What happened? Why it's saying this? Now it will work.
+161:54
+
+Unicode error. Error loading data this. One minute, guys. Let me open the Google Colab.
+162:08
+
+I have to reset my system, I think. In coding that part, let me try that. If I give this, will it work?
+162:23
+
+Because encoding error is coming because of this versioning issue. If I give this.
+162:38
+
+Next time onwards, I will use Google Colab. I hope everybody have. Yeah, it's working fine. So now it's easy for them. So now you can see, guys, if I write data,
+162:54
+
+you can see all the text data, they got it. Okay? Everything, I got it here. Make sense? So my text loader is working fine. No problem.
+163:07
+
+Now, you can see data. You can put here zero. What happened? It's coming, then .metadata.
+163:19
+
+You can say .metadata. What happened? It's saying, "Yes, this is the path there." Now,
+163:34
+
+let me go here, data. And if I say page_content, I filter it and I say dot, take the page content. So when I say metadata, they are giving the source. When I say page content, they will
+163:46
+
+only give you the text data. Are you able to see this? All clean? Yes, no?
+164:01
+
+Yeah? So I'm getting all the text data in my system. It got loaded. Okay, this is called document loader with a text dataset. Next is called CSV file. Let me take the CSV file.
+164:14
+
+CSV file. So how you will load the CSV files. Okay? CSV file, again, what you do, you can say from
+164:32
+
+langchain_communityDocument loader and you can say
+164:45
+
+.csv_loader. Import csv_loader. Execute this. Okay? This is the CSV loader.
+164:58
+
+Now, where the CSV data is, let me come here, data. You can see CSV data. This is Excel sheet. Copy the path.
+165:13
+
+You can say loader equal to csv_loader parenthesis bracket. And let's say I'm writing file
+165:26
+
+path equal to this. Close this. Remove this part.
+165:40
+
+Data, everywhere you have to write one, two. Okay. Now execute this.
+165:53
+
+You can see data equal to loader.load. Load is the inbuilt function. If I execute this, it's working fine. Now if I say what is the type of the data,
+166:06
+
+it's saying list. Right? Now if I show you the data how it looks like, it looks like this. So list by list is given in from why? Because if I can show you this CSV file, CSV is nothing, Excel sheet,
+166:23
+
+only one sheet there. Here you can see movie data, titles, genres. This is what is there. So this is 1-2-3. Like that the information came in my system. Okay? And that is why it giving list format.
+166:36
+
+Now you can say, okay, the data index number zero and . I wanted to filter the metadata. You can say let me see the metadata. So this is the source data.
+166:51
+
+I'm saying okay. I wanted to see the page content. So you can say .page_content. So you can see this is the page content, movie ID, titles,
+167:04
+
+and these things I'm getting here. You can see I'm getting. If I write here, you can see the entire data I wanted to fetch it, you can fetch the entire data, no problem.
+167:20
+
+It's a list, so you have to go one by one, page by page. You can say index number 100. It's not coming.
+167:36
+
+Zero. So this is coming, this. Let's say I wanted to see the entire data set. Okay, so what we have to do,
+167:51
+
+can I write here data and index number, let's say I wanted to see
+168:06
+
+five. So it's coming five. So till five I'm getting here. If I say till 10, so you will get 10 documents. And then on the top of it, if you write page content,
+168:18
+
+you will get all the page content one by one. So this is the way you have to extract the text database or CSV data. Okay? You can find the CSV data. Everybody, you are with me?
+168:30
+
+What is the length? How many data is there? What is the length? So accordingly, you have to filter it and you can do it. So 436 documents there. If I pick something else,
+168:50
+
+let me show you the different data set. You can say I wanted to see the different data set, is called organization data set. So you can see, take the organization data
+169:03
+
+path and here you can say
+169:17
+
+loaders, loader one equal to. You see here
+169:29
+
+CSV loader, copy, paste and file path equal to data, organization data.
+169:43
+
+That's it. Now you can say data equal to loader1.load.
+169:58
+
+Execute this. And if I say now how many length are there, now you can see we are getting 1,000 length. Okay, we are getting 1,000 length. So these are the length is called-- Let's say I'm saying, okay, how it looks
+170:15
+
+like? Data. You can see it looks like this. Now you can say, okay, can you filter it? Can I take the first 100? So you can say 100. You can say I wanted to fetch the
+170:29
+
+metadata. You can say go one by one. Data.100.metadataOne by one I have to go here, otherwise it will not work.
+170:43
+
+So this. If I say, "Okay, can you show me the page content?" You can say this is the page content I'm getting here. Yeah? So when I will do the preprocessing, I'll take all kind of dataset and we'll do it. But you can see how you will load the data in your
+170:59
+
+system. When I say this part that you have a different source of data, let's say one is TXT file, another is CSV file, so how you will load it? One by one. So this is the main part there, guys. In RAG, the biggest challenge, or I can say the
+171:13
+
+more 60 to 70% time you will spend in indexing only. Because this is the main part there. So different dataset, different loading techniques you can do.
+171:29
+
+After that, different chunking method you can use it. And then here embedding, you can apply the same method and store in the same method. So these two part are the critical. Sometime what happen, you will get latency issue. Okay?
+171:42
+
+Your system will not give the right answer. First thing first, you can come here and handle the chunking part very well, then only latency problem get resolved. Are you guys with me? Make sense, my friend, what I'm talking?
+171:55
+
+Everybody? Yes, no? Mm. Next, you can see we have a different source of data.
+172:09
+
+Let's say I'm going here in the subtitles. Okay? This is movie subtitles and all. So there is a friend series there that details is given into this format. Okay, so I wanted to fetch it, this information.
+172:30
+
+Let's say I'm taking this data, right-click, copy the path, and this is which function .srt. You can go here, you can say
+172:43
+
+.srt file.
+172:57
+
+SRT is nothing, guys. Please remember, SRT is also like a TXT file only. Okay? Because this is text format. So you can copy here. You can say this
+173:16
+
+data load. You can say loader equal to
+173:29
+
+textloader parenthesis bracket, copy, paste. Yeah? And you can take the path from here.
+173:42
+
+You can write this. Yes. And then data equal to loader.load
+173:54
+
+parenthesis bracket. Okay, done. Now if I can show you this data, it looks like this. You can filter it.
+174:07
+
+You can say .metadata, or you can say .pagecontent. Okay?
+174:20
+
+You are getting this dataset. Now you can say, okay, one data is okay. What about the all data? There are so many files there. I wanted to upload all the SRT file, or all the TXT file or all the PDF file. So how I will do it?
+174:36
+
+So you can say loading all .srt files.
+174:52
+
+What you have to do, you can say from lancain_communities.document
+175:08
+
+loaders import directory loader. Okay? Please remember if the same format there, and there are so many documents available there on that folder, what you do, you
+175:24
+
+can entire documentary you can load it, guys. Entire document you can go and load it. And then here you can say loader equal to directory loader,
+175:38
+
+parenthesis bracket, and here you can say, okay, in data we have subtitles there. Copy this. Copy the path,
+175:51
+
+and you can paste here. And you can say, I'm taking in dataset all the subtitle folder. Okay, you can take it.
+176:07
+
+Now, once you take this part, there is a functions there called globe function. Okay? There is a function called globe function, guys. What globe function will do? Globe function means the entire dataset get
+176:20
+
+loaded. Okay? When you use the globe, you can say when we have entire dataset there, we have to do it. So that part you have to use here. So you can see if I put here Shift and Tab button,
+176:34
+
+you can see path and here globe is there. You can copy this globe and you can say comma globe equal to, here you have to give the path. Okay, you can see
+176:47
+
+Shift and Tab, globeList tuple string, they are saying underscore. This means this symbol. You can go and read it also. Globe means a globe pattern
+177:00
+
+or list of globe pattern to use the find files. So if the similar files are there, you can say all file except hidden. They will read all the files except hidden one. So you can simply write here. You can see a star
+177:12
+
+means all. Normally, if you guys remember when you write a SQL query, we are writing select all, star means all, and from
+177:27
+
+ABC table, let's say we are saying. So similar way you can also do here. Okay? Similar way you can also do here. So you can go and say, I will do exactly the same. Say star. What is the format there?
+177:40
+
+You can say .srt. So you have to see. If you have a PDF, what you will write? .pdf. If you have Excel, .XLS. If you have a CSV, .CSV. So SRT.
+177:54
+
+Make sense, my dear friend? One more functions there you can see here. Silent loader show progress. By default, it is false. You can say I wanted to see through, means I
+178:08
+
+wanted to see whether everything loaded in my system or not. And SRT file is nothing. You can say loader classification.
+178:21
+
+You can see this. Loader classification. Okay, so what kind of this format is there? If it is text, so you can write it's a text format. So you can say text loader.
+178:33
+
+That's it. A PDF, you can say PDF loader, CSV, CSV loader. Like that you have to do it. And then you can see data equal to loader.load. Please practice. Believe me,
+178:48
+
+RAG is very easy, guys. So there are total how many files there? 10. All 10 got loaded? Yes, 100% successfully loaded in my system. Okay, so you got this part, and like that you can go and do it.
+179:02
+
+Are you clear how you will do it, my friend? If I can show you now all the data, everything, I got it in my system, how you will load them. Give me yes or no.
+179:14
+
+All my friend, give me yes or no. Are you guys clear or not clear how you will load the data, how you will use this part? Come on.
+179:28
+
+Mm-hmm. Similarly, you can say, "Okay, I wanted to do the PDF file." PDF file. What you will do?
+179:47
+
+You can say, I will use from langchain document loader
+180:04
+
+.pdf. Import pypdfloader.
+180:16
+
+Execute this. Okay, now done. You can say fine. I wanted to load the data. You can say loader equal to
+180:29
+
+pypdfloader, parenthesis bracket. And you can just simply say here, this is my PDF.
+180:45
+
+Let's say this is Attention All You Need paper, transformer paper, very famous. Copy, paste. And I'm putting here.
+180:57
+
+Copy the path, paste it here. Remove this. One,
+181:09
+
+and then data equal to loader.load. Execute this.
+181:24
+
+You can see everything get loaded. Now if I show you data, you can see all the PDF, whatever the pages there. We have 11 or 17 pages there.
+181:36
+
+Everything get loaded here. How many? 15 pages there. The Attention All You Need. So it's this 15 pages, whatever written there, everything came in my system. Now you guys have asked this question that how they can read the
+181:48
+
+image and all. We have a table there. We have image there. All these things I'll show you. That is multi-model approach. So we'll cover the multi-model approach also, but you can see how easily you can fetch all the
+182:03
+
+data in your system. Make sense? Make sense, guys? Tell me.
+182:16
+
+Interesting? Boring? We'll do it, Arvind. Right now, we are not worried about because this is loading part.
+182:30
+
+Only purpose, your purpose is to load the data. Why? Because when we load them, then I will do the chunking. Once you do chunking, embedding, then storing. So right now you don't worry about the readable format and all.
+182:43
+
+You can leave this part for LLM. Just give me a minute, guys. Just one minute, my friend, I'm coming back.Okay,
+182:57
+
+guys are you with me everybody? This loading part. So can I give you one task to all of you? You can go in the document loader. Go into the document loader, just see the different kind of
+187:04
+
+classes data set and try to do it by your own. Okay? Or if you don't want to do it, at least you can read it, what kind of data set we are getting it, right? You can try to go and do it. These are the Amazon Nova, Anthropic, Astra,
+187:16
+
+AWS, Azure, Chroma database, Cohere data set, document loader. So we have different techniques there. You can try to read it. These are the document loader. These are the classes there that you can at least
+187:31
+
+go and read it, give a glance that, okay, these type of data we can easily read it. One also I wanted to show you that is very famous, let's say, you can say the open source data set, let's say public data set.
+187:45
+
+Sometime what happen, your client will tell you, go and fetch the data from website. So the web scrapping we are doing it, similar thing, you can go and do it. So how you will do, you can go here
+187:59
+
+and you can say web base loader. Okay, so let's say this is what I wanted to fetch it.
+188:14
+
+Everything is there in document loader, I wanted to fetch this. So whenever you do, first you have to install the Beautiful Soup. If you guys know web scrapping, you can just go say pip
+188:30
+
+install Beautiful Soup4. You can install it. Okay,
+188:42
+
+guys. So you have to load this. Then you can say from LangChain document loaderYou can say
+189:06
+
+from lancen community document loader import. Here you can say web base
+189:21
+
+loader. Execute this. Once you have done this part, you can go and fetch. Let's say I wanted to extract this or this. Let's say this is the information is given. I wanted to fetch all the data.
+189:33
+
+Go here in this website and you can say loader equal to web base
+189:47
+
+loader parenthesis bracket, copy, paste. Okay? Copy, paste. Then
+189:59
+
+data equal to loader.load. Execute this and
+190:14
+
+just see how simple it is. Are you guys with me? Whatever there in the system, everything get loaded in your system. Anything. You can go and do it, and then cleaning and all, you can
+190:27
+
+easily do it. This is as simple as you can do it. Make sense? Everyone.
+190:41
+
+Once this is done, let's say one more JSON file. If you have JSON file also you will get very frequently if you are working in the rag system and all. So you can say
+190:57
+
+first you can install the package, you can say pip install JSON file. Okay? And then you can install this package.
+191:10
+
+You can say from lancen document loader and here import JSON loader. Name more or less similar format there. JSON, you can write and then loader, CSV loader,
+191:29
+
+IPDF loader. Right? Webbase loader, TXT loader. Like that you have to write. Now copy this and
+191:44
+
+you can say loader equal to JSON loader parenthesis bracket and here let me go here. This is JSON file. Okay? Appeals.
+191:58
+
+So let me take here copy the path. You can say file path. So you can write file path equal to this.
+192:12
+
+Okay, this is JSON format. Then comma JSON schema
+192:35
+
+equal to you can say I wanted to find the format looks like I wanted to see
+192:48
+
+the same format. Okay, you can say I wanted to see the same format. So here you can say-- Let me open this.
+193:02
+
+You can see product there, right? You can copy the product and you can just see how this is what that looks like. So you can see this format how it looks like.
+193:21
+
+This is the JSON file there, right? I wanted to fetch the product. So you can say schema equal to double quote
+193:36
+
+and you can say .product blank everything. Next, let's say I'm interested to see the description.
+193:51
+
+Copy the description. You can say comma content
+194:05
+
+key. Okay, so you can write content key equal to description. Okay? Then
+194:18
+
+and that's it. You can just write this one. You can say I'm interested to see this. Execute this. Now loader, you can say data equal to
+194:31
+
+loader.load data. See here. Okay, guys, come on. Are you able to fetch the TXT file,
+194:43
+
+CSV file, PDF file, SRT file, all SRT file, all PDF file, Excel file, JSON format file, web scrapping possible?
+194:56
+
+Yes, no, my friend? So document loader, I would request everybody please spend time, read document loader very thoroughly.
+195:09
+
+It will help you a lotBecause if you know this, it's very easy for you. If you know this, it's very easy for you to understand.
+195:21
+
+So first part, you need not to worry about that. First part is just you have to load in your system. What is there inside you, that is not your job at all. When I will write the augmentation, everything get handled. When I do the retrieval part, that time also I will write some
+195:34
+
+prompt. When I will do the chunking and all, that all get actually splitted. So you need not to worry about that. Make sense, my dear friend, come on.
+195:49
+
+Now tell me, shall I start chunking today, or can I pick that chunking part and embedding and vector database tomorrow? And tomorrow I'll at least one
+196:01
+
+vanilla or a simple rag I'll show you. Everybody thinks tomorrow. So perfect. So we have a 15-minute time. I'll park it now.
+196:14
+
+And I wanted you guys, please do practice. Let me share. And 15 minute I am utilizing it, you can ask questions. No boundary, guys. Now ask me anything.
+196:28
+
+So let me go one by one. Badri Uchia. In the meanwhile, I'm just uploading the code also in your system, the dataset as well.
+196:42
+
+Yeah. Hi, sir. Mm-hmm. Can you hear me right? Ask your question, no problem. Go ahead. I have a question regarding the web-based
+196:55
+
+loader. So when we try to load with the open source, it is picking up correctly. If you are having, for example, I
+197:10
+
+need to take a content from a LinkedIn because not an open source, right? So can I do that by using the web-based loader?
+197:23
+
+So how we can do that, if yes means? Web loader means what? Web loader only I have done. No, I have just visited on the open source any website and fetch the data. You may- Yeah ... see some of the website has a restriction that-
+197:35
+
+Yes ... you are talking somewhere error is coming. Yes. And then you have to write the headers. So if you know web scrapping and all, there is a headers there. That part you have to do it. So sometime what happen, no system they will create glitches.
+197:49
+
+Who develop the website, they don't want that anybody, they directly come and fetch the data. So there are some restrictions part there. So that time you can write a headers, and headers equal to Mozilla 5.0 something you have to write it. So I have some script there.
+198:03
+
+I'll share with you. You can just use that one. It will fetch the data then. Yeah. Okay. You can also search, you will get it. Even you can build a chatbot right there. You can go and ask questions that, okay, there is a 403 or some error code is
+198:18
+
+coming. Can you please help me? If you are getting 200, no problem. But if you get 403, 409 something, they will give you what code I have to write so that I can fetch the data. Can you give me the header equal to Mozilla 5.0 something?
+198:33
+
+Just give a few short learning that this part will come, how I can handle it. They will give you correct path, and you can use it. Yes, sir. So other question is,
+198:47
+
+if you are taking the content from-- we do have some username and password, right? So how we can bypass that? Username and password? For a particular, whatever, LinkedIn or Facebook, whatever it is.
+198:59
+
+So we are taking from a particular user. So we need to give the username and password to log in to get the details. That you can do it, but that is different things. Here I'm not picking that part, web scrapping and all.
+199:14
+
+Here what I'm doing, directly I'm fetching all the data in my system. Now in my system itself, let's say user ID, password, whatever details, they hardly matter. I wanted to take all the data, and LLM has all visibility. That's what I'm doing.
+199:29
+
+But you can say I wanted to give the credential and all. For that, we have a different documents. There it's a traditional method. You can handle it. Okay, sir. Thank you. I will check on this. The Facebook, we have a login ID, then only you can go and fetch the customer data,
+199:42
+
+right? Yeah. Let's say Tutor. So you have to give the credential, then only you can get it. So that you can do it. You can do that way, which is the traditional method.
+199:57
+
+Okay. We can't do it by using our gen AI, right? Like direct access. Gen AI means this document loader will not do that part. Document loader means just fetch the data. If that permission is not allow, let's say without credential you will not
+200:10
+
+go inside and fetch the relevant data, document loader can't solve. You can go by the other method. Sure. Thank you for the clarification. Document loader means simply whatever the customer has given a
+200:25
+
+dataset, that I am fetching it. That's it. So customer will give you in PDF format mostly, 90% time PDF, TXT, Excel, CSV file, image. Or
+200:38
+
+90% PDF only you will get, but apart from that anything is coming JSON format. So these are the method you can do it. So mostly we will have in our local. Customer will chat to us, so.
+200:51
+
+And then you can do it. Yeah. Thank you, sir. I have seen web scrapping also there, so this is the way you can do it. But you can say credential is there. Document loader has the capability, no? Document loader will not do that part. It's not the part of, not in a scope.
+201:04
+
+Okay. Thank you, sir. Abu Bakar Siddiqui. Siddiqui, sir? Hello, sir. I'm audible, sir?
+201:19
+
+Yes. Ask your question, sir. A small doubt, sir, regarding LangChain. You are mentioning, sir,
+201:34
+
+how it is helping in here, sir? What is the function? So by the help of LangChain only, all the document I have loaded? You have seen all the documents, how I load them. Yes, sir. That today I have seen, I understood.
+201:48
+
+But in the last class you told like some credit, you have shown an example. We are making several payments in different sort of websites and clicking away.
+202:02
+
+But with the help of cred application, we are making all those payments. And next to that you showed an- Here we will use it. So LangChain, if you go and use,
+202:15
+
+basically the LangChain, what happen? Any LLM you will use. Yeah, any LLM. Right now, I have not used the LLM- Yeah ... but if I extracted the data that can help you or not?
+202:27
+
+So LangChain has a visibility all LLM, any LLM you can give all the data. That helped, sir. I thought LangChain is...
+202:41
+
+Okay, it will be used in all kind of LLM, and it is- Any LLM you can use ... have a lot of libraries, functions used. Right, sir? So you don't have to go one by one. Is my understanding right? Yes, correct.
+202:55
+
+Okay, sir. Okay, sir. That is my doubt, sir. Thank you so much. Sanjay? Yeah. Hi, sir. I'm audible?
+203:10
+
+Yes. Yeah. Hi, sir. I have one question. If we have different type of data in one PDF, like we have image, text, and tables, then how we can load it? Like-
+203:22
+
+One by one you have to do. Or embedding. Let's say there are five documents there. Embedding, you forget. First you load the data. Once you load everything, I will first do the splitting, and then I will do the embedding.
+203:36
+
+Okay. So loading means all the document you can load, combine together, and then you have to do the splitting part. So if it is in all the data format, like
+203:48
+
+table, text in one PDF, we have to do it separately. That's what- Separately. Correct. Yeah. If you have 10 PDF there, all documents you can load at one go, then you have to do it. Okay. I have seen that there is a one library
+204:01
+
+is there, unstructured.io. So it is loading the data- I will cover that part. I will cover later. Unstructured is there in my syllabus. Okay? So we'll cover that part, you will get to know.
+204:16
+
+Okay. For multimodal, right sir? Yes. Okay. Thanks, sir. For that you have to wait, sir. That was my... Okay, sir. Thank you. What else, guys? Anybody?
+204:29
+
+I can see Sanjay Siddiqui. Please engage your hand. Naga?
+204:44
+
+Hello. Ask your question, sir. Yeah. Hi, sir. So I have one question, sir. So now we have different data formats, right? We can connect DB also. For example, I'm working on the data side, data warehousing and data migration.
+205:02
+
+Mm-hmm. So we can use that database as well, right? With the same process or? Same process, sir. Okay. So how this RAG will going to fit for this data warehousing
+205:15
+
+projects and all? I'll show you. Okay. Okay. Where's that file is? File data.
+205:28
+
+Okay, data also loaded. What else? Charam Tej Ji. Go ahead, buddy. Yeah. Hi, sir. This google.com, right? We have this, the AI search. Is that a classical example of the RAG now?
+205:43
+
+How it goes to multiple websites and gives a summary? Google search? Yeah. So in the Google, we have Gemini, right? The search, what you call search. Ah. Gemini is a LLM model. We can leverage Gemini model, and
+205:58
+
+we can build a RAG system. Yeah. When I do any search, it will go to multiple websites, and it will summarize me the answer, no? Is that a example of RAG or? No, that's not example of RAG. That is simple LLM example.
+206:11
+
+RAG means your own data. My own data. Okay. You can leverage, you can take this, and then you have to build it. That is called RAG. Okay. In the real world, who are the users, or the definition of people who would be using this RAG
+206:25
+
+to load the data- Everybody. All 100% company, they are using RAG. Yeah. Okay. Okay, no company there they can say, "I'm not building RAG." Not possible. Okay. Anyway, whether traditional or complex RAG or something, they are definitely
+206:39
+
+using it. Okay. Thank you. Okay. So in the real world, I told you without RAG, not possible, but RAG means not a simple, they are going more advanced RAG and all. So that is what happening.
+206:53
+
+Okay. Okay. I can see couple of friends. I already unmuted them. Please go ahead, ask your query.
+207:06
+
+Hi, sir. Hmm. Sir, while we are dealing with JSON file. So instead of products we gave .product. What is that meaning, sir? Why we give dot for that?
+207:20
+
+Because in product we have so many products there. You can see product one, product two, product three, product four, product five. So that's why I've given all product I wanted. So description we have not given, right? Description inside I have given what in products you wanted.
+207:32
+
+So when I have written, I have taken a content also I have given now. You can see here. Here I have given product means all product. Okay. And in product what you want, I want a description only. So I have given all the product and their description.
+207:46
+
+Okay. Understood, sir. Okay. Thank you. What next, guys? Sir, one question I have, Rupesh here. Hmm. When you
+208:00
+
+load the data from the web scrape or maybe some SharePoint link of the company, right? Then, or the either you are connecting with the database or loading the database, right? But that is the one time, right?
+208:14
+
+When I have a real-time data keep coming on my database. No, don't worry. Let me first complete the RAG. Once we complete the RAG, then if you get the new data set, some
+208:28
+
+amendment data set, some deletion, I will show you that part also. Okay. There is a data set. Right now we have whatever data available. Tomorrow, there are new data will come.
+208:41
+
+That also I wanted to add here. Right. There are some amendment required that also I have to give. There are existing data which is not required, I have to delete it. Right. Suppose addition, can I say modification, and can I
+208:54
+
+say deletion? All three is required. Right. CRUD. Yes. I'll show there that part. Why you worry? Okay. Apart from that, one more thing is, right now you showed the loader is one by one, like you have a SRT data, PDF data,
+209:06
+
+CSV data. Now in my SharePoint link, I have a multiple data type of files for the one product portfolio, which I'm handling it right now. And I wanted to make a chatbot for that,
+209:19
+
+so it can be read from any of the documentation from the different format and give me the answers, right? Correct. So how I can load that kind of data? One by one. One by one means you have to bifurcate it.
+209:32
+
+Let's say there are how many types of data available. So even though you have a thousands of data there, but thousand means thousand types not there, right? You can say maximum- Right. Five or six types ... five or six types there. So you can make a five or six folder.
+209:46
+
+Mm-hmm. Or you have to just use the globe equal to and you can give the path. So when I have given here globe equal to, you can see when I have given here globe equal to, so you can write five times.
+210:00
+
+Oh. One is globe equal to .SRT, second globe equal to .PDF, third . equal to CSV, fourth is TXT, and fifth is JSON. So every time I need to give the globe equal to like this, or I can just-
+210:13
+
+Like this. I can do just- You have to give the path. You can give your path and then globe equal to. You can give five times, loader one, loader two, loader three, loader four, loader five. And then globe equal to extension you can change, and rest you can
+210:26
+
+write here. Classification you can change here. If it is text, you can say text loader. If CSV, CSV loader. PDF, PDF. Like five documents you can create and load them in your system. Okay. Thank you.
+210:39
+
+Which is the way you have. That's why I explained you most of the things, but still I wanted, you can go and read document at least once. Where the document link is? Here the link is there. Document loader.
+210:51
+
+How many types? How many types they are supporting? Langchain provide over 100 different document loader. Do you think you remember everything? No. You can go in this website and you can learn it, sir.
+211:04
+
+Okay. Sure. Thank you. Otherwise, if I take 100 data, it will take, I think, another one month. Right. For one topic. There's two more friend there. Rupesh already asked question,
+211:17
+
+Naga already asked questions. Dheeraj, what's here? Sir, I have one very basic question. I understand this concept. No, advanced question. Yeah, basics. Advanced question. No, sir, basically,
+211:29
+
+what I understand is this document loader is converted to the list type document object, right? And this document object, list type document object is now pass on, and it is further chunked into all smaller content. So my basic question is, why can't we directly
+211:42
+
+chunk it? Why we have to first convert it to a document list? There must be a fundamental reason of doing it, right? Because if you don't load the data in your system, how you will chunk them?
+211:57
+
+If there is no data in your system, then where will you do the chunking? I can directly pass the overall PDF to the chunking, right? So that it can chunk based on the- No. Langchain is not working like that. So you have to follow the architecture.
+212:09
+
+Then you have to go the ground fundamental. What fundamental things it's saying? RAG always works based the step first. So data connection, if you reach here, first whatever the source data there, you'll have to load in your system.
+212:25
+
+Once you load it, then you have to do chunking, then embedding, and then store. This store part, maybe you can store outside, maybe in your system or how. So let's say your client has given this data set in your SharePoint. Yeah? This part you can do in your
+212:38
+
+system. Once you do the embedding, this part again you can store into SharePoint. That is what you do. But these three things you can do in system. Without doing, it's not possible. You
+212:53
+
+are saying, "Can I skip this part? Directly I can do here because data already there." That's what you mean. Correct. It will not work like that. Yeah. One more thing I understand that this load part is preserving the
+213:06
+
+metadata also. So that could be one of the reason. But yeah, I will research it more. I understand this architecture from the Langchain context perspective, that why loading is required before the transform. But in the fundamental way I'm asking-
+213:19
+
+What you are saying, can I do that part also? Yeah, we can create a pipeline and then we will do itOkay. But I- When you say we have a MCP live data is there, right? When we use the MCP, we are getting directly and doing it. How the?
+213:32
+
+So when I will go, I'll show you that part also. But for the time being, you can understand this is the way we have to do it. Okay. You
+213:47
+
+are already unmuted, no? Unmuted. One second. So basically, the question that Rupesh asked, wherein if you have multiple data sources,
+214:00
+
+five, six different types, I do not know the data inside it. Like something could be PDF, something could be JSON. Now in that scenario, I need to initially ensure that the JSON, if it is present, the schema is a
+214:14
+
+match, else it will go for a toss, right? Correct. Secondly, I was reading about this side-by-side, this metadata function. Is it an industry practice we always embed some model?
+214:28
+
+Always we are doing, yes. Metadata is a mandatory one. We are taking it. Okay. So irrespective that it- Because if you miss the metadata, the key search will not happen. So key searching also required, so that time we are doing this.
+214:40
+
+Okay, so the more metadata information we can add, the better it is. For example, it's a JSON- Yes, that is ... file or inside a JSON also, if we have more information that we are missing, we should add it into the JSON. Absolutely, yeah. Otherwise, how you will enhance your model?
+214:53
+
+So there is a pre-checks also there. Mm-hmm. So when that part I will cover later. But what happened, how you will judge? See, right now, let's say they are giving this retrieval part. They are giving the context here.
+215:07
+
+Mm-hmm. They are giving the context. Now, how you can trust these context is correct or not? Right. Maybe there are millions of documents there. Why they have taken these five? Do you have any validation checks so we can put evaluation metrics
+215:22
+
+here? Okay. Yeah. So there is a methods called precision contextual. The formalized contextual precision, contextual recall, contextual relevancy score. Mm-hmm. That will tell you how correct context you got it.
+215:36
+
+Once you got the context and LLM is generating the output, this generation is correct or not. Then again, you can put a evaluation matrix here. Mm-hmm. How you will do? This is the LLM as a judge. Means you have to customize. As per your customer requirement, you can customize
+215:50
+
+your output. You can say there is something called faithfulness. You can say hallucination. How much hallucination generation happened? It should be 0%. It should be very close to zero. Understood.
+216:05
+
+You can see answer relevancies. So there are four parameter there and three parameters. Save and check always you can do it. You can see- Okay ... groundedness checks. You can check observability also. You can include the guardrail also.
+216:17
+
+Understood. I have written something. They are giving it, so that part is there. So RAG, I said it's a little lengthy. If I teach everything at one go, it's fully clumsy and something will happen. No, this is clear. But just for my knowledge, if I put this
+216:32
+
+thing like I want only the answers, the context should be only PDF. If I don't give that as a metadata function or tag, it will- Then you will miss, you will lose the information. Yes. And if you lose the information, then do you think-
+216:46
+
+Yeah ... you will get the better accuracy? Understood. This is clear now. That means maybe you can ask those questions in testing phase, it is working fine. But in production, it will blunder then.
+217:01
+
+Correct. Ambiguity, it will come. So that is why our role is very critical. So that's why indexing, when you do this part, it's not that blindly you can go. You can see the data set also, what kind of data they have
+217:15
+
+given. Right. But there are lots of systems, if you use Copilot Studio. There they will see point I have already data available in the SharePoint, which is a structure Excel sheet and all.
+217:28
+
+But that time also the data is not very good. So you have to use the knowledge source there. You can write chunking, embedding, all this part very nicely, neat and clean. Mm-hmm. Understood.
+217:43
+
+Today I'm using this Python system, no writing code and explaining you. Otherwise, these things theoretically, I told you, and I can easily go in Copilot Studio or the Azure, and I can show you this part, see how it is working.
+217:55
+
+But that will not solve the purpose. Then how you will understand the root problem? Correct. Yeah. So that's it for today. Thank you very much,
+218:10
+
+all. Thank you for asking questions. I have taken almost all query, whosoever asked. Still if you have any doubt at all, maybe we can connect tomorrow and we'll discuss.
+218:23
+
+Sir, sorry can you- I have seen lots of friend they are asking question like Varalakshmi is saying LangChain community framework used for work with organization. Now, it's working. It's there. It's supporting with Azure, AWS, GCP, everything.
+218:36
+
+So you need not to worry about this. Sir, can we- Yes. Vishwas here. Sir, can you please once go to the code part where you were showing the document loading? Any one of that would do.
+218:51
+
+I have already uploaded the code. You can see tomorrow. I have already uploaded here code, here code, here class notes, GIF folder. You can try it. Or if you have any doubt, you can ask
+219:05
+
+me tomorrow. Okay. All right, guys. Thank you very much all. Bye. Take care. Have a nice day. See you tomorrow. Thank you all.
+219:18
+
+Please don't miss any session, guys. Everything is linked together because RAG is started. If you miss RAG any topic, you will miss lots of things. Please ensure you can attend the class.
+219:30
+
+In case because of some urgency and all, please watch the recording. That's what my suggestion. Okay. Thank you.
+219:43

@@ -1,0 +1,102 @@
+@startuml Topic9_Handoffs_and_Message_Schemas
+' ============================================================
+' TOPIC 9: Handoffs & Message Schemas (the boundary between agents)
+' SILENT FAILURE is the most dangerous & most-tested idea.
+' Verify BEFORE releasing control. 4 schema components.
+' ============================================================
+title Topic 9 — Handoffs & Message Schemas\n(The agent boundary — where multi-agent systems break)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+
+:Sending agent must hand work to a receiving agent;
+note right
+  Handoff message = structured payload passed
+  from sender to receiver.
+  Why it matters: CONTEXT ISOLATION (Topic 6) —
+  nothing crosses the boundary automatically,
+  so everything needed must be EXPLICITLY included.
+end note
+
+partition "BUILD THE SCHEMA (4 components)" {
+  :1. TASK DESCRIPTION — what to produce;
+  :2. RELEVANT CONTEXT — only the facts needed;
+  :3. OUTPUT FORMAT — exact structure of the result;
+  :4. CONSTRAINTS — scope limits, safety/policy rules;
+}
+
+#Yellow:Apply INCLUDE vs EXCLUDE test;
+note right
+  Ask: "Does the receiver NEED this to
+  complete the task?" If NO -> leave it out.
+  EXCLUDE: full conversation history, sender's
+  deliberation logs, internal state, redundant context.
+  Target = MINIMAL BUT SUFFICIENT.
+end note
+
+if (Context level correct?) then (under-specified)
+  #Pink:Receiver GUESSES -> hallucination /\nwrong output / silent failure;
+elseif (over-specified) then
+  #Pink:Bloat -> cost, latency,\nnoise competes with signal;
+else (minimal but sufficient)
+  #LightGreen:Good schema;
+endif
+
+partition "HANDOFF VERIFICATION (before releasing control)" {
+  :Sender transmits the handoff message;
+  :Receiver ACKNOWLEDGES receipt;
+  :Receiver CONFIRMS it has the context it needs;
+  :ONLY THEN sender releases control;
+  note right
+    Verification separates a COMPLETED handoff
+    from an ASSUMED one — it makes success observable.
+  end note
+}
+
+if (Did the handoff truly succeed?) then (transparent failure)
+  #Orange:Error is RAISED — you KNOW it broke\n(recoverable);
+else (SILENT FAILURE — most dangerous)
+  #Pink:**SILENT FAILURE**;
+  note right
+    Looks successful, but loses/corrupts something
+    critical, with NO error raised. Masquerades as
+    success, so corruption propagates downstream and
+    is very hard to trace. THE most-tested trap.
+    Defenses: verification + AUDIT LOGGING
+    (turns silent failures into diagnosable ones).
+  end note
+endif
+
+#LightBlue:CHECKPOINT before every handoff;
+note right
+  Save task state to a durable checkpoint =
+  last CONFIRMED GOOD state (not just latest attempt).
+  Retry resumes from the checkpoint, not from scratch.
+  Matters most in PIPELINE topologies (mid-line failure).
+end note
+
+stop
+
+floating note left
+  == 3 WAYS FREEFORM HANDOFFS FAIL ==
+  1. Missing context (sender assumed receiver knew)
+  2. Inconsistent format (receiver guesses at intent)
+  3. Implicit assumptions (sender's model of receiver
+     is wrong — surfaces only when it breaks) <- most dangerous
+  ....
+  == SCHEMA EVOLUTION ==
+  * Version tag on every message (receiver knows how to parse)
+  * Handle missing OPTIONAL fields gracefully
+  * New REQUIRED field needs a migration path
+  * Forward compatibility: new receiver can read old senders
+  ....
+  == TESTING & DESIGN ==
+  * Contract tests: verify required fields present BEFORE dispatch
+    (catch at dev time, not via live silent failures)
+  * Design schema against an INTERFACE, not a specific agent
+    -> receivers become SUBSTITUTABLE
+end note
+
+@enduml

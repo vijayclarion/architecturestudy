@@ -1,0 +1,99 @@
+@startuml Web_Identity_Federation_Cognito
+title Web Identity Federation: Google -> Cognito User Pool -> Cognito Identity Pool -> STS -> DynamoDB\n(Example: bob@gmail.com, region us-east-1, account 111122223333)
+
+autonumber
+skinparam sequenceMessageAlign left
+skinparam responseMessageBelowArrow true
+
+actor "Bob\n(Mobile App user)" as User
+participant "Mobile App\n(OrdersApp)" as App
+participant "Google\n(OIDC IdP)\naccounts.google.com" as Google
+
+box "AWS Account 111122223333 (us-east-1)" #FFF4E5
+  participant "Cognito USER POOL\nus-east-1_AbC123\n(AUTHENTICATION:\nwho are you?)" as UP
+  participant "Cognito IDENTITY POOL\nus-east-1:1111-2222...\n(AUTHORIZATION to AWS:\nwhich AWS creds?)" as IdP
+  participant "AWS STS" as STS
+  participant "IAM Role\nrole/Cognito_OrdersAuth_Role" as Role
+  database "DynamoDB\nOrders table" as DDB
+end box
+
+== One-time setup (admins) ==
+Google -> Google : Register OAuth client in Google Cloud Console\n-> Google client ID + secret
+Google -> UP : Add Google as federated IdP in the USER POOL\n(paste Google client ID + secret here)
+note over UP
+  App client in user pool:
+    client ID = 4abc123userpoolclient
+  The app only knows THIS client ID,
+  not the Google one.
+end note
+UP -> IdP : Add the user pool as an authentication provider\nin the IDENTITY POOL (user pool ID + app client ID)
+IdP -> Role : Map authenticated users -> Cognito_OrdersAuth_Role
+note over Role
+  Trust policy:
+  {
+    "Effect": "Allow",
+    "Principal": { "Federated": "cognito-identity.amazonaws.com" },
+    "Action": "sts:AssumeRoleWithWebIdentity",
+    "Condition": {
+      "StringEquals": {
+        "cognito-identity.amazonaws.com:aud": "us-east-1:1111-2222..." },
+      "ForAnyValue:StringLike": {
+        "cognito-identity.amazonaws.com:amr": "authenticated" } }
+  }
+  Permissions policy:
+    dynamodb:Query on table/Orders
+end note
+
+== Stage 1: AUTHENTICATION (User Pool) ==
+User -> App : Tap "Sign in with Google"
+App -> UP : Open user pool Hosted UI\n/oauth2/authorize?identity_provider=Google\n&client_id=4abc123userpoolclient
+UP --> User : Redirect to Google sign-in
+User -> Google : Enter bob@gmail.com + password
+note right of Google
+  Password is checked ONLY by Google.
+  AWS never sees it.
+end note
+Google --> UP : Redirect back with Google authorization code\n(to user pool /oauth2/idpresponse)
+UP -> Google : Exchange code for Google ID token (JWT)
+Google --> UP : Google ID token
+UP -> UP : Validate Google token:\nsignature (Google JWKS), iss, exp,\naud = Google client ID
+UP -> UP : Create / link user profile in the pool\n(e.g. Google_10987654321)
+UP --> App : Authorization code (redirect to app)
+App -> UP : POST /oauth2/token (exchange code)
+UP --> App : USER POOL tokens (JWTs signed by the user pool):\nID token, Access token, Refresh token
+note right of App
+  The app now holds a COGNITO token,
+  not the raw Google token.
+  A JWT proves identity, but it
+  CANNOT sign AWS API calls.
+end note
+
+== Stage 2: AUTHORIZATION to AWS (Identity Pool) ==
+App -> IdP : GetId(IdentityPoolId,\n  Logins = { "cognito-idp.us-east-1.amazonaws.com/us-east-1_AbC123":\n            <user pool ID token> })
+IdP -> IdP : Validate user pool ID token:\nsignature (user pool JWKS), iss = this user pool,\naud = 4abc123userpoolclient, not expired
+IdP --> App : IdentityId (stable ID for Bob)
+App -> IdP : GetCredentialsForIdentity(IdentityId, Logins = {...same token...})
+IdP -> STS : AssumeRoleWithWebIdentity(\n  RoleArn = ...:role/Cognito_OrdersAuth_Role,\n  WebIdentityToken = <Cognito-issued OIDC token> )
+STS -> Role : Check trust policy:\nFederated = cognito-identity.amazonaws.com?\naud = this identity pool? amr = authenticated?
+Role --> STS : Allowed
+STS --> IdP : Temporary credentials
+IdP --> App : AccessKeyId, SecretAccessKey,\nSessionToken, Expiration (~1 hour)
+
+== Stage 3: Call AWS ==
+App -> DDB : Query Orders table\n(SigV4-signed with temporary credentials)
+DDB -> Role : Evaluate role PERMISSIONS policy
+Role --> DDB : dynamodb:Query allowed
+DDB --> App : Bob's orders
+App --> User : Show orders
+
+note over User, DDB
+  Who does what:
+  - Google: authenticates Bob (checks password), issues Google JWT
+  - User Pool: validates Google token, issues ITS OWN JWTs (the "receptionist")
+  - Identity Pool: trusts the user pool, swaps its JWT for AWS creds (the "badge office")
+  - STS: validates trust policy (aud = identity pool, amr = authenticated), mints temp creds
+  - IAM Role: trust policy = WHO can assume; permissions policy = WHAT they can do
+  Exam tip: SAML -> AssumeRoleWithSAML | OIDC / Cognito -> AssumeRoleWithWebIdentity
+end note
+
+@enduml

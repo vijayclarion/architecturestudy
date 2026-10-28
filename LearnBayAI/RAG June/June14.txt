@@ -1,0 +1,1924 @@
+Hi, everyone. Good morning. How are you, my friend? Everybody all okay? Perfect. Good.
+02:34
+
+Okay. So let me start the session. So, what I have to cover today, let me share my screen.
+02:48
+
+Please let me know if you are able to see my screen, guys. It's visible? Yes. Okay, great.
+03:07
+
+So you have seen one end-to-end RAG use cases right, yesterday, the traditional RAG method. What is the agenda for today? I'll cover embedding.
+03:23
+
+Okay, I'll cover embedding methods. So you guys understand what is embedding. It's very simple. Okay, but I'll show you the maths also, how the maths works.
+03:35
+
+Embedding. Okay, so this is the first part. Second part, when we use RAG system, the retrieval part you have seen.
+03:50
+
+In retrieval, you have seen there are so many methods we are using, like key search. Key search.
+04:04
+
+Semantic similarity search. Okay.
+04:17
+
+Hybrid search. BM25 search. Re-ranker method.
+04:31
+
+And RAG fusion method.
+04:49
+
+Okay. So these are the basic things there, but I have seen sometime interviewer ask you these questions. So you have to understand what is this. And then once I complete this, I will pick one use case for
+05:02
+
+multi-model RAG system. Okay? So that you guys understand that if you have a different kind of data set there,
+05:20
+
+how you can leverage and solve the problem. Okay, so this is what the next topic. Next week, my target would be, I'll jump into agentic AI, and where I'll show you the agentic RAG system,
+05:34
+
+and of course, graph RAG and all. Sounds okay? All my friend, can we target this? Mm-hmm. Okay.
+05:47
+
+How about DL? DL is not required, but I'll cover that part. If you guys go for GenAI and agentic AI role, DL has no role actually. You will not solve any problem basis the DL, the deep learning.
+06:02
+
+But because it's there, you have to understand what is multilayer, what is CNN. So some basic idea I will give you. Okay? Don't worry. My priority is not that one. My main priority is I have to quickly complete all the
+06:16
+
+topics and you can understand the theory and coding both, so that you can crack the interview. Mm-hmm? But syllabus also, I'll give the secondary or
+06:30
+
+tertiary priority. Primary would be to crack the interview. You can get a job. Okay? That's what my main focus is. Okay? But that doesn't mean I'm leaving the topic, okay? You will learn it. Mm-hmm? Because
+06:43
+
+deep learning, I have given 150 hours training and all. So if you guys really wanted to go more hands-on and all, you can go and watch my recording. That's not a problem. Fine.
+06:58
+
+Guys, all my friend, are we good? Shall we start the embedding first? What is embedding? And then, the retrieval concept and all. Yeah? Okay.
+07:11
+
+Thank you. So the question comes here. The first part is what is embedding? What is
+07:23
+
+embedding? Okay, what is embedding? That is the first question. So embedding is nothing, my dear friend, just try to understand in a simple language. So embedding is a way, right, to
+07:36
+
+convert something. If you have a text data, you have image data, you have audio data. Okay. You have a video data.
+07:50
+
+You have a code data, right? You have a code there. Or let's say, you have a document there. Document content there.
+08:04
+
+Okay, you can say I have a document content there. And everything, these all details, if you wanted to convert
+08:16
+
+into a number, or you can say convert in number,
+08:31
+
+convert in vector or number, is what is called embedding method. Simple. You can say, "What do you mean?" Let's say, I'm writing a word called
+08:44
+
+dog. So dog, you can represent, you can say dog is denoted by 0.9, 0.3, 0.2, like that so on. Mm? I'm saying here car. So car is denoted by
+08:57
+
+some number, -0.4, 0.7, 1.2, and so on. Mm? Here I'm saying puppy.
+09:12
+
+So puppy is denoted by, let's say, 0.88, 0.33, 0.22, right? Let's say this is what is coming.
+09:25
+
+Okay? This is the basic intuitions there that you have to understand. Now, any vector embedding is denoted or described in a machine learning or in deep
+09:37
+
+learning or a GenAI techniques, meaning is we are transforming such text data. This is text, right? This is text data or image data into numerical vector, right?
+09:50
+
+So this text data we are converting into numerical vectors.
+10:05
+
+Okay? That is what is called embedding. Simple intuitions. Now you can say, "Okay, I understand that embedding meaning is text to number," but how this number denoted? That's the next question comes in
+10:18
+
+your mind. Now, I'm just giving a very simple perspective, right? Now, let's say I'm saying there is a person there, how you will describe that person? Okay? Can you describe that person?
+10:33
+
+So you can say, okay, I will describe a person basis certain parameter, right? So you can say the person I have to describe basis their features, attributes.
+10:46
+
+So what are the features you can say? What is their height? Okay? What is their weight? Okay, how old they are? What is their energy level?
+10:59
+
+Okay? What is their body mass index? So if these are the attributes there, now, these are the features name and how you will decide?
+11:15
+
+You can say basis the numerical value. So we can say, okay, their height is let's say 170. Their weight is, let's say 75kg. Let's say they are 35 year old. Mm?
+11:27
+
+Their energy level is 8 out of 10. Their body mass index is, let's say, 24. Mm? So if this is what the information is there, right? So you can say the
+11:40
+
+person is actually a text. Their features, their attributes is this, and this person can represent in a numerical way, we can say 170
+11:53
+
+7535824. This is what exactly embedding do. Yeah, this is exactly what embedding do.
+12:07
+
+Something similar. Can connect. So you can say instead of describing a person manually, we can say what is their height, what is their weight, how old they are, what is their energy level, what is their body mass
+12:20
+
+index. How AI actually doing it, AI model automatically learn features, right? And they are just articulating like that. Make sense?
+12:34
+
+Everybody, did you get some intuitions what I'm trying to say? Hmm. Now, you can say, okay, you have described a person. How I can describe a dog?
+12:50
+
+How I can describe a dog? What AI will do, what machine will do? Hmm. So, what AI actually doing it, they will
+13:04
+
+find the different hidden features like animal relating meaning, pet-related meaning, similar to puppy. Different height, colors,
+13:17
+
+right? So dog, they have a different color, different breed. What is weight? How old they are? Yeah. So there are different attributes there, and on that basis, AI is finding the numerical value. Why?
+13:32
+
+Because one intuitions you can say why we need embedding, because algorithm knows number only. Wherever you can do a mathematical calculation, wherever you can build a machine learning, deep learning, GenAI concept, right?
+13:46
+
+Algorithm. Algorithm knows only number. They have no visibility about the text data, image data, audio data, video data, like that. Yeah. So in a simple way, if you
+14:00
+
+ask me, the large language model, they understand and generate the language. Yeah. What large language will do? Large language model, LLM, they understand and generate the
+14:15
+
+language, but the computer do not naturally understand words like human do, right? Computer understand only number. Please remember, computers, when I say computer means I'm talking
+14:28
+
+about algorithm. So embedding act as a bridge, right? What embedding will do, how the architecture works. If we have a human language there,
+14:42
+
+okay, this human language, first the computer they have to convert into numbers. And then this number will go to the AI processing.
+14:58
+
+If you don't give the number, the computer, the system, the AI will not work. And then this AI processing will give the meaningful,
+15:12
+
+meaning-based output. Maybe this is a black box for you, but for machine learning, for AI, for computers, they can
+15:27
+
+understand like a human. So embedding help machine capture the meaning and context of the word, right? Supporting semantic search.
+15:41
+
+They are improving machine translation, recommendation system, RAG-based GenAI solution. That is what embedding will do. So that's why we can say embedding act as a bridge,
+15:53
+
+right? What embedding do? They are acting like a bridge. Make sense, my dear friend?
+16:06
+
+Hmm.
+16:19
+
+Now you can say, okay, can you give me more perspective? Hmm. So traditionally, right, why not use keyword search? Hmm.
+16:38
+
+So, you just take an example. Let's say I am saying here, how, if I'm giving an example here, and my example is, I am saying,
+16:50
+
+how can I reset my password? A laptop password, let's say. Laptop password.
+17:04
+
+Hmm. Now, the same vocabulary, the same sentence, the documents, what documents you are building a RAG system, in the documents it is written there,
+17:20
+
+is steps to recover device login
+17:33
+
+credential. Okay? Now, if you use advanced word, right? There is a method, right? Old concept. If you remember, last time I told you the NLP,
+17:46
+
+natural language processing, has a three part. One is called machine learning-based, learning-based
+17:58
+
+Model. Second is called distributed language model.
+18:12
+
+And the third one is large language model. Okay? So machine learning-based model, based language model,
+18:26
+
+language model. Now here, typically we use one-hot encoder, bag of word, term frequency, inverse document frequency. Mm-hmm.
+18:41
+
+N-gram. In n-grams you will get so many, unigram, bigram, trigram, tetragram, right? N means number of how many. N equal to 1
+18:57
+
+is unigram. Two is bigram, three is trigram. So at one go, we have to take two words, three words, four words, like that we have to take it. Then came into distributed language model, where we have
+19:09
+
+Word2vec, and this came in 2013 by Google. Then we have a GloVe. This paper published in 2015 by
+19:22
+
+Stanford University. Mm-hmm. Then we have fastText. This paper published one year later, 2016, by Meta company,
+19:36
+
+Facebook company. So this is another technique. And the large language model, when it came in 2017, Attention Is All You Need paper. Attention All You
+19:49
+
+Need. This paper published in 2017 by Google. Okay, this is the actual things. And then 2018, we have another paper, guys, which is called BERT, Bidirectional
+20:02
+
+Encoder Representation Model. GPT. Right? Generative Pre-trained Transformer. This T and this T, both are transformer model. The Attention Is All You Need is nothing, it's called transformer paper.
+20:16
+
+Transformer. So this paper published by OpenAI. This paper published by Google. Okay? Deep Mind company. And then you have seen all the large language
+20:31
+
+models. So that's why, LLM, actually we can consider 2017 onwards. Mm-hmm. So these are the embedding techniques. Typically, we are saying this is also embedding. It's not that new. We are converting into number.
+20:47
+
+These all three approach are the embedding methods. But this is very popular. So whenever you use LLM, we always use these models. We are using more advanced techniques.
+21:02
+
+Now, if I go here, let's say I have given this example. How can I reset my laptop password? And the documents, if you are building a RAG system, and in documents, it is mentioned there a step to recover device
+21:17
+
+login credential. Now, if I ask you guys, reset. Here the word is reset. Please try, tell me, reset and recover,
+21:31
+
+both are similar words or not, more or less? More or less? Here I said laptop, and here I'm saying device. Can I say the context meaning it's similar or not? Here, they have written a password,
+21:44
+
+and here we have written a credential. Both are meaning it similar or not? Come on, everybody. But it is meaning it's similar, but the system failed to
+22:00
+
+give the right answer. Why? Because if you go and use the machine learning-based model, the system get failed. Because the machine learning techniques, they are not giving the
+22:13
+
+semantic meaning. They are unable to give the semantic meaning. Semantic relationship, semantic is not possible. Auto vocab is not possible.
+22:28
+
+What is meaning of semantic? Similar meaning. They will not identify it. So how this works? I'm just giving intuitions, I'm not going deep dive. So how this is actually working? So let's say,
+22:40
+
+here I'm saying, "I like food." The other person, this is review one. The other customer, their review is, "I don't like
+22:55
+
+food." Like food. Third person said, third review is coming,
+23:09
+
+"Food is delicious." Or food is,
+23:21
+
+let's say, awesome and cheap. Okay? Let's say this is what the three review I have just given. Now, how system actually works?
+23:34
+
+So what system will do? For the sake of understanding only, I'm giving three. Just imagine why we are saying black box, because review you will not get three. You will get
+23:47
+
+thousands, millions, one millions, 10 millions, 100 millions. That much review, you will get it, and manually it's not possible human can do it. So what system, what AI will do, they can identify how many
+24:01
+
+total vocabulary is there, how many total vocab there. They will identify it. So total vocab is, they can say, okay, total vocab is one, two, three, four,
+24:16
+
+five, six, seven, eight, nine. So total vocab is nine. What are the vocab? I like food.
+24:28
+
+I do not like food already taken. Is awesome and
+24:42
+
+cheap. This is what they will do it. This is called total vocab is nine. Are you guys with me? How I say total vocab nine? Yeah. So three review, they will check how many unique vocabulary is there, and they
+24:54
+
+will list out. Now total vocab nine is, if I can go and use the auto one-hot encoder. What one-hot encoder will do, they are generating the binary number zero and one.
+25:09
+
+And how they will write? They can say, okay, I is there, so they can, I, they will write one, and then eight times zero. Eight times zero. Like is there, they will write
+25:23
+
+zero one and then seven times zero. Food is there, third position, zero zero one, and then six times zero.
+25:37
+
+Make sense? Do is there, you can say zero zero zero one and one, two, three, four, five times zero. Not is there, you can say zero zero zero zero one and one, two, three, four.
+25:49
+
+Is is there, you can write here, zero zero zero zero zero one and one, two, three. Awesome is there, you can say zero zero zero zero zero zero one zero zero. And is there, you can say zero zero
+26:03
+
+zero zero zero zero zero one zero. And last cheap word is there, zero zero zero zero zero zero zero zero. Are you guys with me how one-hot encoder works?
+26:17
+
+Now tell me, if we have a 50,000 vocabularies there, it is very, very computationally complex or not, if you go and build the LLM model and you have to articulate the number.
+26:30
+
+This sentence you can say how I can read this, I like food. The system say I is denoted by one zero zero zero zero zero zero zero. Right? And then like is,
+26:43
+
+you can say zero one one, two, three, four, five, six, seven. Similarly food is zero zero one zero zero zero. Please tell me this is way complex or not.
+26:57
+
+If we have a 50,000 or 5 lakh or 50 lakh vocabularies there, can I say it is one-hot encoder, your system will not work? That is one problem. Come on.
+27:13
+
+So one-hot encoder is not appreciated even when you are building a natural language processing, and if you go and use this. I'm just talking about simple model. So one-hot encoder is not appreciated.
+27:27
+
+It's not appreciated. Not appreciated. Please remember. This is because your system get failed.
+27:39
+
+Just imagine 50,000 vocabulary, that means you are saying, boss, one I will write I, I will write one, and then 49,999 times zero.
+27:51
+
+If you write I alone, you have to write that much vocabulary which has no make sense. So you can say what else? What is the good things? You can say, then I prefer to use
+28:03
+
+bag of word. Bag of word. What bag of word do, guys? They will see sentence by sentence.
+28:17
+
+Okay, bag of word say that, okay, the sentence review one, how we can write it? I like food is there or not. So yes, I there, like there, food is there, one, one, one. Remaining word is not there, you can say zero, zero, zero, zero, zero.
+28:30
+
+Review number two, the vocabulary is there, I do not like food. So I do not like food is there. Remaining is not there, so zero, zero, zero.
+28:45
+
+Review number three is food is awesome and cheap. You can say food is awesome and cheap. Remaining word is not there, you can say zero, zero, zero. Now tell me, which is simpler? One-hot encoder is simpler or bag
+28:58
+
+of word is simpler? Come on, tell me. Bag of word is simpler, right my friend? Yeah. So entire sentence, if I write I like food, no need to write like that, right? You have to go here. Don't write this.
+29:12
+
+This is one-hot encoder method. The bag of word, how you will write? I like food. So review one, one, one. You can say one, one, one, and then one, two, three, three, six. One, two, three, four, five, six. We will write it.
+29:27
+
+This is the method of bag of word. Now imagine this number is a simpler or this number is a simpler? Tell me. This number is a simpler, right? But the problem is, guys, in case if we have a
+29:42
+
+50,000 vocabulary is there, can I say again three times one you will write, but unnecessary 49,997 times you will write zero, zero, zero or not? Come on, tell me in this sentence.
+29:56
+
+So can I say again there is a problem? Again, there is a problem. So bag of word cannot handle this part. Make sense? Then similar something comes. So we have another method called
+30:11
+
+Term frequency, inverse document frequency, right? That will also do the same thing. Only difference is bag of word and TF-IDF. Bag of word is giving binary value only. TF-IDF will give probability values, but that is also
+30:24
+
+ranged between zero to one only. Yeah? Why they have done? Because when the machine learning techniques used in NLP, their thought is, if I can say, "I like food," which vocabulary
+30:39
+
+is more important, right? Everywhere, the same importance. I is also one, like is also one, and food is also one. These all three word has given same importance, then how you can say which word is a more important?
+30:51
+
+Yeah, ideally we are talking about food, right? So food would be high significant. Here food is awesome and cheap. Which vocabulary is very important in this sentence? Yeah. So everywhere they are talking about food, food, food.
+31:05
+
+So food is a common word. So here you can say maybe the awesome is the main fantastic word, right? We can say awesome has more weightage or cheap has more weightage. But if you see the model, food is
+31:20
+
+awesome and cheap, everywhere one, one, one there. So can I use the probabilistic approach? Can I use it? And that's why they have used TF-IDF, term frequency-inverse document.
+31:33
+
+Yeah. So this is the another challenge. Yeah. But both cannot handle, wherever the vocabulary is not there, it will come zero, zero, zero, zero. That will not solve the purpose. Then next model came n-gram method. N-gram is what?
+31:46
+
+These are the do not, right? Wherever we can say there is a methods there called a stop vocabulary, a stop word. What is meaning of a stop words? Which is the pronoun. So whenever you speak English, right?
+32:01
+
+Mostly we use I, we, you, yours, right? He, she, it, me. No? So any pronoun vocabulary you are using, that is mandatory whenever you speak. Any articles, whenever you make a sentence, you will use a and the,
+32:14
+
+right? Whenever you make a sentence, you will use preposition. Whenever you make a sentence, you will use helping verb. You will use modal verb. So those are the repetitive vocabulary. Can I remove it?
+32:30
+
+And then we can see which vocabulary is there. Now, in this case, review one and review two. If I give a prospective, my dear friend, review one and review two, if these are the pronoun, right? Here do
+32:44
+
+and not is also a same vocabulary. So you can say I will use the stop vocab, stop words. Then what happened? What vocabulary left? Like food and like food. Now tell me, review one and review two, both are same. Is it possible?
+32:58
+
+Review one and review two are both are same? No. Review one is a positive, assertive sentence. Review two is a negative sentence. How you can say both are same? But if you apply the stop words, both are same. Both are same because you remove this.
+33:14
+
+So in this case, how you will handle? Then this n-grams comes. So what n-grams do? We are saying n equal to, you can put two. So here, what system will do? They will not remove first. They can say, I like, like food. Yeah.
+33:28
+
+So this sentence they describe, they can say, I will write, I like. The second vocabulary is like food. Like food. Similarly, the sentence two, I do. How we'll write?
+33:42
+
+I do. Second vocabulary is do not. Do not. Third vocabulary is not like. Not like.
+33:57
+
+Yeah. And last is like food. Like food. Like food. Now, how many vocabulary is there? One is I like. Second is like food.
+34:09
+
+Third is called I do. Fourth is called do not. Fifth is not like. Yeah. And then like food.
+34:25
+
+Like food. Now you can say, if I can go and use the stop word here, do not get removed. I do get removed. Yeah. Not, these word is still there. Now if I say, you can say,
+34:37
+
+I do, I will remove it. Do not, I will remove it. But still we have one, two, three, and four vocabulary there. And if I can say review one and review two, please tell me the difference is there or not. Your machine say I like and like food,
+34:51
+
+and this is zero, zero. Here, not like, like food, and these are zero, zero. You can see R1 is not equal to R2. This is how the n-gram works. This is how the n-grams works.
+35:07
+
+So if you are applying the stop words, first you do the n-gram, yeah, and then you have to apply it. But you can see these machine learning techniques, any techniques you can use, whether you use bag of word, one-hot encoder, term frequency-inverse document frequency, n-gram,
+35:21
+
+they are not solving the purpose. Still you are getting binary value, zero, one, zero, one, zero, zero, zero, zero, like that. And can you imagine? Yeah. N-gram, the problem is the vocabulary also get increased.
+35:37
+
+The more vocabulary will come. Hmm. So how we can handle this? Because when I say n-gram equal to n equal to one comma two, so one unique value will also come. I also will come, like also come, food also come, one by one also
+35:50
+
+comes. So it is keep increasing an unnecessary vocabulary, right? The word is coming zero, one. So this is not success to handle the large language model. Then the another, Google has published in 2013.
+36:04
+
+Hmm. You have heard lots of things, right? In 1990s called AI winter year. Why AI winter year we are saying? Because that time the system get failed Yeah? Lots of challenges there. The challenge is, number one, computational
+36:18
+
+system. That time, GPU memory was not there. People were using, right? I don't know, right, whether you guys-- Definitely you were born after that, right?
+36:34
+
+So after '90 only. But guys, you can just check with your family members and all. They have P1, P2 computers there, P3 computers there. Yeah? Before 2000. Just go in 2000, 2005, your
+36:46
+
+memory, right? The mobile phone, how much memory is there? What is RAM there? 15MB. Today, you are going here to there, and in your mobile phone you have one TB
+36:59
+
+space is there, 564 space TB. That time, one terabyte data, if you wanted to store, you need a truck, then you have to store it. Yeah? So lots of challenges there.
+37:14
+
+The challenge is, number, data was not available. Challenge is, number, computational system was not available. Challenge is, number, we don't know the method. If we use these traditional approach, machine learning approach and all, the system get crash. It's not working. It's rotating, rotating, rotating.
+37:28
+
+Nothing happened. So it got failed. Then in 2013, the distributed language model, the Google has published this paper, and immediately after that, lots of paper came. Hmm.
+37:42
+
+So they have used these techniques. They said, "Okay, this will not give the example." I said, "How can I reset my laptop password?" Here, the keyword search, if I go keyword search,
+37:56
+
+right? They can clearly say reset is not equal to recover. Hmm. Laptop is not equal to device.
+38:08
+
+Hmm. Password is not equal to credential. Why? Because of these challenges. They were using these models. They consider each word is a different word.
+38:22
+
+Each word is a different word. Now, what is actually-- So what they did it, right? When distributed language model came, word2vec came, right? There are so many techniques there. If you go in the word2vec alone, right, you will get something called
+38:37
+
+CBOW method. You will get Skip-Gram method, Skip-Gram methods. Hmm. You will get optimization method, hierarchical negative sampling method, hierarchical CBOW method.
+38:52
+
+There are different techniques there. Hmm. So these are the deep learning approaches. Yeah? So what they have done, they said instead of going by the vocabulary, why not we can consider the dimension value?
+39:05
+
+So they have given 300 vocabulary maximum you can consider. And that 300, by the help of embedding you have to take. So what actually they do internally, let me give you some perspective so that you can feel very easy.
+39:18
+
+So let's say, I'm writing a equal to here two comma three, b equal to, I'm writing here, eight comma nine, right? So what is a and b? Simple. It's a list. Yeah?
+39:32
+
+It's list of number. It's a vector, guys. Yeah? Or can I say it's a 2D, two-dimension data? Yeah? You are getting a two dimension data. So you can see a is denoted by two, three, means there is a positions
+39:46
+
+there. b is at the position of eight and nine. Yeah? That's how you will represent it. So, this is just for your understanding. But if you see the AI, AI is not taking 2D data.
+39:59
+
+AI is always taking thousands or millions.
+40:15
+
+Millions of dimension. Yeah? And you know, right? There is a perspectives there. Human can see maximum two to 3D, three dimension data only. Any human, they can say, I am able to visualize
+40:27
+
+100 dimension. That means they have to consult to a doctor. Human cannot imagine or visualize five dimension or 10 dimension, or 100 dimension.
+40:42
+
+Human can visualize 2D and 3D only. So how you will handle the 100 dimension or thousands dimension or millions of dimension data? For that, we are learning algebra. Okay?
+40:54
+
+Why algebra came? Because of this is the reason first. So what happened, when I say here a dog, right? When I say dog, so what happened? Dog is denoted by different number. Basis their attributes.
+41:07
+
+0.45, 0.01, and so on. 0.67, like that. This is what the attribution is there. So each number is a dimension, please remember.
+41:23
+
+So here, how many dimension there? How many features are there? How many attributes there? That's what normally happen. And when this model came, my dear friend, when they have used the deep learning methods, these Word2vec, GloVe and FastText,
+41:36
+
+what they have done, they started taking the 300 dimension. Yeah? They have taken the vector length. They said, "Okay, I will not go with the
+41:50
+
+vocabulary. I will go basis the features." Basis the attributes. And they consider 300 vectors, right? They have considered-- when this transformer model came, they said, "Okay, I will take
+42:03
+
+524 embedding. I will give the features." Then when BERT model came, they have taken 768 base model. When the large model came, they consider, I will consider 24.
+42:18
+
+You have seen text embedding ADA. 002 or text embedding a small three, right? They consider 1,536. So these are the generic dimensions there of the model.
+42:34
+
+It depends on the model. And what is the maximum? In LLM maximum, we have seen 8,192. That's the maximum dimension they have taken. Now, you can just imagine when we have considered
+42:46
+
+embedding, right? Even though you can use a very advanced model, you can say, "I'm using text embedding, three large model."
+42:59
+
+Right? What is the maximum dimension we can consider the embedding value in one particular sentence or a paragraph or word, right? How many tokens you can generate it, you can say maximum token we can generate this mix.
+43:11
+
+And that token when I say, it's a number I'm showing. Everybody. Hmm? That's what the number comes. So 300 tokens we are considering. That token is nothing, it's a features.
+43:26
+
+Now, how this semantic meaning works? You may ask, okay, I can understand this A is, let's say, dog or B equal to ball is there. How we understand A and B is similar or not? What is the semantic meaning?
+43:41
+
+So let's say I'm giving a perspective here, guys. When I say the sentence number one, it's saying, sentence number one saying, I'm writing here, I want to
+43:54
+
+buy a mobile phone. Hmm? The sentence two is there.
+44:06
+
+A second customer is there. They are saying, "I am looking for a smartphone."
+44:19
+
+A smartphone. Hmm? Sentence number three is there. The server dataset
+44:32
+
+crashed. Crashed. Now, as a human, can I say, guys, sentence one is very close to sentence two? On the other hand, sentence one is totally different to sentence three.
+44:46
+
+Sentence two is totally different to sentence three. Come on, my dear friend. But this is very close to? This is very close to sentence two. Yes or no?
+45:01
+
+Yeah. So what system will do, what embedding will do, they are using the same feature techniques. And they can say, okay, this sentence I will write like that. I can say 0.21, 0.45,
+45:16
+
+0.78. Yeah? And so on. So like that, they read the sentence, and they can give some numbers. Some unique numbers, they will give it. Okay? They assigned it based the sentence, based the context, based the features.
+45:31
+
+They read the sentence to, again, they can articulate, because system know only numbers, then only algorithm works. So they can understand the sentence, and they can say, "Can I convert into number?" So they can say, "Okay, I will convert this into 0.22,
+45:47
+
+0.46, 0.76, and so on." This sentence, they can say, I will write -0.80 or 0.12,
+46:01
+
+0.05, and so on. Like that they will give it. This number internally, they are doing it embedding and all. And it is very important in RAG system, very important in GenAI search, very important in chatbot, whatever you do.
+46:16
+
+Yeah? So they are using this. Now, you can say how they do this part, right? How they are articulating it. So they are using some Euclidean distance. Euclidean distance. Euclidean distance is nothing, guys.
+46:32
+
+I hope you know, right? It's a Pythagoras theorem. So they are finding, right, which S1 is close to S2 or S3 or this. And then which is very closer, they can say this is a semantic meaning. Semantic meaning.
+46:47
+
+Which is very close. So you can see 0.2, 0.5. So first they will take an average number. This, they will take an average number. Okay? And then they can say how similar is this? How closeness is this? They will take an average number. How closeness is this?
+47:01
+
+So it's a far away, this is very close. We can say, okay, sentence one and sentence two is a semantic meaning. Yeah? So normally, in a simple RAG, you have already seen, right? When we use the RAG flow, how the flow works.
+47:17
+
+How the flow works, guys. We can say simply, first part is user ask questions. User ask questions. Hmm? Second step is we have to convert user
+47:32
+
+questions into an embedding first. Embedding first. And please remember, the third point is we have to search
+47:46
+
+vector database. Database, right? For the semantic, for the similar document, an embedding will help you.
+48:00
+
+Without embedding, it's very difficult. So sentence one, you can just think about these are my repository. These are my vector database where already they have tokenized them. They have converted into number and store it.
+48:12
+
+Now, when user is going and asking questions, first they will convert into embedding, and that number they will again find the average value and finding which document, which parser, which chunking, we are getting very relevant, and then that's what is called
+48:26
+
+retrieve. Retrieve the most relevant documents,
+48:41
+
+or relevant chunk you can say. Rather documents, you can say relevant chunk. Relevant chunks. And then once they retrieve it, then we are send user question
+48:56
+
+plus retrieve chunk, okay? Which is also called context. That is what? To LLM. And of course, we are using augmentation and all. And then step number six, LLM generate
+49:12
+
+grounded answer. So this is the process there, and without embedding it is very difficult. But please remember, embedding is one technique.
+49:28
+
+Embedding, not giving always the better answer. But embedding is the way to do this. Yeah? So if you can go and ask, right, in any system. What they are doing, they are clustering them, they are grouping them. Yeah?
+49:42
+
+Embedding can group similar items, basis the numerical value, basis the number. On the top of it, we are doing the similarity matching. Which document are similar? Which questions are duplicates?
+49:58
+
+Which resume matches for job description? Which code snippet are similar? Right? Like that, the Naukri and all, everywhere they are using this AI method. So how embedding works internally, please
+50:12
+
+remember, we have input text. Then we first convert into tokenization. Tokenization means converting it to number.
+50:25
+
+Then it is get connected with the network, or you can say neural network. And then finally it is storing into embedding vector.
+50:38
+
+Okay? Please remember. So when I say input text means what? Yeah? Input text means what? Let's say I say I like mango. Now, second part is you
+50:52
+
+can say first I will token them. I is one word, like is another word, mango is another word. That is called tokenizations.
+51:07
+
+Mm-hmm? Now, we on the top of it, right? You can see. We are converting that model into number. What you will do? The step number three, I will convert that tokenization into number. So here the word is given, I like
+51:19
+
+mango. The system, they will give some number, 0.14, 0.29, -0.77, 0 point something
+51:34
+
+3, up to let's say 300 tokens or numbers, or 700. What model you will use, right? That much token get generated. And each sentence or each paragraph or each vocabulary,
+51:47
+
+right, they will generate that much vocab. And then they are finding it, which is very simple. So let's say I'm just giving a perspective. Let's say we have apple there, we have mango there, yeah, and we have car there. Now, if I go use the
+52:01
+
+machine learning techniques, no it will not work. They will consider all vocabularies are different. They will not give the semantic meaning. But if you go and use these techniques, they can say apple is, let's say, denoted by 2,3, mango is denoted by 2.2 and 3.1,
+52:16
+
+and car is denoted by 8,9. Like that it happen. So anybody can see these two numbers are very similar. This is just a simple intuitions I'm giving you, how human can think. Yeah, it's a way vast. You have a millions of numbers there, so you
+52:31
+
+will not able to find it. Machine will able to find. If the sentence is given, apple and mango are close, and car is far away from this sentence, right? This what? This is normally happen. So, you know which vector is very close,
+52:46
+
+that meaning are just like a similar. So in real embedding, we use 768, 1536 dimension token, not just two. That much token we are-- Just for intuition purpose, I have given two,
+53:01
+
+three. And everywhere they are using the same method. And then on the top of it, they are using Euclidean distance. And they are finding it. Yeah? Euclidean distance is one of the way, right? This is one of the way.
+53:17
+
+You can say Euclidean distance is finding what is the A1 minus B1 square, plus A2 minus B2, there a square, and so on. So they can find 2 minus 2.2, there a square, plus
+53:32
+
+3 minus 3.1 square. Similarly, they will search 2 minus 8, there a square, plus 3 minus 9, 2.2 minus 8, 3.1 minus... And like that they will do it. This is one of the approach there.
+53:47
+
+Yeah, this is called distance matrix. If you guys know machine learning, there is a concept called K-Nearest Neighbor. So we have that is distance matrix, Euclidean distance, Manhattan distance, Minkowski distance, Hamming distance, cosine
+54:00
+
+similarity. Yeah? In RAG, mostly we prefer to use cosine similarity. Mm? So we use cosine similarity. So what cosine similarity will do?
+54:13
+
+Cosine similarity is a very common embedding method. So it check the angle. Cosine similarity always checking the angle between two vector, not just distance. Simple idea is, same direction, similar meaning.
+54:28
+
+Different direction, different meaning. Opposite direction, very different direction, right? So cosine is the best suits Cos0 = 1. Cos90 degree = 0. Cos180 degree = -1. So if the same direction is
+54:43
+
+there, the data is very close. If the data is coming here, this direction, right? Different direction, you can say different meaning. If the opposite, completely opposite, that is very far away, far
+54:59
+
+different meaning is there. And they are using the same method, A.B divide by length of A into length of B.
+55:11
+
+This is what the cosine similarity formula there. And on that basis, they're calculating it. Yeah? We have something called dot product also. Dot product.
+55:25
+
+Just for interview purpose, I'm telling you in case anybody asks you. Otherwise, I don't think they ask you what is meaning of embedding and all. But in case anyone ask, you can say, "Boss, we can use Euclidean distance, cosine similarity, dot product,
+55:38
+
+Minkowski method, Manhattan methods," like that. So here, what happened? Dot product means what is the A.B? You can say A1 into B1, plus A2
+55:54
+
+into B2, plus A3 into B3, up to so on, like that it is working. So that's the dot product method is. So very simple, real analogy I'm giving you guys.
+56:09
+
+Imagine you have something. I'm saying find books that contain exact word car. Right? So how these things happen, they will learn, they will
+56:24
+
+see all the chunk, and there they can find where the car is coming. And there is a similar meaning. If the same automaticals, vehicles there, or drivings related topics there, or transportation related topics there, or similar topics there, they can find it and they can find
+56:37
+
+the probabilistic value, and then they are giving the answer. Are you guys with me, my dear friend, how this is actually working?
+56:53
+
+Yeah. So one reason I told you, right? What is this? And the second reason is why we are using it, how we are using it, for what purpose we are using it. You can say the first purpose is
+57:17
+
+similarity search purpose. We are doing because I wanted to do similarity search. So like I have given the example
+57:29
+
+in below. I like mango, I like apple, I like car. So all three car is a different thing. So they can say, I like apple and I like mango, are the very similar.
+57:43
+
+Which is very close. So they are finding it. So they will give the number, and then accordingly, they will find it. So similarity search will help you because when we are building it, right?
+57:55
+
+Embedding model, simply you can say, embedding model convert text data into vector. Now, LLM, what LLM will do, they will generate text response. So how LLM or machine know? Vector database, they store and search the vector so that your computational
+58:10
+
+system become much faster. They can easily find the latest value, and on the top of it, if you use RAG system, they will combine the retrieval method. On the top of it, they are using the LLM, and then finally, they are generating the answer.
+58:24
+
+This is what actually embedding do. Please remember, embedding are very powerful techniques in generative AI. LLM do not automatically know your
+58:39
+
+company internal documents. Please remember. We are using RAG. No, RAG uses embedding to retrieve your private or domain-specific data, and on the top of it, you have to pass it as context of
+58:53
+
+the LLM. Please remember. And if you use the embedding very nicely, if you use the better embedding method, we can reduce the hallucination. We can reduce the hallucination. You will search the right answer.
+59:08
+
+You will search the semantic meaning that is normally happen. Okay, these are the approaches there that you have to remember, guys. Everybody, all my friend, make sense what I'm talking?
+59:22
+
+This is very simple idea. This is very simple idea. How the things works.
+59:38
+
+And it is not applicable in text data. Like I said, it is applicable in the image also, it is applicable in other systems also. Everywhere you can go and use it. Everywhere.
+59:54
+
+Okay, there are people has raised hand. Okay, I'll take a question at the end. Yeah? So please try to understand, guys.
+60:30
+
+This is what normally the system do, and normally they are doing it. Arvind is saying, "But word turn into vector, what process?" I told you, the one-hot encoder, what method they are using?
+60:43
+
+Similarly, bag of word, how it is working. N-gram, how it works. Term frequency-inverse document, how it works. Word2vec, they are using neural network techniques and then they are converting it. So these are the advanced techniques, neural network methods.
+60:55
+
+Yeah, and they are converting like that. So there is a hidden layer there inside, right? And they are using it, and they convert it. But after that, on the top of it, by the help of embedding, what they do,
+61:11
+
+they can use the different techniques. So advanced attention mechanism. Correct. So we are using advanced attention mechanism, and there you will get some
+61:24
+
+key value. They are finding the key value, search value, then they are getting the value, all these things, and then accordingly, they are getting the result.
+61:38
+
+Sir, what problems transformer models solve? Transformer model can solve the LLM problems, question answer problem, translations problems.
+61:51
+
+Okay. Now, coming back to another very interesting. Are you clear similarity search part, guys? Are you clear key search part?
+62:04
+
+Now there is a word called hybrid search. There is a word called hybrid search. Hybrid search.
+62:21
+
+Hybrid search. Yeah. Hybrid search, it's very powerful but not perfect always, please remember. Embedding search is powerful. In embedding, if you directly go and you can say, "I will use the cosine similarity
+62:34
+
+and all," is it okay? No. So for that, we are using more advanced techniques. So, sometime you can say what is meaning of hybrid search?
+62:49
+
+Hybrid search means you can do key search, keyword search, plus vector search. Yeah. And plus you can do
+63:01
+
+semantic search. Guys, I'm spelling mistakes there, you can just rectify it. So anybody say, what do you mean by hybrid search? I have seen an interviewer, they mostly ask this question.
+63:16
+
+What hybrid search meaning is? You can say, "Boss, hybrid search meaning is, first it's semantic search, means I can find the similar meaning by the help of embedding techniques. Then vector search, you know how embedding works, by the help of cosine similarity, they are finding the nearest value.
+63:31
+
+And key search, let's say, I'm saying find the policy number one, two, three. Tell me employee ID 100, 1000 something, when they join the organization. So that term keyword search will help.
+63:47
+
+And when we combine all three, we are getting a better answer. So when you use the RAG system especially, you will see it when I'll teach you the cloud, or I will teach you no-code, low-code platform.
+64:00
+
+It's clearly mentioned there which search you wanted to go. Do you want to go semantic search, or do you want to go by keyword search? Which one you wanted to go it? Because embedding had some limitations there. Embedding are powerful, but not a magic, please remember.
+64:12
+
+Different embedding models create a different vector space. If you are using both model, if you are using GPT model, you will get different dimension. But if you use text embedding three
+64:27
+
+large or three small or ADA 002, you will get different dimensions. So internal, how semantic similarity depends on the embedding models to generate the embedding.
+64:41
+
+So embedding model is a poor for domain. We don't go only for the vector search or only for semantic meaning. We have to combine all three, and then we are generating it.
+64:56
+
+So if you are using some domain-specific task, let's say I'm saying legal activities you are doing. Some people, they are working in medical company, pharma company.
+65:08
+
+So that time they need a medical terminology. If you are working in banking or finance, there are lots of word there. Risk policies there, terminology there. So they have to use the key search, and then they are finding the context, meaning,
+65:22
+
+and then accordingly they are giving the answer. So without embedding is not possible. Of course, I can say this word, but this is what you have to do it.
+65:37
+
+Make sense? So please remember, key search means we wanted exact word. Exact word matching.
+65:51
+
+Like especially you are handling the financial data, you are handling the employee data. So you can say ID, what code, these things. Vector search means you can say
+66:06
+
+meaning-based matching. Okay? You can say context-based matching. Context, they are reading the context, sentence.
+66:19
+
+And semantic meaning is similar meaning. Similar meaning. So here you can say we are combining. So meaning-based matching means by the help of mathematical average value.
+66:32
+
+This is similarity search, and when we are combining it, then we can say hybrid, this mean combined. Combine all three approach, and then we are building
+66:47
+
+a enterprise RAG system. The more complex. So, that's how the internal system works. Let's say you are building a RAG architecture and you have
+67:01
+
+enterprise data there, you have a PDF there, you have a SharePoint there, SQL there, docs there, images there, right? What you do? The first step, you can do data ingestion. You can extract and clean them. Second step, you can say, "I will do
+67:15
+
+the chunking method." Okay? I will do the chunking method. So what chunking will do? They will split the document. Third method, you can say I will do embedding model, right? So what embedding will do? They will convert text to vector, numerical value.
+67:29
+
+Then you can say, "I will do the vector index or search store embedding." So you will create a Chroma database, let's say, and there you have to store all the value. Then user will ask questions, and what retrieval will do, they will use similarity search. They will find the relevant chunk.
+67:43
+
+The similarity search there I'm talking about, you can use the hybrid search method. Yeah? So they will not find the documents based on the vector score or vector search or semantic search or key search individually.
+68:00
+
+Then it get failed. You have to combine all these things and then LLM generate the answer, and you will find the answer. If you wanted citation, you wanted context and all, you can get it. Like that it works.
+68:13
+
+Yeah? So please remember, going forward, anybody ask you, you can say embedding are a numerical representation of meaning. In generative AI, we use to convert document, questions, image into vector.
+68:27
+
+Once everything is represented as a number, the system can compare meaningful mathematically, and that time they are using this method, this method, this method, and then we are doing it. That's how the system works.
+68:41
+
+Please remember. How this number comes, like I told you earlier also, that how I'm saying the person tell me the human features. So normally when I say tell me the people
+68:55
+
+features and/or person features, we are saying what is their height, what is their weight, how old they are, what is their energy level, and what is this? So these are the features there. Now, features is to identify in the deep learning method, you guys know it's a hidden layer, it's a black box.
+69:10
+
+You have no idea. That's the difference in machine learning and deep learning, guys. I don't want to go on too deep dive, but because some people ask in chat window. So here, machine learning, you have a visibility. Deep learning, you don't have visibility. Machine learning is a manual approach.
+69:25
+
+This is automation approach. Here you can control features. You can control features. Here you can't. You cannot. Why? Because this is called hidden layer.
+69:41
+
+And how embedding works, actually we are considering a hidden layer, and that's why you will not understand the feature, what feature meaning is, what number meaning is. You have no visibility on that. But how it internally intuitions there, that part I'm
+69:54
+
+telling you. If you know deep learning, you can easily articulate, you can easily tell them. So anybody going forward asks you these questions, you can say, "Boss, because we are using a deep learning techniques, and there we are using a hidden layer, and hidden layer, human cannot control it." It a automation method.
+70:09
+
+Machine learning, we can do it. Yeah? We have a control which feature. Guys, have you seen decision tree or not? Have you seen random forest model or not? Tell me. I have shown you this method or not, the feature importance?
+70:23
+
+When even I use Pi carrot method, there you have seen feature importance. Which feature is a significant, which feature not? Yes or no? So here you can control it, but deep learning you can't control. Deep learning, I don't know.
+70:40
+
+Yeah? That's why we can say it's a black box. Yeah? But black box means what black box? Do we have any maths or not? Of course, these are my input data. So we have X1, X2, X3 there, and I wanted
+70:53
+
+Y answer. Now in between how the articulation works, we are building a hidden layer. Like that it works. So each data get connect with this. Each data get connect with this. Each data connected here, and then you
+71:09
+
+are getting some value, right? And then finally you will get the output. And this part, there are maths there, right? We are using summation and we are using activation function. Summation activation function. And there is something called forward
+71:22
+
+propagation method. There is something called backward propagation method. Backward propagation method given by Geoffrey Hinton. He's the father of modern deep learning. In 2006, he published a paper, and that's the foundations. That's why
+71:37
+
+we are privileged and we are using this method. That's why his name, people are saying it's a modern father of deep learning. So what they do, they will increase the weight, they will change the weight. Basically, the different approaches.
+71:51
+
+I don't want to talk all these things right now, otherwise you guys get confused. But that's the way there that we can handle it. Everybody, all my friend, are you with me? Come on. Confusion?
+72:04
+
+Hmm?
+72:26
+
+Super. So now let me go more deeper, and then I will go the use cases. So I'll give you opportunity, you can ask then. So guys, there is a method called
+72:41
+
+key search. Hmm? Key search is also called keyword. Keyword Search.
+72:55
+
+So what they will do, they are searching exact word. What is the meaning of exact word which is present there? So if I say, if the user is asking questions, you have a chatbot, and user is asking, "Can you please suggest how to reset my
+73:09
+
+password?" Reset my password. And when you build a RAG system, in RAG system, in documents, it is mentioned, step
+73:23
+
+two, reset password. If the document is saying step two, reset password, here then they can read it. They can say, okay, reset password is there.
+73:35
+
+They will find and give the answer. But if document is saying not this, in document it is written, recover
+73:48
+
+account credential. Then what happen, guys? Key search will work. It get fail. Okay? Word are different, no matching.
+74:02
+
+So please remember, key search we are using when you can see there is a policy numbers there. Okay? Numbers there. There is ID numbers there. There is person
+74:18
+
+names there. There is exact match there. Only then you can go and use the key search. That's why whenever we use the RAG system, we don't prefer to use
+74:33
+
+key search. We always prefer to do hybrid search. Key search works on particular result only. If you are working in bank, and if you give the bank account number or the
+74:46
+
+customer numbers, then only they can find it. Otherwise, it will throw an error. Then the advanced concept came called semantic search.
+75:00
+
+Semantic search. Meaning is, what is the similar meaning? Semantic search means not exact word, but similar meaning. So anybody say,
+75:12
+
+user is asking, let's say, the question is work from home policy. Please suggest work from home policy. And the documents you have when you build a RAG
+75:25
+
+system, that time it's given remote work guideline. Okay? Now you can see this and this, remote work guideline and work from home policy,
+75:40
+
+both are same. So when they apply the semantic search, when they use the encoding method, they will find their average value is very near. So here, in this case, you can say key search works.
+75:54
+
+You can say no, it fail. It fails. But semantic search work? You can say yes, they find it.
+76:08
+
+So anywhere, if you are building a frequent question answer systems, you are building a chatbot, you are building a natural language, NLP queries. Semantic search is the best,
+76:23
+
+especially for conversation, meaningful understanding and all. You can say, "Can I take a leave?" System will say the vacation policy. These are the leave policy there. Please go and check it.
+76:37
+
+But if you go and use the hybrid search, guys. If you go and use the hybrid search. That is the combinations of key search plus semantic search,
+76:52
+
+and we can say this is the best. Instead of using key search in this, you always go and use the hybrid search, combine of key search. So even you have some
+77:06
+
+domain-specific documents there where the policy-related details there, some healthcare data there where patient ID is given. So that time, key will also find it, and anywhere there the semantic meaning is
+77:19
+
+required, the semantic meaning also find it, and wherever there is a vector part is there, that it also comes there.
+77:33
+
+And these part, please remember. This part is also called keyword search algorithm. There is a word you will get it.
+77:46
+
+It's called BM25. Meaning is simple. You can say, don't get confused, you can say keyword or key search, a scoring algorithm.
+77:59
+
+So what it will do, they will math the formula used to the key search, and they can find by the help of embedding techniques, which is the very close
+78:12
+
+and where the score is very high. Then we are using BM25. But BM25 uses, I don't recommend. You can say that, okay, when I use the RAG system, I prefer.
+78:24
+
+You always say, when I use the RAG system, I prefer to use hybrid search. I don't want to use this one. But after that, guys, there is one advanced method there, which is called ranking method.
+78:37
+
+Ranking is nothing. It's called ordering. So if you remember, I already told you when I told the RAG system. What they will do? There are thousands of documents available there.
+78:50
+
+By the help of bi-encoder method, they will take the hundreds of documents. And out of hundreds of documents, they will rank them based on the probability value.
+79:05
+
+They will rank them one to 100, and on the top of it you can write K equal to five. So where the highest probability there, that value will come, and they will give the retrieval method. That's how the
+79:18
+
+ranking method works. So ranking method has a multiple approach there, guys. One is level one. L1 ranking means they will use the BM25 method, keyword search, and they will use similarity score, and they will combine it.
+79:30
+
+The second part, L2 ranking or semantic ranking, means AI recheck result again, and they understand the meaning better, and then re-ranking the multilevel, called BM25 first, and then semantic
+79:45
+
+re-ranking, so that improve the result, and then it will go. Yeah? So ranking is also one of the very powerful methods there. And then hard part is there.
+79:58
+
+Now, the next part is called fusion method. RAG fusion. Fusion, please remember. Yeah? So RAG fusion is they are merging multiple result
+80:10
+
+list. These things I'm telling you guys, if your bot is not giving the best result, please remember, listen very carefully. You are building a RAG system. Your RAG is not giving the correct
+80:29
+
+response. Your client is not happy. Please don't blindly go and use the fine-tuning. Fine-tuning is very costly. You can first change with the
+80:42
+
+re-ranking method and RAG fusion method, and see is there any improvement there or not. So RAG fusion method is actually working, which is the RRF approach. RRF stand for
+80:55
+
+reciprocal rank fusion. Rank fusion. Yeah? So what they will do, they will use the key search, whatever the method there. Yeah? So RRF,
+81:09
+
+what they will do, they will merge the keyword, keyword search, plus they will use the vector result. Yeah? Vector result, and then plus for
+81:25
+
+the rank method, they will use the rank method, and then finally they are giving. So it's a kind of combination, but there is a cost involved there. You may ask this question, no? RAG fusion is a very good method. Why not I can go and blindly use it?
+81:38
+
+Because there is a cost involved. So why not I always prefer to use hybrid first? If hybrid search is not working, then you can go and use the RAG fusion method.
+81:53
+
+So in a nutshell, guys, let me write it here for interview purpose. In case interviewer asks you this question,
+82:11
+
+don't get confused. You can say there is something called keyword search.
+82:23
+
+There is something called semantic search, hybrid search,
+82:37
+
+BM25 search, ranking search, and fusion RRF search.
+82:51
+
+These are the method there. Where you can use it? You guys remember, right? This is embedding vector database. User will ask questions, query, it will go to the retrieval.
+83:03
+
+Retrieval will do not only the cosine similarity and all. This part when they give the context, because this matter a lot. If your context is good, then only your response is good. Here, if you make a mistake, then all the augmentation,
+83:18
+
+LLM, everything failed. Everything got failed. So here, this method I'm talking about,
+83:33
+
+anybody say, what are the methods there? These are the methods there: keyword search, semantic search, hybrid search, BM25, ranking fusion. Key search means exact word match.
+83:45
+
+Exact word match. Semantic search means meaning-based. Meaning-based match.
+83:58
+
+Hybrid means combination of both keyword and semantic search. BM25, what they do, they use the keyword score value,
+84:11
+
+a scoring formula. Not appreciated. You can do if you don't want to pay more. This is mainly using for text purpose. Ranking, order result.
+84:27
+
+Order result. And RAG fusion, merge multiple result. So they are doing all the hypothetical test,
+84:40
+
+all the probability, and then giving the answer. So if you have only text data and the domain is specific, where, let's say, ID-related, code-related, then you can go and use this. If you are building a chatbot
+84:57
+
+and you are using the natural query, you can go and use the semantic search or embedding method. It will work. Hybrid search, guys. Hybrid search means you have a text data,
+85:12
+
+plus you have some vector. Let's say image. Image is what? It's a pixel value. You guys know, right? Image is nothing, it's a pixel. So if you have a system,
+85:26
+
+you're building a RAG system, go and use the hybrid. BM25 you can use only when you have a text data. But when you wanted to find the ranking,
+85:39
+
+you are finding which word is the highest probability, their key search kind of things, then BM25 alone you can use. Ranking and fusion, we are using everywhere.
+85:51
+
+All and only. This is the best. Otherwise, you can go and use it. Ranking, everywhere we are using it, fusion, you can go and do it. So this is the concept, guys, pending there in the RAG
+86:03
+
+system. I have covered it. Now, I'll go the multi-modal system. Before that, I wanted to take your question answer, then I will jump. So,
+86:18
+
+who has raised hand? Sai Ganesh, go ahead. Ask your query quickly. Hello, sir. So I just want to know if the keyword search is
+86:32
+
+getting the exact word, and the similarity search is getting the similar meaning. So in the similarity search, if we ask the work from home policy, and if the user is asking about the work from home policy, and in the document it also is having the work from home policy, means it will not
+86:47
+
+fetch it since it is the same- No, same, no. So semantic meaning is what? If the similar meaning there, then also it will give the answer. So you can go in the chatbot and you can say, "Hey, how are you?" So they will say,
+87:03
+
+"I am fine, how about you?" Other person, they said, "What about you?" So they can also understand, right? Other person say, "How do you do?" So your bot is able to understand the similar meaning also,
+87:17
+
+semantic meaning also, and exact- Similar words also. Okay ... and similar word also. So semantic search is also having that keyword search combination? Yes. Okay. Yes. That's all.
+87:29
+
+Himanshu? No question? Okay.
+87:45
+
+Dheeraj Nikki? Yeah. Sir, two questions. First, you mentioned that bi-encoder and the cross-encoder, right? So the five techniques now you show that is what they
+87:58
+
+are doing, or that is a different concept? Which one? Sorry. You mentioned these five techniques, right? The keyword search and all those things, and- Keyword search, semantic search, hybrid search.
+88:12
+
+Correct. Mm-hmm. And previously, in the initial of the session, you mentioned keywords, bi-encoder retrieval and cross-encoder ranking. That is matched there. So that's the match there. Okay. Embedding method there.
+88:25
+
+Okay. But what approach they follow? They follow the till ranking method. Hybrid search plus ranking method. Okay. So sir, our next question is, when we see that
+88:38
+
+natural language processing trajectory you have shown from traditional to distributor to the large language model. In that trajectory, when you said about the transformer, you said that
+88:50
+
+we move to the feature-based or the dimension-based understanding to understand the semantic meaning, right? Mm-hmm. And with every model, we have increased the number of features or number of dimensions so that we can have more compression and more meaningful for the
+89:03
+
+text, or for anything. Image, text, anything. Yeah. Based on the vector. So now, you have mentioned one more thing like that the limitation is 8192 token.
+89:17
+
+And when we say that- That's the maximum ... a model is having-- Yeah. But when we say the model is trained on 8 billion parameter, then what is the use of that 8 billion parameter? Because one time we are just processing 8192 tokens only, or features only.
+89:29
+
+No. So that's why we are using chunking. That's why we are using chunking. So we are splitting them and then going back. But what is the concept? What is that context and significance of training on 8 billion parameter then?
+89:44
+
+That's where I'm getting confused. When we say the model is trained on 8 billion parameter. Because normally for the GPT model, and say that the model is trained on- Parameter means what? Okay. Let me
+89:59
+
+explain you how parameter calculated. So he's talking about weights and bias and all that. Correct. All those parameters. Okay. I'm just explaining him. Let's say this is input data, X1, X2.
+90:13
+
+I'm not writing X1, otherwise you get confused. Let's say here I'm writing height. Okay? Weight, age,
+90:26
+
+energy level. These are the features there, and body mass index there. Can I say there are five features there? Can I say this is input? Mm-hmm. Now here, what happened? Let's say I'm giving hidden layer
+90:38
+
+one, two, three. Hidden layer one. Here I'm giving hidden layer two. And then output.
+90:53
+
+This is called Yi hat, or you can say output. Now, what happened, my friend? How deep learning works, deep learning connecting each data point with
+91:05
+
+each hidden layer. Second part is connecting with this.
+91:21
+
+And third one is this.
+91:34
+
+Now, how many total parameters? These are very simple intuitions I'm giving you. How many total input? Five. Ideally, you will not get five, you will get hundreds, you will get thousands features. When I say 1,000,
+91:47
+
+1,536, can I say that much features there, yes or no? Now here, just I'm saying five features. How many hidden layer? Three. So how many total weight get created? You can say five into three, and plus we have
+92:03
+
+to add bias also. So these three bias also comes. Bias is nothing, you can think about intercept value, constant value. So there are three bias: b1, b2, and b3.
+92:18
+
+Now, second part, how many output will come? Here output one, output two, output three. Now these output again connecting with this layer. This is how deep learning multi-layer perceptron works.
+92:32
+
+Next, this. So here, how many? Three there. And here, how many? Two. So guys, what you can say now? Three into two weight, and plus how many bias? Two bias.
+92:47
+
+One, and two. Now, how many output you will get here? Output one one, and output one two. Now you can connect again this.
+93:00
+
+So you can say again how many weight? Two into one, and one bias. So total, how many weight plus bias there? How many total weight plus bias? 5x3 are 15, 3, 18. Plus 3x2 are 6, 2,
+93:13
+
+8. And plus 2x1 are 2, 1, 3. So you can say 29 weight got created. So when you have seen 70 billion parameter, this is called parameter.
+93:27
+
+So when you see that, means that much data there, that much features there. So if I use that dimension, we are converting it to features, so 8,191 feature they are converting it.
+93:40
+
+When they train the model, that time they have taken that much hidden layer and all. And then, they are saying that I have that much features, that much parameter is there. So if you guys have seen, if I go here and say
+93:54
+
+Llama 4, so you can see the Llama 4, how many parameters there? How many parameters there, guys? 288 billion parameter there,
+94:09
+
+117 billion parameter there. Are you clear how this 70 billion parameter, 288 billion parameter, 16 trillion parameter is coming? Just imagine-
+94:21
+
+Yeah. No, I was- ... how much data, how many hidden layer they have taken, and then they are doing it. Correct. Yeah? So, sir, does it mean that after transformer, with every model, they have increased the number of features at
+94:34
+
+the hidden layer so that we are getting more billions parameter? That is what they did. Okay. Go here and read the documentation, say large language model Wikipedia.
+94:46
+
+Mm-hmm. And see the parameter. Go down. And as you grow, as the new models comes, they are using more parameter. Where is this?
+94:58
+
+I'll show you that reference. Yeah, see this. So when GPT-1 came, how much parameter there? 0.117 billion parameter. BERT model in 2018, how much parameter there?
+95:13
+
+3.3 billion, 0.3 billion parameter. T5, 2019, they came, 11 billion parameter. GPT-2, 1.5 billion parameter. In 2020 came GPT-3, 170 billion parameter.
+95:26
+
+2021, GPT-Neo came, 2.7 billion. Groper, 280 billion. 2022, Lambda came, 137 billion parameter. Are you able to see that?
+95:41
+
+Alexa TM, billion parameter. 2023, Llama came, 65 billion parameter. Falcon model, 70 billion parameter. You can just see, five. Microsoft, they have taken very less parameter.
+95:54
+
+That's why sometime we are using lesser parameter also and giving better result. It's Microsoft, they are giving 2.7. But just imagine, Gemini 1.5, they have not disclosed because they have a proprietary. Are you able to see that?
+96:07
+
+They have not disclosed how many parameters. But you can see some of them even have the parameter. Correct. You can- What's this? One minute, one minute, I'll show you. 2026. You can just see. Here, trillion parameter came.
+96:21
+
+DeepSeek V4 Pro, 1.7 trillion parameter. Mm. Not million, not billion, trillions parameter they have taken. Just imagine how much time it takes, and it's a license for MIT and
+96:35
+
+this. Mm. So it's just like when the input parameter is like we are saying maximum is 8,192, it's input layer can receive maximum this, and internally it gets connected to multiple hidden
+96:49
+
+layers, right? Anything in those, yeah. So that- Correct. That much they are considering it. Correct. Sir, but if somebody takes the open source model and train them, like fine-tune them and train them- Not possible. Somebody, when you say not possible, you don't have that much
+97:02
+
+computational system, no? No, not us. Like some company who can invest in that- Yeah, they are doing it now ... H100 chips. So basically- NVIDIA Correct. So basically when they are doing it, they are increasing this parameter,
+97:17
+
+and they are increasing the hidden layer to have more parameters. Hidden layer and increasing the data set also. No, they are taking all the data. So here when I say 1.06 trillion, what do you think? Mm-hmm. Whatever the data is available on the internet, whether it's
+97:30
+
+eBooks or Google News or any Wikipedia or anything, everything they have taken and given the training. Got you. That makes sense now. So they are taking all the data, open source data, they are increasing the
+97:45
+
+hidden layer, and then accordingly they are doing it. So way far, it's too much complex. What is the meaning of this 32 trillion tokens and 48 trillion token like that? What does it mean?
+97:58
+
+This one you are saying? Yes. That is saying corpus size. So how many total documents they have taken. It's a corpus size. Okay. Means internal-- not internal, sorry, external data they have taken.
+98:11
+
+So this model, they have taken 48 trillion documents, then they have done the training. There they build that much parameter. Okay. So this is called- Oh, that's clear.
+98:24
+
+Yes. So just imagine- Thank you so much, sir ... how possible you can gather 20, 48 trillion documents. How long it will take? Hmm? Go and read the- This is very helpful to-- Yeah, this is very helpful to connect the dots.
+98:37
+
+Thank you so much. No problem. Sir- Any other question, guys? Rishabh is there. Sir, I have a couple of questions. I was not able to speak that time. Sir, this fusion RAG, RRF, it
+98:51
+
+basically calls LLM to generate multiple queries? No, no, this is not the... This is method of retrieving part.
+99:03
+
+So what fusion will do, they are using different techniques. Like I said, merge multiple result list. So when retrieval, they are fetching the context, right? They are using the multiple iterations, and then they are
+99:17
+
+using it. So they are using vector search, they are using keyword search, they are using semantic search, they are using hybrid search. Everything they are combining, and then giving the result. So it's called, the algorithm name called reciprocal rank
+99:32
+
+fusion method. So if I can show you, you can go and read the documents. Reciprocal rank
+99:46
+
+fusion algorithm. Okay, document. If you go and read this.
+100:01
+
+So it's called, this method is combined multiple result set with the different relevant indicator to single result set. RRF require no tuning, and the different relevance
+100:15
+
+indicate do not have the related each this. So before going and doing the fine-tuning method, this is also one of the techniques there. If your RAG is not giving better result and all, then we are doing it. So it's a search actually.
+100:27
+
+It's a child retrieval using the RFF retrieval. So multiple approach, they are doing iteration and then giving the result. Okay. How this works. So just go and read it, you will be able to understand. Sure. Okay, you can see here they have used the query search, they have used
+100:42
+
+different search every time, and then they are finding. So first execute k nearest neighbor search, right? They are using different method, then different method, then different method, and finally giving it. Also called elastic search and all.
+100:55
+
+Make sense? Yes. Yes. Now, who else? Rishabh, what is your query, my friend? Hello, sir. Am I audible?
+101:10
+
+Mm-hmm. Sir, I have one question from the practical use cases. So nowadays, when we work with GPT or Cloud Code,
+101:23
+
+in our chat we are uploading some PDFs, sometimes some documents and all. So, is it also something like a RAG, or is it a keyword search that they do on those documents and then-
+101:39
+
+Keyword search is a method. Inside the retrieval, there is a method there. RAG is a approach. So RAG, when you use, your problem statement is you have own documents. Let's say you are saying the documents is there in my system only,
+101:51
+
+not in the internet. Yes. Okay? It's there in intranet. Now, how I can build a chatbot? And my bot can only read my data, not the external data. Then you have to use the RAG method,
+102:07
+
+retrieval augmentation. When you extract the data, how we can extract? Is embedding suffice? No. Then you have to do the embedding on the top of it, you can use some advanced method also.
+102:20
+
+That advanced method, I said keyword search, BM25 search, semantic search, hybrid search, ranking search, RAG fusion search. Right? These are the techniques there. They can retrieve and give the better answer.
+102:33
+
+If hybrid search is not working well, you are not getting your score, its accuracy is not fine, what you do? The client is not happy, so they will say, "Okay, can you enhance this?" Now, enhance means you don't blindly go and use the fine-tuning. Fine-tuning is very costly.
+102:47
+
+When I cover the fine-tuning, I'll tell you. So first you can enhance the RAG system. No, sir. Yeah, my question is not like I am building my own chat. I'm saying, let's say if I'm using a
+103:02
+
+tool which is already coming with the chatbot, for example, Copilot or Cursor or something like that. Mm-hmm. And then I am having my own, let's say MD files or source code, and then I open my whatever
+103:15
+
+the Cursor or VS Code, and then The chat which is coming from Copilot, if I'm asking that chatbot that read these documents, let's say the MD files or those things.
+103:29
+
+So I'm not creating any system. I'm just opening a chatbot coming from GPT and asking- I understood. So organization, what they do? They have taken the enterprise access. License one, you will get a license Copilot where what happened?
+103:44
+
+That license Copilot, there is no need to build the RAG here. That is actually open dataset. But when you give that data, you can upload in the chatbot and you can say, "Hey, this is my document. Based on this, can you please give me?" They will give it.
+103:57
+
+But that is not the RAG, that is simple LLM model. You are already giving uploading here. Yeah. That data, if the company has a licensed one, then only you can do it. I have seen Copilot-only industry, they are using it, and they said you can go and
+104:11
+
+upload the data. Yeah. So this is my personal one, so no license. For example, I'm doing my personal project. Then it's not a RAG, sir. It's a general chatbot. So that chatbot, when it reads my MD files, is
+104:24
+
+it a keyword search, I can say? Or how does it read my documents and give me answers? No, they are already trained. They are doing the hybrid search actually, not the keyword search. Okay. Keyword, hybrid, all these things you can control when you build your own
+104:40
+
+bot. Mm-hmm. Connection with the Copilot Studio or ChatGPT or Cursor and all. You have to create that kind of bot. The way I did it- Okay. Okay ... so if you like, then only you have to do.
+104:53
+
+And sir, let's say I'm not creating my own bot because nowadays I'm seeing that as my data is increasing, the bot is hallucinating. So in that case, is it possible that I can create my own embeddings and just plug it with some
+105:07
+
+commercial bots, let's say, Copilot or something like that? Does that happen, or is it like I have to create- No, we are creating. No, we are building a MCP server, and then we are connecting them. That's what we are doing it.
+105:22
+
+Okay. Okay, sir. So you have to just create a MCP server then. No need to create a bot and other things. You just create a server and give the connection to the bot, and bot will fetch all the data and will give the answer.
+105:37
+
+Okay. Okay, sir. Sorry, you were saying something. I unmuted you. Yes. One last question. So when the bot works with MCP server,
+105:49
+
+which I create, there also the token is consumed, right? No, but I am running it. I'll tell you the MCP part later. Okay. You know? Deviated.
+106:02
+
+Pooja? Poojaji, are you there? No? Okay. So guys, this is all about-- So now what I have to do, I'm picking
+106:16
+
+one multi-model RAG system. Shall I go ahead? Multi-model RAG system. Multi-model
+106:29
+
+RAG system. Okay. What is multi-model RAG system, guys? You have input data. You are building an algorithm called
+106:43
+
+model. Which model? LLM model. And your output is? You will get the output. So input is
+106:58
+
+text, image, table, audio, code, PDF,
+107:10
+
+et cetera. Let's say. Different format there. And your output also, they can ask anything. Anything. Let's say I'm saying text data.
+107:24
+
+I wanted output would be text, but input would be anything or mix of all. Yeah? Output not mix. Output you can say either image or either text or this. Or you can say output I wanted image
+107:36
+
+also. Image also. So if your output and input is anything, this would be anything and this would be anything. Any documents. Then what approach you will do? You can go and use the multi-model RAG system.
+107:49
+
+In GPT, we have something called GPT 4o mini. 4o model. O stand for omni. Omni is an English word, guys. Wherever the prefix is written
+108:06
+
+omni, omni means all. Yeah? Omni means all. No? Omniscient, omnipotent. Yeah?
+108:19
+
+knowledgeable, right? So we can say wherever omni word there, that means multi-model. They have a multi-model functionality there. Yeah? Gemini is again multi-model. Gemini is again, 2.5 Pro is multi-model.
+108:34
+
+But Gemini did a mistake initially. They have not done lots of promotion. That's why it didn't become famous. Now it's very famous, but earlier I remember when 2023 and '24 I'm talking, that is not very
+108:50
+
+famous. GPT did lots of promotion. Yeah? So that's why GPT 4o become very popular. So wherever O word is there, you can go and use it. So how it works?
+109:03
+
+Can we take a break, and then we'll cover it? Or is it okay, guys? We can continue. What you guys want? Want break? Okay. I know. Otherwise, I have a habit. I keep speaking and...
+109:16
+
+So it's a break time, guys. You can go enjoy. 12:15 we will be back. 12:15 we will be back.
+109:30
+
+Please go, enjoy your break and then I will cover the multimodal SAG system। Thank you.
+109:43
+
+बस अभी कर लो। आपको नहीं करना, अब मैं आपको पढ़ाऊँगा नहीं, ठीक है? आप नहीं करोगी जब तक आप नहीं बोलोगी कि Mumma मुझे अपना करना है। बताओ क्या करना है? मैं नहीं बोलाऊँगा आपको। अब से आप मुझे बोलोगे Mumma मुझे
+114:37
+
+यह पढ़ना है, मुझे यह करना है। मैं नहीं बोलूंगा। Marks मुझे नहीं मिलेगा, marks आपको मिलेगा। Appreciate आपको करेंगे, मुझे नहीं करेंगे।
+114:49
+
+Hi, everyone. I'm back now. Are you there, guys? All my friend. Yes.
+130:01
+
+Okay, I can see a couple of hands there. Trisha, what is your query? Sorry, it is answered. Sorry, I didn't raise the hand.
+130:15
+
+I'll un-raise. No problem. Prashant? Hi, sir. Yes. What is the difference between this context window size and this 8192 dimension which we were speaking? Are they both same, sir?
+130:30
+
+Both are different. So 8192 is the embedding size. So maximum embedding, you can generate that one. Okay. Context size, when you are taking the chunking. So that time you are doing the context, you can say each window, I will take
+130:47
+
+that much vocab only. Okay. Each model have different context window size, right, sir? Yes. Okay. Sir, one more question. Yesterday we built a simple RAG system.
+131:02
+
+Where we did use this search technique, sir, in retrieval phase? Yesterday, sorry. What is your question? Yesterday we have built a RAG system, simple one.
+131:15
+
+Correct. Today we discussed about the search techniques, like keyword search or semantic search. So when we use the retrieval, no? When I have used a retrieval, that time, by default, I have used hybrid search. So you can see this, I'll show you.
+131:28
+
+So when I say similarity search, that is what is the hybrid one I have taken. One minute. OneDrive.
+131:45
+
+Simple RAG system. So here I have created a Chroma database, and I have used-
+132:03
+
+Yes. Chain SDW. Okay. You can see what method I have used here, similarity search as a retrieval search- Okay ... type equal to what I have given, similarity. Hmm.
+132:17
+
+So I have used similarity search. Okay. Thank you. You can go Shift+Tab button. Shift+Tab is not working. When I execute, then you can check, it will work. Okay. Fantastic. Since type equal, you have to change it.
+132:29
+
+Okay, sir. Umut, sir. Hi, sir. So my question is, I was about to ask this question yesterday. Let's take an example. If I have a chatbot and as
+132:42
+
+a user, I'm sending a query. So my system has been implemented in a three different ways, like it's connecting to the LLM and RAG as well as OpenAI or any different
+132:58
+
+API. Mm-hmm. So how this flow will go? First it will go and search to the LLM, or first it will go and search to the RAG, then LLM, then AI? This is a sequential method, and how this autonomous decision will be taking
+133:10
+
+care? Which- No. So first thing first, when you use it, see three things there, don't get confused. Because if you speak like that, interviewer will think that, "What is happening with you?" So you use the word
+133:26
+
+RAG, you use the word LLM, and you use the AI search, API search. Correct? Right, sir. Now, first part you will do API search. When you do API search, means the LLM automatically get connected.
+133:42
+
+Then we are calling the LLM model. So like embedding when we do, we are using embedding model. When you are doing generation, you can do the generation model. So you can see when I have done the Chroma database,
+133:57
+
+I have used embedding model, right? You can see I have used embedding model. How I use embedding model? If you go here in beginning, first part what I did, I call the API, and then here I use
+134:11
+
+the embedding model. So API first you can connect with the LLM, either OpenAI or whatever, Gemini, Google AI or Meta and all. You can first search the API, connect with the LLM and which model you wanted, you can
+134:23
+
+call them. You can see when I want generations, I call the GPT model. You can see here. This is similarity search.
+134:39
+
+Then I wanted output. Here. You can see I have called the generation part, I call the GPT 4o mini model
+134:53
+
+that I have stored into ChatGPT. Correct. And when I connect the chain, I said, okay, now ChatGPT means GPT 4o mini, they will generate the output. That is what happened. We are getting the response.
+135:06
+
+All right. RAG is your approach. What is RAG? RAG is your method. RAG is your complete method. So one is your open LLM, they trained with the open source data. I wanted custom data, so for that we are using RAG.
+135:19
+
+So RAG is a different, LLM API is different. Are you clear this part? Yes, sir. Thank you. Now, who else? Janhvi?
+135:35
+
+Yes, sir. Hi, sir. Sir, and then I am facing problems with embedding.
+135:51
+
+small chunks five packets total docs successfully run but in one error
+136:04
+
+debug but it's not working. One go documents chunk that's why we are doing chunking. Sir,
+136:17
+
+five . five . Sir, run total docs fifth index
+136:31
+
+total docs fifth index then it run output . Gemini embedding use Gemini embedding 001 use ?
+136:45
+
+001 use sir, use error change . code PDF LinkedIn . Okay, sir. Is it possible the free versions don't do that after some time?
+136:57
+
+Gemini had some restriction because we have taken for free version only. If you pay then there is no problem, because that is also proprietary, so they are also charging.
+137:11
+
+Yes. I searched, sir- I wanted to see ... 100 free version . use Groq
+137:24
+
+item use email ID IPA debug but I'll check your code. Okay. Arvind?
+137:39
+
+Hello. Yes. Sir. Sir, in self 46, can you- Sorry? The code in self 46. 46? Yeah.
+137:55
+
+This one. What do you mean by chain, exactly? Invoking chain. Chain means connector, conjunction. In English, what is meaning of connector? Chain is nothing, it's called connector.
+138:07
+
+Okay. So when you build a bot, what happen? User will ask questions. Yes. User will ask query, it will go to LLM, and then LLM will give the output. Correct. This is normally happen.
+138:20
+
+Yes. So here you can see, user will ask questions. RAG will give the context, so that is part one. Okay? Okay. Then what happen? We are writing this whole part you will write basis the
+138:33
+
+prompt part, how you will write a prompt so that LLM can understand. Yeah. So then LLM, and then finally, which model I am using? GPT 4o model, and I will get the questions. Okay. And so what-
+138:48
+
+This pipe symbol is nothing- Exactly is this pipe symbol? Pipe symbol means connector. So how connection happen? Whenever you can give the similarity retrieval only happen when there is a format documents there. And this format documents only you will get when
+139:01
+
+you ask questions. So that is one part. Now once question and context you got it, next part is you have to write augmentation. So this is our part. Then connection, pipe means connect.
+139:15
+
+Next step is augmentation. Next step is generation. So this part R, this part A, and this part G. That's the whole chain. A whole chain. This is called chain. Wherever you can see the pipe symbol.
+139:27
+
+This pipe symbol, it means connector. Connector or chain. Okay? Okay. Thank you.
+139:42
+
+Yes, Badri, Naresh, question. KC WW649. Yeah. Hi, sir. So, in the same
+139:57
+
+thing only in the RAG chain, we have connected with the similarity retriever And with format docs. So format docs are like a method. So we have-
+140:10
+
+Format doc is not a method. Format doc means this retrieval gets connected from where? These all details will come from where, my friend?
+140:23
+
+The documents only, right? Yes. So? We have created a method, right? So all the things- We have created a method. Correct. Yeah. That's what I'm trying to ask.
+140:40
+
+We have created a method, so we are calling that. Whether we need to call with the normal curly braces or normal
+140:53
+
+to pass the parameter. We haven't passed any parameter. Whenever you give a key and value, you always give curly braces. Dictionary, you have to create. So that's why I've created a curly bracket. Normal brackets, sorry. Normal brackets. When we are calling format docs.
+141:06
+
+So when we have created the method, we have passed one of the parameter called docs. D-O-C-S, on the above.
+141:22
+
+This one you are saying? Yeah. This is, I have created my own function. Yeah, we have created our own thing. So whether we need to pass that parameter while we are calling.
+141:36
+
+So when user will ask query. Runs past means user can ask query. That query, what happened? They will search one by one, no? This part. So there are five formats. There are five documents there. They will search it.
+141:49
+
+That part I have written in this format, page content, documents with this, and then they will find the similarity retrieval. Okay, so format document means your vector database. You can say this is called vector database.
+142:02
+
+Okay? This is called retrieval, and this is for user query. So when user query will ask the system, they will search from here,
+142:18
+
+and based on the retrieval, they will give the K equal to five documents. Once you get the five documents, then you have to write augmentation, and then LLM will generate the answer.
+142:30
+
+Okay. What is the confusion? Yeah. Like that. Okay, sir. Yeah. Others? Hi, sir. Go for your own time. Speak little loudly, buddy.
+142:42
+
+Brother, speak little loudly. I'm not able to hear you. Is it better now? Yeah, a little better. Okay. I have one question regarding this enterprise AI solution that we call it as RAG. So right now, even in our organization, we
+142:55
+
+have a Jira ticket. For even for Jira ticket, we can build a separate agent, we can set the expectation to the agent, and it is giving the results of the ticket. So right now, for creating all those agents, will they charge our-
+143:11
+
+Can I suggest one thing? And this suggestion is for everybody. Guys, if you have any questions how the industry working, because Jira is something different. This is not pertaining to that. Jira is nothing.
+143:25
+
+It's a platform where any use case is there, we are creating another has visibility. Just like a Gantt chart you are preparing, same thing, Jira is there. So if you guys have some doubt, you wanted to connect me personally, you can check with Lonway.
+143:38
+
+Okay? Speak with Simran or Manju, and ask them to set up one call with me.
+143:53
+
+Set up one call for 15 minutes. I will take your personal doubt and will help you. Anything related your career, related your organization, how it work, related you wanted to build
+144:07
+
+some organization kind of things or some questions, personal questions and all. You can please set up a call on Saturday and Sunday. You can just check with my availability and book a session.
+144:20
+
+Like that, I'll help you. Otherwise, it's very difficult. If you pick Jira and all, I will explain you, it will take- My question is more on to, is it also charged for
+144:34
+
+every form that we give? Well, sir. Okay, maybe this might- It's chargeable, but again, I'll tell you in more descriptive way when we
+144:47
+
+connect. Okay? Yeah, sure. Anybody? Yeah. It's Naresh here. Am I audible? Yes. Sir, yesterday we done a similarity search.
+145:00
+
+There we using HNSW and then cross encoder. Are we using there BM25 as well? We are using, but that is not feasible.
+145:15
+
+I told you, no? That it's searching a score only, so why I will go? I always prefer to go hybrid search. Okay. This HN has done a- If you wanted, what I'll do, pause this session.
+145:27
+
+I have somewhere I have written. I'll see, and I'll share some code script so that you can see when that is required. You can try that one, that one, and then you can see the answer. So I will give you some sample code. You can try it by your own.
+145:39
+
+Understanding-wise, okay. Interview purpose you are looking. Now coding, just I will give you a script. Don't use that code. That's just for learning. Otherwise, RAG, whenever you build enterprise RAG and all, it's very difficult.
+145:53
+
+You will not get better result, and customer is not happy, to be very honest. So you use my method, but for learning purpose, I'll share that code. You can just refer it. Okay, just last concern, sir. HNSW on top of it, only cross
+146:06
+
+encoder will be getting applied, right? What is the outcome of HNSW? Then cross encoder we are doing, right? Mm-hmm. Okay. See, HNSW is a very popular method, right?
+146:20
+
+It is a very fast method. So what happened? Why we are giving the HNS method? Because millions of vector, you will search it in millisecond. Now you can ask this question, why we are using HNSW method.
+146:36
+
+You just think, in the database, you have millions or trillions of documents there, yes or no? Yes. And user is asking one question. And
+146:52
+
+now this question you can go and there are millions of documents there, it will take lots of time or not? If I don't- Yes ... if I don't set up SNW, it take lots of time.
+147:04
+
+So HNSW is a method. It's a scalable method. It will give the high accuracy result. Yeah. It's a mathematics method, we are using it. So irrespective of whatever vector store you are using, whether it's a
+147:17
+
+Chroma database, Pinecone, I told you yesterday, a quadrant, a Facebook similarity search, Weaviate, right? Anything you can use, everywhere that functionality there. So please use this code I have written, make sure you use it.
+147:31
+
+So what happen when user will ask question? No latency issue will not happen. Otherwise, if you leave this, you will see how much time it will take, and then they will generate the response. Simple. Okay. On top of it, cross encoder will be applied, right?
+147:45
+
+On top of it, you can apply the cross entropy, all these things, whatever I said, the retrieval method. You can just- The cross encoder will create a ranking, right? Yes. That allocates the rank to the document retrieval part.
+148:00
+
+Okay. Thank you. That's fine. Top K. Thank you. Super. Everybody, I'm guaranteeing you, right? Anything interviewer ask you questions in RAG, you guys
+148:15
+
+are able to give the answer. Yeah. So please pick pen and copy post the session. Whatever comes in your mind, open a language, in your sentence, please write down. Okay, that is the meaning, how RAG works.
+148:29
+
+Just write it one time. Yeah, because any interview you can go, mark my word, without RAG, not possible. They will ask questions related to RAG. You guys know it. Yeah.
+148:44
+
+HNSW, retrieval, augmentations, generations, how Chroma database, how vector database, how preprocessing works, all these things you know it. Okay.
+148:57
+
+Everyone guys clear? Great. So are we in the position to start
+149:09
+
+multi-agent, guys? Multimodal? I'm feeling tired now. Too much. Shall I leave? Can I start the next session, multimodal RAG?
+149:22
+
+Can I share the interview question? Now you can go and ask. Now you can go in chatbot and ask a RAG-related question. You can see you will be able to give the answer. Okay, go in the ChatGPT, and you can say, "Can you please provide the
+149:34
+
+top 20 interview questions
+149:52
+
+which frequently asked in interview for RAG-related questions in
+150:04
+
+GenAI and agentic AI domain?" Provide
+150:19
+
+question into listed number list format. Number list format. Hmm. Now you can give an interview.
+150:32
+
+See, what is RAG? Can you explain end-to-end RAG architecture? What are the main component? Data ingestion, chunking, embedding, vector database, retrieval, re-ranking, LLM generation. Just see, right?
+150:45
+
+How does RAG help hallucination? What is the difference between fine-tuning? Fine-tuning I have not covered. But meanwhile, anybody say, you can say fine-tuning is a method to get the reinforcement learning human feedback response.
+151:00
+
+Yeah, that's why we are doing it. When to use over what? So when your RAG is not giving the better answer, your client is not happy, you apply all the method, then we have to go and do the fine-tuning. What is embedding? Mm, already know.
+151:13
+
+How do you select the embedding model in RAG application? Already I have covered all this thing. What is the vector search? Yeah, I've covered cosine similarity, QDD and dot product. What are the advantage and disadvantage for different vector database?
+151:28
+
+I'll cover that part also, right? Right now, you have seen Chroma database only. I'll cover other part as well so that it's very easy. Yeah, there are some dependence there. When I will go in the edge, then I will show you different method, but
+151:41
+
+there are methods there. Or if you guys interested, go and search it. What is chunking? Why it is important? How do you determine optimal chunk and overlap? What is hybrid search? What is BM25 key search, vector search,
+151:54
+
+hybrid search? What is ranking? How do you evaluate? Evaluation part I have not covered, so evaluation, I'll teach you. But by and large, are you guys able to see 90% questions you are giving answer or not? What I have not covered, that part you can leave, but 90% questions you are
+152:08
+
+giving the answer or not? Hmm? Tell me. I wanted like that learning. Hmm? Don't learn for the sake of coding only. Just learn for the concept also.
+152:22
+
+If your foundation is clear, believe me, any interview you can go, you will crack it. Auto token suggested. Okay.
+152:37
+
+Very good, John. So guys, just do it. You can see lots of questions you are getting. If you go for principal architecture, they will ask you a RAG architecture design. You already know how to do it. Scaling and performance, I'll cover it.
+152:50
+
+Cost optimization, I will cover it. Agentic workflow, I'll cover later. Security and governance, I will cover it. Graph RAG, I have not covered. Evaluation, I have not covered yet. Multi-agent, agent they are talking. So when I cover, I can guarantee each questions you will give the answer.
+153:03
+
+Any interview you can go, interview questions remain same, guys. How do you design RAG system, PDF, image, audio, video? Multi-modal. That I wanted to cover today. What is the difference in Naive RAG, Advanced RAG and Agentic RAG? Naive RAG already I have covered.
+153:19
+
+It's simple RAG. Advanced RAG is multi-modal. Graph RAG, Agentic RAG when I cover the Agentic, I'll show you. So just go and see the question, and I can guarantee you will be able to understand.
+153:35
+
+Well, my friend. So can we stop here or how you want it? Multi-modal RAG.
+153:47
+
+We have learnt less today, no? These two topics are very significant. So let me share this content, whatever I have written on
+154:00
+
+GenAI class notes. Today is 14th,
+154:13
+
+2026. So multi-modal also I wanted to cover today, but feeling tired and I will speak a lot. So next week, this is what I'll cover, guys, multi-modal RAG
+154:26
+
+system. Okay? So this is the multi-modal RAG system. I'll explain you how I will leverage. This is a little advanced on a structure.io method. You can see in a PDF you have a text data, you have image data, you have a table
+154:41
+
+data. So different kind of data, how you will extract it. So different techniques we will use it. So you can see how you will take it. I will discuss about Redis and Docker Store also.
+154:56
+
+So latency, how you will handle the latency part. That is also very important things. You have seen one of the interview questions there. Latency part somewhere is there. I have seen latency. See, how to reduce the latency in RAG application serving
+155:09
+
+10,000 users. So these things I will discuss. Graph RAG with Neo4j. I will cover these things. So you can go and pick any interview questions and all. I can guarantee you will be able to crack it.
+155:24
+
+Just wait, practice it. That's only request to everyone. Don't worry about the sensitive data leakage and all. When I will cover the guardrail and all, you will able to understand all these things.
+155:37
+
+So can you please upload this, please? Which one? This one you are saying? The multi-modal? The multi-modal architecture it will- Okay, just uploading it. Thank you, sir.
+155:49
+
+So that's it, guys. Then enjoy your day. Just request, Saturday, maybe I will join little late, half an hour, maybe 10:30. But don't consider a postpone. If I
+156:04
+
+will join on time, it's okay. Otherwise, you have to wait. Okay? Where is path?
+156:18
+
+Suresh. Same Suresh or different Suresh? One Suresh is my friend. Hi, Suresh. Hey. Sorry to-- I told you, right? I joined in the RAG only, during the RAG.
+156:50
+
+I just started from the scratch. Okay. Mm-hmm. I was a part of previous first January 24, but due to my health reason, I didn't continue that one. Okay. Last year you started, right?
+157:05
+
+Okay. Is it a prompting technique, everything is completed or it's directly you- Yeah, prompting completed. No. Prompting completed, LangChain completed, basic RAG completed. So you have five day time.
+157:19
+
+Monday to Friday, I would request you can go and watch that recording. Oh, okay. You can increase the speed. Don't go with one. You can just say 1.5 or see how fast I'm speaking. If it's very fast in if you go two, just reduce it
+157:33
+
+1.5 and watch that recording. So Prompt class and simple RAG, at least you have to complete. Otherwise, next week I will start Graph RAG, a multi-modal RAG and Graph RAG and Advanced RAG. So it's very difficult for you too.
+157:47
+
+So it's mandatory you have to know prompt techniques, you have to know LangChain basic, and you have to know simple RAG. Because so many things I have covered in RAG. Okay, got it. How about, do I need to go through the machine learning and deep
+158:01
+
+learning points also? Machine learning also basic, I have covered it. That is suffice for GenAI role. But if you wanted too deep dive, you can ask LearnBay team that Sundaram has already taken machine learning and deep learning, can you provide me
+158:13
+
+the recording? So you will get a 150 hours session for machine learning, 100 hours for deep learning, where I have covered very deep dive. So you will get it. Okay. Sure, I'll do that.
+158:28
+
+Spend time. Three months it will take to complete, three to five months. Sure, no problem. Okay. Multi-modal
+158:40
+
+RAG. Okay, so multi-modal I have uploaded. Now the class notes 6th, 17th, 14th.
+158:53
+
+Anybody? Or if you want to ask something, please raise your hand. Since you are asking, I was trying this vanilla RAG, and I basically executed
+159:06
+
+everything. In the end, I asked it a question: what all sources do you have? Obviously, it was not able to get me all the list because the chunk only gave me top eight, top five, or top 20, right? Mm-hmm.
+159:20
+
+So how do you get the information about metadata? For example, in a company, let's say I have thousands of documents talking about- Mm-hmm ... all the pipeline of a particular team. Now I need to go- I'll show you this part. I'll show you in the cloud. So when I use the cloud-that time, what I'll do, I will
+159:33
+
+upload everything at one go. Okay. Then I'll show you. Here I'm just taking four, five documents, and that also is stored in the Google Colab. Mm-hmm. Chunking and doing it. There I will give the reference also. Or if I will give the MCP connection there also, I'll show you how it works.
+159:47
+
+So please remind me that. Not remind, it's there in syllabus. I'll cover it, but still, in case I forget, just remind me. Yeah, sure. Thank you. Okay. So it's possible you will get a citation.
+160:03
+
+In fact, when I write the multi-modal system, no? In multi-modal also, I'll show you the citation part. Okay. Okay.
+160:16
+
+Anything else, guys? Sir, I have one question. Arvind, should I continue with Visual Studio or Google Colab? See, Visual Studio, you can do it, no changes.
+160:31
+
+IPython Notebook also you can install it. Only problem happen is, your hardware is not GPU. You have a CPU machine, so it will take time. So for learning purpose, my suggestion is use Google Colab.
+160:44
+
+Now, if you wanted the VS Code or Jupyter Notebook, you have to take the cloud one. Okay? So you guys please go and spend some money. So you can go here and see,
+160:56
+
+what is the name there? There is a cloud, Azure, AWS, GCP, I'll tell you. But before that, what is the name there? I'm forgetting.
+161:12
+
+Whereas and when I'm using it. NPDR. Run.io.
+161:28
+
+What is this? Some name is there, I'm forgetting. Io meta request. I'm forgetting right now. It's not coming in. See, what is this?
+161:43
+
+RunPod.io. Thank you, Ashish. My God. So you can go in the RunPod.io. Okay, RunPod.io.
+161:58
+
+And please give $25 or $50. That's my suggestion is spend $50. It will help you a lot. And just sign it here and see whatever the GPU machine you wanted to
+162:11
+
+use it, no? You can go and use it. So here the pricing is there, for RunPod.io. See the pricing.
+162:25
+
+And you can use H200. You will get 141 GB VRAM, 276 GB RAM. Okay? But it's hourly charges. So make sure you have to, once you complete the project, please delete the
+162:43
+
+resource, delete the container, and log sign out properly. Otherwise, back end also, the price will charge it. So here you cannot, this one, the latest one, you can take the lesser price also,
+162:57
+
+like 0.44. Here also you will get 50 GB RAM GPU machine, so you can go and use it. 0.27, which is 25 GB. So when I'm using Google Colab, there they are giving 12 GB only.
+163:10
+
+Here you will get 25 GB. And it's fair enough. One hour maximum, any project you will do, for practice and all, one hour, two hour, maximum five hours will take. So how much? $1 only. So 100 rupees you can pay and you will easily do it.
+163:24
+
+So you can go and take it here. All the connection is available there. So you can go it. Otherwise, if you are fine, you can go and use Google Colab free version. There also you will get Pro, but this is much better.
+163:39
+
+Don't take Pro for Google Colab, you can take Pro here. Mm? It will help you. So I'll show you when I do the fine-tuning, definitely I need very good system. When I do the Stable Diffusion, Flux and all, I need a very good system. So I will use RunPod.io.
+163:51
+
+Fine?
+164:05
+
+Question answered? Mm-hmm. Yes, sir. Question answered. Thank you very much. No problem. Anybody else, guys?
+164:18
+
+Kumud sir, your hand is still raised. Prashant, go ahead. Sir, user ask query in RAG system, that query also, he's converting into
+164:33
+
+embeddings and stored in vector database only? Yes. Without how then retrieval works Okay. The query also working in the embedding. So that's why when user is asking question, there is a charge there, please
+164:46
+
+remember. Yes, sir. So when I'm using the cloud, that time chargeable there, it's not free of cost. Okay. Understood, sir. Thank you. Because you are converting embedding, and then you are searching it, right?
+164:58
+
+So when you convert into embedding, there is a charge there. So per token wide charge is there. Okay. Pratik, sir, you have raised hand. Where is Pratik? Let me unmute him.
+165:11
+
+Yes, Pratik. Hello. Am I audible? Yes. Yeah. Sir, on the deep learning. So you mentioned after covering
+165:27
+
+ML at high level, you mentioned that you are keeping deep learning aside, and you will cover the conceptual part of it while doing or covering the GenAI.
+165:42
+
+Mm-hmm. So are you going to cover DL along with this GenAI or it is not required? Yes. No, DL, I will cover it. Okay. I'll just stop it for the time being. Once I complete the RAG and all, at least you guys get motivated, and you can
+165:54
+
+start looking for job also. So that's why I did it. But once I start the fine-tuning, or maybe once I complete the RAG, first I'll cover the deep learning, and then I will go in the fine-tuning. Okay. Thank you.
+166:08
+
+Okay. Because this is GenAI batch, and people will say, "I don't know how to write a prompt, how to do framework, how to build a RAG and all." That's why I started this, so that at least you have a confidence. And in between I will go, I will pick that topic
+166:21
+
+also. Yeah. Okay. So sir, in interview, as you are mentioning, so interview, they don't ask for anything on DL or as such or- No, not ask machine and deep learning.
+166:35
+
+They just ask use the word called supervised learning, unsupervised machine learning. Like that they use the word, but they will not ask you what is random forest, what is CNN model, what is VGGN, what is
+166:48
+
+Yolo model. These questions they will not ask because their requirement is not this. Their requirement is GenAI, agentic. Why they ask this question? And same for DL also, sir? Same for DL also. Okay. I am doing, but when I'm taking interviews, some of the candidates, they said, "I'm
+167:02
+
+very good in deep learning." Oh. So then we are giving opportunity that, okay, you can go and ask question. So then I'm saying, "Okay, which topic in deep learning? Tell me the name." When they are saying them name, then I'm asking questions.
+167:17
+
+Mm-hmm. So don't over-excite, right? In interview. Otherwise, interviewer know better than you, so they will ask something else. Okay, sir.
+167:30
+
+Some of the candidates, they are very excited. "Sir, I know all these things. If you ask me anything, I'm not good in GenAI, but I'm very good in machine learning, deep learning." Why? Because they know the requirement is GenAI, but they wanted to debate because they are not good.
+167:44
+
+So then I said, "What you know in GenAI? Tell me. Which topic?" And then he also happy. So it's just a example I told you. Thank you, sir.
+167:57
+
+But in interview, if you go, don't unnecessary give opportunity to them to ask question in GenAI, agentic. It's very big, no? Mm-hmm. Well, let's say that I have gone through the JD, I have seen what is the
+168:09
+
+requirement there. I have already worked on RAG system with the different multimodal RAG, graph RAG and all. I have worked on these things you can say, so that they can ask relevant questions only.
+168:22
+
+Mm-hmm. Okay. If you give opportunity that I am very good in deep neural net, NN and all, and when I say, okay, what is optimization method? How Adam is different from RMSProp, blank.
+168:34
+
+Fill in the blank. Mm-hmm. Just a experience I'm sharing you. Okay. Yeah. Thanks.
+168:47
+
+So guys, so that's it. Thank you very much. You have half an hour. Enjoy your day. Yeah, it's a Sunday anyway, so you can enjoy. I don't want to bore you much. Please go, take your, wherever you wanted to go, enjoy. And whenever you get time,
+169:02
+
+please revise all these things. Yeah? Because next week, full advance, no basic. And I don't expect that I will use the same word, hybrid search, key search, embedding and all. Because my expectation is you know all this thing.
+169:17
+
+Yeah, I know my expectation is you know chunking method, you know embedding methods, you know how retrieval works, what are the inside there. So I will not speak, I will go more advanced. I will talk more about observability,
+169:30
+
+the latency. Yeah? The evaluation metrics and all. So please practice all this thing. And side by I know if you guys are working, how much pressure nowadays there.
+169:43
+
+So I have full sympathy and empathy, but still, please practice. Fine. So by this note, thank you all. Bye. Take care. See you. Anybody wanted to talk to me, don't hesitate. Please ping me in LinkedIn.
+169:56
+
+Yeah, I'll definitely reply. Bye. Ashish, you wanted to say? You have raised hand? Last moment, sir, raise hand. Sir, a question to answer, sir. In my resume, should I
+170:09
+
+include that these projects I have done in my company or- Four project you have to include. Which four project? I will tell you. One project you have to put for cloud-related, agentic RAG or RAG system and all, so that interviewer have a
+170:24
+
+mindset that you know cloud. Second project, you have to pick one RAG-related query. Yeah? Whether it's a multi-model or graph RAG or agentic RAG. Yeah, in system from scratch, you did it. Third project, you can pick MCP so that they have a knowledge
+170:40
+
+that you have done the recent project, MCP part also. And fourth project, whatever domain you have your expertise in your organization. So you have to pick your project. So everybody is from different domain.
+170:55
+
+Pick that, and there you have to connect with the LLM, RAG, all these things, and say that these project, I have done it. Four project you have to mention, sir. Don't write a story, write just bullet point. Okay? And okay, sir. So
+171:10
+
+will you tell you that these four projects I have done in that company or apart from company? Like personal- Yeah, one company, very good. No. Personal also you can if you do, but you have to justify them that you have done it, you have a real
+171:24
+
+hands-on. So I was in confusion that this makes some difference, like they will not get any difference- No difference. Just wait. No, don't worry. So once I complete the multimodal graph RAG, agentic RAG, you have a confidence.
+171:37
+
+You can say, "Oh, these type of problem I will get in industry, and I can handle." Mm-hmm. So just to be- So this is safe to say that these projects I have done separately personal. You can say that I have learnt in class. You can say, "I have worked on client requirement, and I did these approach."
+171:52
+
+Oh, in the company project, I can show like- Yes. Oh, okay. So, sir, all these four projects, what is the timeline like we will be finishing all these four projects? Sunday, enjoy. What project timeline headache?
+172:07
+
+No, sir, I want to apply for interview for that, sir. Bye. Take care, guys. Now you enjoy. Connect LinkedIn, I'll help you. Okay, sir.

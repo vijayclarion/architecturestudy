@@ -1,0 +1,69 @@
+@startuml Topic7_Topologies
+' ============================================================
+' TOPIC 7: Topologies (the shape of the multi-agent system)
+' Selection test: "Is there a boss?" / "Fixed sequence?" /
+' "Independent equals?"
+' ============================================================
+title Topic 7 — Topologies\n(The SHAPE of a multi-agent system — pick by the shape of the problem)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+
+:Designing a multi-agent system —\nwhich topology?;
+
+if (Is there a BOSS?\n(one agent directs the others)) then (YES)
+  #LightGreen:**HUB-AND-SPOKE**;
+  note right
+    Central hub coordinates the spokes.
+    + Centralized control
+    + Clean AUDIT TRAIL
+    - Single point of failure (the hub)
+    - Bottleneck at the hub
+    - Context BLOAT at the hub
+    (This is the Orchestrator pattern, Topic 5.)
+  end note
+else (NO boss)
+  if (FIXED SEQUENCE of steps?\n(order matters, each feeds the next)) then (YES)
+    #LightBlue:**PIPELINE**;
+    note right
+      Agents in a line: output -> next input.
+      + Modular, swappable stages
+      + Easy to reason about
+      - Latency = SUM of all stages
+      - CASCADE failure (one break stops the line)
+    end note
+  else (NO fixed order — independent equals)
+    #Orange:**PEER-TO-PEER (P2P)**;
+    note right
+      Agents talk directly, no coordinator.
+      + Low latency
+      + Resilient (no single point of failure)
+      - Hard to AUDIT
+      - Emergent / unpredictable behavior
+    end note
+  endif
+endif
+
+stop
+
+floating note left
+  == 3-QUESTION SELECTION TEST ==
+  1. Is there a boss?         -> HUB-AND-SPOKE
+  2. Fixed sequence of steps? -> PIPELINE
+  3. Independent equals,
+     no boss / no order?      -> PEER-TO-PEER
+  ....
+  == EVALUATOR-OPTIMIZER pattern ==
+  Generator produces -> Evaluator critiques -> loop.
+  Termination condition is NOT optional here
+  (or it loops forever — see Topic 4).
+  ----
+  == ANTI-PATTERNS ==
+  * Hub-and-spoke with no real hierarchy (needless hub)
+  * P2P where an audit trail is REQUIRED
+  Hybrids are valid IF each handoff is explicitly designed.
+end note
+
+@enduml

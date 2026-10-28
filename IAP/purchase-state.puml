@@ -1,0 +1,27 @@
+@startuml purchase-state
+title PurchaseTransaction lifecycle (maps to your PurchaseState enum + IsConsumed)
+hide empty description
+
+[*] --> Pending   : Google purchaseState = 2\n(UPI / cash, not paid yet)
+[*] --> Purchased : Google purchaseState = 0\nvalidated + rewards granted\n(same DB transaction)
+[*] --> Failed    : Google error / fake token\n(log only - must NOT block retries)
+
+Pending --> Purchased : payment completed\n(client retries validate or RTDN)
+Pending --> Cancelled : payment never completed\n(no charge)
+
+state Purchased {
+    [*] --> NotConsumed
+    NotConsumed : IsConsumed = false
+    NotConsumed : must be consumed within 3 days
+    NotConsumed --> Consumed : products.consume OK\n(MarkAsConsumed)
+    Consumed : IsConsumed = true, ConsumedAt set
+}
+
+Purchased --> Refunded : voided purchase\n(refund / chargeback / fraud)\n-> deduct rewards
+Purchased --> Refunded : not consumed in 3 days\n(Google auto-refund)
+
+Failed --> Purchased : retry with valid token
+Cancelled --> [*]
+Refunded --> [*]
+Purchased --> [*]
+@enduml

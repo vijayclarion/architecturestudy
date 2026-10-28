@@ -61,6 +61,8 @@ flowchart TB
 └────────────────────────────────────────────────────────────┘
 ```
 
+> 💡 **Mental model:** An execution environment is **not an EC2 instance** — it's a lightweight, isolated micro-VM (Firecracker) that AWS spins up per concurrent invocation. AWS keeps a pool of these; a request either reuses a **warm** one (instant) or triggers a **cold start** (new environment). Concurrency = how many of these run **in parallel** at the same moment. 10 simultaneous requests → 10 environments. Each handles exactly **one** invocation at a time.
+
 ### Cold Starts vs Warm Starts
 
 ```
@@ -235,6 +237,26 @@ FIFO SQS:
 Lambda processes messages in order per MessageGroupId
 Lower throughput than Standard
 ```
+
+### SNS vs SQS Triggering — Push vs Pull
+
+```
+SNS → PUSH:
+─────────────────────────────────────────────
+Lambda subscribes to the topic
+SNS INVOKES Lambda directly when a message is published
+Configured on the SNS side (subscription)
+Asynchronous invocation model → retries + DLQ/Destinations apply
+
+SQS → PULL:
+─────────────────────────────────────────────
+Lambda service POLLS the queue (Event Source Mapping)
+Pulls & batches messages, then invokes your function
+Configured as an event source on the Lambda side
+More resilient — messages persist in queue until processed
+```
+
+> ⚠️ **Who can trigger Lambda?** Controlled by **resource-based policies** (the function's policy), which grant specific services/accounts/principals permission to invoke. This is *separate* from the **execution role** (what the function is allowed to *do* once running). Two different IAM concepts — don't confuse them on the exam.
 
 ### Common Lambda Patterns
 

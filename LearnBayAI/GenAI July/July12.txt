@@ -1,0 +1,1942 @@
+Hi,
+00:21
+
+everyone. Good morning. Am I audible, guys? Yes, no, my dear folks? Yeah.
+04:09
+
+Cool. Let me share my screen.
+04:24
+
+All right. So are you able to see my screen, everybody? Yes, no? Yes. Perfect. Great. So what I'm going to do today, I'm teaching you fine-tuning.
+04:51
+
+So I have given the background, what is attention, all you need paper is, what is transformer model, where I have discussed all the components along with the mathematics part.
+05:05
+
+How the architecture works, what is encoder-decoder methods, what are the parameters there, what are the dataset they have taken, and then I have discussed about the BERT model, and along with their
+05:18
+
+matrices as well. Today, I'm going to discuss the fine-tuning part and how you will leverage and utilize the fine-tuning model in your GenAI and Agentic AI project. So whenever you do it, you have to
+05:30
+
+understand. So I'll give you a perspective first so that it's very easy for you to understand what is fine-tuning model. Fine-tuning model.
+05:45
+
+Then What is PEFT? And then what is LoRA
+06:02
+
+and QLoRA? Okay, once you have understanding it, then we'll discuss certain things called SFT, ZT,
+06:16
+
+RT, DPO, and ORPO. Okay, so these component, if you know it, and you know what is this,
+06:30
+
+how we are using it, and what purpose we are using it. So if you know what, why, how, that is fair enough, fine-tuning interview, you will not get stuck. Okay? It's a guarantee. Yeah. So I'm going to explain you very simple
+06:43
+
+way, and you all can understand what is fine-tuning, why it is required and all. Only request, you have to understand the encoder-decoder method, you have to understand the embedding methods. You have to understand what is embedding, how
+06:59
+
+the attention mechanism works, so that part you have to know it. Now, I'm just giving a very high-level perspective. GenAI is basically
+07:13
+
+a universe. Okay? You can say this is called-- It's a kind of university. The student, they are learning. They are doing a graduate, right? So that means they have completed the GenAI part.
+07:25
+
+Now, in graduation, what happened, you have noticed there is one honors there, right? The extreme main part there are you can do a master's. So you can say, "Hey, I'm expert in
+07:39
+
+psychology, I'm expert in philosophy, I'm expert in maths, I'm expert in this." Right? In graduation also, you can say, "I have done my graduation in maths. I have done my graduation in physics, biology." Right? So different topic you can select. Yeah?
+07:51
+
+When we say fine-tuning, fine-tuning is exactly the same thing, is called a specialized
+08:08
+
+training or you can say domain expertise. Okay? So let's say you are working in finance or banking,
+08:24
+
+right? On particular project you wanted expertise. Yeah? Then you have to do the fine-tuning. Please understand what I'm saying. Graduation is a degree. In graduation, which stream you wanted to give
+08:37
+
+more focus. Let's say I have done BSc Math honors. You can say, "I have done BSc Math honors." Okay? So maths, you're specialized. But to complete this, you have to learn physics also, you have to learn chemistry also, you have to learn English
+08:52
+
+also. Right? There are some other subject also there. Those are secondary. Your primary would be this. Means you are specialized. So when I say specialized, when I'm talking about domain expertise, I'm talking about a specialized training.
+09:06
+
+That's what fine-tuning come into picture. Yeah? So anybody say why fine-tuning is required, you can say, "I'm doing a domain part," right? "I'm building a model where there is a domain expertise
+09:21
+
+required." So we have a pre-trained model. We have existing model. I'm utilizing the existing model, and that model, we are just enhancing them. Yeah? So that we can get a expertise answers.
+09:34
+
+I can get as per human answer. As per how reinforcement learning human feedback works, the way human is giving feedback, exactly how LLM give the response, and that's why we are using a fine-tuning.
+09:48
+
+Very simple intuitions, my dear friend, everybody. Are you clear? We are taking a pre-trained model, existing model, and we are giving extra training on the same model. Right?
+10:04
+
+With your own example data set, with your own-- And that data is a domain expertise, domain related data only. And then you have to train them, you
+10:17
+
+gradually, right? They learn the mistakes, they learn the weight, and then finally they can reduce the loss value. And that's how the fine-tuning come into picture.
+10:30
+
+Everybody, definition part clear? Give me yes, no. Hyperparameter is a different thing, Arvind. Hyperparameter is, there is a parameter there, that part you are
+10:42
+
+changing it. Let's say random forest, you are doing it, right? So there you have to do a hyperparameter. You can change this. You can give a multiple parameter, multiple values you can do and then checked it. Fine-tuning, what I'm doing, the same.
+10:54
+
+You can say a kind of hyperparameter, but there is a subtle difference there. Fine-tuning, I'm saying domain project, I'm picking it, and I want it to train. So you are taking a same model, but you are training till then when you are getting a reinforcement human learning
+11:08
+
+feedback kind of result. My friend, everyone, you are with me? Just like, no, you go and learn music.
+11:24
+
+What happen? The trainer, the faculty, they will give a training, right? How you can do the rehearsal, how your tone should be, what is your pitch there, what format you have to follow, where you have
+11:39
+
+to take a pause and all. That kind of training is happening in the fine-tuning. And how fine-tuning works? Basis the method called PEFT model. Basis the
+11:52
+
+method called PEFT model. This model, the PEFT model. Okay, you can say PEFT is a umbrella terms Yeah? PEPT is umbrella terms. This is the PEPT we are doing it.
+12:05
+
+My friend, RAG is a specialized, right? RAG means you can say, "I have my own data, organization data, and there I want to build a bot." So bot can fetch the data from the existing dataset.
+12:20
+
+But if you have own data, but you are not getting the better response. Yeah, you are not getting the refined answer. Then on the top of it, you can do a fine-tuning. Fine-tuning is very costly, actually.
+12:34
+
+Okay? Fine-tuning is slightly costly. So that's why in organizations, they don't want to do a fine-tuning because there is two types there in fine-tuning. One is called full fine-tuning.
+12:49
+
+One is called full fine-tuning and another is called partial. Partial. Okay, so we always do partial fine-tuning. We don't want to do the full. Why? Because it is very
+13:02
+
+costly. Very costly. Please remember. It's very costly. You can say, "What do you mean by costly?" Costly in the sense,
+13:15
+
+you just think about, right? In one pre-trained model, we have billions or trillions of parameter there. If parameter is nothing, it's a weight only, right? That billions of parameter, if I say epoch equal to 100,
+13:28
+
+that billions multiply 100 times, just imagine how much computational cost required. How much computational time required. Yeah? So first thing first, whatever the dataset they have
+13:43
+
+taken, same data you are taking 100 times. And same weight, billions of weight, 100 times it got trained. So, the machine get crashed, the cost would be very high.
+13:57
+
+And that is why we don't want to use the full fine-tuning model. Please remember, anybody say, "Have you done any full fine-tuning?" You can say, "No, boss. I've not done it." Do you prefer to do it? No, boss, I don't want.
+14:10
+
+So what you want to do then? I wanted to do a partial fine-tuning. And what partial means? I wanted to do PEPT. PEPT is nothing. The meaning of PEPT is?
+14:26
+
+Parameter. Parameter, right? Whatever the parameter, the billions of parameter there, I wanted to do efficient. Parameter
+14:38
+
+efficient, and then I will do the fine-tuning. Fine-tuning. So the parameter efficient means I will do partial fine-tuning.
+14:51
+
+Yeah, you don't update all billions of model weight. You only add. What is PEPT will do, you can only go and add certain tiny set of extra weight.
+15:04
+
+Yeah, some effect happen, so that it is very cheaper for RAM. Yeah? It is very cheaper for time. It is very cheaper for money.
+15:16
+
+You will spend less money, less time, and for RAM consume. No, that also get less. Meaning? Let's say there is a model is there. Let's say I'm saying a GPT.
+15:29
+
+GPT-4o model there. 4o model there. I'm using this. Here let's say, just example I'm giving you. Let's say there are 100 billion parameter there. 100 billion parameter
+15:44
+
+there. Now this 100 parameter, I can take as it is. As it is. I'm not changing it at all. So that part I will take it as it is. Plus, I will
+15:56
+
+add certain weight. Certain weight. Yeah? And that weight, I will give a training. There I can do a fine-tuning, and I will get basis my result.
+16:09
+
+How I wanted the response I wanted, like that. Hmm? Means, when I say a specialized domain expertise. Yeah?
+16:25
+
+Let's say I'm saying they are expert in the loan department query. Now in this loan department, there are multiple loans there, no? Different kinds of loan there. Why not I can pick one kind of loan? Maybe home loan,
+16:39
+
+maybe car loan, personal loan. Yeah? And there I have to give a training again and again, so that they become an expert. And now you can go and ask any questions related to them. Let's say they trained with a personal loan.
+16:54
+
+Any questions you can ask, the human they can give answer immediately. "Hey, personal loan, this is the interest rate there. That's the functionality there," so and so and so on. Yeah? Here you can do similar kind of things.
+17:08
+
+Everybody. Hmm?
+17:24
+
+Now, coming back to the
+17:52
+
+concept called LoRA. Okay? LoRA. LoRA Lora stand for, guys?
+18:07
+
+Low ranking. Low rank adaptation. Okay? What we are saying here, the Lora, right?
+18:22
+
+PEFT is umbrella terms. They have a two-part. One is called Lora. Yeah, it's a smarter PEFT techniques, you can say. That, what they will do, that will add a tiny adapter. Instead of changing the entire parameter, they will only
+18:37
+
+use certain things. Yeah? So instead of writing a big layer, or instead of giving a training of billions of parameter, why not I can add a certain
+18:52
+
+weight only, and there I have to do a training? There I have to do a training so that no challenges happen. Okay? So that there is no challenges happen, we can easily solve the
+19:05
+
+problems. So you may ask, what do you mean by, we cannot give a training and something like that. You just think about it, guys.
+19:19
+
+Let's say... How I can say this? Just think about you are using some model where there is a weight there. Suppose let's say
+19:32
+
+there is a model there where you can say I'm getting a weight equal to B dot A.
+19:47
+
+Yeah? Now, what I'm going to do here, I'm adding a new layer. New layer. And I'm saying, okay, whatever this value there,
+20:00
+
+that weight there, plus I'm adding a new weight. I'm adding a new weight. Now, this is, let's say we have 10 billions there.
+20:12
+
+10 billions weight there. Just think about. Now what I'll do, I'll take a certain part only. So I'm not changing anything. I'm just freeze them. It's completely fridge.
+20:25
+
+Right? I'm not changing anything. I'm saying, "Hey, this is completely fixed. No change." Fixed, no change. Only the new weight which I have taken it, here I'm doing a training.
+20:38
+
+Here I'm doing a training. Now let's say the new weight, I'm just ideally will take 1.5%. Whatever the actual weight there, there 1.5% I will take it. And there you have to do a training
+20:53
+
+again and again, again and again. That's how you will work on it. Right? You just work on it. So you can just imagine 100 billions of parameter. If you wanted to train them, why not I can take a tiny part, and
+21:06
+
+there I have to do a training and all? Guys, did you understand the idea what I'm trying to say here? Instead of saying that if you go and just do that, but why not I
+21:21
+
+can take a certain piece of weight only, and there only I have to do a training and all. It's very easy, no? Hmm?
+21:37
+
+So, if I can do here feed forward neural network, and then I can check the loss value. If there is a loss there, I will do a backpropagation method. Backpropagation method. Yeah, and then again I will do. Right?
+21:52
+
+So let's say epoch, I'm writing here epoch equal to 10. The 10 time only this weight, let's say one zero two four weight I have added here. Or let's say, 5,000 weight I have added. That 5,000 only get changed, no, again and again.
+22:07
+
+Other than no challenges at all. Yeah? That's how the new layer works. Yeah? So Lora low-rank adaptations, the main idea is, instead of writing a big layer, right?
+22:21
+
+Instead of touching the 10 billion parameter, you can just add a new weight. You can just add a new weight. Right? And that part, right? Suppose let's say my weight is,
+22:36
+
+matrix is huge. What Lora will do? We can go here and this is my old weight. This is my old weight. You can go and just froze them. You can say, I'm going to frozen them. I'm not changing at all.
+22:49
+
+And only the learning happen here. Only the learning happen here. Only learning happen here. So this tiny weight, I'm updating it. Again and again, I'm adding it. Hmm?
+23:02
+
+Makes sense? So it's a cost-saving, right? You can say it is cost-saving. That's how it is working.
+23:16
+
+It is same as transfer learning. Transfer learning, you can say definition it's same because transfer learning means instead of building my own model, yeah, why not I can use the pre-trained model? That is called transfer learning.
+23:36
+
+Here, I'm not saying that concept is there, right? Pre-trained anywhere human suit. Pre-training model, only I'm using it. But that pre-training model, I'm adding one more weight, 1%, 1.5% maximum. Right? And that weight
+23:49
+
+training is happening. So it's not exactly transfer learning. Transfer learning is pre-trained model, you have to train it. Here I'm not training them. Pre-trained model, I'm frozen them. And then I'm adding, whatever the pre-trained weight there, that 1 or 1.5% weight
+24:03
+
+I'm taking extra, and there I'm doing a training. So second part you can say like that it works. Make sense? So we are changing
+24:19
+
+weight value and its new value every time while W is a freezing. This only. Yeah, correct. Absolutely right. Absolutely right.
+24:32
+
+All my friend. Hmm? Just think, no.
+24:48
+
+You are a researcher. You wanted to read a research paper. You wanted to write some thesis and all. Or let's say you are working in finance company where you have some domain-specific part you have to do. Right? So what do you do?
+25:01
+
+You have so many documents there, and there are pre-trained model there. Let's say you wanted to use any model, Whisper model, GPT model, Cloud model. Yeah? Llama model, Llama 3.4 model. Anything, you can take it.
+25:14
+
+Yeah? Now what you have to do, whatever the parameter there, you can park them as it is. Don't change it. You can take as it is. And then additional weight, you have to do it. And then you can execute them.
+25:28
+
+As simple as it is, guys. So anybody say, what is fine-tuning, my friend? Simply you can say fine-tuning means, I am giving a-- First, I'm taking a pre-trained model, and that pre-trained model
+25:44
+
+is specialized for some particular project for a particular domain. And that domain I wanted a better answer. Domain I wanted the way client wanted the response. The domain response I wanted, how human wanted.
+25:58
+
+That is my expectation is which RAG or other part is not able to give it. Yeah? So we are improving our existing model. And instead of building a new model from scratch, no, not at all.
+26:13
+
+Existing model, I'm taking it and I'm implementing it. Hmm? Simple. You hire a doctor, guys. Doctor already knows medicine, right? Now you have to train them in a heart surgery, let's say.
+26:26
+
+Yeah, you are not teaching medicine again, because they have a knowledge, they know medicine. That's why I'm using pre-trained model. Yeah? You are only teaching the specializations. Yeah. You are only saying, "Hey, in this finance domain,
+26:41
+
+the loan, there are different kind of loans there." They know it, but there is a different kind of loans there. You have to train. This is the personal loan or this is the car loan. Here, these kind of customers there, you can handle like that.
+26:55
+
+And this is how the fine-tuning works. Simple analogy. Hmm? Simple analogy. Generic. You build a banking chatbot. Before fine-tuning, if you
+27:08
+
+go and ask to chatbot what is saving account, they will give a generic answer. But when you do a fine-tuning, and then you can ask-- No, machine will ask, the chatbot they will ask, which kind of saving account, which
+27:21
+
+bank, or what is the meaning, what is saving account, current account, all these things, they will explain it. They will tell you they understand the bank policy, they understand the product, they understand the internal terminology.
+27:36
+
+And then only they can go and give the answer. They will not give the generic answer. They always give the expertise answer. That's how the fine-tuning works. And sometime, no, sometime prompt engineering is not enough, guys.
+27:50
+
+RAG is not enough at all. In so many cases you will see RAG is not giving a better answer. I wanted to build a bot where bot is very stylish. Their tone is just like me. They
+28:03
+
+have a better reasoning, they have a better decision-making, they have a better planning. I wanted a domain-specific behavior. Now what you will do? First answer you can say, "Boss, I will go
+28:17
+
+and use the fine-tuning model. I will use the fine-tuning model." Yeah. So how this will work? How this will work, please remember this, guys. If we have a data set here, you
+28:31
+
+can say, I will take a pre-trained model. I will take a pre-trained model. Why my board is not working? Pre-trained
+28:46
+
+model. So you can take a pre-trained model, means existing model. Whatever the weight there, you can update all weight as it is. Update
+28:58
+
+all weight as it is. And once you get all weight right, then on the top of it you can do fine-tune. Fine-tune the model.
+29:11
+
+Means how you will do it, this is the-- Don't do fine-tuning, full fine-tuning, then you are in big trouble. Hmm? If I go and use the PEFT model, the advantage is highest flexibility. They will become a deep specializations.
+29:24
+
+They can completely change the behavior. Yeah. They will become a domain expertise. Hmm? And that's why the word is called PEFT model, parameter
+29:39
+
+efficient. So whatever parameter is nothing, wait. And that weight, instead of doing this, instead of updating all weight, we are updating only a small subset.
+29:53
+
+A small subset. So if we have 100 billions of parameter there, PEFT, maybe they will take 0.1%, 1%. Some of the cases I have seen 1 to 1.5%.
+30:05
+
+We are taking it, depends on the how many parameter there in the existing model. And if I use PEFT, the interviewer they ask you direct question: "What is the benefit why we are using?" You can say, "Boss, when we use the PEFT model, it is much, much, much faster than the full fine-tuning model." It is
+30:18
+
+much cheaper than the full fine-tuning model. It is much lesser storage they will take because only 1% weight I'm adding additionally. So very less storage there. If I use the complete fine-tuning, there is a huge GPU
+30:34
+
+memory is required. Here, very less GPU is required. It will reduce a catastrophic forgetting concept. We will get a human kind of response. That's the advantage there.
+30:48
+
+My dear friend, are you with me? Then what PEFT you understood, fine-tuning you understood. Now PEFT, how works, you can just create a two layer. One is LoRA, another is 2 LoRA. LoRA is what?
+31:03
+
+This is where things become interesting. Means I am saying LoRA is a PEFT techniques. Instead of modifying a huge matrices, it learns a small matrices. It learns here. The learning happened a small-- They are training for a small part
+31:16
+
+only. This is how the LoRA works. Think simple analogy, guys. So let's say, I am saying, okay, there is a weight there.
+31:32
+
+Let's say there is a models there, and here my weight is, let's say, weight is 1,000 by 1,000. 1,000 by 1,000 parameters there. Right. So how much parameter is? One, two, three, four,
+31:45
+
+five, six. That much parameter is there, let's say. Okay? Now you can say, if I take that much parameter, what LoRA said, that instead of modify the weight directly, why not we can learn the
+31:58
+
+other method? So we can add one additional parameter. We can add a additional. So what we are saying, whatever the original, whatever the original weight
+32:13
+
+there, don't touch. Frozen them. Don't touch. There you have to add a small adaptor.
+32:26
+
+Adaptor is called A, let's say. And then you can say the small adaptor, a small adaptor. Let's say I'm adding here B.
+32:39
+
+Yeah? And then, it will update their behavior. This is what the analogy there. That's how the LoRA works.
+32:52
+
+Simple. So let's say you are working a question answer system. You are building a chatbot, and that chatbot is a question answer chatbot, and you have thousands of pages there.
+33:07
+
+Now, instead of rewriting books, why not we can just add 10 extra page supplementary on that 100 pages? LoRA is just like extra supplementary.
+33:19
+
+So, we are just adding few more additions part. Right. That's what the word is called low-ranking. Low-ranking means just think about there is a name there,
+33:32
+
+there is a person there is there, and here name is, let's say A, B, C, D. Age is, let's say 25 years, 30 years, 40 years, 20 years. Just think about.
+33:48
+
+So there are two parameters there. Now what happen? They will rank roughly. There is a more complexity comes. So when we have this type of
+34:03
+
+examples there, what we are saying? Here, whatever the parameter there, why not we can add a rank here, and rank equal to, let's say, 10, I'm taking it. So we can say instead of changing here, we can say 1,000 by
+34:16
+
+10. This is called matrix one. Similarly, plus 10 by B is our 10,000, and then you have to add it. That's the parameter there, additional part we are doing.
+34:31
+
+So this will consider as a 10,000. This we'll consider as a 10,000, and that means total parameter is 20,000. That is the external parameter, and this 20,000 parameter only we are giving a training and all.
+34:45
+
+So drastically reduction happen. You can just think about 20,000 is how much percent of this one, two, three, four, five, six. Three, four. You can just think about
+35:00
+
+0.02%. So that means only 2%. This is also higher side I have mentioned. This is just a example I have given. Only 2% training is happening. You can say huge cost reduction happen.
+35:13
+
+The training, 2% only weight I'm giving a training. Its storage also very less. That's how the low-ranking works. Anyone have any questions, you can feel free to ask. Let me take questions.
+35:28
+
+Who has a raised hand? Prashant, go ahead. Yeah, hi, sir. Good morning. So theoretically, we understood, sir. Practically, how we will be doing, sir?
+35:44
+
+We need to understand the architecture and- Architecture, I'm explaining you. Practically, when I show the code, you will understand. Main thing is- Okay ... theory part you know, practically- Yes. Okay, understood. Okay, thank you.
+35:57
+
+It's not big issue nowadays. Ashish?
+36:10
+
+Ashish, are you there? No. Okay. Why people are raising hand here?
+36:24
+
+Revati Yes, sir. Can you hear me? Mm-hmm. Yeah. So I have an organization-specific data. As an architect, when should I choose to do RAG, and when should I do
+36:40
+
+fine-tuning decision? Fine-tuning, you cannot take a decision initially. First, you build a RAG because you have organization data. You can go and build the RAG system. Let's say RAG is not giving the response as per your client expectation.
+36:56
+
+Okay, you have a client data, but your LLM or your bot is not providing a better answer or a human answer. So they will complain to you. They can say, "I don't want the answer like that. I want an answer like that only." On that case, you can say,
+37:11
+
+"Okay, I will do the fine-tuning." If RAG is unable to give the proper answer like a human answer. Always preference is RAG. They will ask you this question also, what is your preference? RAG is the first, because RAG has less cost comparatively fine-tuning.
+37:26
+
+Just think, no. Even you can present them, you can say, I have phrased. But when you do a training that much weight you will take or not. So additional weight you are doing how much?
+37:41
+
+That much. Correct? Additional weight that is frozen, but this you will take, plus 20,000 you will take. This 20,000 you will take. And here you will give epoch equal to 10.
+37:53
+
+So 10 times 20,000-plus, so 100,000 again weight get added. Yes or no? So this plus this means that much cost is more. Even though you are using low RAM, but cost is still more than the existing
+38:08
+
+one. So one part is when you will do it, first you always go with the RAG. RAG is not providing a perfect answer, then only you will jump into fine-tuning. But before fine-tuning, definitely I suggest you can see the
+38:21
+
+chunking strategy. You can do different embedding techniques. You can do some retrieval method with different retrieval method, because the context is better than only LLM will give you better answer.
+38:37
+
+So that techniques you can apply in the RAG. But let's say you have done everything, left, right, bottom, center, but still nothing is happening. Why not I can go and do the fine-tuning? But which fine-tuning? Partial, not a full fine-tuning.
+38:49
+
+Make sense? Yes, sir. So another scenario- If the domain is specific, another expectation is in organization, you have some specific domain, a specific process related, then again you can say you prefer to go in the fine-tuning.
+39:02
+
+What is your another question? Another scenario. So organization wants to reduce the cost. So probably using models from the model provider, they're thinking that it is generating huge cost for them.
+39:18
+
+So they think that, okay, take one open source model, fine-tune it, and use internally so we can avoid LLM call cost. Fine-tuning is anyway costly. Is this the right decision? No, this is wrong decision. If they are looking a cost saving,
+39:32
+
+fine-tuning is 100% wrong decision. Because fine-tuning, when you use the word fine-tuning, that means anyway the GPU will come into picture or not? Mm-hmm. When it's open source there. But open source means what?
+39:47
+
+The GPU is required or not? Required. Hardware. So then that means cost more. And when GPU is required, that means pre-trained model, whatever weight there you are taking, plus additional weight you are adding it, and then you are giving extra training.
+39:59
+
+Okay, so whenever there is a cost word comes, don't go and use the fine-tuning then. Okay. How will you implement this question? Is it always we should use GPU for fine-tuning or we can also use-
+40:14
+
+100% without GPU, it will not work. I'll show you one model. Okay? Mm-hmm. Just see this Jupyter Notebook.
+40:26
+
+And very small fine-tuning, I have done it, and I'll show you how much time it took.
+40:40
+
+I'll show you the open source data only I have used it, Llama model. And you will literally surprise, you can say, wow, Llama model.
+41:02
+
+This is very a small one, but you can see. Okay? So setting up the Hugging Face, read token,
+41:14
+
+accessing gated repository for Hugging Face. And which one I have used here? Llama model. You can find the status. You can go here. I have given link as well. Before running the following code, make sure you have
+41:26
+
+a high RAM and GPU. I ran this code on Google Colab Pro. When I used the Google Colab 12 GB GPU, my system got hung again and again, crashed it. So I have taken a Pro. It consumes somewhere around 32
+41:40
+
+GB of RAM, to train this. And then I have solve it. And then also because I have taken a very initial basic version, it took almost 15 hour to training, guys. And this is just a text generation, but 15
+41:56
+
+hours. Can you imagine this? So, if I take higher one, and then when I ask thank you for the offering I am, and then they generate your thank you for offer I am,
+42:10
+
+100% sure this is something they have generated it. This part when I have done and I use the fine-tuning concept. I use the fine-tuning concept. My friend, it's 8 billion parameters there. It took almost 15 hours.
+42:24
+
+So it's very time-consuming. Clear? Yes, sir. So with T4 can we do fine-tune or no? Which one? With T4, which Google Colab offers for free, right?
+42:40
+
+T4 GPU. GPU. Yes, yes. No, no, GPU machine three, they are giving 12 GB GPU only. Okay. We'll get crash. So that's why either you can go and use the
+42:55
+
+pro version, or we have something called, the NVIDIA has provided, you can go and use this. Okay, sir. Got it. Couple of hands there. Sir, will you also cover hosting the fine-tune
+43:11
+
+part? Cover part, leave this, madam. Focus on this part, which I cover, I have not, that I will tell you later. Mm-hmm. Any problem in the fine-tuning? No, sir. Feeling comfortable? Yeah.
+43:27
+
+Dheeraj? Yeah. Sir, when we say that we are adding weights with the help of rank, right? Does it mean that we are adding a new dense layer for the training purpose?
+43:39
+
+Yeah. So I just wanted to understand- Just add it is there. Just iterations. Just add it is there. Sorry? Can you give high level intuition what basically the adding weight means? Is it adding another dense layer to your-
+43:52
+
+Higher weight means additional weight. Means let's say we have X1, X2, X3 there. Okay? And that's the architecture there. Let's say this is already neurons there.
+44:05
+
+So many neurons are there, let's say thousands of neurons are there. We have a thousands of neurons there. Like that weight get calculated, right? Then you can say we have 8 billion parameter. Correct. And then finally we are getting the output.
+44:19
+
+Now here what is meaning, when I get the output final result, we can freeze them. We can freeze them as it is. So here, whatever 8 billion there, we can say add one more neurons.
+44:33
+
+And that neurons only I can give a training. Here I'm not touching it, and that part only I'm doing a training, and then I will see the answer. So additional weight means you can give more neurons, and then you can train them.
+44:46
+
+That's the meaning of this. Basically, we are adding a dense layer on top of the frozen- Correct, on the dense layer. Yes. That's why I mentioned. Now here, so let's say this is my actual weight there. Initially, 1,000 by 1,000, I'm getting this one.
+44:59
+
+Now I'm saying, okay, there are one hidden layer, another hidden layer. Right? What I'm doing, I'm just adding the, here, I say 1,000 by 10 neurons, additional hidden layer I'm giving it.
+45:14
+
+Okay. Yeah. And then when you calculate, and then again we say, you can use this 10 by this one, and then this part only I added, and maximum how much I'm getting, so that much neuron only I will give the
+45:26
+
+iterations. Here iteration will not work. Epoch will. Back propagation method when will come, they will not hit this weight as it is. Only the additional part what I have added, here only you can see what is the output coming.
+45:39
+
+And there you can do back propagation, forward propagation, back propagation, forward propagation. This adds- Got you. And how we are deciding that R value, the rank, is it randomly we are taking or? No, it's randomly only. So I told you, 1.5% something like that
+45:52
+
+we are giving it. Okay. Got you. Thank you. Okay. Mohammed Yasin?
+46:08
+
+So am I audible right? Yes. So as you were saying, sir, like you are actually adding a weight, so basically you have frozen some weight, right? So it means- Correct ... that whatever the 8 billion parameter is there, and you are additionally
+46:23
+
+0.5% of any neural network. So you are not training the whole 8 billion parameter, you are just training the 0.5 or whatever you are actually using the new additional
+46:38
+
+weight, right? Yes. Okay. So, and also one more thing, sir. So example, I have taken one pre-trained model, which is the size of the 24 GB. So if I use the
+46:53
+
+LoRA technique, and then I have added, so it will increase the size. And then my second question is add on, on this, so what is the use of the QLoRA on this? Like, are the two are-
+47:08
+
+QLoRA, when I will come, then I will explain. Okay. Okay, sir. So let's park this question. Okay. Yeah. LoRA part clear? Yes, yes. Okay. Rishab, what is your query?
+47:21
+
+Hello, sir. Yes. Sir, my question is like the, how to choose the pre-trained model. I understand this part that we can add the weights and all, but let's say
+47:34
+
+if my domain problem is mostly, like I have to generate some test code from, the model should be able to generate some unit tests. So it's like a code generation kind of activity that I am doing. So
+47:47
+
+in that case, how to choose the pre-trained, which pre-trained model to choose? Is there any guidelines or is there anything that I should- Yeah, we have a guideline there. So for that you have to go in the Hugging Face.
+48:00
+
+Mm-hmm. Okay? So if you are a new guy, this is very good question, yeah? So if you are new, you can please go, everybody, I hope you have logged in on Hugging Face. Go in the Hugging Face.
+48:12
+
+Okay, please log in here. It's a very simple method. You can log in here. You can see Kumar Sundaram. So my ID is here. Now when you go here in login, you will get few services.
+48:26
+
+The first services you can see here. Model Dataset, a space,
+48:39
+
+bucket, documents, enterprise, pricing. These are the services there. First part, model. You have to go and click the model part. When I click the model, how many models available till today?
+48:53
+
+29,659. Yes or no? Yes. Possible anybody remember 20 lakh model? Tell me. No. No. So this 29 lakh, and it keep adding. Why?
+49:09
+
+Because there is a space there. Tomorrow you are doing some project, especially in a startup and all, or you are doing some research, you wanted to publish it, you can go publish it, and other can also take a benefit. Yeah, so that's why it's keep increasing.
+49:24
+
+Today you are seeing 29 lakh, maybe one week later you will see it will reach 30 lakh. Yeah, how the industry is growing and how the researcher or developer unlike you guys doing it, tomorrow you can also go and publish some model and upload there. That, "Okay, this is the project I have done." It just like
+49:36
+
+a GitHub. That's a similar thing you can post here. Let's say I'm teaching you fine-tuning today. You build a RAG system, and on the top of it, you can do the fine-tuning and you can upload here. Yeah? So that's why it's keep increasing. Now, the question is how we know that. Are you able to see here?
+49:52
+
+What is written, guys? Tasks. Task. Okay, you can go here in the task, click this. When I click it, are you able to see what kind of problem we have? They have given all options. Right?
+50:08
+
+So let's say you are doing a multi-model problem. In multi-model what kind of problem? Audio text to text, image text to text, image text to image, image text to video,
+50:22
+
+visual question answer, document question answer, video text to text, visual document retrieval, and any to any. These type of maximum query you will get here. Computer vision kind of request you are doing, what kind of request there?
+50:35
+
+Depth estimation, image classification, object detection, image segmentation, text to image, image to text, image to image, image to video, unconditional image generation. Yeah, you can see the problem.
+50:50
+
+Yeah? You can go here, guys. You can see the natural language processing. Yeah, we have text classification, token classification, table question answer, question answer, zero-shot classification, translation,
+51:02
+
+summarization, right? Audio, we have a different problems. Tabular data, we have a different problem, reinforcement learning, and graph machine learning. Now, tell me, when you work in industry, you will get any problem you will do somewhere
+51:16
+
+related to here? Yes, no? Yeah. So let's say I am doing some project. Let's say here I'm saying translation or question answer system. So you can click here, question answer. When I click here, you can come here.
+51:32
+
+Now, in question answer, how many models developed till today? 13,000. Can I say these are the pre-trained model? Yes. Yeah, 13,000. Now, out of 13,000, how you know that which is the best model?
+51:44
+
+Right? 13,000 a number. Right? So you can see there is options called sort trending. Are you able to see sort? Yes. You have to go and click here. You can go and click here. When you click, what are the options coming, guys?
+51:58
+
+When you click Trending: Most liked, Most downloaded, Recently created, Recently updated, Most parameter, Least parameter. You click on the Most downloaded. Which industry they prefer to use it? I'm clicking here, Most downloaded.
+52:14
+
+When I click here, Most downloaded, take first five only. Okay, these first five model are the top model which industry are using.
+52:28
+
+Okay? And you can go and pick anyone. Let's say I'm picking this one, or DistilBERT is very famous, right? So you can go in DistilBERT or DeepSet or Monologue or TAO, anything you can do it.
+52:40
+
+So let's say I'm saying DistilBERT. Click here. When I click this, you can go in the file. And first you can see the dataset, how bigger dataset is there. So it's somewhere MB only, right?
+52:52
+
+16, this MB. So if you calculate all this thing, maximum it will come one GB or two GB or max. Yes, no? Yes. Yeah? Now this data you can go copy here and train here.
+53:06
+
+So the way I have given a training, you can see here what I have done. Transfer, Transformer import pipeline, Torch, Operating system, here Environment, Hugging Face token I have taken. Hugging Face token from where you will get it?
+53:18
+
+You can click here and you can see here, Access Token. Are you able to see that? Click on the Access Token. Yeah. Yeah, please go here in Access Token, you can log in, and you can see these are my Hugging Face Token, right? Someone 2015, 2015,
+53:31
+
+April this. Yeah, these are the older one, I have taken it. If anything new you wanted to do it, you can just go and create the new token. You have to click here. You can just go in the read and write some name, and please create the token and you can paste here.
+53:45
+
+That means you have access for Hugging Face. Which model I told you? This model. Please go here, copy that model. Copy this model and paste here. Paste here.
+54:01
+
+Are you with me? And then what kind of task you are doing? Pipeline here I said text generation. Here what kind of task it is? What kind of task it is? Go to the main card, and here you can see this is actually your question answer systems there, right?
+54:13
+
+You can see here Pipeline, Question answer, copy, paste, and that's it. You can copy, paste instead of text generation you can say question answer model equal to model ID. Execute this. It is showing error because again, I have to run that much time.
+54:27
+
+Yeah, but if you have that much capability, this is very simple one. It will not take that much time. Mine is very bigger. Okay? Which one I have used it, it's very bigger. So like that, you have to train it. Now you got the understanding how I can use it-
+54:40
+
+Yes ... how I know that. Clear, guys? Yes. All my friend. Very good question. Yes, no, Tan, how you- Yes, sir.
+54:54
+
+Now this one I'm showing you. Why it takes that much time? Because if I go here, this model, and you can see this. If I'm using here model. Okay, this model, eight billion parameter.
+55:06
+
+If I go in the file version, see, how bigger file is, guys. 4.9 GB means what? Can I say 5 GB? 5 GB, 10 GB, 5 GB, 15 GB, 16 GB
+55:20
+
+added. So data set itself, right, whatever the file you will download, that itself is required 20 GB almost. And when you trained them, right? When I have done this, so then it took almost
+55:33
+
+32 GB they have taken RAM. Okay? And then some execution time also. So that's why it took almost 15, 16 hours. But
+55:47
+
+in my case, I have used a different method. I've used RunPod.io. There I have taken a H100 GPU machine, so quickly I have completed it. But are you guys clear, everybody, how things works?
+55:59
+
+Here, Prashant, this is just a fine-tuning. So now I'm saying generator. Here I build the model generator pipeline task is text generation, and then you can write any sentence and ask them, they are generating it. They are generating it.
+56:16
+
+Any questions, you can go and ask them. If you will apply in the domain part, right? So you have a data set. So let's say you already built a RAG system kind of things, and then you have to give a training. This is the way there. I'll go more deeper also, but you can just simple you can see that.
+56:29
+
+Okay, let me take a few more questions. Ravi? Hey. Hi, sir. Oh, sir, can you... Hello? My voice is not there, sir?
+56:45
+
+Good. I can hear you. Sir, just one question. I have here RAG in my project. You know there is a Azure-based API. So there are thousands of API. So I build a RAG system.
+56:58
+
+Mm-hmm. Where I can use this trained model? How I can identify which- So you can go in the Foundry. Foundry, you have a fine-tuning models available there. So you can just enable them.
+57:14
+
+If you are using Azure, it's a very easy part. I think Azure, I have not covered in your class yet, right? So when I will go in the cloud, I'll show you. When you use the Foundry, right, you will get the finer model. So let me show you this.
+57:27
+
+Google Azure Foundry fine-tuning model. See here? Fine-tuning model. So you can go here and read the documentation. Everything is written.
+57:43
+
+So top use cases, fine-tuning. First is domain specialization. Second is task performance. Third is you wanted a style and tone. Fourth is instruction following, then compliance and safety and
+57:58
+
+language culture. That's the advantage. That's why we are using a fine-tuning. See how nice the documentation has written, Microsoft? Got it. Are you guys clear? Now, serverless or managed capture. Right? Training techniques, how the training techniques have supported.
+58:11
+
+These are the pre-trained models, and there you can go and use the fine-tuning. So you can just go and I'll show you Azure Foundry fine-tuning image.
+58:25
+
+Let me go in the image and you can see this. So this is the screen. If you know the Foundry, this is the screen there.
+58:41
+
+Did you remember? And are you able to see that? This Foundry, right, Azure Foundry, you can go here and you can see fine-tuning options there. So which model you will take, right? Whatever the model catalog you will go, and you have to take that model.
+58:55
+
+There you can apply the fine-tuning they will do. So which model, base model they have taken? O4 mini model. Correct. And there they have done the fine-tuning. That's it. Just click a button only, my friend.
+59:09
+
+Are you with me, Ravi? Yes. So later you will teach this as well? I will cover it, yeah. Okay. Thank you. But this is very simple. That's why I explained to you.
+59:23
+
+But don't worry. Farhan? Nobody asked me is there any doubt. So nobody's asking the doubt, that means I'm confident you know it. All people are asking different question. Yeah?
+59:37
+
+Shalu? Sir, sorry to interrupt, sir. I have one more question before we are actually going to the next topic. Sir, which extension we are saving? How
+59:53
+
+we can decide? Which extension means what? This model we are saving, right? So I have seen in the Hugging Face that they are using .gguf and then FP16 kind of thing. So
+60:05
+
+how we can decide which extension we are going to save this model? Which extension? I could not understand. Sir- How you decide, decide part you understand, right? When you read the problem statement, you will understand what kind of problem is
+60:20
+
+there. So which model I have to go, which LLM model I have to use, that you know it. Right? Then you have to go and take that and use the fine-tuning model. Okay. That's what you can do it.
+60:35
+
+In Azure, when you go here, you can see. You will decide which model is there. So model is o4-mini model. Correct. You can say, "This is my model." This is my model. In this model, you are doing a
+60:50
+
+fine-tuning. So this model, when you click the fine-tuning part, there are a few parameters there which I will cover in a while. What is supervised machine learning? What is RT? What is DT and all?
+61:02
+
+So that you will get more clarity. But what happened? In this model, whatever the parameter is there, they can freeze it, and there 1% or 1.5% maximum they will take, and that part iterations happen multiple times, and till then you
+61:17
+
+get the better answer. That's how it is working. If you read this documentation alone, you will get so many insight, which are documents, I am sharing it.
+61:31
+
+If you go and read it. What is RFT? All these things I'll cover in a while, but you can see everything is given. How you can evaluate them, what is this, all this part you will be able to understand. Step by step given. Make a habit of reading the
+61:43
+
+documentation also. Clear, guys? This is the documentation I'm talking.
+61:57
+
+Haran, ask questions. Yeah. So actually, as in speaking rate, so I have two questions, sir. The first one is, so you use a text generation model, right? So when you
+62:11
+
+give the initial values, the complete sentence was in negative sentiment. So how it will take whether the generation should be a positive or negative? Like you said, can you go to that model which you used for
+62:24
+
+text generation? This one you are saying? Yeah. Can you go down? Mm-hmm. Because we haven't give any random value. You just said, "Thanks for the offer.
+62:39
+
+I am gave." But if you read the generated values, it was kind of negative. So it says kind of full negative. So how it will take whether the generation
+62:52
+
+should be a positive or negative? Whether it's based on the- So this is just a example I have taken because I have given some other dataset, and then I have asked, "Thank you for offer," because I have already created a chatbot. In chatbot, something happened that chatbot
+63:05
+
+specifically, the data is given. So the Learnway company, they have a given offer that if you are interested to join for this course or internship or something like some discount and all, these are the- Yeah ... facilities you will get or something like that.
+63:21
+
+So the data already they learnt it. And then on that dataset I have asked. So these answers I'm getting from there only. It's not that randomly they have taken and giving the answer. So this is just a example I have shown you. So you have a bot, right?
+63:35
+
+You already created it, but that is not- Yeah ... coming a better answer. You build a RAG system. That is not- Okay ... giving the best answer. So dataset is there. Your LLM has a visibility. They have seen it. But how they know it? When you ask something, how they know it, how they will
+63:49
+
+generate the answer? So they will give the filtered, and then accordingly they will give the answer. That's what they do it. So this is my own data, right? So here you can see. They said, "Your name." They have not given anything, A, B, C, D.
+64:04
+
+You can write, "Yours sincerely." Right? Yeah. Mm-hmm. "Your name," and this response acknowledge. So how they are giving? Because this is what I have given. So they wanted to write the way I want it. So similar that, they have given the answer.
+64:17
+
+Okay, so based on the past value, so it's getting trained and generating the- Yeah, and then they will filter. It's what fine-tuning is. Okay. Sir, one more question. So, just like same Amruna asked. So you said for the 8 billion
+64:31
+
+parameters, you trained for 15 hours, you said. So in that, are we going to add a new weights and add or whether it's going to take the random weight from the 8 billion parameters
+64:45
+
+for fine-tuning? 8 billion one-time training happened, that much weight you have given, so machine will learn it. Remaining we are- So why are we defining the additional weight, sir? So you said we need to add a new weight, so even in theory part also you said,
+64:59
+
+so existing pre-trained model, we are going to add a new weight, and then we are going to train the new weight. That's how fine-tuning is going to work. Right now, I'm just explaining the concept, the theory part. Now you are clear how we are doing. If tomorrow anybody ask you, you
+65:12
+
+can give that answer. Where I will do it, that I will cover in the later. So when I will cover this fine-tuning model, then you will see where I can go and use it. Okay, so the new weight is not-
+65:26
+
+You can see here ... from the existing pre-trained model. It's going to be new one, correct? That clarity I need. This is the LoRA code there. This is the project I have taken. This is the project fine-tuning model I have taken. You can see model name,
+65:39
+
+dataset name. I have given a dataset also, tokenization, temptations. You can see all this thing. Create a PEFT model. Here I'm using LoRA. Rank equal to I have given 8, LoRA dropout equal to
+65:52
+
+1%, LoRA alpha value equal to 16. Target model, these are the project model I have given it. Starting with I am a start, and when it get end, I am end. And in between, assistant will work, system will see
+66:05
+
+that, and end of token, all this thing is happening. So this part I'll explain you in a while, then you will able to understand. So are you able to see all parameter I have written? Yeah. Yeah. So like that it is working. How much dropout I have taken, what
+66:18
+
+is the value I have taken. All this part I have given. See? Logging steps, learning rate I have given, maximum gradient, normal weight decay 1%. All this thing I have given. See?
+66:33
+
+And then training happen. I'm using GPU machine. Yes, GPU memory is used. Then I have used PEFT model, PEFT configurations, AutoML casual model means question answer system, where auto tokenization also happen.
+66:45
+
+And then here we are using pre-trained model, and then I'm asking- So my question is, give a sentence, translate it into English. I have called customer care 10 times, but I still haven't gotten my order. Like that, I have given it.
+66:58
+
+You can give, you will get better response. Here another, you can say, "Bro, what is this generative AI?" See, the way human can talk. Similar thing, your chatbot will give the answer. In Hindi, I have written, write an
+67:14
+
+essay on tourism in India. You have to write one essay about the tourism in India. So when you write it, you will get similar kind of response how you want it. That's how the pre-trained model works.
+67:27
+
+Are you able to see that, how things will work? First, I have given a training data, all this thing, and then you can go it. So this part, I will come later. Okay, yeah. Patience is the key to get a success.
+67:40
+
+So just wait. Learn, focus on theory right now. Okay. Guys, everybody clear? Hmm? Question marks. What is question marks, Vinay?
+67:52
+
+Vinay is saying, "Sir, please can you reply my query? I'm posting in chat." Can you paste again? What is your query? I have texted you in LinkedIn also. Leave now LinkedIn and all. What questions there right now, ask me right now.
+68:09
+
+LinkedIn, there are hundreds of pings there. Do you think I have that much time to look and give answer every time? I could not attend 20 classes. I am going through the recording. Three classes I have completed. Today, I practiced the
+68:22
+
+mortality dataset you gave for homework. I suffered a lot in loss of study. Vinay, what answer I can give then? You can ask Learnbay to set up a call with me if you wanted to talk to me.
+68:37
+
+In class, if I wanted to give these answer, not justifiable, no? Cello. Guys. Shall I go ahead? People are keep raising hand.
+68:51
+
+Rabi, Mohammed Yasin, can you please unraise your hand? Otherwise, keep coming that you have a still doubt. Thank you. Nali, what is your doubt after explaining too much thing?
+69:04
+
+No. Cello. Good. So guys, now moving back to the QLoRA. Okay? Understand the concept first. Coding and all, no need to worry. Hmm? So,
+69:26
+
+QLoRA. Okay, what is QLoRA? QLoRA stand for quantize. Quantized LoRA.
+69:43
+
+Hmm? Quantize LoRA, the analogy is, first you have to compress the original model weight to 4 bit.
+69:58
+
+Means very small memory. Normally, guys, what is happening? You know bit, right? What is happening, guys? Wherever there is a weight there, let's say
+70:11
+
+the weight of your original number is what you will get, let's say you will get 10.812345679703.
+70:26
+
+Like that you will get it. That means normally you will get a 32 bit. 32 bits. Yeah? That's happening, guys. Computer, they have a 32 bits there.
+70:41
+
+It will take lots of spaces. What you do, you have to quantize them, means you have to compress them. You have to reduce them. You can resize them. So you have to convert into different format.
+70:53
+
+You can say, "Hey, I don't want to take it. Why not I can compress this?" Why not I can compress this number, and I will write 10.81 only. Will you write this like that or not, guys? Tell me.
+71:08
+
+It's still useful or not? Someone is saying, "Hey, my number is 10.812345 something." And you said, "Hey, my number is 10.81." Both are very close, very similar or not. But what is the benefit, guys? Can I say it will use less memory?
+71:24
+
+It will use less memory. Agree. Just understand the trick, guys. You can fine-tune big model in a single GPU or a small VRAM machines with quality
+71:40
+
+close, which is very easy. Very simple. It's simple maths, guys. What I'm doing here, instead of using too much, I'm just saying, "Hey, I'm compressing it."
+71:56
+
+Okay? I'm compressing it, and I'm reducing this. So instead of 32 bit, I'm storing that number into 4 bits. What is the benefit? It will take less memory. That is the first part. Now you can just imagine you have a
+72:08
+
+seven billion parameters there. You have a seven billion parameters there. What happened, guys? In seven billion parameter, parameter, each
+72:23
+
+data get connected with, let's say, 32 bits. Okay? So what you will do it? This seven billion
+72:37
+
+multiply, let's say, 32 bits is, I'm just saying four bytes. Okay? Four bytes, so four. So what happened?
+72:51
+
+28 billion memory is required. Now what I'm doing, I'm reducing it I'm saying here, 7 billion data, I just wanted to do one-fourth 32-bit, there one-fourth
+73:04
+
+or one-eighth is four bits. So one-eighth. So you can say I will go and reduce this. Yeah? So I wanted to reduce one by eight. Now what happened, guys?
+73:18
+
+What happened? You can just imagine. Yeah? Seven half is 3.5, there half is one. Yeah, somewhere you will get zero point something. Zero point or seven, let's say,
+73:30
+
+0.8 point. Yeah? That much billion is there. Means you can see that 90% or 80%, guys, 80% memory reduction happen. Memory reduction happen.
+73:44
+
+Yeah? So if I reduce this part, you can reduce it. So whenever you have a huge data set there, please remember, when you have a huge data set there,
+73:58
+
+LoRA is not appreciated. You can reduce it and you can use Q-LoRA. Q-LoRA is also a LoRA method only, low-ranking adaptation method only.
+74:10
+
+But this low-ranking adaptation method, there itself I'm doing the quantization, I'm compressing it. What? 32 bits to 4-bit quantizations. Means whatever the parameter we are getting, we are storing into 4-bit scale.
+74:24
+
+Right? This method is called Q-LoRA. So whatever the pre-trained model you have, you can say pre-trained model I have. Pre-trained model I have, that pre-trained model, first I will
+74:38
+
+quantize them. Quantize them. What quantize? I will convert into 4-bit model. So their weight actually is stored into 32, I will do it. And once we'll quantize them, then I'm going to apply LoRA method.
+74:52
+
+I'm applying a LoRA method. Yeah? Means I'm just adding 1% or 1.5% weight. And then you can go and you can say, then I will train
+75:09
+
+adapters, okay? And that will give the final result. Final result. Final result. This is called Q-LoRA workflow. This is called Q-LoRA workflow.
+75:22
+
+The benefit is extremely low GPU users comparatively LoRA. Yeah? It require the limited hardware, very, very fast.
+75:35
+
+Someone say, hey, I have so many data set there, and RAG is not giving better answer, what you will do? Fine-tuning, which fine-tuning? You can say, boss, I will use Q-LoRA. Okay? Believe me, you will get better answer.
+75:47
+
+This is not exact, your quality get reduced. Yeah? If you say which is better, LoRA or Q-LoRA, which will give better answer? Exact answer, definitely they have LoRA as upper hand.
+76:02
+
+They have lesser hand. Why? Because they will give the perfect answer. This is the perfect number. But we are saying 10.81. We are saying, let's say someone is writing one one zero. Yeah?
+76:14
+
+I can write here, let's say 108 or 100, I'm taking it. Someone writing 117 point something, something, something. I'm saying 110 only. That much number we are reducing it or
+76:28
+
+117 only we are taking and reducing it. So it's more or less very slightly similar difference there. Definitely the accuracy wise lesser. Yeah? You will get slightly less, but overall performance
+76:41
+
+is good, guys. Overall performance is very, very good. That's how the low-ranking works. Please, please, please remember, that's how the low-ranking works. Low-ranking adaptations with quantization with, you
+76:54
+
+can say this. So in a nutshell, guys, in a nutshell, I wanted to say that my friend, if you have a LoRA and you have a Q-LoRA,
+77:11
+
+okay? You have LoRA and you have a Q-LoRA. If you ask me, if you use GPU memory, please, memory, guys, which one take more or which one
+77:26
+
+take less? Let me see your chat also. Who will take less memory, GPU memory, LoRA or Q-LoRA? LoRA, lots of people saying LoRA. Q-LoRA.
+77:41
+
+No, it's very low. Very low. Because let's say 8 billion parameter there in original pre-trained model. Original pre-trained model, we have
+77:54
+
+8 billion parameter. That all data get stored into 32 bits. Right? That number, that weight. Weight is nothing, it's a number. I'm quantizing them, I'm compressing them.
+78:08
+
+Right? So that get convert 4 bit. Can I say space got reduced? So here, can I say yes, Q-LoRA is a very less? Speed-wise, which is better? Speed-wise, which is better, guys? LoRA or Q-LoRA?
+78:23
+
+Q-LoRA. That is what you understood. LoRA, no, guys. How Q-LoRA? Q-LoRA will take more time. No. Why? Because first we are targeting pre-trained weight.
+78:39
+
+Means 8 billion parameter first you can go and reduce it, so that one part you are doing here or not, and then you are changing and storing it, and then you are applying the LoRA. If I use the LoRA, here directly I can apply the LoRA and then train the model,
+78:52
+
+right? LoRA plus train the model. This part additional if you do, it will take more time or not? Come on, guys, you're not able to explain properly?
+79:06
+
+That is the additional. No, pre-trained weight, first you can reduce them. So you are doing additional work, you are compressing them, then you are converting this, and then on the top of it, you are applying LoRA. So speed-wise, you can say speed-wise, LoRA is better.
+79:20
+
+LoRA is better, right? You can say fast. You can say faster. This is slightly overhead.
+79:34
+
+Yeah, this is low. This is very low. Right? Quality-wise. Quality-wise, which is better? LoRA or QLoRA? LoRA, very good.
+79:49
+
+LoRA is better. This is better. Yeah? Because here you are getting approximate value. You are not getting exact value. You are getting approximate value. Yeah? So this is better.
+80:01
+
+This is okay. Hmm? When you can pick, guys, when you pick LoRA, can I say when we have? When we have a less data, I prefer to go which one?
+80:15
+
+LoRA method, very good. When you have a less data, LoRA, you can go and do it. When you have a huge data set. So first you have to reduce the memory size, right? So you can say I will do here. So when we have a huge data set. Yeah? You can say here when we have a less data set. Less data set.
+80:35
+
+Here when you have a huge data set, we can go and do it. So in simple rule, thumb rule, please remember, if your memory is a bottleneck, yeah? Memory is the main challenge there. I don't have that much storage there, yeah? Please go and use the QLoRA.
+80:50
+
+If the memory is not a problem at all, you have a decent memory, hmm? Data set is, let's say we have-- Just example I have taken, right? My memory is enough. I have taken a pre-trained model. I have taken a pre-trained model here,
+81:07
+
+right? And I have taken a Google approve, Colab approve, where we have a 50 GB RAM there. It's okay. No, I can go and use the LoRA directly. Yeah? But let's say here, my memory
+81:24
+
+itself is very less, 20 or 28 only, 30 only. Now quantization would be better. Make sense? So when your memory is less, RAM is less, you can go and use the
+81:37
+
+QLoRA, so that first they will reduce 32-bit to 4-bit, and then they will store it, they will freeze it, and then on the top of it, you can go and do it. Are you guys clear till here, everybody?
+81:50
+
+Hmm? Great. Let me connect the charger, otherwise my laptop battery... Uh, get stuck.
+82:07
+
+Jalo. So guys, you are in the position now to tell what is fine-tuning, why we are doing the fine-tuning, what is difference from RAG versus
+82:28
+
+pre-trained model versus fine-tuning, then what is PEFT model. Yeah? What is LoRA and QLoRA model? Yes or no? Yes or no, my dear friend?
+82:40
+
+Okay. Shall we take a quick break, guys, and then I will teach you what is SFT, GT, RT, DeepView, WarpView and all? And then a practical hands-on, how you will leverage, you can utilize
+82:57
+
+different approach you can do it?
+83:11
+
+That's not the right question. No, Mohammed Yasin. Generating text or inference part, who is better? Both are case study, right? Who is better, LoRA or QLoRA, that is the question here. That is not the question, generating text or image or audio and all.
+83:26
+
+Definitely, image will take more time, text will take less. Right. Question is, which is better, LoRA or QLoRA? So you can say when you have memory crunches there, I will go
+83:40
+
+by QLoRA. When memory is enough, I prefer to go LoRA. When your client say, "No, I am giving more focus on accuracy. I'm not worry about memory, I'm not worry about charges," go
+83:53
+
+and use the LoRA. You will get accurate answer. Hmm? So you can say like that.
+84:05
+
+Correct, Revati. LoRA output size would be bigger because that is 32-bit. Here, the 4-bit only.
+84:20
+
+Jalo. So guys, take a break, and then I will discuss further query. I'll try to cover the query part today itself, and then remaining practical, if get time, I'll show you how you can use the Hugging Face
+84:39
+
+or GPT model or Edge or like that you have to do it. So we are taking a break now. And it's at 12:25, shall we connect 12:45
+84:53
+
+all my friend? Okay. Yeah, Jalo. Thank you, guys. See you at 12:45
+85:08
+
+All right, my friend, I'm back now. Are you there, everybody? Yes, no?
+107:57
+
+Yes. So, next topic is SFT. Okay?
+108:09
+
+SFT stand for Supervised Fine Tuning.
+108:38
+
+Okay? So Supervised Fine Tuning, when you can use it. When you have a question answer system, let's say. Okay, you are building a question answer system,
+108:51
+
+and you wanted to train the model where you wanted to give your special tone, right? To bot has a special tone, a special persona,
+109:05
+
+the task behavior. So if you wanted to give that kind of result, and then your answer will come. If user will ask, "Hey, what is Newton's third law?" And the answer they will give in a simple way, the way you want it,
+109:20
+
+then we can go and use the supervised fine-tuning model. Okay? So please try to understand which fine-tuning I have to use where. So first you can see the case study, try to understand, and
+109:36
+
+accordingly you have to take a decision. Make sense, guys? Yeah. So SFT is, just you can say- So the model, the correct answer,
+109:51
+
+they will learn that many times. How I can say it? Let's say, the customer, they're asking question, "Hey, my internet is not working," let's say. Now what machine will do, what LLM will do, they will see this type of
+110:07
+
+problem how many times occur in the PDF, the documents it's given, or they will go and search it the internet, right? So they will say the correct answer is, the response is coming correct, "Please restart your router and please check the
+110:22
+
+cables," right? Whether connection is coming properly or not. See, the answer will come like that, right? So after seeing the thousands of examples, thousands of response,
+110:38
+
+yeah, the employee, they learn how to respond. The bot, they learn how to respond. And then SFT works exactly the same way. That's why here the name is called supervise. Supervise means you have a training data set.
+110:51
+
+There they have to check what answers I'm getting it, and then they will filter and articulate the way you want it. Yeah? So where you can apply, guys, simple fine-tuning we are using when there is a question answer system there, then we can go and use it.
+111:06
+
+Make sense? Tell me.
+111:21
+
+Next part. So, if anybody asks you,
+111:36
+
+so you can say, this is mainly we are using question answer system. That is domain-specific because fine-tuning is there, so you can say
+111:49
+
+domain knowledge. Domain knowledge. I wanted a specific output format.
+112:02
+
+Hmm? A need structure query language generation. Right? Why I'm saying a structure? Because it's a rational database, right?
+112:16
+
+So you will get the answer which is given it. Right? You can say the code generation. Code generation. So normally you can say write a list, so they will write a list. Right?
+112:31
+
+Or you can say any domain-specific like medical or legal special agents, you can go and ask them, then you can use the SFT model.
+112:43
+
+Next model is called GT. Okay? General. Yeah, general also stand for full fine-tuning.
+112:55
+
+Full fine-tuning. Hmm? So, this is called known parameter efficient.
+113:08
+
+So, known parameter efficient. Yeah? So,
+113:22
+
+when you have lots of computers and the data and you need a deep changes on the model, right? So you can say a kind of unsupervised result, right? The kind of unsupervised result I wanted, that time you
+113:34
+
+have to go and use the GT model. GT, I have seen very rarely people are using it, but when you read some nice books and all, right, it is mentioned there that GT also. Initially people used it, but after that, GT I have not seen.
+113:49
+
+To be very honest, in books only I have seen it, but people are not using. Yeah? But anybody ask you, you can say, "Yes, I am aware of this."
+114:04
+
+Yeah? Next is called DPO, guys. This is again very interesting. DPO. Direct
+114:17
+
+preference optimization. Right? So as you know, SFT, what SFT do? They will say,
+114:31
+
+"You know what is the valid answer?" Yeah, they can handle the question also. DPO is just one layer ahead. They will say which valid answer is better. Right? So SFT will teach you that if anybody asks
+114:46
+
+questions, right? Let's say I'm asking, what is Newton's third law? Newton's third law. What happen? You will get answer one, answer two,
+115:01
+
+answer three, answer four, and so on answer will come. And then what SFT do, they will check which answer is coming maximum time. They will fetch that answer and then they will ask LLM that filter it, right?
+115:16
+
+Human answer, the way human wanted or the way the training happened, and give the answer. But their answer would be, which is coming the similar. SFT will tell us that, okay, out of this 50 or
+115:29
+
+100 or thousands of answer available there, which answer is more suitable? Okay, which answer is more suitable, and they will use it. Right? So it will give the preferred answer.
+115:42
+
+Anybody say where we can use it? It will give the preferred answer. Preferred answer And they will reject the other response also, reject answer.
+115:55
+
+So this model actually is very good when you have lots of answers there. They have to choose which are the preferred is there, which are the better one there, without training the separate reward model or reinforcement. That's why I said direct
+116:10
+
+preference optimizations. Right? It's what they will do it. It's called non-parametric. Yeah? So this is just advanced. When you have a comparison data, just like reinforcement learning, human
+116:25
+
+feedback, like alignment you wanted, and then you wanted to see it, you can go and use it. So this will also handle the supervised answer. It's not no. It's a supervised method only, but that's what we are doing it.
+116:40
+
+And how it works, you know softmax, right, guys? Softmax activation function. Can I say it's a probability scores? Probability score, similar thing here also, they will calculate their score, and
+116:54
+
+they will use the log function, log of Pi. What is my output? What is my positive output versus the data set given minus log of Pi
+117:09
+
+negative answer versus the given dot answer. Yeah, that's normally they are using it. It's a kind of softmax activation function only. And they are comparing it. Right? The simple logistic loss function.
+117:22
+
+Yeah, if you guys know machine learning, it's called logistic loss function. Logistic loss function or softmax. Yeah, like that, they are using it. My friend, are you with me?
+117:34
+
+Hmm? Yes, no. Let's say, some real analogy there. I'm saying which answer is the better answer.
+117:49
+
+Right? So one answer is saying the response is coming, your claim is rejected. Another person, they are giving the answer, unfortunately, your claim cannot be provided because required document is missing. Yeah? Both answer is correct. Both are got rejected.
+118:03
+
+But customer always prefer to go with the option number two. Why? Because that is detailed response. They said claim cannot approved because the required document is missing. So they are saying something is missing.
+118:17
+
+But first answer, they are just saying your claim rejected. Why rejected? I don't know. Which answer is better? Today, the class get started at 11:00 a.m. Hey, you got a message from Simran.
+118:29
+
+Now, if she add one more response that, hey, Sundaram is busy, and he will join at 11:00, hence requesting you, everybody, please join it. So you know the reason also, right? It's not directly the response. So you can say like that when you
+118:42
+
+create a bot, you have to use the DPU method, direct preference optimizations, fine-tuning method. Make sense, my dear friend? If anybody asks you, are you in the position to explain them?
+118:57
+
+Hmm? Very less response I'm getting. What happened after the break? Wanted rest?
+119:10
+
+Cello. Ashish, let me complete, and then I'll take a question answer. Otherwise, I'll get stuck here only and unable to complete the topic. So I want to first let me complete it. Yeah? Only two topics left, and then I will come back and we'll take
+119:25
+
+any kind of query you have or anybody have. Okay, next concept fine-tuning method is ORPO.
+119:39
+
+Stand for odd ratio. Odds word you have learned, guys, in logistic regression. Odds. Odds ratio.
+119:53
+
+Preference optimization. Okay. Now what odd ratio they will do it?
+120:09
+
+It's a kind of new version. Okay? Or you can say alternate. Alternate. It's a kind of alternate
+120:22
+
+to DPU. Okay? Direct preference optimization method, the completely opposite is odd ratio preference. So you have to compare how much more likely the model makes
+120:39
+
+choose the answer between rejected and selected. That's why the word is coming odds. Yeah? So I can say this ORDPU is nothing, it's a DPU 2.0 version. Right?
+120:52
+
+Like robot one, robot 2.1. Similarly, you can say DPU 2.01 version there. Yeah? That's the basic analogy there. Yeah? What it will do, it will combine the learning correct answer.
+121:06
+
+They will do, they will learn, they will see what are the response there, and then they will see the preferred answer versus the together, means they will add it. Okay, all the answer, and then they will choose it. Right? So, let's say I'm saying don't just learn the
+121:19
+
+answer. Right? If you wanted to learn a deep learning or a machine learning or a GenAI, don't learn the answer. Learn the basic fundamental concept. Don't learn coding. You have to learn theoretical part, mathematical intuitions.
+121:35
+
+You have to know practical hands-on. Yeah? So what happened? What ORPO will do, right, they will give two options. They can say, "Hey," when I say two person, you can choose
+121:49
+
+answer Out of given it, and then you have to reject also. One more layer is there. They are rejecting with reasons. Reject answer. So ORPO learn more efficiently from the
+122:05
+
+preference answer, from the chosen answer, and then they will do something else. They can also say why we are rejecting out of this. Let's say there are thousands of answer there. Out of this, they have selected one, two, three, four.
+122:20
+
+Now, out of these four, why I'm taking this only and why I'm rejecting this? You have to give a very strong reason. Right? So you want a preference alignment in a single
+122:34
+
+response. So you have to do it. Hey, just think about, customer or service bot there. In organization, you will see lots of customer service bot there. Right? So the bot, they are giving the correct answer, let's say A and B.
+122:46
+
+Customer love answer is B, like I said. Example, Sundaram will start session today at 11:00 a.m. Another message you got, Sundaram will start a session at 11:00
+123:00
+
+because he's not available. Yeah. That's what. So you know this reason, right? So customer always like that. ORPO, they will do exactly the same thing. They will give the reasons also.
+123:13
+
+Okay, that's what the analyze is there. So anybody say, "What is this?" You can say, "This is the advanced version of DPO." That's it, because DPO also doing is no preferred answer. They are rejecting the reject answer. But this reject, they are giving the reasons as well.
+123:26
+
+Hmm. Next part, guys, RT. I can say RT and RLHF.
+123:41
+
+RT stand for reinforcement tuning. Enforce ment tuning. Okay, so what RP will do? It's a kind of same,
+123:53
+
+RLHF, reinforcement learning, enforcement learning from
+124:08
+
+human feedback. Human feedback. Right? So, both are same thing. Right? What happened, instead of showing the answer, the reinforcement
+124:21
+
+method, they have a two concept there. One is called reward, and another is called penalties. Okay? So reward means when you will play a
+124:35
+
+game, you have seen that, right? So level one, once you complete, you will get a reward. You will get some brownie point, then you have to reach to the level two. When you complete level two, then you will reach to the level three. So that is called reward. But if you failed in the level one, you have to
+124:49
+
+replay it and you qualify. That means penalty. You have to restart. Yeah, that's the real analogy there, guys, in reinforcement learning. Let's say dog training happened, right? So you will give the...
+125:03
+
+If the dog will follow you, that means you will get a reward. If they will not follow you, that means it's a penalty, no reward. Yeah? So this is how the things works. Hmm.
+125:15
+
+If the questions will come, hey, two plus two is what? And your answer, your computer is saying it's called four, they will get a reward, so they will get six. Means two point extra they got it. Right? So like that, something is called a reward.
+125:27
+
+If their answer is two plus two equal to, let's say five, it's a penalty, so their answer will come one or maybe zero. Yeah? Means they can reduce it. They will not get it. So reinforcement learning from human feedback is what human compare the
+125:42
+
+answer. A is better than B or B is better than A. Like that they will do it. And then they have to take a decision whether I can give a reward or not. Yeah. Let's say in this class, I will ask multiple questions too.
+125:57
+
+I'm saying, "What is deep learning?" And everybody give the different answer. Now I will choose who has given the best answer, and they will get a reward. I can say you are the winner one. Yeah? You are the winner two. Like that. So LLM will do the same thing. They are using the optimize method,
+126:10
+
+means fine-tuning method. And then they are learning and seeing who is getting more, which answer is getting more reward or which answer is getting less. Like that it is working, guys. Yeah, this is called, my friend, reinforcement learning
+126:25
+
+from human feedback or reinforcement tuning methods. Anybody have any doubt? Hmm. Anybody have any doubt, guys? Are you clear, all four points?
+126:39
+
+Clear? Okay. So that's the main point there that I wanted to cover today. Now I'll show you practically how you can go and use it, how
+127:00
+
+simple fine-tuning also there. If you are interested to write a code, I'll show you the Python code. If you are interesting to use no-code, low-code platform, you can go and use there as well. It's up to you how you wanted to do it.
+127:12
+
+So what are the key things I have discussed, guys? What are the key thing I have discussed? I have discussed today what is fine-tuning, what is PEFT model, what is LoRA model, what is QLoRA model,
+127:26
+
+and then, my dear friend, what is supervised fine-tuning, what is generalized or full fine-tuning, what is DPO, what is ORPU ratio,
+127:39
+
+and then what is reinforcement learning and reinforcement learning from human feedback. Yeah, that's the theoretical concept I have given. Now, you all can go here,
+127:52
+
+log in here, and say platform OpenAI. Okay, go in this website.
+128:08
+
+Platform OpenAI. You can click here. Let me go in the Google. Retry, something error. I go in the Google, some problem is there. You do not have account.
+128:22
+
+Why do not have account? Platform OpenAI. Okay, I'm just logging with different ID. Let's see.
+128:41
+
+Which one I can take? Let me see this one. What is the password? I forget it. Let me try.
+128:56
+
+Continue. Re-earth.
+129:19
+
+I'll show you. In the meantime, people are raising hand. Who was there? Please ask questions. Till then, I'm just showing you how you will use the practical, the simple way.
+129:34
+
+Who was there? Ashish. Google.com. Platform
+129:46
+
+OpenAI.
+129:59
+
+Your mic is not active. You can raise hand, Marashish. I will unmute you, then you can speak. Yeah, go ahead, speak. Sir, I had some confusion in the
+130:18
+
+QLoRA part. Mm-hmm. So the number of parameter is same, right? It's just we are saving the parameters instead of 32 bits into 4 bits only. That's why the memory is getting reduced.
+130:33
+
+Yes, sir? Sorry. What you say? Can you repeat again? I'm just thinking. The number of parameters, like the seven billion parameters you said- Uh-huh ... it is after the QLoRA also. But- Mm ... memory is reducing because each parameter we are saving in 4
+130:47
+
+bits instead of 32 bit. 32 bit to 4 bits, so definitely it get reduced, no? Okay. And second- Weight is one kg, let's say 100 kg. Yeah. They started going on gym, they started reducing their weight.
+131:02
+
+Now they reach to, let's say, the 60 kg. So then- Right ... people will go on that lift, right? More people will- Yeah. So this is exactly weight calculated like that only.
+131:16
+
+And the second question was, so you said the speed is more in LoRA, and speed is less in QLoRA. So
+131:29
+
+my understanding is transforming into QLoRA any model, it's a one-time job, right? We quantized each parameter into- One time only you can do it, and then-
+131:42
+
+And then the speed is faster in QLoRA, right? Or same? Or same. No. So main pain point is what? 8 billion or 2,000?
+131:55
+
+8 billion parameter is there. We downloaded the 8 billion parameter model. No. So that part you are changing. No, their weight, you are reducing it. So you are touching that part also. Their weight also you are touching it.
+132:08
+
+Weight, yeah. Weight, memory taken by weights, we are reducing, but the parameter is still 8 billion. Correct. So that part is fixed. That is the additional task you are doing it. This is one-time job. Then whatever new weight you are doing, one time.
+132:21
+
+Yeah. And when you are taking a new weight, there you are doing a training. Right? So new weight when you take, that is also initially what? 32 bit? That- New weight is 4 bits only, right?
+132:34
+
+4 bit, you will do quantization, you will compress. But when you take a new, that automatically computer will not read no 4 bits. Oh, okay. I was thinking we have saved the whole model,
+132:50
+
+QLoRA model- Yeah ... in memory. There you will first do it, and that part then you can say, "I will frozen them." Now when you add the new weight, right there you can say, "Here I will use the LoRA concept."
+133:04
+
+Now this part you can say now which will take time when I convert into 32 bit to this. So memory-wise, this is okay, but processing-wise, same. No. Mm.
+133:17
+
+Yes or no? Yes. So where you can use, that's why I highlighted you. When you have memory crunches there, you can go and use the QLoRA. Timing-wise, which will take more?
+133:30
+
+QLoRA will take more, because one additional part I'm doing it. There, this timing, 32 bit and 4 bit is only for memory, not the timing. Timing remains same. No? And this- One additional part we are reducing ... this thing, additional thing which we are using in QLoRA, that is also only one
+133:43
+
+time job we are doing. That only will take some time, and after that it should not take- It will one time. After that, why it will take? Only epoch. Uh-huh. How many epoch you will give, that will work similar way in both. Okay. And another
+133:58
+
+question is, in OR DPO, we are giving the concrete reason to reject some response and to accept some response, and in RLHF also we are doing the same. So what is the key difference
+134:13
+
+in RLHF and- See- ... RL ... pure ORDPU. What they will do? ORDPU is a preference optimization approach. They will combine the correctness learning, and they will take a preference
+134:29
+
+learning. Both, they will combine it, then they will give the answer. They will give the reason also that why you are rejecting it. Yeah. And in DPU- RLHF- ... we are not giving the reason. In ORDPU, we are giving the reason. We are giving it. So that's why I said DPU, ORDPU is the second version, version
+134:43
+
+2.0. Mm-hmm. It's an advanced one. One more feature they have added. RLHF is something different. The bot is working versus the reward in this one. So they will train the model using reward or penalty concept.
+134:59
+
+Mm. So it learns better decision-making and reasoning, like that reinforcement learning works. Okay. Here in RLHF, we are giving the reasons to rejecting something and accepting something.
+135:14
+
+Here, that is, we are doing that, right? But on top of that, we are giving rewards also. You are giving reward, you are giving penalty. Mm-hmm. That's a new concept called reinforcement concept.
+135:27
+
+And sir, SFT, you said the model is giving 10 answers, and we are selecting one and formatting in our way.
+135:40
+
+That is there, right? No. Supervised- SFT, I said it's a faster supervised fine-tuning. What they will do, it's basically for question answer, let's say. So you are asking questions now. They will search the answer.
+135:52
+
+How many answer there? Let's say 10 answer there. Out of 10, which answer repeated multiple times? Mm-hmm. Which comes maximum time, that is the answer. They will filter, and they give the answer. That's what the SFT do. Okay. So maximum frequency comes. Okay.
+136:05
+
+Guys, anybody able to log in this platform, OpenAI login? Can you please help me? Because there is a problem in my system. Yeah, I am able to log in, sir. You are able to. Please raise-- You have already raised hand. Let me unmute.
+136:21
+
+Let me give you the... Okay, where you are? Umar Ashish. Let me make you co-host, okay?
+136:34
+
+Promote as a panelist. Can you please share your screen so that you can show them? Guys, others, please take a screenshot if you want.
+136:48
+
+Go ahead. One second, sir. I'm finding where is my tab. Oh, here it is.
+137:02
+
+I have just opened it in my mobile, basically. This is platform OpenAI. This
+137:16
+
+is it? No. You have to share your screen. No. Oh, one second. Is it not shared?
+137:38
+
+If you are not able to do it, no problem. Yeah. I'm sharing, sir. Sorry. Screens. Yeah. Is it visible, sir? Yeah. Super.
+137:51
+
+Okay, great. Just open the new wave applications. Go, type platform.openai.com.
+138:05
+
+You have to share everything, brother. You can just go and open another interface. Google, go in the Google. Not here, Google. One second, sir. Top of that, this is Google. Yeah.
+138:19
+
+Is my Chrome visible? Yes. Now google.com, just type this. Okay, google.com. What? Google dot.
+138:33
+
+Yep. Here you can type platform.openai.com. Openai.com. Okay. Go into OpenAI, first one.
+138:47
+
+Okay. Now go down. Click on More. There is a More button there, yeah, in the bottom. Mm. Agent assistant tokenizations. When you click this
+139:03
+
+activations part, why I'm not getting it? Which one? It's something what changes. Just go in the Google again. Let me see what happened. Go in the Google,
+139:16
+
+and type here, platform OpenAI fine-tuning. What happened? Google Chrome quit unexpectedly.
+139:31
+
+You have stopped your screen also. You can re- My Google Chrome stopped unexpectedly. One second.
+139:44
+
+Lora, Q-Lora answer which weight should we update and how. Which weight? New weight? No, these are the method, Nigi. That's what I wanted to show you. Okay, so any model, you can use it, either LoRa or Q-Lora.
+139:58
+
+There you can decide, okay, which one I have to choose it. So that's a part of this. That's it, sir.
+140:13
+
+Search, no? A default button. Can you search there? Type fine-tuning. Fine-tuning. Mm-hmm. These are the fine-tuning models there. But why this is coming like that?
+140:38
+
+Default project this. Just press enter. Or in bottom, you can see the personal is coming. Can you please click on the personal in the bottom?
+140:55
+
+Yes. Click here.
+141:09
+
+Some changes happened. Yeah, it got popped up. Person, organization setting, person setting, profile setting. These are showing.
+141:23
+
+I am not getting this. I think some changes happened in this platform. I'm not able to see the system. What are we trying to open here? I wanted to show you the fine-tuning part. So here they have given the fine-tuning.
+141:39
+
+Fine-tuning checkpoint. Fine-tune. Can you click on the fine-tuning? You can see API reference, then fine-tuning is there. Click on the fine-tuning. Okay, fine-tuning. What it's saying?
+141:53
+
+Fine-tuning methods, batch size, DPU fine-tuning, GPU fine-tuning, Markdown, file patches. Okay, it's not there. I think some Imansu has mentioned something.
+142:06
+
+Okay, can you stop your screen? Let me see what- Yeah ... Imansu had shared. I think something, some decommissioned or something has happened, I don't know.
+142:25
+
+Okay, so what is saying? Update OpenAI self-serve fine-tuning. On May 17th, we notify developer to using OpenAI self-service fine-tuning platform to update your
+142:37
+
+availability. Inference fine-tuning the status. Okay, so they have changed it. Okay, so no problem. You can go. Some updates happened, right? So secondly, creating fine-tuning job is no longer available to
+142:49
+
+organization that have not run inference or fine-tuning model in the past 60 days. So they have completely changed it. Oh my God. It's not there. Ideally, very rarely you will do
+143:02
+
+fine-tuning, but they have decommissioned it. So let me show you then another one. You can see OpenAI fine-tuning
+143:16
+
+image. Okay, so at least you will get some visibility. So, that option itself is not there, how I can
+143:29
+
+help you. Yeah, you can see this is the fine-tuning methods there. So if you know earlier that's the open fine-tuning models there. So you can go in the OpenAI fine-tuning models. You can click here. You have to give the API key.
+143:42
+
+We can check which model you have to use it, right? You can just see that. Here you can upload the CSV file and all. You have to choose which model you have to do it, right, and then you have to write a prompt. Yeah. And there is options also there that, okay,
+143:57
+
+which one, whether it's a DPU or ODPU or ORPO or RLHF or it's SFT, right? That option you will get it and you can do it. So,
+144:11
+
+if you can search. But they have disabled now because direct model came,
+144:25
+
+right? So you can directly go and use it. Like that it happened, right? You can see the fine-tuning. You can see the fine-tuning. You can choose which fine-tuning model you have to use it, right? And then
+144:39
+
+that option is not coming. Otherwise, I can show you that part, guys, how you can do fine-tuning. Everything it happened here only. You can put a dataset, you will get the answer and all, but I think they changed the model. So what I'm going to do then, leave this part. Mm-hmm.
+144:53
+
+Go to the Hugging Face. Okay? Go to the Hugging Face. I'll show you in the Hugging Face. So Hugging Face I have logged in here. Yeah.
+145:09
+
+In Hugging Face, guys, you can see here there is a space there. Mm-hmm. Click on the space. Everyone, you can click here in the space.
+145:23
+
+Now, here it's asking you want to this. So you can say autotrain. Autotrain. Okay, and take anyone. Autotrain advance or
+145:37
+
+let me say auto. Autotrain.
+145:52
+
+Running a model. Anyone you can take it. Let's say I'm writing autotrain. No need to worry. Let's say I'm taking autotrain advance.
+146:05
+
+Okay, you can click here. Yeah, please duplicate the space in order to use, right? So let's say I'm using the fine-tuning and using the similar model. So you have to click this part. Now what is coming here?
+146:18
+
+Kumar Sundaram autotrain advance, right? If you wanted to give something else. Let's say I'm saying here this is my fine-tuning Fine-tuning
+146:32
+
+on Hugging Face. So I have written this. This is hardware, so you have to custom your hardware. This is free, but because I'm using fine-tuning, so they will charge. Here you can see the CPU, they will charge you that
+146:44
+
+much. GPU, NVIDIA, they have given different charges. Yeah, it's hourly charges. They will ask you 15 GB, they will give you 40, 0.4 per hour, they will take it. So if you guys are doing fine-tuning, you can go in the Hugging
+146:59
+
+Face. Same thing you can do in OpenAI also, but OpenAI, they have disabled it, so that part I'll show you how you can go and run pod IO and you can use it. But here in Hugging Face, you can come, select which one, how
+147:13
+
+much memory you need it, how much GPU you need it. So let's say I'm taking here. Okay, you can say, "I need NVIDIA," this, $8 per dollar and something like that. Yeah, five. This is very advanced. NVIDIA 4, 8, 10 G large, 48 CPU,
+147:26
+
+184 GB. Yeah, that is the charge there. Yeah, even T4 small you can take. So let me, I'm taking here. I'm clicking this. Now, slipping.
+147:41
+
+You have to select time also, if you want it one hour later. Pause for failure. Add payment method. So they're asking payment. So I don't have-- I don't want to give this, so let me see. Is there any free there?
+147:54
+
+No, everything is chargeable there. You have to add the payment. You can add $10, $20, something like that. And once you get a credit, then only you can use whatever model you will do it. So there you will get that options, guys.
+148:08
+
+Yeah, you will get that options. I'm clicking here, Cancel. So it will not work. Now, let me take some simple one so that I can show you that part.
+148:23
+
+Close this, close this. Hugging Face.
+148:39
+
+Space. Now let me log in this. Say lady login. Yeah. Space.
+148:54
+
+Beyond. Autotune. Okay. Let's say I'm taking this time Autotune. Python Chrome Vocalbase selected. Autotune, just seeing how it works.
+149:12
+
+Autotune Mistral. Okay, Mistral model. Let me try Mistral model, okay? Or Autotune new model. So restart the space.
+149:27
+
+Release. Only thing is it will take more time. Yeah?
+149:45
+
+But otherwise, doing this part, writing a Python code is a little difficult because-- Not difficult, too much parameter you have to write. So if I explain you, this is all parameter there. You need not remember it. You only remember the training augment.
+149:57
+
+Training augment, the time you know it, you can just put Control and Shift, you will get all the parameter, you can copy-paste, or you can go in the documentation and do it. So I'll explain you this part also, but the simplest method I'm going to explain you.
+150:12
+
+So yeah. So sign with this. Let me sign it. Space.
+150:26
+
+Sign with. Log in with Autotrain. Authorized it. So see that, guys. So this is my Autotrain there.
+150:41
+
+Everybody, you can see here? Here I have given Hugging Face. Then it is coming Task. Are you able to see that? SFT, LLM fine-tuning, LLM SFT, ORPO, generic, DPU, LLM,
+150:55
+
+reward, right? So these are the models there. We have VLM fine-tuning also there. Forget about this. You can focus on LLM part. Yeah, you have to do this part. Now let's say I wanted to build a question answer system.
+151:09
+
+So you can say I will go with this one. Yeah, this model. Hardware, space, local space, parameter models, you can say basic or full. Go basic. Yeah, here log also there, documentation also there, GitHub repository also
+151:22
+
+there if you are interested, you can go and pick that part as well. Okay, that part as well. Once you do this one, once you do it, then you can go, and here you can see project name.
+151:37
+
+So if you wanted to give something else, you can give something else. Let's say I'm doing a fine-tuning with SFT. Now what are the models selected? You can say base model.
+151:50
+
+Yeah, you have seen, right? I have used this model, fine-tuning model. Meta Llama 3, 8 billion instruction. That's what is coming here. Yeah, you can go and use the another model also. These are the model, DeepSeek model.
+152:03
+
+They have given the fine-tuning model. So you can go and use those fine-tuning models. Now let's say I'm using the Llama 3.1 8 billion parameter. Data source, resource. So either you have Hugging Face, a free hub, so you have a store there,
+152:15
+
+or you can say in local system we have. Okay, you can say in local system we have. And here you have to give your own dataset, in organization dataset. So whatever data there, let's say share drive there. You can upload that training dataset. Yeah, you can do it.
+152:30
+
+And then- Column mapping, you can write text or whatever you want it to do, you can give it. And these are the parameters there. You have to choose parameters. See? These are the parameters there. These are the parameters there. These are the parameters there.
+152:46
+
+Now what is this optimizer Pept LoRA model? You can see here. Do you want LoRA model? Yes. Pulse means Q LoRA will come. So this is the question, Dheeraj, you asked me, right? You can see here, this is what is coming.
+153:00
+
+Are you able to see that? The SFT, where I can use it? So you have to understand, and then you can choose whether you can go LoRA or Q LoRA model. Yeah? Now, scheduler, linear, cosine, warm, right? How you want it.
+153:12
+
+These are the parameters there. Okay, if you wanted to write the code, you can see here, and this is what I have done, copy-paste. And you can come here, and the way I have taken here, the way I have taken these parameters and all, similar way you will also get it.
+153:27
+
+This is the similar way you will get it here. And because I have taken a very basic one, so here it's coming chat model, distributed backend model, misprecising models, optimizer, Pept, see? Epoch, how many times? Three iteration.
+153:40
+
+You wanted to change it, you can change it. You can go here and you can see epoch equal to I wanted five, epoch equal to this. Gradient accumulator. So if you guys know multilayer perceptron model or have you attended my deep learning classes, everything I have
+153:53
+
+covered in detail. What is learning rate? What is maximum length? What is target model? What is gradient descent, stochastic gradient descent, mini-batch gradient descent? So all this thing is given. Yeah, and then you have to go and start training.
+154:07
+
+So you can click here, and are you sure? You can say yes, I'm sure. Error code because I have not given any dataset. But if you give a dataset, if you do a training, automatically it gets started working on it. And then you have to authorize it.
+154:19
+
+You can give the values and all, and you will get the answer, my dear friend. Okay, you will get the answer. So any questions you will ask, they will give the perfect answer. Like that, you have to do it. So right now we don't have GPU
+154:33
+
+memory. That's why I have used the basic one. If you have a GPU or ready to pay, you can put your credit card details and all. You can go give the dataset, ask the question, you can see exact same answer you will get it how you want it.
+154:47
+
+You can give some sample golden source data. So in industry, when you work, you will ask a golden source data from your client. They will give you the client, and then you have to train it. You can say, "Hey, I want a answer like that. I want a response like that.
+155:03
+
+This is what I want." And then you can go and ask. Now everything is done. No need to write code and all. But coding, if you wanted to write it, you can go and do that part also. Make sense, my dear friend, how it is working?
+155:16
+
+Yeah, if you paid. Right now there is no payment. But if you pay, guys, you can upload your dataset, your code, everything you can do it, which you can see here, which you can go.
+155:32
+
+And you will see that if I go here, you can see the model. This is the model now got increased. That time something else there, now 828 came. Dataset will also keep increasing. 900,000, 54,000 data there, 28.
+155:44
+
+If you want it to upload, some data will come. A space here you can upload this. So these are the models already someone developed, and they have given it. Face anything. You can click here and you can read how they have done it. So you can just give some email or something like that you will give,
+155:59
+
+and you will get the answer here. Same thing once you do it, fine-tuning your text model, question-answer system generated, you can just go and ask questions, it will give the answer. This is how the fine-tuning works. But main thing is there that you have to remember the concept.
+156:14
+
+Okay, coding and all, no need to worry. I'll take another session. I will discuss. I have so many materials there. I'll share everything. I'm going to upload, by the way. So you can see Llama code I have written here.
+156:29
+
+If you wanted to go in the deep dive sequence to sequence AutoGlass. If you have a text classification problem or question-answer system, you can use this code. If you have summarization code there, you can do it.
+156:42
+
+If you have sequence to sequence LLM pre-trained model there you wanted to enhance it, you can go ahead. BERT model, pre-trained BERT model there you wanted to do a fine-tuning, you can go ahead. Fine-tuning we have five fine-tunings there.
+156:55
+
+I have taken a dataset also, IMDb dataset where we have a 50,000 movies data there. And you can go and ask it and simply use the fine-tuning. They will give better sentiment analysis. We have fine-tuning codes there, Model 1, Model 2, Model 3. What is Pept model?
+157:09
+
+Already I have explained you, but if you are really interested to see, you can go and read the PPT also. That what is LLM? Why? These all are costly. So all part is mentioned here. Okay, I just wanted you can go, guys. Go, why fine-tuning is required?
+157:23
+
+What is the method? All these things they will tell you. So can I share all the material for your reference with the PPT? Here you can go in the transformer. You can see these are the transformer model basic and all blogs, everything I have
+157:38
+
+given here. Yeah, instruction model is stable diffusion, that I will cover later, but you can see these are the fine-tunings there. This is the PPT already I have shared yesterday. This is the another blogs there, which I really
+157:51
+
+liked it, so I have just filtered it, the Jai Alamar, and their blogs, I have taken it. This is another interesting things, guys.
+158:06
+
+So this is the transformer. So transformer model already we have covered, now you can go and read. But this architecture, some of the information I have taken from Jai Alamar. So credit goes to Jai Alamar only.
+158:22
+
+But I explained you now if you go and read, refer this, you will able to understand. I have spent time when I was learning this part, I learned that. I have shown you that Jai Alamar blog also, you can go and read it.
+158:36
+
+Yeah, I have handwritten notes also. I have shared it this one yesterday. You can go and read that part. Okay. Are you guys with me, my dear friend?
+158:49
+
+Okay. Yeah. So I'll share all these things. Please revise it. Don't worry. I rarely see that you will use the fine-tuning because no company want it, because there is a cost involved. But in case anything is required there, you can go and do it.
+159:04
+
+So next class, guys, I will go, I'll take on Saturday the same part. I'll explain you some code also, because this is the simple Hugging Face. You can go here and do it. You can just create a new space if you wanted to do it.
+159:19
+
+You can write here Hugging Face. Not Hugging Face, let's say I'm saying fine-tuning my model. Okay? My model. Let's say this is what the name I have
+159:33
+
+given. Short description, if you wanted to write it, write license. So any license you wanted, MIT, Apache, this open AI something, you want it, you can take it. Then here you can say static, Gradio, Dockers, right?
+159:49
+
+Dockers is a paid, by the way. So that's why they are asking you have to pay it. So how pay happen? You can go here. In this billing part, you have to recharge it, right? You have to pay $20 or $25, and then you can utilize this
+160:03
+
+Docker also. Blank, chatbot, text to image, leaders board, what you wanted to do it. Let's say I wanted a chatbot. And I wanted you Zero GPU free, which is free for me.
+160:17
+
+I wanted to take this one. Now, do you want to public? Yes. The chatbot, anybody can use it. So let's say I'm saying public. Otherwise, you can go private also. And you can create a space. When I click here, create a space, you can see.
+160:29
+
+Space paused. Restart. So they are asking, you have reached your hard quota limit across all your spaces. So they want it because there is no amount available now. So they want it. If you wanted to create and upload somewhere, you have to pay
+160:44
+
+something. So see, right now the credit is coming zero. If I add my credit card and I'll pay $10, 20 minimum, $10 there, then only I can create it. That's what we can do it. Are you clear how things will work?
+160:58
+
+Private, you can use 100 GB data set you can upload. That much they are giving. If you go and pay it, that get increased, guys. Here, public storage, 8.7 trillion. That much you can do it. Compute Zero GPU.
+161:12
+
+You have to change the GPU machine also. So everything is there. You have to just spend some money and try it. You can see how interesting thing is there. If not, then in organization, lots of company, they will give you
+161:25
+
+Hugging Face license version access. You have to go and do it. Fine? Yes, no. Everybody say yes, no. Did you understand?
+161:38
+
+Great. So now who has it is Sanjay. Yes, Sanjay? Unmuted. Yeah. Sir, I have one doubt not related to this topic.
+161:55
+
+I have one doubt, means, sir, were you going to show that the RAG versioning and prompt versioning? Where, sir? The RAG versioning. You have said that
+162:10
+
+before, if there will be a new document is ingested, and the RAG pipeline is getting updated, right? So that the new versions of RAG will get updated, so that is what?
+162:23
+
+RAG version. Yes. That part you have to attend my this one, the project where I have covered the pipeline, all these things I'll show you.
+162:38
+
+Yeah. I have covered it, but sir, if there will be new document is ingested, like if after 90 days, then it will get updated. So for that reason, do we have to do, how we are doing that implementation part?
+162:51
+
+New data you are saying when you build a RAG and then any new data ingestion happen, that is what you are saying? Yes. Yeah. I'll show you. No, I'll show you in the cloud. Azure there, I will show it.
+163:04
+
+Okay. It's automatically there. There is a button there you can just see. So, I have to log in there. Maybe Azure I will log in in evening or next week. So I'll show you.
+163:17
+
+Search. Azure AI Search. Azure AI Search. Scheduling.
+163:29
+
+Image. Okay? So go in the schedule, and that options you will get here. That option you will get it. So there is a schedule buttons there.
+163:41
+
+Also can create this. I have logged in immediately I'll show you, but... Anybody have logged in in Azure? I can show you immediately.
+163:58
+
+Do you have Azure access, brother? It's okay, sir. If you can show that in production- I'll show you later. I'll show you later ... that's all. Yeah, it's in there. I'll show you.
+164:14
+
+Yeah. And also, sir, one more topic that the evolutions of RAG, like we are evaluating positions and recall and relevancy- That is evolution metrics.
+164:26
+
+Yes. So- That I will cover in the next week. Okay. Okay, sir. And one more topic is that is prompt versioning. If we change our prompt, we have the old prompt, and if we change,
+164:40
+
+how it will be, are you going to show that also? Prompt versioning is not changed. That is what fine-tuning will do. If you wanted to change prompt versioning, that will not change actually
+164:52
+
+So, there are certain difference there. Let me write it. Very good question, by the way. So there is a prompt there?
+165:06
+
+Yeah. Okay. You will get a RAG system. You will get fine-tuning. Yeah.
+165:18
+
+And you will get agentic AI, correct? Yeah. Now, what are the features available there? Model.
+165:34
+
+Okay. So if I say change model. Yeah. Change model, is it possible in prompt? No. RAG, can I change in between? You build the RAG system, and you have used
+165:47
+
+GPT-4o mini. Is it possible you can change in between? No. Fine-tuning? Yes. Yes, fine-tuning. So if GPT-4o mini is not working well, they will
+166:02
+
+try with the GPT-5 also, GPT-5o also. Agentic A, again, agent there, it's optional. Optional, because you are creating agent, and agent means? You know that, right? Agent has a model.
+166:14
+
+So any model you can choose it. Agent has a tools, right? Agent has a memory, and agent has a planning and? Reasoning and decision. Right? So there are four parameters there, if
+166:26
+
+you guys remember, I have covered that part. So agent has a optional. Now I can say the organization data. Organization data. You have organization data, and there you wanted to
+166:40
+
+do a prompt engineering. That is very limited. Very limited. If you write prompt augmentation, done. RAG, of course we are using it, yes or no?
+166:53
+
+Organization data, always we are using RAG. Yeah, we are not using prompt engineering and doing this, right? We always prompt engineering, we are writing in augmentation part. Here we are using it. Fine-tuning, of course. Domain specific, we can do it.
+167:06
+
+Agentic A, of course we can do it. Okay? Latest information. No. Latest info. If you are getting a latest info by the help of prompt engineering possible?
+167:20
+
+Not possible. By the help of RAG possible? Yes, possible. Fine-tuning? No, not possible. Fine-tuning is a domain-specific. Agent, of course you can do it. So this part you are saying, right? Means if I have a new data or I have a
+167:32
+
+modified data. Modified data. Yeah. So I wanted to drop a data or delete a data. Is it possible? Yes. Agentic A possible, RAG is possible. Mm-hmm. Prompt engineering and fine-tuning is not possible.
+167:47
+
+Cost-wise? Cost-wise, prompt engineering is very cheap, very lowest. No cost, actually. Yeah, very low. Hence, I will use it. RAG, low. Here also, there are fixed cost there.
+168:00
+
+You can say when I will use the retrieval, when user will ask questions. We are doing embedding and then searching from vector database, and one time embedding cost there. Fine-tuning is medium to high.
+168:15
+
+Medium to high, depends on the how much data there. Yeah. Agentic A is a variable. Variable. Depends. Yeah. Complex
+168:29
+
+automation. If you have a complex automation, by the help of prompt it's possible you can automate them? No. RAG possible? No. Fine-tuning possible? No. Agent? Yes.
+168:42
+
+Agent can automate completely, right? We are writing human feedback as never. Automatically agent will do it. Yeah. Which is best when you can use what? Right. Say if the future they will ask,
+168:56
+
+these all four parameter is best for what? Best for what? So prompt engineering is best for instruction. That is what we are doing. We are writing a persona, we are doing so instruction.
+169:09
+
+If you wanted to give instruction. RAG is what? Creating a knowledge and then getting the answer. Yes or no? Yeah. Fine-tuning is what? Behavior, skills. Behavior.
+169:21
+
+Behavior. Yeah, you can say domain knowledge. Domain skills. Correct. So that time you can use it. Agentic A, I wanted to do autonomous work. Autonomous work.
+169:35
+
+Okay, please remember this part. Clear, everybody? So anybody say, why not we can use RAG? Why fine-tuning? Right? RAG is very good for private documents data.
+169:49
+
+RAG is very good for organization dataset. But if you say, I wanted a new format, I wanted domain expertise, I wanted new behavior, I can go with the fine-tuning.
+170:02
+
+Agentic A, you can say when I say tool calling required, multi-step workflow required, automation decision-making is required, automation planning is required, then you can go and use it.
+170:15
+
+Make sense, guys? Everybody? Yeah. Hmm? So, sir, one thing here. When we say prompt, we are just explicitly talking
+170:27
+
+about the prompt part, irrespective whether through UI or through API, right? Right. Because RAG also have the prompt part in the argumentation, right? Correct.
+170:40
+
+So if you have organization data, that's why I mentioned, can I do the prompt engineering and can solve? Limited, right? But RAG, can I do it? Yes, 100% you can do it, because RAG, anyway we are writing prompt. Augmentation is nothing, it's enhanced prompt only.
+170:52
+
+Yeah? Similarly, when we talk about fine-tuning, you can say here we have a PEFT model, we have Lora model,
+171:07
+
+and we have Q-Lora model. You can say
+171:21
+
+updated full model. Right? It is always yes. So PEFT model,
+171:35
+
+which one yes? You can say I will use partial. Yes or no? You prefer full model or partial model? Partial model. Correct? Lora, is that feature there we can use partial and
+171:48
+
+Q-Lora? No. PEFT model will decide whether you can go this way. So Lora is a part of GPU cost. PEFT is approach, so
+172:00
+
+I'm not explaining PEFT. You can say yes, Lora is low, and this is very low. So GPU cost is very less because Q-Lora, we are just reducing it. Speed, guys.
+172:15
+
+This is? Lora is what? Fast. Yeah? And Q-Lora is what?
+172:29
+
+Fast or slow? I'll ask questions. I've already explained that part. What is the answer? Slow is the answer. Very good. Compared to this,
+172:42
+
+it's slow because we are doing one additional step, so you can say slow. Complexity. Yeah? So Lora is medium,
+172:57
+
+and this is higher. More complexity, because first we are doing quantizations. We are changing it, and then we are doing it. Yeah? So this is basic things there that you have to remember. And any interview you will go, mostly they will ask you, why
+173:11
+
+not always use RAG? Why we are using fine-tuning? What is PEFT model? What is Lora model? What is Q-Lora model? What is different from Lora to Q-Lora?
+173:25
+
+When you can apply the fine-tuning model, when you have documents there from organization documents there. They will ask you these questions, and they wanted to check what is this. You can say when you will decide whether I can go supervise fine-tuning
+173:39
+
+model or OR, PT model or RFT model. These questions they will ask you, so you have to be careful, guys.
+173:53
+
+I have covered almost everything. In Lora or Q-Lora, do we have supervised fine-tuning functionality there, DPO functionality there, ORPO functionality there, GL functionality there, RHFL functionality?
+174:05
+
+You can say, yes, it is there. How you will take a decision? You can say this is the problem statement. I have to take a decision. What kind of response you wanted, like that we'll do it. So that's it, guys. I have covered too much theory part.
+174:20
+
+Please remember, any interview you can go, they will ask you fine-tuning related questions. And if you remember this part, please take topic and just write down by your own notebook, that this is what the
+174:34
+
+meaning of. You feel very comfortable. So that's what I wanted to cover, guys. Anyone have any other questions, please put here- Yes, sir ... I'm happy to give the answer.
+174:48
+
+Yeah, hi sir. Go ahead. Are you going to cover the MCP server also, like in next lessons? No, sir, I will not cover. That's answer you wanted?
+175:01
+
+Yeah. What answer you are looking, no or yes? Tell me what answer you are looking. Shall I cover or no?
+175:23
+
+Yeah. Yes, and it will be helpful if you cover. Okay. So have you attended first time today? No. So multiple times I said. Guys, did I say I will cover MCP or not? Others will give answer.
+175:36
+
+Yeah, you said. Happy now? 50 times I said. Without MCP, how you will crack interview?
+175:52
+
+Yeah. Okay. So MCP is mandatory. No, you have to know it. I will teach you. Yeah. Thanks. Yeah, okay
+176:07
+
+So Manoj, what's here? Yeah. Actually sir, about that yesterday you told that you will give us the name of the book.
+176:23
+
+Sorry, sir I am forgetting it. You just message me. I have to see that. I read that book. It's there somewhere in my library. I'll check it. I read that book. I'm forgetting the name actually.
+176:37
+
+Okay. I'll check it, and I'll update you. Should I ping you in the LinkedIn? LinkedIn, ping it. It's
+176:51
+
+a little costly, but no worry. If you are ready to pay 6k, it's very good. It's very nice book, actually If we read this, that whole book, then we don't have to worry about... We will get all the concept of GenAI
+177:05
+
+I have already covered it. So whatever the concept I'm explaining you, mostly I have taken from the books, mostly I have taken from research paper. So you need not to worry about that. But if you are still interested, because we are Indians, so
+177:18
+
+we always believe in the hard copy book. No. Soft copy, we don't like it. Yeah. Soft copy is not available, one thing, so that you can take a printout. That is not there. You have to go in the hard copy only. So, some student, they said, "I'm very,
+177:33
+
+a kind of people who reading of books." Yeah. If you are like that, you can go and buy it. Okay, sure. I'll tell you the author name. I'm forgetting. The problem is the author name is very difficult.
+177:47
+
+But I'll tell you, that is very nice book. Free if you want to go and read the JL Amer books and all. Okay. Thank you. No problem. Arvind?
+178:02
+
+Yes, sir. Sir, cloud part is hard for me, actually, especially the evening classes where you teach Azure. So- Go join Q. No evening you leave this. No, why you are joining evening?
+178:17
+
+First you complete here, and then you can join it, because that is very advanced. Literally you get confused. So you have not completed Azure part, so you get confused. Okay. But if you're interested how things will work and all, just for the
+178:30
+
+sake of see how real-time project I will do it. Just see it when in your class I will take it, you will get to know. But if you are not able to grasp at all, fully everything is flying away from your brain, leave that. Don't entertain.
+178:44
+
+Okay. Just beginning. Once you know the Azure, when I will tell you Azure services, I will go on that. In class, I will teach you. Maybe next week. Then you take, right. Okay.
+179:00
+
+Thank you. Any other questions, guys? Anybody?
+179:12
+
+No question. So that's it, guys. Thank you very much all. Bye. Take care. I'm uploading the rest, don't worry. Okay. Ciao. Thank you, guys. Take care. See you tomorrow.
+179:29
+
+Tomorrow in the sense Saturday. Bye.

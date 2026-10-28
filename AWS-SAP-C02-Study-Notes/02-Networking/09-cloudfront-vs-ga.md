@@ -79,6 +79,103 @@ NO CACHING — every request reaches origin
 
 ---
 
+## Packet Flow — Step by Step
+
+> 📌 Added from walkthrough. The key mental model: **CloudFront caches and cascades; Global Accelerator routes and never caches.**
+
+### CloudFront — Three-Tier Cache Hierarchy
+
+The infrastructure has **three layers**, from closest-to-user to closest-to-origin:
+
+```
+USER  →  EDGE LOCATION  →  REGIONAL EDGE CACHE  →  ORIGIN
+        (outermost,        (middle tier,           (S3 / ALB /
+         closest to         larger cache,           EC2 / custom
+         the user)          fewer of them)          HTTP)
+```
+
+You only configure the **distribution** (origin + behaviors). CloudFront handles pushing/pulling content across the edge and regional layers automatically.
+
+```mermaid
+sequenceDiagram
+    participant U as User (Mumbai)
+    participant E as Edge Location (Mumbai)
+    participant R as Regional Edge Cache
+    participant O as Origin (S3 / ALB, us-east-1)
+
+    U->>E: 1. Request content
+    alt Cache HIT at edge
+        E-->>U: 2a. Serve from edge (fastest path)
+    else Cache MISS at edge
+        E->>R: 2b. Check regional edge cache
+        alt Cache HIT at regional
+            R-->>E: 3a. Return content
+            E-->>U: Serve + store copy at edge
+        else Cache MISS at regional
+            R->>O: 3b. Fetch from origin
+            O-->>R: 4. Return content
+            R-->>E: 5. Store at regional + forward
+            E-->>U: 6. Store at edge + serve
+        end
+    end
+    Note over E,R: Next request for same content is served straight from the edge
+```
+
+**The flow in words:** User hits the nearest **edge location** → if cached there, served immediately. If not (cache miss), the edge checks the **regional edge cache** → if not there either, it fetches from the **origin** via the distribution. Once retrieved, the content is cached at *both* the regional and edge layers, so subsequent requests are fast.
+
+### Global Accelerator — Anycast IP + Backbone Routing
+
+```mermaid
+sequenceDiagram
+    participant U as User (Mumbai)
+    participant P as Nearest Edge POP
+    participant B as AWS Global Backbone (private)
+    participant A as App Endpoint (ALB, us-east-1)
+
+    U->>P: 1. Connect to static Anycast IP<br/>(routed to nearest POP)
+    P->>B: 2. Enter AWS private backbone at the edge
+    B->>A: 3. Optimized route to healthy endpoint
+    A-->>B: 4. Response via backbone
+    B-->>P: 5. Back to the edge POP
+    P-->>U: 6. Return to user
+    Note over U,P: Same Anycast IP everywhere → nearest POP picks up
+    Note over P,A: NO caching — every request reaches the origin
+```
+
+**The flow in words:** The user connects to one of the **2 static Anycast IPs** (or a domain pointing to them). Because the IP is anycast, the connection lands at the **geographically nearest edge POP**. From there, traffic rides AWS's **private backbone** — not the public internet — to your actual endpoint. Nothing is cached; every request reaches the origin.
+
+### Route 53 Latency Routing vs Global Accelerator
+
+> 🔥 **The distinction that trips people up.** Both reduce latency, but only GA optimizes the *network path*.
+
+```mermaid
+flowchart TB
+    subgraph R53["Route 53 — Latency-Based Routing"]
+        direction TB
+        U1[User] -->|1 DNS query| DNS[Route 53]
+        DNS -->|2 Returns IP of<br/>lowest-latency endpoint| U1
+        U1 -->|3 Connect over<br/>PUBLIC INTERNET| EP1[Endpoint IP]
+    end
+
+    subgraph GA["Global Accelerator"]
+        direction TB
+        U2[User] -->|1 Connect to<br/>static Anycast IP| POP[Nearest Edge POP]
+        POP -->|2 AWS PRIVATE<br/>BACKBONE| EP2[Endpoint]
+    end
+```
+
+| | **Route 53 (latency routing)** | **Global Accelerator** |
+|---|---|---|
+| What it returns | A *different IP* per user, based on lowest measured latency | The *same* 2 Anycast IPs for everyone |
+| Where it acts | DNS resolution only | Actual network path |
+| Traffic path | Public internet (after DNS resolves) | AWS private backbone from the edge |
+| Failover speed | DNS TTL-bound (minutes) | Health-checked, seconds |
+| IP stability | Varies by endpoint | 2 fixed static IPs (whitelist-friendly) |
+
+**One-liner:** Route 53 just *points you* to the best endpoint, then you're on your own over the public internet. Global Accelerator *carries you there* over AWS's optimized backbone.
+
+---
+
 ## CloudFront Deep Features
 
 ### Origin Types
@@ -94,6 +191,34 @@ NO CACHING — every request reaches origin
 ```
 
 ### Cache Behaviors
+
+A distribution has one **default behavior** plus optional **per-path behaviors**. Each behavior is a bundle of settings that control how matching requests are handled:
+
+```
+DISTRIBUTION BEHAVIOR SETTINGS:
+─────────────────────────────────────────────
+PATH PATTERN
+  Which requests this behavior applies to.
+  e.g. /images/* → behavior A, /api/* → behavior B
+
+VIEWER PROTOCOL POLICY
+  How users may connect:
+    - HTTP and HTTPS (allow both)
+    - Redirect HTTP → HTTPS
+    - HTTPS only
+
+CACHE POLICY
+  How long content is cached (TTLs) and what goes
+  into the cache key (headers, cookies, query strings).
+
+ORIGIN REQUEST POLICY
+  Which headers / cookies / query strings CloudFront
+  forwards to the ORIGIN on a cache miss.
+  (Separate from cache key — you can forward something
+   to origin without caching on it.)
+```
+
+> 🔑 **Cache policy vs origin request policy** — easy to confuse. Cache policy controls what's used to *build the cache key* (what makes two requests "the same"). Origin request policy controls what's *forwarded to the origin* when CloudFront has to go fetch. They're independent.
 
 ```
 PATH-BASED CACHING:
@@ -406,3 +531,7 @@ the same ALB (for caching) via separate path
 > **"Trading API serving millions of users globally. Needs failover between us-east-1 and eu-west-1 in seconds. Customer firewalls require IP whitelist."**
 >
 > ✅ **Global Accelerator** — static IPs for whitelisting, sub-second failover via health-checked endpoint groups.
+
+> **"App is reachable via Route 53 latency-based routing but users still report inconsistent latency and slow failover. Need a more stable, faster path."**
+>
+> ✅ **Global Accelerator** — Route 53 only optimizes *DNS resolution*; traffic still crosses the public internet and failover is TTL-bound. GA gives static Anycast IPs, routes over the AWS backbone, and fails over in seconds.

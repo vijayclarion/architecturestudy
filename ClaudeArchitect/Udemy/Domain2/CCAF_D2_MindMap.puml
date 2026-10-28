@@ -1,0 +1,71 @@
+@startmindmap D2_MindMap
+' ============================================================
+' DOMAIN 2 — TOOL DESIGN & MCP : ONE-PAGE MIND MAP
+' Part A (Tool Design, T1–11) + Part B (MCP, T12–26)
+' Bold leaves = exam anchors.
+' ============================================================
+title Domain 2 — Tool Design & MCP (revision mind map)
+
+* Domain 2\nTool Design & MCP
+
+' =================== PART A ===================
+** PART A\nTool Design (T1–11)
+*** T1 Selection\n**DESCRIPTION = primary routing signal**
+**** Semantic match (meaning, not keywords)
+**** Re-evaluated fresh EVERY turn
+**** 4 outcomes: correct / misroute / no-call / **fallback (safe)**
+**** 3 fail modes: vague intent / missing scope / no output
+*** T2 Writing descriptions
+**** 3 parts: WHAT · WHEN(+not) · RETURNS
+**** Negative scoping pushes off look-alikes
+*** T3–5 Argument correctness
+**** T3 precise schema (typed, described)
+**** T4 required-only + **enums** + constraints
+**** T5 **strict = constrains generation, not post-reject**
+*** T6–7 Failure handling
+**** T6 useful errors (for the MODEL: what + next step)
+**** T7 retry TRANSIENT only · partial-success (don't fake complete)
+*** T8–11 Scope & control
+**** T8 **least privilege** — tools per agent
+**** T9 heuristics + overlap / hallucinate / over-call
+**** T10 tool_choice: auto · any · named · none
+**** T11 tool search for large catalogs (find-then-use)
+
+' =================== PART B ===================
+** PART B\nMCP (T12–26)
+*** T12 What / Why
+**** Runs ON http — value = **standardization + discovery**
+**** Plug-and-play · **model-agnostic** · config not code
+*** Roles
+**** Claude REQUESTS · **CLIENT executes** · SERVER holds creds
+*** T13 **3 primitives (ownership)**
+**** TOOLS = model-controlled
+**** RESOURCES = app-controlled (context, given)
+**** PROMPTS = user-controlled (human invokes)
+*** T14–17 Build & expose
+**** T14 docstring->desc · type hints->schema
+**** T15 list-tools (discover) + call-tool (execute)
+**** T16 resources = read-only URIs (app injects)
+**** T17 prompt templates (server-authored, user-run)
+*** T18–20 Clients & transports
+**** T18 lifecycle: connect -> **HANDSHAKE** -> list -> loop
+**** T19 STDIO = local · subprocess · no auth
+**** T20 Streamable HTTP = remote/prod · auth · **progress (SSE)**
+*** T21–22 Advanced
+**** T21 **SAMPLING = server asks model via client** (client keeps key)
+**** T22 notifications · roots (dir boundary) · progress
+*** T23–24 Scope & prod
+**** T23 least privilege at server (no "run command")
+**** T24 auth(OAuth) · **protocol vs tool versioning** · reliability
+*** T25–26 Built-in vs custom
+**** T25 built-ins = SERVER tools (you run no code)
+**** T26 built-in if it fits, else custom (your systems)
+
+' =================== SPINE ===================
+left side
+** ONE-LINE SPINE
+*** A: DESCRIPTION routes -> SCHEMA/STRICT validate -> ERRORS/RETRY recover -> SCOPE/choice/search control
+*** B: STANDARD interface -> connect/HANDSHAKE -> DISCOVER -> Claude routes -> CLIENT executes -> SERVER runs
+*** Thread: a bad description misroutes the SAME whether local, remote, client, server, or MCP tool
+
+@endmindmap

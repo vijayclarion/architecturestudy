@@ -3,6 +3,26 @@
 ## Problem It Solves
 Hot data accessed thousands of times per second causes database overload, slow response times, and runaway costs. **In-memory caching** stores frequently-accessed data in RAM near your compute — sub-millisecond reads, massive throughput, dramatic DB load reduction. ElastiCache is fully-managed Redis or Memcached.
 
+## ⚠️ Gaps I Corrected (Feynman review)
+
+```
+MISCONCEPTIONS TO UNLEARN:
+─────────────────────────────────────────────
+❌ "Memcached has data structures beyond key-value"
+✅ Memcached is ONLY key-value strings. REDIS has
+   the rich data structures (lists, sets, sorted sets...)
+
+❌ "Memcached is single-threaded"
+✅ Memcached is MULTI-threaded (that's its speed edge).
+   REDIS is single-threaded per shard.
+
+❌ "Choose Redis mainly for failover / no data loss"
+✅ Failover is one reason, but the bigger picture is
+   FEATURES: data structures, persistence, pub/sub,
+   encryption. If it were only failover, no one would
+   pick Memcached at all.
+```
+
 ## How It Works
 
 ```mermaid
@@ -183,6 +203,23 @@ PROS: ✅ Resilient — cache failure doesn't break the app
       
 CONS: ❌ Cache miss adds latency
       ❌ Stale data possible (between DB write and cache invalidate)
+
+HOW DOES IT KNOW DATA IS STALE?
+─────────────────────────────────────────────
+The app does NOT auto-detect staleness. It relies on
+TTL (time-to-live). You set an expiry when writing to
+cache (e.g. 5 min). After that, the entry expires and
+the next read forces a fresh DB fetch.
+(Alternative: compare a version number / timestamp on
+the record, but TTL is the standard mechanism.)
+
+WHY CACHE-ASIDE FOR MY USE CASE:
+─────────────────────────────────────────────
+Frequently READ + infrequently UPDATED → Cache-Aside.
+Reads served from cache, TTL refreshes occasionally.
+No overhead of syncing cache on every write.
+Write-Through only pays off with HEAVY writes where
+the cache must stay perfectly in sync.
 ```
 
 ### Write-Through
@@ -283,6 +320,37 @@ SOLUTION:
 Redis INCR for rate limiting
 Redis SETNX for distributed locks (with expiry)
 Memcached can't do this reliably
+```
+
+## Networking & Placement
+
+```
+WHERE DOES IT LIVE?
+─────────────────────────────────────────────
+- Runs at the SUBNET level inside a VPC.
+- Nodes launch into specific subnets you choose.
+- Can span multiple AZs in a region for HA
+  (replicas in different AZs).
+- Region is the outer boundary; placement is
+  subnet-specific.
+
+HOW THE APP CONNECTS:
+─────────────────────────────────────────────
+- App uses the CLUSTER ENDPOINT (a single DNS name).
+- Endpoint abstracts away individual node addresses,
+  subnets, and AZs.
+- App instances in different AZs all point to that one
+  endpoint; ElastiCache handles node discovery, health,
+  and routing internally.
+- On failover, the endpoint DNS updates automatically —
+  no client reconfiguration.
+
+SECURITY (high level):
+─────────────────────────────────────────────
+- Security groups: allow the app's SG to reach the
+  cache port.
+- Auth tokens (Redis AUTH) where needed.
+- Encryption in-transit + at-rest (Redis only).
 ```
 
 ## When to Use What

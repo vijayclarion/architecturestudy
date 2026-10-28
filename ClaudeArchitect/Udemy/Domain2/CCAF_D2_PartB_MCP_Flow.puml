@@ -1,0 +1,298 @@
+@startuml D2_PartB_MCP_Flow
+' ============================================================
+' DOMAIN 2 — PART B: MCP (Topics 12–26)
+' FULL FLOW: connect -> discover -> route -> execute, across
+' the standard MCP layer. Plug-and-play, model-agnostic.
+' CORE TRAP: Claude REQUESTS; the CLIENT (your app) executes.
+' The SERVER holds the credentials & talks to the backend.
+' ============================================================
+title Domain 2 · Part B — MCP (Topics 12–26)\n(One standard interface: connect -> discover -> route -> execute)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+skinparam activityDiamondBackgroundColor #FFF6CC
+
+start
+
+' ---------- TOPIC 12: WHAT MCP IS / WHY ----------
+partition "T12 · What MCP IS & WHY" {
+  :Problem: N systems x custom integrations = a mess;
+  #LightCyan:MCP = open, standard interface both sides agree on;
+  note right
+    == WHY (the real win) ==
+    NOT more powerful than HTTP — it RUNS on HTTP.
+    Win = STANDARDIZATION + DISCOVERY = PLUG-AND-PLAY.
+    * Before: read N API docs, hand-write N integrations
+      + N sets of tool defs, keep them in sync.
+    * After: every server answers "what tools do you have?"
+      in ONE format. Add a server = a CONFIG entry, not a sprint.
+    MODEL-AGNOSTIC: server doesn't know/care who's on the
+    other end -> write once, plug in anywhere (USB analogy).
+    ----
+    WHY USED : N systems x M clients = custom integrations explode.
+    SOLVES   : write ONE server; every MCP client can use it.
+    EXAMPLE  : one Jira server works in Claude Desktop, your app,
+               an editor — no per-client rewrite.
+    WHO CALLS: it's a PROTOCOL (a standard), not a caller — clients
+               and servers both speak it; not a transport of its own.
+  end note
+}
+
+' ---------- ROLES (Domain 1 lifecycle, restated) ----------
+partition "The 3 ROLES (who does what)" {
+  :Your APP = the MCP CLIENT;
+  note right
+    == THE ROUNDTRIP (same shape as D1) ==
+    1. CLIENT connects to SERVER, calls list-tools
+    2. CLIENT passes tool DEFINITIONS to Claude
+    3. Claude REQUESTS a call (tool_use) — runs NOTHING
+    4. CLIENT executes call-tool against the SERVER
+    5. SERVER holds creds -> hits DB/API -> returns result
+    6. CLIENT returns result to Claude -> final answer
+    Claude never touches the server or the database directly.
+    ----
+    WHY USED : keep a clean split of who does what.
+    SOLVES   : the "who executes?" confusion — Claude only REQUESTS.
+    EXAMPLE  : Claude emits book_room(args) -> CLIENT runs it ->
+               SERVER (holds creds) hits the booking API -> back.
+    WHO CALLS: MODEL proposes; CLIENT (your app) executes;
+               SERVER holds credentials + touches the backend.
+  end note
+}
+
+' ---------- TOPIC 13: THREE PRIMITIVES ----------
+partition "T13 · The 3 PRIMITIVES (who CONTROLS each)" {
+  :TOOLS      — MODEL-controlled (Claude decides to call);
+  :RESOURCES  — APP-controlled (app injects as context);
+  :PROMPTS    — USER-controlled (human deliberately invokes);
+  note right
+    Memorize the 3-way OWNERSHIP split — exam's favorite angle.
+    Ask: "WHO decides when this is used?"
+    * Claude chooses  -> TOOL
+    * App injects read-only -> RESOURCE
+    * Human picks a template -> PROMPT
+    ----
+    WHY USED : one server exposes 3 KINDS of capability.
+    SOLVES   : deciding how a capability should be offered + who
+               is allowed to trigger it.
+    EXAMPLE  : Jira -> TOOL create_ticket (Claude fires it),
+               RESOURCE project_list (app injects), PROMPT
+               "triage this bug" (human invokes).
+    WHO CALLS: TOOL=model · RESOURCE=app · PROMPT=user.
+  end note
+}
+
+' ---------- TOPICS 14–17: BUILDING & EXPOSING ----------
+partition "T14–T17 · BUILD & EXPOSE" {
+  :T14 · Build server (Python SDK)\ndocstring => description, type hints => schema;
+  note right
+    Part A still applies: a lazy DOCSTRING = a routing failure.
+    ----
+    WHY USED : you need to actually expose your system as a server.
+    SOLVES   : turning functions into discoverable MCP tools.
+    EXAMPLE  : @tool def get_orders(id:str)->... ; docstring becomes
+               the routing description, type hints become the schema.
+    WHO CALLS: YOU (developer) author the server.
+  end note
+
+  :T15 · Expose TOOLS: list-tools (discover) + call-tool (execute);
+  note right
+    Order: CONNECT -> DISCOVER (list) -> CHOOSE (Claude) -> CALL.
+    Validation + useful errors (T6) live IN the server.
+    ----
+    WHY USED : a client must first learn what exists, then act.
+    SOLVES   : discovery (list) vs execution (call) as two steps.
+    EXAMPLE  : list-tools -> [get_orders, refund] ; Claude picks ->
+               call-tool refund(order_id).
+    WHO CALLS: CLIENT calls list/call; MODEL chooses between them.
+  end note
+
+  :T16 · Expose RESOURCES (read-only, each has a URI);
+  note right
+    A TOOL *does* something; a RESOURCE *is* something.
+    Resources arrive AS CONTEXT (given); Claude just reads.
+    Claude does NOT pick resources — the APP does.
+    Want Claude to choose? Wrap it as a TOOL instead.
+    ----
+    WHY USED : some things are DATA to read, not actions to run.
+    SOLVES   : giving context WITHOUT letting the model go fetch it.
+    EXAMPLE  : a config file, DB schema, ticket body — exposed by URI.
+    WHO CALLS: APP decides to inject it; Claude only READS it.
+  end note
+
+  :T17 · PROMPT templates (server-authored, parameterized);
+  note right
+    Server AUTHORS the recipe; USER invokes it + supplies params;
+    app is the messenger. Packages expertise / team consistency.
+    Prompts = the ONLY primitive that waits for a HUMAN.
+    ----
+    WHY USED : package a repeatable workflow the team invokes.
+    SOLVES   : consistency — everyone runs the same vetted recipe.
+    EXAMPLE  : "/triage-bug" template surfaced as a slash command.
+    WHO CALLS: the USER deliberately picks it (+ supplies params).
+  end note
+}
+
+' ---------- TOPICS 18–20: CLIENTS & TRANSPORTS ----------
+partition "T18–T20 · CLIENTS & TRANSPORTS" {
+  :T18 · Client lifecycle: connect -> HANDSHAKE -> list-tools -> loop;
+  note right
+    HANDSHAKE = both declare capabilities + protocol VERSION.
+    Mismatches caught HERE, at connect time — not at runtime.
+    ----
+    WHY USED : both sides must agree before any work happens.
+    SOLVES   : version/capability mismatches surfacing early.
+    EXAMPLE  : client+server exchange protocol version at connect.
+    WHO CALLS: CLIENT initiates connect + handshake to the SERVER.
+  end note
+
+  if (Where does the server run?) then (LOCAL)
+    #LightYellow:T19 · STDIO transport;
+    note right
+      Client spawns server as a SUBPROCESS on same machine.
+      Talk over stdin/stdout — no network, no ports, no auth.
+      Naturally secure. 1 client per server, same box only.
+      (How Claude Desktop runs local servers.)
+      ----
+      WHY USED : local server, same machine, no network needed.
+      SOLVES   : simple secure local wiring (no ports/auth).
+      EXAMPLE  : Claude Desktop spawns a local filesystem server.
+      WHO CALLS: CLIENT spawns the SERVER as a subprocess.
+    end note
+  else (REMOTE / PROD)
+    #LightBlue:T20 · Streamable HTTP transport;
+    note right
+      Server runs elsewhere; client talks over HTTP.
+      Many clients, real AUTH, scales horizontally.
+      "Streamable" = long-lived connection (Server-Sent Events)
+      so server can PUSH progress mid-task.
+      ----
+      WHY USED : remote server serving many clients in production.
+      SOLVES   : scale + real auth + long-running progress push.
+      EXAMPLE  : a hosted company server behind OAuth, many users.
+      WHO CALLS: CLIENT connects over HTTP to a remote SERVER.
+    end note
+  endif
+}
+
+' ---------- TOPICS 21–22: ADVANCED PROTOCOL ----------
+partition "T21–T22 · Advanced protocol features" {
+  #Plum:T21 · SAMPLING (the inversion);
+  note right
+    Normally client asks model. SAMPLING = SERVER asks the model,
+    THROUGH the client. Server (e.g. log-summarizer) needs no key:
+    it says "run this prompt" -> CLIENT makes the LLM call with
+    ITS key -> returns text. Client stays in control (approve/log);
+    creds never leave your side. Server keeps working with the result.
+    ----
+    WHY USED : a server needs an LLM but shouldn't hold a key.
+    SOLVES   : lets servers use the model without their own creds.
+    EXAMPLE  : log-summarizer server says "run this prompt" ->
+               client's model answers -> server uses the text.
+    WHO CALLS: SERVER requests; CLIENT makes the actual LLM call
+               (with its key) and can approve/log it.
+  end note
+
+  :T22 · NOTIFICATIONS · ROOTS · PROGRESS;
+  note right
+    * NOTIFICATIONS — server tells client "something changed"
+      (e.g. tool list) so client refreshes vs polling.
+    * ROOTS — client tells server which DIRECTORIES it may touch
+      (a boundary; file server can't wander outside).
+    * PROGRESS — the % -done stream for long jobs (needs streaming).
+    ----
+    WHY USED : keep client + server in sync during a live session.
+    SOLVES   : stale tool lists, unbounded file access, silent waits.
+    EXAMPLE  : ROOTS limits a file server to /project only.
+    WHO CALLS: NOTIFY+PROGRESS = server->client; ROOTS = client->server.
+  end note
+}
+
+' ---------- TOPICS 23–24: SCOPING & PRODUCTION ----------
+partition "T23–T24 · SCOPING & PRODUCTION" {
+  #Yellow:T23 · BOUNDARIES · SCOPING · LEAST PRIVILEGE;
+  note right
+    D1 least-privilege at the SERVER level: expose the NARROWEST
+    useful surface. Reporting server -> read-only queries,
+    NOT a general "run SQL" or "run command" escape hatch.
+    ROOTS (T22) enforce this on the file system.
+    ----
+    WHY USED : least privilege applied at the SERVER surface.
+    SOLVES   : blast radius — expose the narrowest useful capability.
+    EXAMPLE  : reporting server exposes read-only queries, NOT
+               a general "run SQL" escape hatch.
+    WHO CALLS: YOU (server author) decide what the server exposes.
+  end note
+
+  :T24 · PRODUCTION: AUTH · VERSIONING · RELIABILITY;
+  note right
+    * AUTH — remote servers use real auth (OAuth); SERVER enforces
+      permissions, never trusts the client.
+    * VERSIONING — protocol version (the language spoken) is
+      negotiated at handshake; ALSO version YOUR tools —
+      changing a schema breaks every client.
+    * RELIABILITY — timeouts, sane retries, graceful degradation:
+      if search server dies, agent SAYS so, doesn't hang.
+    ----
+    WHY USED : a server used by others must be safe + stable.
+    SOLVES   : unauthorized access, breaking changes, silent hangs.
+    EXAMPLE  : OAuth on the remote server; bump tool version when a
+               schema changes so old clients don't break.
+    WHO CALLS: SERVER enforces auth; YOU own versioning/reliability.
+  end note
+}
+
+' ---------- TOPICS 25–26: BUILT-IN vs CUSTOM ----------
+partition "T25–T26 · BUILT-IN vs CUSTOM" {
+  :T25 · BUILT-IN toolset (ships with Claude);
+  note right
+    web search, code execution (sandboxed Python),
+    computer use, text editor, memory tool.
+    These are SERVER tools (D1): Anthropic executes,
+    you write NO execution code.
+    ----
+    WHY USED : common capabilities you shouldn't rebuild.
+    SOLVES   : maintenance — Anthropic runs + updates them.
+    EXAMPLE  : web search, sandboxed code execution.
+    WHO CALLS: MODEL invokes; ANTHROPIC executes server-side.
+  end note
+
+  if (Does a built-in already cover it?) then (YES)
+    #LightGreen:T26 · USE the built-in (no maintenance, pre-tested);
+  else (NO — touches YOUR systems)
+    #LightGreen:T26 · Build CUSTOM (your DB / API / business logic);
+  endif
+  note right
+    == T26 · BUILT-IN vs CUSTOM (the decision) ==
+    WHY USED : choose the cheapest sufficient option.
+    SOLVES   : needless custom code + ownership burden.
+    EXAMPLE  : web/calc -> built-in; your CRM / private docs -> custom.
+    WHO CALLS: YOU (architect) decide at design time.
+    DEFAULT  : PREFER the built-in when one exists (no upkeep, tested,
+               model already knows it). Go CUSTOM only when you need
+               YOUR data, governance/audit, compliance, or a shaped
+               output the built-in can't give.
+    TRADE    : built-in = speed + zero maintenance;
+               custom = control + specificity, paid for in ownership.
+  end note
+}
+
+stop
+
+floating note left
+  == PART B EXAM TRAPS (memorize cold) ==
+  1. MCP is NOT a new transport — it RUNS on HTTP.
+     Its value = standardization + DISCOVERY (plug-and-play), model-agnostic.
+  2. Claude REQUESTS; the CLIENT executes; the SERVER holds creds + hits backend.
+  3. PRIMITIVE OWNERSHIP: TOOL=model, RESOURCE=app, PROMPT=user.
+  4. RESOURCE = given as context (Claude can't pick it); TOOL = requested.
+  5. STDIO = local, no auth; STREAMABLE HTTP = remote/prod, auth + progress.
+  6. SAMPLING = server asks the model THROUGH the client (client keeps the key).
+  7. PROTOCOL VERSION (spoken language) != TOOL VERSION (your schema); both matter.
+  8. Built-in tools are SERVER tools — you run no code.
+  ----
+  Flow in one line: STANDARD INTERFACE -> connect+HANDSHAKE -> list-tools
+  (DISCOVER) -> Claude ROUTES on descriptions -> CLIENT executes -> SERVER runs it.
+end note
+
+@enduml

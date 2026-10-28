@@ -1,0 +1,81 @@
+@startuml Topic5_Orchestrator_Role
+' ============================================================
+' TOPIC 5: The Orchestrator Role (the manager / conductor)
+' COORDINATES, does NOT execute. Subagents do the work.
+' 3 functions: Decompose -> Assign -> Aggregate (validate!).
+' ============================================================
+title Topic 5 — The Orchestrator Role\n(COORDINATES, does NOT execute — the manager/conductor)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+
+:Complex task arrives at the ORCHESTRATOR;
+note right
+  Orchestrator = manager/conductor.
+  It COORDINATES the work but does
+  NOT do the work itself.
+  Maps to a HUB-AND-SPOKE topology
+  (hub = orchestrator, spokes = subagents).
+end note
+
+partition "1. DECOMPOSE" {
+  :Break task into BOUNDED subtasks;
+  note right
+    Each subtask must be small,
+    well-scoped, independently doable.
+  end note
+}
+
+partition "2. ASSIGN" {
+  :Hand each subtask to a chosen subagent;
+  note right
+    Orchestrator ASSIGNS the work.
+    Subagents NEVER self-select their jobs.
+  end note
+}
+
+partition "3. AGGREGATE" {
+  :Collect subagent outputs;
+  #Yellow:**VALIDATE** each result;
+  note right
+    VALIDATE is the FORGOTTEN step.
+    Don't blindly trust subagent output —
+    check it before combining.
+  end note
+  :Synthesize into one coherent result;
+}
+
+if (Any subagent failed / bad result?) then (YES)
+  #LightBlue:Apply ERROR HANDLING (see note);
+  note right
+    == ERROR HANDLING lives in the ORCHESTRATOR ==
+    1. **RETRY** — same subagent, same task, try again
+    2. **SUBSTITUTE** — different subagent/tool/approach,
+       SAME goal
+    3. **ESCALATE** — hand UP to a human
+       (e.g. at an authorization boundary)
+  end note
+else (NO)
+  #LightGreen:Return final synthesized answer;
+endif
+
+stop
+
+floating note left
+  == ORCHESTRATOR HOLDS 4 THINGS ==
+  1. **Master plan** — the intended strategy / roadmap
+  2. **Execution state** — current reality (what's done so far)
+  3. **Error logic** — retry / substitute / escalate rules
+  4. **Aggregation rules** — how to validate & merge results
+  ....
+  Master plan (intended) vs Execution state (actual)
+  are DIFFERENT — plan is the map, state is where you are.
+  ----
+  Substitute vs Escalate:
+  * Substitute = still solvable by the system another way
+  * Escalate = needs a human (authority / judgment / missing info)
+end note
+
+@enduml

@@ -1,0 +1,2438 @@
+Hi, everyone. Good morning. How are you guys? Everybody all okay?
+24:44
+
+Good.
+25:00
+
+All right, we'll wait a couple of more minutes, then we'll proceed.
+25:17
+
+All right. So we have... Let me start.
+25:58
+
+Okay. Shall I start, guys? All my friend, can you please give me confirmation, yes? Shall I start? Everybody?
+26:22
+
+Okay, great. So I have started in last session Agentic AI. Correct?
+26:39
+
+You guys have seen RAG. In RAG, I have covered two topic. One is called traditional RAG or vanilla RAG, and another is
+26:51
+
+multi-model RAG. Okay? There are few more RAGs there, like C-RAG, GraphAG, right? So I'll cover that part also. But before that, I wanted to give some perspective about Agentic AI as well.
+27:06
+
+Yeah? So Agentic AI, if you remember, I have given some overview, right? What is Agentic AI? What is the difference between AI agent and Agentic AI, right? Now, to solve Agentic AI
+27:19
+
+problem, we have to use four frameworks. The first would be
+27:33
+
+Autogen, CrewAI, LangChain,
+27:46
+
+and LangGraph. Okay, so there are four methods you guys will learn, and I'll tell you the difference also where you can use AutoGen,
+27:59
+
+CrewAI, LangChain, and LangGraph. Yeah? But first you have to understand the perspective, right? Let's say you all are working in the IT company or software company. Just imagine.
+28:12
+
+Now, your client, they ask that they wanted to build our applications, and that application can read PDF documents.
+28:27
+
+Yeah. They wanted to build a question answer system. Okay? They wanted to build a question answer system. Second, by the help of PDF, they also want
+28:43
+
+the applications, they will not give only question answer. They can also write an email. All right?
+28:56
+
+Now, other task is task number one, question answer. Task number two, write an email. Task number three, agent can create a Jira. Okay? Agent can create a Jira.
+29:09
+
+Right? Jira ticket. I hope you guys have heard Jira ticket, right? Most of the organization, they are working, if you ever worked in the project and all. Yeah? So, they can create a Jira ticket,
+29:24
+
+and then they will send a notification. Notification.
+29:40
+
+Okay. Via different channel. Yeah? Channel would be Teams. You can say Slack. You can say
+29:53
+
+some front-end code. Yeah, you can say some company, they are using ServiceNow request. ServiceNow. Yeah. So they wanted to build this.
+30:06
+
+Now, just try to understand, can one employee who is working in IT company, software company, corporate company. The client ask that, okay, I am
+30:21
+
+sharing the PDF documents to you, and there are so many PDF documents. Yeah. This is just a example. It would be Word file, it would be Excel file. Yeah, this is just a kind of real time example I am sharing with you.
+30:36
+
+Their task is I wanted to build an application, and that application is a question and answer application. The application, they can write an email also. The application, they can create a Jira ticket as well.
+30:50
+
+The application, they can send a notification via different channel. Now, do you think one employee can do everything? Come on. Do you think one employee can do everything?
+31:03
+
+Hmm? No, right? We need different roles, right? So you can say in organizations, when I worked on it, I may need solution architect.
+31:17
+
+I may need solution architect. Architect. I may need lead developer. Lead developer. I may need researcher.
+31:30
+
+Hmm? I may need tester who can do the testing. Hmm? I may need a project manager
+31:46
+
+who can drive the project. These are the real-time jobs there. Their role is different. You can say there is a customer support team as well.
+32:00
+
+Customer support. Hmm? So these are the different roles there, and different people can do different jobs. All right?
+32:14
+
+Now, similarly, in GenAI, do you think one LLM, whether it's an OpenAI or
+32:27
+
+Gemini or Anthropic or Cloud, do you think they can perform all the activities? Yeah?
+32:40
+
+No, right? And for that, we need a framework. We need a framework. If you guys remember, when I covered the lantern, I have given a very good perspective that, let's say,
+32:52
+
+how you have different credit cards there, and there is credit applications there, if you guys remember some examples I have given to you. That credit application is a unified version to handle all the credit card or any external payment you are
+33:05
+
+doing it. You can go on that platform. One time you have to just register your mobile number, your electricity bill, your gas bill, or your different credit card. Everything, they will track it, and you will get a notification.
+33:20
+
+Hmm? And in case someone has built with the OpenAI, and tomorrow there is a necessity or there is a requirement, they say, "Okay, I wanted to switch from OpenAI to Gemini or Gemini to Cloud,"
+33:36
+
+whatever the activities you have done, everything will go in vain, and you have to start from fresh. And for that, if you use the lantern, if you use the framework, what is the benefit, guys? You can use anything.
+33:50
+
+Hmm? You can use anything. So we have here, what I'm talking here, we have different frameworks there. These four parts are nothing, but it is called framework.
+34:04
+
+It is called framework. Hmm? So in real time when you worked on it, there is a user, means the customer. They will connect with the application.
+34:18
+
+They will connect with the application. Application, you can think about the front-end part. Right? And this, before it reaches to the applications, before it reaches to the
+34:32
+
+applications, you can write like that, the client, they can approach to an intake team.
+34:44
+
+They will give the requirement that, "Hey, my requirement is this. I wanted to build such applications," where these are the requirements there. Now, this intake team, they will consult to a project manager.
+34:57
+
+Project manager. Please try to understand, guys, this is what your role is. When you get a job, you will perform like that only. So either you can choose a project manager role in technical domain or,
+35:11
+
+not here, the project manager, they will consult to a solution architect. Solution architect. They will say the problem statement, and this solution architect, they are
+35:24
+
+the technical guy. They can say, "Hey, how many employees I needed? What kind of department I have to liaise with?" Right? So let's say I'm saying I wanted one
+35:38
+
+researcher. Hmm? I need another engineers. They are a developer. Hmm? I need one more employee. Once they developed it, once researcher, they will
+35:51
+
+collate all the information, all the, let's say cloud, we need different services. Then once development happen, there is someone who can do the testing. Right? So tester means they will give the golden source data.
+36:06
+
+Golden source dataset. And once researcher and developer, they collaborate together, and they will develop this UAT.
+36:22
+
+Then that UAT, the tester, they will go and test it. Right? How they will do? Base is the golden source data. What is meaning of golden source data? There are three requisite questions there. Right? They will give the questions as well as they can see answer, and then the tester
+36:35
+
+will check how this application is generating the output. The output is generating correctly or not. So whatever the golden source data there, they have to validate it. This golden source will go and validate here.
+36:50
+
+Validate here. Right? They can say the validation is correct or not. My application is giving the correct output or not, base is the golden source data. And if answer is yes, then they have to build
+37:05
+
+a... You can see evaluation metrics, eval metrics. Metrics, they will see the hallucination score, all these things, and finally they can say that's the final response.
+37:20
+
+That's the final response. Are you guys with me? Can I say this is the whole architecture, guys? Make sense, my dear friend? So we have a different framework
+37:35
+
+there. And the company, they have to choose whether they can go by AutoGen or CrewAI or LangChain or LangGraph. They have to choose, okay, which application I have to go.
+37:49
+
+And then accordingly, they have to build the architecture like that. Right? Some framework help and build by one application solution. Let's say LangChain. You all guys know, right? LangChain is very easy.
+38:01
+
+You have seen that. One employee, can they build end-to-end RAG pipeline or not, guys? Come on, tell me. End-to-end RAG pipeline, they can build it or not?
+38:16
+
+If they go by the LangChain, they will ask the data, right? They will ask the raw data. Whatever the raw data there, they will do all preprocessing, chunking, embedding, storing to vector database. Then they have to use the retrieval, augmentation, and generation.
+38:31
+
+And everything at one go, they will do it. So you know what is the benefit of framework? The entire applications, the entire software, the entire problem statement.
+38:46
+
+By the help of one applications, you can build it. You can manage the workflow. Right? Yeah. So LangChain is the oldest concept. Please try to understand. Even though it's very new, LangChain also came in
+39:00
+
+2023 only, guys. 2023, 2024 onwards, it become very popular. But if you compare, we are in 2026 now, we can say this is the oldest one, but this is very
+39:13
+
+popular GenAI framework. Yeah. Why it is very popular framework? Because LangChain has a capability to connect with the external dataset. Right? They are giving complete holistic picture.
+39:28
+
+Yeah. So let me take a LangChain framework. What LangChain framework do? There is a user who is asking questions. What happen when they ask questions?
+39:43
+
+The connection happen with the LLM. LLM get connected with the vector database. Going reverse order. Yeah? That vector database is nothing. It's a kind of PDF.
+39:58
+
+It's a kind of chunk, embedding. Right? Now, this PDF, how you will extract it? By the help of API. By the help of API. API get connected with the Google search.
+40:12
+
+Yeah? Google search. How this is working? There is a concept called embedding. Embedding because text data there, right? You can say embedding connected with the vector database.
+40:28
+
+Vector database, just go in the reverse order. Front end, user will ask a question, hitting to the LLM. LLM, what RAG system will do? They will connect with the database. Database, what is there? PDF there, chunk there.
+40:40
+
+Right? That chunk, how it is working? By the help of API, then only you are doing embedding. Yeah? API means we are talking about the Google search or any different search engine, right? And there the concept is called embedding method.
+40:55
+
+Embedding, what it will do? It will convert into vector database. And then whatever the task there, your system is ready to generate a email. And that's how the output get generated,
+41:07
+
+if the user wanted to generate this. Now, without doing LangChain, my dear friend, there are lots of integrations required, there are lots of challenges happen. And LangChain is a framework that are giving everything in one place.
+41:23
+
+It's a ready-made component. LangChain provide ready-made components. So let's say you are working in a organization, and your HR ask a questions. They are giving, "Hey, you are a
+41:38
+
+data scientist. You are a GenAI developer. You are a GenAI manager. You are a GenAI solution architect." The task is, you have to build such applications where the applications can read the resume and give the answer, basis this job description,
+41:52
+
+who would be the right candidate so that I will liaise with that candidate only and will schedule an interview. Now, what system will do? They will read all the resume PDF, whether it's a PDF or Word file.
+42:07
+
+They will load all the data. They will do the chunking. They will do the embedding. And then embedding, you have to store somewhere called vector database. And then vector database get connected by the help of retrieval-augmentation generation.
+42:22
+
+And then finally, generations means output get generated, user will get response. Means HR will get a response that, "Hey, these are the out of 5,000 resume, we validated it. Out of 5,000, I have
+42:37
+
+selected top 100 candidate. Their resume is very much matching with this profile." And then they will go ahead. Yeah? So LangChain is providing a framework. LangChain provide the benchmarking where
+42:50
+
+you can do a PDF loader, text splitter, embedding, retrieval, chain, memory, output parser, everything. Yeah? Everything is readymade available there. Are you guys with me? Now, another-- If customer support
+43:05
+
+bot, right? You wanted. I'm saying you create a bot, you create application and you are working in, let's say Amazon or a Flipkart, right? The user, they may ask: "What is my order? When I will get my order?" Right? What bot will do,
+43:21
+
+what application will do, they will go and connect with the vector database. They will go and connect with the CRM applications, and that CRM get connected with the GPT. GPT model get accessed by the API, and then whatever the framework you have learned, on that basis you can
+43:36
+
+do it. Yeah? So LangChain is one of the best frameworks there, one of the oldest frameworks there, right? They can build a chatbot, they can build a RAG application, they can read the PDF. Yeah?
+43:51
+
+So we can say PDF chatbot, SQL, structured data chatbot, right? Structured query language chatbot, CRM chatbot, email assistant, API integration. Everything you can do at one go. I hope this part no problem at all. Everybody's aware, you have seen.
+44:04
+
+You have seen I have solved lots of problem, guys. Yes, no? Well, my friend. Hmm? Now moving back to another framework called LangGraph.
+44:20
+
+Yeah? Another framework called LangGraph. Now, LangGraph is what where you can apply the LangGraph. Please try to understand, because if your understanding is okay, you can easily solve the problem. In real-time when client will ask you, "Okay, go
+44:36
+
+ahead and do this problem," they will not suggest you which framework you have to use it. You have to take a decision and suggest what we'll do. Yeah? So now let's say you wanted to build applications. So how the things works,
+44:50
+
+guys? Let's say there is a user there. There is a user there. What they will ask questions. Now what system will do? They understand the question first. Your application, how application works.
+45:06
+
+Any application you will build, they try to understand. They try to understand the user query. Yeah?
+45:22
+
+Then they will search the documents. The documents would be PDF, Word file, Excel file, SQL file, anything. If we have a different documents there, let's say we have a PDF, they
+45:35
+
+will search PDF. Hmm? They will search SQL dataset, national database. They will search SQL dataset.
+45:50
+
+They will search MongoDB dataset. Hmm? Now, once they search these different kind of dataset, then they will also search the
+46:03
+
+internet. Search internet. If you are building agent, you can give a permission that whatever the documents your client is providing, along with I wanted to search the internet,
+46:16
+
+like Google search. Yeah? There is a DuckDuckGo applications there. Yeah? And what they do, they will compare. They will compare answers.
+46:31
+
+Okay? And then finally, they will generate the output. Generate the output. Output. Generic overview I'm giving, guys. Very generic.
+46:46
+
+Now you can say this part is okay. I can build the application by the help of LangChain. What is the big deal? LangChain is doing exactly the same thing. We have a different documents, different PDF, different kind of dataset there.
+46:59
+
+But there is a problem, guys. There is a caveat there. Okay? What is the caveat there? If you can go and ask a frequent questions, if you go and ask 10 to
+47:12
+
+20 times, at certain period of time, your system get hanged. The latency issues happen huge. Right? There is a system get hanged.
+47:24
+
+There is a huge latency issues there. And no client wants that when they ask a question, "Hey, what is the
+47:40
+
+policy described about this?" so and so on, what is the leave policies there in this company and all, you will see there are lots of problems there. And there, guys, if you have a different kind of data,
+47:52
+
+documents, PDF search engines there. Right? One, you can say, I can use RAG system, but RAG is a restricted. You can only search these things. But I'm giving the conditions you can go and
+48:04
+
+you are open to search in internet also. Now it is very difficult. And here the LangGraph come into picture. Here the LangGraph come into picture. Hmm? So what LangGraph will do, whenever user is
+48:18
+
+asking any questions to the application, right? Here what happened, when user understand the query, and then you can see compare the answers, right? What they will do, the system will do, they will understand the
+48:33
+
+intent. They will understand the intent. Okay? Now this intent, what it will do, they will
+48:48
+
+create a different router system. So one router is called SQL query. SQL query. Another router, means I'm saying multi-agent you will build
+49:01
+
+it. They will search the PDF query. You can build a different agent, and each agent has a defined task. "Hey, you are trained with the PDF documents." Yeah. So any documents comes in PDF format,
+49:14
+
+you can go and read it. Yeah? There are documents they can read, internet details. Internet details. Yeah. Different
+49:27
+
+agent. So this is called router agent. Router agent. Yeah. Each agent, so agent one, agent two, agent three, yeah, and so on,
+49:42
+
+agent 10. Some of the project you will get 20 agent also. They will say that, "Hey, you can make a 20 agent." And each agent will take care of the each department. Now, once they understand the intent and they can fetch the
+49:58
+
+data from there, then you have to merge them. You have to merge result. Now, you can say why merge? Because some of the information available in the SQL data set, some of the information is given in internet.
+50:13
+
+They have to collaborate together. And then you can give ask human. Your agent will ask to human. Now you can say, what do you mean by internet? Let's say you wanted to book a ticket, guys. Please try to understand.
+50:28
+
+I'm saying, hey, I wanted to travel from 1st July to 15th July. I wanted to travel Bangalore to UK. Okay? In UK, I wanted to stay 15 days.
+50:43
+
+Now in United Kingdom, these are the places there where I want to visit. There, we have a branch there. Now in the two weeks, we have two Saturdays, Sunday also coming. Now you as an agent, please make sure you have to make a plan.
+50:57
+
+Yeah? Now that time they will understand this. So their content intent is internet data also because they will go in the MakeMyTrip. There they will analyze it. Yeah? They have some weekend data also, so they will see the leave
+51:12
+
+policy also, okay, which day the holiday is there. So another agent, they can read it. Now, whether they can take a decision, human, they will ask it, right? Ask a human that, "Hey, where you want to go in this weekend?"
+51:25
+
+Now human will say, "You can go here." Yeah? You wanted to go here, the agent will perform and they will give the answer. Agent will perform, and they will give answer.
+51:38
+
+They will give the answer that these are the places you have to go. Agent can say, "No, no, I don't want to go there." Yeah? What happened? They stop. And they will search the different one.
+51:50
+
+So they can say, okay, they will route here where you want it. They can say here, and then again it will go and then search it. Or you can say one more choice. Yeah, you can give me, in case this is also not possible, what would be the option B there?
+52:03
+
+So LangGraph merges those flow, right? So please remember how LangGraph works. LangGraph will give a state. Yeah, everything I'll talk, please remember the name.
+52:17
+
+LangGraph will give the memory. Yeah? LangChain, you have to create a memory. LangGraph, there is no need to create a memory. Inbuilt memory there. They can retry.
+52:30
+
+Retry. Okay, so let's say human is saying, "No, I don't want to go London." Right? Now again, human will go back and they can ask, "Oh, hey, you wanted to go on that place? You wanted to go that place?" Like that, they will search it.
+52:43
+
+Yeah? LangChain will create the loops. Loops. You can say no, then this will go, and it keep iterating.
+52:56
+
+Hmm? LangChain create a conditional branching.
+53:11
+
+LangChain may need a human approval. Human approval. Approval. Hmm? LangChain has certain checkpoint. Checkpoints.
+53:26
+
+Yeah? LangChain works parallel execution. Parallel execution. That is why we can say LangChain is a very, very powerful- yeah, very, very powerful.
+53:39
+
+Very, very powerful to handle the complex task. Okay? So LangChain, in industry you will see most of the time you will perform on the LangChain. Now you can say give me real example.
+53:53
+
+I'm just telling you guys. Yeah? One real example, guys, which I'll cover the POC also in your class. Okay? Point of concept. So what happened?
+54:08
+
+There is a hospitals. There is a hospital. Hospital wanted to build a application, an agent. What agent will do? They will, the user hospital, what happened? There are lots of patient there.
+54:21
+
+Patient there, their family members there. Or you can say customer there. What customer will do, they will ask number of questions. So they can understand the questions. They can understand
+54:37
+
+the query, understand the intent. Now let's say the query is pertaining to general query. Let's say the query is pertaining to HR department.
+54:51
+
+Let's say query is pertaining to IT department. Let's say query is pertaining to insurance department. So on. Just let's say four different router system I have created it.
+55:04
+
+So they will create different problems. Now, sometime what happen? They are not happy with the finance system. They may escalate.
+55:19
+
+They said, "You have charged me that much, but I didn't get the facility and all." Now, escalation happen two way. The customer is, you have to understand their sentiment.
+55:32
+
+The sentiment is a positive or negative or neutral. If the sentiment is positive, very good. Neutral, very good. Negative, then you have to escalate them. So you have to create a escalation matrix
+55:47
+
+here. You have to create a escalation matrix. This is just a example I'm showing you. Escalation matrix.
+56:01
+
+Now, what this escalation matrix will do, they have to send a respond. They will respond to customer. They will respond to customer. And what they will say,
+56:14
+
+that apologize for the delay or for the, whatever the problems, their agent will write a email. So this is what respond to the customer, and they will also escalate to that particular department. And they can say, "Hey, you have a 24-hour
+56:27
+
+stat there. Can you quickly go and assist to the customer?" In customer, they can also respond. They can say, "If it is very urgent, the TAT is 24 hours. But if it is very urgent, this is the mobile number.
+56:43
+
+You can go and connect with our customer care, and they will help you." Like that you can do it. Now, you can just understand how complicated it is. One agent, their task is they have to understand the
+56:56
+
+problem statement, and then accordingly, they will bifurcate them, and they will send the query on that particular department. Each department have some escalation matrix. Now, how you will decide the escalations? Base the sentiment.
+57:09
+
+One customer and they are very unhappy. In hospitals, normally it happen, the patient is very serious. They're very serious. And what happen, guys? They need immediate doctor assistant.
+57:23
+
+So there is another escalation matrix you have to create it. If the patient is very serious, immediate doctor support is required. Even though their prime doctor is on leave or maybe their shift
+57:36
+
+got over, there is a shift doctor there. They immediately visit to them. And they will once they escalate to that part, the, "Hey, my patient is very serious. I need the immediate attention."
+57:50
+
+Now, what escalation matrix will do, they can immediately they will assist with the doctor. They can inform to that particular department that this is very critical. Anybody, any doctors, immediate you have to visit and
+58:04
+
+see the problems. The second problem, or if required, you have to consult to a prime doctor also, and ask them to visit. Like that it happen. So this is the ecosystem you can build, guys.
+58:18
+
+You are working in the finance department, just think about. Now you build a agent. The agent will take a decision whether loan get approved or not. Just simple example.
+58:31
+
+So whenever there is a loan request comes, what agent will do, they will read the documents. They will check the KYC. They will check the PAN number. They will check the Aadhaar number. They will check the credit score, CIBIL scores.
+58:43
+
+They will check the income. They will check any fraud happen in past or not. Whether the customer they paid, a timely manner, the credit card bill or any loan going on, or in past any fraud detections happen.
+58:58
+
+And if yes or no, they have to decide whether this customer considered as a high-risk customer, medium-risk customer, or a low-risk customer. Then they will go to the human, and human will approve, and then finally a loan get approved.
+59:12
+
+And in approved also there is a tab there, you are eligible for so and so much amount only. Guys, very complex problem statement or not? Tell me.
+59:26
+
+If you go in the insurance department, there are lots of problem happen, no? First, you have to upload the images. What happen, you can use OCR. Then in OCR, you have to find the fraud detections.
+59:39
+
+In fraud detection, what are the challenges there? They will validate the policy. They will validate the estimation cost. There are so many things there. If you have taken a loan, insurance, there is a capping there that you cannot book.
+59:53
+
+When patient get admit, there is a cap there. In one day, maximum room charge would be 5,000. If you take 10,000, 15,000, you have to pay by your own pocket. Insurance is eligible for 5,000 or 10,000, whatever the
+60:08
+
+policy you have. So they will see the TAT also, how much estimated cost there. Then they will see, okay, manager approvals, and then finally the settlement happen. Now in this case, guys, if the
+60:21
+
+very complex applications there, LangChain get failed, and you have to jump into LangGraph applications only. Make sense, my dear friend, everybody?
+60:34
+
+Make sense? Third application or framework is called, guys?
+60:46
+
+Cruai. Okay? Crew AI, if you ask me, Crew AI and Autogen, mainly we are using for POC purpose. In real time when you do it, very rarely we are using. But
+61:00
+
+normally, whenever you have a client discussion and they will give the problem statement, first you have to create a POC, right? You can say, okay, when the next call or discussion happen, that time I'll give a POC.
+61:13
+
+Now, how POC works. Hmm? POC what happen, guys? There is a company CEO there or MD there, managing director.
+61:27
+
+They will reach to the research agent. There is one agent, they will do the research. On the basis of research, there is a developer.
+61:43
+
+You can say we will build a developer agent. The developer, once developer agent, they develop the task, then there is a tester agent there.
+61:58
+
+What tester agent will do? They will validate this. So whatever researcher, they collate the information. On that basis, developer build the model. Now this model is working fine. This application, whatever the application they
+62:12
+
+develop is working fine or not. The tester agent will come. They will do all the testing. Then you can say, once testing done, then we have to make a writer agent. Okay? What writer agent will do? They will
+62:24
+
+write it, the response. And then another agent call you say reviewer agent. Before it go to the customer, the one more agent there, they will validate whether their grammar is correct
+62:40
+
+or not, whether they have taken information from that particular documents, whether that is correct or not, all these things, and then finally they will give the result. Now, please remember, there are multiple agent.
+62:54
+
+The way I said in organization, we have a different roles there. You can create a multiple agent, and each agent has a different roles there. Yeah? So whenever you build a Crew AI, as I said, it is
+63:06
+
+mainly for POC purpose. POC purpose. Yeah? How you will build it? You have to assign a role. What is the role of the each agent? You have to assign the
+63:20
+
+goal. What is your objective? What is your goal there to achieve it? Role means persona. Role means back story. Yeah? Goal means you can set a target. Then you have to give the
+63:33
+
+responsibility also. Responsibility. Yeah? There is a dedicated KPI there, key performance indicator there. And then they have to, if they require, they may have to connect with the tools.
+63:45
+
+And basis this, it will work. So whenever you use Crew AI, by heart you have to remember, I have to assign the role, the goal. I will also give the dedicated
+64:00
+
+responsibility. I will allocate these are the responsibility you have. You can do a step one, two, three. And in case there is a tools required, connect with the external tool. Yeah. Or RAG system or database.
+64:13
+
+That agent will go and connect with this, and on that basis they have to build it. And there are so many use cases you will get in industry, guys. Yeah, if you guys are already working or even your friend are there, you can just check. There are lots of, they will say, "I wanted to build a
+64:27
+
+travel planner. I wanted to build a agent." Agent can do the traveling plan and all. So how is it happen? There is a research agent. They will research. They can say, who are the competitor there? What functionality?
+64:42
+
+How much amount they are asking to travel Bangalore to UK? Then there is a travel agent. What is the facility they are providing it? So they will find the travel agent. They will find the facility. They will find the hotel. They will find the restaurant.
+64:56
+
+Yeah? Then another agent, they will find the flight. Yeah. They will find the weather forecasting. They will find the budget. What budget we have to give. One agent, overall they will calculate, and
+65:11
+
+they can give the list of these are the expenditure would be, and where you have to pay what, all these things. If you are working in marketing sector, there is something called keyword search, competitor analysis, SEO expert, content
+65:24
+
+writer, reviewer, publish blog. Yeah? These are the actual job, guys, we are doing it, that on your behalf, agent will do it. Agent, how project manager doing?
+65:39
+
+If you make, I will show you, if you can say, "Hey, agent, you are a project. Your role is or act as a project manager. Your role is this. Your goal is this. Your back story is this. You have to connect with, let's say, weather forecasting or let's say,
+65:53
+
+book my ticket. Make my trip." Go and connect with this. Yeah? So here you can say the agent, you can make one back-end agent, one front-end agent, one tester agent, one document writer agent.
+66:07
+
+And then finally you have to go and deploy it. So that time, guys, we can go and use the Crew AI. Hmm? We have one more framework, which is called Autogen. Autogen is also called AG2. Autogen.
+66:23
+
+Autogen. Autogen AG2. Okay, this is developed by Microsoft company.
+66:40
+
+Microsoft company. Very popular. This is also used for multi-agent. Multi agent. Hmm?
+66:52
+
+So what happened? There are multiple agents there and they will collaborate together and they will do their job. Yeah? So I have seen, this is also mainly we are using for POC purpose, or if you are using cloud, you can go and use the Autogen. Yeah?
+67:06
+
+But if you ask me in a nutshell, I can say CrewAI or Autogen are more or less similar. Very similar. Yeah? LangGraph is very complex when you have a
+67:20
+
+complex problem statement, then of course you can go with the LangGraph. But broadly speaking, this is what normally happen. Yeah? So LangChain basically, guys, LangChain we are using when you are using simple
+67:36
+
+chatbot. Simple chatbot, or you are building a RAG system. Yeah? So that time I have seen LangChain, we are using it.
+67:50
+
+LangGraph when you use, when you have a complex problem there. You wanted to build a complex workflow. It's a router system, enterprise AI applications, a big company
+68:02
+
+or mid-range company, they prefer to use LangGraph. CrewAI and Autogen
+68:18
+
+is mainly for multi-agent, and that agent collaborate together.
+68:32
+
+Collaborate together. Yeah? This multi-agent is maybe for conversable. Conversation. Right? So each agent can connect together and they can give this.
+68:45
+
+This CrewAI and Autogen, we are mainly using for POC purpose. This agent we are also using, if you are a developer and you don't want to write a code by your own, you can say, "I will go and use it for coding purpose."
+68:58
+
+You are doing some research work, you are doing a PhD. I may need a different publications research and all, these agent can go and do it. This is mainly for automation purpose.
+69:13
+
+Please remember. So anybody asks you where what, we can use what, you can say, both LangChain basically we are using for simple LLM chatbot, RAG system. LangGraph, when we have a complex workflow there, where we wanted to build
+69:27
+
+a router system. Yeah, there are lots of approval is required. There are lots of link is a different workflow there, right?
+69:41
+
+You can say, I have to go with the LangGraph. CrewAI and Autogen, I wanted to build a conversable agent, multi-agent system where one agent can complete the first task, then second agent will come, then third agent will come. Like that it works.
+69:53
+
+Please remember. Yeah, guys, please tell me, are you with me? Where you can use what? Hmm?
+70:07
+
+LangChain, we are using for simple chatbot, RAG system. LangGraph, we are using mainly for production grade application. Production
+70:22
+
+grade application of a complex problems. CrewAI is basically, and Autogen is basically for role-based
+70:35
+
+multi-agent system. Okay, both I'm just combining together, and you have to go and do it. Now anybody have any questions, you can go ahead, ask me.
+70:48
+
+Yeah? And then I will go ahead and I will show you some POC, kind of some real-time project how you will do it. Yeah? So let me see who can raise hand.
+71:02
+
+Prashant has raised hand. Go ahead, Prashant. Go ahead. Hi, sir. Sir, like you said, like in LangChain, we in LangGraph, we use Internet to search for outside of the content, right?
+71:17
+
+Hmm. But in LangChain also, we use, right? When we use LLM for generation, there also it goes outside and- It can go, but it is very slow than your system.
+71:29
+
+LangChain is dedicated for LLM chatbot or RAG chatbot. Not the different agent you have to create, different workflow you have to create, different router you have to create. And then if you go and connect with the LangChain system-
+71:42
+
+Oh ... it's not that no, you will get the response, but it takes lots of time. That is why I said LangGraph is a production grade applications. When you build in a environment, right, when you work in the enterprise environment, there you have to go and use the LangGraph.
+71:56
+
+Or I can say combination of LangChain plus LangGraph. That's normally we will do it. One more question, like what is the difference between router system and multi-agent system, sir? Router system means, like I said,
+72:11
+
+User is asking question. Okay. It will go to the agent. Mm-hmm. Agent can understand the query, understand the intent.
+72:26
+
+Okay. Understand the intent. Now, what intent there? The intent is, this is general query. This is related to HR query, this is related to insurance
+72:39
+
+query, this is related to finance query. Yeah? So they can understand the intent, and then this agent can distribute different agent part. Now here again,
+72:51
+
+this part. Now they can see- First, what they will do? They will route them based the intent. They will route there which department I have to go. So can I say this intent, what it will do? They will route them.
+73:04
+
+Okay. Mm-hmm. Router means they can send on that particular part. Now here again, there is one more agent will come. Or you can say same agent, I will utilize them. What they will do, they can understand the query, what kind of question, what
+73:18
+
+kind of tone user has. So user is asking, let's say, insurance-related query, and their tone is very disappointing. "Hey, one of the pathetic company, one of the pathetic insurance.
+73:33
+
+I have seen that my patient is waiting for last eight hours and you have not approved it." Blah, blah, blah, say that. Can I say the customer is actually unhappy? Hmm? They are not happy with the insurance service.
+73:45
+
+Now unhappy, what sentiment they are? So can I say again, the agent, they will categorize the sentiment. Can I say they will route them? So sentiment is a positive, sentiment is a neutral,
+74:00
+
+and sentiment is a negative. If the negative is there, what they will do? They have to create one more router, which is called escalation system. Escalation system. And how they will escalate them? They will write
+74:12
+
+a mail to the customer. They will escalate to the department. So each framework, there are some router there, and on that basis they decide.
+74:27
+
+Here, my friend, Autogen and CrewAI will not work. You have to go by the Langchain. Make sense? Make sense?
+74:40
+
+Yes, sir. Okay. What else? Who is the other? KCW649. Yes, my friend?
+74:52
+
+Hi, sir. So Gopal here. So right now we are discussing about this agentic AI, right? So here we are also talking about multiple system involvement. So in that case, how can we feed all this data into
+75:04
+
+this LLM? Okay, that is my one question. Let's take most of the organization, they use Salesforce, there will be kind of lot of product they use. How can we feed all the data into agent
+75:18
+
+so that it works as a agentic AI? So this is one question. And the other question- So that answer is you have to create a agentic RAG system.
+75:30
+
+Now, why I'm saying agentic RAG system? RAG means, can I say they have own data? The data would be in different type of source. So you have to build a RAG. There you have to create agent.
+75:44
+
+Nowadays, you guys have heard about agentic skills. So you have to build the agent skills so that agent can understand what data pertain what. I have given here examples. I have given a different examples
+75:58
+
+here. So you can see router agent, what they will do, they can understand, okay, what type of query there or PDF there or internet details there. So like that, you have to create a multiple agent.
+76:13
+
+And each agent, they have to understand the intent, and based on this, they will assign to the particular. One they have given a RDBMS data, another they have given the structured data, another they have given unstructured data,
+76:25
+
+JSON format. Different kind of things there. So they will go and they will build a RAG system, and their agent can perform that RAG. Okay? It's not simple that all the data you have to create a vector database and
+76:40
+
+everything get connected with the retrieval system. No. Agent will go and connect it. I'll show you that part also. What is your second question, my friend? So second question is around tracking all those interactions, right?
+76:52
+
+So let's say if a user go to a website, search for something, then we usually track it with the help of- Mm-hmm. Yes. So with this user agent, how can we track all the interactions? How can I show you? That is why the class is there.
+77:05
+
+I'll show you that part. Okay. Dhruv? Hi, sir. Good morning. Sir, so that how you
+77:18
+
+described, we can tell that the inner agents which we have declared, like HR, finance, so they can be the Langchain and the Langraph are tracking it through those Langchains agent, right?
+77:32
+
+Likewise, we can set it up. Yeah. Okay. So Langchain you need it because there is a PDF there, there is a SQL query there, so definitely you need a Langchain so that loading happen.
+77:46
+
+Yeah, Langraph I needed because we wanted to build a router system, so that system works very fast. Okay. And how can they be tied up with Langchain and Langraph? How,
+78:00
+
+part I'll show you. Okay, that is the class. So that's why I'm teaching, no? So how it will happen, I'll write a code, I'll show you in front of you how it is working, so you will get more clarity. Right now I'm just saying what and how.
+78:12
+
+Not how- And second- ... what and why ... second question is for CrewAI and the other one- Autogen ... we know about, Autogen. So both of them are doing a similar kind of job. So which one we should take it up?
+78:25
+
+Depends. If you are using Microsoft, you can go by Autogen. If you are using simple POC, you are creating no cloud unit to use it, because there is a cost there, so you can go and use
+78:40
+
+CrewAI. Okay. Okay? Okay. Thank you, sir. Multi-agent, conversable agent, multitask, then you have to go and use this CrewAI. Mostly in industry you will see
+78:52
+
+100 POC happen, only 10 enterprise application works. So on that case you can go Autogen, CrewAI, anything you can choose it. Some of the company Most of the project they are picking and that is enterprise product only.
+79:05
+
+So there you have to go and use the LangGraph. Fine. Sichit? How I can pronounce your name? Sichit. Sichit Rajputh. Yes.
+79:19
+
+So basically what I understand is LangGraph is like nested agent. This is what I- Nested agent. Correct. You can say like that. We are saying router complex query and all, but you can say,
+79:32
+
+yeah. So it's a kind of workflow. Wherever there is a workflow there, you can go and use the LangGraph. Okay. A role assignment there. There is a- About Co-AI and the
+79:45
+
+one- Autogen. Autogen, yeah. Mm-hmm. That is also work as a nested agent or? You can say nested agent, we can do it that part also, but they are mostly for role-based.
+79:58
+
+Okay. So multiple agent, in each agent you will give some role. You can give some role. Specify some role to- That kind of things ... according to the- They will do it. So anybody asking question, "Hey, what is the leave policy?" So they will not touch the
+80:11
+
+finance agent or other agent. They will only talk to HR agent. HR. Especially if you work in the Copilot Studio, right? There you will use these framework only, Autogen and Co-AI. So that time it will help you a lot. Nowadays, or if you guys works in
+80:24
+
+Microsoft and all, you will see Copilot Studio as demand is too much. So that time this concept will help you a lot. Okay, got it. Who else? Himanshu. Himanshu, sir?
+80:39
+
+Himanshu, are you there? No. Jibes Misra? I'm audible now? Yes. Hello? Yes, Himanshu, go ahead.
+80:59
+
+Hello, sir. Can you hear me? I can hear you. I think you are not able to hear me. Maybe you can connect back then. Jibes, you can ask question. Yes, sir. So I have-
+81:13
+
+So if you can hear, my question is, this LangGraph when you mentioned, there is a planner that is sitting at the top that decides which agent it has to route through. So this planner is also a LLM
+81:26
+
+which understand the intent? No. Or do we have to do a rule-based over there? You have to create a rule base or- How does it work? Yeah, it's a tool calling. It's not a LLM. You have to set up, you can write a function
+81:40
+
+applications, and on that basis it works. Okay? It's not LLM. I think you are not able to hear me. Himanshu, you can-
+81:53
+
+Now I can hear you, sir. Sir, can you please repeat? Sorry. Yeah. So I said it's not LLM, it's a tool calling. So you have to write a function. You can build a function. In each function you have to define a task that, hey, this is your role.
+82:05
+
+But- So you have to route like that But then let's say if the query comes in, which doesn't actually-- So let's say I have written a cool tool saying that your task is to create a first touch email to a particular customer.
+82:20
+
+That is one of the agent. The second agent could be like, summarize this particular query for me, whatever. Now, a user can not directly say, "I need an email." User can say,
+82:33
+
+"How can I reach out to this person?" Correct. In that scenario, how will the planner understand I need to create an email instead of directly user query doesn't directly say I need to create an email. It indirectly says, how to s-
+82:45
+
+I'll show you. How part I'll discuss later, Himanshu. Okay. And the second part is, this is more of a architectural naive question maybe. You mentioned that we have multiple agents performing multiple tasks.
+82:57
+
+Why is it not possible for me to give system command or system prompts that your task is a-- It's ultimately a LLM under the hood, so- Mm-hmm ... can't I use one single LLM and tell
+83:12
+
+it to give multiple- One single if you do it, then what happen? Your system become very slow. It will not give you the answer immediately. So that is why we wanted, if there is a data set, let's say you have 1,000 documents there,
+83:27
+
+and it's not all 1,000. No depends in all. So let's say you are working in the company or organization where we have a different department, HR, finance, marketing, data science. Mm-hmm. Okay, different departments there.
+83:43
+
+Why not I can create a different agent, and each agent, they are personified or they are expert on that particular department-related query only. Now user will ask any query related HR.
+83:56
+
+If they go in one agent, they have to search all the documents, and then they can give the answer. But if they ask questions related HR, and we have a different agent there, the HR agent, their
+84:09
+
+circumference is this only. So even though here also I am using LLM, but this LLM will only see those data and give answer immediately. So if you really wanted as per of the-- See, normally what happen when you build a
+84:21
+
+application, there are two big things there. Whenever you build a real-time applications, the two things, the cost part comes. And the second part is how effectively you are getting the response. Effectively.
+84:36
+
+So if cost part-wise also it is very less, because multiple agent, agent is nothing. You are just creating a agent. Agent will touch the LLM. Now, LLM will charge once they go and see the tokenization and all.
+84:50
+
+Right. Where the charges is less? Here only or the entire documents? Here only. The charges is very less. So cost effective. Performance, where the performance is better? One agent, you can ask, they can give answer They
+85:03
+
+trained with HR related only, or one agent, they have to learn all the documents and then they can give the answer. Definitely this one, right? When there are different- Right ... agent there. So in both the cases, cost-wise, as well as their performance-wise, right? In both way, agent works very
+85:17
+
+fast. So any application you works, please remember, my objective is not only-- otherwise, RAG, why RAG came? We have a long context window there, yes or no?
+85:33
+
+Yes. Long context window can solve all the problem, but why we are using RAG? Yeah, because long context window, there are lots of cost there each time embedding happen, because we are not storing anywhere.
+85:45
+
+Mm-hmm. That's why RAG came. Similarly, why agentic AI come into picture? Because the simple LangChain RAG kind of activities cannot do that kind of job. There are lots of cost involved there. So why not I can create a agent, and agent I will assign the role,
+85:58
+
+and then they have to work on it. So any user ask any questions, right? Let's say the same user, now they are changing their question. They said, "What is the marketing philosophy there?" The time they use the word, these questions will not go and ask to that HR agent,
+86:13
+
+they will go and ask to marketing agent only. And marketing agent has certain circumference only. On that basis only they can give the answer. So that's the main philosophy there. That's why we are using it. This is one of the reason. There are so many reasons there, which I'll tell you
+86:28
+
+later. Mm-hmm. But these are the main reason there that you have to, in simple language, in layman term, you can say this. Understood. One final question. So because it is orchestrating between multiple agents-
+86:44
+
+Mm-hmm ... definitely it has to store, because LLMs are stateless. It has to store state somewhere on what message- Oh ... is passed. So- That's why I said, no, LangGraph has own memory. Okay. Okay. Okay. So LangGraph, when you use, what is the benefit?
+86:57
+
+Another benefit is the LangGraph has internal memory there. You need not to create a separate memory. Understood. LangGraph has these frameworks. That's why LangGraph is powerful,
+87:09
+
+complex task, and this is industry. Industry enter price application. Industry prefer to do it because they have a state, they have memory, they
+87:22
+
+have a retrieve, they have a loop function, they have a conditional branching, they have human approval, they have checking point, they are working parallel processing. So in every sense, right, it's not working sequential method. Parallel is all agent, they will search, okay, the question is pertaining
+87:37
+
+to me, or me, or me, and then accordingly they will give the answer. So these are the benefits there. Understood. Thank you, sir. Jibes?
+87:52
+
+Yes, sir. Actually, I have a question. How we will decide which framework to use? How part I'll tell later. No. How part I'll tell you. How you will decide that questions you can ask. Now- Yes ... you wanted to build a multi-agent, multiple agent, and they want to train with
+88:06
+
+HR, marketing, let's say your use case is. Hey, I wanted a question answer, but each question answer, I have a different departments there. Now, in this case, what you want? You definitely wanted to go autogen or Qwen, right?
+88:21
+
+Because multiple agent you will use. Yes. Now I'm saying a complex architecture. Like I said, I wanted to build one agent, they can handle the hospital query, but that agent can take a decision.
+88:35
+
+Yeah? So whether that question is pertaining to general query or HR query or insurance query or doctor-related query, right? What kind of query there? So you have to build a router agent, router system.
+88:47
+
+Now, when the user is asking question, what is their sentiment there? Again, you have to take a decision. So again, you have to write hard-coded. You can make a sentiment, a review also, what is the score is there. Now, if it is positive, you can give a thanks message to customer.
+89:00
+
+Neutral, you can give a thank message to a customer. If it is negative, then you can-- actions, right? So when there is a complex architectures here, then you have to go
+89:15
+
+by the LangGraph. If you wanted a conversable agent, let's say two agent can talk. Which ecosystem you wanted to build? Again, you can say either I will go autogen or Qwen.
+89:27
+
+Yes or no? Yes. Okay? So like that it works. So I'll show you how part, you guys will get more clarity. Any other question, guys, anybody have? Or we are good? Shall I start?
+89:40
+
+Two more friends there, Anil and Dheeraj is there. Anil and Dheeraj, both quick questions. Ask one by one and then I'll give answer at one go. Yeah. Sir, on the high level, I understand LangGraph, Autogen and
+89:56
+
+Qwen is providing a framework to create an agentic AI system, right? Correct. So in this particular diagram which you have shown, we have seen that there is an option for tool calling. LLM is involved, planning and reasoning
+90:09
+
+is happening through the router. But how the memory part is taken care here in the agent? How the- Will show you. Will show you in the LangGraph ... LangGraph router is responsible for that? Or it's an inbuilt in LangGraph? Yeah, possible. Possible. Possible.
+90:21
+
+Okay. They have own memory. You need not to set up separately. Okay, great. Anil, what is your query? Yes, sir. One question. Here we can see we are creating agents and all by using
+90:36
+
+these tools, LangChain, LangGraph, and this. So my question is that we are using VS Code in our organization. There also we are getting an option to create this
+90:50
+
+agents, right? Mm-hmm. So, is that is different and what we are doing that is different, right? Same thing. It is same? Same thing. In VS Code, you will get GitHub Copilot
+91:03
+
+enables. Yes. So that is called vibe coding. No-code, low-code platform. Which I'm not touching right now because I wanted you guys, everybody, understand the concept, understand the architecture, understand what
+91:16
+
+is there. Yeah. Once I complete this, I'll pick the Vibe coding and I'll show you how Git Copilot works, how Whisper works, how Cursor works, how Windsurf works, right? So different, different how Replica works,
+91:29
+
+how Napkin application works, how Gamma application works. So different Vibe coding tools there, they works differently. Got it. Yeah, because that is not the purpose, right?
+91:42
+
+If I go here and I'm saying here, Napkin. Napkin AI. Go here. Get a free. Let's say I'm just clicking on the Get a free.
+91:54
+
+And now see the magic. See the magic. Let's say I'm saying slide. And here I'm saying provide
+92:10
+
+last year financial report for Microsoft India
+92:23
+
+or anything, let's say. Now this is the report card I'm getting here, Microlive Limited, let's say. I wanted to present there. I'm going here and I'm saying, okay, go ahead.
+92:35
+
+Now this part anybody can do, no? They said, financial overview, click this. They said, now audience of financial overview Microlive. Who is the intended audience?
+92:49
+
+They're asking. Let's say I'm saying a financial analyst. Or anything you can take it. Yeah. Execute summary you wanted, a standard report, 10 to 12. Right? Let's say three to five slide, I'm writing it.
+93:02
+
+And see the magic. Now that's not the objective, right, everybody? You can see they have created. Looks good. Add segment breakdown.
+93:16
+
+Okay, so they are giving it now. See another interesting things. I'm going here, close this. New Napkin, or let me go here. Close this.
+93:28
+
+Let me paste here. Okay. Save this. I'm clicking here. You can see the magic, guys. They will create amazing visualizations. Are you guys with me?
+93:43
+
+Are you guys with me? Now, whatever you like it, let's say I like this one, right? This is giving very nice visualizations and all. Let's say this one. Please go, download it, export the visualization, and whatever the PPT presentation you wanted to give, you
+93:56
+
+can give it. So here, see, under Microlive Limited Finance Performance, opening income 5,600 crore in previous year, adjusted back, this one, EBITDA margin, this.
+94:11
+
+Like that you are getting it. I have not done anything and I'm getting amazing visualization. How? By the help of LLM model. Are you guys with me? So this is actually LLM. But how back end works, that is main thing you have to know it.
+94:23
+
+Otherwise, this is very simple. An operation guy can do this part or not? Yes. You only have to know the-- So this is called Vibe coding. Same thing happen in the GitHub Copilot. You can just write a prompt and they will give the code. I'm going here.
+94:38
+
+I have a Windsurf. I'm saying, hey, Windsurf, please go and open this. Create one folder. I'm saying, create this folder. Let's say I'm saying demo.
+94:52
+
+I'm saying demo. For demo.
+95:07
+
+Demo. Today is what date? 27th. Okay. Let's say 27th. Now, go here in the window.
+95:28
+
+Go to the file folder. Desktop. We have demo27. Select the folder. You can see we have empty sheet there, right? You see the magic, everybody.
+95:40
+
+Now here, this is a prompt there. And you can see these are my models there. SWA, cloud. Right, all the models available there. If you go in the paid version, you will get many more. Now, here I'm just writing.
+95:56
+
+I'm saying, as a machine learning expert. Ajo, machine learning expert, and your role is
+96:10
+
+to build machine learning model for, let's say I'm saying Titanic dataset. Titanic
+96:23
+
+dataset. Use decision tree and the random forest model,
+96:39
+
+but please follow the below steps. What is step one? Pre-processing. Second,
+96:51
+
+EDA. Third, split the data. Split the data into training and test. Testing. Fourth,
+97:05
+
+building decision tree and random forest model. Fifth- Validation
+97:19
+
+or first prediction. Prediction, sixth. Evaluation, seventh.
+97:31
+
+Choose best model, eighth. Build front-end code
+97:44
+
+using Streamlit. Okay? Let's say this is what I have written. Press Enter. And now you can see the magic, guys. Complete blank sheet there, right? Even though I have given Titanic data set, but let's say you have any data set
+97:56
+
+there, the system will go, and they will search. See, they are checking. They are searching it. That much tool can get generated. I'll create the complete ML pipeline with Titanic data set. Let me start. And they have written a code.
+98:11
+
+Are you guys with me? They have written a code. See the magic. Now you can see engineer role finished, right? What developer will do?
+98:25
+
+See? They have written a front-end code also. Streamlit. Got it. But organization also expecting the same. They're asking to- Oh, exactly. But they are expecting- Create the agents ... they are expecting data scientist people can do this, not the operation
+98:38
+
+guy, because in case there is a debugging happen- Mm ... solve this problem then. Tell me. Got it. Operation people can do it? No. No. If you have a background, you know that, then only you can do it.
+98:54
+
+Then only you can justify. When you-- See, writing a code is not only the job, right? You have to give a presentation also to your client, and you can justify, "Boss, this is what I have done." When I go in the preprocessing, you have to tell them, "No. These are all the things I have done."
+99:08
+
+You can say, "How I have checked. See? First, I have done the loading and preprocessing data." So what preprocessing I have done it. This is my raw data. Right? I have handled the missing data first. Why missing data? You can say because if you don't handle the missing data, algorithm will not work,
+99:23
+
+and biased results will come. So how they handle it, you can see a statistics method. Age is a number, so they have used median. Embarked is a category, they have used the mode concept. So you have to justify. If any people, they are coming from different background,
+99:38
+
+they have no idea. Got it? Got it. Create the new family, new feature engineering. Because they have given the sibling and a spouse and parent and children, two different columns there. They have merged it and they said family side.
+99:52
+
+That's how you will handle it. You can explain all part one by one. Now, so even though writing code is-- I told you one story, if you remember in day one. Guys, what was the things I said?
+100:06
+
+Code die? Did you remember? Creating the code instant. Yeah.
+100:19
+
+So this is normally you can do. This is just a example I show. So this is very simple. Anytime you can do it. By the way, guys, please go today itself. Everybody, even though I'm teaching you this part, but everybody, I wanted, my friend, please go
+100:34
+
+and download this Windsurf. Okay? And you can also explore it. Windsurf AI. Download. Okay? Please go and download this.
+100:50
+
+This is Windsurf. Download it. Please download in your system, and any code is required there, free of cost you can use it. Like that cursor, I'll show you like the different tools I'll show you. Napkin app also you can try it. Yeah.
+101:06
+
+And you can generate amazing visualizations. Like that, so many applications, in coming session I'll show you. What exactly the Windsurf? Windsurf is basically for
+101:19
+
+writing a code. Okay? So any code, machine learning, deep learning, any algorithm you wanted to do it, this is code. Code is cheap, show me the talk.
+101:32
+
+So earlier, it's a reverse order. Earlier, people were saying, "Talk is cheap. Show me the code." That's what the things going on. Now today it's completely changed.
+101:46
+
+Google acquired it because this is amazing, no? It's free. There are some paid version also there, but it's a free. You will get certain token free of cost on a month-on-month basis.
+102:00
+
+So for POC purpose, you can do it. Okay. Good. Guys, shall I go ahead?
+102:15
+
+Can we talk Agentic AI now? Because he asked me, so I just told you two things. You can also explore it. So let me go ahead in the
+102:27
+
+Jupyter Notebook. OneDrive. Desktop.
+102:42
+
+10th April. New Folder. Agentic AI.
+103:05
+
+Go inside. Let me open the notebook. Okay. So I'm using
+103:19
+
+Agentic AI, 27th June 2026.
+103:32
+
+Okay. So now what I'm going to do here, I'm just teaching you the POC part. POC.
+103:47
+
+Proof of concept. Okay? So, especially when you have a client discussion and all, you can give a POC
+104:01
+
+or prototype in front of client. If they are happy, then you can go and do the enterprise
+104:14
+
+production ready. That part you have to work on it. But initially you can give a POC. Can we have a short break? Why? It's 11:49 only.
+104:27
+
+Break I'll give you at 12:15. At least pick one project also, no? Okay, good. So guys,
+104:41
+
+I'll show you some simple examples. So, let's say example one.
+104:54
+
+Now, I'm giving problem statement.
+105:12
+
+You are working on a startup company. They wanted to develop a
+105:27
+
+light-weight water bottle. The target audience is
+105:40
+
+school kids aged under 16 years.
+105:55
+
+Let's say budget is $3,000.
+106:09
+
+Okay? $3,000. Now, you have to make an agent. Or let's say you are working as a marketing
+106:24
+
+manager. So you can say working as a marketing manager. You
+106:37
+
+have to identify the most effective channels and craft
+106:52
+
+compelling content. Okay? That's what the task is.
+107:07
+
+Case study one. Okay? Now everybody clear the problem statement is what?
+107:23
+
+Let's say you are working in a startup company, and your target is you have to-- Your company, they have developed a lightweight water bottle let's say. Okay, they have developed a lightweight water bottle.
+107:36
+
+Now they have said the target audience is school kids under age 16 years. Budget they have given $3,000. Your job is, as a marketing manager, you have to identify the most effective channel where you have to do the marketing
+107:51
+
+so that maximum sale happen. Right? Now what is the task here? The task is, you can say,
+108:06
+
+task is to build an agentic system that can help
+108:20
+
+with the same using, let's say I'm saying autogen. Using autogen
+108:34
+
+framework. Okay? You have to do that task. Now, when you do this part, guys, the first thing first, you have to install the
+108:48
+
+package. You can go here. You can say pip install autogen. Okay? So this is the autogen.
+109:01
+
+The latest version released when, guys? Yesterday, 26th June. Yeah, so that part you have to remember it. You can go and install it. Pip install this autogen.
+109:14
+
+It's already installed in my system. You guys please go and install it. Once installation done, you can say import autogen. Hmm?
+109:28
+
+From autogen import AssistantAgent. From ipython.display
+109:41
+
+import display and Markdown. Okay, you can go and install this.
+109:57
+
+Better you can use Google Colab. Yeah, it's not appreciated to use VS Code or Visual Studio. You always go and use the cloud GPU machine.
+110:10
+
+I think... That's fine. Guys, autogen is the package, and here I have created AssistantAgent. Okay? This is nothing, it's
+110:25
+
+a basic Python. Yeah, I wanted to see the output in a better version, so that's why I said display in Markdown. You can go, say, from getpass import
+110:38
+
+getpass. OPENAI key equal to getpass. Enter your OPENAI
+110:52
+
+API key here. Okay, you can go and pass it here. What is your API key?
+111:06
+
+Done. You can say: import operating system os.environment, and here you can say OPENAI.
+111:22
+
+OPENAI_API_KEY equal to openai_api_key. That's it. Setup done.
+111:37
+
+Now, first thing first, the agent, they will connect with this LLM model, so you can say strategy
+111:49
+
+configuration list equal to Configuration list equal to, you can say, config
+112:06
+
+list equal to model. And which model? You can say I wanted to use GPT-4o
+112:18
+
+mini. Yeah, I'm using this model, guys. And close this strategy. Guys, please see this, how I've called the LLM model. This is nothing.
+112:32
+
+It's called LLM. LLM model. Whatever the API key you will give it here. Let's say I'm giving cloud, so you have to take a cloud. If you are giving Gemini, you can give a Gemini one. Right?
+112:46
+
+So this is what you have to do it. Are you guys with me? Everyone? Now you can see, guys.
+113:00
+
+Now you can see this. I'm creating an agent. So I am creating an agent. So what is the agent? You can say I'm making a
+113:15
+
+strategy agent equal to, you can say, autogen.AssistantAgent.
+113:28
+
+autogen.AssistantAgent. Okay, this is inbuilt function. Parenthesis bracket and put Shift and Tab button. When I say autogen assistant,
+113:41
+
+what is coming first? Name. Name means please remember, what is the name of the agent? What is the name of the agent? You have to assign the name. Please give the similar name.
+113:54
+
+So let's say I'm creating a static agent. Yeah, so you can give the agent name is a static agent. Give similar name. Don't give Sundaram. Don't give Himanshu. Yeah. Always give the agent name what is their name is similar.
+114:06
+
+Even if you give different name, that also makes sense, but it's not appreciated, right? Because when you do the production kind of things or when you even you can create a POC and when you have a big architectures there. Right? That time to calling with the same name is
+114:19
+
+very easy. Second part is what? System message. Guys, what is meaning of system message? Can I say persona? Come on, everybody. Can I say system message means persona?
+114:34
+
+Yeah? So you have to set a persona. Right? What is next? LLM configuration. LLM configuration, which LLM I am using it?
+114:47
+
+Which LLM I'm using it? I'm using GPT-4o mini. So you can say this is the this one. Okay, these three parameter you have to give it. When you create a agent, autogen.assistant_agent you have to create.
+115:00
+
+Now here, you have to assign the persona. So you can say, you can say here,
+115:15
+
+you are a logical marketing manager tasked with
+115:29
+
+crafting a marketing strategy A strategy. Okay? Your role here is
+115:42
+
+to gather details on the product, target
+115:55
+
+audience, and budget. Okay? That is what the task is. Here I have given a startup company, target audience, budget. Right? So what is the product is? Product is lightweight water
+116:08
+
+bottle. So that's the product. Who is my target audience? School kid under age 16 years. What is the budget? 3,000 budget. Yeah, that's what I have given it. So I'm saying you are a logical marketing manager tasked with crafting
+116:23
+
+marketing strategy. Okay? You have to craft the marketing strategy so that you can, as a manager, you have to instruct your employee. Your role here is to gather details on the product, yeah, water bottle,
+116:39
+
+target audience, and budget. Hmm? Then identify the best marketing channel
+116:51
+
+which will get that product maximum visibility. Okay? Now you can say, once you gather the product details,
+117:06
+
+means who are the competitor there? Do they have also similar product? Who are the target audience? What is my budget there? And then you have to identify who is the best marketing partners or channels there, where I can get more
+117:22
+
+visibility about my product. That's what intention is. Everybody, all my friend, you are with me? All my friend, you are with me?
+117:36
+
+Yeah. So this is my creating an agent. The agent name is a strategy agent who can create a strategy. Go ahead, execute this. Execute this.
+117:48
+
+Module name, Auto Client create. Client missing. OpenAI install is installed, but install version is too low. This one. Okay. Let me use the Google Colab because there are some
+118:07
+
+issues happen. Colab. Load notebook.
+118:22
+
+Sign in. Mm.
+118:36
+
+Altera completed. Agentic AI.
+118:54
+
+Okay. Runtime. Change runtime to GPU machine. Connect with this.
+119:13
+
+Okay. Execute here. So first we have to do this part.
+119:32
+
+Line number 17 is spelling mistakes. What is the spelling mistakes? This one. Oh.
+119:58
+
+openai.api_key. It's okay.
+120:12
+
+Now execute this. No problem. I'm using Google Colab, so this typing mistake, they can handle it.
+120:27
+
+Mm. Now execute this. Copy, paste here. Execute this.
+120:45
+
+Execute this. Hmm. What is the issue? Please pass the API key. API key already given, no?
+120:58
+
+What is the issue? openai_api_key equal to openai_api_key. This. Enter.
+121:11
+
+Missing credential. Please pass on API key. Admin API key or set the openai_api_key. Why? Where is the spelling wrong?
+121:36
+
+I said openai_api_key equal to this OpenAI_api_key equal to this. Okay, this one I'm seeing.
+121:50
+
+openai. openai_api_key. Okay. This is correct now. Now if I go here, Control + A, Control + V,
+122:08
+
+press Enter, Enter. Now it's working fine.
+122:24
+
+So the same mistake happened here also? Anyway, so it's working fine. You can see this
+122:36
+
+agent is ready to do the strategy. They will build the strategy. Now I'm creating another agent. Second agent.
+122:50
+
+Second agent. So they will create a strategy, and on that basis strategy, we wanted to generate a content. Okay? So I'm saying agent number 2.
+123:03
+
+This is my model. Here you can change the model also if you want it, because different agent, different model you can give it, but my suggestion is always go with the same model. Now here I'm saying,
+123:18
+
+generate content or content agent. Let's say I'm writing here, content agent equal to
+123:32
+
+copy-paste. Copy-paste. Okay? Change the name. You can say content agent. Content agent.
+123:44
+
+So this agent, their name is, they will create a content. This agent, they will make a strategy. On that basis, the strategy, the second agent, they will generate a content.
+123:58
+
+So you have to write the same thing. Now here you just tweak something. You can say, you are a content
+124:11
+
+generator agent, and your task is agent, and your role here is
+124:24
+
+to generate, to generate or create
+124:40
+
+the engaging
+124:59
+
+channel-specific content that
+125:12
+
+aligns with the marketing strategy, ensuring it captures
+125:25
+
+attention and resonates with the target audience
+125:43
+
+and their allocated budget. Okay, let's say this is what I'm writing here. Everybody, all my friend, you are with me? Go ahead, execute the second content.
+125:56
+
+What it's saying? Invalid syntax. Line number 2. So why the invalid syntax? Name equal to this.
+126:10
+
+Comma, system message equal to this, and LLM equal to strategic configuration. One minute. LLM
+126:24
+
+equal to, I'm writing here, content this, and give this LLM configuration equal to this.
+126:38
+
+autogen.assistant_agent_name. Sir, you are using double equal to when you are assigning the content agent, first line only.
+126:54
+
+No. My bad. Okay. So this is fine. So two agent I have created, guys. Now please understand how agent communicate together.
+127:07
+
+For that, whenever you use autogen, there is one more agent which is called user proxy. To be very honest, user proxy is nothing, means you.
+127:22
+
+Okay? Or you can say project manager. Project manager. So you have seen, any project comes, there is a client side there,
+127:35
+
+there is a technical side there, and there is a project manager there. What happened, whatever the information client will give, it will pass to project manager. Project manager take all the required details and
+127:48
+
+all They will coordinate with the tech lead as well. So same thing happen when we have one agent there and two agent there, in between there is a user proxy agent there. Means project manager there, they will channelize so both
+128:01
+
+agent can talk together. So you have to create a kind of third agent. Third agent, and what they will do, you can say
+128:15
+
+userProxy equal to autogen.userProxy. Name equal to userProxy. You can see what are the parameters there.
+128:29
+
+Human input mode equal to. Now this is very significant part, guys. Whenever you write human input mode, there are three options you will get. One, you will get terminate, another you will get always, and
+128:43
+
+third you will get never. Okay? Please understand these three parts. So, terminate,
+128:57
+
+always or never. Never you can give when you don't want my agent can go and communicate with the human. Are you guys clear when you give
+129:10
+
+them never? This is interview question. Interviewer ask you, you are building a agent, right? You wanted human input also. You can say, if I wanted human input, I will give the always.
+129:23
+
+So each time when there is a decision-making part there, you can give a control to human. First, they will come and they will check with you. If you give a permission, let's say you wanted to book a ticket. Agent will not go and book the ticket without your permission.
+129:37
+
+So always, when there is a decision-making is there, they will ask you. Never means I don't want human input at all. You can give free hand to the agent, agent can take a decision. And terminate means when the discussion
+129:52
+
+completed, it get automatically stopped. That time you can give it. Here I'm saying human input equal to always. Yeah? So what is meaning?
+130:08
+
+First they will complete the... What they will do, guys? They will take a human input. Yeah?
+130:20
+
+Means, whatever the content, whatever the strategy is there, are you happy with this strategy or do you want some modification? So they will ask you. Yeah?
+130:34
+
+Once the second agent, they will create a content. They will ask you, "Shall I go ahead and publish this?" Or do you want some more modification? They will ask you.
+130:47
+
+Yeah, that is why we have written human input equal to always. This is very significant part. Are you guys with me? Name you are clear, right? Any agent, you have to give the defining. Second part is human input. Yeah, you can give the human input. Is terminate message when it get interminated.
+131:01
+
+So I'm saying lambda is nothing, it's a defined function, x=x.get. So once they get the content, RS strip is nothing, it will go step by step and end with terminates. Means when the message get completed, automatic message will
+131:16
+
+come terminate. Yeah, means stop. And then you can say, code execution
+131:31
+
+configure equal to, you can write here false. Okay. That's it. Now what is this meaning? Please try to understand. UserProxy, when you use, when agent one and agent two
+131:44
+
+communicate together. Right? Or you can say there is a user proxy. They will say, "Hey, go ahead and create, make a strategy." Right? Who will initiate? UserProxy will initiate.
+132:00
+
+They can give the task to first agent. Once first agent will give the answer, this userProxy will check with the human. Are you happy with the response? If you can say yes, then userProxy will go back to the second
+132:14
+
+agent and they can say, "Hey, now your task is you can go and generate the content." Again, they will check with you, human, that are you happy with their content or you want some modification? If modification, the userProxy again, they will go back to the content
+132:27
+
+agent. They can say, "Please generate another content." Like that, to and fro happen. Are you guys with me, my dear friend, everybody? Say yes or no. Simple?
+132:42
+
+Yeah? Please go ahead, execute this. Now you can give the task here. So what is the first agent? Creating, this is your first agent.
+132:56
+
+Creating first agent. First agent. So first agent, they are the strategy one.
+133:09
+
+So they will make a strategy, basis the product detail. Startup company, what is the product detail? This is the product detail. So you can write here, you can say
+133:22
+
+product details equal to, you can say here, water
+133:35
+
+bottle for school children under the age of 16 years.
+133:48
+
+The marketing budget is US$3,000, USD.
+134:02
+
+Okay, this is what the product details there. Correct? So all things, what is the light water bottle? Light water bottle. Who is the audience? School under this.
+134:15
+
+And what is the budget? This one. That's the product detail. On that basis, who will work? The agent first will work. Now, whatever the agent, they will find the... They will make a strategy on that basis, the second agent.
+134:27
+
+Their task is writing. Writing task. So you can say, write an engaging
+134:41
+
+content for the mentioned product and channel. Okay, that is the task number two. You can say execute number two. Okay.
+134:54
+
+Now, guys, last part. Okay, final part. You can say final result. Final result equal to
+135:08
+
+autogen.initiate chat, parenthes is bracket. And my dear friend, first part is what?
+135:22
+
+You can say the first part is sender. Who is the sender? You can say the agent number. This user proxy. They are the sender.
+135:36
+
+They are the sender. Comma. Who is the recipient? Who is the recipient? They are sending to whom? They are sending to
+135:50
+
+a strategy agent. Okay? They are sending to first agent. So how they are doing it. Sender is user proxy. Recipient is a strategy agent. Right?
+136:03
+
+What is their message? Message equal to, you can say your message is product details. You can say your detail is product details, index number zero.
+136:19
+
+Okay? Index number zero. Content equal to, leave the content message I have given. Yeah. You can say this, and
+136:35
+
+remaining you can say summary method equal to
+136:48
+
+last message. Yeah? Means what happened, let's say you are not happy. Okay. Let's say you can say I'm not happy with the response. So what happened? You can give an instruction,
+137:00
+
+change the strategy. So they will again do it. Third time, fourth time. Like that they will do it again and again. So each time you can change it. Which one you will take? The final one. Last one. So that is the first part. If you are happy, then
+137:14
+
+what happened? The user proxy, they will gather all the information, whatever the strategy agent, they generate a strategy, and this agent will give to whom? The second agent is called
+137:29
+
+content creator. What message they will give it? What message they will give? You can say the message they will give to writing task. Writing task. Okay?
+137:41
+
+And how? Here also you can say summary method equal to this. Summary method equal to this. Guys, are you clear, everybody, the syntax, are you clear? Believe me, one or two times you will write, you will not forget this part.
+137:54
+
+And this is what you can give a POC. So whenever you can discuss with your client, you please understand the concept first. Then you can say, "Okay, next week we can conduct, connect a call." Right, we'll set up a call, and I'll show you the POC.
+138:09
+
+If you are happy, then I'll take your production data, and there I will build it. Yeah. So what happened? First time, the user proxy, they will communicate with the strategy content agent.
+138:23
+
+And then user proxy will check with the human also. They will check with the human also. If you can say yes, pass, then they will again go to the second agent. All
+138:36
+
+my friend, are you with me? Tell me. Hmm? Now, let me go ahead and see this. You can see.
+138:59
+
+Starting, guys. Starting. Starting new chat. User proxy sending to whom? The strategy agent. What they have given, light water bottle for school children
+139:11
+
+under the age of this. Now when they have given that detail, when they have given this detail, you can see magic, guys. Magic. You can see the magic.
+139:24
+
+When they have given this detail, user proxy, they have given this detail, a strategy, they have create a content. They said thank you for sharing the product detail and budget. Let me break down the component necessary for an effective
+139:37
+
+marketing. They said product overview, light water bottle. Target audience, school-age children under 16 year and their parents. Key selling point, lightweight design, cater to children, student-friendly features. Yeah.
+139:49
+
+Spill-proof, easy to carry, variety to fun color and design to appeal to children, eco-friendly material to engage environmentally conscious Parents. Who is the target audience? Primary audience, secondary audience.
+140:05
+
+Primary, children six to 16 years who need a water bottle. Interest may include report, school activities, and health lifestyle. Secondary is a parent who value practicality, health,
+140:20
+
+and sustainability in product for their children. Second, educator or a school administrator who may consider the product for a school event. Right? Now, marketing channel. So what is the budget there?
+140:35
+
+3,000 budget across selected marketing. So they spend social media advertisement, $900. Platform is Instagram and TikTok, as they are popular with young audience. Second is influencer marketing. Maybe Shah Rukh Khan, maybe some other
+140:49
+
+film star. There, they wanted to spend $900. So $900, $900, $1,800. Now, third is content marketing. Like blog post.
+141:05
+
+$600. Offline marketing, $300 offline means they can make a shop on a school or some community. There also they have to pay. Or some promotion, they will send
+141:18
+
+the product. Promotion and discount, 300. Monitoring and evaluation, tracking engagement, and then. And then they are asking, replying as user proxy. User proxy is asking provide a
+141:33
+
+feedback to a strategy agent. Press Enter to escape or auto reply, or type exit to the conversation. So if I type exit or I can press Enter, then they will directly go to
+141:46
+
+another agent. But I am saying no. Please spend social media advertisement $700.
+141:59
+
+So if you give a suggestion, I am giving a suggestion. Please spend
+142:12
+
+$700 in social media and $600 for,
+142:26
+
+let's say I'm saying, offline marketing. Just I'm showing you how it is working.
+142:45
+
+And $600 for offline marketing, and also provide me a table where
+143:02
+
+all the allocated budget reflect correctly. Okay, press Enter. See, when I have given
+143:15
+
+this detail, proxy will give this information to whom? When I have given this detail. Replying to user. When I said provide feedback to this,
+143:29
+
+this, I have mentioned, please spend $700 in social media and this, this. Also provide me a table where all the allocated amount are there. Now, this proxy is giving to a strategy agent, and a strategy agent is started working,
+143:44
+
+and they are responding to, again, user proxy. Sure, here is the revised budget. Social media, 700. Influencer, 900. Content marketing, 600. Offline marketing, I have increased, now 600.
+143:59
+
+Promotion and discount, 300. When you accumulate, it's coming overall 3,000. And break down all these things they have done. Now I'm happy. I'm saying, "Okay, go ahead, pass," or I'm saying exit.
+144:11
+
+When I exit, then the user proxy, they will go and give the information to whom? Yeah, see this.
+144:25
+
+To the content writer. Okay. I have given here exit. You can see the system get terminate. Means first agent, their conversation completed.
+144:37
+
+Now, the user proxy, they are giving the same information to content agent. And they said, what is the task? Write an engaging content for the mentioned product and channel. And now these are the information they have given.
+144:53
+
+Okay, here conclusion. Now content agent, they are writing the content and giving information to user proxy to revalidate with human. What is the content they have written? Product Light Water Bottle.
+145:08
+
+Social media advertising content, 7,700 budget. How they have written? Instagram post, they said slide one, image the Light Water Bottle in scenic outdoor setting. Caption, stay hydrated
+145:22
+
+in style. Like this, this, this. Slide two, slide three. Just see that, guys. Now you don't need a content writer. Nowadays, you have seen, no content writer job also gone because of agent.
+145:38
+
+Most of the company, they don't hire content writer. Earlier, how much amount content writer they were charging. Today you can see very less content writer required there because agent is doing better job than them.
+145:53
+
+You can see they are giving influencer marketing, campaign idea, partner with eco-dis, all example, everything they have set up. Content marketing blog How you will write a blog, they have also given highlight benefit of this.
+146:08
+
+Include tips and ensure you are drinking enough water daily, and how the right bottle can encourage hydration. Downloadable resource, you can give something. Offline marketing, promotion and discount and this.
+146:22
+
+Again, they are checking with you. Are you happy? I'm saying write something more interesting with emoji,
+146:36
+
+so that it looks better. And provide detail.
+146:51
+
+Provide as detail as possible. Enter. Now, see guys.
+147:07
+
+When I've saved this, it's going on. Just wait. Yeah. Now see this.
+147:21
+
+Now they have given even better way. Write something more interesting with emoji. They said product light, social media advertisement, this Instagram.
+147:33
+
+Influencer, content, blog post, explore this, downloadable resources. Now you can see in a better way. Offline marketing, promotions. Yeah, like that you can see. And if you are happy, you can say, "Fine, thank you." Exit
+147:47
+
+and content done. System stopped. Like that the agent works. Are you guys with me?
+148:03
+
+Come on. Everybody?
+148:15
+
+Mm-hmm. Okay. So this is just a kind of POC I have shown you guys. This is just a kind of POC.
+148:32
+
+Like that, you can create a multiple agent, and each agent you can assign a different task. They are ready to do that activities. Okay? So what I'll do, if you guys remember in last session, I have given
+148:46
+
+some cases study. Yes or no? Some assignment I have uploaded, guys. One assignment for prompt engineering, another assignment for RAG system. Can I give today some POC kind of things you have to build a
+148:58
+
+agent, and each agent you have to give a different persona and you can see how you will solve the task? Can I give you some task today? Yeah. So now every week I'll give you some task. Yeah.
+149:13
+
+Some of the task is POC and some of the task is real time. Yeah? But I wanted you guys, please do it. Okay. It will help you a lot. Okay, so anybody have any questions you can ask me, then we'll take a quick break,
+149:28
+
+and then I'll show you one more POC for CrewAI, so that tomorrow my full focus is LangGraph.
+149:44
+
+Hmm? So who has raised hand? Badri. Yes, Badri?
+149:57
+
+Yes, sir. Can you hear me? I can. Yep. So as you shown in the last code, right? For the autogen. This is autogen,
+150:10
+
+right? So yeah. For the autogen, we are having two proxies, one is for strategy and another one is for content. Proxy one only, two different agent. Yeah, two different-
+150:24
+
+Task-oriented agent, and one proxy means they are a coordinator. Yeah. So, when we give exit at the first point, it will not route to the second
+150:36
+
+agent, right? It will not route to the second agent. Once proxy agent give a permission, when you will. If I write here human, right? If I don't write here human equal to if I write never,
+150:49
+
+automatically user proxy will talk to the first agent. Whatever response the first agent will give, it will go to the second agent, and after second agent, answer done, completed. But I wanted human intervention, means your intervention also.
+151:03
+
+So that you can control your agent. You don't give free hand to your agent. Okay? Okay. Sure. That is what I did. No. So when user proxy connecting with the first agent, whatever the generation happened, they are asking to you, are you happy?
+151:17
+
+If I'm writing some feedback, they are modifying it. If I'm saying yes, exit, then only they will jump to the another agent. Then user proxy said that, "Okay, you are fine." Then whatever the agent one generated, that content we are giving to second agent.
+151:33
+
+And second agent did something different. Now if I create third agent also. Let's say I'm saying you have to create a beautiful email. Okay? Now the third agent, what happened? They will create a very nice email to the school principal
+151:48
+
+or maybe parents or something like that. If you say, whatever task you can assign, they will do it. It depends. You only have to know the task. When you work in the real time, your client will tell what they want,
+152:03
+
+what kind of job they wanted to do it, and accordingly you will perform. Make sense, guys, everybody? All my friend Yes, sir, I understood. Thanks, sir.
+152:17
+
+Nisraji, Sat. Chittis, please unraise your hand if there is no questions, because you both are already unmuted. Dhruv Mukerji, if no questions, please unraise.
+152:36
+
+I do have a question, sir. Only thing is that this user proxy is defining the channel through which it's going to send to which agent. So it's a kind of router agent also we can tell or?
+152:49
+
+Finding a channel? No, they are collaborating. Their job is collaboration. So it's not a router. If there is some conditions- Router means conditions. Yeah.
+153:04
+
+This is what we are doing. If something is there- Huh? ... some conditions that we have applied, that if we required a brief or content of it, then send to this. No. User proxy only role is, do you need human intervention or
+153:16
+
+not? Yes or no? Yes? Oh. Yes? Then I'm saying always no, then say never. That's it. Okay, and one more thing. Terminate and never, so both of them are having a same key role, right?
+153:31
+
+Terminate also, once he execute something- This terminate you are saying? Yes. And never. Terminate means automatically stopped. Automatically stops. And never is also going to get stopped automatically. Never also, but never you will get a visibility also.
+153:46
+
+If I write terminate, you will get final result directly. Is there any other within never- No, only three parameters are there. So if I go here in autogen,
+154:01
+
+this one, only three parameter is there. I'll show you here. Shift and tab. Autogen, user proxy. Yeah?
+154:14
+
+Human input mode. What is there? Always never then. Terminate. Always means any action happening- It will always looking after something ... human feedback is required. Means everything internally happen and you get final result.
+154:30
+
+Never means you have a visibility. They will not check with you, but you have a visibility what agent first generated, what agent second generated, and like that. Okay. So that is why I always prefer is you can either go always or you can go
+154:44
+
+never. Don't go by terminate. Clear? Yes. Sir, can you please explain this once again in short from top to bottom, sir? Please explain short to, sir. Please explain.
+154:57
+
+Why four, five times? What explanation you need, my friend? I have created a agent one. So task you clear, right? There is a startup company. The product name is Light Water Bottle.
+155:10
+
+The target audience is a school kid. Their age is under 16. The budget, let's say, the company they said your budget is $3,000. Now you have to build a brilliant marketing strategy, and on that basis you
+155:22
+
+have to generate a content so that we can publish it, we can follow it. Also you have to give me the budget allocations. Yeah? And how is it happen? I will not give you any content or a strategy employ,
+155:35
+
+because when I hire, there is a cost there. So you can create agent, and agent will do this. So two employ job gone. First employ who will do the strategy, second agent who is writing content.
+155:50
+
+So two employ, you automate them. Right? Now what I have done, I have created, I'm using the autogen framework. I have created, this is basic framework, right? Python packages. Here I have taken a API key. Here I have taken GPT model.
+156:03
+
+Agent one, I said the name is strategy agent. System message is nothing. The persona, the task, how this agent works, and LLM message. Second agent is their content agent.
+156:17
+
+Their task is they have to generate a content, right? And on which basis? When the first agent will give. Third agent is a collaborative, right? They will collaborate in the agent one and two.
+156:31
+
+Also you need human feedback or not. So I have created always here means yes, I need a human feedback. What is the first task for agent one? So this user proxy, they will talk to the agent one, what task they will give. So this is the task agent user proxy will give to the agent one.
+156:43
+
+Once agent one will give the answer, if you are happy, you can say exit. Then user proxy, they will connect with the second agent, and there this is the task they will give to them that, hey, these are the strategy there.
+156:59
+
+On that basis, your task is you have to write a content or write a email. Like that you have to say. So this is what we did it, and we got the answer. Now what is the big deal? Why you are writing five, 10 times?
+157:12
+
+Clear? Guys, everybody yes, no, happy? Madri, you have raised hand, please unraise your hand. Already answered. Yeah.
+157:25
+
+So can we take a quick break, guys? 15 minutes break is okay? Hmm? So we'll connect at 1:00. I'll show you one more
+157:38
+
+POC for TrueAI, and then I'll give you two, three task today. Yeah? I'm not saying that tomorrow when you come you have to complete it. If possible, yes, very good. If not, but by this week you have to complete it. Okay?
+157:53
+
+That's what my... I'll share the task. Tomorrow I'll teach you the LangChain and LangGraph autogen. Yeah? Then I will go more complex called agentic RAG system. And again, I will come back the previous session, see that and
+158:07
+
+GraphRAG model. Yeah, so like that, the combination happen, and you guys will learn also. And then fine-tuning, then observability, guardrail, responsible AI and
+158:22
+
+I think MCP by end of July, you all are ready to give interview. Okay? Ciao. But and all in fine-tuning, my friend. We'll cover that part.
+158:35
+
+Fine, guys. Anybody have any questions, please type in chat. Once I'll back, I'll see it. Yeah, and then I'll respond to you. Thank you.
+158:49
+
+All right, guys. I'm back now. Are you there, everybody? Okay. So let me pick another POC for
+177:38
+
+CrewAI.
+177:56
+
+All right. So pip install crewai.
+178:14
+
+Released 42 minute ago. Okay, so it released today only. It keeps changing the version and all. So you need not to worry about this. When you write pip install crewai, automatically
+178:28
+
+they will take the latest one. Sometimes some glitches happen, so you need not to worry about that. You can change the version. Yeah? So how you will change the version, let's say, this is the 1.15.1 there. You can take
+178:41
+
+0.8, 0.9, 1.0, like that you have to take it, and then you can try this. All right?
+178:55
+
+We did a start decision. Okay. So you can say import
+179:17
+
+crewai and see the version. You can say crewai._ _version__.
+179:33
+
+So this is coming 1.15.1. Yeah, that's the latest version is the 1.15.1. Yeah, so it's the latest version. Now,
+179:46
+
+you can go and import this. You can say from getpass import getpass,
+180:02
+
+and openai equal to this one. So let me take this. Press Enter, press Enter this,
+180:14
+
+and same thing you can copy, paste. Control C. All right.
+180:28
+
+Now, what you have to do, you can say from crewai import
+180:41
+
+Agent, their Task, Crew, and LLM. Okay, these four things you have to install it. Agent means you are building agent.
+180:55
+
+Task means you can assign the task. Crew means they will collaborate together. Crew member, right? There is a central member there. So Crew, and then LLM by the help of GenAI LLM model,
+181:09
+
+we can utilize them. Okay, we will use it. So you can go here, use the LLM. You can say from langchain
+181:22
+
+openai import ChatOpenAI. LLM equal to,
+181:34
+
+and you have to import this one, LangChain model also, so that it will work. So you can say
+181:47
+
+import langchain. ChatOpenAI, and you can say
+182:00
+
+model name equal to gpt-4o-mini.
+182:13
+
+All right. So what I'm doing here, I'm just using the GPT 40 model, and you can install these packages. All right? Everybody, all my friend, you are with me?
+182:28
+
+LangChain OpenAI is not connecting. They are not able to read it. So let me do one thing. Module name LangChain OpenAI is not readable.
+182:48
+
+No module name called LangChain OpenAI. Why it is saying? Problems.
+183:01
+
+Installation.
+183:26
+
+Okay, so working fine. Now let me put a comment. What's this?
+183:45
+
+So guys, see here what happened? You have to import this. This is very easy, huh? CrewAI, Autogen are very, very simple. I'll give you four or five case studies. You guys please try to solve it by your own. Okay?
+183:58
+
+It's very easy. Now what I'm going to do here, I'm creating multiple agents, and each agent has some different tasks there. Okay? Let's say agent has a different task, and their job
+184:12
+
+is they have to connect with the different LLM. Hmm? So you can go and say this. Let me put here,
+184:25
+
+Agent 1. Agent 1. Okay. You can see this agent,
+184:39
+
+let me write this. You can say building healthcare
+184:52
+
+AI agent. Hmm? So first, let's say topic is, I'm saying AI in
+185:07
+
+healthcare. Now execute this.
+185:21
+
+You can write here the agent name. Let's say I'm saying, what is the name?
+185:34
+
+Anything you can give, let's say, Research Analyst. Okay?
+185:48
+
+Agent, parenthesis bracket, and when you create a agent, right, what are the parameters you have to give? What are the parameters you have to give?
+186:01
+
+You can go here.
+186:13
+
+So see here, when you create agent, what happen? First thing first, you have to give a role. Right? Role means you can simply think about name. Okay, what is the name of role means?
+186:27
+
+You can simply think about the name. So name is, let's say I'm saying Research Analyst.
+186:41
+
+Okay, that's the name of the agent. Second part is what? Second part is given goal. Goal means what is the objective? Yeah, what is the goal? What they want to achieve.
+186:54
+
+So goal equal to, let's say I'm saying, research, analyze, and
+187:08
+
+synthesize comprehensive information of, you can say topic. So what is the topic?
+187:21
+
+AI in healthcare. Yeah? From the reliable web source. Okay? So I'm saying don't go and
+187:35
+
+take anything from YouTube or something else. You have to take details from reliable blogs or reliable website. Yeah? Like Blue Bomb or you can say some
+187:48
+
+different source, "The Hindu," you can take the details from there rather than you can go and pick data from anywhere. So that's the goal for that agent. Next, comma,
+188:02
+
+what is the next parameter is? Backstory. Backstory means, guys, system message. Okay, what is the meaning of backstory? Backstory means persona. Yeah? So you have to write a persona. You can say,
+188:14
+
+"You are an expert research analyst with
+188:28
+
+advanced web research skills." Okay? Your role is,
+188:41
+
+you can say, your role is
+188:55
+
+to Find, analyze, and synthesize
+189:09
+
+information across the internet using search tools.
+189:25
+
+Okay? You are skilled at distinguishing
+189:37
+
+reliable sources from unreliable ones. Fact-checking,
+189:49
+
+cross-referencing information. Okay? So that some nitty-gritty does not happen.
+190:03
+
+So you can write a persona, and there you can say, first, you are an expert. Second, your task is to analyze, to find, to synthesize, to search engine from go to internet and find the information.
+190:17
+
+Next part, you are skilled at distinguishing reliable source versus unreliable one. Yeah? So they will do the fact-checking, they will do the cross-referencing, and then only they will take the information from internet.
+190:32
+
+Hmm? Then only they will take the information. Otherwise, there should be some, debugs happen or maybe something like that, it happens. So that is what we are saying it. Now I'm saying,
+190:46
+
+you identify the right source and wherever
+190:59
+
+you find some glitches or unreliable
+191:12
+
+source, please avoid taking that information. Okay?
+191:28
+
+You will provide the citation
+191:45
+
+and source as well for verification purpose. Okay? I'm giving a task to my agent that from where you are taking.
+191:59
+
+So give me the citation, give me the source as well. Yeah? For verification, so that human can also see whether you have taken a data from the liable source or unreliable source. Hmm?
+192:13
+
+Your analysis includes both raw data
+192:28
+
+and interpreted insights, making complex information
+192:42
+
+accessible and actionable. All right? This is the information I wanted to pass it out. You can say, "These are the information you have to give me."
+192:55
+
+Okay? So what I have done? I have role means, I have given the name. Goal means, I have set the target. What is the task
+193:10
+
+is? Backstory means, what is there? Persona there. And then role, goal, backstory, you have to give as it is.
+193:23
+
+Okay. That's it. Hmm? Now, so these three things you have to give now. You can say which tool they will fetch. So tool equal to,
+193:41
+
+let's say I'm saying search tool. Search tool from internet. Okay? Now what are the search tool there?
+193:54
+
+What are the search tool there so that we can connect with the internet? So guys, there is a tool there. It's called Serper Dev Tool. Okay? It's one of the best tool. Yeah, it's a Google product.
+194:07
+
+So Serper Dev Tool is a powerful search utility in the CrewAI framework that gives AI agent the ability to perform live web searches via the Serper Google Search API.
+194:23
+
+It enable agent pull real-time data, okay, and context from the internet to complete task accurately. How to set up and do this. So this is free of cost, right? 2,500 free
+194:37
+
+queries you can ask. There is no charges. So you can please go in this Serper. You can simply go in the Serper tool, click here. Everybody, please sign it. You can first
+194:52
+
+this. And once sign up done, you will get 2,500 free. And how fast it is? The world fastest and cheapest Google search API Experience unparalleled speed with our
+195:05
+
+industry-leading SharpAPI, delivering light, fast Google search results in one to two seconds at an unbeatable price. Very, very low cost. No credit card required. You can go and utilize it.
+195:20
+
+So let me log in this. Let me log in here.
+195:35
+
+Okay. Now, there are 2,500 credit they are providing me. Let me click the API. I'm copying this API. Okay. And here, I'm putting this. So I'm saying, okay.
+195:51
+
+Let me take the API key. So I'm saying here, operating system, or first let me say
+196:06
+
+sharperapi key equal to get pass. Enter your sharperapi key here.
+196:20
+
+Press Enter. Okay? Next, copy-paste. You can say os.environment
+196:35
+
+sharperapi key equal to sharperapi key. Okay, let me take this. Done.
+196:49
+
+Now you have to import. You can say, from crewai_tools
+197:01
+
+import sharper-devtool. Okay, kind of guys, MCP. You can say a kind of MCP. But MCP, I'll set up separately, but here you
+197:15
+
+can see real-time data, they will fetch it and give the answer. Mm? So it's not working. Let me install the packages. You can say pip install crewai_tools.
+197:29
+
+Start the system. Okay.
+197:59
+
+Import crewai.
+198:14
+
+Control-paste. Enter. Enter. Enter. Enter.
+198:26
+
+sharperapi key, copy-paste.
+198:46
+
+Okay. So this is working fine. Yeah? What I'm doing, guys, ideally, we should not use GPT 4o Mini because it's a Google product, so you can go with the Gemini. Can I change this OpenAI to Gemini, guys? It's easy.
+198:59
+
+Mm? But it's okay, no problem. That will also work. But my suggestion is, because this is there, but let me try. I'm using that one. So what I'm doing here,
+199:15
+
+this search tool from internet equal to sharper-devtool.
+199:28
+
+Yeah? Let me use this. Now, please go here and do this. You can say comma llm equal to llm model. Okay, which llm?
+199:46
+
+OpenAI GPT 4o Mini, I'm using it. And that's the llm I'm using it. Please go ahead, execute this. What it's saying? Do validation error
+200:01
+
+agent, llm is string, chunk timeout. So timeout, let me give n equal to two. Let's see.
+200:14
+
+Comma. Comma. Comma. Comma, comma. Validation error.
+200:34
+
+They are saying LangChain is not validating. Why? Do I need to install again?
+200:54
+
+Or better, I'm just changing it. Let me do one thing. Don't change here. I'm not using this LangChain, I'm using Google AI product. So leave this
+201:11
+
+I'm seeing here Gemini key. Okay, let me open the Gemini.
+201:27
+
+Key.
+201:43
+
+Google, yeah. So copy-paste. Enter. Okay, here I'm seeing
+202:12
+
+Germany API key equal to Gemini key.
+202:26
+
+Fine. Serper key already I have given. Now copy this.
+202:39
+
+Paste here. So from LLM.
+202:57
+
+So AI healthcare, and here I'm writing, crew AI LLM model equal to LLM from. Delete this part. Let's say this,
+203:16
+
+and LLM equal to. One
+203:30
+
+thing can say import Lite LLM. Lite LLM.api_key equal
+203:51
+
+to Gemini api_key. It's showing in errors.
+204:04
+
+All right. So Gemini API key is not identified. Why?
+204:40
+
+You're working fine. Serper API key equal to copy, paste.
+205:27
+
+Okay. So now what I'm going to do here, I'm just setting here. I'm saying LLM. Yeah? So LLM is my model. Okay? So you can see
+205:52
+
+here, I have imported the packages here. Agent, task, crewAI, and LLM. Yeah? So you can write here LLM equal to LLM. And which LLM?
+206:05
+
+You can say model equal to Gemini. And in Gemini, you can say, let's say I'm taking 2.0.0-flask
+206:17
+
+model. Okay? Or 2.5 flask model, you can take it. Execute this search tool. You can execute it. Now if I execute here,
+206:35
+
+LLM equal to, you can simply write LLM. Execute this. Okay, done. So I have created agent one. What is their role? Research. Now agent two.
+206:48
+
+I'm building agent two. They are content creator. Similar thing.
+207:03
+
+Copy-paste. So first agent, please remember, the agent number one, they are the research agent.
+207:16
+
+Research agent. And the second agent is? Agent number two is a content agent. Now change the name. Instead of research, you can say
+207:29
+
+content writer. You can say content writer. Content
+207:44
+
+writer. Now, what is their role? Role is this. What is their goal? So you can say goal is transform
+207:57
+
+research findings into engaging blog post while
+208:12
+
+maintaining accuracy. Okay. Backstory is you can simply say, you are an expert
+208:26
+
+content writer. Content writer specialized in creating
+208:40
+
+engaging, actionable content from
+208:54
+
+technical research paper. Technical research, okay? You work
+209:06
+
+closely with the, let's say I'm saying senior research analyst
+209:19
+
+and excel at maintaining the perfect
+209:33
+
+balance between information and entertaining
+209:46
+
+writing while ensuring all facts and
+209:59
+
+citation from the research which are properly
+210:14
+
+incorporated. Okay. You have talent for
+210:26
+
+making complex topics approachable without
+210:38
+
+oversimplifying them. Okay, let's say this is what the persona, you can write blah, blah, blah. So many things you have to write it. Okay, no problem.
+210:51
+
+Close this. Close this. Tools here not required because first time only. First time what happened? The first agent, they will go in the Sarper API
+211:05
+
+tool, and they will fetch the details from the internet. Whatever the information they gather, they will give to the second agent. And second agent, basis this, they will write a content. Okay, that's what we have to do it.
+211:19
+
+Now, please remember, rule number one: you have to create an agent. Okay? Crew here, when you do, rule number one, you have to create agent. So I have created two agent. Rule number two: you have to assign the task. Okay?
+211:33
+
+This is rule number two. And rule number three is the crew. Crew means output. You can say crew means gathering. Yeah. Agent and task together talks, and then it will generate the output. So three steps.
+211:47
+
+Their LLM is a model. By the help of LLM, agent can take a support, and then they will do it. So now you can go and assign the task. So here I'm saying
+212:02
+
+assign task. Okay? Now, you can say first task is writing task.
+212:16
+
+Writing task. You can say task, parenthesis bracket. Okay, when I write a parenthesis bracket, you can see what are the things there. User tool, tool error, delegations, name.
+212:29
+
+Prompt context, description. You have to copy the description. Means whenever you assign the task, you have to provide the description. Okay, that is the part number one.
+212:47
+
+You have to write a description. Okay, so you can say what are the description I wanted. These are the descriptions you have to give it.
+213:00
+
+Comma. Second part is expected outcome. What is your expected outcome? This is task two. What is your expected outcome?
+213:13
+
+So you can give some expected outcome. Let's say this is what my expected outcome is. Okay, these are my expected outcome is. Next part is,
+213:27
+
+who will work these activities? So agent equal to, you have to say the first agent is called research agent or content agent, right? Like that you have to say it. So my first agent is research analyst.
+213:40
+
+So you can say research analyst. Similarly. Yeah? So here you can say, first pass is research task. Research task,
+213:55
+
+copy, paste. Second task is writing task. Writing task. So first task is this and second task is this. Now task one, you can say how they will do it.
+214:09
+
+So description, you can write. Point number one, you can say conduct comprehensive
+214:24
+
+research on topic. What is topic? AI in healthcare, including. Can say
+214:36
+
+recent development and news. Second, key industry
+214:50
+
+trends and innovations. Then you can say export opinions and analysis. Guys, this is also one of the way to improve, right?
+215:04
+
+You can upgrade your interview preparation. Yeah. So you can make one interviewer and ask them what kind of GenAI questions comes, agentic AI question comes, Edu-related questions there. Can you please help me?
+215:20
+
+So they will give you a set of questions. You can say, "Give me the answers also," they will give you a set of answers. You can say, write in a simple tone, right? So they will change your tone. Write how you wanted the answer. Yeah, don't use ambiguity words.
+215:34
+
+You can mention there, and you will see how nicely it will give the answer. Next, you can say statistical data and market insights.
+215:47
+
+Point number two, you can say evaluate source credibility,
+216:02
+
+and fact-check all information. Point number three, organize findings
+216:17
+
+into a structured research brief. And fourth, you can say include
+216:30
+
+all relevant citation and sources for reference purpose. Yeah? So tomorrow your client will ask you that you have given this
+216:44
+
+research and writing task. From where have you taken it? Let's say you're building a RAC-based agentic AI system. From where, which chunk, which embedding you have taken, so you can write a citation and all. Yeah?
+216:57
+
+What is the expected outcome? You can say a detailed research report containings.
+217:10
+
+You can say, I wanted executive summary of key findings.
+217:22
+
+Second, comprehensive analysis
+217:37
+
+of current trends and development.
+217:53
+
+Developments. Next, list of verified fact and statistics.
+218:06
+
+Next, you can say all citation and sources. Yeah? Along with their
+218:20
+
+original link. Clear categorization
+218:34
+
+of main themes and pattern. Please
+218:46
+
+format with clear selection or sections and bullet points for
+218:59
+
+easy reference. Okay, let's say this is what I have mentioned here. So this is the agent number one. Okay? Agent number two is, once this agent is ready. They have done the research.
+219:13
+
+Now, whatever the research they have done, on that basis, the agent number two, they will write a script. So you can write here. You can say, using the
+219:29
+
+research brief Provided create an engaging blog post
+219:41
+
+that what they will do? You can say, transform technical information
+219:54
+
+into actionable content. Second part, you can say, maintain
+220:08
+
+all factual accuracy and citation from the research. Yeah?
+220:20
+
+What is my expected outcome? You can say, a polished blog post in display
+220:33
+
+markdown format that will give the-- engages readers while
+220:47
+
+maintaining accuracy. Contains properly
+221:00
+
+structured sections. Include emoji wherever required.
+221:12
+
+Okay? You can say, follow proper display. Right? So these are the things, guys, I have mentioned here.
+221:27
+
+You can expand as many details as you want, right? How relevant, how amazing result customer wanted. Yeah, you can go and do that part. So I have just written some, for POC purpose, but you can add as many details as you
+221:40
+
+wanted. Now, see step number one, guys. I have to create a agent. This is called step number one. Step one,
+221:55
+
+create agent. Agents. What is step number two? Assign task. Step number two,
+222:07
+
+assign task. What is step number three? Step number three is
+222:20
+
+crew with agent and task. Okay? Now you have to combine both the activities. So you can say, crew equal to crew, parenthesis bracket. Now see, what are the
+222:33
+
+things I have taken here? Agent, so I have created agent. Task, I have given. LLM, already I have used it. Now, crew is there. So I have taken a crew.
+222:48
+
+You can go put your shift tab. Now see this. When you take a crew, right? What are the things there? You have one is, you have agent. You have one agent.
+223:01
+
+So how many agents there? That agent's name, you have to give it. Second part, comma, what are the task there? So you can say task equal to task here. Okay? And you want it
+223:15
+
+verbose, you wanted to see the response also, you can say true. Okay? Whatever features are there, you can put as it is. So agent are two agent. You can copy-paste. Agent one is research analyst.
+223:29
+
+Agent number two content writer. And similarly, you can make one, they will write a code. Second, they will validate them. And third, they will save your
+223:46
+
+code. Yeah, like that, you have to assign the task. Now, what are the task you have given? Research task. Next, writing task.
+224:00
+
+Hmm? And then you can execute it. So guys, what happened? Name content writer is not defined. Why?
+224:14
+
+In 34, change the name of the agent while giving the task. 34. So not executed. Is executed.
+224:27
+
+Is executed. This is done. This is done. Okay. Yeah. So perfect, guys. Research analyst, content writer. Right? There are two agent I have created.
+224:40
+
+Research analyst, their task is research the task. Content writer is this. Yeah? Now you can go and step number four. Step number four,
+224:53
+
+generate the agentic response. Response. See here, I'm saying result equal to
+225:05
+
+crew.kickoff. Kickoff. Okay? And here you can say input equal to whatever the topic you have written. Topic is AI in...
+225:20
+
+Yeah, topic equal to AI in healthcare, AI in GenAI domain, AI in finance sector, AI in banking domain. Anything you can write it. Yeah? That's it, guys.
+225:35
+
+Print Result and go here. Inputs.
+225:49
+
+Yeah. So CrewAI task is this. Task failure. Why failure?
+226:01
+
+Agent execution was invoked sync logic within the running loop. Agent kickoff. Kickoff sync await agent execute task. Something mistake happened. I think some of the tools have not executed
+226:14
+
+properly. One minute, guys. Control.
+226:29
+
+No problem.
+226:45
+
+Execute.
+227:00
+
+Gemini control, paste. This is done. Now this is done
+227:28
+
+and LiteLLM. API key equal to. Yeah. So that now the connections happen. So you can see LiteLLM equal to
+227:41
+
+Gemini API key. Okay.
+227:56
+
+API key equal to this. Gemini API key is why it's not taking. API key.
+228:11
+
+Gemini API key is not defined. Why? 10 seconds to find this.
+228:25
+
+Not taking. Okay. This server API key, copy, paste.
+228:43
+
+Server API tool. AI and healthcare. This.
+229:01
+
+Now collaborations and result. Something issues there. What is this? Kickoff failed. Sir, in line number- Sir, number 34 sir, can you change the agent name?
+229:17
+
+Cell number 34. 34. Below, sir. Below it is there. Which one you are saying? Next to Abantey- While you are assigning the task for, yes, second one. This one.
+229:32
+
+Research analyst has to be changed. Yeah. It should be content writer, no? Content writer.
+229:46
+
+What is the issue there? Kickoff input topic is equal to this. Print failed. Let me see what is the issues there. LiteLLM library is not working.
+230:06
+
+Why it's not working? Name this. pip install lite-llm.
+230:19
+
+Five hours ago. See the problem there.
+230:37
+
+Because I have just used it, so this came released five hours ago. Dependencies there.
+230:58
+
+Hmm. Execution failed. Invoked sync within the run loop, agent kickoff sync, await agent task when calling the sync code.
+231:32
+
+They are not hitting to the third-party websites, serverless. This is happening
+231:49
+
+Okay, anyway, this part I'll solve it. My main purpose is you can understand how this is working, okay? So that glitch, I'll solve it tomorrow. Yeah, because it's already two o'clock.
+232:06
+
+So you understood how things work, right? First, what you do, you can create an agent. Now, once the agent is okay, as many as agent you can create it. Then second part is you have to assign the task. Okay? Third part, you have to do
+232:18
+
+Crew. So you can write a agent. How many agent you have given, that agent you have to write it. Whatever the task you have given, you can write those tasks. Okay? And then you can execute it. So when you execute it, means you can say you wanted to see the response, you can
+232:33
+
+say yes, var was equal to two. Okay, and then you can execute it. Like LangChain, you are writing invoke. Here, you can say crew.ai.kickoff. Okay, you can say kickoff.
+232:49
+
+And you have to pass that input data, and you will get the result. So this part you have to remember it. Yeah, this debug, I'll check it and tomorrow I'll fix it. Don't worry. Yeah? So did you understand how this POC works?
+233:02
+
+First, you understood what is LangChain, what is LangGraph. LangGraph, I'll show you tomorrow. How Autogen works, how CrewAI works. Yeah, some POC I have shown
+233:17
+
+you for these two. Okay? These two you have seen this part, and then we will solve this part. Some issues there, Himanshu. So I don't know, they are not fetching it.
+233:31
+
+I did kickoff this one, but it's not working. Okay, let me see your code.
+233:47
+
+Okay. So await.kick, right?
+234:00
+
+Await space or? I don't think it will work. Skip client error this.
+234:13
+
+Some issues there. I don't know, the API only creating a problem. Result is coming. Continue kickoff sync. And when I do this print,
+234:28
+
+continuous sync. Something is there. Okay, I'll check it, no problem. I'll check the API issues there, or maybe I'll reinstall. I think some problem is their Google API. Yeah? That's why it's not coming.
+234:44
+
+But anyway. So you understood, yeah? So tomorrow I'll fix it and I'll share some case study. You can try it, guys. Yeah? It's working for you? Okay, very good then. And
+234:58
+
+tomorrow I'll show you some end-to-end journey for this one. LangGraph one. Hmm? Let me share this code.
+235:11
+
+It's running? Then very good. You can just do some modification. I'm sharing it. Yeah? Anyway, I'll check it tomorrow again. So that's it for today, guys. Tomorrow, I'll start our session
+235:30
+
+at 10:00 a.m., okay? So agentic AI class notes
+235:45
+
+27th June. All right, guys. So that's it. Pranali, you have raised hand?
+236:00
+
+Hello? Yes, sir. Yes. Can you hear me? I can. Hello? Yeah. Please go ahead and speak. Yeah, sir. It's not a question, just a request.
+236:15
+
+I had an interview on Monday. So I just wanted to talk about my transition with you. You can check with Simran or Manju and ask them to set up
+236:28
+
+one call tomorrow with me. I already did, and he said that your response is pending. My response is pending? Yeah. I talked with Manju-
+236:42
+
+You can say, "I have already spoken to him. He's suggesting tomorrow. So please suggest which time." Okay? Okay. All right. Thank you, sir. No problem. Bye.
+236:54
+
+All right, guys. Bye, everyone. See you tomorrow. Sir, same thing for me. I already spoke to Manju and wanted to get a schedule with you. He wanted to get a response from you.
+237:07
+
+This is Dhruv Mukerji. I spoke to you last week, but I didn't get any slot or any schedule there. No, I have not received anything. Okay, you can say, "I've already informed and I'm
+237:20
+
+waiting for their confirmation." So I have spoken to Sundaram. He said I didn't receive any- Can I- ... inform anything. Can I get some schedule on tomorrow, sir, if possible? Just check today. I'll check my calendar and all, then I'll update you.
+237:32
+
+Because, again, evening slot is not possible because I have project sessions. I'll do hands-on session end to end for GenAI only, and- Mm-hmm ... I think morning session with you guys.
+237:47
+
+So maybe second half, I'll see if I can sit with you. Tomorrow second half, right? Okay. I will confirm that to Manju then. Thank you, sir. All right, guys. Bye, take care.
+238:00

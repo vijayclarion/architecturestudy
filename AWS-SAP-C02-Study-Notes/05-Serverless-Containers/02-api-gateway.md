@@ -231,6 +231,26 @@ CACHING:
 ─────────────────────────────────────────────
 Result cached by token (default 5 min)
 Reduces Lambda invocations for repeated calls
+
+⚠️ SEPARATE FUNCTION:
+─────────────────────────────────────────────
+The authorizer is its OWN dedicated Lambda —
+NOT your backend Lambda. API Gateway invokes it
+FIRST as a gatekeeper, then (if allowed) invokes
+your backend function. Two functions, chained.
+```
+
+### Authorizer + Backend Flow (two Lambdas)
+
+```
+1. Request → API Gateway
+2. API Gateway → Authorizer Lambda   (validate token / creds)
+3. Authorizer returns Allow/Deny (+ policy + context)
+4. If Allow → API Gateway → Backend Lambda  (business logic)
+5. If Deny  → 403 returned, backend never invoked
+
+Context passed from authorizer → backend (e.g. userId,
+tenant, role) so backend doesn't re-parse the token.
 ```
 
 ---

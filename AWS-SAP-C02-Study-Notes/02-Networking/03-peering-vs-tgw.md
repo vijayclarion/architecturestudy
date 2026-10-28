@@ -43,6 +43,8 @@ A **point-to-point** private connection between **exactly two VPCs**. Traffic fl
 - ❌ **No transitive routing** — this is the big limitation!
 - ❌ VPC CIDR blocks must **not overlap**
 - ❌ Each peering connection requires manual **route table updates** in both VPCs
+- ❌ **Strictly one-to-one (unicast only)** — a peering connection links exactly two VPCs. No broadcast or multicast across it (sending one packet to many destinations at once). TGW supports multicast; peering does not.
+- ⚠️ **Cross-region works, but at a cost** — Inter-Region Peering is supported, but it adds latency and incurs cross-region data-transfer charges. Within a region, the direct path is lowest-latency.
 
 ### What is "No Transitive Routing"?
 
@@ -57,6 +59,12 @@ Even though B is connected to both A and C, traffic from A *cannot* hop through 
 **Analogy:** Just because your house has a door to your neighbour's, and your neighbour has a door to *their* neighbour, doesn't mean you can walk through both. The neighbour says "this door is between us only — you can't use it as a hallway."
 
 To make A talk to C, you must create a **direct peering between A and C**.
+
+### Quick clarification: Unicast vs Multicast (don't confuse this with CIDRs)
+
+- **Unicast** = one sender → one receiver (one packet per destination). This is all peering does.
+- **Multicast** = one sender → *many* receivers with a *single* send. Useful for real-time streaming or distributed cache updates where you want to hit many instances at once.
+- This is **not** about IP address reuse across regions — it's purely a traffic pattern. Peering can't do multicast; TGW (with its multicast feature) can.
 
 ### The Mesh Problem
 
@@ -204,7 +212,51 @@ Transit Gateway is a Layer 3 router — it cares about IPs and routes, **not** s
 
 ---
 
-## 5. Side-by-Side Comparison
+## 4.5. End-to-End Packet Flow (Mermaid Diagrams)
+
+These trace a single packet from a source EC2 instance all the way to the destination instance, for both models. The key visual difference: **peering is one direct hop; TGW always passes through the central hub and consults its own route table.**
+
+### VPC Peering — Direct Hop
+
+The packet leaves the source, the VPC route table matches the peering route (`pcx`), and it's delivered directly. No intermediary makes a routing decision.
+
+```mermaid
+flowchart TD
+    A["EC2 in VPC-A<br/>10.0.1.5"] -->|"Packet destined for 10.1.1.8"| B["VPC-A Route Table<br/>10.1.0.0/16 → pcx-abc123"]
+    B -->|"Match: send over peering"| C(["Peering Connection pcx<br/>(dumb plumbing, no route table)"])
+    C -->|"Direct delivery to VPC-B"| D["VPC-B Route Table<br/>local → instance"]
+    D --> E["EC2 in VPC-B<br/>10.1.1.8"]
+    E -.->|"Return path: VPC-B route table<br/>10.0.0.0/16 → pcx, same in reverse"| A
+
+    style A fill:#E6F1FB,stroke:#185FA5,color:#042C53
+    style E fill:#E1F5EE,stroke:#0F6E56,color:#04342C
+    style C fill:#EEEDFE,stroke:#534AB7,color:#26215C
+```
+
+**One layer of routing.** Only the VPC route tables decide anything. The `pcx` connection just delivers — which is exactly why peering can't do transitive routing.
+
+### Transit Gateway — Two Hops Through the Hub
+
+The packet makes **two hops**: into the TGW via the source attachment, then out via the destination attachment. The TGW's own route table (Layer 2) makes the forwarding decision in the middle.
+
+```mermaid
+flowchart TD
+    A["EC2 in VPC-A<br/>10.0.1.5"] -->|"Packet destined for 10.1.1.8"| B["LAYER 1: VPC-A Route Table<br/>10.1.0.0/16 → tgw-xxxx"]
+    B -->|"Hop 1: into TGW via VPC-A attachment"| C{{"Transit Gateway<br/>(regional hub)"}}
+    C --> D["LAYER 2: TGW Route Table<br/>10.1.0.0/16 → VPC-B attachment"]
+    D -->|"Hop 2: out via VPC-B attachment"| E["VPC-B Route Table<br/>local → instance"]
+    E --> F["EC2 in VPC-B<br/>10.1.1.8"]
+    F -.->|"Return path: both layers in reverse<br/>VPC-B → tgw, TGW → VPC-A attachment"| A
+
+    style A fill:#E6F1FB,stroke:#185FA5,color:#042C53
+    style F fill:#E1F5EE,stroke:#0F6E56,color:#04342C
+    style C fill:#FAEEDA,stroke:#854F0B,color:#412402
+    style D fill:#EEEDFE,stroke:#534AB7,color:#26215C
+```
+
+**Two layers of routing.** Break either layer and traffic fails — missing Layer 1 means the packet never leaves VPC-A; missing Layer 2 means it reaches the TGW and gets blackholed. The middle route table is precisely what makes TGW transitive: it can forward between *any* two attachments, whereas peering has no such table.
+
+---
 
 | Feature | VPC Peering | Transit Gateway |
 |---|---|---|
@@ -333,6 +385,9 @@ Do you need on-prem + multi-VPC connectivity?
 13. If VPC-A's route table points to TGW correctly, but TGW's route table has no entry for VPC-B, what happens? *(Traffic reaches TGW but is dropped — blackholed)*
 14. What's the difference between TGW route table "association" and "propagation"? *(Association = which TGW route table is used when traffic enters from this attachment; Propagation = which TGW route tables this attachment's CIDR gets advertised into)*
 15. Does Transit Gateway have security groups? *(No — TGW is a Layer 3 router; security groups still apply at source/destination ENIs)*
+16. Can VPC Peering carry multicast traffic? *(No — peering is unicast only, one-to-one. TGW supports multicast.)*
+17. How many hops does a packet take in peering vs TGW? *(Peering = one direct hop; TGW = two hops, into the hub then out via the destination attachment)*
+18. Does cross-region peering cost the same as same-region? *(No — inter-region peering adds latency and incurs cross-region data-transfer charges)*
 
 ---
 

@@ -259,6 +259,67 @@ SSD recommended for cache disks
 
 ---
 
+## Regional Scope & Security
+
+```
+REGIONAL:
+─────────────────────────────────────────────
+Storage Gateway IS a regional service.
+- You activate the gateway in a specific AWS Region.
+- Volume, snapshot, and tape data is stored in the
+  Region where the gateway was activated.
+- The on-prem appliance/VM lives with you; it connects
+  to the regional AWS endpoint of the service.
+
+So: on-prem software piece  +  regional AWS service.
+The data lands in the Region you choose.
+
+SECURITY — how only YOUR gateway talks to YOUR account:
+─────────────────────────────────────────────
+- Gateway activation ties the appliance to your AWS account.
+- Authenticates with IAM credentials / role.
+- All data in transit is encrypted over HTTPS (TLS).
+- Data at rest encrypted (SSE-S3 / SSE-KMS) in the backing store.
+
+⚠️ NOT secured via VPC Security Groups in the usual sense —
+the appliance is ON-PREM, not in a VPC. Network security is
+handled on-prem (firewall rules, allowing outbound HTTPS to
+AWS endpoints). Security Groups only apply if you run the
+gateway AS an EC2 instance inside a VPC.
+```
+
+---
+
+## ⚠️ Easy-to-Confuse Points (clarified)
+
+```
+EFS vs FSx — which OS?
+─────────────────────────────────────────────
+❌ EFS = Windows, FSx = Linux   ← WRONG
+✅ EFS  → Linux (NFS)
+✅ FSx for Windows → Windows (SMB, full NTFS/ACLs)
+   (FSx for Lustre → high-performance Linux/HPC)
+
+S3 vs EBS — storage type
+─────────────────────────────────────────────
+S3  = OBJECT storage (not block!) — cheap, higher latency
+EBS = BLOCK storage attached to EC2 — low latency
+EFS = shared FILE system (NFS, Linux)
+→ These are three different storage classes, not variants
+  of "block storage."
+
+Why S3 File GW vs FSx/EFS-backed?
+─────────────────────────────────────────────
+S3 File Gateway  → file sharing / archiving, data becomes
+                   plain S3 objects, cheapest.
+FSx File Gateway → need full Windows file features + lower
+                   latency shared file system.
+Pick by workload: archival/cheap → S3; Windows shares with
+performance → FSx.
+```
+
+---
+
 ## Storage Gateway vs Other Hybrid Tools
 
 ### vs DataSync

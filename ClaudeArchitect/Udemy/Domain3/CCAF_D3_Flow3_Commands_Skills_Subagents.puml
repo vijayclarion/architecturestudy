@@ -1,0 +1,173 @@
+@startuml D3_Flow3_Commands_Skills_Subagents
+' ============================================================
+' DOMAIN 3 — FLOW 3: Slash Commands + Skills + Subagents
+' (Topics 12–17) organised as the 3-LAYER INSTRUCTION STACK.
+' CORE IDEA: CLAUDE.md (always on) < SKILLS (description-gated)
+'   < SUBAGENTS (autonomous workers). Commands are a SUBSET
+'   of skills (manual-only loading).
+' MATCHING SIGNAL = the DESCRIPTION (same routing idea as D2).
+' ============================================================
+title Domain 3 · Flow 3 — Commands, Skills & Subagents (T12–17)\n(The instruction stack: always-on -> description-gated -> autonomous)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+skinparam activityDiamondBackgroundColor #FFF6CC
+
+start
+:A request arrives in a Claude Code session;
+
+' ---------- THE INSTRUCTION STACK (framing) ----------
+partition "The 3-Layer Instruction Stack" {
+  #LightCyan:Place each mechanism by HOW it loads;
+  note right
+    BOTTOM  CLAUDE.md  — ALWAYS in context, applies everywhere,
+                         no matching, no invocation.
+    MIDDLE  SKILLS     — DESCRIPTION-GATED. Out of context until
+                         the description matches, THEN body loads.
+    TOP     SUBAGENTS  — autonomous WORKERS you spin up; active
+                         processes with their OWN context + tools.
+    ----
+    Skill = the recipe; Claude Code = the cook.
+    Subagent = a separate worker who cooks independently.
+    Choosing the right layer prevents over-engineering.
+  end note
+}
+
+' ---------- TOPIC 12: SLASH COMMANDS ----------
+partition "T12 · Custom Slash Commands (saved shortcut prompts)" {
+  :Create a markdown file under .claude/commands/;
+  #LightGreen:FILE NAME = the keyword\n(deploy-review.md -> /deploy-review);
+  note right
+    A slash command = a keyword mapped to a markdown file
+    Claude reads as a PROMPT. No registration/config step.
+    Body = role + task + output format + constraints.
+    ARGUMENTS placeholder makes it dynamic:
+    "review PR $ARGUMENTS" + `/review-pr 4521` -> 4521 injected.
+    ----
+    SCOPE (by file location, like CLAUDE.md):
+    * project .claude/commands/ = committed -> whole team
+    * user  ~/.claude/commands/ = personal, all projects
+    Built-ins (/init, /help, /code-review) ship with the tool —
+    reusing a built-in NAME shadows it. Type "/" to see the list.
+  end note
+}
+
+' ---------- TOPIC 13: COMMAND DESIGN + DISTRIBUTION ----------
+partition "T13 · Command Design & Team Distribution" {
+  :Design: NARROW SCOPE + VERB-NOUN names;
+  note right
+    #1 rule: one command does ONE thing.
+    Anti-pattern: /do-everything (review+refactor+test+deploy)
+    -> works occasionally, fails confusingly.
+    Verb-noun (/review-pr, /run-tests, /explain-file) is
+    self-documenting: guess the keyword before reading docs.
+    ----
+    DISTRIBUTION: project = commit the folder (channel already
+    exists, travels with code) · user = personal ·
+    MANAGED SETTINGS = admins push to every user org-wide;
+    users can't delete/override.
+    2nd anti-pattern: DON'T duplicate CLAUDE.md rules inside a
+    command -> they drift out of sync. Extend, don't repeat.
+  end note
+}
+
+' ---------- TOPIC 14: WHAT SKILLS ARE ----------
+partition "T14 · What Skills Are & When to Build Them" {
+  if (Should this load AUTOMATICALLY when relevant?) then (YES)
+    #LightGreen:SKILL — description-matched, loads itself;
+    note right
+      Skill = reusable instruction package (skill.md + optional
+      files). Claude reads the DESCRIPTION and pulls it in when
+      it matches — no need to remember to invoke.
+      e.g. a release procedure: bump version, update changelog,
+      tag commit, draft notes -> "cut a release" auto-loads it.
+      Custom commands are now a SUBSET of skills:
+      one mechanism, two loading patterns —
+      manual-only (you type it) vs auto (description matches).
+    end note
+  else (NO — type it by hand)
+    #LightYellow:Manual-only command (a skill you invoke explicitly);
+  endif
+  :Decide with FREQUENCY · COMPLEXITY · REUSABILITY;
+  note right
+    Build a skill when 2+ hold: recurring multi-step workflow,
+    team-wide convention, should auto-load, reusable package.
+    DON'T build for: one-time tasks, simple lookups, or rules
+    that should ALWAYS apply (-> those belong in CLAUDE.md).
+    High on all 3 factors -> strong skill candidate.
+  end note
+}
+
+' ---------- TOPIC 15: AUTHORING SKILLS ----------
+partition "T15 · Authoring Agent Skills (directory + front matter)" {
+  :Structure: .claude/skills/<name>/skill.md;
+  note right
+    A skill is a DIRECTORY, not a loose file.
+    Folder name = the skill's name & how you invoke it directly.
+    Discovery is AUTOMATIC — no registry, no manifest.
+    ----
+    EXAM TRAP: front matter (the top YAML block) is ENTIRELY
+    OPTIONAL. Every field optional. A skill with NO front matter
+    still works — the BODY always loads. No silent failure.
+    Body = what to do; front matter = when to fire + conditions.
+  end note
+  #LightCyan:Write the DESCRIPTION carefully — it drives matching;
+  note right
+    DESCRIPTION = the whole auto-invocation mechanism
+    (same routing signal as a TOOL description in D2).
+    Vague -> skill passed over; sharp -> fires reliably.
+    Other real fields (all optional): allowed-tools (PRE-APPROVES,
+    others still available) vs disallowed-tools (actually REMOVES
+    tools) — ASYMMETRIC; model/effort; paths; context: fork (+agent)
+    to run in an isolated sub-agent; argument-hint.
+    ----
+    INVENTED fields that do NOTHING: trigger, version, author/tags.
+    Two invocation paths: AUTO (description match) · DIRECT (folder name).
+  end note
+}
+
+' ---------- TOPIC 16–17: SUBAGENTS ----------
+partition "T16–17 · Subagents (delegated autonomous workers)" {
+  if (Need a WORKER to run something independently / in parallel?) then (YES)
+    #LightGreen:Spin up a SUBAGENT (own context, tools, scope);
+    note right
+      Subagent = active process, NOT a passive template.
+      It runs independently and REPORTS BACK when done.
+      Turns Claude Code into an ORCHESTRATOR.
+      Use for: tasks too big for the current window, or
+      isolated enough to run in parallel.
+      Packages vs Workers = Skills vs Subagents.
+    end note
+    :Design for delegation:\nclear scope · bounded authority · isolation · structured return;
+    note right
+      Delegation design: give a narrow, well-defined task and
+      the minimum tools it needs. Return findings as a STRUCTURED
+      payload; NEVER swallow errors — propagate them up so the
+      orchestrator can react. (Pairs with plan mode: subagent
+      investigates -> main agent turns findings into a plan.)
+    end note
+  else (NO — just need instructions to follow)
+    #LightYellow:A skill or CLAUDE.md rule is enough;
+  endif
+}
+
+stop
+
+floating note left
+  == FLOW 3 SPINE (the stack) ==
+  CLAUDE.md (always on)  <  SKILLS (description-gated)  <  SUBAGENTS (workers)
+  Commands = manual-only SKILLS (filename/foldername = keyword).
+  ----
+  == HIGH-YIELD FACTS ==
+  * Command/skill/subagent = load AUTOMATICALLY? no->cmd, yes->skill,
+    or need a worker? -> subagent
+  * Skill = a DIRECTORY; front matter OPTIONAL; body always loads
+  * DESCRIPTION drives matching (same as D2 tool routing)
+  * allowed-tools pre-approves; disallowed-tools removes (asymmetric)
+  * No trigger/version/author fields
+  * Narrow scope + verb-noun names; don't duplicate CLAUDE.md
+  * Managed settings = org-wide command push
+  * Subagents: own context, structured returns, never swallow errors
+end note
+
+@enduml

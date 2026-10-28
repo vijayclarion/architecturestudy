@@ -1,0 +1,84 @@
+@startuml Topic6_Subagent_Design
+' ============================================================
+' TOPIC 6: Subagent Design (the workers)
+' MOST TESTED: CONTEXT ISOLATION — subagent starts BLANK.
+' Single Responsibility Principle. Least privilege on tools.
+' ============================================================
+title Topic 6 — Subagent Design\n(Own context + own tools; CONTEXT ISOLATION is the most-tested idea)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+
+:Orchestrator needs a subtask done;
+
+#LightCyan:Spin up a SUBAGENT;
+note right
+  Each subagent owns:
+  * its OWN context window
+  * its OWN tool permissions
+end note
+
+partition "CONTEXT ISOLATION (most-tested)" {
+  :Subagent starts BLANK;
+  note right
+    It inherits NOTHING automatically.
+    Any fact it needs must be EXPLICITLY
+    passed in by the orchestrator.
+  end note
+  if (How much context to pass?) then (Goldilocks test)
+    :Pass the MINIMUM NECESSARY context;
+    note right
+      * Too little  -> underpowered, guesses, fails
+      * Too much    -> bloat, cost, noise, leakage
+      * Just right  -> minimal but sufficient
+    end note
+  endif
+}
+
+partition "LEAST PRIVILEGE (tools)" {
+  :Grant ONLY the tools this job needs;
+  note right
+    Tool permissions = an AUTHORITY boundary.
+    Fewer tools = smaller blast radius.
+  end note
+}
+
+partition "GOOD INSTRUCTIONS need 3 things" {
+  :1. Narrow SCOPE (one job);
+  :2. OUTPUT FORMAT (what to return);
+  :3. SUCCESS CRITERIA (what "done" means);
+}
+
+if (Can you describe the job in ONE sentence\nwith defined input + output?) then (YES)
+  #LightGreen:Well-designed subagent\n(substitutable + testable);
+else (NO — too broad)
+  #Pink:ANTI-PATTERN — scope too broad;
+  note right
+    Three anti-patterns:
+    1. Broad scope (does too many things)
+    2. Underpowered context (starved of facts)
+    3. Unclear success criteria (never knows when done)
+  end note
+endif
+
+stop
+
+floating note left
+  == MENTAL MODEL: SINGLE RESPONSIBILITY PRINCIPLE ==
+  One subagent = ONE job, ONE goal.
+  (Like a well-designed function/class.)
+  ....
+  Benefits of context isolation:
+  * prevents context bloat
+  * limits information leakage
+  * reduces cost
+  * makes each subagent independently TESTABLE
+  ----
+  Analogies:
+  * least privilege  ~ limited access
+  * context isolation ~ no shared global state
+end note
+
+@enduml

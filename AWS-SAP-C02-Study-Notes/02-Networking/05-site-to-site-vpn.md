@@ -1,356 +1,342 @@
-# Site-to-Site VPN
+# AWS VPN Notes — Client-to-Site & Site-to-Site
 
-> 🔥 **Standard hybrid topic.** Know the HA pattern and when to combine with Direct Connect.
-
-## Problem It Solves
-Connect on-prem networks to AWS without expensive Direct Connect physical lines. Site-to-Site VPN provides IPsec encrypted tunnels over the public internet — fast to set up (minutes), good enough for many workloads.
-
-## How It Works
-
-```mermaid
-flowchart LR
-    subgraph ONPREM[On-Premises]
-        CGW[Customer Gateway<br/>Your physical or virtual device]
-    end
-    
-    subgraph AWS[AWS VPC]
-        VGW[Virtual Private Gateway<br/>VPN endpoint on AWS side]
-        VPC[(VPC)]
-        VGW --> VPC
-    end
-    
-    CGW -.IPsec Tunnel 1.- VGW
-    CGW -.IPsec Tunnel 2 HA.- VGW
-```
-
-### Key Components
-
-```
-CUSTOMER GATEWAY (CGW):
-─────────────────────────────────────────────
-- Your end of the VPN
-- Can be: physical firewall, software VPN, AWS Transit Gateway
-- Identified by public IP
-- Configuration includes BGP ASN (if using dynamic routing)
-
-VIRTUAL PRIVATE GATEWAY (VGW):
-─────────────────────────────────────────────
-- AWS end of the VPN
-- Attached to a VPC
-- One VPC can have one VGW
-
-TWO TUNNELS PER VPN CONNECTION:
-─────────────────────────────────────────────
-- Each VPN Connection auto-creates 2 IPsec tunnels
-- Use BOTH for HA (active-active or active-passive)
-- Each terminates on different AWS endpoints
-```
-
-### Routing Options
-
-```
-STATIC ROUTING:
-─────────────────────────────────────────────
-✅ Simple — manually configure routes
-✅ Good for small, stable networks
-✅ Same on both sides
-
-DYNAMIC ROUTING (BGP):
-─────────────────────────────────────────────
-✅ Routes advertised via BGP protocol
-✅ Auto-failover on link failure
-✅ Recommended for production
-✅ Requires BGP-capable device
-
-⚠️ EXAM SIGNAL:
-"Need automatic failover" → BGP dynamic routing
-```
+> **Feynman style:** every concept explained from scratch, with analogies, before the jargon. If a sentence has a buzzword, the plain-English version comes first.
 
 ---
 
-## HA Patterns for VPN
+## 0. First, what even *is* a tunnel?
 
-### Pattern 1: Basic (Not Production)
+Imagine you want to send a private letter across a city, but the only delivery service is one where **every postman can read your postcard**. The public internet is exactly that — your packets travel through routers you don't own, and anyone on the path can in principle read them.
 
-```mermaid
-flowchart LR
-    CGW[Single CGW] -.Tunnel 1.- VGW[VGW]
-    CGW -.Tunnel 2.- VGW
-```
+A **VPN tunnel** solves this with one simple trick: **put your packet inside another packet, and lock the inner one.**
 
 ```
-ANALYSIS:
+Your real packet:   [ from: me  | to: the EC2 | "open RDP please" ]
+                              ↓ wrap + encrypt (this is the "tunnel")
+What travels online: [ from: my-router | to: AWS-gateway | <<encrypted blob>> ]
+```
+
+- The **inner packet** has the real source and destination (your laptop → the EC2).
+- The **outer packet** just says "get this sealed blob from point A to point B."
+- Anyone snooping the internet only sees the sealed blob. They can't read the letter inside.
+- At the far end, the gateway **unwraps and decrypts**, revealing the original packet, and delivers it locally.
+
+That wrap-encrypt-carry-unwrap pipe is the tunnel. The fancy word for "packet inside a packet" is **encapsulation**. That's the whole idea. Everything below is just *who* builds the tunnel and *how* they lock it.
+
+There are two common locks:
+- **TLS** — the same padlock your browser uses for `https://`. Easy, firewall-friendly. Used by **Client VPN**.
+- **IPsec** — an older, lower-level, vendor-neutral lock that works at the raw IP layer. Used by **Site-to-Site VPN**.
+
+---
+
+# Part 1 — Client-to-Site VPN (laptop → VPC)
+
+> One **person** connecting **one device** into AWS. "I'm working from home and need to RDP into a private EC2."
+
+## 1.1 The mental model
+
+Think of the Client VPN endpoint as a **receptionist desk that AWS runs at the edge of your VPC**. Your laptop calls the desk, proves who it is, and the desk hands you a visitor badge (an IP). From then on, the desk carries your messages *into* the building and back out.
+
+The twist you must remember: when the receptionist walks your message inside, **they put their own return address on it**, not yours. (That's the source NAT — explained below. It's the #1 thing people get wrong.)
+
+## 1.2 The pieces (and what each one is *for*)
+
+```
+Client CIDR  (e.g. 10.100.0.0/22)
 ─────────────────────────────────────────────
-✅ Two tunnels = AWS-side redundancy
-❌ Single CGW = if your device fails, you lose VPN
-```
+A pool of "visitor badge" IPs. When your laptop connects,
+it gets one address from here (e.g. 10.100.0.5).
+MUST NOT overlap with the VPC CIDR. They live in different worlds.
 
-### Pattern 2: Redundant Customer Gateways
-
-```mermaid
-flowchart LR
-    CGW1[CGW 1] -.Tunnel 1.- VGW[VGW]
-    CGW1 -.Tunnel 2.- VGW
-    CGW2[CGW 2] -.Tunnel 1.- VGW
-    CGW2 -.Tunnel 2.- VGW
-```
-
-```
-ANALYSIS:
+Client VPN Endpoint  (regional, AWS-managed)
 ─────────────────────────────────────────────
-✅ Two CGWs = on-prem redundancy
-✅ Total 4 tunnels = AWS + customer-side HA
-✅ Recommended production pattern
+The receptionist desk. Holds: server certificate, auth method,
+the client CIDR, the authorization rules, and its OWN route table.
+It exists at the region level — not "inside" a subnet.
+
+Subnet Association  →  creates an ENI
+─────────────────────────────────────────────
+You point the endpoint at a subnet. AWS then drops a network
+card (ENI) INTO that subnet, with an IP from the subnet's CIDR
+(e.g. 10.0.1.100). THIS is the endpoint's actual foot inside
+your VPC. AWS creates and manages it — you never touch it.
+
+Authorization Rule  (a whitelist, CIDR-only)
+─────────────────────────────────────────────
+"Are clients allowed to reach destination X?" Default = DENY ALL.
+You add a rule: allow 10.0.0.0/16. It checks DESTINATION CIDR only.
+It knows NOTHING about ports. (Ports are the security group's job.)
+
+Endpoint Route Table  (the endpoint's own, not a subnet's)
+─────────────────────────────────────────────
+On association, a route to the VPC CIDR auto-appears. You only
+add routes here manually for things OUTSIDE the VPC: internet,
+peered VPCs, on-prem.
+
+EC2 Security Group  (the fine-grained gate)
+─────────────────────────────────────────────
+Allow inbound TCP 3389 FROM the ASSOCIATED SUBNET's CIDR
+(e.g. 10.0.1.0/24) — NOT the client CIDR. (Because of NAT. See below.)
 ```
 
-### Pattern 3: VPN + Direct Connect (Hybrid Best Practice)
+## 1.3 The source-NAT detail (the part everyone misses)
+
+When your packet finally leaves the ENI to reach the EC2, the endpoint **rewrites the source IP**:
+
+```
+Inside the tunnel:   src = 10.100.0.5   (your client badge IP)
+After the ENI/NAT:   src = 10.0.1.100   (the ENI's IP, in the subnet)
+Destination stays:   dst = 10.0.1.50    (the EC2)
+```
+
+So the **EC2 never sees your real client IP** — it sees the ENI's IP. This is **source NAT (SNAT)**, and AWS does it for you automatically as part of the endpoint. It's *like* a NAT gateway in concept (both swap the source address), but it's **built into the endpoint** — not a separate resource you create or pay for.
+
+👉 **This is exactly why** the EC2 security group allows the **subnet CIDR**, not the client CIDR. By the time the packet arrives, the original `10.100.x.x` is gone.
+
+> ⚠️ For **IPv6**, AWS does **not** apply NAT — the EC2 would see the real client IPv6. SNAT is an IPv4 behaviour.
+
+## 1.4 End-to-end packet flow
+
+```mermaid
+sequenceDiagram
+    participant L as Laptop (10.100.0.5)
+    participant E as Client VPN Endpoint
+    participant N as ENI in subnet (10.0.1.100)
+    participant S as EC2 (10.0.1.50)
+
+    Note over L,E: 1. TLS handshake — agree on encryption keys
+    L->>E: 2. Encrypted tunnel: src 10.100.0.5 → dst 10.0.1.50 (RDP 3389)
+    Note over E: 3. Decrypt. Check authorization rule:<br/>is 10.0.1.50 inside an allowed CIDR? ✅
+    E->>N: 4. Route to the ENI
+    Note over N: 5. SOURCE NAT: rewrite src → 10.0.1.100
+    N->>S: 6. src 10.0.1.100 → dst 10.0.1.50 (3389)
+    Note over S: 7. Security group check:<br/>allow 3389 from 10.0.1.0/24? ✅
+    S->>N: 8. Reply: src 10.0.1.50 → dst 10.0.1.100
+    Note over N: 9. Un-NAT: dst back to 10.100.0.5, then encrypt
+    N->>E: 10. Encrypted reply
+    E->>L: 11. Back through the tunnel to the laptop
+```
+
+Read it as a story: **handshake → tunnel in → authorization check → NAT at the ENI → security-group check → reply un-NATs and goes home.** Two gates must both say yes: the **authorization rule** (coarse, CIDR) and the **security group** (fine, port).
+
+## 1.5 The two gates, side by side
+
+| Gate | Lives at | Checks | Default |
+|---|---|---|---|
+| **Authorization rule** | Endpoint level | Destination **CIDR** only | **Deny all** — you must add allows |
+| **Security group** | EC2 (the ENI's other end) | **Port + protocol** + source | Deny inbound until you allow |
+
+If only one says yes, the connection still fails. Both must pass.
+
+## 1.6 Setup checklist
+
+- [ ] Create endpoint: client CIDR (no overlap), server cert in ACM, auth (cert / AD / SAML)
+- [ ] Enable **split-tunnel** if you only want VPC traffic in the tunnel (else *all* your internet goes through AWS)
+- [ ] **Associate a subnet** (one per AZ for HA) → ENIs appear automatically
+- [ ] **Add an authorization rule** for the VPC CIDR `10.0.0.0/16` ← most-forgotten step
+- [ ] EC2 **security group**: allow TCP 3389 from the **associated subnet CIDR**
+- [ ] Download `.ovpn`, import into AWS VPN Client / OpenVPN, connect, RDP to the **private IP**
+
+**Common "it connects but I can't reach anything":** missing authorization rule.
+**Common "it times out at RDP":** security group not allowing the subnet CIDR on 3389.
+
+---
+
+# Part 2 — Site-to-Site VPN (network → VPC)
+
+> A whole **network** talking to a whole **network**. "Our office/data-center LAN needs to reach our AWS VPC, permanently."
+
+## 2.1 The mental model
+
+Forget visitor badges. This is **two buildings connected by a private sealed pipe**. Your office has a door (the **Customer Gateway**), AWS has a door (the **Virtual Private Gateway**), and there's an armored pipe between them. Anything addressed to the other building just walks through the pipe with its **real return address intact** — nobody hands out badges, nobody rewrites addresses.
+
+The big differences from Client VPN:
+- The "client" isn't a laptop — it's your **entire on-prem network**.
+- The lock is **IPsec**, not TLS.
+- **No ENI, no source NAT.** Original IPs are preserved end to end.
+- **No authorization rules.** Security comes from IPsec + routing. If the tunnel is up and routes exist, traffic flows.
+
+## 2.2 The pieces
+
+```
+CUSTOMER GATEWAY (CGW)  — your end
+─────────────────────────────────────────────
+A physical firewall/router OR a software appliance in YOUR network.
+You own and operate it. Identified by its public IP.
+(Optionally a BGP ASN if you use dynamic routing.)
+
+VIRTUAL PRIVATE GATEWAY (VGW)  — AWS end
+─────────────────────────────────────────────
+AWS-managed VPN concentrator, ATTACHED to one VPC (1 VGW per VPC).
+Sits at the VPC boundary. (Or use a Transit Gateway instead to
+serve MANY VPCs at once.)
+
+TWO TUNNELS per VPN connection
+─────────────────────────────────────────────
+AWS auto-builds 2 IPsec tunnels to 2 different AWS endpoints.
+Use BOTH for high availability (active/active or active/passive).
+
+ROUTING — how each side learns where to send traffic
+─────────────────────────────────────────────
+Static : you type the routes by hand. Simple, small, stable nets.
+BGP    : routers advertise routes to each other dynamically.
+         → auto-failover. Use for production.
+```
+
+## 2.3 What you must wire up (the routing both ways)
+
+This is the part people forget — the tunnel alone isn't enough; **both sides need routes**:
+
+```
+On-prem router table : "VPC CIDR 10.0.0.0/16  → send to CGW"
+AWS subnet route table: "on-prem CIDR 192.168.0.0/16 → target = VGW"
+EC2 security group    : allow traffic from on-prem CIDR (real IPs preserved!)
+```
+
+## 2.4 End-to-end packet flow (no NAT — note the preserved IPs)
+
+```mermaid
+sequenceDiagram
+    participant H as On-prem host (192.168.1.50)
+    participant C as Customer Gateway (CGW)
+    participant V as Virtual Private Gateway (VGW)
+    participant S as EC2 (10.0.1.50)
+
+    Note over H,C: On-prem routing: "10.0.0.0/16 → CGW"
+    H->>C: src 192.168.1.50 → dst 10.0.1.50
+    Note over C,V: IPsec tunnel (IKE handshake already established keys)
+    C->>V: Encrypted: carries the original packet untouched
+    Note over V: Decrypt. VGW routes into the VPC (local route)
+    V->>S: src 192.168.1.50 → dst 10.0.1.50
+    Note over S: Security group: allow from 192.168.0.0/16? ✅<br/>(EC2 sees the REAL on-prem IP — no NAT)
+    S->>V: Reply: src 10.0.1.50 → dst 192.168.1.50
+    Note over V,C: Subnet route table sent reply to VGW → tunnel
+    V->>C: Encrypted reply
+    C->>H: Delivered to the on-prem host
+```
+
+Contrast with Client VPN: here the EC2 sees `192.168.1.50` — the **actual** source — because there's no ENI rewriting addresses. The gateways own their networks, so they just route.
+
+## 2.5 High-availability patterns
+
+**Basic (not production):** one CGW, two tunnels. AWS side is redundant, but if *your* single device dies, the VPN is gone.
 
 ```mermaid
 flowchart LR
-    DC[Data Center] --> DX[Direct Connect<br/>primary, fast]
+    CGW[Single CGW] -. Tunnel 1 .- VGW[VGW]
+    CGW -. Tunnel 2 .- VGW
+```
+
+**Better (production):** two CGWs → four tunnels total. Now both ends are redundant.
+
+```mermaid
+flowchart LR
+    CGW1[CGW 1] -. Tunnel 1 .- VGW[VGW]
+    CGW1 -. Tunnel 2 .- VGW
+    CGW2[CGW 2] -. Tunnel 1 .- VGW
+    CGW2 -. Tunnel 2 .- VGW
+```
+
+**Best (hybrid):** Direct Connect as the fast primary, VPN as the encrypted backup, BGP choosing the path.
+
+```mermaid
+flowchart LR
+    DC[Data Center] --> DX[Direct Connect<br/>primary, fast, low latency]
     DC --> CGW[CGW]
-    CGW -.VPN backup.- VGW
+    CGW -. IPsec VPN backup .- VGW[VGW]
     DX --> VPC[(VPC)]
     VGW --> VPC
 ```
 
-```
-ANALYSIS:
-─────────────────────────────────────────────
-✅ Direct Connect = primary, low latency
-✅ VPN = backup if DX fails
-✅ BGP advertises preferred routes
-✅ Encryption: DX (with MACsec or VPN-over-DX) + VPN backup encrypted
+## 2.6 Scaling to many VPCs / many sites — Transit Gateway
 
-BEST FOR:
-─────────────────────────────────────────────
-Production workloads needing both speed AND resilience
-```
-
----
-
-## VPN + Transit Gateway
+One VPN per VPC gets messy fast. **Transit Gateway (TGW)** is a central router: attach the VPN once to the TGW, and on-prem reaches *all* connected VPCs through it. Supports **ECMP** (spread load across tunnels) for higher throughput.
 
 ```mermaid
 flowchart LR
-    subgraph ONPREM[On-Premises]
-        CGW1[CGW 1]
-        CGW2[CGW 2]
-    end
-    
-    CGW1 -.VPN.- TGW[Transit Gateway]
-    CGW2 -.VPN.- TGW
-    
+    CGW1[CGW 1] -. VPN .- TGW[Transit Gateway]
+    CGW2[CGW 2] -. VPN .- TGW
     TGW --> VPC1[(VPC 1)]
     TGW --> VPC2[(VPC 2)]
     TGW --> VPC3[(VPC 3)]
 ```
 
-```
-VPN ATTACHED TO TGW:
-─────────────────────────────────────────────
-✅ Single VPN connects on-prem to ALL VPCs (via TGW)
-✅ ECMP (Equal-Cost Multi-Path) — load balance across tunnels
-✅ Up to 50 Gbps with multiple VPN attachments
-✅ Much simpler than per-VPC VPNs
+## 2.7 Performance & cost quick facts
 
-USE WHEN:
-─────────────────────────────────────────────
-✅ Multiple VPCs need on-prem access
-✅ Want unified routing
-✅ Scaling to many on-prem sites
+```
+Per tunnel bandwidth : ~1.25 Gbps   (2 tunnels ≈ 2.5 Gbps theoretical)
+Latency              : variable (rides the public internet)
+Accelerated VPN      : routes via AWS Global Accelerator backbone, $extra
+Cost                 : cheap (~$0.05/hr + data) vs Direct Connect (expensive)
 ```
 
 ---
 
-## VPN Performance
+# Part 3 — The one-screen comparison
 
-```
-BANDWIDTH:
-─────────────────────────────────────────────
-Per tunnel: Up to ~1.25 Gbps
-Per VPN connection (2 tunnels): ~2.5 Gbps theoretical
+## 3.1 The tunnels themselves
 
-LIMITATIONS:
-─────────────────────────────────────────────
-- Internet path = variable latency
-- Public internet contention possible
-- ECMP via TGW can scale: 50+ Gbps with multiple VPN attachments
-
-VPN ACCELERATION:
-─────────────────────────────────────────────
-"Accelerated VPN" routes via AWS Global Accelerator
-✅ Uses AWS backbone, not internet
-✅ Better performance, more consistent
-$ Extra cost
-```
-
----
-
-## VPN vs Direct Connect
-
-| | **Site-to-Site VPN** | **Direct Connect** |
+| | **Client VPN tunnel** | **Site-to-Site tunnel** |
 |---|---|---|
-| Setup time | Minutes | Weeks-months |
-| Bandwidth | Up to ~1.25 Gbps per tunnel | 1/10/100 Gbps |
-| Latency | Variable (internet) | Predictable, low |
-| Encryption | IPsec built-in | None (need MACsec or VPN over DX) |
-| Cost | Cheap ($0.05/hr + data) | Expensive (port + cross-connect + data) |
-| Reliability | Internet-dependent | High |
-| Use case | Backup, small workloads, fast setup | Large, consistent workloads |
+| Lock / protocol | **TLS** (OpenVPN-based) | **IPsec** (IKE key exchange) |
+| Layer | Higher-level, app-friendly | Layer 3, raw IP |
+| Firewall/NAT friendliness | Very (looks like HTTPS) | Needs IPsec ports open |
+| Who speaks it | AWS VPN Client / OpenVPN on a laptop | Any vendor router (Cisco, Juniper, Fortinet…) |
+| Built for | One user, connect from anywhere | Always-on link between two networks |
 
----
+## 3.2 The services
 
-## AWS Client VPN — Remote Workers
-
-```
-DIFFERENT SERVICE — for INDIVIDUAL users, not sites:
-─────────────────────────────────────────────
-Remote employees connect their laptops to AWS VPC
-Uses OpenVPN-based client
-Authentication: AD, SAML, certificates
-
-USE:
-─────────────────────────────────────────────
-✅ Replace traditional remote-access VPN
-✅ WFH employees access internal resources in VPC
-✅ Contractors getting temporary access
-
-vs Site-to-Site:
-─────────────────────────────────────────────
-Site-to-Site: Network-to-network (LAN to VPC)
-Client VPN:   User-to-network (laptop to VPC)
-```
-
----
-
-## VPN CloudHub Pattern (Legacy but Tested)
-
-```mermaid
-flowchart TB
-    AWS[AWS VPC + VGW]
-    AWS -.VPN.- SITE1[Branch Office 1]
-    AWS -.VPN.- SITE2[Branch Office 2]
-    AWS -.VPN.- SITE3[Branch Office 3]
-    
-    SITE1 -.via AWS.- SITE2
-    SITE1 -.via AWS.- SITE3
-    SITE2 -.via AWS.- SITE3
-```
-
-```
-VPN CLOUDHUB:
-─────────────────────────────────────────────
-Multiple branch offices connect VPNs to same VGW
-AWS acts as hub — branches can communicate through AWS
-✅ Hub-and-spoke without dedicated infrastructure
-✅ Cost-effective for small branch networks
-
-MODERN ALTERNATIVE:
-─────────────────────────────────────────────
-Use Transit Gateway as the hub.
-Each branch attaches via VPN to TGW.
-More scalable and feature-rich.
-```
-
----
-
-## VPN Logging
-
-```
-VPN MONITORING:
-─────────────────────────────────────────────
-✅ CloudWatch metrics:
-   - TunnelState (up/down)
-   - TunnelDataIn / TunnelDataOut
-✅ Alarms on tunnel state for proactive alerting
-
-VPN LOGGING:
-─────────────────────────────────────────────
-✅ Send tunnel logs to CloudWatch Logs
-✅ Debug connection issues
-```
-
----
-
-## When to Use Site-to-Site VPN
-
-| Scenario | VPN OK? |
-|---|---|
-| Lab / Dev environment hybrid access | ✅ Yes — quick + cheap |
-| Small office (< 100 users) to AWS | ✅ Yes |
-| Backup for Direct Connect | ✅ Yes — common pattern |
-| Production with bandwidth > 2 Gbps | ❌ Use DX |
-| Strict, predictable latency | ❌ Use DX |
-| Need to set up TODAY | ✅ VPN is the only option (DX takes weeks) |
-| Mostly cloud-native, occasional on-prem | ✅ Yes |
-
-## Trade-offs
-
-| Choice | Gain | Sacrifice |
+| | **Client-to-Site (Client VPN)** | **Site-to-Site VPN** |
 |---|---|---|
-| VPN over DX | Fast setup, cheap, encrypted built-in | Variable performance |
-| BGP over Static routing | Auto-failover | Requires BGP-capable device |
-| VPN + TGW | Connect many VPCs | TGW costs |
-| Accelerated VPN | Better performance | Extra cost |
-| Two CGWs | On-prem HA | More complex setup |
+| Connects | **User → network** (laptop to VPC) | **Network → network** (LAN to VPC) |
+| AWS-side thing | Client VPN **endpoint** + **ENI** in subnet | **VGW** (or TGW) at VPC edge |
+| Your-side thing | VPN client software | **Customer Gateway** (router/firewall) |
+| Gets an IP from | **Client CIDR** pool | n/a — keeps its own LAN IP |
+| Source NAT? | **Yes** (IPv4) — EC2 sees the ENI IP | **No** — EC2 sees the real source IP |
+| Access control | **Authorization rules** + security groups | **Routing** + security groups (no auth rules) |
+| Security group source | The **associated subnet** CIDR | The **on-prem** CIDR |
+| Typical use | WFH employee, contractor | Office/data-center hybrid, always-on |
 
-## Real World Example
-
-**A retail company with 50 stores:**
-- **Site-to-Site VPN per store → Transit Gateway** in hub region
-- Each store has 2 routers as redundant CGWs
-- BGP for automatic failover
-- All store VPNs attached to TGW
-- TGW connects to centralized VPCs (analytics, security)
-- **VPN CloudHub** pattern replaced by TGW
-
-**A startup growing fast:**
-- Initially: Single VPN, single CGW (acceptable for early stage)
-- Grew: Added second CGW for redundancy
-- Bigger: Added Direct Connect for primary path
-- Now: DX primary + VPN backup, both via Transit Gateway
-
-## 🎯 Exam Soundbite
-
-> "Site-to-Site VPN provides IPsec encrypted tunnels from on-prem to AWS over the public internet, with each VPN Connection automatically creating two tunnels for AWS-side high availability. Use BGP for dynamic routing and automatic failover. For production, use redundant Customer Gateways and consider VPN as a backup to Direct Connect. Attach VPN to Transit Gateway to connect on-prem to many VPCs with a single VPN. Client VPN is a separate service for individual remote users connecting their laptops."
+**The single sentence that captures it:**
+> Client VPN gives a *person* a temporary badge and rewrites their address at the door (NAT); Site-to-Site joins two *networks* with a sealed pipe and leaves every address untouched.
 
 ---
 
-## ⚡ Quick Recall Card
+# Part 4 — Exam soundbites & recall
+
+> **Client VPN:** "AWS Client VPN is a managed user-to-network VPN. Clients get an IP from the client CIDR, traffic is TLS-tunnelled to the endpoint, source-NATed to an ENI in the associated subnet, gated by authorization rules (CIDR) and the target's security group (port)."
+
+> **Site-to-Site:** "Site-to-Site VPN provides IPsec tunnels from on-prem to AWS over the public internet. Each connection auto-creates **two tunnels** for AWS-side HA. Use **BGP** for dynamic routing and automatic failover. For production use **redundant Customer Gateways**, and consider VPN as a **backup to Direct Connect**. Attach to **Transit Gateway** to reach many VPCs with one VPN."
 
 ```
-┌─────────────────────────────────────────────────┐
-│ SITE-TO-SITE VPN KEY FACTS                       │
-├─────────────────────────────────────────────────┤
-│ Customer Gateway (CGW) Your end of VPN           │
-│ Virtual Priv Gateway   AWS end of VPN            │
-│ Tunnels per connection 2 (HA)                    │
-│ Per-tunnel bandwidth   ~1.25 Gbps                │
-│ Routing                Static or BGP             │
-│ BGP                    Auto-failover supported   │
-│ TGW Attachment         Yes — connect many VPCs   │
-│ Accelerated VPN        Via Global Accelerator $  │
-│ vs Direct Connect      Cheap, fast setup,        │
-│                        encrypted, less BW        │
-├─────────────────────────────────────────────────┤
-│ HA PATTERNS                                      │
-│ Basic       Single CGW, 2 tunnels (AWS-side HA)  │
-│ Better      2 CGWs, 4 total tunnels              │
-│ Best        DX primary + VPN backup via BGP      │
-└─────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────┐
+│ DECISION TRIGGERS                                       │
+├────────────────────────────────────────────────────────┤
+│ Remote laptop into VPC ............... Client VPN       │
+│ Whole office/LAN into VPC ............ Site-to-Site VPN │
+│ Need auto-failover on the link ....... BGP dynamic      │
+│ Many VPCs / many sites ............... VPN + TGW        │
+│ Encryption + cheap + set up today .... Site-to-Site VPN │
+│ Consistent low latency, big bandwidth  Direct Connect   │
+│ DX exists but compliance needs crypto  VPN over DX /    │
+│                                        MACsec           │
+└────────────────────────────────────────────────────────┘
 ```
 
-## 🎓 Common Exam Patterns
-
-> **"Need encrypted on-prem to AWS connectivity with budget constraints, can set up in days."**
->
-> ✅ **Site-to-Site VPN** with 2 tunnels and BGP routing.
-
-> **"Direct Connect already in place but compliance now requires encryption."**
->
-> ✅ **VPN over Direct Connect** (Public VIF) — DX provides bandwidth, VPN provides IPsec encryption. Or **MACsec** on Dedicated DX (10/100G).
-
-> **"50 branch offices need connectivity to AWS and to each other."**
->
-> ✅ Each branch creates **Site-to-Site VPN to Transit Gateway**. Branches communicate via TGW. Replaces complex mesh VPNs.
+```
+┌────────────────────────────────────────────────────────┐
+│ "WHY IS IT BROKEN?" — CLIENT VPN                        │
+├────────────────────────────────────────────────────────┤
+│ Connects, reaches nothing ... missing authorization rule│
+│ RDP times out ............... SG not allowing subnet    │
+│                              CIDR on 3389               │
+│ Won't connect ............... client CIDR overlaps VPC  │
+│ Reaches private IP? ......... use PRIVATE IP, not public │
+├────────────────────────────────────────────────────────┤
+│ "WHY IS IT BROKEN?" — SITE-TO-SITE                      │
+├────────────────────────────────────────────────────────┤
+│ Tunnel UP, no traffic ....... missing route (one side)  │
+│ One tunnel down ............. normal — use both (HA)    │
+│ EC2 drops packets ........... SG must allow on-prem CIDR│
+└────────────────────────────────────────────────────────┘
+```

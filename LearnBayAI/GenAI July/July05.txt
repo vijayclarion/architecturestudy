@@ -1,0 +1,1933 @@
+Hi,
+00:11
+
+everyone. Good morning. How are you, my friend?
+01:57
+
+All right, guys. So today's target is I'm going to cover RNN and CNN part. Yeah. Deep neural network you have already seen, which is called multilayer perceptrons. I have shown you how it works,
+03:45
+
+how you can handle the tabular data or even image data set, the classification problem, you can handle it. Even you have a regression problem or classification problem, just five, six line code you have to write, and work done.
+03:58
+
+CNN also very easy. I definitely recommend it to use transfer learning. Don't use the pre-trained model you have to build from your own. It should always use transfer learning.
+04:11
+
+Transfer learning. Okay, so what is meaning of transfer learning? Transfer learning meaning it's simple, that we already have a pre-trained model available, so instead of building your own model, why not you can use the existing model just like a LLM, and there you have to
+04:26
+
+do some tweaks. Okay, that's what is called transfer learning. So any case study you wanted to do, please go use the pre-trained model, do some modifications, and hence, this is what the fine-tuning model is there and some
+04:41
+
+transfer learning concept there. And this model exactly we are doing in the transformer learning. When we cover the transformer and fine-tuning, I'll show you the connections.
+04:56
+
+So CNN is basically is another neural network. How multilayer or deep neural network is there, similarly, CNN stand for Convolutional
+05:09
+
+Neural Network. Okay. Convolutional neural network, what it will do? It is mainly used for image data set.
+05:26
+
+So wherever you have a image data set, if you really wanted a very good performance and all, you have to go and use the CNN. Yeah? And why I'm saying image data set? Because image has a special character, special structures, right?
+05:39
+
+So CNN, what they will do? They will learn. So any pixel there, image is nothing, it's a pixel. So any pixel there, by the help of CNN, they learn their edges.
+05:54
+
+They learn their corners. ... corners. They learn their shape. What is the shape there, right? And they also learn the object, what kind of object it is.
+06:07
+
+So that's how the process works. And of course, there are so many methods there, right? So many use cases you will get it. One of the use cases would be image classification.
+06:21
+
+So you can see there are so many images there, and you have to classify them that, what image it is. Another problem statement is called object detections, right? So,
+06:34
+
+image classification. Object detection.
+06:49
+
+Face recognition. Okay? In healthcare, we have a medical
+07:04
+
+image analysis. Mm-hmm. We have something called document image
+07:17
+
+processing. So these models, you can use it. So by the help of CNN model, you can easily go and build these model. So you will get a
+07:29
+
+handwritten image, you will get it, and then you have to apply the CNN, and model will find what is written, whether it's alphabet or it's a number or it's a character or anything is there, right?
+07:43
+
+Even there are lots of images there. Your model is identifying, they can say, "Hey, what kind of image it is?" So you guys have seen so many problem statement, right? We can easily solve by this method.
+07:55
+
+So let me show you. Face recognition. Go to image and see here. So these things,
+08:08
+
+in your mobile phone also, there is a app there. So you can just, if you apply this face recognition method, then your lock get opened by the face recognition only. Yeah, so they can easily recognize it.
+08:22
+
+Thumb impression, you can give it fingerprints, then only it get opened. Yeah, so these features are nothing, it's built by the CNN model only. Yeah, you have seen in your mobile phone, just put it, then your mobile get opened. Otherwise, mobile is locked.
+08:36
+
+Yeah, the laptop also the same features there. Are you guys with me? You have seen these type of problem statement extensively? And I hope you are using, right? When if you have a smartphone, you are using that
+08:51
+
+part. Mm-hmm. So you can do by this method. Obviously anybody ask you, you have to go and do it.
+09:03
+
+So what I'm going to do today, I'll pick one use cases for CNN, and then I will go with the RNN. How RNN, the text data, you will handle it, you can generate, you can create the next sentence, how the
+09:15
+
+machine, they can understand the text problems and all. So we'll cover that part also. Mm-hmm. Are you with me?
+09:27
+
+Yesterday, I have given very high level understanding that what is machine learning, what is deep learning, how machine learning is different from deep learning. Right? What kind of problems you can solve in ML and deep learning. Then I have discussed more deep dive on multilayer
+09:41
+
+perceptron. Mm-hmm. Good. We
+09:57
+
+have any questions? Padri has raised hand. Yes, Padri.
+10:09
+
+Unmute it. Can you hear me? Yes. Yes, sir. So, yesterday you talked about the multilayer perceptron, right? So what difference
+10:26
+
+between CNN and multilayer perceptron, because both are handling pixels, right? No, CNN is typically for image. So if you have a complex, let's say you have RGB color image there,
+10:41
+
+red, green, blue image there, colorful image there, or their pixel is very big, 1,000 by 1,000 pixel, 126, 128 by 128. Then a multilayer perceptron
+10:54
+
+will not give the better answer. So multilayer perceptron we are using when you have a gray image there, means black and white there. Or if you have a tabular data there. Tabular data in the sense, classification problem there, regression
+11:07
+
+problems there, then you have to go and use the multilayer perceptron. But if you have a typical image part there, and that is also a colorful image. So let me show you.
+11:21
+
+Okay, basically we need to see which type of- Yeah, correct ... image it was, whether it was a colored image, RGB, or it was a- If RGB, don't use multilayer perceptron, it will not give you the best answer. You will get pathetic response. Multilayer perceptron will not work.
+11:36
+
+Multilayer perceptron, actually the first neural network, they actually worked on tabular data, regression classification. Then the researcher, they explore, can be used in image also.
+11:51
+
+So image, it's working with the black and white, where pixel is lesser. But the time the pixel size get increased and the color get changed, channel get changed, one channel to three channel, once you shift it, RGB channel,
+12:04
+
+MLP will not work. And hence we are using CNN. Okay, yeah. Understood. Okay. Thank you, sir. Yeah. So let me show you this.
+12:18
+
+Cat. Dogs versus cats.
+12:36
+
+Any other question, guys, you can go ahead and ask me, no problem.
+12:50
+
+By the way, you guys are joining my project batch or not? I have seen few friends. Himanshu there, other friends are there. How about others?
+13:06
+
+So did you find some interesting session completely different?
+13:20
+
+Great. So there normally, I'll teach like that only, so.
+13:33
+
+Okay, we have an image. Now let me go here. Let me take the API token. Create new token.
+14:10
+
+Or create legacy. Open this.
+14:23
+
+Yeah. So today, maybe I will not take a session in the evening. I have some work, so just I'm letting you know in advance.
+15:29
+
+That other batch candidate alone, we will inform them. Yeah, but you will also get a notification if any plan got changed and all, but just I'm giving heads-up.
+15:42
+
+Okay. Hmm, so good. And there my objective is, I'll teach you in such a way, when you get a job, what you will do, how you will do
+15:57
+
+it. On that perspective, we are now teaching there. Here, I'm creating foundations. You can understand. You can also speak the same language. That's what the purpose is.
+16:10
+
+Sir, you are going to deep learning. Still you are going to deep learning. What question it is? Still why you are writing still? Yesterday only I started. What do you mean still? Can you complete in one lecture only?
+16:26
+
+Hmm. So no problem. So guys, what I'm going to do here, I'm just taking a dataset. So here,
+16:44
+
+I have taken this data. First, what you do when you log in the Kaggle, right? You can see this icon. Here you will get your name, Kumar Sundaram and all. Click on the API token, and then once you click on the API token, you will get here, you can just create
+16:57
+
+a legacy API token. Okay? And you will get the JSON file. You can take that one. Okay, that is the first part you have to do it. Hmm? You can see here your account is there.
+17:11
+
+Your account is there. Yeah, so this is my Gmail account. So you can just rectify whether everything is there or not. Yeah. I can use here also the Google Colab, right?
+17:24
+
+But I'm just using the Google Colab so that I can easily shift there. Yeah, you can see the verify account and all, all this part, you can check it. Yeah, everything is working. Site email notifications, allow news
+17:37
+
+and tips. So anything, you can just go and explore it. Now, I'm going here and say Colab. Colab.
+17:50
+
+Close this router agent. Already we have done. Now new notebook.
+18:07
+
+Run time. Change the run time to GPU machine. Save this. Connect here. Who missed the session, and if you guys are interested to join
+18:30
+
+now, please ask Learnbit to give a two days or last two session recording. Yeah, in evening batch. Because if you don't attend that session and all, nothing you will understand.
+18:46
+
+Especially yesterday's session, guys. I have discussed complete architecture, all the services and all, what is how. Everything, I have discussed all components. So please, first watch that recording and then only please join,
+18:58
+
+otherwise, no use. Otherwise, you have to wait once class get over and we will start the project session, you have to join that batch. But if you have a bandwidth and you wanted to complete quickly,
+19:12
+
+class as well as project session, you are most welcome. Okay. So this is done.
+19:27
+
+Now, let me upload this. Kaggle. Okay. So I have uploaded here.
+19:40
+
+And you can copy-paste. You can see here. Mkdir.
+19:54
+
+Kaggle. And JSON file. You have to save this. Execute this. Next,
+20:08
+
+go here, and you can say I wanted to take this dataset. Okay, I wanted to take this dataset. So you can go here.
+20:22
+
+So notebook here also there. If you guys wanted to use in Kaggle only, you can go and use it. Of course, there is a payment there, you have to pay and all.
+20:34
+
+But it's very easy. You can connect all these things. So here also you can try to use it. Next part what I wanted to do here, I wanted to take this data.
+20:46
+
+So you can copy-paste. Let me...
+21:00
+
+Not this one. Sample data test and size.
+21:16
+
+Okay. Let me, rather I can write it, let me explain you this code only. Okay.
+22:07
+
+Otherwise it will take unnecessary time. I don't want to waste my time in writing code and all. So I'll explain you how things works. So you can see, this is nothing, it's a connection, your API
+22:22
+
+key. So you have to take a API key, and then you can connect with the Kaggle so that when you execute the code, you can execute the code, your notebook
+22:36
+
+or you can say Colab get connected with the raw data, and everything you will get in your drive, and then you have to work on it. So first you can go execute this.
+22:51
+
+And this is the problem statement. You can just see what kind of problem statement. It's a classification problem statement. Okay, so if you see the notebook, you have two data preprocessing, create directory and all.
+23:10
+
+Me show you this. Dogs and cat classification problem.
+23:26
+
+What everybody just...
+23:38
+
+So see this. So we have a dataset there. We have different images there, cat image there. We have a dog's image there. We have total 2,200 images there. Different kind of images they have taken.
+23:50
+
+Now, the objective is you have to first train all the images, and next time when you give the image, any new image will come, your machine will identify and say, "Hey, this is cat," or, "This is dog," or, "This is elephant." What kind of image is there.
+24:05
+
+So if you try to build, and you can see the image and all. It's a colorful image. It's a RGB image. So if you go and use multilayer perceptron, it will not work. And that is why I'm using CNN method now
+24:19
+
+This part is you have to download the dataset in your system. Okay, here you can try it, you can write a code, you can write a markdown, same like a Colab. So Colab, we have a code there and we have a text data there.
+24:35
+
+Here we are executing it. Similar thing you can do in the Colab also. So when we do it, all the data, everything gets connected here. You can see dataset connected here, and this is the data cat versus dog data is available there. Cat versus dog. So all the cat image, all
+24:48
+
+the dog2170 images came in my system. Okay, you can easily go and use it. Now here what we are doing here, you can see import a ZIP file. ZIP file means these images cat and dog is given into ZIP file.
+25:03
+
+So you have to first unzip them. So you can say zipfile.ZIPFile, this is the image there zipped, and I wanted to read them. And you can extract all the content, whatever given dog and this, everything you have to take it in your
+25:19
+
+system. Yeah, and then you can close this. So you can go and execute here. Error directory in this.
+25:34
+
+Why it's not working? Okay, let me do one thing.
+25:52
+
+Net. So your Cavl API is readable by the user, the system. To fix this, you can run this route. Okay, no problem.
+26:14
+
+This. 403 client error.
+26:32
+
+I think they are not reading this one. Not readable.
+26:56
+
+Unroll it.
+27:12
+
+Why not it's connecting actually? What is this?
+28:17
+
+403 client error. It's not picking our dataset. Dataset is not able to fetch it. Connection error is there.
+28:33
+
+API is not working actually. In here also the same thing happened. Traceback file. Could not find cavl.json file.
+28:53
+
+Give me a minute, guys. I'm just checking what is happening. Why it's not working, actually.
+31:18
+
+Because once data will come, only then I can use this. So my data is not here.
+31:46
+
+Some problem there. Okay.
+33:29
+
+So can I download the dataset and we'll do it? It will take lots of time, actually. So no problem. So I'll do one thing then.
+33:43
+
+I'll do one thing. I will fix that part later on. That I did it, that download part I have done here.
+33:56
+
+That one you are seeing, right? This button, this one. This part you are saying. I don't want to download this part. So
+34:11
+
+I can do one thing. Let me go in the Account, API Command.
+34:24
+
+Edit. Not this, this, this.
+34:37
+
+Apply. Working fine.
+34:52
+
+Setting. Okay, everything is fine. Can I do this?
+35:06
+
+Okay, no problem. Let me do one thing. Okay.
+35:33
+
+So let me take this. Keras Dataset.
+36:21
+
+And I'm taking here Fashion MNIST Dataset. Yeah? Fashion MNIST is also black and white, so let me take this one. This is colorful image. Color training image dataset.
+36:34
+
+So I'm taking a CIFAR, a small image classification dataset. So please go here, take this dataset.
+36:48
+
+So what you do, you can first import the library. You can say import TensorFlow as tf
+37:07
+
+from tensorflow tensorflow.keras. Import
+37:19
+
+keras from keras.layers, you can import DenseLayer, Flatten,
+37:35
+
+and Conv2D, Maximus pooling, all these things. Okay. So these are the packages. I'm downloading it.
+37:49
+
+So you can see I have downloaded sequential dataset. I have downloaded Conv2D. Wherever Conv2D there means I'm using convolutional layer. Okay, Maximus pooling is one of the
+38:03
+
+layers there where you can find the maximize visibility. Okay? And then you can say model. Okay?
+38:16
+
+And dataset equal to CIFAR-10 dataset. Please download it.
+38:28
+
+It's taking time. It's GPU machine.
+39:01
+
+Hmm? What happened? Why it's taking time? Now it is okay.
+39:24
+
+Any problem? Taking too much time. Maybe restart the session. Now go here, runtime. GPU save.
+39:48
+
+Reconnect. Okay.
+40:02
+
+Pratik, it's not useful for interview. This is just I'm showing you because if you have understanding, let's say tomorrow you get some project where your client will ask you: "Can you please see the image and do the boundary box? Can you please
+40:25
+
+do the detection, object detections?" Now what you will do? You should have a CNN knowledge, right? And when you see the code, you should have understanding also what happened. So of course you can use GenAI, but you will write a CNN.
+40:38
+
+You can say, this is the use cases where we have a image dataset. Your task is you have to build a CNN model. So provide me the code step by step so that I can build the model, and wherever there is tricks required or there is a troubles
+40:53
+
+outcomes, I have a full visibility which line there is a problem there. So that is why I'm teaching you. Nobody will ask you the coding, please remember. Code, only they are asking in Python related. Okay, don't worry these things.
+41:08
+
+And in fact, very rarely you will use it, but who knows? Tomorrow, if any use cases comes for image-related, you should have a knowledge of CNN. Make sense? Everyone?
+41:22
+
+Okay. So here let me go in the CNN dataset so you can say fine. X-train, X-test
+41:37
+
+equal to CIFAR-10 load dataset.
+41:52
+
+Okay, so this CIFAR data taken from Toronto University for educational purpose initially, and it become very famous. So all the industry, they started working on it.
+42:08
+
+There is a problem there, I don't know why it's taking too much time. But anyway, there are too much image there. So we have total how many images there? 50,000 image there, and that is also colorful, and 10,000 image for test data.
+42:26
+
+Means 60,000 images there. Okay, so all the images it's uploading here. You can say print X-train, Y-train, X-test,
+42:41
+
+Y-test.shape .zip, .zip, .zip.
+42:56
+
+Is there any logic how to calculate and divide training and test data? I didn't understand your question. What do you mean by dividing training and test? 70/30 there, no? Logic 70/30
+43:19
+
+or 80/20, 75/25. If you don't give, machine automatically consider 75% training data and 25% test data.
+43:34
+
+Some issue there in my system, I think. It's taking too much time, see? Ideally, it will not take that much time. So no, we have to wait.
+43:50
+
+Keras is taking 20%. I have not seen. I remember, I think 75, 25 there are. I think 70, 75, 25. But if it is 80/20, 80/20, just recheck.
+44:08
+
+Instead of uploading the documents, you can directly download it, and then you do it. But if you download, how much time it will take? Just imagine. If you have 1 GB data there, 2 GB data there, download itself, it will take
+44:27
+
+another two to three hours. And then if you upload here, the machine get crash. Okay, so that's not the suggestion. So that's why I try to use that one, the linkage, but that was not working right. I try to use this one.
+44:39
+
+So there is an issue there in my API, so I just skip that part, and I'm just using it from here. Deep learning concept like transformer are the foundation
+44:53
+
+basic in GenAI identity concept like LLM, deep learning concept. This is foundation only. And you are a data scientist, think like that also.
+45:09
+
+You are a data scientist and if you don't know machine learning, deep learning, how you will justify it? See, when you can go in the GenAI domain, you should know the traditional
+45:21
+
+method also. So that time, interviewer will not feel that a operation guy came in this field. There is a problem there, it's taking too much time.
+45:35
+
+See it's going on to complete that file, it will take another hour. Can I explain you code directly? We have a code written here.
+45:53
+
+Can I explain the code, guys? Maybe we can leverage the time because I don't want to waste my time here. Is it okay, guys? Line by line, can I explain you?
+46:05
+
+Hmm? Sure. Why unnecessary, I'll wait. So you can see. So this is what the documents there. Now what they have done, TensorFlow import Keras, sequential model. You can use sequential model or you can
+46:23
+
+use functional model also. So I have written here, this is called functional model. Okay, this is called sequential architecture. This is called functional architecture. So wherever you write functional, you can say model. Next, guys,
+46:39
+
+Keras layer, you can see dense means fully connected layer. Conv 2D means convolutional neural network. Max pooling means, let's say, there is a cell value there. There is a cell value there.
+46:52
+
+Okay? There is a cell value there. And here it's written 1, 2, 3, 4, 9, 8, 7,
+47:06
+
+0, 2. Now which is the highest value there? Nine, right? So we can take this cell, and remaining I will leave it. So where the maximum visibility there, we can take it. So this is called max pooling layer. So max pooling, why we are using?
+47:18
+
+One, because it's a too much parameter there, so you can reduce the parameter. So max pooling is a method to reducing the parameter. Second, max pooling, the benefit is it will take the highest visibility.
+47:33
+
+Highest visibility on that particular cell, right? So if the 2 is coming here, the 2 is coming here, let's say. Yeah, let's say. So, I will take the highest visibility, nine. So all the cell, they will consider nine value.
+47:47
+
+So that the highest visibility will come. Yeah? Another problem is we are losing some information also. So losing some information means we are losing some cell also.
+48:02
+
+So one cons there, but the visibility point of view, max pooling is a better. And complexity-wise, if you apply the max pooling, the complexity get reduced, right? So where there is a one lakh parameter there, if you apply the max pooling, you will get 70,000, 80,000
+48:14
+
+parameters. So that much parameter you can reduce it. Okay. This is very big data, that's why taking time. See, 19.5 GB, guys. Yeah, and that is why it's taking too much time. But anyway.
+48:30
+
+So you can see this max pooling. Then batch normalization, you already seen yesterday, right? Drop out is nothing. Drop out also, I have covered yesterday. So drop out is nothing. Let's say at one go, I don't want to take 100% connections neural
+48:43
+
+network. So I can say out of 100%, I wanted to disable 30% or 40%. And then that 30%, 40% is not permanently. When batch backpropagation method happen, what I disable them, that get enabled and other
+48:55
+
+get disabled. Yeah, this is just like a random forest, how sample data you are taking. When you build the random forest model, what we do? We take a sample data, right? So sample raw data, I'm taking it, and then we are building,
+49:10
+
+which is called bootstrap ... a starting method, if you remember. So same thing dropout do. And flatten is nothing, we are calculating, so if two dimension there or three dimensions there, we can convert into one dimension, so that's why we are doing flatten.
+49:23
+
+Matplot is nothing, it's a machine learning visualization package, and regularizer is also one of the techniques called, if you guys have learnt ridge lasso elastic net, so this is called ridge method, right? So regularizer is one of the techniques there where
+49:38
+
+what happen, if any value their weight is very, very high, so you can reduce closer to zero. Not exact zero, but the weight value will come closer to zero, so that weight cannot influence the dependent variable, because weight is very high,
+49:54
+
+ideally, you can say independent variable can influence. Yeah? But regularization, why we are doing? To handle the bias problems and all. So we use regularization. Okay, these are the packages there.
+50:10
+
+Next, guys, you can see here directory, so that's the training data they have taken it. Label equal to inferred means whatever there, they are taking as it is, like cat then cat, dog then dog.
+50:25
+
+Level mode, they convert into integer, means zero and one. Let's say cat will consider zero and dog will consider one. Right? It will go alphabetic order. Batch size they have taken 32. What is the image size there? 256 by 256.
+50:38
+
+That's the pixel size there. So yesterday you have seen that I have used 28 by 28. If we go 256 by 256, it's a very big. If I multiply 260, 256 by 256, 256 multiply
+50:52
+
+256. Right? So if you use flatten, it will come 65,536. Now, that much input data there, multi-layer perceptron will not work properly, and hence we are using CNN
+51:08
+
+model. Okay? So you can see this is my training data set and this is my test data set. So same data set you have to take and do it. Next part, you can normalize them. So whatever the data there, we can say, okay, divide by 255.
+51:20
+
+If you remember yesterday I said it's a mandatory steps. Pre-processing is mandatory. So all the image, their size is zero to 255, you have to convert zero to one so that calculation become much easier. Okay, so we have done here.
+51:33
+
+You can see the normalized part. So they have done image 255. Yeah, so they have converted into binary format, zero and one format. And then they implemented training and test both validation data and the process.
+51:48
+
+So they apply the process here. Means training data also got scaled, right? The cell value comes between zero to one, and validation means test data also get converted into zero to one. Now they build the sequential model,
+52:00
+
+the CNN model. So first they use sequential. Sequential means step by step. First input layer connected with hidden layer one. Hidden layer one connected with hidden layer two. Hidden layer two connected with hidden layer three. Now what they did, model.add. Here they use
+52:17
+
+Conv2D, right? This is the 32 levels they have taken. Kernel size they have taken 3 by 3. Padding is one of the method there, right? Where they apply the valid. Activation is ReLU. Right? Input size equal to 256,
+52:31
+
+256 pixel size, and it's a RGB color, so three channel. Okay, so that's why it's three mentioned there. Okay, there is a method called padding and stride. Padding is expanding, right? So what happened?
+52:47
+
+All the images had same pattern. Here, if you see the image, right? All image has a different pixel size there. If you can go here, you can see this image has how much? 12.41. This is 5.70.
+52:59
+
+This is 16.88 KB. This is 34.32 KB. This is 12.11 KB. So all the image has a different range there, right? The pixel size. So what we do, we can say, okay, all the images will come into same format.
+53:15
+
+Yeah? So we are using padding, valid means everything will come as it is. A stride means we are reducing it. Okay? A stride means then you can go and reduce it. So first we apply this. On the top of it, we apply the batch normalization.
+53:29
+
+On the top of it, we apply the max pooling. So we are taking the maximum visibility, 2 by 2 I have taken it. Right? So it get reduced. And then you can say a stride equal to 2 means next time what happen, your image, if the pixel size is given
+53:42
+
+like that, 1, 2, 3, 4, 5, 6, like that. So what happen? First, we will take this, and if 2 by 2 there, so this will come as a 2 by 2.
+53:56
+
+Second, we can skip this part. I write a stride 3 by 3, it will come 3 by 3. And then this and this get a step, and then this will come 3 by 3.
+54:10
+
+Like that it happen, guys. So we apply this one so that it will also reduce the complexity. And padding equal to valid, as it is you can take it. Again, conv layer. So here they have taken 32 layers, now
+54:24
+
+64. Kernel size is as it is. Padding equal to valid. Activation equal to ReLU. ReLU is activation functions there. They apply the batch normalizations. Again, max pooling, and they have applied this one. The third time again they have used conv layer. Okay?
+54:38
+
+On the top of it, this max pooling, and then once everything get converted, they have done the flatten. Okay? Means they convert into one dimensions. So two dimension get convert into one dimension, and then
+54:53
+
+they apply the deep layer, multi-layer perceptron. Okay? So this part is called CNN, and that's why I told you if you don't know MLP, you will not able to solve this, and this is called multi-layer perceptron.
+55:06
+
+So once this image everything get convert into flatten means one dimension Then we are saying, okay, you can take 128 neuron. Whatever the calculations happen with the one dimension, that is the input data there, and there I'm using
+55:21
+
+activation function. Dropout, I'm saying 10% you can disable the 128 neurons. So 120 means 12 neuron each time when the iteration happen, we can stop them. Again, next time they have taken 64, second hidden layer, 64
+55:36
+
+neuron. And ReLu, and then 10%, deactivated them. And then final how many answer? I wanted one answer. Why? Because the image is only cat or dog, and activation equal to sigmoid. Sigmoid will give binary value.
+55:51
+
+If it is multiple output there, then you can go and write here softmax, and then finally summary. So it will calculate the parameter and all. Yeah? So slightly bigger. You can see earlier when we use it,
+56:05
+
+we are just using this concept here. This is the additional part you have to do it. Yeah, so first part you have to expand the images. You can understand their kernel size, you can understand their padding, you can understand their stride, you can apply the max pooling.
+56:17
+
+On the top of it, you can apply the batch normalization. Yeah? And then finally, you can do flatten. After flatten only you can apply the multilayer perceptron. After that, you already know it. Here I'm compiling the model by the help of
+56:32
+
+Adam, loss_val equal to binary_ crosentropy, accuracy equal to accuracy. Then you have to fit the model. You can set train data, iteration, I'm using epoch equal to 10, validation equal to validation data. And you can go and execute it.
+56:45
+
+You have to plot the visualization. You will see accuracy, you can compare the training and test accuracy. You can compare the training and test loss value, error value. Yeah? And then you can give the answer. Next time, the user, the client, they will give you this image or any
+56:58
+
+image, you can just pass it. You can resize the same 256 by 265 L6, right? And then you can go and predict it. When you predict, your machine will tell you, right? The model they will predict. If that is equal to one, then it is dog,
+57:13
+
+otherwise cat. So any image you can give, your machine is ready to give the cat or a dog. Like that CNN works, and it will give you very good result. There is a problem there in the API part. Otherwise, I definitely suggest you can go and explore
+57:28
+
+it, and you can solve this problem like that. Anybody have any questions, related code, related things? I cannot show you this part because there is a problem there. I don't know how much time it will take. It's keep going on.
+57:44
+
+Once it will done, then maybe I'll show you. But meanwhile, I'll take a query and then we'll build, go ahead with the next concept. So, it has three hidden layer. It has three hidden layer.
+57:58
+
+So one hidden layer, two hidden layer, and this is final output. So two hidden layer here. In CNN model, we have used one conv layer, one parameter, two parameter, three parameter.
+58:14
+
+So CNN, we have used three parameter, and multilayer perceptron, we have used two hidden layer, third is output. Make sense? Yes, Himanshu?
+58:28
+
+Sir, what is the difference between translation variance versus translation invariance here, like in CNN? So it's a very good questions. See, translation invariance means what they do,
+58:46
+
+they are doing the augmentation part also. So augmentations, why we are using it? Especially in computer vision, right?
+58:59
+
+So in CNN, we are not changing the image. As it is there, we are saying as it is. Translation invariance means what we do, let's say the
+59:11
+
+image is coming here like that, the image is there. We can change this image to this direction also. This direction also, especially in computer vision, we are using this. Yeah? So why we are doing this, because let's say there is a image
+59:24
+
+there on the road. Okay? On the road. Now, machine can identify, right? When the automatic vehicle is going on, they have to identify whether that image is a person or this is just a object.
+59:39
+
+If they identify with all the direction, then only they can stop, right? If any image will come, they can stop, "Hey, this is a person. I will not hit them." So by all direction only they are showing it. Otherwise, what happen? CNN is not doing it. Yes, computer vision, we have to do that
+59:52
+
+part. So CNN, what happen? Your only intention is I have to identify this image is dog or cat. Yeah? But what happen, let's say the image is given in the backside and your machine has not seen it. What happen?
+60:07
+
+The object, they will not identify, object detection will not happen, and they will hit the object. Okay? So, in translation invariance in the sense you have to do the different kind of augmentations, and then you have to check
+60:22
+
+it. Make sense? Understood. So basically, when we do the data augmentation, does it make translation invariance in the data or- Yes ... how is it like related? Yeah.
+60:37
+
+Because data augmentation is essentially that part wherein we are taking a same image and flipping it, zooming in, zooming out and all that. Like the data set becomes more- Correct. Yeah. It's a mandatory part.
+60:49
+
+Okay. Okay. Any other question, guys? Anyone have?
+61:03
+
+In CNN we have translation equivalence. No, not equivalence. Translation variance and translation invariance Okay. So what is the meaning of this? See, translation variance means what?
+61:24
+
+The same sentence, you can see, let's say I'm saying I'm going to home. I'm going home. In Hindi you can say, "Mai ghar ja raha hun" or "Mai ghar ki aur ja raha hun." Like that you have to speak.
+61:37
+
+Right? Meaning, so translation variance, what happens sometime, the meaning also gets changed. So if you change the direction and all. So here what happened, the machine,
+61:50
+
+you wanted to build in such a way so that if you change the direction, CNN also you can do this. This is very good concept. So in CNN also you can do the augmentation so that the same image, I can change their direction. Machine can understand, here this is also emoji, this
+62:04
+
+is also human emoji. This is also human emoji. We can identify it, and then we can give the answer, what is this? Yeah. So invariance means you can go-- Correct. So then if you go and see the images and all, you will get it.
+62:19
+
+So by the different, that's why I said it's a kind of data augmentation concept. So you can say translation invariance
+62:34
+
+in CNN. It's a very good concept. Now see here. So what happened? This is your original image. When you do translation invariance, you are actually creating multiple
+62:47
+
+image. Actual image is one, you are creating multiple image by changing their direction. So left side, it came in center, it came in right side. It changed their position. It changed their positions. Are you able to see that? So same image, you can see rotation viewpoint, size variance,
+63:00
+
+illumination variance, the position get changed. So this is what is called translation invariance. Invariance or such eq variance. So here you can see invariance, what happened, the cat and the same image will go there.
+63:16
+
+But eq variance is not like that. When I will show you the transformer and both model, that time you will see that difference happen. So they will say similar but different breeds, you will get it. Not exactly the same, but different breeds, you will get it.
+63:29
+
+So how things works, that is what we wanted to do it. So it's kind of data augmentation concept. Make sense? Okay.
+63:45
+
+So you said the client asking to build boundary box background all image in the document. In that case, we use deep learning. You will use deep learning, but by the help of GenAI, you will use it. Why you will use right code and all.
+64:07
+
+So let me take couple of questions. Amuran? Hello, sir. Yes.
+64:25
+
+Yeah. Understood the code flow, but in the last checking point where that dog and cat classification in the below code, where we have defined that the dog is one and cat is zero, it
+64:37
+
+may be a vice versa, right? So here, very good question. So here, what is mentioned there? It's integer. Table and integer. Yeah. So tell me, cat
+64:53
+
+and dog. As per alphabetic order, how machine works, C will come first, so that will consider zero. D will come second, that will consider one. Okay. It will be like where we have that one hot encoder, like that
+65:07
+
+here it will be like zero- Correct. Yeah ... one. And that is what the concept, they have also mentioned the loop condition. So loop condition is what, if model equal to one, then it is dog, otherwise it is cat.
+65:19
+
+Okay. So here it is also given. If this model, whatever you are predicting, if that equal to one, then one is denoted dog, otherwise cat. Oh. So print, you can write anything. You can say
+65:33
+
+local dog, local cat, like that also you can write. Okay. But this part already we have defined in the beginning itself. Like in the integer. Here. The beginning itself. Yeah. Here itself.
+65:46
+
+Okay. When you find it, utils image data from directory, that time itself it get converted. Okay. Okay, sir. And this one more thing, like in translation invariance, I got it, but here in
+65:58
+
+the, whatever that we have done, right, coding. In that one, will it also have the translation invariance in this one or how it will be? No. We have not used it. Okay. But if you go and if you wanted to build it, you can build that
+66:13
+
+part also. Okay. That is an additional part that we can add it in this while creating the scene in a model itself? Correct. So it's called data
+66:28
+
+image data generator. Okay. So if you go here, you can apply one more additional features that is called image data generator. Okay. Here is image data generator.
+66:41
+
+Okay, so you can apply the preprocessing image data generator, that is called the invariance feature or data augmentation. Okay. Are you able to see? You can do feature-wide center, sample-wide center, feature and standardize normalization, sample-wise
+66:56
+
+normalization, GCP witness- Okay ... FC in rotation range, 0 to 360, 365 degree, you can rotate them. Okay. Width shift, height shift, brightness, you can change it,
+67:11
+
+or CR range, zoom range, you can say zoom in, zoom out, channel shift. So these are the features there, that on that basis you can do the data augmentation. So it's called data image data generator.
+67:24
+
+It's called translation invariance. Okay. One more doubt, sir. I'm having one image, and I have changed the shape and size and everything.
+67:37
+
+So it is having multiple images, but it is in single image. Whether system can identify that using this image data generator is a single image, or it will be considering a different image?
+67:50
+
+No, that is not the purpose for this one. That questions you are asking, that is for GAN questions. Generative adversarial network, machine will identify whether that is generated image or that is fake image like that.
+68:03
+
+Here, one image, if you have, let's say, lesser image there. Okay. And you are building some CNN concept and all. So you need a more input data, then only model works properly. If you give- Yeah ... lesser image, then how the training happen?
+68:16
+
+So for that, we are using the augmentation method. So one image, if you wanted to make one lac, you can make them one lac image. This is the random features- Okay ... you have to give it. Okay. So here purpose is not whether machine can identify or not.
+68:30
+
+If you ask this question whether my machine is able to identify or not, CNN will not identify this. CNN is just generating, or data augmentation is just generating. For that you can use a GAN concept, generative adversarial network, and that will
+68:44
+
+identify whether that image is a fake image or that is generated image or that is real image. Okay. So we can easily identify it. Okay. Sir. Thank you. And- You cannot mix both things together.
+68:57
+
+Okay, sir. And are we going to see BERT model in detail, or how it will be then, sir? Are we going to? See BERT model. BERT, first you know transformer, then only BERT. No?
+69:10
+
+Yeah. If you know transformer, you know BERT model. Only additional one part you will know that is called bidirectional part. Okay. It's a part of transformer. So transformer, I said no, I will cover very deeply. Okay, sir. Okay. Thank you so
+69:23
+
+much, sir. Dhiraj? Yeah. Sir, can you go to the code part once? Mm-hmm. Okay. Where the convolutional 2D you have mentioned. Yeah, this part.
+69:37
+
+So the above part, what I understand is that you are filtering based on the edges boundary, trying to understand the edges boundary using the convolutional 2D. You are transforming these matrices
+69:50
+
+based on the learned parameters, and you are passing it to the multilayer perceptron down. Right? Correct. Yeah. So this convolutional 2D, when you say 32 and the kernel size 3x3, right?
+70:03
+
+So this 32, how we are knowing which are filter pair, which are filters- Good question ... about things we are trying to understand? Very good question. So let me take here, I'm saying AlexNet, let's say.
+70:16
+
+AlexNet image architecture. So this is the architecture there, okay? Now see here.
+70:29
+
+So this is a picture there. Now you can see here. What happened, your actual image is given what? Can you say my actual image size is 227 by 227 pixel size, and three channel means RGB?
+70:42
+
+Correct. RGB. Yeah, so that's my image there. Okay, you can say raw data there. Now how architecture works, what they have done, they have taken 11 by 11 filters, right? And a stride size equal to, they have
+70:57
+
+taken this. Now what is the pixel sizes there? You can see 55 by 55 and then 96. So 96 layers they have taken it, and 55 by 55 when they have given a stride equal to four, right?
+71:11
+
+So there is a match there, and they have used the filter equal to 11 by 11. That is what is coming. Stride means? And this is 96. The stride means we will check the image, step four. It will not go like one, two, three.
+71:26
+
+First, I will take it, then we will skip this one, and we'll start from here. So can I say I'm reducing the complexity, reducing the steps? Okay, so a stride means actually we are reducing it.
+71:41
+
+So they have applied this one, this 27, they reduce it, and then like that, how many iteration they have done? 96. So second time again, and padding equal to, they have given same, right?
+71:56
+
+Again, they have taken this 256. Yeah, you can say 384. 384, then 256. So this is called pre-trained model, who built the model. They said, "Okay, by this method, I'm getting a very good result." And how many
+72:08
+
+total parameter they have created? 60 million parameter. And they are getting very good result. Okay, this is Geoffrey. Yesterday I told you, Geoffrey Hinton. So in 2012 they have published this paper, and this
+72:23
+
+model is giving a very good... They only created a 15% error. Means if you give 100 image, 85 images they can easily predict correctly. Yeah, after that, some VGG-16 model came,
+72:37
+
+ResNet model came, Inception model came. They are giving very less error, means 2%, 1% error. Yeah? But in 2012, this model created a 60 million parameter, and giving 85% accuracy, only
+72:50
+
+15% error they are creating it. So this is called pre-trained model. This is called pre-trained model. Everybody, are you clear what is meaning of pre-trained model? Some researchers, some professors, some developer, they have
+73:04
+
+built this and they published the paper and they say, "Hey, this is my model is." Now everybody approved, right? There is a NEIPS platforms there, NEIPS paper. They have to go and publish it, so they approved it. They said, "Yeah, fine." Now it get published.
+73:19
+
+Now what we do, we as a engineer or you as a developer, you can say, rather, I can do all testing and all. It will take too much time. Why not I can use the pre-trained model and that I can apply here? Yeah? So what you
+73:33
+
+can see here, this 32, 64, 128, why they have taken? Because they have used VGG-16 model. You can see here VGG-16
+73:48
+
+architecture. If I go in the image, you can see this. Are you able to see here?
+74:03
+
+Are you able to see this? So what they have taken, first layer, how much? 64, then 128, then 256, like that, exactly same thing they have done it.
+74:16
+
+First, just reduce 32, then 64, then 128. If you go one more layer, you can say 256. One more, you can say 500. So as per how much data there, like that you have to go and do it. So, make sense what they have done?
+74:30
+
+Okay. Yeah, so they have- So basically what I understand is- Hmm ... correct. So basically what I understand is they have taken the AlexNet pre-trained model, and they have fine-tuned it using this model. Correct. Okay. Okay.
+74:45
+
+So that is what you also follow. Don't put here 30. Always give the-- Either you can go AlexNet or ResNet or-- There are so many Keras application, if you remember, yesterday I have shown you Keras
+75:00
+
+applications model. Okay, you can go in the Keras application model, and here any model you can check. Let's say you wanted to do a Xception model, right? Xception model is giving 94% accuracy. Very good model.
+75:13
+
+Click here, and Xception model, and see here. Rather than you can do anything, why not? You can directly use this model, automatically works.
+75:26
+
+So this part also not required. This is just a simple example there, so that's why they have used it. But what I can do it, I can the same problem, I will just write this line of code. This is called fine-tuning. Yeah, I'm using the same model, but I fine-tune them.
+75:40
+
+See, this is called transfer learning, guided transfer learning and fine-tuning model. Got you. So you rather you can build own model. Here I'm saying, "Hey, I'm using Xception model." Include two, what weight? So whatever the weight there in the ImageNet, same weight I wanted to
+75:55
+
+take it, right? Classification: softmax. So this is my architecture, and then I will link with the data set and work done. Okay, this is what you can do it. So that's what is the transformer learning is. Make sense?
+76:09
+
+Yeah, this helps, sir. So just I'm curious, likewise convolutional 2D, there will be some model for convolutional 3D also, right? Just curious. So no, it's a 2D only.
+76:22
+
+Okay. Okay. For video? Video, we will do computer vision. We will not use this method. Okay, gotcha.
+76:35
+
+Okay. We always prefer to use the different model. Hmm. Freeze all the 2D layers and attach the untrained layer.
+76:47
+
+That is also. So there are two methods there. You guys are very good. If you have learned that part, right? So there are two method there in fine-tuning. One method, you can freeze all the weight as it is and
+77:00
+
+only insert the new data set. Okay? You don't change the weight. Another method is you can change some weight also. So you can say here, when you see this architecture,
+77:12
+
+you can say, "Here, I wanted to freeze this part only, one, two, three, and here I wanted to do tweaks." And then whatever the layer as it is, I will use. So here you can say I will freeze this.
+77:25
+
+I will freeze this. And this part only I will do. Where you can do it? When you have a new set of data there. New set of data there. Let's say that data, the VGG, they
+77:39
+
+have trained with the ImageNet data set. This ImageNet, we have a 20,000, if you remember, right? 20,000 category there. If the new data set that doesn't fall in this 20,000, this is a completely new set of image,
+77:52
+
+which is not coming in the 20,000. In this case, how you will leverage and use this existing model? So I can say I will do only the all weight, I will freeze it, except the last one. Last one, I will insert my new data set,
+78:06
+
+and then I will change as per my requirement, and will do as it is. This is called the one fine-tuning model. Another, let's say, the image what client has given the new image, but that image actually falls here only.
+78:22
+
+Then everything you can freeze it. Okay? Everything you can freeze it, and then you can do the flatten, same data set, you can pass it. Yeah? You can see you will get a perfect answer. So both the method there. My suggestion is always freeze
+78:36
+
+all. Last layer, you don't freeze it. Last layer, you can tweak by the basis your understanding. Make sense? Just current everybody?
+78:50
+
+Good. Or quick questions? Hmm, don't take too much load, guys. Just for concept-wise, I told you,
+79:03
+
+this is what is there. A deep learning will-- A GenAI will do everything. Okay? How you will write a GenAI, let me show you that part also. Okay? Very interesting thing.
+79:16
+
+I have covered the GenAI. Let me show you.
+79:30
+
+Where to me do it?
+79:44
+
+Where I have covered GenAI. Introduction, embedding. Prompt engineering, I have covered, no?
+79:57
+
+Did I cover prompt engineering or not? There I have done all this thing. I just wanted to show you. GenAI, 16th, 17th. Prompt engineering.
+80:33
+
+Answer session. Thank you. So see, guys. Now you are clear, right? So what you do, you can...
+80:47
+
+Let me show you this.
+81:18
+
+Coding task. Okay. So let me show you here. You can just copy-paste when they're done. And what you do, you can just write a prompt here.
+83:01
+
+So you can say, "Act as an expert in generating deep learning code
+83:15
+
+in Python. Your task is to provide complete end-to-end code for
+83:27
+
+CNN problem or CNN. And
+83:39
+
+problem data set is," let's say I'm writing here, "CIFAR, a small image classification data set."
+83:52
+
+Okay. This.
+84:07
+
+"Please use VGG-16 transfer model to solve
+84:25
+
+this problem. Please ensure to get
+84:41
+
+accuracy more than 90%." Okay? Let's say this is what I'm writing here, guys.
+84:54
+
+Code. Also, provide headers
+85:07
+
+about the code as what are we doing it. Use data augmentation
+85:21
+
+method as well. Yeah? That is called translation invariance. Go and use it or see here. Now, only understanding is required. Everything, this GenAI, they will give you
+85:36
+
+all line by line code. I have mentioned the model name also, VGG-16. So they will use the VGG-16 transformer model. So pre-trained model. So go here. You can see VGG-16 model is this
+85:49
+
+Keras application. See the Transformer model? You can click here, go here in the functions, and they will copy-paste. See? Everything, they will take it, and then they will apply that one.
+86:08
+
+So let me show you. Yeah, see this. Guys, TensorFlow VGG-16, they have used functional architecture, not sequential,
+86:22
+
+dense layer, flatten layer, dropout, global average pooling 2D. Now here you can change it. You can say, "I don't want to use global average pooling 2D. I wanted max pooling." Yeah, so you have to change it also, because I have not
+86:36
+
+mentioned it, so by default they have taken it. Now, here the target is excellent, more than 90%, so they are giving it. Now, Adam is optimizer method, image data generator. This is called a data augmentation concept or translation
+86:49
+
+invariance. Because it's a image data set, 10 image, 10 classification, so they have to convert to categorical also. Yeah, yesterday you have seen how I have done it. And then NumPy, Matplot in operating system, fix
+87:03
+
+this. They have taken image height, image width, and the channel equals to 225. Why? Because if you go here, VGG-16, what is the size there of the image, guys? 224 x 224 x 3. They have taken exactly the
+87:16
+
+224, 224 and three channel. Are you guys clear? Number of classes, how many output there? This. Batch size, you can say 32. Okay? The epoch feature extraction, train the head of this, and epoch
+87:30
+
+fine-tuning 60. Fine-tuning layers more than 60 epoch so that they can get better answer. They have used a feature extraction also, 10% they are doing feature extraction. Fine-tuning is 10% learning rate. Yeah?
+87:45
+
+Then pre-process the data. They have taken the data set. Yeah? They have done this part. They resized them, NumPy and all. They have converted the dependent variable into category because that's a number,
+87:58
+
+and here they have used the data augmentations method. Yeah, you can see 20 they change the rotation, equal to 20, width shift equal to 2%, height is 2%, shear range equal to
+88:12
+
+2%, zoom range is this or that. In any format you can give your CNN easily identify what kind of image it is. Right? Fill the mode, the nearest one, that is called the zero
+88:25
+
+padding. Okay? So zero padding means which is the nearest one that they will take it. And now data augmentation configuration with the VGG-16 processor processing. Once done, they build the model. What they build, you can see VGG-16 weight equal to ImageNet.
+88:39
+
+Go here, you can see weight equal to ImageNet. Yeah, they see same code. Now you have understanding. Include top equal to false means they are not changing anything. Everything they are freezing it. Yeah? You can see here.
+88:54
+
+Input shape equal to none they have given. Because I'm using a transfer learning, they said freeze it. Okay, so they have include top equal to false, input shape equal to input shape, whatever the data we have original, they have given that one. Model trainable, do you want to change? No, false. As it is, frozen.
+89:09
+
+VGG model loaded and frozen, no changing at all. Then base model output, here they are using average pooling layer, or you can say max pooling layer, dense equal to 512, drop out 50% they have taken, dense
+89:25
+
+256, 50% they have taken, then they have used the flatten dense layer, right? And then model input equal to this model, summary you will get it, then you have to compile the models. Compile means optimize your Adam, loss equal to categorically, cross
+89:39
+
+entropy, metrics equal to accuracy. See, line by line understanding is there. Then you have to go and do the final fit models. You can give the train data, you can give batch size, you can give epoch. Epoch equal to 60 we have set up here in beginning.
+89:54
+
+You can see they have set up the 60, so you can see epoch size equal to 60 is there. Epoch size equal to 60, so you have to give 60, and then iterations happen.
+90:09
+
+Epoch extraction, and then tested data. Verbose equal to one means I wanted to see end-to-end. Once done, they have done the fine-tuning, so only the last layer, block five. If you go here,
+90:26
+
+this is my block one, block two, block three, block four, block five. So the fifth block, you can see only the fifth block, they just inserted the value. They have inserted the value.
+90:39
+
+Layer this block four and all, everything as it is, and then layer trainable, yes. Fifth layer they wanted to trainable, otherwise everything is false as it is. Yeah? How many layers are there? You can also see that. You can see here.
+90:51
+
+Yeah? This is my one, two, three, four, five. Right? And then CNN is coming. Sorry, MLP is coming, multi-layer perceptron. So only the fifth layer they change it. Right?
+91:04
+
+So fifth layer they have changed it as per their requirement, and then they are passing the compile all, extraction here they have given, evaluate the fine model. Accuracy is more than 90%, then okay, then otherwise you can go and use the
+91:17
+
+backpropagation refine save. They said accuracy requirement more than 90% not met, consider increasing epoch. So then epoch get increased, means backpropagation will happen again. Refine hyperparameter, more advanced
+91:31
+
+augmentations method, so where we have given augmentation, you can increase the augmentation concept. And then finally you have to plot them, you can see the accuracy. This is the plot for accuracy, this is plot for loss value. So that full visibility there, and then you have to predict it.
+91:44
+
+Now, this type of understanding, see, everything code I have just written. That's why I said writing a code is just a bread and butter. But understanding really matters a lot. So tomorrow, if you get these kind of problems and you have to solve by the deep
+91:59
+
+learning, how you can utilize, guys? How you can utilize a GenAI? So you should have a knowledge, right? You can understand why we are using CNN, what
+92:14
+
+concept there, then you can go and use it. So code, you need not to worry about that, but concept really matters a lot. Are you guys with me? Hmm. And this code, you have to just read. No need to remember all these things.
+92:27
+
+So initially, you can go step by step, you can try to understand, okay, what they have done, how this is done. Right? All part, once you know it, very good. And then you have to go and use it. Please copy this code.
+92:41
+
+Please copy this code and go and upload there, and execute in your Google Colab or any GPU machine there, you can try it and use it. Yeah. I wanted to show you, but it's keep going on.
+92:56
+
+See? I don't know. I think full session, they will keep iterating only. Any other question, guys? How you will use the GenAI and you will write a code. Are you clear now?
+93:10
+
+Hmm? Are you clear or not clear?
+93:27
+
+Great. So shall I go ahead? Can I pick the RNN then? Can I pick the RNN, guys?
+93:39
+
+Break. Hmm. Today is lighter session, no? Take a break, guys. And I also need a break. So,
+93:54
+
+let me take a break now. Next session onwards is interesting. These are just the basic one. I also don't want to give too much time here. Next session, I will start transformer.
+94:06
+
+Yeah? And transformer, I will teach you self-attention mechanism, self-attention mechanism, multi-head attention mechanism,
+94:18
+
+then both, and then GPT. Okay? Once this part completed, we'll cover the fine-tuning for GenAI. Okay? And there I will cover the Pept model first.
+94:32
+
+Pept model, and in Pept we'll show you LoRA and QLoRA. So this, once this part is done, this is also very important. Any interview you can go,
+94:46
+
+expectation is they will ask you these questions. Yeah? And then whatever topics there, I'll complete quickly. I think by mid of August, I will try to complete your session, guys.
+94:58
+
+Mohammed Yasin, next session is a fine-tuning session, so to understand fine-tuning, you have to know transformer model. Okay, because I will start the transformer model, that's why I have covered this multi-layer perceptron and CNN part and RNN, so that
+95:12
+
+you have some glance also. But my suggestion is don't use RNN at all. RNN completely deprecated. You always use transformer model or more advanced model, GenAI model.
+95:27
+
+Don't use RNN, LSTM. That is older model now. CNN, you can use GenAI and generate a code for CNN for computer vision and all, but RNN don't generate at all. RNN just for knowledge purpose, because GenAI is the far,
+95:40
+
+far, far better. Transformer is far, far, far better than RNN and LSTM model. Okay. Is NLP necessary? What you are learning, that is NLP only. GenAI, what we are doing text and all, so you can do it.
+95:55
+
+If you wanted to learn basic NLP, I think I have covered that part, right? In the beginning when I have picked the sentiment analysis, you have seen that. Bag of word, TFIDF. Yeah?
+96:09
+
+Few more things there like word2vec, that part if you are interested, we'll cover that part. But I don't think you will use it, right? We are not using, we are using advanced embedding method. Hmm. So
+96:21
+
+now, guys, take a break. 20 minutes, and we'll be back at 12:00. Is it okay? It's 11:30, 39. So it's fine. We'll be back in at
+96:35
+
+12:00. Okay. Bye, guys.
+96:47
+
+All right, guys, I'm back now. If you are there, please tell me yes. Okay.
+117:21
+
+Yes. Great.
+117:34
+
+Fine. So next part is RNN. Okay, let me cover the RNN part also.
+117:47
+
+Don't use RNN. As I told you, just for your knowledge purpose. So RNN is a special kind of neural network. So multi-layer perceptron model,
+118:21
+
+I told you, you can handle mostly for tabular dataset. CNN, you can handle mainly for the image dataset. And RNN, when you can use it?
+118:35
+
+When you have text dataset there. Okay, so this is a special kind of problems, and this is also become very famous early 2017. But later, once transformer model came, we stopped using
+118:47
+
+it. Because RNN mostly handling the text data, and the sequential data. Text means the sequence matters. Like time series forecasting, like sentence
+119:02
+
+transformation, like translations, like summarizations. But there are some bugs there in the RNN. RNN can only remember the last latest dataset.
+119:16
+
+They cannot remember the older dataset. So for that we use LSTM. So LSTM has a long sequence memory. And GRU is nothing, it's an advanced version of LSTM.
+119:28
+
+So in a simple way, anybody ask you why we are using this RNN model, so you can simply say that if you have a sequential data and I wanted to know the
+119:43
+
+same features. I wanted to understand the context and all, I really need to get some advanced neural network techniques, I have to use it. Okay?
+119:56
+
+So let me show you few couple of codes, but before that, let me see the query. Yes, Luna is saying, "One out of
+120:08
+
+topics question, sir. How do you debug this code or any code? If there any issue happen in the code, is it the Python skills?
+120:24
+
+This question has been asked in one of the interview I gave and it was not particularly about..." So Luna, can you raise hand? What answer you gave? I just wanted to know your understanding,
+120:36
+
+no? Then I'll give the answer. This is very good question, by the way. Yeah, unmuted. What answer you have given when they said debugging? What do you mean by debugging and all?
+120:52
+
+So I just gave the particularly took a code and what I was trying to explain, and then I explained that particular-- I took an example, and I try to
+121:05
+
+explain what is happening, if there is any issue, how I will handle, not in general. So they were not really impressed what I got from the impression.
+121:18
+
+So that's it. I did. So like you said, it's a Python skill set. My answer is no, it's not a Python skill set. Okay. Any language, any problems you have problem.
+121:30
+
+Let's say you are building a machine learning, you are building a deep learning, you are building a GenAI, and then you will get some debugging problem, means your code is not working. Mm-hmm. So it's not about the Python skill set, it's about your understanding the problem.
+121:43
+
+So first you have to understand what exactly is failing. Mm-hmm. So what is expected output there? What expected output client wants? What is the actual output you are getting it or you
+121:56
+
+are not getting at all? Or when you start writing a code and when you execute it, that time itself, it is throwing an error. Mm-hmm. So without understanding the problem, which sections the problem happen, how you
+122:09
+
+will fix it? It's just like a guesswork. Yeah. Mm-hmm. First you can try to rerun the code- Mm-hmm ... and go step by step. Don't execute at one go.
+122:22
+
+Okay. Go step by step. So line by line you have to execute it. You can run the same, you can see where the problem is. It's API-related problem, it's a code-related problem, it's a package-related problem. Sometime what happen, the package is not installed,
+122:34
+
+so that's why debugging happen. Sometime your API connection error is there. Sometime maybe some inbuilt function you have not used it. Mm-hmm. So, when you go in the production level deployment-
+122:49
+
+Mm-hmm ... then we have something called traceability log. Okay. Observation. So you can check the log. So you have application log, you have error log, you have a server log, you have API log, we have database log, you have a cloud monitoring log.
+123:02
+
+There are so many logs will come. Mm-hmm. So when you go in the observability, you will see, okay, where the problem is there, which log? So you will get the visibility. Let's say it's a API log. So you have clarity, right? That, oh, there is a problem in API only.
+123:17
+
+So why I will change and all? Why I will unnecessarily waste my time in other code? I will only focus on the API part. Okay. So from the observability log, we have to check what is the issue, and according to that, we have to-
+123:31
+
+According you have to work. And how you will work it? Let's say you are a developer. Mm-hmm. Carefully you can read the code line by line. Carefully you can read the log. You can just ask, right? Is it syntax error?
+123:45
+
+Is it timeout error? Sometimes it is trash, so the system will not work. Is it authentication error? Is it dependency issues, means package is not installed?
+123:58
+
+It is networking issue? So you can check this part. As a developer, your job is you have to understand. And then once you find it, right, then what you do, you have to execute that particular part alone.
+124:11
+
+Okay. But let's say some of the complex query, you will not able to get it. You can say, "I'm not able to find whether it's API error, authentication error, or what." On that case, you divide the system into a smaller component.
+124:25
+
+So first you can execute the UI part, then you can go for API part, then you can go for business logic part, then you can go for data part, database part. Then you can say what external services. I remember one of the project there, and that time what happened, the client, they
+124:38
+
+have given a wrong data. Mm-hmm. Then whatever the program you have created, whenever we are executing it, it's throwing an error. So we really get flustered. What happened? My code is fine. The log system observability,
+124:53
+
+everything is going good. The test data when we deploy the model is working perfectly fine. But when we go in the production, why error happen? Then, we did the external data set. I have started learning how client has given the data, and then I found, oh,
+125:07
+
+they have given a completely text format. So that's one of the issues there that you have to see it. So you verify each layer separately to identify where the failure occurs, which section it occurs.
+125:23
+
+And once you understand, then you have to start debugging. So typically the techniques, you can break down the point, you can step into, you can step over. You can watch expression, you can read the debugging part, you can read the error part.
+125:36
+
+These things. So whenever someone ask these questions, your answer would be like that only. Okay. So, many production issue are related to data-related rather than code-related. When you go into production. Mostly, you will see the client, they will give the
+125:51
+
+wrong data. Mm-hmm. Why I'm saying not related code? Because nowadays, most of the people, they are using live coding. You will use GitHub while coding. Yeah. So definitely, code-wise, there is no issues there.
+126:05
+
+Mm-hmm. Why it is not working? Because maybe they have given the wrong data, maybe they have given some complex data. Mm-hmm. The structure, it is not a JSON format. They agreed JSON format, but they have given XML format, YML format.
+126:17
+
+Okay. So you have to understand that part. So check external dependencies. What are the external dependencies there? If you are using cloud, you can see the Azure services, AWS services, GCP services. You can understand the authentications
+126:31
+
+part. And then you can try to fix one issue at one go. Don't try to execute everything. Okay, sir. Thank you. So simple. Anybody ask you these questions?
+126:46
+
+What is answer? You can say, "Whenever I debug an issue, I follow a structure approach." First I understand the problem, and then identify the expected actual behavior, expected response.
+126:58
+
+And then I reproduce the issue constantly. I will go step by step. I will go line by line. Mm-hmm. Okay. And as a developer, as a programmer, I examine logs and error traceability message also.
+127:12
+
+I go in the observability, I can understand where the failing happen, which section fails there. Once you see the logs, once you see the error message, they often point out that what is the root cause there.
+127:25
+
+And then once you understand the root cause, let's say it's a UI or API or business logic issues there, then it is very easy. You can target only those section, and you can debug them. Yeah. It's not a Python issue at all. It's not Python skillset at all.
+127:40
+
+Okay, sir. Got it. Thank you. For loop, NumPy, Panda, and all. An error is coming in API, your all three everything gone. Yeah. Thank you, sir.
+127:56
+
+Okay? Yeah. Good.
+128:08
+
+Any other question, guys? Anyone have, before I proceed? Today is light session, don't worry. Now this topic is definitely light.
+128:25
+
+No? Great. I really like it. You guys are asking very good question. Arvind, immediate to advanced Python is must then including DSA.
+128:38
+
+What is your requirement, Arvind? You can ask questions from yourself. What role you are looking? Are you looking GenAI role or are you looking software engineer role? If you are looking software engineer role, please go and learn DSA.
+128:57
+
+Okay, but if you are looking a GenAI specific role, then please don't concentrate on DSA on advanced Python. Basic is enough. Clear?
+129:11
+
+Because learning will always give you something, right? So if you learn DSA, it is good, right? But are you looking a software engineering role?
+129:33
+
+If no, then why? Already too much topics there. You can focus on other topic, no? Why unnecessary you are concentrating on DSA and other path? Good. No questions then. So guys, RNN,
+129:45
+
+let me show you a couple of questions. My Colab got hanged. Let me use Google Colab separately. Leave this.
+129:59
+
+Colab.
+130:12
+
+Okay. So let me use the RNN.
+131:13
+
+Recurrent Neural Network.
+131:27
+
+So you have to import, let's say import operating system, import pandas as pd, and import NumPy as np. Execute this.
+131:40
+
+Okay, now, let's say I'm taking here, dataset equal to. You can see,
+132:04
+
+hi, my name is Sundaram. Okay, this is my dataset one. Second, GenAI is
+132:19
+
+really good now a days. Nowadays. Okay. Next is,
+132:33
+
+you can build a rag system. Next you can say, agentic AI is
+132:47
+
+another skills in market. MCP
+133:01
+
+is a proto-call product in LLM.
+133:14
+
+A2A is something communicating
+133:30
+
+with agent to agent. Something which communicate with agent to agent. Okay. Let's say this is what I'm writing.
+133:43
+
+One, two, three, four, five, six. So six sentence I have written here, guys. Okay, you can see six sentence I have written here. So if I say dataset, you can see there are six sentence I
+133:55
+
+have. Now, each sentence, can I say we have a different word there, vocabulary there, guys? There is no fixed vocabulary. This is normally happen or not. Hmm? This is the another challenge there which CNN,
+134:11
+
+RNN or MCP cannot solve. Yeah? You can say why not I can use MCP and MLP and multilayer perceptron and CNN, because whenever you do the multilayer perceptron, we need a fixed input data.
+134:27
+
+But here you can see one, two, three, four, five, five vocabulary there. Here, one, two, three, four, five. Here, one, two, three, four, five. Here, one, two, three, four, five, six.
+134:44
+
+Here, one, two, three, four, five, six, seven. Here, one, two, three, four, five, six, seven, eight, nine. So you can see input data five, five, five, six, seven, nine.
+134:59
+
+Can I say different vocab there? Hmm. So if you handle this type of problem, what happened? Your machine, the multi-layer perceptron or CNN, throw an error. You will not cross the 10%
+135:12
+
+accuracy also. And that is why we need a separate neural network, and that is called RNN. So let me show you how it works. So first thing first,
+135:27
+
+it's a text data, so you have to convert into number. Yeah? Then only algorithm works. Second task is each value should have the same vocabulary. So you can say import
+135:39
+
+tensorflow as tf from tensorflow.keras
+135:52
+
+import, or you can say from tensorflow import keras. From tensorflow.
+136:05
+
+From tensorflow, okay? .keras.preprocessing.text
+136:21
+
+import tokenizer. And tokenizer equal to, you can say
+136:34
+
+tokenizer, and here you have to write auto_vocabulary token equal to, you can just write here
+136:46
+
+a, b, c, d, e, a, b, c, d, e, a, b, c, d, e, c, d, e. Okay. So wherever you can see this vocabulary, a, b, c, d, e, a,
+136:59
+
+b, c, d, e, a, b, c, d, e, you can understand that vocabulary is not there in my training data set. So machine can convert that part into a, b, c, d, like that. Okay? You can go and execute it.
+137:12
+
+Now, you can say tokenizer.fit_on_text_data, and here you can pass the data set. So whatever the data set
+137:26
+
+I have, everything I'm passing and converting into tokenizer. Now see, guys, each data set, whatever the vocabulary there, they will convert into number. Hmm?
+137:41
+
+Word index, you can see. So a, b, c, d denoted by one. So wherever that if customer is asking something else which vocabulary is not here, they will convert as a one. So wherever you can see the machine will see the
+137:53
+
+number. They can understand, oh, this is out of vocab, and I will denote as one. Then second word is in agent, right? You can see two, three, four, five, six. How many total vocabulary there? 32 vocabulary there.
+138:08
+
+So by this method, first thing first, your machine will identify how many vocab there. This is just a dummy data I have taken. Now, you will get millions of-- Okay. Millions of numbers you will get it, index number.
+138:22
+
+And which vocabulary is not there, that you will do it. Now you can say, I wanted to count how many times each there, how many times in there, how many times hi there. Yeah? So what you do, you can say tokenizer word
+138:37
+
+counter. You can say word counts. So you can see is given four times. Hmm? Remaining word is given one time. Agent is given two times. Right?
+138:51
+
+So how many in is given three times. So any vocabulary which is written multiple times, they can denoted how many times there. Total how many documents we have? So each
+139:04
+
+sentence they can consider as a documents. So you can say total document count, not a word count. Document count. See? Document
+139:18
+
+count. So there are total six documents there, means each sentence consider one document. One document, two document, three, four, five, six. So there are six documents there.
+139:32
+
+Are you guys with me? What is documents there? If I say data set, you can see these are the six documents there. Now this data set, I wanted to convert into
+139:44
+
+numerical format, right? So you can say this data set equal to, you can say, sequences equal to
+139:57
+
+tokenizer.text_to_sequence. And here you can pass this data set. And then you can say sequence equal to. You guys see, guys? Here it's given, "Hi, my name is Sundaram."
+140:10
+
+So hi is denoted five. You can see here, hi is denoted five here. Hi is denoted five. My is six, name is seven, Sundaram is eight, so this is what is coming.
+140:24
+
+Five, six, seven, two, eight. Yeah? Two means? What is meaning of two? Two means each. Eight means Sundaram. Are you able to see how this number comes, guys? Five, six, seven, eight, two?
+140:36
+
+Yeah. It gets converted into a number. Okay? Index number. Now, second, again, five sentence. So second is, "Genia is really a good nowadays." So they have mentioned nine, two, whatever the index number there.
+140:51
+
+You can build a rag system this. So like that they have converted. So each vocabulary token get converted into a number. Now, like I told you Here we are getting a different range.
+141:05
+
+So here we have a five vocabulary, here we have a six vocabulary, here we have a seven vocabulary, here we have a nine vocabulary. Now, whenever you build a model, you have to make sure that each range should be equal. So what is the maximum range there?
+141:18
+
+And what is the maximum range there? So you can see the maximum range is coming here, this nine. So why not I can make all the sentence into nine vocabulary? So what is the method is there? There is padding concept there.
+141:34
+
+Okay, what padding will do? They will fill with zero. So wherever there is no vocabulary there, let's say here only five vocabulary there, but maximum vocabulary is how much? Nine. So they will say, one, two, three, four.
+141:49
+
+One, two, three, four. One, two, three, four. Like that zero they will place it. This is called post-padding. Means you can add suffix.
+142:02
+
+Okay, there is a pre-padding, so you can say here whatever there, nine, so I can say four zero I will put in beginning and then it become nine. This is called pre-padding. My suggestion is always give post-padding, don't give pre-padding,
+142:15
+
+guys. Yeah? Because when you use the parameters, when you write the hyperparameter tuning, that time we always take maximum iteration. Yeah, so I prefer to take these
+142:30
+
+number rather than number. So you can delete the post-padding. So you can use it. I'll show you that part. Before building a model, this is mandatory steps.
+142:43
+
+So you can say from keras.utils import pad sequence, and pad sequence equal to, you can see here I'm saying
+142:56
+
+pad sequence one equal to pad sequence, and here you have to pass this, these sequences and padding equal to post. Let's say I'm saying pad sequence two equal
+143:13
+
+to copy pre. Now you can see, guys. If I can show you pad sequence one, what happen? What happen, guys? You can see after five there are four zero get added.
+143:27
+
+Are you able to see that? Here six vocabulary already there, so three added. Here seven there, two added. Here nine already there, so they will take nine. If I go pad sequence two, which is pre-padding, pre means
+143:40
+
+initially you will get a zero. Make sense? How before building a model you have to make sure your all input data has the same vocabulary? Hmm?
+143:53
+
+Yeah, so you have to give this one. Now you can build the architecture. Architecture. Okay? So what you do, you can say
+144:05
+
+from keras import sequential, from
+144:18
+
+keras.layers import dense layer and simple RNN. You have to use it. Now see, guys?
+144:30
+
+I'm saying here model equal to sequential model. Then you can say model.add, and here you have to add the
+144:45
+
+simple RNN. Simple RNN. Okay? You can give a three-layer input size shape equal to. Input shape equal to, you have to give what is the input shape you wanted to
+144:58
+
+give it. Okay? What is the shape you wanted to give it, that is the shape range you have to give it. And base is this. You can decide how I can build it. So let's say I'm saying input
+145:12
+
+shape equal to, let's say 4 by 10, then you can apply dense layer. Final output is this, activation function equal to sigmoid. Close this. Model.
+145:25
+
+You have to compile here, you can say model. Let me write here 32.
+145:40
+
+Okay. Input shape equal to, you can say 50,1 and then model.summary.
+145:52
+
+You can see now. Yeah. So see, guys? What I have given here.
+146:08
+
+So the first output shape I have given 32, right? And then finally one. And the parameter, how it is calculated. Right, how it is calculated. So what you have to do here, you can see
+146:22
+
+this one part, right? So I'm just using here you can say 1 multiply 32 plus 32 bias. Okay, so one input I have
+146:36
+
+taken, and then 32 neurons I have taken here. So this, how the parameter get calculated, 1 into 32 plus 32 bias,
+146:48
+
+plus this is the architecture difference, guys. CNN deep learning you know, right? When you will get the answer here, the final output is this. This is called YI hat. So if you go deep neural
+147:02
+
+network, your architecture would be 1 into 32, say it's a 32 Plus 32, this is one part. Then output also you will get 32. You can say 32 into 1
+147:15
+
+and plus 1. Yes or no, guys? And that is the parameter. This is recurrent neural network. So what recurrent neural network will do, first input data get connected with 32 neuron.
+147:28
+
+These 32 neuron, first they will connect these 32 times. Each neuron, one by one, they will connect back, up to 32 times. That is why the word name called recurrent.
+147:41
+
+They will recreate, regenerate, and just connecting with one more layer here. And why? Because sequence matters. If someone asks you why we are doing, because I need a sequential information. So they will do a sequential model, right?
+147:55
+
+So that they can get the sequential meaning, right? Every each word they have to see, okay, which context will come next. So they read it. So here, what happened? 1 into 32 plus 32.
+148:09
+
+This is part one. Second parameter, recurrent part, this 32 output, get connected with 32 times again. 32 times again. Okay, so this is the additional features there that you have to do it.
+148:23
+
+And plus whatever the output you got it, 32 multiply one plus one. So whatever the deep neural network you have seen, as it is, plus additional things, these get added. That is why the word name called recurrent.
+148:39
+
+And when you do it, you can see you will get exactly the same thing. So 1 multiply 32 plus 32. This is one part. This is one part.
+148:52
+
+Plus 32 output comes, you can say 32 multiply 32. 32. Yeah, then output gets generated. How many output? 32 output.
+149:07
+
+And then final output is one, so connected with one plus one bias. And when you do it, you can see you will get exactly 1.1211121. Are you clear how it is working, my dear friend?
+149:20
+
+How LSTM works? This RNN? Hmm?
+149:32
+
+Okay, and then you can go and ask any questions, the generation and all. But the problem in RNN is they forget very easily. Yeah? So if you go and read it, say,
+149:47
+
+what is the problem in RNN and solved by LSTM?
+150:01
+
+See now. So the primary limitations of traditional recurring neural network is their inability to retain information from earlier stage when processing long sequence.
+150:15
+
+Okay? Known that vanishing gradient problem, because gradient sink exponentially during backpropagation. Right? So what happened, they forget that part. Now, LSTM is long short-term memory network, this
+150:29
+
+introduction dedicated to this. So that type of problem, LSTM can solve it. So if you are interested, you can go, there are lots of architectures there. You can just go and explore it,
+150:45
+
+learn it. Yeah, but I definitely suggest waste of time, don't do it. Just better you can go and read some blogs. Yeah, medium blogs, you can go and read it, very nicely written.
+150:57
+
+This is RNN, this is LSTM. Yeah, so you can see LSTM, what they do. It is reducing it. This whole step, they can disconnect if the relationship is not there. So everything is written very nicely. If you read it, this is the holistic architectures there, and then directly you
+151:10
+
+can go. So this is part what is meaning of vanishing gradient, how RNN works, and then you will get some other call, LSTM and Gated Recurrent Unit. Everything is given. I'm sharing this blog. If you have a bandwidth,
+151:25
+
+please just read it for your understanding purpose. Don't spend too much time because nowadays nobody is using RNN or LSTM, GRU, and you will never use this one. Okay? You will use some advanced model called Transformer, BERT, GPT,
+151:40
+
+right? LLM model. You never, ever use RNN, LSTM, GRU method, guys. Okay? Are you guys with me? All my friend? But just five minutes editorials there, you will get
+151:55
+
+a very good understanding. Please read these five minutes. Okay? So if you unlock the power of LSTM and this, it will take hardly four
+152:11
+
+minutes to read. See here also given four minutes. Just spend four minutes, read it, you will get a full understanding, and that's it. And that's why I don't want to spend more time here. Otherwise, I can use many more cases study and I can solve RNN,
+152:23
+
+LSTM, GRU. If you go and watch my recording right where I cover the deep learning, I have taken I think three, four, five sessions in RNN, LSTM, GRU alone. I explain all the architecture end-to-end, what is input gate, what is forget gate, what is output
+152:39
+
+gate, what is reset gate, what is update gate, how the difference from LSTM to GRU. All mathematics, intuitions, everything, I have covered it with multiple use cases. But that's not the objective now.
+152:54
+
+Fine? So this is just a foundation I have given. Tomorrow means coming Saturday, I will start your Transformer model. Yeah. Attention all you need paper. So if you have a bandwidth, I'm sharing this link again
+153:08
+
+Attention is all you need paper. Yeah, it's a niche paper, guys. I would suggest, please go and read if you are interested, otherwise, I will cover all these things.
+153:24
+
+But it's very good if you just give a glance and then you can come in class. You have more questions, you will ask many more things then. So please just go through it. Yeah? Try to understand. I will explain you this architecture end-to-end.
+153:37
+
+What is meaning of multi-head attention, how the feed forward neural network connection, what is positional encoding, what is input embedding methods, what is positional encoding here, what is
+153:51
+
+mask multi-head attention mechanism. What is feed forward? What is linear softmax and output probability? This is called encoding method, this is called a decoding method. What's meaning of encoding and decoding?
+154:04
+
+This part is encoding method is also called BERT model. Decoding model is called GPT model. What is the calculations there? All part, everything, multi-head scale. And I will explain you in very simple language. You will understand this research paper.
+154:18
+
+You feel, "Oh, what easy things." But I have seen lots of people, they get stuck. They are not able to understand this paper at all because they have a researcher who has written it, so they get confused.
+154:31
+
+But on Saturday you will see how easily I will explain you, and this paper you will be able to understand. All part will cover self-attention, recurrent, combination, all they have used it.
+154:43
+
+And then this positional argument, self-attention mechanism. Okay. There is a blue scores there.
+154:56
+
+So these things I will discuss in the next session. But meanwhile, if you have a bandwidth, please go read it. If not, enjoy. Don't take too much load and all. Yeah, I'm here. I will cover that part.
+155:08
+
+So that's it, guys. Now, I think today's session is live session only. You have one hour in your diary you can enjoy. But I'll take five, 10 minutes. If anybody wanted to ask me, you wanted to talk to me,
+155:22
+
+please go ahead. You can utilize the time. Yeah? Anyone wanted to ask me anything? You can ask.
+155:34
+
+I'm happy to give you. I'll take your query. Dheeraj. Yes, Dheeraj? Hi, Sundaram. Yes. Sir, just want to ask, in the coming weekend, so are we going to start MCP A2A
+155:47
+
+or it will take one more weekend? You are listening or not? What I said, next week what I will do?
+156:02
+
+You can start this one, the paper one, right? This paper one- Paper one is what? So MCP or it's A2A or what? No, it's just your deep learning one. The deep learning I will start. No, transformer model I will cover, fine-tuning I
+156:17
+
+will cover, then only I will go MCP. So that's what I wanted to know. It might be come after next weekend, right? MCP next weekend. Next to next weekend. MCP is the last topic.
+156:31
+
+MCP A2A is the last topic. And- Before that I will cover the fine-tuning, I will cover the tool calling, I will cover the MCP-- Uh, sorry, functional calling, memories. Then only I will come into MCP. MCP just a server connections.
+156:43
+
+That is okay. MCP is nothing. So that function calling and tool calling, so might be it go for the next to next weekend, right? Mm-hmm. So not the next weekend- What is your questions? No.
+156:58
+
+My- This I will cover on that topic. But what is your question? That anyway, whether I will cover next week or next to next week or next to next week, hardly matters. Actually- I will cover it ... I am planning, actually, just I
+157:11
+
+thought of that just we cover some of the GenAI topics like tool calling and all these things. So actually, I'm planning some of the internal things. So that's why I just want to understand, so is that-
+157:24
+
+No, I wanted to cover transfer learning first. No, this fine-tuning. Without fine-tuning how I will jump the other part? No, that- And fine-tuning you can only know when you know this paper. Okay.
+157:37
+
+So that's what I am asking. So is that so the tool calling, functional calling, so it might be go next to next weekend, right? Correct. Okay. Fine. It will go on the
+157:49
+
+18th, 19th I will start your-- on that part. But that's what I want to- 11th and 12th I will cover the transformer and then fine-tuning. Yeah, fine-tuning may get extended till to 18th, but we'll
+158:03
+
+try to cover latest by 18th, so 19th I will start this. Okay. Fine. Thank you. Yeah.
+158:16
+
+Yes, Rishav? Yeah. Sir, I just wanted to understand one thing, like this harness that we are
+158:28
+
+nowadays listening about. I will cover that one. Is that a part of the same MCP? It's not part of, but I will cover that one. Okay. It's a part of... Yeah. It's part of MCP and tool callings.
+158:43
+
+There I will cover that thing. Okay. Sir. You will get understanding what is this. Yeah? Yes, sir. I will touch that part.
+158:56
+
+Umut? Yeah. Hi, sir. Actually, sir, I just have one question regarding-- that's a different-- So just having came from the expert.
+159:09
+
+Okay. Let's take an example that the GPT data, if I can take all the GPT data on my local machine And I have one separate dataset which I can
+159:24
+
+merge with that, and I want my model to work on locally, not the globally. Just for the compliance and the security purpose or something new if I am building. Is it possible? Do we have as such concept or not?
+159:37
+
+Locally, you wanted to do what we are doing locally right now? No. What I mean to say is, let's take an example. We have a GPT. As of now, GPT is having a lot of data, right? So GPT model is trained on, let's take an example, till March
+159:52
+
+2026, right? Mm-hmm. So now after March, if I am building any of the healthcare data, if I have a separate dataset, right? So before that, I wanted to use the GPT data, but on top of the site, I
+160:08
+
+wanted to use my dataset that I don't want to expose globally. Is it possible? What is RAG?
+160:21
+
+RAG is not for the model training. RAG is the separate document we have. But I'm talking about the million or trillions of data, like as a vector data we
+160:33
+
+have, and I just wanted to get it merged and train my LLM model and run it internally as on my internet. No, not like that it happens. So whatever the LLM is there, that is pre-trained model. Okay, you wanted to build your own model.
+160:46
+
+That is not possible, that much capability, we don't have. Because we need so much computational system, time, price, all this thing. So how we are doing it, if you have a millions or
+161:00
+
+trillions of data there, let's say 10 years or 20 years data there for organization, and you wanted to train that model. So we prefer to use existing LLM model, and then we are creating agent skills and we'll ask the agent that you can go and
+161:12
+
+fetch the data and then give the answer. So it's a kind of RAG system and all. What is your question? What I'm trying to understand that let's say GPT-3 trained, GPT-4o model trained till Jan 2024 dataset.
+161:27
+
+After that, any data comes in internet, let's say till two years, 2025 and 2026, can I train that dataset to GPT-4o model? This is what you are asking. Right.
+161:41
+
+Yeah. That is, we will not use GPT, we will use the latest model. But internal or internet data. If your company has own data or it's keep coming every day, why not you can create MCP server and use the
+161:54
+
+GPT-4 only. If you use the GPT-4 model- Yeah ... use the MCP server where you get all the current data or live data or future data also comes. Right. GPT has a visibility. As when it will come, they have a visibility.
+162:09
+
+They will fetch a data and they will give it. That's what Perplexity do, no? Yes. That-- I got it. Thank you very much. I got it regarding that MCP, I forgot that part.
+162:23
+
+Okay. Yep. To train the GPT model again till '20, so you can say your skill set till 2026. No, that will solve. Thank you, sir. Yeah, because that is very pricey model, no? You have to build your own model then.
+162:35
+
+Own model is too much way costly. Yeah. All right, sir. Okay, let me take a couple of questions, interesting questions
+162:50
+
+in chat window. EDF shared already in RAG class. Already shared, yes. How about Anti-Gravity ID to develop AI agent
+163:03
+
+or agentic AI implementation? So just Google it, see what is the answer you are getting it. Anti-Gravity ID is an AI native development
+163:16
+
+environment, my friend. Okay? So where what happened, AI agent act like a developer partners. They can plan, they can write, they can test, they can debug, they can execute it with a minimal
+163:28
+
+human. So it's kind of no-code, low-code platform. So that anyway we are doing it, right? It's not that. So not the traditional approaches, we are using a developer, they are writing a code, then they are compiling it and then
+163:42
+
+executing it. But once agentic ID came, you have seen that, right? Yesterday also, I have shown you the Gamma applications, Windsurf, you have seen it, right? So what agentic ID do,
+163:56
+
+developer, they will just give a goal. An AI agent, they will write a code, they will create a file, they will run the test, they will do the debugging. You have seen, no? I have created one folder here. Demo, I think I have deleted
+164:09
+
+it. But if you remember, right, you can use the Windsurf and everything will do. So they will create a README file, everything they will do it. So that is what exactly happened. Make sense, Wasim?
+164:22
+
+Yeah, so you can go here, just write it. They will create all the folder, everything. So you not to worry about that. Okay, so agent will work like that. Agent is a manager. Agent, they will create API, they will create a UI, they will use the test
+164:43
+
+cases and all. Everything happen. You need not to worry. Yeah? Why this is interesting in agentic AI? All base is the prompt only. You can say build a SharePoint.
+164:56
+
+Create architecture. So you know you can use it. So we are using, no? It's not that, no. Arvind is saying, "Will you also teach CAG? Knowledge augmentation?"
+165:09
+
+CAG, I will not teach you. That is already I have covered. So CAG is a part of this only. So, when I say knowledge augmentation generation, so when you do the evaluation
+165:24
+
+metrics, they will find the hallucination, they will find the knowledge limited problem. Yeah. So when you build a model, when user is asking questions, what happens? It gets connected with the knowledge graph.
+165:37
+
+And then the RAG system, we are using some agent, rather than we can say RAG, retrieval system. The agent, they are connecting, they have a reasoning, a logic there. And by the help of LLM, they are giving the answers.
+165:52
+
+Already I have covered. That is called CAG, my friend. Hmm? Can you please upload the eBooks in DriverGenie and Agent TK reading
+166:06
+
+theory part? I can put it. eBook soft copy, I don't have. If you are interested to buy a book and all, I will give you the book name, you can go and read it.
+166:19
+
+But very costly, it's 6,000 something. So if you are interested, you can go and read it. I'll give you the book's name.
+166:33
+
+Nares HK, unmuted. Please go ahead, ask your query. Hi, sir. Sir, I'm a little bit confused about encoding and embedding, sir. What is the difference, sir?
+166:45
+
+Okay, very good question. Does anybody can take a lead? What is meaning of encoding and embedding? Because I know both are in numerical representation.
+166:58
+
+And then embedding also, multidimensional, right? But I'm not able to under-- no clear difference between those two.
+167:12
+
+No, very good. That is good questions. I wanted to check others. So, embedding and encoding, they both sit on the different-- Encoding is something you do early.
+167:28
+
+You basically get the text data. Usually all the LLMs, large language models, they work with the text data or PDF data or images or whatever. Essentially, you pass natural language, which is English, Chinese, French, whatever, right?
+167:42
+
+Mm-hmm. Machine doesn't understand these natural languages. They understand mathematics. So you have to first encode them. You first have to convert them into numbers, which is where your encoding sits. One-hot encoder, bag-of-word model or n-grams,
+167:57
+
+whatever that sir has told, right? Yeah. And once you have that conversion happen, then comes your embedding part later on, when you actually get the semantic embeddings out of it.
+168:11
+
+For example, if I say I am working or I am learning from LearnBay Institute, the semantic meaning, who is learning? I. From where? LearnBay. This sentence has a meaning that
+168:23
+
+it emphasize I am learning from LearnBay. So the whole context and everything that basically generated is called as an embedding. So how it all works is when sir will teach transformers and all,
+168:36
+
+that model is precisely used to embed this English sentence, which is converted into encoded format in numbers, to an embedding, which will be basis this meaning. So all that you
+168:50
+
+will see in the next session. But encoding is essentially you convert your natural language to number, and embedding is later on when you convert these numbers to
+169:05
+
+semantic vectors, essentially. Very good. I think in a short- On the top, you can just add one more thing, Nares. Mm-hmm. So encoding is nothing, just like one-hot encoder you have seen,
+169:17
+
+right? Mm-hmm. The bag-of-word, I have used it. Yes. Level encoder, you have seen, right? So what they are doing, they are just generating the number. So if you have, "Hi, my name is Sundaram," so they can just create a
+169:33
+
+number, one, two, three, basic alphabetic order and all. Mm-hmm. But RNN just now you have seen an RNN, what happened? They are just creating a index number, one, two, three, four, five, six. Index numbers, yes. Mm-hmm. That is called encoding method. Okay. Converting number. Embedding is what?
+169:45
+
+They can read the context. Yeah. That's why they have used the word semantic meaning. Okay. So what semantic meaning means, they can understand. That's why, whenever you build a RAG or Agent TK or anything,
+170:00
+
+what we are using embedding method. We are not using encoding method. So what they- Okay ... if the meaningful number will capture- Mm-hmm ... the semantic meaning, which will capture the relationship, which will give
+170:13
+
+the sequential informations, that okay, what is this meaning is. Yeah. Okay. I can speak, "Hi, my name is," then it's Sundaram comes. Similar number will also speak like that, the context.
+170:26
+
+And that's why we are using. Okay. And, yeah, I got it. Thanks, Himanshu. Sir, another thing is this embedding is not tightly coupled with any kind of database.
+170:39
+
+Basically, we are using vector database, right? It's not- Mm-hmm ... tightly coupled with any kind of database, right? It is just a concept which understands the context along with that words, right? But that embedding only we are storing into vector database, no?
+170:51
+
+Oh, yeah. Vector database, what is there? Embedding only. Yeah. So that was- Same sentence and translation- Mm-hmm ... the text data that we are converting into embedding, so that it get convert into number, but number in a semantical way.
+171:06
+
+Okay. Number in a relationship way. And then machine is fetching the data from there. So where you will store that embedding? You need some storage, no? Yeah. Okay. Yeah, got it, sir. Thank you. Storage is called vector database. Vector database is nothing.
+171:21
+
+Vector database is just like a storage, just like a blob storage. Okay. Got it. And it is a multidimensional, right? These embeddings and all like- You can say multidimension, you can say whatever.
+171:36
+
+Multidimension, of course, because image also gets converted into embedding. Mm-hmm. It's converted. Audio also gets converted. So yes, it's a multidimension. Okay. Thank you. Thank you, Abhinav. Yeah.
+171:48
+
+Who else? Kumar Ashish. Yes, Ashish, sir? Hi, sir. So my question is, nowadays we see in the LLM
+172:03
+
+chats that we can enable the internet search also, right? And LLMs can answer from the internet by searching it. So when we are saying that any LLM is trained up to
+172:17
+
+2024 January only, and it can also search the internet now. So what is the performance difference? Does it make more difference? It can also search the current data also.
+172:30
+
+So even if we haven't trained it after 2024 data, it can access all the data from the internet. So is that both a similar thing, or training it will make more difference, more good?
+172:45
+
+No. So when they said my model, so let's say GPT-4, and they are claiming till Jan 2024, means whatever the data there, when training happened, that much data they have taken and built, they have given it, and then training happened.
+172:58
+
+Now, if you already learnt books, and then if I ask any questions on that particular books, you will give answer quickly, no? Mm-hmm. So that is normally happen. Now you can say, when I ask the latest question that also they are giving the
+173:15
+
+answer. Yeah. By searching the internet. By searching the internet. Why? Because nowadays the agent also there. So agent can understand what is your intention. So because you already trained it that much data, they have understanding, they
+173:30
+
+have memory, right? They have a sense. They understand your language, what you are asking. So if you ask the future or maybe the current time, what happened? Yeah. So they are going on that particular website and then fetching the data and
+173:44
+
+giving it. So actually, you can say agent is doing it. That's why agentic AI come into picture, no? So this ChatGPT and Claude behind that agentic agent is also there.
+173:57
+
+Agent there. That's what you can say. The agent also there. Agent is doing that activities. Oh, it was-- Okay. Thanks. But they are using LLM only because LLM trained, right? That learning happened by the LLM, and doing the activities, who is the
+174:09
+
+doer? The agent only. Hmm. So I wanted to understand that, I have trained the LLM till 2025, and after that it can search the internet. So its performance will be same in the future also, or when it
+174:24
+
+will start to get degrading, and I have to retrain with the latest data? Internet search functionality is fine, it will take care. Performance will not degrade.
+174:38
+
+But what is the use cases? Why you will pick the internet data? Internet data already available there, right? Yeah. We have all. So when you do in industry, you can say always I will take a industry data. That data, how it happened, that's why we will use the MCP.
+174:52
+
+Oh. So we'll give that function. So when I cover, you will see that. Internet, what is the purpose? That till then new model, Meta will publish another model. They can say, "My model is better than this."
+175:09
+
+Okay. Some other company, they will-- Cloud is doing amazing job, so they will come into picture. So that will not solve the purpose. Degrading and all, you can only decide when you have own data. Internet data, how you will do it? Do you have that much computational system?
+175:21
+
+Every day, how much data got generated? Do you have that much capability to fetch all the internet data and then do it? You always go by the specific, no? Yeah, sir.
+175:37
+
+So whenever you solve it, you can leverage that LLM model, and then you can solve your industry problems or domain-specific problem or specific use cases. There you can implement it, and then you can
+175:50
+
+evaluate their performance, their behavior, their pattern, all these things. Sure, sir. Thank you, sir. Take care. Dheeraj, you have also raised hand. You are already unmuted.
+176:02
+
+Yes, sir. Sir, on follow-up question on what my other colleague asked. So when it comes to dealing with the private data, now industry is following two approach. First, like you said, that we wanted to create
+176:17
+
+the knowledge base, and using the RAG, we can pull the data. And the other is to use some open source pre-trained model and fine-tune it for the industrywide,
+176:31
+
+enterprise-wide data. Right? So I see specifically in the banking domain, most of the companies are opting for both the approaches. For the less sensitive data, they are going for the RAG-like system, and for the more sensitive and the regulatory compliance are there, they're trying
+176:44
+
+to create some kind of private cloud where they can train, fine-tune their model. Right? And with now AMD coming up with the more customer-based GPUs where you can run the AI workloads on your local
+176:59
+
+system also, how you see the trend is going on? In the near future, will the company will be opting for more enterprise, like the private cloud architecture- Near future, I don't know, sir. I also don't know how industry is
+177:13
+
+changing. Tomorrow what happen, I also don't know. Because the way the rapidly it's growing, rapidly changing happen. Only suggestion is you have to open, see what is happening.
+177:26
+
+Yeah. But my question is- How long this will go on ... because you have more expertise on this, right? Because you have seen. Because in US companies, I see they are opting for the more private cloud thing because of they have money also, and there are regulatory compliance
+177:38
+
+also. But how about Indian companies? Are they also opting for private cloud or they are just comfortable using the existing OpenAI foundational model and building a RAG system around it?
+177:51
+
+Based on your experience. It depends on the use cases, but cloud anyway, most of them, for every company, they prefer to use in cloud only because they don't compromise with the security, the governance, and the other part.
+178:03
+
+So anywhere you will work, mostly you will work on the cloud only. You will use the LLM model, but directly you will not use it. OpenAI directly, you will not go on the OpenAI website and you will use it. Always you will go via Azure or AWS, via
+178:18
+
+GCP. Cloud is there very much. But depends on the use cases, what kind of use cases. The RAG is there. RAG is doing amazing job for last two years.
+178:33
+
+Now only enhancement there. So now we are building a RAG, but we are creating agent also. So agent is handling the knowledge database, semantic search they are using and getting the answer. RAG is very much there, and on the top of it, we are using the MCP part so that
+178:47
+
+LLM has a visibility apart from the knowledge database. They are fetching the live data also. RAG is there- Somehow my company has- We are creating multiple agent, and agent is connecting with another agent and then taking decision. One agent, they are fetching data from knowledge base, another
+179:01
+
+agent fetching data from MCP. Then third agent, they are communicating with both and then finally giving the answer. Mm-hmm. So it's not that we can completely skip the RAG. There is advanced version is coming that you can
+179:15
+
+say. Yep. Okay? Mm. Dhruv Mukherjee, what is your query? Last question, guys, then I will take a leave.
+179:28
+
+Hi, sir. It's regarding something for chunking and embedding. So just wanted to ask something, extended part of the previous question. So the embedding part we have
+179:43
+
+seen, for every model, there is a concept to convert the text into the numerical manner with having different numbers, right? That's what you told previously. Mm-hmm.
+179:56
+
+Your voice is not coming. Can you speak? Can you hear me now, sir? Yes. So embedding is what? So basically- Different embedding ... different embeddings are there. So for every model, there is a concept of different embedded system,
+180:14
+
+right? So which model is generating what kind of embedding and how they are doing this chunking. So those much of for-- It is also relevance to the fine-tuning at a very basic level, right?
+180:29
+
+Not fine-tuning. Normally, when you build a bot, and bot is-- there is a latency there, okay? Latency in the sense bot is generating a response, but it takes lots of time.
+180:47
+
+So how you will fix it? So then we are going and using the chunking again. Different algorithm for the chunking and embedding. Yes. We are changing the chunking, and then we are doing it, yeah. Other challenge- In that case how- ... we are not getting the proper answer. Mm.
+180:59
+
+So then again, you have to go back and check. So what are the measures are there so that we can have a parameter through which we can detect, okay, my embedding system or chunking methodology is working fine on it, and I can
+181:11
+
+go ahead with this, and that is ultimate, we can say? So you have to use the eval metrics. I think eval metrics I have not covered. So you can use the evaluation metrics, and when the retrieval, they fetch the data from database.
+181:24
+
+You will see you can validate there itself. So whatever the response I'm getting, the context I'm getting from vector database. Vector database is nothing, it's a chunk only. Only chunk get converted into number, right?
+181:37
+
+Correct. So that data when we are getting, that is coming correctly or not. So there is a method called relevancy score, precision score, context precision, context recall, context relevancy. Three parameter there, you can check it, and on that basis, you
+181:49
+
+will decide. It's all coming like a hyperparameter tuning, like from ML side, right? Correct. Likewise. Okay. Not ML side. Similar to that. Similar to, yeah. Like in ML, we have seen precision recall. Correct. The recall, yes.
+182:03
+
+So similar way, here also you can use it, and that will give you visibility- Okay ... that, okay, whatever the context I'm getting, that means embedding happened correctly or not. So it is giving correct how much percent I'm getting it. You can put a threshold value, and bases this, you can do it.
+182:16
+
+And if we get something around 60% to 70% on it, so can we say that's the ultimate, we can't do much on the things on top of it, and can have something else in other side of it, so that it can fine-tune? You can improve. No, you can improve.
+182:31
+
+You can't say, "I can't do it." You can only say can't do it when you don't have sufficient data or maybe really some big issues there. Otherwise, that is what- Okay ... you have to try to do it. Otherwise, what is the purpose?
+182:44
+
+So can we have a brief- You come to me and you can say, "I can't do it" ... also on this chunking and embedding? What are the different types of embedding we do have? How we can fine-tune this? Already covered. No, you go and watch recording. Yeah, I know that. But note something on that, like a kind of
+182:57
+
+thesis or something, or somewhere we can- I'll share some notes. I have a- Yeah, that's what, sir. If you want to get it, I'll share it. Okay, sir. Okay. Thank you, sir. That's what my question was.
+183:10
+
+No problem. So that's it, guys. Please provide me the book name as well. I'll share, Manoj, don't worry. So that's it. Thank you, everybody.
+183:23
+
+One book is there, if you guys wanted. I can show you that book. Or I'll check whether I have some soft copy. I don't think I have.
+183:35
+
+Gen AI books.
+183:51
+
+So Not this one.
+184:04
+
+One book is available there for this one. There you will get a soft copy also. If you are interested, you can read it. "Jay Alamar", right? But that is not good book, actually. The way I impressed with him in the
+184:31
+
+transformer and BERT paper, "GenAI", he didn't do justification. So Jay Alamar.
+184:47
+
+"GenAI" book. So if you have a bandwidth, you can go and read it. So you will get this "GenAI" books. But I'm not impressed, to be very honest.
+185:05
+
+I read that book because his editorial-- This is the guy there, right? This is the book there. So if you are interested, you can go and read it. Don't buy it because this is not worth it, huh?
+185:17
+
+To be very honest, 4,500 if you pay and to get nothing, I don't suggest it, but you can just go ahead. I have a couple of books there.
+185:31
+
+I will share that books, maybe. I'll find it if I have a soft copy available. I don't think soft copy there, but if it's there, I'll share with you. But meanwhile, you can go and do it. So what you do, you can take a soft copy.
+185:44
+
+Okay? Free of cost you will get it. PDF.
+186:00
+
+Hands-on, this one, GitHub link. So you can go and read it. So here you will get line by line. Okay? Let me share this.
+186:14
+
+Fine. So thank you, guys. Here the code also given, right? Introduction to language model, token embedding, look inside this, text classification, prompt engineering. So these are the things, fine-tuning generative.
+186:30
+
+Definitely, you will get some understanding. Please go and read it. But I'll share a couple of books that really impressed. Hmm? Okay. Bye guys, take care.

@@ -79,6 +79,21 @@ THE RULE OF THUMB:
 Provisioned with Auto Scaling = good middle ground
 ```
 
+```
+THREE OPTIONS — DON'T CONFLATE THEM:
+─────────────────────────────────────────────
+1. Provisioned (manual)   fixed RCU/WCU until you change
+2. Provisioned + Auto Scaling
+                          you set MIN and MAX bounds +
+                          a target utilization %; DDB
+                          scales within those bounds
+3. On-Demand              NO min/max, NO provisioning;
+                          pay per request, scales freely
+
+Min/max bounds belong to Auto Scaling ONLY.
+On-Demand has no capacity limits to configure.
+```
+
 ### Capacity Units Explained
 
 ```
@@ -98,6 +113,27 @@ Example:
   Calc: 10 KB / 4 KB = 2.5 → round up to 3
         3 / 2 (eventual) = 1.5
         1.5 × 1000 = 1500 RCU
+```
+
+### How Writes Propagate
+
+```
+WRITE PATH:
+─────────────────────────────────────────────
+1. Write goes to the PRIMARY node of the partition
+2. DDB returns SUCCESS immediately (does NOT wait
+   for all replicas)
+3. Replicated ASYNCHRONOUSLY to other AZ replicas
+   in the background
+
+CONSEQUENCE:
+─────────────────────────────────────────────
+Right after a write, a replica may still hold old
+data → an eventual read from that replica is stale.
+This is exactly why strongly-consistent reads exist.
+Writes have no consistency toggle — they are always
+sent to the primary first; you only size WCU by
+item size × frequency.
 ```
 
 ### Consistency Models
@@ -120,6 +156,37 @@ TRANSACTIONAL:
 - ACID across multiple items
 - 2x RCU cost (read), 2x WCU cost (write)
 - Use: Multi-item atomic operations
+```
+
+```
+SET AT READ TIME, NOT AT PROVISIONING:
+─────────────────────────────────────────────
+Consistency is a per-request choice via the
+ConsistentRead parameter on GetItem / Query / Scan:
+  ConsistentRead = true   → strongly consistent
+  ConsistentRead = false  → eventually consistent (default)
+Different reads in the same app can use different levels.
+Capacity mode only sets *cost*; the parameter picks behavior.
+
+ITEM IS TREATED AS A WHOLE:
+─────────────────────────────────────────────
+A single strongly-consistent read of an 8 KB item:
+  8 KB / 4 KB = 2 RCU  (cost)
+DDB waits until the ENTIRE item is at its latest
+version across nodes, then returns all of it at once.
+You never get "half fresh, half stale" — consistency
+applies to the whole item, RCU count is just pricing.
+
+WHY STALE READS HAPPEN:
+─────────────────────────────────────────────
+Data is replicated across multiple nodes/AZs. Writes
+sync asynchronously, so a node may not have the latest
+write yet. Eventual read → may hit that lagging node.
+Strong read → routed to a node guaranteed current
+(slightly slower, 1x RCU vs 0.5x).
+
+CHOOSING: freshness-critical (auth, payments, inventory)
+→ strong. Rarely-changing (catalog, profiles) → eventual.
 ```
 
 ### The Hot Partition Problem
@@ -215,6 +282,35 @@ DON'T USE DAX:
 ❌ Just to "make DDB cheaper" — DAX adds cost
 ```
 
+```
+DEPLOYMENT & NETWORKING:
+─────────────────────────────────────────────
+- A DAX CLUSTER lives INSIDE a VPC, at the SUBNET
+  level (not regional). You pick subnets for its nodes.
+- App connects to the cluster endpoint → cluster
+  talks to DynamoDB.
+- Multi-subnet apps: point all app subnets at one
+  central cluster (reachable across subnets), rather
+  than one cluster per subnet.
+- Cross-region caching = separate DAX cluster per region.
+
+SECURITY:
+─────────────────────────────────────────────
+- Security group on the cluster: allow inbound on the
+  DAX port FROM the app's security group.
+- IAM: app's role/credentials need dynamodb + dax
+  permissions to read via DAX and reach DDB underneath.
+- Standard model: network access (SG) + identity (IAM).
+
+CACHING BEHAVIOR:
+─────────────────────────────────────────────
+- Lazy loading (default): first read misses → fetched
+  from DDB and cached; later reads hit cache.
+- Write-through: writes go through DAX to DDB so the
+  cache stays fresh on write.
+- Two caches: item cache + query cache.
+```
+
 ### Time to Live (TTL)
 
 ```
@@ -239,6 +335,24 @@ SHORT VERSION:
 ✅ Writes accepted in ANY region
 ✅ Conflict resolution: last-writer-wins (timestamp)
 ✅ Use: Globally distributed apps needing low write latency
+```
+
+```
+CROSS-REGION MECHANICS:
+─────────────────────────────────────────────
+- Write to any region returns success immediately;
+  the change streams to other regions ASYNCHRONOUSLY
+- Replication latency: typically ms to a few sec
+  (network-dependent, no hard SLA)
+- Reads are local + fast, but during the sync window
+  another region can serve STALE data → eventual
+  consistency ACROSS regions
+- Simultaneous writes to the SAME item in two regions:
+  each write is timestamped → LAST-WRITER-WINS.
+  The earlier write can be silently overwritten.
+- No cross-region strong consistency. If you need it,
+  route reads to the write region (defeats the point)
+  or handle conflicts in application logic.
 ```
 
 ### DynamoDB Backups

@@ -1,0 +1,2113 @@
+Hi, everyone. Good morning. Guys, am I audible? Yes. Okay, great.
+23:40
+
+Okay. So just let me know, everybody, are you able to see my screen? Yeah? Okay, great.
+24:23
+
+So, today I'm going to discuss about GenAI evaluation metrics. Okay.
+24:35
+
+GenAI evaluation metrics.
+24:48
+
+Okay. Specifically for RAG. Yeah. So I'm going to explain, this is very important.
+25:03
+
+First thing first, please understand this is very important. It's a very significant topic for interview perspective. Right? Evaluation metrics is as significant as RAG, as
+25:17
+
+significant as agentic AI, as significant as fine-tuning. So you cannot ignore this topic. Right? You have to please remember, we have to build this model. Right? Now, I'm just going some background.
+25:30
+
+I'll give you the background, and then you can understand what happened, right? See, before building any RAG solution, you have to remember one thing. Right? A RAG system is not successful because
+25:45
+
+it gives an answer. Please remember. Right? A RAG system is successful only if it gives the correct response, correct answer. Yes or no? You are building RAG not for the purpose that, okay, I'm getting the solution.
+26:00
+
+The RAG is very successful in industry because they are giving the correct response, right, using the correct documents. Yeah? Without hallucination. Yeah? Without any hallucination, and consistently,
+26:16
+
+right, we are getting the answer. There are thousands of users, they are asking questions, and your LLM fetching the right data from the right source, correct documents from the retrieval, from the vector database, without generating any hallucination, and that is
+26:31
+
+why industry, they prefer to use RAG. Everybody, are you with me? Are you agree this philosophy? RAG is successful because they are giving the correct answer, because they are not generating hallucination, because they are
+26:47
+
+fetching the right information from the vector database. Can I say that's why RAG is successful? Yeah. Now, how you will decide, the question comes in your mind, right? How you will decide that, okay, whatever the RAG, whatever
+27:02
+
+the LLM, they are generating the response, whether that is correct or not. Right? And that is what evaluation metrics is one of the most significant topic in the modern deep learning, in the modern generative AI, and agentic AI field.
+27:16
+
+Right? Multiple organizations, they are using the eval metrics. Even whenever you get any use cases, you have to justify, you can inform to your client that, "Boss, this much accuracy I am getting it."
+27:31
+
+Okay? If they are happy, then only you can say, we are ready to go in the production. Unless or until they are not happy, you have to improve the RAG performance and all.
+27:46
+
+Make sense, my dear friend, what I'm trying to say? Everybody agree? Hmm? Now your question comes that, okay, fine, but how I
+27:58
+
+will measure? How do we measure whether our GenAI application is working correctly or not? Hmm? How you will judge this? So now question comes,
+28:13
+
+I agree, RAG is successful because of correct response, because of not generating a hallucination, because of fetching the right information from the vector database. Yeah? But how you will judge it? What are the parameters there?
+28:26
+
+Yeah, I'm going to explain you in a very simple way. Guys, do you know, right, these are my raw data. I hope you know the RAG architecture. This is my
+28:40
+
+raw data. There are different kind of data there. You have to use the loading part. All the documents, all the data you have to load in your system.
+28:54
+
+Okay? Then you have to do the chunking. Okay, then you have to do chunking or splitting. Then you have to convert into number. Embedding.
+29:08
+
+Yeah? And finally you have to store into vector database. Then so finally, we have to store into vector database. Okay? This is called indexing.
+29:23
+
+This is the first phase. Now any user is asking query here. Any user, they're asking a query. They're asking a query.
+29:35
+
+Right? This query will go to the retrieval system. Retrieval system. Retrieval system get connected with the vector database,
+29:48
+
+and fetching the relevant information and giving to the context. Context. So whatever user query asked,
+30:02
+
+please tell me, the context is coming, this is the user query or not? And do you really need to evaluate here or not? Can I say I need to build Eval1? Please.
+30:15
+
+Can I say whatever the context data I got it, can I say implement Eval1 here or not? This is the user query. Whatever the relevant documents we are getting, which is called context, this context is correct or not? Can I say here I have to build one evaluation
+30:28
+
+matrix? Agree, disagree. Come on. All my friend. 70 participant there, I wanted answer at least 10%, 20%.
+30:44
+
+Whatever the user is asking query, the system, the retrieval system, they are using the cosine similarity, key search, BM25, hybrid search, right? Different method I taught you in class.
+30:57
+
+They are using this, and then by the help of threshold value, by the help of K value, by the help of HNSW, we are getting the context. Let's say five context, three context. This context is correct or not, can I place here evaluation matrix?
+31:12
+
+Yeah? Because if this evaluation matrix is okay, this context is fine, then you are writing augmentation part, if you remember. Then you can say, okay, if this result is okay, then here I will
+31:28
+
+do the? Augmentation. An augmentation is nothing called enhanced prompt. Enhanced prompt.
+31:41
+
+Right. What enhanced prompt do? You are saying whatever the context data there, please ensure you have to give the answer versus the user query. If the user query is something and context is not relevant, you can simply say, "I don't know the answer." Right?
+31:55
+
+But don't try to go and fetch from vector database and try to go and fetch outside the informations, external information and then give the answer. Then it is called hallucination. Yeah? That is what you can say. So this R part,
+32:10
+
+this A part, and once you write clear, then you are writing here LLM, large language model. Now, LLM, what they will do? They have a questions, they have some context given, right? The LLM, they can read the
+32:26
+
+question, they can articulate just like a human being, and then finally, they will generate the answer. They will generate the response. They will generate the response. My dear friend, everybody,
+32:41
+
+I wanted your response. Can I say whatever the LLM is generating, can I say one eval matrix here also I wanted to put it? This generation is correct or not?
+32:55
+
+Agree, disagree. Hmm? Whatever the LLM is responding, right, generating,
+33:08
+
+these generations, this is nothing, it's output, right? This is output. And this output is correct or not correct, you have to evaluate, because this is what the customer will get.
+33:23
+
+Right? So before customer get it, why not I can use the evaluation matrix and I can see how user wanted the response, how we can place a reinforcement learning human feedback. Are we getting exactly like that or not?
+33:35
+
+So one evaluation matrix here, whatever the context you are getting, whatever the retrieval generating it, and another whatever the LLM generating it. These two evaluation metrics I have to develop. My dear friend, everybody, all participant, are you guys
+33:49
+
+with me or not? Anybody say where you can apply this, you are in the better position or not? Come on. Just analogy, guys, I'm giving. See, LLM is what? Can I say he-- Let's say I'm talking about
+34:05
+
+let's say a school exam. Okay, there is an exam there in a school. Very analogy. Can I say a student is nothing, they are called LLM? Because a student, LLM is generating the output, a student will write the answer.
+34:19
+
+So can I say a student behave like LLM? Question paper is what? Question paper means can I say user query? User query? Yeah? Now, when user query is asking questions, it
+34:35
+
+will go to the vector database. Means a student, what they will do? Can I say textbook? Whatever the textbook there. Whatever the textbook there, that is called vector database. Vector database. Hmm?
+34:49
+
+A student behave like a LLM. Question paper behave like a user query. Textbook is means raw data, right? All repository there, which is called vector database, right? Who will evaluate? When user will give the answer, who will evaluate?
+35:05
+
+Can I say teacher? Teacher will evaluate it. They are the evaluators. So eval one and two. One and two. And then finally, you have to give the marks.
+35:18
+
+Marks. So can I say eval score? Eval score. Did you understand the analogy? Can I say exactly we are going to do here? We have a raw data textbook.
+35:31
+
+We have a user query. Yeah? We have a retrieval. It means, what retrieval will do? They will search from the textbook. If any user query is there, what LLM will do? Yeah, student brain, they will search it. Right?
+35:43
+
+So whatever the context there, right? Whatever the context there, base is this, they will generate the response, and that's what the customer will get. So the flow you can see it. User is asking query. User is asking query, simple flow.
+35:56
+
+User is asking query. User question. Then it will go to the retrieval system.
+36:12
+
+It will go to the retrieval system. Retrieval system search from the documents. You can say relevant document. Relevant documents. Documents
+36:27
+
+And then whatever the context they will give, LLM will find that context, and then finally they will generate the response. Generate
+36:40
+
+answer. And I said that's the flow there. And where I wanted to implement the evaluation metrics, I am saying relevant documents. I'm saying eval one.
+36:53
+
+And whatever the LLM is generating answer, I'm saying eval two. Eval two. Mm-hmm. Now, what are the evaluation metrics there, my dear friend? Evaluation metrics number one is,
+37:07
+
+you can say the relevant documents. Means whatever the context there, you can say contextual precision. Contextual precision.
+37:20
+
+Contextual. Contextual recall.
+37:34
+
+Contextual relevancy. Relevancy. These three parameter, you have to evaluate it. Yeah? Someone say how you will retrieve the document, what
+37:47
+
+parameter, what evaluation metrics we use. You can say, "Boss, we will use contextual precision, contextual recall, contextual relevancies." Okay? When we generate, what are the parameters there? What are the specific names there?
+38:01
+
+Basis this, we can evaluate it whether my model is giving correct response or not. You can say for that we can use answer
+38:15
+
+relevancy. For that we will use faithfulness. Faithfulness. For that we will use
+38:27
+
+hallucination check. Hallucination checks. Huh? And for that we will use LLM as a judge.
+38:40
+
+Very important. This is also called GEval. Okay? So there are total three and four. Seven evaluation metrics there.
+38:54
+
+So eval metrics. Anybody going forward, take a name. You can say there are total seven eval metrics there, and these sevens are there. By heart you have to remember.
+39:07
+
+I'm going to explaining you line by line, one by one, with maths, with examples, with real time, where you can use contextual precision, recall relevancy. What does it mean? What is answer relevancy?
+39:21
+
+How answer relevancy get calculated? What is the maths behind that? Everything I'm going to explain you, but by heart you have to remember this part. And mark my word, guys, whenever you can go for interview, they definitely ask
+39:35
+
+these questions. That how you will judge, how you will ensure whether your model is working correct or not, and then you have to do this part. I wanted everybody, please give me concurrence that you will remember these seven names. Then I'm going to explain you one by one what
+39:50
+
+is precision, recall relevancy, answer relevancy, all these things. Come on. Mm-hmm.
+40:06
+
+Good. Thank you, everyone. So now moving back to the actual things. So see what happened, I'm giving a perspective. Let's say, the retrieval quality, whatever
+40:22
+
+the retrieval you are getting it, I'm just adding here called retrieval quality. Retrieval
+40:37
+
+quality. My handwriting is visible, right? Because my handwriting is very poor. Are you able to read it? Because I'll convert into PDF and I'll give you. I hope everybody's making notes also, right?
+40:51
+
+If you don't do it, believe me, one month later, if you open this PDF, you completely you can say who has written. No, it's standard one people also not writing like that. Please make sure you have to write it.
+41:04
+
+Oh, Arvind is saying it's hard to make out your handwriting. See? So day one only you have to do it, huh?
+41:19
+
+Yeah, please make your one notebook. In day one I told you. When I started the session, I said, one task you have to make one notes. That is for GenAI classes, where whatever things I'll write it, I wanted you guys also write. Because this course is not for developer.
+41:34
+
+This course is not only for architecture. This course is leaders and managers as well. So everything, you will get a developer perspective, you will get architecture perspective, you will get a designing, how you will design
+41:49
+
+the solution and all, everything you will get it. And when I go in the project batch here in this class once, maybe by August I'll complete the session, and then I'll start the project. I'll show you end-to-end CI/CD pipeline, how you
+42:01
+
+will go and do the back-end plus front-end code, everything. So that once you get a job, at one go you can go in the flow. And my main focus is your success, guys. Any interview you can go, you cannot come back and you can say, "I'm not able to
+42:16
+
+crack it because they ask this question and I'm not aware of." I don't want to listen this thing. Everybody know all this part. I know what questions they will ask. Right? And I'm confident if you follow this concept, if you know
+42:29
+
+this, you are making your notes, you are practicing it, you are discussing with your friends, believe me, at one go you will crack the GenAI or AgentIC, interview. And nowadays the demand is too high, right? Nobody can say that job is not there in market.
+42:43
+
+So many jobs there in this field. Yeah? So I'm marking my notes. Very good, Anna.
+42:56
+
+How will you implement RAG in the production system? I'll show you in the project batch. First thing, don't worry, Ravi, that thing. Main focus is you understand the fundamental.
+43:09
+
+Okay? You understand what is RAG, how RAG, you will evaluate it. Production is even simpler, because if you know here I'm teaching you very deep dive, full explanation. I'll show you in the Azure and you will see how you can do in the production very
+43:21
+
+easy. Only thing is you have to pay, because you will bring-- You can take your subscription, and subscription has some charges. Okay? It's not that someone say, "I'm production," that is beyond the
+43:35
+
+scope. No. Only few things will come, like containerizations will come. So you can use the Docker. A CI/CD pipeline will come. That things are there, which you feel that is new
+43:48
+
+right now, but once I pick the project batch, you will see everything is very easy. Okay, great. All my friend are. So are you guys, you
+44:01
+
+have a full energy, guys? Are you ready to learn all these things? Mm. Good.
+44:14
+
+So what I said, first part, here you can say retrieval quality. So let's say I'm saying, did we retrieve correct documents? Right? Whatever the retrieval documents we are finding it, my
+44:27
+
+question is or your client will ask, did we retrieve correct documents? Yeah. Second part is called when you generate this, you can say that is called generator.
+44:40
+
+That is called generator quality. Generator quality. Okay? So one part is retrieval quality, second part is generator
+44:53
+
+quality. So you can say, did LLM generate the correct answer? Right? Now, here, what is the end-to-end quality?
+45:07
+
+What is end-to-end quality? So first part, retrieval quality, you can ask question, did we retrieve the correct documents? Secondly, generator quality, you can ask question, did the
+45:19
+
+LLM generate the correct answer? And third part is end-to-end quality. One, two, and three. What is end-to-end? Did the user get the right answer or not?
+45:35
+
+Right? And how you will decide? This is the 1, 2, 3, 4, 5, 6, 7. These seven parameter, these seven evaluation metrics you can use, and you will get the answer. Yeah. Simple. My friend, I hope you are aware now.
+45:48
+
+Let's say I'm asking question, hey, what is the capital of France? Right? What is my expectation? My expectation is the retrieval documents, they can give the France capital is Paris. What is the capital of India? My expectation is capital of India
+46:03
+
+is New Delhi. Instead of capital of India is Mumbai. Mumbai is a financial capital. It's not your actual capital. I can say, what is the capital of India?
+46:18
+
+I don't want Bangalore. Bangalore is a Karnataka capital. Karnataka is one of the state in India. So you wanted that kind of response. How the system will work, that is why we are learning
+46:31
+
+this contextual precision, contextual recall, contextual relevancies. Because they will retrieve the correct answer, you will get the right answer. So first part, you always give the focus and then we'll go like that.
+46:45
+
+So how many of you, come on, in this batch, how many of you, you aware the name precision recall relevancy in machine learning? Did you learn classification problem?
+46:59
+
+Did you remember confusion metrics, precision recall? Everybody? Lots of people say yes. Anyone there they say no?
+47:13
+
+Can I expect everyone? I have covered it, if you remember. Super, super. Brilliant. Thank you. That's what my expectation is, guys. Now, see this.
+47:26
+
+Part number one is contextual precision. Contextual precision.
+47:38
+
+Okay? Contextual precision, what actually they will check? They will check how many retrieval document were actually useful. Okay, what they will do, you can say,
+47:52
+
+how many retrieved documents were
+48:05
+
+useful? Or you can say, how many retrieval documents are
+48:17
+
+actually useful? In real example, real time, let's say I'm saying,
+48:29
+
+the question is, what is Azure OpenAI? Simply. Now what happen? The chunk, the system, they will find multiple chunks, multiple embedding. So chunk one, it's saying, let's say, Azure
+48:41
+
+OpenAI provide GPT model. Second chunk is saying Azure virtual machine pricing. Third relevant is saying Azure Open AI uses Azure infrastructure. So there are different
+48:55
+
+perspectives there. Now, if my question here is-- Try to understand what I'm saying here, guys. My question is, what is
+49:09
+
+Azure Open AI? Now, the chunk one, you are getting answer, let's say I'm saying, Azure
+49:21
+
+Open AI uses Azure infrastructure. Infrastructure.
+49:38
+
+Like Cosmo DB and so and so on. Chunk two, they are saying Azure virtual
+49:53
+
+machine pricing. And chunk three is called Azure
+50:07
+
+Open AI provide GPT models. Now I wanted
+50:20
+
+response from you guys. Question is: what is Azure Open AI? The question number one is relevant, guys. Azure Open AI uses Azure infrastructure. Is it relevant? Tell me yes or no.
+50:34
+
+I wanted to answer yes or no only. Most people are saying no. Think. If you ask me, I can say yes, it is relevant, no?
+50:48
+
+Why you guys say no? What is Azure Open AI? Azure Open AI uses Azure infrastructure like Cosmo DB, like AI storage, like the blob storage, like data breaks, like different
+51:02
+
+Foundry, app services. That's why it means an Azure infrastructure. Infrastructure means everything. So it's relevant or irrelevant, guys? Come on. Relevant or irrelevant? Yes or no?
+51:16
+
+Relevant, right? Everybody agree? Yeah, so we can say yes, it is relevant. It is relevant. Relevant. Question chunk number two. Yeah, like that, there are so many
+51:30
+
+chunks there. Please remember. Azure virtual machine pricing. Is it relevant or non relevant? Irrelevant. Tell me. Yogi said you are not in the mood to learning today, huh?
+51:44
+
+Focus on topic, right, Yogi sir? Forget about Amazon Bedrock and all. What your organization is using, I'm not worry. I will teach you AWS Bedrock also in our class. Focus this topic first, please. Hardly matter, this is just a example I have given.
+51:59
+
+Focus on the topic. Otherwise, no? I have a feeling that you are not interested, you are just focusing something else. Because two, three questions I have seen, and that is completely irrelevant from the topic.
+52:13
+
+So most of the people saying irrelevant. Are you guys agree? Because question is what is Open AI. They are saying Azure virtual machine pricing and all. Yeah? Which is irrelevant. So you can say it is called irrelevant.
+52:26
+
+All my friend, you agree or disagree? Come on. Irrelevant. What about third one? Azure Open AI provide GPT model. Relevant or irrelevant?
+52:39
+
+And he says, what is given Azure? But they are talking Azure Open AI. Somewhere they are talking about GenAI part. They are talking about virtual machines, VM machine.
+52:53
+
+So that is no, you will not go by the word only. You also have to understand the context. Here, Azure Open AI provides GPT model. You can say yes, of course, it is relevant. It is relevant.
+53:07
+
+Yeah? So this is manual approach. I just given this example so that you can understand the context. In real-time, dear friend, there are millions of chunks you will get it.
+53:21
+
+And what the retrieval system they will do, they will go by the help of HNSW, by the help of hybrid search, by the help of different cosine similarity search, they will find and give the value.
+53:36
+
+So you can say, we know how many total retrieve there. You can say total retrieve item. Retrieved three chunks there. Let's say three chunks we have given retrieve K equal to three.
+53:50
+
+So they got three. Out of three, how many relevant chunks are there? How many relevant chunks there? You can say relevant chunks equal to two. Yeah? Retrieve three chunks, but relevant
+54:03
+
+two chunks there. And how the precision value get calculated. Precision value calculated. Guys, the formula for the precision is precision
+54:19
+
+equal to-- what is the relevant? Relevant retrieved chunk. Retrieved chunk. Divide by total
+54:34
+
+retrieve chunks. So you can say, precision equal
+54:48
+
+to total retrieved chunk is three. And the relevant chunk are two, and hence precision score equal to 0.67%, means 67% relevant information we are getting it, precision.
+55:00
+
+So whatever the retrieval value they are giving, 67% we are getting the information. That is my LLM generating the correct one. Are you guys with me? Come on, everybody. Did you understand how retrieval works?
+55:15
+
+Precision value?
+55:29
+
+Everyone clear? Crystal clear, the concept? Retrieval, when we are getting the retrieve answer, my friend,
+55:41
+
+we are writing, no? K equal to, let's say, three. So three means three retrieve information we are getting it, three context. These three, what is the correct response my machine has taken?
+55:54
+
+They will check one by one by the help of contextual precision score, and they will say 67% precision value we have recalculated correctly.
+56:08
+
+67. Hmm? Now, the interpretation is, guys-- The interpretation is if your
+56:21
+
+value-- This is the interpretation. Let me change the color. Interpretation is into-- Interpretation is if your score is
+56:37
+
+0.9 to 100% is there, that means your system is doing fantastic job, excellent job. If your precision value is coming 0.7 to
+56:54
+
+0.9, your RAG system doing fantastic job, good job. Not excellent, but good job. Yeah? And if your value is coming less than 70%, then your system is doing-- There are too much noise there.
+57:09
+
+You have to go and fix it. This is just a simple example I have taken, that's why you are getting 67. Yeah? But in real-time when you get it, always you will get more than 90%. Yeah. Between 70 to 90%, like that you will get it.
+57:27
+
+Between 90 to 70 is fine. You can go and enhance it. Your target is why not I can make an excellent RAG system. Yeah? Are you clear? Everybody give me yes.
+57:41
+
+I'll go in the next topic then. Give me yes. Great.
+57:54
+
+I'm very happy. Everybody is saying yes.
+58:08
+
+You guys have to remember all this thing. You have to speak the same language in interview. Please remember.
+58:20
+
+All right? How to get a count of relevant retrieval. How to get know, I'll show you in the practical example, but here I
+58:34
+
+have mentioned K equal to what? Who will put the K equal to relevant documents, you or someone else? Wasim. You will do it, no? Let's say K equal to five.
+58:47
+
+So you can say five. So five total retrieval documents there. I got it. Out of this, if you apply this evaluation metrics, they will search, okay, out of 5 or out of 10 retrieval
+59:01
+
+documents, we got it when user asking question, all 10 documents are relevant, or out of this there are few. So there we can apply this maths. The system will do it, but back in part I explained you.
+59:14
+
+Okay. Just one clarification, the relevant retrieved document would be determined by LLM. Correct. Would be decided by this maths. You forget about LLM, you can say,
+59:33
+
+would be decided by this maths. Who will apply this math? Of course, LLM. Make sense, Rishab? So there are packages there called Deep Evaluation.
+59:47
+
+There is a packages there called RAGAS. Okay, I'll teach you, I'll show you. They will do it. But what is the maths? Because you are an architect, right? So interviewer, their expectation, you know the fundamental things.
+60:00
+
+It's not that you come with a crash course, you heard the high-level names only. You have to go in deep dive also. You can understand the interpretation also. Yeah? Good.
+60:13
+
+Next topic, guys. Topic number two. Contextual recall.
+60:26
+
+Okay? Now, what is the meaning of contextual recall means? The meaning contextual recall means you can say data we
+60:41
+
+retrieve all important information
+60:53
+
+Information. You can ask this question. My friend, when I have calculated contextual precision, I said, how many retrieval
+61:06
+
+document are actually useful? That is what I have used it. Please remember the contextual. What is the meaning of contextual? I have asked clearly that how many
+61:18
+
+retrieval documents are actually useful. Yeah? So they are calculating the quantity. Right? Now I'm asking, no contextual, did we retrieve all
+61:32
+
+important information or not? That is called recall. That is called recall. Means whatever the information my retrieval system by the help of hybrid search, by the help of HNSW, they extracted it, that is
+61:45
+
+really relevant, that is really a significant information or not. That is what you can do it. You can say: what do you mean?
+62:00
+
+What do you mean? So, the meaning is when I ask the questions here. When I ask the questions here, the question is: what is Azure OpenAI? Mm-hmm. The correct answer would be,
+62:13
+
+let's say, here I'm saying. Let's say I'm saying,
+62:29
+
+correct answer needs first, they talk about Azure OpenAI. Azure OpenAI.
+62:42
+
+Second, they talk about GPT model. Mm-hmm. Third, they talk about enterprise security.
+62:57
+
+Right? Because they are saying, what is Azure OpenAI? So, they have to discuss this also. But what happened, these three are the correct answer. But what are the retrieve system did?
+63:11
+
+What are the retrieved documents we got it? That contains only one is, you can see. One, Azure OpenAI uses infrastructure relevant.
+63:25
+
+This is irrelevant, and this is GPT model. So can I say they have only discussed about Azure OpenAI infrastructure, and the second relevant documents is called GPT model?
+63:41
+
+Yes or no? There is one missing point there. The missing point is this one, enterprise.
+63:55
+
+Enterprise security. Now what happened, guys, when you work in real-time project, the actual production data, your client will say,
+64:08
+
+"Hey, my bot is giving the answer Azure OpenAI is working with the Azure infrastructure. Azure OpenAI is very useful for a GPT model. But I'm expecting to get answer from enterprise security part also." They talk about guardrail also.
+64:20
+
+Yeah? This is what I said correct answer needs. This is called golden source. Who will give you? Your client will give you. Your customer will give you. That I wanted answer these things.
+64:36
+
+Because whenever you build a RAG kind of system, you will ask, can you please give me the golden data set source? Means, can you give me some 10 or 100 questions with answers that what kind of answers you are looking for it.
+64:50
+
+They have given this, but your system is generating these three. Out of three, one is irrelevant. Only two are relevant, but one is missing which customer has given it. That is missing.
+65:03
+
+Then no recall is actually calculating that part. What are all information is missing, and what all important information they retrieve it. They retrieve it. Come on, everybody, make sense what I'm saying.
+65:16
+
+Mm-hmm. So what is the formula here, guys? What is the formula? You can say the formula is: formula recall equal to
+65:32
+
+retrieve relevant information divide by
+65:45
+
+total relevant information. Means recall equal to total relevant information is
+65:58
+
+how many? Three. Total relevant information, how many? Three. How many relative information? Two only.
+66:11
+
+Right? So you can say I'm getting 67% means 67% information. Right? When you checked, you are getting the retrieve. Retrieve is two only. Your expected
+66:23
+
+is? Expected which customer has given, three. Out of three you are getting only two relevant information, and that's how they recall. Don't get confused, guys. These are very similar. You feel very similar, but that's how it is
+66:37
+
+working. Means what is the interpretations here? What is the interpretation here? The interpretation is low
+66:51
+
+recall means- Means retrieved or retrieval,
+67:05
+
+missed important data. And because your retrieval missed that important data, that means LLM will behave like that, they also ignore the important
+67:20
+
+information. Means there is a chunking issue there. There is a chunking issue there. That is why someone is saying, right? Your LLM is not giving as
+67:35
+
+per the expected answer. What you will do? You can say, "Boss, I will go in the chunking strategy and I will change it. I will check. I will reduce the chunk size, I will reduce the overlap size, and then we'll do it." Yeah?
+67:47
+
+Means there is an embedding issue there. Embedding issue there. Hmm? Means maybe you are using something else. If you have a high
+67:59
+
+recall value, means retrieval retrieved
+68:12
+
+content cover all required information. This is what is called
+68:24
+
+recall, contextual recall concept. Yeah? Please remember, someone ask you this question, "Boss, what is the difference between contextual recall and contextual precision?" You can say, "Boss, retrieval contextual recall means how
+68:39
+
+many-- My LLM, you can say, did we retrieve all important information, all significant information or not? If high recall value there means yes, my LLM,
+68:54
+
+my system, they have retrieved correct information. My RAG is working perfectly fine. Yeah? If contextual there, how many retrieved documents are actually useful, right? So there you are not saying that
+69:09
+
+the significant part, you are just saying whatever the information they fetch it, out of this, how many are relevant? But here you can see this part is there. Okay?
+69:22
+
+Anybody have any questions? Are you comfortable? Give me quick yes. Give me quick yes. Top K and all, I'm not worried about. That is parameter.
+69:35
+
+Do you understand the concept? That is just a value, no? You are setting K equal to how many in this.
+69:47
+
+That is a parameter. Concept, guys, clear? Hmm? Great. All my friend are good. All my friend are good.
+70:01
+
+Okay. Embedding issue means the chunking. Once you have given the chunking, still when you do the embedding, they are not
+70:15
+
+doing correctly. Means maybe sometime it happen that you use text embedding EDA 002. That is not good. Yeah, text embedding three small is not good. So you can change it and you can use text embedding.
+70:28
+
+So when you are not getting right answer, you can first go target chunking issue. You can also embedding, you can use the more better embedding techniques. Yeah, and then you can check again the evaluation metric and
+70:41
+
+see how it is working, whether we are getting correct answer or not. Okay? Just let me give you one more perspective so that you can understand.
+70:54
+
+Precision versus recall. Okay. Now, imagine you are finding a documents.
+71:09
+
+What precision will do? Precision will say how many result are useful.
+71:22
+
+So if we are getting five answer, five context, are all useful? Recall will ask questions, they can say,
+71:36
+
+"Did you find all useful result?" So here you are dependent to the customer, right?
+71:48
+
+So let's say there are total 10 documents found. Okay, 10 documents found. K equal to, let's say you have written 10. 10 documents found.
+72:03
+
+Out of 10, eight are relevant. So you can say precision equal to eight by 10. Yeah? But, there were
+72:16
+
+20 relevant document in database there. Means you can say recall
+72:32
+
+equal to eight by 20, means 40%. That is called recall value. This is called precision value. Did you understand now?
+72:44
+
+Out of 10, eight you got the relevant, so you can say eight by 10. But two are left, no? Two means, can I say that two are not relevant, means irrelevant? But the customer has given 10 answers I wanted. At all 10 parts in golden source they have given it.
+73:00
+
+Means there are some mistakes there, right? 20. So you can say 20. Total I got eight relevant, but 20% is missing means 40% I'm getting it. How? That thing you can relate it. Make sense, my friend?
+73:15
+
+Hmm? Good. Now point number third. Point number third is called
+73:30
+
+contextual relevancy. Relevancy. Okay, now what is context
+73:44
+
+relevancy? What is meaning? Yeah, that is very simple intuitions, guys. You can ask question, how relevant is
+73:59
+
+retrieved information to the question?
+74:13
+
+Okay. What you are asking, how relevant is retrieved information to the questions? Slightly different, yeah. The names are just called relevancy.
+74:26
+
+So whatever the contextual you are getting the retrieval they are getting, you are getting it, you can say how relevant that retrieved information to the questions. Yeah. More or less looks like similar, yeah, but
+74:41
+
+slightly subtle difference there, guys. The question I'm asking, hey, what is, let's say I'm saying Copilot
+74:57
+
+Studio. Now, let's say my answer is the first paragraph one, I'm getting here, I'm saying Copilot Studio
+75:10
+
+enables low-code AI agent. Hmm? The paragraph two, it's saying, let's say,
+75:28
+
+Microsoft campus location details. Let's say.
+75:42
+
+Now tell me, question is, what is Copilot Studio? The first is relevant or irrelevant? First is relevant or irrelevant?
+75:55
+
+Can I say relevant? Hmm?
+76:09
+
+Relevant, very good. So you can say this is relevant. You can say this is relevant. This one is relevant or irrelevant,
+76:23
+
+guys? Irrelevant. Everybody agree? Irrelevant.
+76:37
+
+Hmm? So the simple formula is Simple formula is
+76:50
+
+contextual relevancy equal to relevant
+77:10
+
+sentence divide by total sentence.
+77:22
+
+Okay? Relevant sentence versus total sentence. So suppose we have total five sentence there.
+77:35
+
+Out of five, four are relevant. Okay, five sentence means five context there, like that. So you can say what is my contextual relevancy equal to? You can say 4 by 5, which is called
+77:49
+
+80%. Okay? Please remember, high context relevancy
+78:03
+
+means the retrieval is bringing
+78:16
+
+focused instead of? Nice. So the better relevancy score closer to 100% model is very
+78:29
+
+good. Means you have built a fantastic RAG system. That is what is the meaning is. Now what I'm going to do it, I'll pick one case study, and I'll show you how it is working actually.
+78:44
+
+Okay? So you guys will get some flavor. Colab.
+78:56
+
+Okay. So see, guys, these are the basic packages there that you have to install it first. Okay? Like LangChain. So first let me just change the runtime.
+79:31
+
+Manage session. GPU, Connect.
+79:45
+
+Okay, there are two libraries there. Please remember, there is one is called Deep Evaluations and another is called RAGAS. Okay, I'll discuss that part little later. First you understand the retrieval part, this one, these three part. So when you build the model,
+79:58
+
+what happen? You can say these part, Evaluation 1. Evaluation 1 means this part. That is called evaluation. Evaluation 2 means this one.
+80:13
+
+Okay, four. So these three part, I have explained you the maths also, the context also, the interpretation also. Now I'm just implementing in my one of the use cases. So these are the basic package there. Let me uninstall it.
+80:26
+
+First we install it. And restart
+80:42
+
+the session. Second package is called OpenAI LLM model.
+80:57
+
+There is I'll take a query. Just wait, let me complete this coding part also for all three, and then I'll give opportunity to everybody. You can go and ask questions.
+81:14
+
+Okay, let me restart this. Perfect. Okay. So these RAGAS and Deep Evaluation, Deep Evaluation is more
+82:44
+
+powerful, guys. Yeah, so this is some link I have given it. I'll explain you this part a little later. But right now I just wanted to show you these three evaluation metrics first.
+82:59
+
+RAGAS and Deep Evaluation.
+83:17
+
+Yes. Okay. Good. So let me take the API key. Desktop,
+83:39
+
+OpenAI API key, Control, Paste, Enter. OpenAI connected, Embedding model, I'm using it. Okay?
+83:53
+
+Now this is my data set, guys. Okay, this is my data set. You can go and download from Google Drive. That link also I have given. If you are using Jupyter Notebook or VS Code, or if you are using Google Colab, you can directly go Google Colab download, and this
+84:08
+
+link you have to give it. Once you give, it get installed in your system. So you can see here. Yeah. So I got the rag-evaluation-document CSV file. Now here I'm just importing panda and that data, whatever the
+84:23
+
+CSV file there, I'm extracting it. So when I extract, you can see we have three column, one is ID, another is title, another is called context. Right? This is just a dummy example I have taken so that you can see how things works, right? It's very easy to manually you can calculate
+84:38
+
+it. So here in this documents, the title is Machine Learning, Deep Learning, Natural Language Processing, Parameters, Photosynthesis, Biology, Quantum Mechanics, Cryptocurrency, Renewable Energy, and Artificial Intelligence. Okay? And their description is given.
+84:53
+
+Now I am saying, okay, you have to convert to dictionary, right? Means ID, title, and context will come separately. So ID is a dictionary name and their values. Title is a key and their values. Context is the key
+85:09
+
+and their values. Yeah, so I just convert this part into dictionary format. Go ahead, do it. Now, what I'm going to do here, I'm using the LangChain. I'm just uploading the documents. I said import documents.
+85:24
+
+I wanted to do a preprocessing. So first what you do by the help of LangChain, you can convert into meta database. So that anybody, any user asks questions related ID that, okay, ID number 10, what is the input is there or what is
+85:37
+
+the title name is given or title if someone ask, what is AI, artificial intelligence? So machine can find it. And the data context is nothing. It's called page content. So I'm just using processor equal to blank.
+85:52
+
+Here I have categorized into metadata data, and then finally I'm appending here the process document.append document equal to page content. Page content means this text data and metadata equal to ID and title. Go ahead, execute this.
+86:05
+
+So I have convert into meta LangChain frame. This is what you have seen in RAG also. Next part I'm building a Chroma database means vector database. And what happened in the vector database? You can say I wanted to do the embedding part, so I use here OpenAI
+86:20
+
+embed model. What is OpenAI embed model? Here I have used the OpenAI embed model in beginning. If you see here, OpenAI embed model, which model I have used it? Text Embedding 3 Small model. So you can go and apply it.
+86:35
+
+You can say why not I have done chunking because the text is very easy. Simple text there. So that's why chunking part, I'm skipping it, but if you guys wanted to give a chunking, you can first do a chunking and then embedding part. You can use
+86:48
+
+retrieval context chunking method, or you can say sentence chunking or TikTok chunking, whatever things you have learnt it. I'm using HNSW. A space means it will go in the hybrid search. They will find it. And cosine similarity I'm using, creating
+87:03
+
+a vector database name called My Database. Okay, go ahead, execute this.
+87:18
+
+So see my vector database got created inside if you go. So here we applied it. Now if I use here Chroma database equal to collection my database, embedding function equal to OpenAI embed
+87:32
+
+purchases directly my database. When I do here, you can go this refresh. Chroma database, LangChain vector database got created. Why it's not coming?
+87:46
+
+It is taking time. Just wait. So this is actually embedding data get created. Just wait for a while, it will come. Meanwhile, I'll explain you the code.
+88:02
+
+So you can see semantic similarity. What happened? The same architecture, guys. We have a raw data. We have loading the data, then embedding in vector database. We store it.
+88:15
+
+User is asking query. The retrieval, they will use the similarity search. That's what I'm doing, similarity search. Chroma vector database where we have embedded data there. We have a repository there. I'm using as a retriever.
+88:29
+
+Search type equal to similarity score threshold value. What threshold value? Probability value equal to 30% minimum I have given, and documents I wanted to fetch five documents. Okay, I wanted to use this. Please go ahead, you can use.
+88:42
+
+Now you can see that this is just a basic Python function I have used display in markdown so that it looks better. You can go and then my question is what is AI? The time similarity retrieval works, they will invoke the
+88:57
+
+query. They are giving the answer. So out of this, whatever the documents they see here my vector database, the embedding got created. They are going in my vector database, searching the details and fetching it, and finally, they are giving the-- This is called retrieval
+89:12
+
+part. So this is called context, guys. How many K equal to 3 is there? Here what I have given K equal to 5 I have given. So you can see there are five documents. The system they have fetched it and they are giving the first documents.
+89:28
+
+Second, third, fourth. Like that we are getting it informations. So because we have given a very less data. Because I wanted to show you the answer also. So you can see total we have ID 1 to
+89:42
+
+10 there. Out of 10 ID, I have asked five answers. I wanted the five response. I wanted five relevant, but that five bases the threshold value. So if the probability value matches more than 30%, then only you have to give
+89:56
+
+the five, highest five retrieval part. Otherwise, whatever there, that only. When I ask what is AI? They have given only three answers. One, two, and three.
+90:12
+
+They have given only three response. Why three response? Because if you see the documents right here, what is AI? They found somewhere what is AI, so that is answer there, AI refer this.
+90:25
+
+Second, they got the machine learning, which is also part of AI, and deep learning, also part of AI. They got it. So this is what they have given answer. Or NLP. Where the score probability score is lesser than 30%, they ignore
+90:40
+
+it. So you can see what retrieval value I'm getting. First, it's saying artificial intelligence refer to machine mimicking human intelligence like problem-solving and learning. Second metadata, they found natural language processing.
+90:54
+
+What it's saying, NLP is a branch of AI that enable computer to understand, interpret, and generate human language. That is relevant, that score is again more than 30%. And the third is machine learning is a field of artificial intelligence focused on
+91:08
+
+this. So these three relevant documents we have got it. My question is how do plants survive? When I ask this question, I'm getting only one answer. Even though I have given five, but my system they
+91:21
+
+retrieve only One out of five. What is this? They are saying photosynthesis is the process plants use to convert sunlight into energy. This process produces glucose
+91:35
+
+and releases oxygen as a by-product. It is crucial for sustaining life on Earth by providing food and oxygen. If you go here in the raw data, you can see
+91:48
+
+how plants survive. They got the answer is photosynthesis, remaining is related. Quantum mechanism, cryptocurrency, renewable energy, AI, machine learning, deep learning, NLP, pyramids, biology.
+92:02
+
+Right? So only one part they got the relevant things about the plant, so they have given it. Yeah, that is why you got one out of five. Please remember this,
+92:15
+
+because you will check all three parts. Yeah? Now I'm building a pipeline. So I'm using the augmentation method. Here, augmentation, I said, "Hey, you are an assistant who is an expert in question answering task.
+92:28
+
+Answer the following question using only the following piece of retrieved context. If the answer is not in the context, do not make up answer. Just say that you don't know. Keep the answer to the point based on the information from the context." Whatever the user is asking query,
+92:42
+
+my retrieval system give the context, and this is the context I will get the answer. Right? You can see chat template from template. Use this and you can use runnable pass through, chat
+92:58
+
+open AI model. Output, I wanted a structure output parser. Iterate everywhere. Right? All five times, it will iterate and give the item data. Now, what you do, you can use the ChatGPT 4o mini model.
+93:10
+
+Whatever the documents there, whatever the user asking query, the system retrieval, they will give the context. On that basis, you can write the augmentation method. Augmentation method, then you can use LLM part, and then finally LLM
+93:24
+
+give the answer into text format. That is what by the help of LangChain we have used it. Now what happened? RAG chain source, I wanted to see the similarity retrieval, right? The context and questions. So whatever user is asking questions, by the help of similarity retrieval we'll get
+93:39
+
+it, and that source response I wanted to get. Go here. Yeah. So, this part additionally I have written because I wanted to show you the source also. So when I ask how do plants survive? There is only one retrieve data there, right?
+93:54
+
+You can see that is the retrieve. Context is, that is the retrieve ID number five, title is photosynthesis, page content is this. And basis this LLM has given the response. They articulate this line. They articulate this line in a better way.
+94:10
+
+They said, "Plants survive by using photosynthesis is to convert sunlight into energy, producing glucose and releasing oxygen." Yeah? But you can see this is something, it's saying photosynthesis is the process plant
+94:24
+
+use the convert sunlight, this, this, this, blah, blah, blah. Right? So even though whatever their LLM will give answer like that. Now when I ask what is AI? AI, I got three relevant documents. You can see I got the relevant number one, relevant number two, relevant number
+94:39
+
+three. Right? Now question is what is AI? You know, LLM, they'll read all three relevant, and then they make just like a human answer. They said, "Hey, AI refer to machines mimicking human intelligence, including problem-solving and learning, and
+94:54
+
+with applications like virtual assistant, robotics, and autonomous vehicles." And they are giving the answer. Yeah? Now we have to go and use the part one retrieval part called contextual precision, contextual recall, and contextual relevancies.
+95:10
+
+And this is called RAG, guys. Now on the top of it, you can go ask this question. You can say page content for documents result equal to this. Right? So there are three result we got it. Result one, result two, and result three.
+95:25
+
+I'm giving a human answer also, that human wanted, whenever someone ask, means this is called golden data source. Who will give you? Your client will give you. So this is called golden answer.
+95:39
+
+Golden answer. Okay? So let's say a client has given, when you build a model, you can add it. So I have just mentioned AI, also known as artificial intelligence, is used to build complex system for application like virtual assistant,
+95:52
+
+robotics, and autonomous vehicle. Now new context is what happened? This is just additionally I have added it. Right? So let's say here I got artificial intelligence, NLP, and machine learning. I have added few more for your understanding.
+96:06
+
+I said machine learning is the study of algorithm which learn more data. Second, AI is also known as artificial intelligence plus whatever the retrieval document is there. Go ahead, do it. So how many retrieval documents? One,
+96:20
+
+two, and there are three. They retrieve it, so total five retrieval there. Now you can see this is the code, guys, for evaluation metric. This is the additional things you have to add here. What I have done, I use deep evaluation test cases input,
+96:34
+
+LLM test cases. Deep evaluation metrics. Which metrics? Contextual precision metrics. Right? What precision will do? They will find how many relevant documents there out of the total retrieved documents. Yeah?
+96:49
+
+So you can say deep evaluation. Evaluate, I'm using LLM test case. User will ask questions, retrieval will get the response. I can also see human answer, and whatever the retrieval I got it, you have to give it. Then you can apply the metrics.
+97:04
+
+Which metrics? Contextual precision metrics. Threshold, I said minimum 50% if I get, then only pass, otherwise failed. Yeah, let's say I'm just giving 50% threshold value. I'm using GPT 4o model. Include reason.
+97:19
+
+Please provide me the reason why 50% or what answers I'm getting at. Verbose mode equal to two. I wanted to see the end-to-end result. Go and use the evaluate metrics. This is my test cases. This is my metrics there. Please give me the answer.
+97:32
+
+And then when I'm giving it, you can see You can see the precision score, guys. This is what the match there. This is what the match. So they got it. You can see they are checking all one by one.
+97:48
+
+So first is verdict, no. Reason, this context is focused on machine learning. Question is, what is AI? The question is, here the user is asking questions. The question is, what is AI? The system, they retrieve
+98:03
+
+these five documents. First is machine learning is the study of algorithm which learn from more data. They are not talking about AI. Second is AI known for artificial? Yes, they are talking about AI.
+98:16
+
+Third is talking about AI. Like that, they are reading all part, and here they are saying verdict one is no, not context. It's a irrelevant answer. They are talking about ML, not talking about AI. Second is just relevant part. Why?
+98:30
+
+Because it directly state AI is known for artificial intelligence. Third is again yes, because it provide the detailed explanation of AI, like monitoring application, like virtual assistant, robotics, and AI. Fourth is again no. Why? Because they are saying this context focus on NLP,
+98:44
+
+a branch of AI, but does not directly answer the question what is AI. Yeah, so we can say no. Verdict fifth is no. Why? Because the context is aligned focus on machine learning, a subset of AI,
+99:00
+
+without directly addressing to the AI. And hence, they are getting 58%. Yeah. So score is 58% how? By this formula. Okay, so they got it. Here you can see I have taken two by three, means total
+99:12
+
+retrieved document is five. The relevant documents is how much? Relevant documents is, you can say one, two. Okay? So two relevant documents I am getting out of this,
+99:26
+
+and they are reading all part. They got their score is 58%, because the relevant node for retrieval context, such as second node is directly, something is there. Contextual precision is this. Question is, what is AI?
+99:40
+
+Actual output is AI refer to this human intelligence, including problem-solving. This is the human wanted. Expected output is this, what we have given. And the core is this. So machine learning is studied here.
+99:55
+
+Overall metrics pass rate, contextual precision equal to 100% pass rate. Tick marks, test finish. We have used the deep evaluation login. How the maths works, all these things they explain it because we have a given
+100:08
+
+threshold value, 50% only. Yeah, we are crossing it, means we can say success. But if I write here, guys, if I can increase the threshold value, I am writing here 90% threshold value, and if you execute it, you can see it will say failed.
+100:21
+
+Okay, it will say failed. See? Contextual precision is failed, cross. You can see this, overall pass rate is 0% pass rate because you are less than 90%.
+100:38
+
+Yeah. So they say test finished, and this is what the system is saying, failed. You can say what is the success? No, false. We didn't achieve the target. Why? Because you have given 90%. Your actual score is
+100:52
+
+58% only. So the score is 58% because the second or third nodes are irrelevant. Nodes in the relevant context are relevant, providing direct and detailed information. However, the first node ranked
+101:05
+
+higher discuss the machine learning and not AI, and the fourth node mention about NLP as a branch of AI, does not directly address the definition of AI. The fifth nodes also focus on machine learning without
+101:20
+
+directly answering the AI impacting. Overall, this is what is coming. Guys, like that you have to go and test it. Similarly, you can say recall how you will check. You can say what is AI.
+101:35
+
+You are getting the response here. You can say this is what my retrieval is. Human answer is this. New context, let's say I have added two more answer. Don't do it new context. You can directly write a retrieve answer.
+101:48
+
+Response you can put it, but I intentionally have taken, let's say, two additional sentence I have added called NVIDIA makes chips for AI. AI is the acronym of artificial intelligence. Yeah, so this is my new context is coming.
+102:01
+
+Now, you can go here, only changes is contextual recall metrics, not a contextual precision metrics. Code remains same, guys, no changes. When I'm doing it, here I have given a 50%, let's say, threshold value. You can see they are running it, and they are saying, okay, you have
+102:13
+
+given a 50%. Verdict first is no. Second is yes relevant. Third is relevant. Fourth and fifth is irrelevant. They are calculating giving 58%. They are passing it because I have given 50%.
+102:29
+
+You always give 80% like that, and then you can say I'm getting it. This is just a dummy data, that's why I have given lesser probability threshold value. And you can find it. What is AI?
+102:42
+
+Now I'm using, not answer relevancy. Yeah, contextual recall metrics. What happened?
+102:55
+
+Faithfulness. So I think that one I have missed it. Jupyter Notebook. So code is remain same, very simple.
+103:11
+
+Only thing you have to change here, where I have written this, you can see the code. Answer. Here you can say contextual recall metrics. You can say contextual
+103:26
+
+relevancy metrics. Okay, that's it. You can go and use it just write here contextual, instead of saying here. You can use this
+103:45
+
+You can use here contextual precision metrics, you can just say contextual relevancy metrics and it will work. So this is what the code there. Like that, you have to go and check it. Now, I am going to explain you the remaining part.
+103:57
+
+There are four parts there, but before that I wanted question-answer, and then I will go ahead for break. Once we back, I'll show you all four part. So who all has raised hand? Let me see one by one.
+104:11
+
+So five members. Dheeraj Kuchia. Yeah. Sir, can you go to that relevancy formula? Relevancy score formula. Relevancy formula. Okay.
+104:27
+
+Yes. This is the relevancy- So here you said that relevant sentence by total sentence. You're talking about the retrieved sentence, right? Retrieved sentence. Correct. Yeah. So if I think from that terminology, that perspective, this is similar to
+104:43
+
+precision only, right? Because precision also said that the retrieved context by total retrieved context, right? Actual retrieved context by total- Correct. Absolutely. This is same as precision only, right? Same like there also in contextual precision also, we are asking how many,
+104:59
+
+right? Here the only thing is I'm saying, how relevant the retrieved information to the questions. So that is relevant, whatever the answer, we are retrieving it, the context that is relevant or not.
+105:14
+
+But that is precision only, right? Precision is similar, right? But what precision is saying, precision, the simple intuition is we are asking how many retrieved document are actually useful.
+105:27
+
+So we are saying how many documents, whatever the retrieval part they're useful. Here what relevancy doing, same thing, but tweaking in the different way. They are saying whatever the user ask questions, my retrieval is giving me five documents, is all five are relevant or not?
+105:41
+
+So can I say more or less similar? Correct. Yeah. That's the only intuition part. So anyone you get it, that is okay. And maybe that's why I have not written the code for this one,
+105:57
+
+relevancy. But in case someone asks you, you can interpret it like that. And sir, second question is, what is the trade-off between recall? Because initially recall should be high, right? So that we retrieve maximum document, and then we can optimize for precision
+106:10
+
+based on our domain objective, right? So ultimately, we are talking about we need a high precision, but ultimately our recall should be initially high so that we make sure that we have retrieved the maximum document out of total available document.
+106:24
+
+Simple intuition. That's why I said if you know machine learning, what happen in ML? This is your confusion matrix. Correct. So you can say this is my
+106:38
+
+actual data, zero and one, and this is called predicted one. Zero and one. Now if I ask you a question,
+106:51
+
+you're actually zero, you also predicted zero. True or false? Hmm. Can I say true? And zero means what? Zero means what? Negative, you can say true negative. You have predicted negative zero.
+107:06
+
+Actual is one, but you are predicting zero. Can I say false? Yeah. Actually zero, but you are predicting one. So can I say false? And what you are predicting one, means positive you are predicting. Actual one, you also predicted one.
+107:20
+
+Can I say true and positive? Now, this part is called recall. So recall equal to you can say, what is total prediction? True positive divide by
+107:33
+
+true positive plus false negative. So your model has what is the total people they have a COVID or they have a cancer or they have a diabetes, what of the actual
+107:47
+
+patient they have a diabetes or they have a COVID or they have a cancers? That is called recall value. Precision is this. This is called precision. Precision means you are asking how many people actually have a
+107:59
+
+cancer, yeah, but you have predicted both are cancer. But that is wrong, right? So you can say your prediction is this person plus this person also. Yeah. Now the question comes, who is more dangerous?
+108:14
+
+This one or this one? So you can say this is called domain-specific question. Domain specific. If you say healthcare, false negative is more dangerous. If you talk about banking, insurance, the false positive
+108:29
+
+is more dangerous. Yeah, why? Because if your model is saying patient has a COVID, but actually they don't have COVID, right? So here it's a false positive, right? What happened? What is the impact? The impact is one person gets suffered, right?
+108:43
+
+They will go in the quarantine for 14 days. Or your model is saying patient has a cancer. Maybe they're worried, but cancer means they will not go for chemotherapy and all, right? First they will do more advanced test,
+108:57
+
+right? Maybe some MRI or something, some CT scan will happen. Yeah? So that is why this is not impacting. But let's say your model is they have a COVID, but
+109:10
+
+your model is saying they don't have COVID, right? What happen? They will go meet with other person and it get spread. Your model is saying, no, you don't have cancer, but patient has a cancer, so they feel very reluctant, right? And if they will not do a proper treatment,
+109:23
+
+they will die very early. In the other hand, you can think about, so this is exactly what happened here. But right now, why I am going this test? Because it's a sentence, it's a text data, it's not a number.
+109:37
+
+If number is there, zero and all classification problem or multi-class classification, you can easily calculate by this method, correct or not? But intuition remains same. What is precision and recall? Now are you clear?
+109:52
+
+Correct. So if I'm building a chatbot, then in that case, I will be optimizing the precision because I don't want irrelevant data, right? Because if I- Absolutely. So precision and recall only you can focus.
+110:05
+
+Okay. Okay? But also you can see the domain is specific. Let's say you are doing healthcare. Now, healthcare, you will focus more on false negative. No, so can I say recall has more significant? This is more significant?
+110:20
+
+Correct. Yes or no? Because I don't want it to miss the critical data. I don't want to miss the critical data, right? So that time you can say precision is less significant. I will give more focus on healthcare. So it depends on which client you are handling it. Let's say you are working on the finance data, insurance data,
+110:36
+
+banking data. Then you can say precision is more significant than recall. So I will give more focus on contextual precision value. Make sense? Everybody, come on.
+110:51
+
+Yes. Say chat window yes. Tell me yes, no. Are you clear? So you always see the problem statement, and then you have to take a decision. Shall I go with recall or shall I go with the precision?
+111:03
+
+Yeah? Shelley, good. Who else? Farhan, over to you. Yes, sir. Initially, I had the same question as Dhiraj asked,
+111:15
+
+the difference between this one, contextual relevancy, and this one. And one more question is, so you used a golden answer in it, right? So human message kind of thing. Correct. So why do we add that? Because-
+111:29
+
+Because whenever you do the customer data side, whenever you build a client project- Mm ... you have no knowledge, right? You are coming from technical background. Do you have a subjective knowledge?
+111:41
+
+No. Tell me. You don't know, right? Healthcare problem, I got it. I'm not expert, I'm not doctor. I don't know the terminology and all. So you will ask that company, "Can you please give me some sample question answer that what kind of answer response you wanted?" So they will give
+111:54
+
+some sample data. That is called golden data set. So whenever in industry you will work, you will always ask. When the first call happen, you can say what I want. First, you wanted to understand the problem statement. Second, what solution they wanted.
+112:09
+
+You have to propose the architecture, you can propose the solution. And third, you can ask them, "Can you please give me the golden data set?" Golden data set means, can you give me some set of 10 or 50 or 20 questions, plus answer, so that I will teach my
+112:23
+
+LLM and they will also generate the similar response. That's what meaning is called golden data set. Make sense? Okay. Is it kind of the few-shot learning? Few-shot learning is different thing, my friend. Few-shot learning means you wanted a step one, a step two, a step three, a step
+112:38
+
+four, like that. Okay? You can say- Yeah. We will give the format and everything ... Or you can say few-shot learning means I wanted to build a sentiment analysis. I wanted my answer like that, sentence like that.
+112:53
+
+Golden data set means how customer wanted. Golden data sets, you can say it's a kind of RLHF. Yes. This we can say reinforcement learning human feedback. That is called golden data set.
+113:05
+
+Okay. Yeah. How human, how client wanted the response. Correct? Yeah. You understand. Thank you. Good. Sahana?
+113:19
+
+Yes, sir. My question was the same with respect to the golden source. We use RAG for the very big data set,
+113:31
+
+like in terabytes or GBs of data set. So we can't give answers for everything of-- We cannot cover answers of all
+113:44
+
+topics in those documents. So it is a kind of, we can say FAQs, right? We just- First, what do you mean by we can't? Then what is the role?
+113:58
+
+Why you are saying considering yourself as the architect or GenAI developer? That's why your company will hire. Even though how bigger data is there, hardly matter. You have a source, you can use the API, you can connect that
+114:10
+
+Oracle machine or share drive or anything. By the help of API, you will get the answer. So that's your role, so you will do it. Okay, so we have to collect that golden source from the client.
+114:24
+
+Yeah, you have to connect. Then you can ask that boss that much data? I don't know, because millions of answers there, millions of documents there. What kind of response you are looking, so that I can give a training to my LLM
+114:39
+
+that, hey, this is the golden source. That's what happened. When I ask these questions, you can see I've clearly mentioned here that this is the human answer as a golden source. That's what when the user will ask. So can I say this is the questions? This is the questions.
+114:51
+
+So first customer will give these questions. My LLM is giving this answer, but customer wanted this answer. How similar that is? Mm-hmm. And then you are checking it, right?
+115:07
+
+Yeah. Just like a intuitions, that actual answer is this, but my system is generating this answer. This is false positive. Ideally, this is not false positive. This is actually false negative. It should be here.
+115:19
+
+But my system is making some mistakes, yes or no? Yeah. So that's the precision score, so you can calculate it. Okay. Got it. Yeah.
+115:33
+
+Couple of more friends there. Prashant? Hi, sir. Good morning. Sir, when you were explaining about precision versus recall, there we got case equal 10, we have taken example, and relevant documents were eight.
+115:46
+
+8 by 10 equal to, so 80% accuracy we got in precision. While dealing with recall, like you mentioned, 8 by 20, sir, like 20 relevant information from DB it will check or how it will calculate, sir? Or it by mistake you have set 20 there?
+116:00
+
+DB only it will check. So whatever the retrieval they found it, they will check it. So here when I say this part, I said, okay, total 10 documents we got out of eight- Yes ... relevance there. Yes. That means here what I say, recall means did you find all
+116:16
+
+useful result? Okay. Means actual total positive, how many customers they have a cancer? How many total? Can you say these total, right? You can say, let's say 10 false and,
+116:31
+
+or let's say 90 false. 19 they don't have cancer, and there are 10 people, they have a cancer. So total 100 patient there. Okay. Yeah. So these total, your model is this one
+116:44
+
+actually not. This means no, but your model is saying this, so this is wrong, no? Yes. So this part you are calculating it. Recall is this one. So you are- Okay ... trying, you have to find both the-- whatever the information there, they all
+116:59
+
+have cancer, but your model is saying, no, they don't have cancer. Or maybe let's say 10, I'm saying 10 false negative and 90 true positive. 10% your model is saying they don't have cancer, but actually they have a cancer.
+117:13
+
+Okay. That is what recall is doing. So here when I say, okay, total 10 documents we found it, out of 10, eight are relevance is coming. How many not relevant I'm getting it?
+117:25
+
+Two I'm not- Two ... relevant. Two is what? 20%? Okay. Yes. Yeah. I said okay, 8 by 20, 40% recall value we are not calculating. Like that interpretation I have given, but you always go like
+117:38
+
+that. No? Okay sir, got it. Okay sir, thank you. Chalo. Last question, John?
+117:51
+
+Hello, sir. My question is related to how do we actually-- what is the recommended way of
+118:04
+
+adding the data into RAG? What I mean is, so for example, if the question is-- if the subject is what is machine learning? Now, in the company, for example, five people might have written five
+118:18
+
+different answers related to machine learning in their own way. So is it recommended that the information we store in RAG needs to be validated before we put them in RAG?
+118:34
+
+Before going to production, you have to do the testing and check it. Mm. So when I build the model, first I have done the RAG part. Okay, you can say I build the RAG system. Here, I build the RAG system and I'm getting the answer.
+118:47
+
+I'm getting the response here. Correct or not? This is user query. Yeah. This is the answer, and this answer comes from this context value. Correct? Yeah. Now, this context value is giving correct context or not.
+119:01
+
+Because whatever the answer I'm getting, answer part also I'll check it, yeah, but right now, whatever the context I'm getting that is correct or not. How you will judge it? That also when you go in the production, these things you will do it in industry.
+119:17
+
+Mm-hmm. Yeah. For that, I have parameter, contextual precision, recall and relevancy. Understood? Okay. Yeah. Thank you, sir. Got it.
+119:31
+
+Yeah? Or you can say this whole data set means this one. Ah. There are millions of there. Million is not possible you will get it while you are approaching you. So you just ask them
+119:43
+
+the simple question, generic answer, what kind of answer you are looking? Which list you can give me, so that relevant I'll give the information like that and we'll get the answer. Okay. But now you can ask where I can apply precision, where I can apply recall, you can think about the domain. If it is clinical sector, retrieval
+119:55
+
+statement, go with recall. If it is financial, insurance and all, go with the precision. Make sense? Yeah. So guys, can we take a break now?
+120:11
+
+Everyone? All my friend, you chat window say break or not. Interesting, guys. Clear now? Crystal clear what is precision, recall, relevancy?
+120:25
+
+When you go in the break, speak. Just like now some people is saying J*P. You know J*P? Contextual recall, contextual precision, contextual this. No.
+120:38
+
+Hari Om, Ram, like that. So you can just speak these three words so that you remember it. And when we come back, we'll use the remaining four part, okay? So we'll take a break
+120:52
+
+and we'll back in 20 minutes. Okay? So 12:07, 12:27 we'll back, guys. Chalo. Thank you, everybody. See you
+121:07
+
+at 12:27.
+121:20
+
+All right, guys, I'm back now. Are you there, everybody? All my dear friend, are you there? Yes. Good.
+143:05
+
+Sure. Yeah. So let me go ahead. Yes, Himanshu. Sir, one quick question. Regarding the contextual recall, how does it measure? By definition, it says
+143:20
+
+how many chunks were relevant divide by how many total relevant chunks were there. How will we get to know the document is huge, how many total relevant chunks were there? We'll never know that. So how will that be computed?
+143:35
+
+You will never know it. No, I have given example, so why you are saying you will never know it? In the actual-- That is something you have to, you have given the relevant context, but let's say you have a document, which is a huge document. You are saying, "I want to retrieve only top five." But the top
+143:49
+
+five might not be the one that-- We will not have all the relevant one in the top five, right? It might be more. So... No. So millions of document you will not get a clarity, but whatever the
+144:05
+
+golden source you will get, there you have to test to know. So like I have mentioned, there is a questions, and here this is the golden answer, I'm getting it. Right. This is a human answer. That is a dataset we have made. Yeah, it's a human answer. Correct.
+144:19
+
+It's a human answer. Now, what your retrieval system, they are giving multiple, let's say three or five, whatever given. Out of three, only two are relevant, bases this human answer.
+144:32
+
+Right. Yeah? So this answer I'm not getting, we can say missing information. Okay. Yes. Yeah. That missing, how much missing answer? 30% missing answer, 33% something.
+144:45
+
+Oh, okay. So we basically see that how much answer we are able to generate using this retrieved, and then compare it, and then we measure the percentage. Okay. Then we are measuring it, yeah. Like that you can do it. Thank you, sir.
+144:57
+
+No problem. Okay. So guys, next part is, answer context relevancy is done, right? Now we can say faithfulness.
+145:10
+
+Let me go here and do this faithfulness. So now I have moved where? In the LLM portion, evaluation metrics two.
+145:23
+
+Faithfulness. Right? I reached here. So this three part is clear, everybody? This three part is clear, right? Evaluation one is clear. Now I'm moving to evaluation two. So here, answer relevancy,
+145:37
+
+faithfulness, hallucination, and all four I'm generating. Can I say these all four depends on here, whatever LLM is generating? Right? So why we are doing a faithfulness checks?
+145:52
+
+What is meaning? The simple intuition is faithfulness means you can say, is the answer supported
+146:05
+
+by retrieved documents? Okay? Means you are saying whatever the information,
+146:21
+
+whatever the retrieved document we are getting here, K equal to, let's say three, right? And bases this three LLM is generating the answer,
+146:34
+
+is this supported by retrieved documents? So whatever my answer is coming, that is actually given in these documents or not? That part you will check now. Okay?
+146:47
+
+So let's say my question is the context, let's say I'm getting a context. You can say Azure
+147:03
+
+OpenAI supports GPT-4. That is the context there. Which retrieval given the answer.
+147:17
+
+And LLM is giving the answer, Azure OpenAI support
+147:32
+
+GPT-4. Okay? Now tell me, the context is given this answer also LLM is generating it. So this part coming from retrieval, and this part, the answer is coming from LLM.
+147:45
+
+What I'm saying is the answer. Is the answer, is the LLM supported by retrieved documents? What is your answer guys? Can I say faithful or not?
+148:00
+
+Can I say yes, it's faithful? It's faithful? Now, let's say here my answer is coming.
+148:12
+
+Here my answer is coming. Second answer. Let's say this is answer one, this is answer two. I'm saying Azure OpenAI
+148:25
+
+supports GPT-5. Now, here the context retrieval is giving GPT-4, your answer is saying GPT-5. Can I say not faithful?
+148:39
+
+Agree, disagree? Hmm? Agree, disagree, guys?
+148:53
+
+So what is the formula here? Formula how maths works. The faithfulness
+149:09
+
+equal to, you can say, supported claim. Claims divide by total claim. Total claims.
+149:22
+
+That's the faithfulness. Means, especially RAGs typically operates
+149:37
+
+part one, they are breaking answer into claim.
+149:51
+
+Okay? Whatever claims there, they are breaking it sentence by sentence. Then they are checking each claim, each claims
+150:03
+
+against retrieved context and the third parties, then they are calculating it,
+150:16
+
+calculating the supported claim ratio. Okay? Please note,
+150:29
+
+closer to one, LLM is generating excellent response.
+150:45
+
+Okay? That's the meaning there. Now you can see, give me some more example. Let me take the use cases so that it's very easy for you. Mm.
+151:00
+
+Okay, so this is the diagram there, guys. You can see document, LLM-based synthetic generator, golden source, vector database RAG. So what retrieval part will do? Retrieval, there are three metrics there, contextual precision, contextual recall, contextual relevancy.
+151:32
+
+The LLM, what generation happened? The LLM that is called generator metrics. Answer relevancy, faithfulness, hallucination checks, LLM as a judge. Okay. Now, I wanted to show you...
+151:47
+
+Mm. It's everything is there you can see here, contextual precision metrics, contextual
+152:04
+
+recall metrics, contextual relevancy metrics. Similarly, answer relevancy metrics, faithfulness, hallucination. Code is very easy. Just you have to write it and you will get the result. So simple intuitions here is
+152:19
+
+what I'm saying, let's say you are getting an answer, and the answer, let's say your claim one is correct. Claim two is also correct. And claim three
+152:32
+
+is not correct. Means here, when I say Azure OpenAI supported GPT-4, and your answer also saying Azure OpenAI supported GPT-4 and
+152:46
+
+GPT-5, let's say. Right? So first part is matching, second part is not matching, so we can say not a faithful Right? So here, how many claims is matching? So let's say total three claims there, and out of two is matching.
+152:59
+
+So you can say my answer is 0.67% is there. Meaning, if you can go here, and you can see this.
+153:11
+
+Yeah, faithfulness. Okay? So when we are asking this question, what is AI, right? So here they are giving the answer is artificial intelligence refer to machine mimicking human intelligence. Right?
+153:32
+
+Like problem-solving and learning. So this is one sentence. This is one sentence. Yeah. So we can say this is absolutely right. So claim one is matching. One. AI include application like virtual assistant, robotic and automation.
+153:46
+
+This is also fine. Next part, let's say we are saying AI is evolving rapidly with the advancement of machine learning and deep learning. Natural language is a branch of enable computer understand, interpret.
+154:01
+
+NLP techniques include tokenization, stemming sentence, not matching. Right? NLP application range to chatbot language translation, not matching. The question is what is AI, right? So AI is saying this. This is also NLP is the branch of AI.
+154:14
+
+That is also not the context. Machine learning is a field of AI, right? It's not about AI, it's about machine learning. Machine learning, algorithm analyze past data and make the prediction to this. Popular application machine learning include recommendation system,
+154:28
+
+right? Like that we are getting it. So here, now you can see what machine will do, they will check all the sentence one by one, and they can say which sentence is relevant and which sentence is not relevant. Yeah?
+154:43
+
+So claim is these are the things there, right? Verdict, yes, or verdict, yes. And then finally they can say what is the faithfulness, answers I'm getting it, which is relevant or non-relevant. Okay, that is how the
+154:56
+
+questions will come. Like input is what is AI. My actual output what is coming, AI refer to machine mimicking human intelligence, including problem-solving and learning with the application expected outcome. Now tell me if I
+155:09
+
+divide this part, these answer already given know in the retrieve part. This is what the retrieve there. So this answers when I say AI refer to machine mimic human intelligence including
+155:24
+
+problem-solving and learning, right? This sentence is given. Refer to machine mimicking human intelligence like problem-solving and learning, and second sentence include application like virtual assistant, robotic and automation.
+155:36
+
+My LLM is giving this answer with applications. Right? With applications. You can see this. With application assistant robotic automation.
+155:49
+
+Means both the sentences matching correctly, and that is why you are getting a score is 100%. Right? So there are two claims there. Both claim is answer yes, tick marks. Okay, you can see. So that's why the formula here is
+156:02
+
+total claim. So in answer, how many sentence there? So let's say total is that much sentence, five sentence. That all five is there in your actual data set or not. That is called supported claim. Right?
+156:16
+
+If yes, that is there, you can say two out of two is there. So my answer is 100%. Anybody have any doubt, please ask me.
+156:31
+
+Anybody? What if the faithfulness, the answers that LLM returns gives more? Like, will it also- So like I said, right? That's why I have given this example.
+156:44
+
+Let's say my answer is coming, Azure OpenAI supported GPT-4 and GPT-5. But when you retrieve the data, that time GPT-5 is not there.
+156:58
+
+Right. So how many total there? So two claims you are saying. But out of two claim, one is only true, so you can say 50% is faithfulness there. Okay, understood. Yeah. You will not count the context.
+157:10
+
+You will just validate this answer that is there in context or not. If there, that means your claim is true. If that is not there, your claim is false. Clear. Yeah. Simple intuitions, everybody. Yes, no?
+157:23
+
+So this concept is clear, but in your code what is that fourth part? Is it that retrieve document or it is associate document? So it is retrieve. So what happened, when I ask these questions, right? Here, LLM response question, we are actual
+157:37
+
+output. Right? And here retrieve context also we are getting. What is the retrieve context? These are the retrieve context. What is my actual answer? My actual answer is this. My actual answer is this is query. You can see this is query,
+157:51
+
+right? This is my actual output. Can I say this is LLM generated the answer? Generated the answer. This answer you will check from where? Will check from this retrieve part. This is the context we got it. Yes or no?
+158:05
+
+That part is there or not. So how you will judge it, how many sentences there in answer? How many sentences there in answer? So actual output, this is there, you can copy-paste. You can say these are answers there, and that part you have to check. Right?
+158:20
+
+That part you have to check. Control C and control V. And then you can say,
+158:33
+
+you can see the first is, AI refer to machine mimic human intelligence including problem-solving, learning. This is claim one. We can say yes, it is correct. Yes or no? With application like virtual assistant, robotic and autonomous, this is claim two.
+158:48
+
+That is also matching. From where? From this context. So- Is it given? So actual claim is true and total claim is also true. So they are calculating total claim- So your answer is total claim is true, and both claim are true versus this,
+159:04
+
+so 100% answer. I'm getting 100% faithfulness. Got you. Yeah, that is what happened here. That's why we are getting the result is 100%. You can say faithfulness is score 100%, even though we have
+159:19
+
+given threshold value 50%, but you can see GPT-4 reason they score 100% because there are no contradiction. Yeah? Indicating that actual output is perfectly aligned with the retrieved
+159:31
+
+context. Retrieved context is what? The 51, which above given, right? Great job by maintaining accuracy and consistency. Error is none. Makes sense.
+159:44
+
+Everyone? Yeah? That's the very simple intuitions. A couple of questions there in chat. Let me read it also. It is there. Vishanti said, "Open source data also should be embedded
+159:57
+
+and sorted in vector data." That automatically would work, no? When you build a right pipeline, there you will give it, it will work, just like a user query. So when user query, every time user will ask in
+160:12
+
+text only, right? But when it go inside, it automatically get convert into embedding and then searching from vector database. Same thing happened there also. Lalit is saying, "Sorry to interrupt. I'm new to this batch, watching recording.
+160:28
+
+I have some doubt. Can I ask then during the class? Or please tell me." Why you are new now? Batch is going to close and you are saying, "I'm new. Next month I will complete the batch." You guys are full liberty, go and apply anywhere, any GenAI, agentic AI,
+160:40
+
+architecture, designing, developer, managers, leaders, project managers, transfer leader, any role you can go and apply it. So first, I'm not clear why you are saying new, and if you are new, then why you
+160:56
+
+are joining this batch? The new batch will come in September, you have to join that batch. No? Anyway, you can ask questions at any point of time, no problem. What is truth here? I think Dheeraj already have given
+161:09
+
+answer. Truth here is a context, Himanshu already given answer. Thank you. Sanjay is saying, "What is the means of lost in middle?
+161:22
+
+If we have answer sorted in database but LLM not giving proper answer." That's why we are checking now faithfulness, Sanjay. So that part now you will evaluate.
+161:34
+
+If, let's say, they sorted it, but your answer is not coming properly. So how much claim is false? What is this? That's why we are calculating hallucination scores, faithfulness, answer relevancies. LLM Judge means you have to customize
+161:47
+
+it at whatever you want it. Yes, I got it. It claims response versus faithfulness to retrieved context. Okay. Instead of just dense vector search, why not use hybrid search?
+162:01
+
+Will not any effect for them, and that you have to do it, no, Arvind? That's a pipeline preprocessing. That is what you can say RAG system. But let's say you build the application. Now how you will evaluate it?
+162:16
+
+Or that you will give the evaluation metrics, right? That is what I'm doing it. Makes sense? That is your-- As a good programmer, you always do, right? You can use hybrid search so that it will come key search as well as the
+162:29
+
+BM25 and other part. So that is the best thing you have to do it. So guys, next part is answer relevancy.
+162:44
+
+Answer
+162:57
+
+relevancy. What is meaning of answer relevancy? Answer relevancy means you can ask question, did the answer actually
+163:12
+
+answer the question or not? Simple. Did the answer actually answer the question or not?
+163:26
+
+That's the answer relevancy. Yeah? So whatever questions you are asking, actually, we are getting that answer or not. Means I'm saying, what is capital of
+163:40
+
+India? This is what my question is. Now, what is your answer? The answer should be, we can say New Delhi
+163:56
+
+is the capital of India. You can ask this. Now, it is highly relevant or
+164:11
+
+irrelevant? Tell me. Is it relevant or irrelevant or highly relevant? Highly or relevant simply you can say. It's relevant or irrelevant? And it's a highly relevant, guys. Everybody agree?
+164:25
+
+Yeah, we can say yes, it is highly relevant. Highly relevant. Relevant. Okay?
+164:39
+
+Now, if I ask a question. What is the capital of New Delhi? And my answer is coming. India
+164:51
+
+is beautiful Country. Now tell me, question is: what is the capital of
+165:10
+
+India? And your answer is coming, India is a beautiful country. Relevant, irrelevant?
+165:25
+
+Irrelevant, right? So you can say maybe when we retrieve the answer, that time nowhere in New Delhi is given. They have just described about India, and somewhere the question is India, that's
+165:38
+
+why they have used that retrieval part and the context we are getting it. So you can say, this is irrelevant. Yeah? You can say not relevant to this part. Hmm? So how you will use it, how you
+165:53
+
+will find the answer relevancy, there is a formula. Formula, what happened to my... One minute, guys.
+166:08
+
+Code is not working. Let me clean them.
+166:27
+
+So the formula is... Formula is,
+166:44
+
+you have to calculate similarity. What is the A dot B you divide by length of A,
+166:57
+
+length of B. Okay, similarity search, you have to calculate it. That will give you the answer relevancy means you have to put a value. Zero means no relevant,
+167:09
+
+and one means? Perfect relevant or highly relevant. Highly? Relevant. Hmm?
+167:23
+
+So answer relevancy is calculating base is this similarity search only. Right? Means you can see here the code. You can see the code, guys.
+167:36
+
+Okay. So this is answer relevancies. What is the question here ask? You can see this. The question is: What is AI? My actual output is coming.
+167:52
+
+AI refer to machine, mimic this, this, this. Right? That is what the question is there. Now, what they will do, they will find the similarity search. Okay? They will find the similarity search, and they can see whether that sentence
+168:06
+
+is relevant or irrelevant. Yeah? And how? This is the similarity search means they are finding the value, cosine similarity, they are using it. Yeah. This is nothing. It's called cosine similarity.
+168:19
+
+Cosine similarity. Yeah, you know that, right? The value is closer to zero, then the value is one. Cos zero degree equal to one.
+168:34
+
+Cos 90 degree equal to zero. Cos 180 degree equal to -1. The closer value to zero degree, zero degree closer, that means answer is highly relevant.
+168:48
+
+Yeah? We are using highly relevant because the very close cos 10 degree, cos 20 degree, cos 30 degree, is more closer to cos 45 degree or cos 60 degree.
+169:04
+
+Yeah, like that it happened. So we can find the sentence here, and we can say whatever the answer we are getting here, right? This answer we are getting here, this answer is relevant or not relevant.
+169:16
+
+Okay, so question here is: what is AI? What is AI? And the answer is coming this. Yeah? Now you can tell me they are finding both the sentence A and B, sentence A and
+169:30
+
+sentence B, right? By the help of cosine similarity, and they are finding very, very close, and hence we can say 100%. You can see the result also. You can see here result, answer relevancy is 100%, threshold this.
+169:44
+
+Yeah, code remains same. Don't worry about the code. Only function I'm changing it, see? LLM test cases, answer relevancy metrics, evaluation. First test cases I have taken, what is the input, means what question is there, what output I am getting here. The threshold minimum 50%, you can
+169:58
+
+increase it. If someone ask you a question how you will increase the threshold value, increase the performance, you can say, "I will increase the threshold value." So let's say you are saying threshold equal to 90%. So your answer will come more than 90%, then only you can accept, otherwise you can
+170:14
+
+go and check again. Yeah, maybe there is a problem in retrieval. I have used model LGBT. Do you want to see the reason also, and do you want to see the end-to-end output? You can evaluate it. When I evaluate here, we are getting these answer I'm getting
+170:27
+
+it, right? Both the answer is correct, yes, verdict yes. Both answer is absolutely right. Then they are calculating it, and here saying the score is 100% because the response perfectly addressed to the question about AI without any irrelevant information.
+170:43
+
+Yeah, they have not talked about any irrelevant information. Yeah. Irrelevant information, fantastic job. Answer relevancy this, evaluation metrics this, reason, the score is
+170:56
+
+100% because the response is perfectly addressed to the question about AI without irrelevant information. Error is zero Right? What is input? This. What is output? Output is this.
+171:11
+
+Expected outcome is not given, context is not given in this case study. I have not added. If you want to add, you can add that part also. Otherwise, it is doing fantastic job. So that's the basic intuitions there that you have to remember, guys.
+171:25
+
+Someone ask you these questions, how you will-- What is answer relevancy? Means you can say whatever the answer I'm getting it, answer part I'm talking. That is why I have written here. Please remember this word.
+171:40
+
+Yeah, this line you have to remember. Whatever the answer we are getting, actually answer to the question. So whatever user is asking query, I am getting the answer, that is relevant or not, that is coming correctly or not.
+171:52
+
+That's called answer relevancy. What I have used here the word faithfulness means is the answer. Whatever the answer I am getting, that is supported by retrieved documents. That is called faithfulness. Are you clear faithfulness relevancy score, guys?
+172:05
+
+Answer relevancy? Boliye, yes, no? Very good. Point number third. Third is even simpler.
+172:20
+
+You know that hallucination part? Hallucination checks. So you can say hallucination
+172:33
+
+check. Okay. What is meaning of hallucination? You can see LLM invent
+172:49
+
+information. LLM invent information or not means the context I'm saying,
+173:02
+
+Microsoft CEO. Name is Satya Nadella. Correct?
+173:16
+
+My answer is coming. My answer is coming. Microsoft CEO is, let's say, I'm saying Elon Musk.
+173:28
+
+Elon Musk. Guys, this is hallucination or not hallucination? Tell me. This is hallucination or not?
+173:43
+
+Hallucination, right? My context retriever is giving Satya Nadella, but when I'm asking these questions, my answer is coming hallucination, right? That is clearly hallucination. It's hallucinating it.
+173:56
+
+Hallucination, right? So if you ask these questions, I'm saying information about pricing, but answer is coming 5,000. They are not giving information, they are
+174:12
+
+giving the price. That is again hallucination. So hallucination part, what happened? How you will calculate it? The formula for this, formula is
+174:25
+
+You can say hallucination rate equal to
+174:41
+
+unsupported claim divide by total
+174:55
+
+claims. Okay? Let's say I'm saying we have total claim
+175:07
+
+equal to 10. Out of this unsupported, two. So you can say
+175:20
+
+two by 10 means 0.2, 20% hallucination there in my answer. This is called hallucination rate. Hallucination rate.
+175:32
+
+Okay, that is what you can say. So, if you are working in real-time job, please remember, real-time job. Or you are doing production.
+175:46
+
+Always you have to remember the threshold value is less than 5% hallucination there, then only you can accept. Otherwise, you can reject it. If you are building a enterprise
+176:01
+
+RAG system in a big company, a big project. That time hallucinations detections, groundedness, and factual alignment are critical evaluations, guys.
+176:14
+
+It should be lesser than 5%, then only we can accept it. 20% is not acceptable. Please remember, 80% means pathetic. Very, very bad. 50% means very bad. Okay, you always remember it. So you can see here
+176:28
+
+the example you can see. Okay. So this is the example. It's hallucination checks, right?
+176:43
+
+The question here is, hallucination score is 100%. Question is what is AI? Okay. The output is coming this. The output is coming this.
+176:58
+
+Right? Means both the answer is absolutely right. There is no contradict in the statement. Okay? There is no contradict in the statement. And what happened? Hallucination score will come zero. What is AI?
+177:10
+
+My answer is saying AI refer to machine mimic human intelligence, including problem-solving, so on and so on. Right? All are relevant. Right? It's not contradict. So when I say here, when
+177:24
+
+I say the formula here, unsupported claim means contradict a statement comparatively the total claim. Total how many answers are there? Two answers there. Out of these two, both are okay? This and this both are
+177:37
+
+okay? You can say yes, both are okay. So means I'm saying 0%. I'm saying 100% I'm getting it, 100% means? 100% means simply you can say it's a 0% hallucination is coming.
+177:51
+
+You can see here in the above, when I have checked here, even though I have given a threshold value as five, which is not correct. Yeah. I have given five, you can change this five to 0.5 in
+178:05
+
+production, 0.05. Okay, don't write 0.50. 0.05 is the cutoff value. And then you can calculate it, right? You can see a score is coming 100%, two by two means one.
+178:18
+
+Right? Verdict is yes, the actual output agreed to the provided context means my hallucination is contradict. Why contradict? Because unsupported document is zero. Unsupported total answer is two. Unsupported is zero, means
+178:32
+
+0% I'm getting the hallucination score, and your answer is very good. Are you guys with me? Give me. Give me confidence, guys.
+178:45
+
+Is faithfulness and hallucination are not same? No, both are different. No. Hallucination is for being closer to zero model is very good. Faithfulness closer to one, then model is very good. Faithfulness zero means pathetic. No, blunder.
+179:05
+
+So both are different thing. Oh, it's an inverse. It's a reciprocal. Both are not same, both are completely opposite.
+179:20
+
+Guys, last part for the evaluation matrix, which is called LLM as a judge. Very significant part.
+179:40
+
+LLM as a judge. Most important.
+179:53
+
+Why I'm saying most important? Yeah. This is currently one of the hottest area in GenAI, right? Evaluation matrix when you say. Mm-hmm. So what happened?
+180:09
+
+The traditional evaluation is what? Human read, human score. Right? Then problem comes, it is very expensive, it is very slow. Right? It's not scalable. Human cannot do it. Let's say imagine you have one lakh
+180:21
+
+questions there. Per day, you are getting one lakh questions by users. Human cannot evaluate it, right? It's impossible. Yeah, it's impossible. So what happened? You
+180:37
+
+have to write, you can say, "Hey, the question is coming, what is Azure?" An answer is coming, Azure OpenAI is a Microsoft cloud services providing the GPT model, right? What you can say, I will use the LLM as a judge.
+180:50
+
+Mm-hmm. So I can say here, faithfulness score equal to, you can
+181:05
+
+give 0.8%. Mm-hmm. Relevance is score is 0.8%. Correctness
+181:18
+
+score equal to, let's say, 0.75%. And reason you have to give it, you can say reason is you mention here, answer the ground.
+181:33
+
+Grounded in context. Right? Now you can see the score here. Right? So what evaluation pipeline will do, there is a eval pipeline there.
+181:46
+
+Pipeline there. This is mostly you will use in industry. You can write a pipeline. So you can say the first pipeline is faithfulness judge. Faithfulness judge.
+182:00
+
+How you will judge? My faithfulness threshold value cross this limit. Relevancy? Answer relevancy? Judge. Okay, that should also pass. Hallucination?
+182:15
+
+Yeah, you can say hallucination also pass. Yeah? That is less than 5%. Safety judge. Right? Safety judge, you can say my answer is coming this. And then you can say, I will write a custom also.
+182:29
+
+Custom business judge. So rather than you can go and do all one by one, and then you have to decide why not I can build a LLM as a judge, and there itself I will give all the parameter, and then we can conclude them.
+182:44
+
+Okay, you can say, I have to make a pattern, right? We can make a guidelines so that everything will give, and then they can give the final answer. Like that, you can use LLM as a judge. Now you can say second.
+182:59
+
+I could not understand. I'll give a very simple answer, guys. There is a hospitals. Okay? Let's say I'm giving this case study.
+183:14
+
+There is a hospital. Okay? They have each department. Each department, they have two or three
+183:32
+
+dignified doctors there. Okay? Each doctor, they can see in one day maximum 10 patients.
+183:45
+
+Now, you have to write a condition. You can say first thing first, any patient will come, I wanted to check their problem. Check problems. That what type of problems they have.
+184:00
+
+And then your L, you know the system. Normally it happen when you go in hospital, you can say, "I wanted ENT doctor," "I wanted eyes specialist doctor," "I wanted a general physician," "I wanted a
+184:13
+
+gynecologist." I wanted some different kind of doctors. Let's say. Now, different all doctors have a different speciality. So what happen? Who
+184:27
+
+is there in the counter, receptionist, they will ask you that, "Okay, you have to go in this," do it. So you have to include the guardrail here. Guardrail. I don't want to use this word, but intentionally I'm using it.
+184:40
+
+Guardrail, I'll teach you later. But you can just think I wanted to make a groundedness checks. Okay? You can say I wanted to do the groundedness checks.
+184:53
+
+So what groundedness checks you will do it? Okay, you can say what kind of groundedness checks I wanted to do it. So first part, you have to evaluate. You can set write a rules. When I say groundedness checks in
+185:08
+
+this means you have to write a rule. What rule? You can say whenever user is asking query or whenever patient they wanted a doctor, first thing first, I will check that what kind of problem they have.
+185:22
+
+Okay? Second part, I will check the doctor calendar. Let's say the problem I understood and they have a problem with general physician. So general physician, we have total three doctors there.
+185:35
+
+You will see each doctors. You can see if they have 10 patient already two doctors booked with 10. Then the third doctor get allocated for them. If all three have nine
+185:50
+
+patient or five patient or they have a spot, as per alphabetic order, I will allocate them. Or randomly I will allocate them, any doctors. Or if the customer has any preference, because sometime what happen, the
+186:06
+
+patient they are coming and they said they are taking opinion for doctor A only, so their choice is A only. So what machine will do, they can say, okay, all three has a scope
+186:18
+
+and customer wanted doctor A, so they will allocate doctor A. But if doctor A already the appointment completed for 10 patient, they don't have choice. So we can say either you can come next day or I'll give the facility, you can
+186:31
+
+go and see the doctor B or doctor C. These kind of rules, business rules, this is called business rule. You have to add it, and that is what is called LLM as a judge.
+186:45
+
+That is called LLM as a judge. Are you guys clear what I'm trying to say? Did you understand what I'm trying to say? There are certain rules you can put it. No, your business will say.
+187:00
+
+You don't give the answer. First you have to do these checks and all, and then you can go and do it. That is called LLM as a judge part. Again, that's why I mentioned most important. You can also check how you will evaluate. Is there any parameter, any business rule you wanted to give me?
+187:15
+
+If they said yes, then you have to write last line is the LLM as a judge. So you can see here, hallucination checks. Yeah? And here, LLM
+187:31
+
+GE evaluation. So what evaluation? I have given the conditions here. What are the steps you can see? Create a list of a statement from actual output. Second, validate if they are relevant and answer given the question in input.
+187:45
+
+Penalize if any statement are irrelevant. Also validate if the exist expected outcome, penalize the any statement are missing or factually wrong. Also validate these statement are
+187:59
+
+grounded in the retrieval context. If not, penalize if any statement are not. Finally, also penalize if the statement seems to be invented or made up and do not make sense
+188:14
+
+factually given input and retrieval context. That is called LLM as a judge. Rag fact checker. So we are giving this name, Rag fact checker. What they will do, they are using the GE evaluation, means LLM as a judge.
+188:28
+
+There I have written criteria, I have written groundedness, I have written business rules. And then you can only provide either criteria or evaluation step and not both. So you can go do one thing and then you can execute it.
+188:43
+
+Here they are doing the fact checks. They are getting 88% overall answer. This is what AI, this is what actual output you are getting, this is what your expected output. All part they will check, and then finally they can say,
+188:57
+
+"Hey, this is perfectly fine" and we pass it because we are crossing that value. So we can say 100% pass rate, this is finished, like that you can do it. So why I said it is very important? Because here you have to write all criteria, everything, and then on that
+189:10
+
+basis you can go and give the answer. More information, I am going to share this part also. You can see here, answer relevancy, answer faithfulness, hallucination. This everywhere I have written a code here.
+189:25
+
+Yeah, you can see I'm getting the answer for all one by one. Yeah? And last part here, what I say evaluation metrics, I have given some conditions here.
+189:39
+
+Okay, I said evaluation dictionary equal to blank, input equal to whatever input there, expected outcome, actual output, whatever the context there. Retrieval context. What is the success rate? And here I said metrics equal to metrics.
+189:52
+
+If metrics evaluation plus a score equal to metric is score success region and all, you can combine it. Yeah, and then you have to create the PDF. Whatever answer we got, you can convert into table format, and
+190:06
+
+in table you have to filter only those things. I have filtered only these answers, so I'm getting the final result. You can say contextual precision, contextual recall, contextual relevancy, answer relevancy, answer
+190:20
+
+relevancy with deep evaluation, answer relevancy with RAGAS, faithfulness, and hallucination. Because these two I have written, because slightly difference there, guys. Okay? So that is why I have given, but more or less you can see
+190:33
+
+it will come similar and that is what is coming. Yeah? So like that you have to check and you can get the answer. So LLM as a judge means simply you can say very important. The position bias you can see prefer the first answer.
+190:46
+
+You can see the long answer up here is better. You can see best practices. You can say use a stronger model as a judge. You can use temperature equal to zero so that hallucination will not come. You can use a structured JSON output.
+191:02
+
+You can say human collaborations or calibration. You can use the predictive audit, like monthly, yearly, and half-yearly. Like that you have to set up, and then you can go and do it. Now, these problems, how you will solve it?
+191:16
+
+You can solve basically the two methods. One is called deep evaluation method. Deep evaluation is nothing, guys. It's a package. It's a open-source framework.
+191:31
+
+Open-source framework. Like a LangChain you have seen. So you can go and see that. What it will do, it will focus automated LLM testing. And when you say you can say it is LLM testing,
+191:44
+
+whether your LLM RAG model is working good or not, and when you do CI/CD pipeline. CI/CD integration. Automatically it will work. It
+191:59
+
+will support all the methods. Whatever I said, faithfulness, answer relevancy, hallucination check, task completion, custom metrics, LLM as a judge, G-evaluation, all these things they will check and give the answer.
+192:14
+
+Another package is there called RAGAS. RAGAS. RAGAS stands for, guys, retrieval. Retrieval-augmentation.
+192:27
+
+Augmentation-generation. Generation-assessment. AS means assessment. So this actually you can say, RAGAS actually it is
+192:40
+
+mainly created for RAG only. But later we found that deep evaluation is better than RAGAS. Because deep evaluation you can use in RAG, you can use agentic RAG.
+192:55
+
+You can use graph RAG, C-RAG, any RAG you can pick, no problem at all. But this part mainly used for RAG only. Gen RAG, generative AI RAG. Okay, that is what happened.
+193:08
+
+So anybody asks you what is the purpose for RAGAS and deep evaluation, you can say RAGAS is basically for RAG evaluation, deep evaluation for full LLM evaluation. Whether you can use RAG, Gen RAG, Gen AI, agentic AI, agentic
+193:23
+
+RAG. Anywhere, everywhere you can use deep evaluation. Main thing, this RAGAS is focusing retrieval plus generation, and this deep evaluation focus in any Gen AI or agentic AI system.
+193:36
+
+Can we do faithfulness? Yes, both we can do it. Hallucination, can I check? Yes, both we can check it, but deep evaluation has upper hand. Deep evaluation always gives you better hallucination score. Can I use the agentic RAG system? Yes, deep evaluation we can do it, we
+193:50
+
+cannot do here. You can build an agent and then evaluate it? No, RAGAS will not be capable of doing it. If I'm doing CI/CD pipeline, RAGAS supported. Basic support you will get, some POC kind of things.
+194:05
+
+But if you work on the enterprise system and all, RAGAS is not appreciated. Can I use LLM as a judge? Will get better answer. Deep evaluation will give better answer. RAGAS is not.
+194:19
+
+Can I do that enterprise testing and all? Of course you can do it. So by and large, which one you prefer to use, guys? Deep evaluation or RAGAS? Which one you prefer?
+194:33
+
+Deep evaluation. Okay? So someone asks you, please tell this story. you guys are appearing. Anybody is asking
+194:46
+
+how you will evaluate your LLM is working good, your application is working good or not, how you will decide? Are you able to tell them that I will use the evaluation metrics by the help of DeepEval,
+195:00
+
+contextual recall, contextual precision, contextual this, then remaining answer relevancies. Deep evaluation for all, and for all Gen AI, for agentic AI, everywhere.
+195:12
+
+So will you take all seven names? In case they ask you any difference, any things what is meaning and all, are you in the position?
+195:26
+
+Give me confidence, guys. Super. So this is all about, guys. Now I'm sharing this code. I have completed the query. I'm just storing it. I'm sharing both the code, this as well as this one.
+195:42
+
+So here, if you want it, you can give answer like that, final response. Or one by one if you want it, you can go the way I have done it. So both code I'm sharing with you all. Please, whenever you have a bandwidth, pick some different dataset, implement
+195:57
+
+the same bot or same evaluation matrix, deep evaluation, and do this. So if
+196:13
+
+anyone wants to ask anything else. Manoj, sir. Yes, Manoj. Hello sir, can you hear me?
+196:25
+
+Mm-hmm. Yeah, actually, I have tried to send you connection over LinkedIn, but you have not accepted it, so I could not able to send you the message about the
+196:38
+
+book. Send some other person. Did you see my LinkedIn profile? You can Google it. You can say Kumar. Yeah, I have sent you the request, but you have, I think, not accepted it.
+196:50
+
+No, not possible. Have you sent which one? This one? This one only. First one, this person. So when you have sent it? It was at the start only I had sent it.
+197:03
+
+Because I don't have any invite. Not talking about invite, I'm talking about connect. Connect means friend request you have to send. No, LinkedIn- Yeah, I have sent it. Yeah. I have sent it but you-
+197:16
+
+I don't have any invite. Now I can see you are saying I'm not invited. I don't have any invite, no, you can send it again. So when you click, no, there is a connect will come.
+197:29
+
+Connect you have to click the plus button, then it will come. I have sent it again. Okay. Sir, about the book. Book? What book? Study
+197:41
+
+what I teach you properly. For the new books you wanted. One book I have given that if you want it, you can go and do it. That LLM by J. Alabama,
+197:54
+
+huh? That is okay. Yeah. That I have. I don't want anybody use unnecessarily. Because their language is very difficult, you will not able to understand. So what you can do, you can read this one and along with, if you want it, you can
+198:09
+
+go and read, blogs. Okay, sir. Blogs, research paper, that will help you. Books- Okay, sir ... research paper
+198:23
+
+six thousand. I don't know if six thousand is worth it or not. If you are not- Okay ... attending my session and all, and then, for them, I can say, okay, you can go and read it also.
+198:39
+
+But I will send. material class I'll share so many things. Yes, sir. Definitely. Do not get the bandwidth to read other things apart from my materials and all. Now I'm teaching you fundamental things, but
+198:53
+
+once class get over, I'll share so many materials, so many books, so many research paper, my materials, what I have prepared. So all this thing I'll give you, you can go and read it. Okay, sir. Got it. Thank you.
+199:09
+
+I'll send you the connect now again. I'll check it, and I'll accept. No worry. Yes, sir. Thank you. 19th July. So guys, how was the session? Happy?
+199:22
+
+Boring? Too much theory, too much information? Or
+199:37
+
+Good. I have a question. Yeah. So sir, suppose my deep- have a question ... Yeah. Sir, if my deep evaluation matrices is not giving me the satisfactory answer-
+199:51
+
+Then you have to go and- So what are the things that I'm-- If I'm building an agentic system- Go and check. So I will be focusing on- If deep evaluation is not working-- No, listen first question. If deep- Okay ... evaluation is not working well, that means there is a problem.
+200:06
+
+Problem with not deep evaluation, problem with your pipeline, problem with your RAG architecture, problem with your agentic RAG system. This is the evaluation matrix is a framework.
+200:20
+
+If that is not coming, you can go back, you can see the chunking strategy, you can see the embedding strategy. You can do it. Let's say you have done everything, but there's still no improvement there. fine-tuning.
+200:34
+
+What I taught you, LoRA, Q-LoRA, and all. Because that is costly, but you can go and do it. Deep evaluation . Deep evaluation remains same. Understood?
+200:49
+
+Correct. So that's what I was asking. Chunking is one thing where we can focus and see if- Embedding chunking- ... retrieval works efficiently ... retrieval approach is different. Third thing, retrieval approach, don't use BM25. You can use hybrid, you can use even better.
+201:02
+
+Chunking, you can change with different, different tick token method, LLM methods, recursive method. Similarly, when you do embedding, you can go and change this. You can see which embedding is better. Text embedding, three small or three large or Ada 002.
+201:15
+
+Definitely Ada 002 is not better, but you can try it. So these things, and then retrieval part. Then you can see augmentation also. You have written very nicely or not, augmentation part. If required, write some few short learning.
+201:30
+
+You can write some CoT, chain of thought process, and then you can ask LLM to give the answer. Because augmentation will be very big. There you will also have to write LLM as a judge. You have to write a guardrail part as well. Okay?
+201:44
+
+So these things you can give and then give the answer. But still, your evaluation metrics, deep eval is saying, "No, very bad," and customer is not happy at all. Your accuracy, let's say 40% you are getting accuracy. Hallucination is coming 50%, 60%.
+201:57
+
+Will you go in the production? No, right? On that case, you can go and do the fine-tuning then. So in summary- Model also change. You can change the LLM model also. If you are using GPT-4, try to use GPT-5, try to use
+202:10
+
+GPT-5.5. GPT-5.5 fine-tuning, some other things also given. So you can use the different LLM model. But by and large, your ultimate objective is my evaluation should be better.
+202:24
+
+Okay? Got you. Yep. So in summary, we have to check all the parts, and it will be more of an engineering aspect like what all things we need to see to check. Absolutely. And sir, other thing is in the last session you have mentioned, you have shown us
+202:38
+
+some code on the fine-tuning aspect, right? You have written some predefined code. I have not seen it uploaded, if you can upload that also. Not uploaded. Already uploaded, no? The one where you have seen lot of codes. I didn't see that part.
+202:52
+
+You have shown us the code, right? You have pre-written code. Have I given the sample codes or not? Not yet. What was the last session date? July. 12th July, right? Fine-tuning.
+203:06
+
+Actually, this week, like you said, you will deal with fine-tuning code and all. But- You can just check it. I have given the zip file. You can unzip them and you will get everything. All code is there.
+203:21
+
+Yeah, okay. Thank you, sir. Let me check this one. This one, go this. See? Everything I have given, Llama- Okay ... sequence to sequence, sequence to sequence board, fine-tuning. Go to fine-tuning. I have given
+203:33
+
+everything. Okay? Go through the code yourself. If you are not able to, then let me know, I'll do it. I don't want to execute it because I have to use, again,
+203:49
+
+paid version, so it will go unnecessary. And I don't think you will also in future you will use fine-tuning. But for knowledge purpose, definitely you know it. Very rarely, because there are lots of cost involved there.
+204:04
+
+But you can go through it. If you are not clear, I'm happy to explain you again. Okay? Because your understanding is more important than anything else.
+204:18
+
+Anybody has any other question? Anybody? Farhan? Okay. One more friend there. Pernali is there. Pernali, go ahead.
+204:31
+
+Sir, is latency a part of evaluation? Latency is also one of the key things there. Latency, I'm not talking right now because I will talk later. Okay. So,
+204:45
+
+deep evaluation or evaluation metrics will not tell you the latency or not. Mm-hmm. Latency means when you ask questions, LLM will take time. Right. So you have to wait, and then answer is coming.
+204:58
+
+So then one of the problem is chunking a strategy. Another problem is retrieval, right? When we ask questions, the retrieval part is not working, and that is why LLM-- because you have no visibility. You have only visibility-
+205:10
+
+Mm ... about LLM answer. Internally what is happening, that you don't know, right? That is a black box for you. Right. It's internally it's happened. Even though you are architecture, you know that somewhere there. So what you do, how you will fix the bug, you can go
+205:22
+
+inside, you can see the chunking and all and do it. So I will cover that part, I'll talk later. But the evaluation metrics will not tell you this thing. Okay? Right. So, deep eval will help with latency also, right?
+205:37
+
+Deep evaluation will not help you latency. Okay. That's what I'm saying. Okay. They will not tell you anything about latency. They will only tell you retrieval part and generation part. Okay, all right. Got it, sir. Thank you.
+205:52
+
+Deep evaluation only check the answers. Okay. Deep evaluation never tell you how much time takes and all. That is human always say. Your client will tell you, "Hey, I'm asking question and it is taking three minutes, five minute. I don't want like that.
+206:04
+
+Can you improved it? Can you improve their performance?" So it will come performance metrics, optimizations. Okay? Mm-hmm. Okay, got it, sir. Thank you. Lalit?
+206:19
+
+Hello sir, am I audible? Mm-hmm. Okay, sir. So sir, I have been studying this data science machine learning in the past 10 months, and I have some career gaps also.
+206:35
+
+So, from the past 10 months, I have studied machine- You have a career gaps also? Yes, sir. So sir, I- You can set up a call. You can ask Learnway and say that I wanted to connect with Sundaram for 15, 20 minutes.
+206:48
+
+Can you please book a session? I'll help you. Okay, sir. So are you free- Sir, I don't want to book ... sir, are you free today? I will tell you. Check once. I have already shared my calendar with them. I think they have scheduled some call today, so I don't think today do we have a
+207:02
+
+scope, but you can check it because they have a calendar. They know it, my calendar. Okay, sir. Okay? So I have shared my calendar where I'm available and all, and accordingly, they will inform and suggest it. Okay, sir. Thank you.
+207:16
+
+You can connect, I'll guide you. Thank you, sir. Related, you can better connect offline, no? Yes, sir. Rather than you can talk any class. No problem, sir. Oh, what other question? Luna is saying, "I have a doubt in
+207:29
+
+transformer model. What is V value and how we are up?" Watch, Luna. You can watch my recording again Have you attended my deep learning session, Luna?
+207:43
+
+Yes. Now there I have covered transformer model. I have taken five, six sessions alone. You can go and watch everything, I have covered it. Revise it. Mohammed is saying,
+207:57
+
+"Are we covering agent and tool calling?" We will cover, Mohammed. Okay, we'll cover that part. Now that next topic is that only. Tool calling, function calling, MCP, A2A, all these things will come.
+208:12
+
+Most of the things I have covered it, now I will jump there. Deep learning also covered, machine learning also covered the basic things, so no need to worry. I think it comes under the latency metrics, TTF, this TPS, I guess. Yeah, Arvind, correct.
+208:25
+
+Okay. So today we have a project session in the evening. I don't know. Most--
+208:41
+
+99%, yes. 1%, I don't know. So, couple of questions, I'll take it. Yes, Mohammed Yasim?
+208:55
+
+Same question about the- Audible? Yes, Audible. Yes, sir. So in the next session, are you going to cover the guardrail and the LLM calling evaluation? I'll check few topic first. I'll check a few topics if I have
+209:11
+
+already covered or let's see. Maybe tool calling, I'll cover next session. Tool calling, guardrail, yeah, these topics will come. Yeah. My target is by mid of August, I'll complete all the topics. So-
+209:25
+
+Yeah, sir, because in the interview there are a lot of people- I understand ... they are asking the same question on the guardrail. Oh yeah. That is very simple. How you can evaluate the- One class if you attend my know, you will give the answer. So next session, maybe I'll take it.
+209:38
+
+Okay, sir. Will thank you, sir. But when you say most of the topic, they didn't ask this today's session. You have experience, this question also comes in any interview. Fine-tuning what I have covered in last week, that also coming in the interview.
+209:50
+
+Mm-hmm. That is also coming in interview. So any topic, you can leave it. You always go in a systematic order. Yes, sir. So same thing, I'm doing it. Don't worry. Sanjay?
+210:03
+
+Yeah. Hi, sir. Amodava? Yes. So how can we evaluate the agent system, like with the same DPLL, and can we get to see in upcoming classes?
+210:19
+
+Like- How you can evaluate agent ... agents. Like if we have built a agent, so- So build the agent, so what we are doing. So if you're building a agent, so agent, what they do.
+210:33
+
+I covered the agent. They have a connected with model, LLM model. Yes. Right? And you have- Yes ... tool also. Yes. Yeah? You have a memory as well.
+210:46
+
+Yes. And you have a planning and decision-making also there. Now tool means what? Can I say you have a raw data? Yes.
+211:00
+
+You have a MCP. Can you have external source? Model is itself there. So the agent, they will connect with the raw data, they will take help from model.
+211:13
+
+Now whatever the answer you are getting it, that answer you can store also. Now when you have a storage there, it is not possible that you can check the deep evaluation there. Yes. Tell me? Yeah. And then we also do the same thing. You have a model, you have a data set, you have
+211:25
+
+a memory. You can apply deep evaluation, see that. Okay. This is easier. Not- Mm-hmm. Okay ... also you can do because you have memory. You can apply this in that part only you can do it. So here, less cost. In RAG you have a more cost.
+211:40
+
+Okay. If you wanted some reference material and all, ask here. Yeah. It would be a help. No problem.
+211:54
+
+Oh. Or quick question, guys, anybody? No? So it's 1:38. We'll see you again this coming Saturday, 10:30. Till then, please take care.
+212:07
+
+Have a nice day. Any doubt, please ping me on LinkedIn. I'm available there. If I feel I can answer, I can answer there. If I feel that thing I can discuss in class only or that
+212:20
+
+thing I can discuss one to one, I will let you know that part as well. Okay? So bye, take care. Have a nice day. Enjoy your Sunday. See you again on Saturday. Bye.

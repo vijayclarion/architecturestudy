@@ -38,6 +38,16 @@ flowchart LR
     OE --> OD
 ```
 
+> ⚠️ **Key distinction — where does the config live?**
+> The two directions are configured in **different places**:
+>
+> | Direction | What you configure | Where it lives |
+> |---|---|---|
+> | **Inbound** (on-prem → AWS) | Forwarders pointing at the inbound endpoint IPs | **On the on-prem DNS server** (not in AWS) |
+> | **Outbound** (AWS → on-prem) | **Resolver Rules** (conditional forwarding) | **In AWS**, attached to the VPC |
+>
+> ➡️ **Resolver Rules are an OUTBOUND-only concept.** Inbound needs no AWS rule — the on-prem server just forwards to the endpoint IPs, and Route 53 answers from the private hosted zone.
+
 ---
 
 ## Inbound Resolver Endpoint
@@ -50,9 +60,15 @@ Allow ON-PREM systems to query AWS DNS
 
 HOW IT WORKS:
 ─────────────────────────────────────────────
-1. Create Inbound Endpoint with IPs in your VPC subnets
+1. Create Inbound Endpoint, specifying MULTIPLE SUBNETS
+   in your VPC. You get ONE IP per subnet automatically.
+   (e.g., pick 3 subnets → 3 inbound IPs, 1 per subnet)
+   → This is for redundancy across AZs.
 2. On-prem DNS server configured to forward queries
-   for AWS domains (e.g., aws.corp.com) to those IPs
+   for AWS domains (e.g., aws.corp.com) to those IPs.
+   ⚠️ Provide ALL inbound IPs to on-prem as forwarders /
+   conditional forwarders. If one IP/subnet is down,
+   on-prem fails over to the next.
 3. AWS Route 53 Resolver answers with private record values
 
 USE CASES:
@@ -136,6 +152,55 @@ EC2 queries "s3.amazonaws.com":
 
 ---
 
+## 📦 Packet Flow (Step-by-Step)
+
+> Sequence of how a single DNS query travels end-to-end. Useful for explaining the *order* of hops, not just the topology.
+
+### Inbound flow — on-prem client resolves an AWS private name
+
+```mermaid
+sequenceDiagram
+    participant C as On-Prem Client
+    participant OD as On-Prem DNS Server
+    participant IE as Inbound Endpoint<br/>(any of N IPs)
+    participant R53 as Route 53 Resolver
+    participant PHZ as Private Hosted Zone<br/>(aws.corp.com)
+
+    C->>OD: Query rds.aws.corp.com
+    Note over OD: Conditional forwarder:<br/>*.aws.corp.com → inbound IPs
+    OD->>IE: Forward query to one inbound IP<br/>(fails over if IP down)
+    IE->>R53: Hand query to resolver
+    R53->>PHZ: Look up record
+    PHZ-->>R53: Private IP (e.g., 10.0.5.20)
+    R53-->>IE: Answer
+    IE-->>OD: Answer
+    OD-->>C: rds.aws.corp.com = 10.0.5.20
+```
+
+### Outbound flow — AWS resource resolves an on-prem name
+
+```mermaid
+sequenceDiagram
+    participant E as EC2 Instance
+    participant R53 as Route 53 Resolver
+    participant RR as Resolver Rule<br/>(*.corp.com)
+    participant OE as Outbound Endpoint<br/>(ENI in subnet)
+    participant OD as On-Prem DNS Server
+
+    E->>R53: Query files.corp.com
+    R53->>RR: Match against resolver rules
+    Note over RR: Rule: *.corp.com →<br/>forward to 10.1.1.10
+    RR->>OE: Use outbound endpoint
+    OE->>OD: Forward query (over VPN / DX)
+    OD-->>OE: On-prem IP (e.g., 10.1.5.40)
+    OE-->>R53: Answer
+    R53-->>E: files.corp.com = 10.1.5.40
+```
+
+> 💡 **No rule match?** Route 53 Resolver falls back to its default behaviour: AWS service DNS for `*.amazonaws.com`, public recursive DNS for everything else.
+
+---
+
 ## Resolver Rules
 
 ```
@@ -176,8 +241,13 @@ USE:
 
 ASSOCIATE TO MULTIPLE VPCs:
 ─────────────────────────────────────────────
-Same private zone can be associated with many VPCs
-Even cross-account via API
+Must associate the zone to a VPC for that VPC to resolve it
+Same private zone → many VPCs (consistent internal DNS)
+Cross-REGION VPCs: ✅ allowed, but same account
+Cross-ACCOUNT VPCs: ✅ allowed, but only via API/CLI
+  (can't do cross-account association in the console)
+No forwarding needed between associated VPCs —
+  the zone itself is shared
 ```
 
 ---

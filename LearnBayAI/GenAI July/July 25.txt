@@ -1,0 +1,2344 @@
+Hi, everyone. Good morning. Am I audible, guys? Call my friend. Are you able to share me?
+21:14
+
+Yes. Okay. Great.
+21:26
+
+Okay. So let me... Mm. Very less participant today. What happened?
+21:44
+
+Okay, we'll wait couple of more minutes, and then we'll proceed. In the meantime, guys, anybody have any questions you wanted to ask me or anything, any generic discussion you wanted to do, please take advantage and go ahead and
+22:01
+
+ask questions. Anybody, any generic question, I'm happy to take it. Any volunteers will raise hand?
+22:15
+
+Nobody. Okay, good. Nobody wanted to talk, then fine.
+22:33
+
+Raghav is saying that he wanted one-to-one session. Not today, but maybe Monday you can ask. Yeah, Monday I'll connect with you.
+22:48
+
+Or tomorrow if you wanted, maybe post 9:00 PM we can connect. But let's see.
+23:06
+
+Yes, Himanshu. Unmuted. Sir, this is regarding the project batch. I just wanted to-- My Azure, I have actually logged and basically, I have activated
+23:19
+
+it 20 days back. So there are 200 credits I need to use. So will you be- You have not used it? No, I have to. I have not worked on AI landing zone, Azure landing zone earlier, before.
+23:34
+
+Okay. So today's session, will you be covering that so that I can- I will cover, yeah. Okay. Today and tomorrow, I'll complete that project. So I think back-end part already we did it.
+23:47
+
+Front-end code, I will write it, and then I'll show you how we can leverage and use the Azure services and- Okay ... along with this one, we say LanguageSmith for traceability.
+23:59
+
+Both I will- Yeah ... show you for traceability purpose, yeah. Great. So we'll come back. I have a few couple of interview scheduled, mainly regarding this Lead Forward deploy and other AI roles only.
+24:12
+
+Mm-hmm. It would be great if I can have some session with you also to understand what One of them is Salesforce. The other company is Thomson Reuters. So I would want to understand how to approach when they ask questions.
+24:26
+
+You can do one thing. You can just share the JD if they have shared it. Okay. And on Monday I will be available, so ask Manju or Simran to set up a call, and we can connect and we'll help you. But before that, I'll have to share the JD so that I have some launch.
+24:40
+
+Sure. I will message you on LinkedIn then, both the JDs. Done. Thank you, sir. Okay. So guys, I'm going to do it today for cloud part, right? Everybody. So who all have not yet
+24:56
+
+logged in on Azure? Because I wanted you guys to do it from end to end, and we'll teach you how you will use RAG, GraphRAG, the agentic RAG system, everything we will use in cloud.
+25:11
+
+So in cloud, what I'm going to do, in your class, we'll cover the pro code so that you can write a code in Python and leverage it, and then also I'll show you low-code, no-code platform. Yeah, so how you will without writing even a single line of code, you can
+25:24
+
+build a RAG system. Yeah, that is what you can do it. So there are so many volunteers saying, "I haven't." So I need one person. I'll make you co-host.
+25:39
+
+You can share your screen. I will guide you. And others, you can follow them, how they are registering it. You need not to worry. You will not pay even a single rupee. You will get $200 free of cost, so you can utilize it. Yeah?
+25:51
+
+So who would be the right person who is interested to share this? See, one thing I just wanted to tell you, see this is user.
+26:07
+
+Okay, the user will ask query. Now this will go to the front end, okay, which is called wave application. Wave or Teams, right, or Copilot
+26:21
+
+Studio. So these are called front end. Right? Now this front end get connected with the container app. Container app, okay, which is called application layer.
+26:34
+
+In this application layer container app or API get connected with the Azure OpenAI. Azure OpenAI. Okay? What Azure OpenAI will do, here you will get all the models, embedding
+26:47
+
+models, LLM models. So in OpenAI, there are two things you will get. One is called Azure AI Search, where you can do the embedding, and another is called Azure Storage.
+27:02
+
+Okay? Azure Storage. So what company data will do, you have organization data. That data, Azure AI Search, they can convert into indexing. Okay? They can easily convert into
+27:15
+
+indexing. And then on that basis, you have to go and build the chatbot or RAG systems, right? So Azure OpenAI is nothing. You will see all the features, everything, we will use it today. So you can see how we can leverage and use the
+27:29
+
+Azure OpenAI, right? So Azure OpenAI is nothing. That is actually called the brain of the AI. Why we are saying brain? Because we are utilizing LLM, right? All the models available there, GPT-4o model, 4o Mini model,
+27:44
+
+GPT-4.1, GPT-5, o3, o1, right? Llama model. So there are so many models you will get it. And Azure OpenAI, they can understand the questions. They can generate the answer by the help of LLM.
+27:59
+
+So you can summarize the answer, you can translate, you can do the chat system. Yeah? Azure Storage is what? Storage is nothing. It's just like a vector database. You can say this is just like you have a
+28:14
+
+storage, right? You have a PDF document, you have Excel file, you have images, you have organization policies datas, right? So that all get stored in the Azure storage account, right, called blob storage.
+28:29
+
+You will see data lakes, right? So there you have to go and store it. Right? And Azure AI Search, what it will do? It can convert, right? It can convert, let's say there are thousands of PDFs
+28:45
+
+there, right? So you can do a chunking, you can do embedding, right? And here AI Search will-- you can do a VPN or documents, password sections or relevant paragraph. All these things you can go and do it by the help of AI Search. Right?
+28:57
+
+AI Search is very significant part because here you can do embedding model. You can use text embedding 3 small or text embedding 3 large, right, or text embedding ADA 002. Yeah?
+29:12
+
+So this part you can do it. Now, there is something called Azure AI Foundry. And what Azure AI Foundry will do, right? It's just like a platform or a development platform,
+29:25
+
+right? Where you can build an agent, you can build a RAG system, you can manage model, you can evaluate the model, you can do fine-tuning. You can connect the data source, right? So instead of building just a search engine or GPT engine or
+29:37
+
+evaluation matrix, you can do everything in Azure Foundry. Okay? So please remember the names, what name I'm telling you, so that in interview when you go, they ask you, "Have you worked on cloud?"
+29:52
+
+So you can say yes. Then they ask you, "What are the services you have used it?" Can you please list out the names. So you can say these names. So you guys are pretty much confident now, right? You know how RAG works. You have seen evaluation
+30:04
+
+metrics also in last week. Yeah? Before that, you have seen something, different agentic AI systems and all. Now the time has come, you can go on the cloud, do some hands-on, right? You can see how Azure AI Foundry works,
+30:19
+
+how Azure AI Search works, how Azure Storage works, how we can leverage and utilize Azure OpenAI model. Yeah, Azure Container Apps. There is something called Cosmos DB. Yeah, Cosmos DB is nothing. It is storing the memory.
+30:34
+
+The bot user is asking query. User will ask the query, and LLM will give the response. That response you can store into a Cosmos DB. You can go and use it.
+30:49
+
+So they can, whatever the chat history there, that you can store it. Any password there, API key there. Anything. Private key points there, that you have to go and store it. There is something called Azure Key
+31:03
+
+Vault. It means password, API key, secret key, certifications. That all you can go and store it. One more functionality you will get in Azure AI, which is called Azure
+31:19
+
+API Management. API Management is little costly actually, because every request comes with some cost, actually. So it will allow all the features. They have block features, they have some limitations, they have a
+31:32
+
+log, trace abilities, everything for security purpose, for governance purpose, for cost control purpose. Industry organizations, they use API management tool. It's a little costly, but you need not to worry.
+31:47
+
+Nothing will come in your pocket. You will get $200 free of cost. You can explore as much as possible. Mention in your CV as well. Similarly, you will get something called Application Insight.
+32:01
+
+So you will get a complete user count, how many user they are using it, how many times the failure happen, how many times response we are getting the similar, what is the error part there. So normally if you wanted to know anything, you will get to know
+32:15
+
+all this part. There is something called Log Analytics. So you can go and use it. Guys, don't talk about AWS and GCP right now. Please focus on Azure. I'm talking about Azure, give a focus.
+32:30
+
+Otherwise, what happen? You yourself putting in drag and you get deviated. That day I will teach you AWS and GCP. Normally, I'm not teaching in class, but project batch, I'll cover that,
+32:42
+
+AWS and GCP. There, I will teach you each and everything. Don't worry. Please focus on one cloud right now. Anywhere you can go. Just give me a second now. Please give me a second.
+32:54
+
+Okay,
+33:09
+
+sorry. So guys, I'm saying, don't worry about the AWS and GCP. We'll cover that part. Please focus on Azure. Anywhere you can go for job interview and all, any
+33:34
+
+one cloud, if you know very well, that is enough. Their expectation is not that you are expert in all three. But if you know one cloud very well, and you can say that, "I have worked on Azure thoroughly, but I have a knowledge for AWS and GCP
+33:47
+
+also," very much or happily they can consider you. So are you guys with me? The services, the names I told you?
+34:01
+
+Shall I go ahead? Can we first register? Can we log in there? Can I get $200 and then we have to do it? So who will take a lead? Just raise hand, I will make you host.
+34:14
+
+Sahana wanted. Okay, let me go here. Yes, Sahana. Unmuted. And let me make you promote as a panelist. Okay. So I'm stopping it.
+34:29
+
+Please share your screen, unmute yourself, speak, and just share your screen. And what guidance I'm telling you, others, please follow the same thing how she is doing it. Fine?
+34:43
+
+Anywhere anybody have doubt, please feel free to ask. Go ahead, Sahana. Can you share your screen? Yeah, I'm sharing my screen, sir.
+34:56
+
+Is it visible? Yes. Okay. Just a- Pin new window. Yeah. Okay. Type here google.com. So Google only type Azure.
+35:12
+
+Yeah. Azure login. Others, please follow. Anywhere if you feel that we are going very fast, let me know. And you chat
+35:26
+
+window very effectively. Yes, click this Microsoft Azure portal. Okay. So you can see, guys, this is the official portal there, Microsoft Azure portal. There are two things there.
+35:40
+
+One is called, you can see Sign in now, and second is Get started with Azure. Get started with Azure or Sign in now. Either you can click on sign in or get started.
+35:55
+
+Once you click it, you will reach here. Sahana, when I tell you, then only you can click it. Okay. Yeah. So that others will also follow. Sure, sir. Can you please copy this link and paste in chat window
+36:08
+
+so that everybody click the same portal? Super. All my friend, can you please click here? Please tell me, did you get the same thing, Build the cloud with an
+36:23
+
+Azure account? Especially who has already account, very good. Who is new, first time they are using it, I wanted you guys please follow the same approach. Don't click
+36:37
+
+Pay as you go. You can say Try Azure for free there. You can see "Try Azure for free" there. You have to click Try Azure for free. Don't go for Pay As You Go. Then you have to give the subscription ID. Okay?
+36:51
+
+So you have to click that Try Azure free. Now put your email ID. Is this Microsoft or Google account? No. Your Gmail account, simple account.
+37:04
+
+Oh. Generic account.
+37:17
+
+Okay. Send code. You can check in your mobile phone. You get some code, you can put it here. Or if you have opened Gmail account, you can check there.
+37:31
+
+Okay. So my friend, everybody, once you give your credential, there are certain things they wanted that you have to fill it. Okay? So Sahana, before you clicking, you can see first is coming
+38:09
+
+profile information. So you can say for personal use. Okay? Okay. Reason, you can change it. You can put India. Actually, I'm in US.
+38:24
+
+You are in US, very good. You can put in US only then. Phone number, you can put your phone number.
+38:38
+
+Great. Verification complete. Next. Address, put anything, ABCD, whatever address you wanted.
+38:51
+
+I'm getting one call. You can just fill it and just hold on it. And don't press enter. You just fill the details and hold it.
+39:17
+
+Okay. Sorry, guys. So my friend, everybody, are you reached here? All my friend, can you please say yes, no? Did you reach here? Yeah.
+46:44
+
+Now here you can see it's asking the credit card details. Okay, so they will deduct Rs. 2 from your account, just wanted for authentication, whether you are a valid customer or not. You have a
+46:57
+
+valid credit card or not. Because one month later, if you continue, right? Then it will go for pay ad services. So the more you will use it, right, the subscription and all, the charges will come.
+47:09
+
+So that's why they will charge you Rs. 2 right now. Okay? But Rs. 2 get credited back in your account within 24 hours. So you need not to worry, right? But for authentication purpose, you
+47:22
+
+have to give your details. So Sahana, what you do now, you can just stop screen. Yeah. Put your credit card detail, expiry month, years, CVV number. Okay?
+47:34
+
+Yeah. And then register it. It will charge Rs. 2. You have to. Once your confidential data get completed, you have to re-share your screen. Sure. Others, you can also follow the same thing.
+47:49
+
+You should have valid credit card. Even debit card also they are taking it, but you can try first credit card if you have. All right?
+48:01
+
+Any others facing any issue, please let me know. You can share your screen. Make sure you should have account, right? Utilize these $200 for learning purpose.
+48:26
+
+And believe me, anywhere you can go in any organization for GenAI role, they definitely ask you or their expectation is you should know cloud, at least one cloud. Okay?
+48:43
+
+Yes, $200, Arvind. You will get $200 free of cost. You can utilize within 30 days. And 30 days is enough to explore the Azure services and all.
+48:55
+
+I am taken to create pass key. What to do? Just wait. Okay? Just wait. Let Sahana share her screen, and then you will see it.
+49:31
+
+Okay. She has shared back. Okay. So ₹2 is debited from your account, Sahana? I'm checking my message. Okay.
+49:43
+
+Just click on continue. Okay. Yeah, perfect. So everybody, all my friend, you can see you will also get the similar screen.
+49:56
+
+Okay? Once you log in, you will get the similar screen.
+50:09
+
+Left side, you can see there are so many services listed there. You can see dashboard, application template, all resources, resource group, app services, function app, SQL database,
+50:31
+
+Cosmos database, virtual machine, load balancer, storage account. Microsoft Entra ID, monitor, advisor. So these are the services there. We will use as and when there is a requirement.
+50:45
+
+First, I'm using one RAG system, then Agentic RAG, and you can see how you can leverage these things. All part you will get to know. Can everybody confirm? Did you reach here?
+50:58
+
+Did you reach here in this screen? Yes. Super. Anybody who is still facing challenging? Still facing challenges, guys? Anyone wanted to raise hand?
+51:16
+
+Okay, payment processing is going on. Okay. So Jibesh Mesra and one more friend, they are facing issues. Let me unmute what challenges you are facing. Jibesh,
+51:30
+
+unmuted. Sir, it's showing me $2,000 in credits remaining. $2,000 or $200? Sorry, 200. 200.
+51:43
+
+Oh, that's okay. No, that means you are able to do it. Have you given credit card details and all? Yes, I have given, but it's not showing credits, it's showing remaining. Same thing. No, remaining means what? That means already you have not used it.
+51:56
+
+Okay, so it's- No, like in this screen, in shared screen, it's showing 200 USD in credits expire in 30 days, right? Correct. For me, it's showing $200 in credits remaining.
+52:12
+
+Upgrade to pay as you go. This screen, it's coming. Are you able to see this screen? Yes, this screen is coming, but message is different.
+52:26
+
+That is okay, but 200 it's saying. No, 200 USD is credit is remaining. Yes, it's saying. Oh, then it's fine. No. Okay, sir. Then you need not to worry. Okay. Thank you, sir.
+52:39
+
+Who else there? Will it do auto payment? No, you can disable it. Don't enable the auto payment. So without your concurrence, they will not charge.
+52:51
+
+Okay? Anybody else? Sichit there. Yes, buddy. Unmuted. One thing that I
+53:05
+
+created this account two, three weeks back, so it will be expired till 4th August. So- Till 4th August. No, so you have a time. So you can just log in, you can loan it.
+53:20
+
+That after 4th August will auto-deduct the money or...? It will not. You can disable that one. Auto credit one, you can disable it. Okay. And- So when you go pay add services-
+53:33
+
+Mm-hmm ... that part also I'll teach you. So once after 4th August what you do, whenever you create anything, including subscription and all, please delete it so that no charges comes. Otherwise, you will surprise.
+53:47
+
+It's a cloud. If you unnecessary you will explore and open like in left side you can see there are lots of services there like Microsoft Entra ID, Virtual Network. You can see Defender Cloud. So if you enable these things, automatically charges will come.
+54:00
+
+So if you get surprised, better whenever you do something, at the time you log out, you have to delete all these things. I'll show you delete part also today. Okay. Yeah. Got it. Yeah, so that no charges will come.
+54:16
+
+And if I wanted to create another account from another email ID, I can create it, right? I think two account you can do it here
+54:28
+
+in your personal laptop. Okay. But after that, they will catch you. So- If we have two laptops, then? Then you can do four account- Okay ... you can do it. Okay. But you have a different credit card also. Don't give the same credit card.
+54:40
+
+Yeah. I have a- Okay. Got it. Email you have to create a separate one, and credit card also you can give different one. Okay. Fine? Perfect. Thank you. Good. Everybody, all my friend, are you with me? Anybody?
+54:54
+
+Anyone else facing issue? Can I consider no? All happy?
+55:09
+
+Second account won't work. Second account only works when you have a different credit card, different Gmail account. Okay? Or if you give the same Outlook ID and all, then there is a problem.
+55:21
+
+Done, but paid ₹2 twice. So no problem. That will come back, Arvind. Yeah? They're just testing, so whether your credit card is fine or
+55:36
+
+not. So maybe max. Ideally, it will be debited one time only, but if two twice, no worry. You will get ₹4 back in your account.
+55:49
+
+All my friend, happy? Great. Now, Sahana. Sahana, right? Yeah. How you have done. You can see on top, magnifying
+56:01
+
+glass there. Search resources. Are you able to see that? Yes. Yeah. Just type here, Azure AI Search. Azure AI Search.
+56:15
+
+AI Search. Okay. Don't click it, hold it. Now- Hmm ... are you able to see AI Search Foundry IQ? Yes. There is a magnifying glass, first option. Yeah?
+56:28
+
+Yeah. Others, are you able to see this? How can we cancel auto-debit payment? Priyanka, once you log in, maybe I'll show you. Just focus right now, and at the time of this auto-pay, I'll show you how
+56:40
+
+you will disable them. Okay? Right now you can try, explore the services. Because you need not to worry for 30 days, right? Anything will happen, no charges will come from your account, so just learn it. But that part also, I'll show you how you can disable them.
+56:55
+
+Everyone, are you able to see Azure AI Search, Foundry IQ, magnifying glass? Yes, no? Yes. Click this.
+57:11
+
+Sahana, please click the- Foundry IQ? ... first one. Yes, yes. Great. Now you can see, go a little slow, so that others-
+57:25
+
+Yeah ... so get the advantage. Now here, Azure AI Search, you can see there is a Create button there. Plus sign Create there on top. On top. Hmm. And that is also okay, but on top you can see. Ignore the bottom one. Top half.
+57:37
+
+Now click Create new search services. Click this. Yeah. Here, what you do, you have to first create a resource group name. Okay? So you can say please choose the resource group.
+57:51
+
+Please remember, don't write underscore. Okay? Please remember this. So can you- Hmm ... please, please click on Create new first. Create new. Yes.
+58:04
+
+Here you can give a name. Just say Sahana. A small letter. Everything put in a small. Don't write caps letter. Sahana. Hmm.
+58:17
+
+Okay. Fine. So that is your resource name. Go a little slow. Please don't click unnecessarily. Guys, this is the resource name there. Free resource name.
+58:32
+
+In above you can see the top subscription there. Subscription, Azure Subscription 1. Okay, this is your $200. Here only charges comes. So right now, the subscription, whatever you will use it, the charges
+58:46
+
+will come from Azure Subscription 1, means $200 already there. Okay? The name I have given for resource name is Sahana. Okay, anything you will do, that will come.
+58:58
+
+Hmm? Sir, I also- Hmm ... by mistake type Sahana. It's okay. No. If you also created, Arvind, that's fine. Now, service name in bottom is there. Right? You can see the service name. So what service we are using?
+59:11
+
+Yeah, let's say, you can just mention AI Search, right? So just say Sahana AI. Type Sahana AI. Don't give a space. New space? Okay. No space out. Don't give a space, don't give underscore and all.
+59:25
+
+Don't write caps letter. Write a small letter. AI. Okay? Just wait. Perfect. So this is your service name, SahanaAI. All right? Location you can see. Location is nothing.
+59:40
+
+It's called region. Okay, click that. Hmm. So there are certain regions there where you will not get all the services. My suggestion is you can go in the safer side, which is called Central Sweden. Can you please type Central Sweden?
+59:54
+
+Okay. C, Central Sweden. Oh, I think it was- Central Sweden is not coming?
+60:11
+
+Hmm. It is, it is. Sweden Central. Sweden Central will come. Just put Sweden first. Automatically it will come. Yeah, Sweden Central. This one? Okay. All my friend, please remember, anything
+60:23
+
+AI search, service resources, storage, right? The AI foundry, the open AI, the website, everything you will take, your location will be Sweden Central only. Yeah, most of the services you will get it here.
+60:38
+
+Sometime when you work in organization, they will say, "I don't want Sweden Central. I wanted U.S., I wanted Asia. I wanted North US." Right? Like that they will give.
+60:52
+
+So there you can see whether all feature available or not. Yeah? Now this is very, very- Is it like hub? Is it just like a hub? It's a location only. Okay? Okay. It's where which locations you wanted to use it. Yeah?
+61:05
+
+Okay. Location means I'm present in the India or you are present in US means I have to choose that one. Any location where all the services you will get it. Yeah? Yeah. Important part, guys. You can see the pricing tier is there.
+61:18
+
+Okay, pricing tier, you have to click Change pricing tier. Why? Because by default it is coming 160GB. It's coming as standard. You can see 160GB means, what is the monthly charges there? $249.
+61:33
+
+How much you have a free version? $200. 200. Unnecessary $49 they will charge. Yeah, it's almost $50. Multiply with Indian rupees, then you will catch- Five thousand.
+61:48
+
+So please don't do it. Select the basic one, where we have, they are charging $75 only. So select the basic one. 5GB partition? Yes, 5GB you will get. That is clear enough for
+62:00
+
+a POC purpose, for learning purpose. All my friend, are you with me? This is very important. You have to select the basic one. Yeah, then you can say Select. In bottom, you have a Select option.
+62:13
+
+Go bottom, select. Little down, left side. Select option. Little down. Basic. Go down, down, down.
+62:28
+
+That's it. Select option. Oh, here. Like this. Okay. So now you can see, guys, pricing tier is coming basic 15GB, partition maximum three,
+62:41
+
+replicas maximum three partition, maximum nine search unit is there. Okay, that is enough. Next part, click on Next scale. Yeah? Here, what it's saying, replicate 99%
+62:54
+
+availability, all these things, estimated cost, all this part you can put as it is. Go next networking. See the networking part. Okay, so I am saying public. Okay, no private.
+63:08
+
+In organization when you work, Himanshu, this is for you. When you work AI Landing Zone, here you have to select private. Okay? Okay. So if you are building, let's say you are working in organizations, then you have
+63:21
+
+to select the private. Okay. Okay. Private means you cannot go outside. You can go in the-- But here right now I'm using for this so that everybody have a
+63:35
+
+visibility, and I'm using free version. So go for public. When you do the organization data, always select the private. Click Next.
+63:49
+
+Saumya Gupta, replicate and partition, you can go as it is 15GB, and whatever the features they have given, I'm going as it is by default one. Okay, here it's saying Microsoft managed keys, custom managed
+64:02
+
+key. I'm saying Microsoft managed key by default one. Private when you go, then you can say customer managed key. How many customer has access? So for that time, you have to select the customer managed key. Go next tags.
+64:14
+
+Don't give any name any value. By default, you have to go ahead. Go next. Review and create? Yes, review and create. Click this. Okay, now just give a glance here what I have done.
+64:32
+
+I am using the Azure subscription one. That is my subscription ID, means the price get debited from here. Resource group name I have given Sahana. The locations we have taken Sweden Central.
+64:46
+
+The service name we have given Sahana AI. The pricing tier we have taken 15GB, which is called $75 approximate. Compute type, everything is default. Endpoint connection I have given public, so anybody can use
+64:59
+
+it, no problem at all. Encryption type is Microsoft only. A name and value I have not given, so by default, it's saying blank. Now click on the Create button.
+65:13
+
+Okay, you have to wait. It's saying validation in progress.
+65:27
+
+Validation in progress. Initializing deployment.
+65:48
+
+Creating deployment. Deployment in progress. Deployment in progress. Deployment in progress. Just wait.
+66:00
+
+Hmm.
+66:17
+
+Yes, Dheeraj, $75 will charge only when your services are up and running, then only. Otherwise, it will lesser.
+67:07
+
+So it is taking time. Can you refresh Sahana? Can you click- Yeah ... on the Refresh button at the top? Deployment is in progress, taking time. Just wait.
+67:20
+
+Resource got created. Mandatory Azure MFA phase two. Should I just close this? This is multi-factor authentication.
+67:34
+
+Yes.
+67:49
+
+Is it completed for anybody? Any luck, guys? Anybody? No, still going on.
+68:03
+
+Okay, maybe first time there, so will take some time. Mine is done.
+68:15
+
+First time is there, that's why taking time. No worry, just wait.
+68:34
+
+So meanwhile it's going on, you can do one thing. We can use the another services. It will get automatically, it will open. Okay. Now again, you can see in the search results on the top
+68:48
+
+center, you can write storage. Storage. Don't click, wait. A storage account. Guys, everybody, you can see the storage account?
+69:00
+
+All my friend, say yes, no. Yeah? Now here what you do, Sahana, right-click and open the new window. Right-click, open the new window.
+69:13
+
+The storage account, first one. No, actually, it's not giving me any options. I can duplicate the screen and- No, no problem. You can just click there only. It's also fine.
+69:29
+
+Just type now. Storage. Storage account. Click this.
+69:46
+
+Guys, this is the storage account there. Storage account means your raw data. So whatever raw data you have, you have to check it from here. Now again, same thing. You can click on the create on the top.
+70:02
+
+You can see resource group, Sahana, you have created already there, right? Yeah. The storage name, check this. Storage account name. So what you do, you can put a dummy.
+70:18
+
+Put a dummy. Dummy account. Okay? Change the region. Region, what you have selected there? Sweden.
+70:31
+
+Sweden central. So type Sweden central. Yes.
+70:43
+
+Okay. Primary service, check this, what is coming. Yeah, so you have to select here Azure Blob Storage or Azure Data Lake Storage. Yeah, first one.
+70:56
+
+Means all the raw data will store here in Azure Blob Storage or Azure Data Lake Storage. Premium performance, you can see a standard and premium there. You can go standard only. Premium would be little higher
+71:09
+
+charges. Redundancy, you can say make read access to data available in the event or regional unavailability. You can go by default only. Just wait, everybody. Can you please see this?
+71:24
+
+Did you get the same thing? Have you filled it? Region is a mandatory, you have to put your current region, which you have given in Azure AI Search. Hello. Sir, sorry, my network is not
+71:39
+
+there. So I was still in the deployment in progress phase. So what to do? I said you can leave as it is. Okay. That is going on side by side, you can create a storage. Okay.
+71:53
+
+So can you- Okay, so create another window ... one more time describe how to do that? Create a new window. So- There you have to, right here, you can see it, a storage account Just
+72:06
+
+search with storage and click on storage accounts. You will get this option in the first. Click on this. You will come to this page and enter these details. Okay, got it.
+72:18
+
+Arvind, after storage, you have to click it. You will get this screen, click on the create, and then in create, you have to fill all the details.
+72:35
+
+Okay, now what you do, Sahana, click on next. Next, again you can see enable hierarchical namespace. No. Enable STP, you can access tier, you can see hot.
+72:49
+
+All these things you can take up by default only. Because I'm not doing- Mm-hmm ... anything in the private landing zone. I'm using the public one. So you can see- Mm-hmm ... leave as it is.
+73:05
+
+Now go in next. It's a description is given, Somya. You can see hot means optimize for frequently accessed data and everybody usage scenarios. Cool means optimize
+73:18
+
+the infrequent access data and backup scenarios. I'm not creating any backup and all. Yeah? So all details, all description also mentioned there. So I'm just saying go for by default. Whatever the by default is there, options you can go by default only.
+73:33
+
+Go in the next. Public network access enabled there, right? So if you disable it, so in organization when you work, you
+73:48
+
+definitely go and disable it, right? But here I'm enabling it. Yeah. Public network access enabled for all networks. Very good. Click on next. Data protection, right? So it's saying enable soft
+74:00
+
+delete per blob. Days retained deleted blob, seven days is given. Again, go for by default option. Don't change anything. Yeah? But if you are interested, you can just read it.
+74:16
+
+When you work in zero tolerance applications, then you have to do that part. Okay? So go next security part.
+74:29
+
+Here, security. Again, you can go by default. Yes, yes. REST API and the enable storage account key access. Remaining you can go by default. Next, encryption, tag, review everything, you can go by default.
+74:44
+
+Next. Okay, and then next. So this is the Azure storage account.
+75:01
+
+I am creating a storage. Now can you check it is going validation in progress. Can you check the first one, Azure AI searches?
+75:13
+
+Deployment is still there. Can you refresh? Yeah, this is still in progress. Not here on top. Refresh. You can go on the top.
+75:28
+
+Hmm. Taking time. No problem. Create a storage. Ideally, it should not take that much time. Why it's taking too much time?
+75:59
+
+I don't know. See the storage account?
+76:11
+
+This is also going on. Validation failed. What is the fail message there? Can you click this?
+76:26
+
+Please- Please click on ... provide a description. Enter the detail to the specific error. The storage account name- What is the problem? ... dummy is already taken.
+76:39
+
+So someone has taken. No problem. Click on the Previous. Close this. In bottom, Previous option is there. Yeah, go the Previous.
+76:51
+
+Previous. Here, dummy one. Sahana Storage. Sahana storage, yeah.
+77:06
+
+Just wait with tick marks. You can just see the tick marks first. Outside box, you can click somewhere.
+77:22
+
+Okay, no problem. Directly you can click Review and Create. Review and Create. Just wait.
+77:48
+
+So these are the basic setup, guys. By this way you can write a pro code as well as no code. Right? Mm-hmm. So I'll teach you both part how you can write a pro code.
+78:03
+
+You can use Python and then you have to write a code and all as a developer. Or you can also use a no-code platform, and directly you can build a RAG or ChatGPT or RAG applications kind of things.
+78:16
+
+Okay, now it's done. Click on Create button in bottom. Yeah. Initializing deployment.
+78:30
+
+Should I check this? Should I refresh this again? Yes.
+78:58
+
+Why it is taking too much time, others? Umesh is saying mine worked.
+79:10
+
+Same deployment is progress. Same for me.
+79:23
+
+Is there any problem in Azure? Why it's taking time? Ideally, it should not take, no? I just create a reference ID. Maybe I can understand the first time. The new tab, if we can search again Microsoft
+79:39
+
+Foundry, we can get- I think yeah, it's done now. Super. Very good. So deployment is complete. Click on the Go to resource. Yeah, just wait. Don't do it.
+79:53
+
+You clicked it? Okay. So guys, once deployment completed, you will reach here in this screen. Okay, you can see resource group name is there, location is there, subscription ID there. Subscription ID status,
+80:05
+
+it's saying Running. Everybody, you can see this? Okay. So that means this AI search part done.
+80:20
+
+Okay, this is mandatory. If you don't do it this part, others will not work. Now, Sahana, can you go in the storage account?
+80:36
+
+Let me see the storage. This is also done. Click on the Go to resource. Okay. Now guys,
+80:50
+
+please confirm your storage account get created. Did you get the same resource location, primary, secondary access?
+81:03
+
+Yes. Super. Now, this part is very significant. Now, please, if you miss this part, you will miss lots of things. Okay, so please remember this part, then only I'll go and upload the data.
+81:15
+
+Sahana, can you please click on the Data Storage? Data Storage. You can see Resource Visualizer, Data storage, Security, Network. No. Next column.
+81:29
+
+Okay. Data- Go down. Data storage. Yes. Yeah, guys, you can see here there is something called Container. Are you able to see that? Container, Click file shares,
+81:43
+
+Queues, Tables. So here, all the data get stored in your container. Yeah, this is the data storage. Now, to enable data storage, what you do, you can click on the Data management.
+81:57
+
+Go down, Data management. Yes. Go down. Storage action. Can you click on the Setting? Setting.
+82:11
+
+Go down. Configure data lake to upgrade resource advisor endpoint. No error or feedback. Still it is too fast. We couldn't follow. It's very fast.
+82:24
+
+I'm going very slow line by line. If you guys are feeling very fast, take a screenshot. Yeah, just hold on a second, Sahana. Yeah. Yogesh has raised hand. Yogesh, where is Yogesh?
+82:37
+
+Yes, Yogesh? Yeah. Hi, Yogesh here, sir. Actually, storage service is not created for me actually yet. You have to create. No, click on the same search window, type Storage
+82:55
+
+and create this. Yeah, I did twice, but it's still not showing me on the services side. Not showing, then what? Can you,
+83:08
+
+Sahana, stop your screen? Let me see what is- Yeah, sure ... problem with him. I made you panelist. Can you please share your screen, Yogesh? Yeah.
+83:21
+
+Sahana, you don't click anywhere, okay? You hold on the same screen. Yeah, sure. Sorry, I didn't get an option to share the screen where actually.
+83:48
+
+Oh, sorry. Yes. Share button there. Yeah. So can you able to see my screen? Yes. So on top you can see, this
+84:01
+
+is now blob storage, correct? Now click on Create button. Create button. I did this twice, but it's not showing there. Yogesh, is there account name? Just type here Yogesh Storage.
+84:17
+
+Sweden center is perfect. Go down. Everything is okay. Just click on Review and create. No, don't click Next. Directly Review and create.
+84:36
+
+Saying validation failed, required information missing or not valid. Can you click that error message? Click the error message.
+85:04
+
+The problem is in basics. Click on the Basics tab below. Yeah. I think you have the same problem. Your resource, yeah. Resource name is wrong. So just say Yogesh Dummy.
+85:18
+
+Guys, don't worry. First time you are doing it right, so that's why taking time. But once it-- Again, basic. What is the problem? Again, it's failing. What, sir? You have tried everything? Preferred
+86:07
+
+service to- Primary- Okay ... click on this one. I think you missed that one. Blob storage. Yeah. Yeah. This one. That we have not selected, I think. Now I can create, review and create now?
+86:20
+
+Create. Parag, if you have not selected a storage Sweden central, please do it, otherwise
+86:33
+
+it will not work. So do it again. Delete the first one and do it. Deletion part you can do later, but right now you can just go and create a new storage. Yeah. Click on Create.
+86:46
+
+It will work, okay? Yeah. Sure. Just wait for a while. It get deployed quickly. It will not take much time like AI search.
+87:08
+
+That
+87:32
+
+part, the Azure AI search completed? Yes. Okay.
+87:54
+
+Super. Click on go to resource, and that is your resource. Okay? Yeah. Perfect. You just follow how Sahana is doing now. Yeah. Okay. Please just stop your screen.
+88:15
+
+Yeah. Thank you. Sahana, please come back. Yeah. Dheeraj, meanwhile, you can ask questions.
+88:28
+
+Yeah. I'm getting a verification failed. Might be the name issue. I'm trying to change the name. Yeah, please. Okay. Guys, you can see everybody, once you reached here in the storage.
+88:44
+
+Here you can see in the bottom, there is a setting option there. Click on the setting, see Configuration, Data lake, Resource disk, all this thing is there. Click on the Configuration.
+88:57
+
+Okay. This is the configuration, guys. You can see here. Please listen very carefully. It's saying, "Allow blob anonymous access" is disabled there.
+89:14
+
+Sahana, just share your... Don't click, just hover it. Hover that- Mm-hmm ..."Allow blob anonymous." Are you guys, everybody, you are able to see Disabled there? That means if you upload the data,
+89:28
+
+the system will disable them. Means no visibility. RAG system will not read the content and all. So what you do, you have to click on the Enable. Please click on Enable.
+89:41
+
+And on top it's coming Save. Please click on Save button. Listen very carefully, if you don't do it, it will make a mistake. So you have to go in the Setting, Configuration,
+89:55
+
+and Allow blob anonymous access, you have to enable them. You can click on Enable, click on Save button. Now, first time when you do it, it is actually some discrepancy there. It is again showing Disabled.
+90:08
+
+How you will check? Just, Sahana, click anywhere, Blob inventory, Azure AI Search, anywhere you can click. Not there. In the left side. Any other features. Click this Resource settings. Anywhere click.
+90:23
+
+Okay. Now come back to the Configuration again. So here there are Settings. Settings. Under Settings- Configuration ... Configuration. Yeah. And are you able to see? Again, it is disabled.
+90:38
+
+Yeah. Everybody? Yeah, please click on Enable. Please click on Enable button.
+90:51
+
+Now you have to click on Save button. Okay, so this is two time activities. Please listen carefully, guys. Whenever you create a storage account, you have to go to the Setting, click on
+91:12
+
+Configuration, and in Configuration, the storage you wanted to store where? In the Blob storage. So in Blob storage, it is showing Disabled, you have to enable them.
+91:27
+
+And then you have to go and click any other services, Azure AI Search, and recheck it is enabled. Yeah? If you don't recheck and you assume that, "Okay, I have enabled them"
+91:39
+
+Actually, it is not happening. Two times you have to do it. Now you can see allow blob storage account. Yeah? Yeah. Blob anonymous access, it is saying enabled. Are you guys with me? Can everybody say yes, my blob
+91:51
+
+storage is enabled now? Bolye, yes, no? Great.
+92:04
+
+Now there are so many things there, so if you don't follow, you may feel that you missed something. Yeah? Even though I'm going very slow, but still you feel that is fast. Yeah, but believe me, it's very slow. So please follow the same thing.
+92:16
+
+Otherwise, you need not to worry, you have a recording. Once class get over, you have to run the video, and please watch carefully and do it in the similar way. You can just stop, do it in your system, again come
+92:30
+
+back. Like that you have to do it. If you are not following right now, then you have to concentrate how I am doing it. So that is the part number one. Part number two is you can see here data management storage
+92:44
+
+action. Or go a little up. Container, are you able to see data storage containers? Yeah. Everybody, are you able to see data storage containers?
+92:57
+
+Yeah? Click on the containers. Okay. Now here, you have to add a container name. Can you please click on add container?
+93:10
+
+Write a container name. Say dummy data. Sahana dummy. No need to write too big name, just say dummy data.
+93:25
+
+Okay, click on advance. Just wait. On acronyms access label, private is coming, right? Can you click this?
+93:42
+
+Here you have to select the blob anonymous read access for blob-only, container anonymous read access container and blobs. So you have to click the second one, blob.
+93:58
+
+Blob, what is saying within the container can be read- Okay ... by anonymous request, but container data is not available. Anonymous client cannot enumerate the blob. Select the third one.
+94:11
+
+What it's saying? Container. All container and blob data can be read by anonymous request. Client can enumerate. This is fine. Okay, so guys, what you do, you have to go in the name, whatever name you
+94:24
+
+wanted to give, then you have to go anonymous access label, and there you have to select container. Right? And advance, you have to leave as it is. Or you can see encryption scope, what is saying?
+94:39
+
+In bottom, encryption scope. No available at this. Just click on the create button. Leave as it is. Don't click anywhere, leave as. Just say create.
+94:54
+
+Okay, so now this container is available now. Hmm? If you are not getting that option, that means your blob storage is actually disabled. Yeah? Please remember this.
+95:17
+
+That's why I said first go into setting, click on the configuration, enable the blob storage, and then you have to go in the container and create a container name. Are you guys with me?
+95:30
+
+In advance, you can leave as it is, Priyanka. Okay, great. Now click on the Sahana dummy. Yes.
+95:44
+
+Okay. Now what you do, go to a new window. Please go to new window. Or did you remember, I have given some dataset for RAG system for one project I have given where I have given some dataset?
+95:57
+
+Yes. Can you open that one? Have you saved somewhere in desktop? No, but I can access in LMS drive if you have uploaded that.
+96:12
+
+Just go in drive. I don't know. I think some project classes I have created some folder called project. Can you see that? Or assignment, something I have written.
+96:26
+
+Some assignment is there. Project assignment, something like that. Assignment for learning. Go for assignment two.
+96:40
+
+These PDF. So one, two, three PDF there. Can you download all three PDF? Yeah.
+96:55
+
+Okay. Downloaded. Super. All my friend, whatever PDF you have, please download it. Three PDF right now I'm giving it. Similar way, in organization, you will get some personal confidential data you have to upload in the blob storage.
+97:18
+
+Yeah? So go to the storage, Azure storage. Click on upload button on the top upload there.
+97:33
+
+Select one by one. Browse. All three documents you can download it. One by one or I can select all together? All three you can select at once. No problem.
+97:47
+
+Okay, and open this. Click on upload button. Okay, just wait.
+98:01
+
+Just wait. Okay. So all three documents got uploaded in your blob storage, guys. Yeah, it's saying it's
+98:24
+
+uploaded. You can see available is there. Can everybody give me yes? Are you able to see in the blob storage all three PDF? Okay, Gautam has raised hand. Yes, Gautam, what is your query?
+98:36
+
+Gautam? You muted. Good. Sir. Okay. So all these three PDFs has to be mandatorily uploaded by everyone. This is not only for Sahana, right?
+98:56
+
+No, so that everybody doing same thing. But if you have- Okay ... minimum five documents, 10 documents, you can try that also. No problem. Okay, sir. Thank you, sir. For simplicity purpose, everybody follow the same thing so that you can see how
+99:08
+
+things works. Okay? Now how you will understand whether that data uploaded correctly or not? Rohan, can you show me from where this PDF we have downloaded in the LMS portal?
+99:21
+
+I have shared that drive link also. So here in the LMS portal. Let me go again. There's a folder I have created, right?
+99:34
+
+So there is a folder called Assignment for Learning. Go inside that and go inside Assignment 2. Here, these three numbered PDF you can download and upload them.
+99:48
+
+Okay, got it. Okay. Himanshu had shared. Prashant, you can just click on that link again.
+100:02
+
+Now how you will know whether that data is correctly available or not? For that, what you do, you can click any one PDF. Can you go and click any one PDF, Sahana?
+100:17
+
+Yes. When you click it, you can see there is a HTTP URL get created. Everybody, are you able to see properties URL? Yeah. Can you please copy that URL? Click that copy button. Yes.
+100:29
+
+Open the new window and paste there. If you are able to open this PDF, that means your raw data get loaded correctly in your storage.
+100:41
+
+Are you guys with me? Yeah. Everybody, can you try this? It's working fine? Super, great. Now come back here. Okay, close this.
+100:55
+
+Just do testing for one more. Third PDF. Try the third one. Or second one. Fine. Copy this. Check here.
+101:09
+
+And this is also working fine. Okay, retrieval augmentation generation. Yeah, so this is the things you have to check prior doing the AI search. Okay, this is the part number two.
+101:21
+
+Everybody, all my friend, are you with me? AI search completed. Resource you have created. A storage account you have created. You have uploaded the documents also. I have just uploaded PDF.
+101:34
+
+You can upload Excel sheet also, you can upload Word file also, you can upload TXT file also. Any data you have, you can easily go and upload here. This blob storage can handle structured and unstructured both data. Yeah?
+101:46
+
+Now you can see again on the top, search resource service magnifying glass there. Everybody, you can just type here, open AI. Type here, open AI. This is my third service, guys.
+102:01
+
+Please remember, first is AI search, second is storage, third is Azure Open AI. Yeah, you can see Azure Open AI is coming. Everybody, the first one.
+102:18
+
+Yeah, please click this Azure Open AI. Can all my friend say that you reached on the Microsoft Foundry Azure
+102:31
+
+Open AI? This is my third service. Great. Now please click on create button again.
+102:43
+
+Here, there are two options there. One is called Foundry, another is called Azure Open AI. Foundry, they are saying recommended. Click on the Foundry then. Click on Foundry.
+102:55
+
+Yeah, resource group name already you have created, Sahana. Can you please select this? Sahana. Yeah, same resource group you have to take it. Just Open AI name you have to give here, Sahana Open AI.
+103:09
+
+Open AI. Now reason you have to change it, mandatory steps. Which one you will select? Sweden Central.
+103:26
+
+Sweden. All my friend, are you with me? Now project name is coming. By default, it is saying project default name. You can say RAG project. Remove that project default. Say RAG project. See, they have written dash.
+103:39
+
+They have not mentioned Underscore. Please don't give underscore. Please remember that part. RAG project. If you guys wanted to write RAG project, it's okay. Otherwise, by default it will consider default project.
+103:53
+
+Are you with me till now? All my friend. Super. Now click on the next.
+104:07
+
+Now, you can see here they are saying credential storage and application logging. By default, it's saying select Azure AI key, select Application Insight. Okay, we'll do that part later. Right now, I'm not worried about this.
+104:24
+
+You can leave as it is by default. Model deployment, Cosmos DB. Just I'm showing you where you will get each services. You can see what are the resources there, model deployment, Cosmos DB, AI search, storage account.
+104:38
+
+You can go as it is. By default, I'm not selecting anything. When I need it, I will do it. On top, saying Key Vault and Application Insight. Okay, Application Insight is mainly for visualization purpose. You will visualize it.
+104:53
+
+Key Vault is mainly for when you do the pro code. That time I need this Key Vault and all. Select resource. I'm not doing Cosmos DB right now, but Cosmos DB, anybody asks you, you can say history.
+105:07
+
+The Key Vault, Application Insight, private endpoint, that I wanted to store in Cosmos DB. Model deployment, anyway I will do it. So I'm not worried. AI search, you have already seen. A storage account, you have already seen. Now click on the next.
+105:21
+
+Leave as it is. Don't click anything. Here, inbound network, all network you have to select. Go next. Outbound network, you have to select no outbound network
+105:36
+
+or custom VNet. So I'm saying no outbound network. Internally, I'm doing all this thing. VNet, normally we are using when we have a private endpoint and all. Go next.
+105:50
+
+Identity, go as it is. Azure AI user. Next, encryption as it is, tag as it is, and review and create. No, don't click anything. Fine. To resource, here, review and just wait.
+106:03
+
+Azure resource group is same, Sahana. Name is Sahana OpenAI. Region is Sweden central. Project name, I have given RAG project. This is the main thing I have given. Now running final validation, just wait.
+106:18
+
+This is the third application, guys, Azure OpenAI Foundry I'm using now. Foundry is a brain. It's called brain.
+106:33
+
+Now click on Create button.
+106:45
+
+Submitting deployment. Deployment is in progress. Loading. Deployment in progress.
+107:15
+
+Dheeraj, sir, can you please go on mute? Otherwise everyone will get to know all your conversation. They will get to know what you are having for breakfast and for lunch.
+107:31
+
+Deployment is in progress. Perfect. Click on the Go to resource. Now others please confirm. Go to resource.
+107:54
+
+Others please confirm this part done. Not yet. I'll wait, because this is mandatory. This is the brain of the Azure services. Or GenAI services.
+108:07
+
+This is the main services there, and that is why we prefer to say that anything you can build it, Azure Foundry is the
+108:23
+
+brain. This is the main services there. It's called development platform. It's called a building agent. It's called building RAG.
+108:37
+
+It's called managed model. It's called fine-tuning, all these things. Done. Most of them say done. Rishabh is saying not yet. Kiran is saying in progress. Go ahead.
+108:49
+
+Anime is done. Kiran done. Rishabh? Done. Good, great.
+109:03
+
+Now, please click on the Go to Foundry Portal. In bottom you can see it's mentioned Go to Foundry Portal. Before clicking, just hover it so that others will see that. Everybody, are you able to see Go to Foundry Portal?
+109:15
+
+Please click this. Please click this.
+109:29
+
+Dheeraj, everything is required? But you can say to develop this, this is mandatory. Okay, guys, when we come here, you can see here. It's in recent work, right? Recent work.
+109:47
+
+In top you can see use AI model, build an agent, code an agent. Are you able to see that? Test in playground, explore model, compare model. And model also given, Cloud, Opus Five.
+110:02
+
+Yeah, very good model. Anthropic model is there. Go a little slow. Adam, little slow so that others will see. Next is called GPT-5.6. Yeah, the latest model. You can see Image 2.5,
+110:15
+
+DeepSeek. You can see all the features you will get except the Titan one, which AWS has. But most of the data you will get it. Go next. These are the models available there.
+110:29
+
+You can see these are the models available there. Model router, Anthropic model, GPT model, Open model, Microsoft model, all models. DeepSeek, everything, you will get it. Click this.
+110:41
+
+You can see here Grok model. Grok is Elon Musk model. Grok model also there. Twin models also there. Please remember, this is Grok, G-R-O-K, is a Elon Musk model. Tutor models. And Groq,
+110:56
+
+G-R-O-Q there, that is a different one. Just like a hugging face. We have another model also there. So anything else also if you wanted to search, you will get it. Now, you can see on the top,
+111:10
+
+API key is there. Are you able to see API key? This is your API key, guys. So I have used when I have written GPT bot and all or anything I did it, I use API key. Did you remember?
+111:25
+
+That time you can use this API key. Okay? This API key. It's your API key, you have to take it. From where you will take? You will take from here. Project endpoint is also given as your OpenAI endpoint also given.
+111:41
+
+This part I'll tell you when I will use the pro code. Right now I'm just showing you this one, and low code, I'm using it. Now please click on the view deployment. On top, view deployment.
+111:55
+
+Not there. First is use a model, then it's coming. First is use a model. Left side first. Oh. Above API key. Where is API key there?
+112:11
+
+Above API key you can see- Okay ... view deployment. Click this. Okay. When I clicked here, guys, you can see the left side, we have
+112:24
+
+fine tune also there. Are you able to see fine-tuning? I have covered. Did I cover LoRA, QLoRA or not? I think I have- Yes ... covered, in your class? Yeah, you can see the fine-tuning model also there. So if anything you wanted to do, you can click the
+112:37
+
+fine-tuning, it will work. Service is there, tools there, knowledge there, memory there, data there, evaluation there. I think everything I have covered it. Fine-tuning, I have covered it. Knowledge is nothing, it's called vector database.
+112:51
+
+Memory is nothing, when I use the Cosmo DB it get stored there. Data is nothing, the raw data. Evaluation, metrics already I have covered. Guardrail, I have not covered yet. Maybe next session I will cover, next week, Guardrail, responsible AI, all these things.
+113:04
+
+So what you do, you can see this deployment right side. Search window there. Can you please click on the search window? Type here, gpt-4o-mini.
+113:19
+
+Type gpt-4o-mini. Press Enter.
+113:32
+
+Nothing is coming. No. It might be case sensitive. I think you should go to the second tab, Models. You are in the Deployed models. You have nothing deployed, right? You have to click the Deployment.
+113:45
+
+Click on Models, not there. In Deployment, after that, Models there. Click there. Review. Yes. Now generate upload command.
+114:03
+
+Click on generate upload command. Okay. Here you can see base models. Search there, just type gpt-4o-mini.
+114:16
+
+Type gpt-4o-mini. My goodness. I cannot- No ... I cannot search. Browse button is there. Click on the Browse.
+114:30
+
+No. Yeah. Browse. Now search here. Search window there, no? gpt-4o-mini. What happened? It's not there. There are only these two GPT models.
+114:42
+
+So I think they have a gpt-os-20 chat completion model. gpt-os 20 billion parameter, 120 billion parameter chat completion. Okay, leave this part. Just
+114:56
+
+type text embedding. Type text embedding. Text embedding. No. Dash embedding. No, I'm not getting anything.
+115:12
+
+Oh, sir, it is coming. Can you cancel it? Is that the one? Can you cancel this whole thing? Okay. Cancel this whole thing. Once again. Go to Deployment section again. Go back to the home screen of this one. Yeah.
+115:24
+
+Left side, left side. Go to Deployed models. Here on the right side, you see deploy, there is a dropdown on the right side. Yeah. Click on deploy a base model. There you let it load. Now click on All models
+115:37
+
+availability. Now you search for it. Is this the one? Yeah. Correct. Now type text embedding Text-embedding
+115:51
+
+This one? Not three, a small one. Click this, three is small. Now you have to wait. Okay? Others, please see this, guys.
+116:10
+
+On top, you can see Microsoft Foundry, you can see it. And after that, your project name, what you have given, it is coming. Rag project. On top. Yeah. Yeah, that is mandatory. You have to see it.
+116:25
+
+Now when you select this text-embedding-3-small, you also have to see whether my location is coming correctly or not. Okay, so you can see here, Azure text embedding, click on deployment
+116:37
+
+button. Nothing is there, benchmark. Okay, no problem. First deploy it. Click on deploy. Click on deploy.
+116:50
+
+I'm getting two- Click ... settings. Custom settings, set up your own quota this, guardrail. So global is standard. Go for default setting. Go the first one.
+117:05
+
+Okay. So why I'm doing guys, text-embedding-3-small, you know? Because storage, I have saved PDF file. Did you remember blob storage we have created PDF?
+117:19
+
+Yeah. That PDF, I need to convert into number, embedding, and that is why we need this model. Now, when I reach here in this model, you have to give a glance whether my location is coming same or not. So you can see
+117:33
+
+endpoint and key is coming. Yeah, I'm not worried right now. Go down. Just see Student Central is coming or not. So here you can see token per minute rate is that much.
+117:46
+
+Request per minute. This cost will only come when you use it. Even you will not delete it, no problem. It will come only. Sahana, you can see playground also there.
+118:02
+
+On top, detail, before that, playground there. Click on playground. View this model. Click this, view this model.
+118:15
+
+That option is not coming. Is it because it's an embedding model, not a chat model? Is it possible? Maybe. But this is the reason is that only, but I wanted to see the same. Sure, no problem. Go down.
+118:31
+
+So provision state succeed. Okay, fine. Go on top. So request quota, monitor evaluation.
+118:51
+
+Okay, everything is enabled. No problem. Again, click on the deployment. Left side deployment button. Okay. Click this.
+119:04
+
+So now this is deployed. Succeeded. Now again, what you do, search one more. Click this, GPT-4o.
+119:16
+
+Should I go to models and then search? Click on deploy button. Deploy- Base model ... deploy this model. Click this. Now all models.
+119:28
+
+And then you have to click GPT-4o mini. Hmm. This one? Yes. 4o mini.
+119:41
+
+It says the model is deprecated, sir. It's deprecated. Yeah. It's deprecated. Go other one. Take the 5o. A GPT-5.
+119:56
+
+GPT-5o. 4o is there, right? 4o. Can you use 4o? This one? Yeah. 5.1 is also fine. You can take the latest one also.
+120:13
+
+There is GPT- This is also deprecated So GPT-5 you have to take. GPT-5 mini is also there, maybe. GPT-5o you can take. 5 mini. 5 mini. Mini chat completion response. Yes.
+120:27
+
+Click this. Oh, this is fine. Okay. This is manage purchase, manage all this
+120:40
+
+thing. Perfect. Now click this, deploy. Right side, deploy. Okay. Default one.
+120:53
+
+Okay, so this is a playground now. You can ask something. You can see whether it's working or not. So you can see instruction is there. Instruction means you can just write, "You are an AI assistant." You are an AI assistant for
+121:15
+
+GenAI project. And your task is to give answer only for data science-related query. Or leave this. Just I'm telling you, this is system persona.
+121:29
+
+Okay, you have to write it. Now you can ask questions, just check whether it's working fine or not. Chat to the model in bottom. The task is to answer the questions
+121:42
+
+on data science-related query. Data science query
+121:57
+
+Okay, go in the chat model in the bottom. Chat section. Right side. Okay. Now you can see how simplified, right? They enable the memory, guardrail, everything they enable it.
+122:12
+
+Yes, you have to just go and do it. It is very easy. Now ask something. You can say, what is machine learning or what is feature importance? What is feature importance?
+122:27
+
+Anything you can ask. What is GenAI? Just ask. GenAI. Explain in detail.
+122:40
+
+Press Enter. So they are giving answer, right? You can see GenAI, GenDBI is for create a new text, blah, blah, blah, in point by point they have given.
+122:53
+
+Hmm? So this is working fine, no problem at all. Oh, here we can save it as an agent. Agent, I'm not doing right now, so you just leave that part. Can do it agent also. I'll show you that part as but...
+123:08
+
+Now what you do, click on the deployment again. Left side, deployment. Okay. You can see both the model got deployed successfully.
+123:23
+
+Yeah. You can see the right side, there is a code also written, Python code. Yeah. You can just copy here. Can you please copy this? Python code there, copy. Open your notebook.
+123:35
+
+Colab? Anything, Colab or notebook, anything you wanted, you can do it. Normally we will use a VS Code, right?
+123:51
+
+Visual Studio, so that we can easily connect it, but I'm just showing you. Paste here. Yeah.
+124:03
+
+So guys, you can see from OpenAI, input OpenAI is coming. Endpoint is already there. Deployment name is given, GPT-5 mini. Right? API key. What is your API key? Go in that
+124:16
+
+Foundry. Go to your Foundry and click on the GPT-5o mini. Here you can see API key. Please copy this. Yeah, that is correct. Copy and paste here. That is your API key.
+124:29
+
+Okay, this is your API key. Hmm? Don't share this API key with your client and all. And then if you go and ask this query, it will work. Okay, it will work.
+124:45
+
+You are using Google Colab, so maybe the connection error will come. Yeah, but if you use Visual Studio- Yeah, but here the question is asked as what is the capital of France? But in the persona we have written to
+125:07
+
+only answer GenAI-related queries. Just a example they have given. No. So like that code. Did you remember our pity model, then I said client.response.create model?
+125:20
+
+Yeah. So same thing, same code they have written it. Yeah, so this- Nice ... just how you can connect there, right? Then after that you can change the persona, all these things. Okay? This is the same chat API, right?
+125:33
+
+Same thing. So pro code, I'm not worry right now. Pro code, I'll show you how you will use it. Okay, so here answer is coming something, right? It's a blank because some connection response reasoning item type is reasoning content, encrypted content, the status none is coming.
+125:45
+
+But this is what the code you have to do, so you can take a reference from there. Yeah, but don't worry. I tell you later. Go to the Foundry again. Go to the Foundry again. Guys, all my friend, everybody, can you please give me
+126:00
+
+confidence you got this two model deployed in your system? One is chat model, one is embedding model. Yes? Okay, perfect. Okay, now what you have to do, please go into Azure AI Search.
+126:14
+
+Azure AI Search. This is Foundry. Okay? Three subscription you have taken, three resource you have created. One is Azure AI Search. Second is Azure Storage. Third is Foundry. Right?
+126:31
+
+Go to Azure AI Search. If you are not able to do it, just go search it and open that Azure AI Search. This is your Azure AI Search. Okay?
+126:44
+
+Yes, click this. Click your ID. Click on the Sahana AI. Okay, this is your resource. Everybody please tell me you reached here?
+126:59
+
+All my friend, please say, did you reach here, AI Search window?
+127:16
+
+Great. Now, on the top you can see Import data is mentioned there. On the top you can see Import data is there. Click this Import data.
+127:30
+
+Go little slow, huh, Sahana? So that everybody can see it. Yeah. Guys, you can store your data in these services: Blob storage, Data Lake Storage, Cosmo DB, Azure
+127:44
+
+SQL Database, Table storage, OneLake, Microsoft OneLake, SharePoint, OneDrive, OneDrive for Business, Azure File Storage, Azure Queue, Service Bus, Amazon S3 storage also, Dropbox and SFTP/SSH. Right here you
+127:58
+
+can store this. You will get lots of connector, like extra. Azure S3 is a different services. Yeah, so it's saying Logic App connector. FTPS is- Okay, we can- ... is a different one. Mm-hmm.
+128:13
+
+Okay, we can import from different services. Different services also. So sometime clients will come and they say, "Hey, my data is in OneDrive." Okay, all the- Okay. Currently our data is in Azure Blob storage, right?
+128:26
+
+Absolutely. So I have a storage in Azure Blob storage or Azure Data Lake. So you can click on the Blob storage. It's your Blob storage. Please click this.
+128:38
+
+Okay. Here, guys, key search, RAG, multi-model. Okay? You can see key search means ingest text to keyword search, optional add AI skills to extract,
+128:51
+
+infer, or create a new searchable. Second part, you can do a RAG system. Third part, you can do a multi-model RAG system. Okay, you can do all three things. Click anyone,
+129:04
+
+key search. When I click on the key search, guys, because first part what you will do? You will do embedding. Correct or not? Mm-hmm. So when I have taken the Azure Blob storage, you can see I reached your
+129:17
+
+key search. Now go subscription, check one by one. Subscription name is there, Azure Subscription one. Yeah? Second is a storage account. Click on the storage. Can I say this is the name you have given, Sahana-
+129:30
+
+Yeah ... Storage? Click this one. Yeah, this is my Blob storage. Click this. Now you have created in there. Now it is reflecting here. Blob container, what name you have given? Sahana Dummy. Sahana Dummy. That's the name you have given?
+129:43
+
+Yeah. Okay, super. Blob folder, you can leave as it is. Parsing, you can leave as it is. Yeah? Second option, enable deletion tracker authentication. So deletion tracker, if you wanted to enable them so it will track which
+129:58
+
+documents or which chunking you have deleted and all. Right now, you leave as it is. Okay. Go click on the next. Okay. Click on the next. In bottom, click on next.
+130:13
+
+Everybody, are you following me? Yes. Okay, great.
+130:40
+
+Simple till now? Yes. Okay. Just wait. Next part, get enable your model,
+130:55
+
+whatever model you have taken. Please remember, these are the things there that you have to do step by step. So the way I explain you, you have to do similar way. Now here saying enrich data. It's optional there.
+131:10
+
+Do you want to extract phrases, split text, extract entities, extract text from images? Are you able to see that options? Yes. You can say extract text from images. So if you wanted to do it, you can do.
+131:23
+
+It's saying attach a foundry tool multi-service. So, you can do that part, no problem. You can select extract text or anything you wanted, you can do it.
+131:39
+
+Are you guys with me? Still loading. Okay. We'll wait for a while.
+131:52
+
+Right now, Sahana, just unclick the image part because I don't want to create a complicated things. Yeah, I'm just going with the simple RAG system, not multi-model RAG.
+132:06
+
+Okay, leave this part as it is. Click on the Next button. Click on the Next. If you wanted to do anything, please go ahead and do it. Now here what it's saying, preview index.
+132:25
+
+So what is the content? Metadata storage title, metadata storage path. All this thing is by default coming. I have selected by default. Go by default as it is. Yeah, click on the Next. No, don't touch anything.
+132:38
+
+Yeah. Now this part is saying once. Once means how many times when you do the real-time job guys, how many times you get the data?
+132:56
+
+I think you guys have asked me in class also, and I said when I will teach you Azure Cloud, I'll show you. So here you can see schedule. Can you please click the Schedule button? Where once coming, you can see this.
+133:09
+
+If you are working in the live data, especially if you are working in e-commerce, Amazon, Flipkart, then you will get frequent data. So you can select every 5 minutes or 10 minutes or 30 minutes or
+133:24
+
+hourly or daily or custom also. So, you can- So this is to sync with the raw data? It will sync with the raw data. In the embeddings. So any raw data will come, your task is only you can upload into Blob storage
+133:37
+
+automatically. This is called pipeline. So that all indexing, chunking, embedding, everything will be done. Okay. On that certain. Right now, you can select once only because I have just given three datasets. You can select once.
+133:52
+
+Okay, go to next. So in this, if we select each day or every day, a deduct the token- Every day the new data get come. You can click the- It will deduct the tokens and it will charge.
+134:06
+
+Yes. Yeah. So you can see here, interval minute. Now all this thing is there, so it will charge accordingly. Okay, go next
+134:19
+
+Now here you can see data source, blob storage. AI enrichment is disabled, semantic rank is enabled, indexer run is this. Okay? Now you can see object name prefix also there.
+134:31
+
+Yeah, object name prefix also there. If you want, you can go and click this. Yeah, you can change that name also. Right now, I'm just leaving it. If you wanted to write, you can write something. Yeah, but you can leave as it is.
+134:46
+
+Click on create button.
+134:59
+
+What does this AI enrichment will do? It's disabled. I'll tell you. Yeah, because right now I'm not building a RAG, I have just selected the key search. Okay, now you can see everything is successfully.
+135:12
+
+Go to search employer, click this. Yes. Here you can see this is called indexer. Okay, you can search something.
+135:24
+
+Just say self-attention. Type self-attention. Search. You can see self-attention, they are searching it. Yeah.
+135:37
+
+They found the data. Search score 40%, rank score 57%. Yeah, go down. Down.
+135:51
+
+Go down. It is giving the content also title. It will tell you all these things. Go down. Okay. So they are saying where that part is there, right?
+136:04
+
+On the top where search button there, right? You can see on the above, view options there, view. Yeah. Right, Sahana? Click this and click on the query JSON view. Just type on the JSON view.
+136:17
+
+Okay, so this is the code there, right? Search equal to self-attention, count true, which query type semantic model, right? Semantic search we are doing and extract all this thing is happening. So this part is a key search part only.
+136:32
+
+How Amazon, Flipkart is working actually, when you go and search it something. Have you noticed, right? When you say mobile phone- Yeah ... only mobile phone-related things is there. There they have used this application called key search.
+136:46
+
+Mm-hmm. Are you guys with me? Keyword search, how it is working? Yes. Yeah? So this is- That's why it is- And this is top three, right? This is top three. As the count is three. Okay. Yeah. Okay. Now what is my intention?
+136:59
+
+Yes. So that's why it's giving the ranking score here from the document. Correct. Yeah. Okay. Now, what is our expectation? We wanted to build a RAG system, correct? Mm-hmm.
+137:12
+
+Everybody? So RAG means we need an embedding. Yeah. Giving embedding, actually. So I have to go back. Can you please go back, click on the homepage. Right side, home. Sorry, left, Sahana. Click this.
+137:24
+
+Very good. Click on the Sahana AI resource name.
+137:41
+
+Click on the import data again. Everybody please see this. You have to explore. Don't worry about the pricing and all. Please explore it. Now, can you please click on Azure blob storage
+137:54
+
+or data storage, anything. Now here you have to select the second one. Can you select RAG? Yes. Guys, now I'm doing RAG part. Yeah, please go again one by one. The storage account, see the name.
+138:08
+
+Yeah, I'm getting one call, just a minute. You don't go in the next screen, Sahana. Yeah. Be there only. We can take the break also.
+138:26
+
+Sahana, since you are the panelist, can you type on the screen? Yeah. Break at 1:30.
+138:45
+
+Sorry, my That's fine. I'm just kidding. You are taking the ownership of writing this.
+138:58
+
+Yeah. So 20 minutes or 10 minutes, I don't know. Maybe let sir come once, and then we can ask.
+139:18
+
+Yeah. Okay, guys. Don't take it seriously and go for a break.
+139:30
+
+Okay, I'm back now. What happened? Who is giving a break now- ... without my permission? No, that's why I have just caught on this- No, we'll go for a break. Just wait.
+139:44
+
+We'll go for a break because- Yeah ... when we go for a break, I need a 15, 20 minutes, then only your application will work. So I wanted to do the back end part, everything, and then we'll give a break. Okay? Oh, no. We were just kidding that sir was not there, so let's take a break.
+139:57
+
+Achha. No problem. Can you erase this? I don't know how to erase this. Yeah. There is a button there. No, the erase button. It's not there. Where have you written? I just annotated,
+140:12
+
+but I'm not getting eraser option. More Very good. No, I think you can unshare and reshare again so that it goes off, I
+140:27
+
+guess. Okay. Yeah, this might work. Yeah. Worked. Perfect.
+140:41
+
+Chalo, good. So guys, please see here very carefully. This is called RAG system. I'm doing it now. Okay? So subscription is Azure subscription one, storage account is a storage account. Go for blob container. Click on blob container.
+140:54
+
+Same, Sahana dummy. Blob you can leave as it is. Enable document layout detections, deletion, everything you can leave as it is. Go next.
+141:11
+
+Sir, just once again, sir. After this JSON, how did we come here, sir? I just missed that part alone. I said after JSON, I said again, that part I have done for different task. That is for keyword search task.
+141:26
+
+Mm-hmm. So if you go and build some application, let's say tomorrow you get some project where your client will say, "Hey, I wanted to build a recommendation system, search engine system." So how you will do it?
+141:39
+
+That time you can go and use the keyword search. That application you have to enable them. So anybody will search, like I have given self-attention. So top three self-attention, things will come in your things like mobile. If you write mobile, top three mobiles, which is
+141:52
+
+very closer to that Samsung or OnePlus or iPhone, that will come. Now I'm building a RAG system. So RAG, how it works, you know the architecture, right? First is called raw data, chunking, embedding, store into vector data.
+142:07
+
+Then you have to build the user query connecting with the LLM model. Retrieval will search from vector database and then give the answer. So I'm doing the part one.
+142:23
+
+So what you do, you can go in the home page, select the Azure AI Search. The resource name, and then you have to reach here. Or can I show you again?
+142:35
+
+Sir, please show that around again, sir. That would be much help. Go to the homepage. So here, just again click on the Foundry service. Click on the resource name.
+142:48
+
+And here you have to click on Import data, the second tab here. So here again, you will get all different
+143:04
+
+services where you can import data from. But currently our raw data is in Azure blob storage, so you just have to click on here. So here, first we just did the keyword search.
+143:16
+
+Now we are doing RAG. Thank you, sir. Thanks, Sahana. Now select the services.
+143:30
+
+Okay, go next. Parsing mode, you can see that, right? Just go previous. Wait. Go previous. Parsing mode. It's saying default.
+143:46
+
+Click this. What is parsing? Oh, here. Small text, JSON, JSON array, delimiter, how you want to parse them. Parse means nothing, call splitting. Chunking part. So by default system is doing chunking.
+143:59
+
+Okay, so I'm going with the default one. Make sense? Mm-hmm. Now click on the next. So parsing, if it is JSON, then it creates a JSON- You can create a JSON, JSON array, lines, delimiter, anything, you can select it.
+144:13
+
+Okay. Better you always select the default. The system will decide. So will it mix like- So if I just click on Default, how our raw data is currently present by that then?
+144:28
+
+This is simple RAG, right? So if you have a mixed detail, let's say multi-model RAG you are building, then you have to select model RAG, not a RAG one. Okay. Here everything will come into one format only.
+144:42
+
+Got it. Click on Next. Yeah. Now here, guys, Microsoft Foundry. You can see this. Microsoft Foundry Services Project. Click this.
+144:58
+
+And here, what is the name you have given? RAG Project. Yeah. Second RAG project inside, Sahana OpenAI Foundry Project. Which one you have given? Yeah, the same one, RAG project.
+145:15
+
+Now model deployment, which model you have to use? Text embedding. Text embedding. This is why it's coming, because you have deployed there. If you don't deploy, it will not come. But we had chosen two different models.
+145:29
+
+One is text embedding and GPT-5. GPT-5 for LLM model. When you ask questions, then give the answers. Oh, okay. It will not come. This is for embedding model. Embeddings, yeah. Got it.
+145:44
+
+Why only one is coming? Because you have deployed only one. If you deploy large also, three large or ADA 002, that will also reflect here. Okay? Authentication, how you will go? By API key only. Make sense?
+145:56
+
+Click on I acknowledge the connecting the Microsoft Foundry. View pricing if you wanted to see, just click that View pricing tab. Click the right side View pricing there, just click it, and you will get a
+146:11
+
+glimpse also that what is the price there. You can see here price table, all these things. So tomorrow, when you work on it, your client will ask that what is the price will required for building a RAG chatbot. Can you please give me? So you have to request a price quote.
+146:25
+
+You have to just go and what are the services you will purchase? Everything, all part will come here. No, here we have to request There you can just request them, they will give it. I am doing it because I'm working with the Microsoft, so I'm doing same thing I'm
+146:41
+
+providing to the customer. So you guys will also do similar thing. Okay, come back. So this is based on how much tokens we are using and how much tokens it is? Services, whether they wanted a POC or they wanted a
+146:56
+
+production-based bot, then we need APIM, right? Different services, the price will go somewhere is $3,000 to $4,000 per month. Okay. That's the quote you have to give them. Yeah? Going to RAG.
+147:12
+
+Leave this part. This is just I have given overview. Tomorrow anybody ask you, we have a pricing calculator there. You can go in the calculator, calculate it, and you have to give them. Can you please click on the Acknowledge button?
+147:26
+
+Tick mark acknowledge. With me? This part is clear. Model deployment, text embedding 3 small is coming. Yes, no? Yes, no? This is for embedding part.
+147:38
+
+Yeah? Very good. Click on Next. Click on the Next here. It's saying, do you want to do vectorize image also? Enriched data for AI skills,
+147:51
+
+right? You wanted to do it. I'm not building a multimodal right now. You can leave as it is, but if you want it, you can click on the vectorize image as well. Yeah? So if there is a image there, please vectorize it. How you will do? You know, right?
+148:05
+
+Multimodal, I taught you. Yeah. Guys, do you remember model where how things works? What system will do, they will first summarize the image, and then they will convert into text, and finally, they will convert into embedding part.
+148:18
+
+Yeah? OCR models. OCR method, yeah. So that will happen. Just untick this because I'm doing traditional RAG system right now. Yeah, please click on the Next. But if you want it here also, both option you have
+148:31
+
+to tick mark, and then you have to go ahead. But we have selected just a simple RAG, not a multimodal RAG, right? That's why you have to use. But if we select this, it becomes a multimodal.
+148:43
+
+It will consider the image part also, they will consider them. Okay. Okay? So you need not to do separately for OCR. They are giving that options. They will consider OCR method on a structure .IO methods, and they
+148:56
+
+will do all kind of things. Okay. Okay. Click on Next button. How you wanted to do scheduling? RAG system, you can say once. Yeah?
+149:10
+
+Yeah. Scheduling part, you can do basis your business requirement. Your client will say, "Hey, every weekly, I'll upload the data," or, "Daily, I wanted to upload the data." Yeah? Then you can say, "Boss, the pricing will also get increased," basis your
+149:22
+
+requirement, but we can schedule them. So every one hour, the system get automatically, pipeline get started. Right now you can say once. Click on the Next.
+149:35
+
+Create, click on the Create button. Here you can see. Wait. Extracting text from image, that is disabled. Why? Because I have not done that part. I am using traditional RAG system. Means I'm considering only text data. I'm not considering image part.
+149:51
+
+Are you guys with me? That is why it's coming, extracting text from image is disabled. Make sense? Yeah. So suppose we have selected vectorize images, then this will enable- It will enable, so automatically happen, but you will not get better result because
+150:07
+
+I have selected RAG, and you are taking the multimodal features, so it will not give the better answer. My suggestion is, don't select RAG, select multi-RAG, and then you have to do it. Mm-hmm. Okay.
+150:20
+
+When we do initially, three options you got, keyword search, RAG, and multimodal RAG. Yeah. So that time you have to select the third option, multimodal RAG, rather than you can select this one. Got it.
+150:33
+
+Now click on the Create button. Okay, guys. See indexing is happen.
+150:46
+
+Click on the Go to the Explorer, and here you can see embedding get created. Okay, search, type something. Transformer or self-attention, anything.
+151:00
+
+Self-attention. Enter. Searching. Yes.
+151:13
+
+Mm-hmm. Can see? Accuracy also they have given. And these are the numbers there. You can go on top first. So everybody please see this. So when she asks self-attention mechanism, go on top, and then you can see a score
+151:25
+
+is coming 97.7% matching. Second score is 95%, 95.39. Third is 95.30. So these top three K value is coming. And if you go in the bottom, the query type
+151:41
+
+semantic search happen. Go to the bottom, you can see the self-attention mechanism get convert into number. Yeah, get convert into number. These are chunking. So that's why they are giving this.
+151:56
+
+So text is the first multi-head self-attention mechanism and this chunk ID also given, parent ID also given. Like that they have given it. Now this is the text vector there. So they are giving these text. How to get top five?
+152:08
+
+You have to go for custom one. I have selected everything is by default. Do you remember that time is coming partial? Yeah. To select. Yeah. Okay? Everything clear? Naresh? Yeah,
+152:24
+
+here you can see. By default it's three is fine. The system is accepted, that will come. So this text vector of all these different chunks that is giving the vector or how it is giving the vector?
+152:38
+
+No, they will search it. But finally, this vector is not coming for that search, that is coming self-attention mechanism. That gets converted into number. Okay.
+152:53
+
+See, vector database means what? Whatever the- So- ... documents there, that gets converted into number, no? Yeah. So whatever the query you have written, self-attention mechanism, that gets
+153:06
+
+converted into number. And that- Mm-hmm ... it's searching from these three, top three documents from vector database. Okay. Yeah. Now please go in the view again, view options.
+153:20
+
+There you can write a JSON query. Yeah, and this is the code there, search equal to self-attention mechanism. Want vector query. They've tested it and they found, yes, it is
+153:34
+
+there. Query rewrite, and they have given all the details. Now you can see, go down. Now, so it is working perfectly fine. You can go and test again. Yeah?
+153:46
+
+Few more tests you can do it. Not here. Go to query view. Yeah. Type something. Let's say you can mention what...
+154:02
+
+If you are getting four not four, that means there is a problem, Luna. Okay, that means your vectorization not happen correctly. You don't expect that your RAG will work then. Okay? Mm-hmm. So that's why it's mandatory, you have to follow all part step by step.
+154:15
+
+Okay, select write something. What is the documents there? Did you remember? Self-attention is arguing- Use one thing or another PDF? Attention-- Um- No, that is one PDF. Second PDF is, I think, RAG related or NLP related,
+154:30
+
+right? Yeah. So just type now. And few short learning language models of transformation. Can you write what is few-shot learning? Yeah.
+154:44
+
+Type what is few-shot learning. See whether it is converting into number or not.
+155:00
+
+Super. 99.5, 97. Your vector, David did very good job. Okay. Go down. See, what is few-shot learning, it convert into number also.
+155:17
+
+Go down. So here it is giving top three ranking results. So- Absolutely ... we can just change that to five, 10 or something, different numbers
+155:31
+
+to get the- So when you write a pro code, no? You have to copy the JSON. That's why I clicked on the view, right? View, and then you will get- Yeah ... JSON query. You have to go and change it. JSON view there, you have to change this.
+155:47
+
+Okay? Here, count value equal to three there, you can say count equal to five. You can change it. Okay. Okay, you can copy this. This is the pro code. When you write, you have a full command. Right now, I'm just using no code, by default method.
+156:00
+
+Okay, go down. Show me the number. I'm interested to see the number. This is the text vector. Are you guys with me, everybody?
+156:13
+
+Yeah. Yeah? So this vector database is also done. Now, please get- Raghav, what is? Here we can see in above section, documents
+156:26
+
+zero, total storage zero, vector. And in my system, it shows 244 document, 5.62MB, 1.45MB vector
+156:41
+
+index. Yeah. Here also we have- Sorry, no ... data count 238. Coming.
+156:53
+
+Okay, I can't see. You can't see? I can see it, just show it. Go a little up. Okay. So here in the second one-
+157:07
+
+Yeah, you can see now. Okay. Not here. In the above section where the-- Above and above. Okay. In the JSON query? Little above. Not in the query, in the
+157:21
+
+RAG. Results? Not here. Above there is a document, total storage, and vector index code.
+157:36
+
+15 GB max storage. That is okay, no? Okay. See, you have to see whether it's working or not. Okay. If you wanted a console, I will show you the pro code part. Yeah. Okay? Right now, I'm just showing you this part, but pro code, when you write, you can do it. Manually, you have all options.
+157:50
+
+But you are interested to see the code and all, go in the view, go to the JSON file, and then copy, paste, and you have to check it. Okay, got it. Hmm. Pratik, what is your query, my friend?
+158:04
+
+Pratik, what happened? You are not able to get it? Yes. I'm getting this invalid field error, the vector field, text vector not found. No problem. So now your turn. Let me make you
+158:17
+
+panelist. Hmm. Sahana, can you? Yeah. Mm-hmm. Opportunity two. Kim. Go ahead, Pratik.
+158:29
+
+Let me just share Yes, so here, right? So here your vector DB is not working fine. So what you have done?
+158:47
+
+RAG, text embedding, extract image. Go previous. Let me see what you did. Enable semantic ranker. You have enabled. Why you enabled?
+159:03
+
+Did I say enable it? By default, sir, I have not enabled anything. By default. Okay. Go on the first then. Go model name, three, API key,
+159:17
+
+Microsoft, kind equal to Azure subscription, RAG equal to this. Go one step back. Take a storage. Is default on. Go next.
+159:30
+
+Let me see what happened. Have you done the storage part correctly, right? Yes. Go next.
+159:46
+
+Don't do anything. Go next. No. Can you also click on preview and edit index fields? There is a text vector field that you can index. Click on that.
+159:59
+
+It's auto-generated. See text vector at the bottom. It's already there. So yes. Oh. You can actually- It's there, right? Yes. It is there. By click save or? Yes.
+160:12
+
+Save and go back. Next? Try it one more time. Indexer creation field with what is in the vector field
+160:26
+
+must be property dimension parameter.
+160:40
+
+Are you sure your PDFs are loaded into that container? I have also doubt. Yes. Go to the PDF storage. Let me see. Not here in the storage.
+160:54
+
+Blob storage. Search here, blob storage. There's search storage.
+161:07
+
+First one. Click this. Go to the setting
+161:23
+
+first. In bottom, data storage there, no? Left side. Left side settings. Yes. The storage before, below setting.
+161:38
+
+Click on the configuration. Enabled. Enabled. Very good. Go to this one, container then.
+161:53
+
+Containers. Containers. Containers. Data is there, click this. Anyone click here?
+162:05
+
+Click that link. Check it whether it's working. Yes. It's fine. Now go to the AI search.
+162:22
+
+Click this, go to the AI search. That is fine. Type AI search. Search window above. I have to close this. No, not click. Just type it. There is close option.
+162:35
+
+No, but... Right side top, close is there. Close it. Or you can directly search. Search here. Go to homepage. No, that screen only.
+162:48
+
+You are correct. Previous screen, my friend, not this one. Go in previous window. Window new. Type here.
+163:02
+
+AI search. Yes. Click on this. Import data. Click on import data.
+163:14
+
+Blob storage. RAG. Azure subscription, yes. This container.
+163:31
+
+Go default, go down. Next. Should I close the existing one? No. Leave this. You can send it here only.
+163:45
+
+Okay. Front. Choose Microsoft Foundry. RAG project. Embedding. API acknowledge.
+163:58
+
+Next. Leave as it is. Go next. Leave as it is. Next?
+164:13
+
+Next create. Done.
+164:28
+
+Go to the explorer. So what was the problem, sir? Problem may be something is there. Leave this. Sometime it happen. Sometime laptop not working. No, shut down and restart. So this is the process here.
+164:41
+
+Type here something NLP Search.
+164:55
+
+Yeah, it's working fine. Okay. Okay. Yeah. 237 want, score 97%. Go down. Down, see? Embedding part numbers.
+165:08
+
+Okay. Number, number, number. Go down. Go down. Yeah. So this is number is coming, okay? So it is working fine.
+165:21
+
+Okay. Yeah. Chalo. So- Thank you. Yeah. Stop your screen. Sahana ma'am, come back now. Yeah. Farhan, क्या हुआ आपको?
+165:36
+
+Type in. Yes? Sir, the RAG was created, but I missed to go to this explorer. So how to- You did? I have not completed, you created. You are very fast.
+165:48
+
+No, no, sir. The same step. अच्छा. You just included. Yeah. Then what you want? No, explorer I am not able to check it, sir. So once created it, you go and do this explorer, right? The same page.
+166:02
+
+Okay. It's not- What was that one? You are not able to see, no problem. Sahana, can you please click on the homepage? Yeah. Ah. So here-
+166:16
+
+Click source ... go to foundry. Don't click anything. And- Don't click anything. No, no, not required. That is the steps. Mm-hmm. Now, let's say you have done that steps.
+166:29
+
+Okay, you can see in the left side. Left side, you have something called search management. Search management. Click this. Are you able to see indexer? Yeah. Everybody? Yeah, click on the indexer.
+166:41
+
+Okay, so these are the indexer happen, means vector database got created. There are three documents there. It's saying, "Document succeed." Three documents that succeeded correctly. Everybody, are you able to see this?
+166:58
+
+Yeah. Now above indexer, indexes there. Left side only, search management. Indexers, the indexes. Now click this indexes. Yeah, now click on RAG. Some number is there, no?
+167:12
+
+One, two, three something. So how many total chunking happened? 244. Okay, you can see document. How many documents got created, guys? I have given- 244 ... three PDF, 244 chunk happened.
+167:25
+
+Embeddings. Embeddings happened. And now you have to go and search it. Are you clear, Farhan, where you will see? Yeah, just type something, RAG. Yeah. Yes, sir. Yeah. Now I'm-
+167:38
+
+Yeah, so like that you have to search it. Okay, not every time you can go and do the vector database. Otherwise, charge is there, right? So you unnecessary, you have to pay some amount. So one time only you have to do, and you can see it is stopping.
+167:50
+
+So these 244 chunks, that is we are getting here, right? Vectors. That is not getting, no. What you are writing, that it convert. So that we are- Okay ... searching it and giving it.
+168:04
+
+Okay. Yeah. Okay? Now, everybody happy? Farhan, just unraise your hand. All my friend, are you happy?
+168:17
+
+Bolye, yes, no? Theek hai. Now please go into Microsoft Foundry now. I am going to do the final touch for RAG system.
+168:30
+
+Go to the Foundry. Foundry you already open, Sahana, no? Go to another window. Yeah. Not here. In another window you have opened it. Okay. Microsoft Foundry is there.
+168:42
+
+There are so many window open there. Next window, next window. Okay. Okay, here. Got it. That's it. Okay, now what you do, click on the deployment.
+168:56
+
+Click on the deploy. Not here, left side, deployment. Okay. Now guys, you can see everybody here, these two models got deployed.
+169:08
+
+Okay? These two model got deployed. I wanted to build a RAG system now. Hmm? What you do, click on the, let's say GPT model. No, not the GPT model.
+169:21
+
+Already clicked there.
+169:33
+
+Pratik, can you please go on mute? Thank you. Guys, everybody, you can see here, this is what is coming. Now, you know RAG system, right? What happened? Indexing already done, but you have to connect with the dataset, right?
+169:54
+
+You have to connect with the dataset. Now, first is instruction given. You have to write whatever you wanted to. Yeah, you can say this, this. You don't write it. Just listen. You can do it later. Next part is coming tool. Okay?
+170:09
+
+Next part is coming tool. Yeah? So tool, I'm not creating any agentic AI, so I have to connect with the tool or if you wanted to do NCP part, then you have to give a connection for NCP. Yeah, you leave this part.
+170:23
+
+Second part is wave search. Wave search also you can leave it. Third is called knowledge. Click on the knowledge, and here you can see, save in agent it's saying. Leave this part.
+170:37
+
+On top, on top, wave search, there is a add button there. Just see this, click on add button. What is coming? Wave search, model context. So you can see here, guys. This part you can see.
+170:50
+
+Here, MCP is there, Model Context Protocol. So MCP, extensively you will use it. So if we have any different tools there, you have to click that Model Context Protocol. Just click it, Explore.
+171:06
+
+Click this. Now they are creating an agent. So how agent will go and anywhere you can give it, you have to see agent name. Right now they are asking agent name, and then they will go on that connections
+171:19
+
+and you have to fetch it. So if you get a live data and all, my suggestion is rather you can go and use the scheduler. You trust on the MCP part here. Hmm. Okay? You can give it so that it is very easy for you. Okay.
+171:34
+
+Now, leave, cancel this. Cancel this, no problem. Okay. Go down. Save agent, card rail, click on. Agent I have not created, that's why lock system is coming, okay?
+171:49
+
+Leave this part, no problem. Left side, there is a Knowledge button there. Are you able to see Knowledge? Yeah. Click this.
+172:04
+
+Knowledge base, Foundry. So this Knowledge Foundry, they are saying we have to connect with the Foundry. Click this Foundry queue, and Azure subscription one. Azure subscription one, you have given?
+172:20
+
+Sweden Central, first one. Select. Sana AI. Very good. API key. Click on connect button. Hmm. Yeah, API key only. Connect this.
+172:32
+
+Okay, so your resource get connected here in your Foundry, guys. Okay. Okay. Now they are saying Grant to Agent Enterprise Knowledge. Agent I'm not interested right now.
+172:49
+
+Create a knowledge base. Can you click on the Create a knowledge base? Let me see what is coming. Some features they keep upgrading also. That is why. This is-- No, I don't want to. So here also, if you wanted to create some
+173:06
+
+separate knowledge base, they are giving different options. You can see here in the bottom, Add sources and all. Yeah. On the Add sources. So this is- On the Add sources ... this is again the raw data, right?
+173:18
+
+Raw data. Click on the Add sources. Add sources. Yeah. And here you can see Azure Blob Storage, Azure AI Search Index. So don't give the Blob Storage. You always give the Azure AI Search because this part gets connected
+173:33
+
+from embedding data, not the raw data. Correct? Okay. So you have to give this one. Now, I'm not interested this one. I wanted to show you the ChatGPT. Go to the Deployment.
+173:48
+
+Okay. Click on the Deploy button. Deploy drop-down. What is coming? Deploy a base model, LDD deployed. Manage computer this.
+174:06
+
+No, this is a model. Play Store base, Play Store actually. Sir, in the knowledge base only we can connect to our RAG indexer, right? Correct. I'm just doing it. Search window there, no?
+174:20
+
+Sana on right top. Search on top. Can you write here Playground?
+174:32
+
+Click on the Playground. First one. Okay. This one? Click this. This is Ask AI.
+174:45
+
+I will first add your documents this. Foundry portal, click on the Foundry. Now Playground is coming, and you click that. We can start this- This one?
+175:00
+
+No, go to the Foundry portal first. Foundry portal, I think we are on Foundry portal only. Click this. So you select your project, navigate to your deployed model under Models.
+175:13
+
+Up you can see the RAG project already there. Yeah. Okay, just click on the RAG project. Okay, RAG project is already there.
+175:26
+
+Sweden Central is already there, so there is no problem at all. Now click on the- Deployed Models? Deploy Models. Why it's not coming? Go back.
+175:39
+
+Just go one step back. Yeah. Click on the Microsoft Foundry. Excuse me. Test in Playground.
+175:51
+
+Okay. Now click on the Knowledge. Save an agent. Why save an agent coming?
+176:05
+
+This one? Create a knowledge. Just click here, Create a knowledge. Description you have to write it. Chat model, can you put the GPT? Which one we have taken? 5o mini, right?
+176:17
+
+Yeah. No, not that one. The model. Sorry, embedding. Sir, in my knowledge, I'm able to link it through the Foundry IQ resource, sir. In your knowledge? I'm doing live.
+176:30
+
+Yeah. No, no. Knowledge is okay. This live we are doing it. Some changes happen. No problem, you can see. Chat model. Next window.
+176:42
+
+Click this. No, madam. Right side. Chat completion model is coming, no? Hmm. Yes, that only. Okay. Click this.
+176:55
+
+GPT-5 mini. Select Retrieval effort this. Output model, click on the output mode. Answer synthesis, extract data.
+177:07
+
+Okay? Retrieval reasoning effort, minimum. Go next. Retrieve instruction. Add source. Can you click on the add source? Some changes happen. Click on Azure AI Search Index.
+177:20
+
+Description, select index, click on the Select Search Index. Text in meeting search. Which one there? RAG one or search one? I think RAG one. RAG. RAG. Because this is just a keyword search. Yeah. RAG11784.
+177:41
+
+Create. Save the knowledge source. Active, click this.
+177:56
+
+Yeah, it's okay. Cancel. Now, save knowledge. So can you please cut that one, the right side, Ask AI?
+178:12
+
+No, this. Okay, create a new knowledge base done. Now please go in the deployment. Sir, don't we need to save this first? Already saved, no? This is- At the top, there was an option to save knowledge base.
+178:24
+
+I think she has already saved it, but still we can see. Yeah. It is again not showing. Yeah, you have to click on that Save Knowledge Base. Can you try it again? Yeah. Yeah.
+178:38
+
+Save Knowledge Base. Yeah, I think that's it. Again, save? No, I think it's done.
+178:53
+
+Okay, click on the deployment now. Yeah. Right side, you can see Open in Playground is coming.
+179:06
+
+Yeah. Yeah, click this. Perfect. Now, can you ask questions, what is self-attention mechanism?
+179:19
+
+One thing you can do it. Instruction where you have written. No instruction is there. Can you write it? Say you are an AI assistant that help people finding the information. Base is the given knowledge database.
+179:31
+
+This is called augmentation. Given knowledge database. In case the answer is not given on the context, in case the response or
+179:46
+
+answer- Mm-hmm. In case the answer is not given on the context, simply say, "I don't know."
+180:00
+
+Simply say, "I don't know." Well, let's stop. Next. Also,
+180:15
+
+please provide citations when you get the answer. Please provide citation so that you will know which PDF or which chunk we are getting this. Please provide citations
+180:32
+
+where response received. Citation from where
+180:45
+
+you receive the response. Okay. Hmm. Okay, now fine. Save this.
+180:57
+
+I think that's it. That's just the instruction. Should I ask question? No, just try this.
+181:11
+
+Now if you- Should I ask any question here? Can you click on the knowledge? Are you getting that knowledge part here? Not there. No. Yeah.
+181:25
+
+It is there. No, but it is not connected to the order somehow. Here, madam. Playground. You have to copy the prompt. See everything gone. Here, knowledge you can see. Note, tools, knowledge, memory, guardrail.
+181:38
+
+Knowledge, can you click the knowledge? No, here. So click on the agent. Can you please save on the agent? Can you please click this? Not here, in that side. First on the top,
+181:54
+
+right side. Okay, here. Assign me. You don't have required to perform actions project.
+182:08
+
+Why it is not coming? Call model this. Connector, GPT model. Some changes happen in this tool.
+182:20
+
+Assign me. Click no, assign me. That's correct. Only user's role assigned. Will take five minute to the change
+182:34
+
+effective. Refresh page, your access update. So I think they are not giving that options directly. You have to create agent and then it works. So it's fine. Oh. Just refresh your page.
+182:48
+
+Just ask some simple questions, see what is happening. Is it coming? Anything. Just see what is helpful. Who is Narendra Modi? Ask who is Narendra Modi, because I have given some different PDF, no?
+183:17
+
+It's in the chatbot. It's not connected with your database. Not as database. Okay. No, sir. Right now, the instructions are not given to add it. No. Therefore, even if it is connecting to knowledge
+183:43
+
+base, it will go and do this also. Please add on to your instruction, "I pasted this chat," and then try the same question. Can you copy-paste?
+183:57
+
+Sorry about the mistakes here. Yeah. Save as an agent? No, just simply ask the question again. Same question.
+184:23
+
+It is giving the answers. Yeah. It's not working, actually. Just click on save as agent. That gave me,
+184:53
+
+we have already assigned. What saying, you don't have the required role to perform this action to this project. Would you like to assign Foundry to the role of principal? No. Just assign me, it will give you the role, then you can save as agent.
+185:06
+
+Just assign me. Assign already, she did it. No, refresh the page. Don't do it then. I got a option to save it, and when I click on save, it give
+185:20
+
+the required name. This need to be done, as it will not allow you. Just click on knowledge now. Yeah.
+185:33
+
+Knowledge. Save as agent. Yeah, now it is giving save as agent. We will search. It's coming wave search if you click on add. It's coming MCP only, or are we getting any hit ones?
+185:46
+
+Wave search, model context, SharePoint file, file search, code interpretator, upload file. Why that part is not coming?
+186:02
+
+Just disable here. Wave search, you can enable it. No, don't disable it, because I need a front-end code. Yeah. Upload file.
+186:16
+
+Knowledge. Playground this. When you click on save as agent, it gives you an option to create an agent in the knowledge. Can you give me the access? Yes.
+186:30
+
+Can you give me the access, Sahana? Yeah. Given? Yes. Let me see what happened actually.
+186:44
+
+Some changes happened.
+186:58
+
+Sir, actually, I haven't saved anything, just given the instruction after adding the knowledge base, and it's giving me the answer. Let me see. Some mistakes there.
+187:32
+
+Check what is this Discord, GitHub, documents, agent. Yeah, it is working for me. I mean, everything. In fact, I was able to connect, sir. If you want, I can share.
+187:46
+
+Just hold on. No, why it is not coming here?
+188:01
+
+I think here there is search index. It is not the RAG, knowledge base.
+188:44
+
+Can you add sources there?
+188:58
+
+RAG once more. Okay, now I'm going to agent.
+189:20
+
+Okay. New agent.
+189:35
+
+Now it is coming. Are you able to see this? Yeah. Knowledge and connect to Foundry. Okay. So this is the knowledge base. Connection this.
+190:24
+
+Connected. Yeah. Sir, can you repeat it once again so that we can- I'll do it. One minute. Yeah. Thank you. Devanshu, can you share the room? Thank you. Already done.
+190:40
+
+You are very smart, huh? How you know that I will ask this thing? Yeah, I understand. Well.
+190:53
+
+So please provide citation. Reasoning. Providing. Yeah. Providing it should be.
+191:07
+
+Or provisioning also works. Yeah. Okay, this is fine. Knowledge base connected. Now let me ask.
+191:20
+
+Should we save it also first? Just to be- What is... Uh-huh. Yeah. Yeah. Otherwise, I will lose again. Okay.
+191:33
+
+Now if I ask, what is Kakrod Chandrapati? Very famous nowadays now.
+191:49
+
+Not famous. Hyped. Yeah. I don't know. Okay. I don't know. Okay, perfect. Now let me ask the, what is
+192:11
+
+self-attention mechanism? Okay. Now if I ask it, you can see even a spelling is wrong, but LLM is very smart, and they will give the
+192:27
+
+citation also. Okay. So you can see one in self-attention is an attention mechanism that related to this. Yeah.
+192:42
+
+Second answer they got it here. That one, two, three numbering is coming. But that is- And third part also is coming. Yeah. Because of this. And this is the citation, they got it. Click the link and see the citation as well.
+192:55
+
+So we can also evaluate here, right? You can also evaluate. Yeah.
+193:14
+
+Taking time, but anyway, it's working fine, right? Yeah. Now, others who has not completed what you do, please go here in the Foundry. First thing first, what you do now it is not coming directly, so you can click on
+193:40
+
+the playground. Okay? Or even you can go in the Foundry, you can see here build an agent is coming. Okay, so you have to start building an agent. Click on the agent. Write the agent name first.
+193:54
+
+Okay? And you have to create it. Either you can do this, or you can click here in the playground. You can see on the top agent, you can click the agent. Here you have to write a agent name. Okay? You can create a new agent. Once you create a new agent,
+194:09
+
+please go in the knowledge also. In knowledge base, you have to create a knowledge base. Okay, you have to go and create a knowledge base. Yeah, so knowledge base, you have to select the model,
+194:25
+
+GPT-5 mini model. You can change your knowledge base name also as per your requirement. If you wanted to retrieval instruction, you wanted to write the guardrail part. Let's say tomorrow
+194:38
+
+you are building a guardrail, right? And anybody in your organization, anybody wanted to fetch your director informations or your vice president informations, personal detail. So you have to write. Anybody ask some policies related and all, don't give the answer.
+194:51
+
+So if you wanted to give that instruction as well, it will not work. Yeah. Here you can see add sources. So this part, retrieval instruction is a guardrail. Now where your vector database, you can see Azure AI search index.
+195:07
+
+So you have to select the Azure search. Or if you have different huge existing resource, right? Already you did on Jupyter or VS Code, you have created in your local drive, like vector database. How you created in the Chroma
+195:20
+
+database. So if you wanted to give a Chroma database, you can give huge existing source, right? And then you have to connect it. Browse also there. So there are varieties of options available there. Yeah, you can see MCP server there.
+195:35
+
+So MCP when I will cover, you will see how we can leverage and utilize it. You have a Fabric IQ, you have a Microsoft SharePoint, Azure Blob Storage. So wherever you wanted or anything, your file is there, you wanted to connect, you can connect that part also.
+195:48
+
+What if our storage is not mentioned here, like for example, Postgres, that is also a vector storage. So if that is not there, you can just see by the help of MCP you can do it then.
+196:02
+
+Okay. Because MCP you will get a connection. So anything is there, if that is not available, you can go by the MCP and then you have to connect it. Okay. Or you have to create some other functions and then you have to do it. Sir, this knowledge base need not be indexed, right?
+196:15
+
+Because it's saying blob storage also. So- So normally what happens, sometimes your client will give you a raw data. That is numerical data only. Correct. So that directly if you store it, you can do it.
+196:28
+
+So that is why they are giving a varieties of options. But then if I use this blob storage directly in my playground or in my agent, how will it index? How will it give the context? So what you do, you have a tools here.
+196:41
+
+So if you remember that part. Where is my drawing page? Sir, in this- See. So I'll just tell you a perspective. So let's say you create a agent. Okay? Now agent what need?
+196:55
+
+Can I say agent get connected with LLM? Agent get connected with the tools also? Correct. So tools means can I say blob storage where my raw data is there. Correct. And that raw data how you will utilize, first you have to convert into number.
+197:11
+
+Yes. So then you have to use the LLM model. And then you have to create a memory also. So that is why they have given all the features. So in RAG you will not use it. When I say these options, RAG you will
+197:25
+
+not use it, blob storage and all because RAG normally we need embedding data. Correct. But agent time doing it. Agent you can do know directly. Yes. There we can. Yeah, so that is why we have given. So agent purpose you have to do this.
+197:38
+
+Understood. Yeah? So guys, you have to create connect with the knowledge database. Once you connect it then you have to go to deployment. Yeah. Here you can go in the deployment or directly you can click here, Foundry. Go to Playground.
+197:51
+
+Once you come here, you have to write a persona here. Augmentation part. And knowledge automatically you will get that add part. Okay? So right now they are saying again agent because you have to create a agent and all.
+198:07
+
+You have to create a agent. So how you will do it? By this agent. So already one agent is going on. So click here. This, if you guys will do first time, you have to do it.
+198:20
+
+So see this is what the persona we have written. Here given knowledge equal to knowledge base, which is called AI search. If you create a Cosmo DB, Cosmo DB I have not created right now.
+198:33
+
+If you create a Cosmo DB means any conversation happen, let's say I ask, what is CG, cockroach Jana party? CJP. Who is Narendra Modi? So even though you are not
+198:46
+
+getting the answer but that get a store here. Browse all memory store, auto create memory store, create custom memory store. You want it. So all functionality is there. Sir, in my knowledge section, I still get save
+198:59
+
+as agent. So what's- Agent you have to saved it. Once you create agent then only you have to use this part. I created an agent with my name and RAG. Ah. But it's not showing right now. How?
+199:13
+
+Have you created a knowledge also? Yes, created a knowledge also. But I think you have not- So what is- I think you have not selected the RAG,
+199:27
+
+the embedded knowledge base. This knowledge did you get here? When you click the knowledge did you get this knowledge base 332? No, not getting here. That's why I'm asking.
+199:39
+
+So first you can go in the knowledge. Yes. In knowledge you have to create a knowledge database. Have you created? Are you able to see? Click on the knowledge. Are you able to see this one active? Yes. Active, yeah. You are getting. Yes. Have you created agent now?
+199:52
+
+In the agent, yes. Kshitij under- You have created. RAG, yes. So go in the agent, share your screen. Better you can share your screen. Actually, I was using other laptop for doing this.
+200:07
+
+Then you have to wait, watch again and see what is happening. I- Guys, this part is done. Okay. I can share in one minute if you can allow. You can do it, no problem.
+200:20
+
+Others, once you are happy with this response and all, once you are happy with the response and all, you can see this is...
+200:34
+
+Where is this? Sahana RG. You can see publish. Okay, you wanted to, say I wanted to publish now. Preview web page. Click on the preview web page.
+200:47
+
+Can please don't touch Sahana for the time being, give me access. Yes. If you touch then I will mess it. So you can see here if you go in the publish, you can go and see
+201:05
+
+these options coming. Preview web page, start Microsoft Copilot. If you wanted to go in Microsoft 365 Copilot on this bot you can deploy on the Teams, you can do in the Teams also. And in Teams you ask any questions they will give answer
+201:17
+
+related these three documents. But what you do, you have to go here. Go here this, and here you have to write app services. App, click on the app, and you can see app services.
+201:32
+
+Are you able to see everybody app services? Yes. Others? Yeah, please click on the App Services. Now in App, again, you have to create it.
+201:46
+
+Everywhere, please remember, it's chargeable. Now click on the Web Application. Web Application plus Database. So go for Web Application only. Database, I'm not uploading it. We have already data available.
+201:58
+
+What it's saying? Resource name is Sahana. Here, Web Application, let's say I'm writing here, Sahana
+202:16
+
+Application. Okay, App. Okay. Publish board container runtime. Python 3 point-
+202:29
+
+Python 3 point, which version you have? 3.14, can I take it? Or 12 I'm taking or anything 1 point- 3.13 is. Okay.
+202:42
+
+Linux is okay. Region is Sweden Central. Sweden Central. Okay. This all okay. Zone redundancy, leave this part.
+202:55
+
+Review and create. Sir, will it be accessed by external, any public portal?
+203:10
+
+I'm just worried about crawlers and all. Yes. Because we have initially mentioned as public. But then if we enable it, won't it be possible that other external, anyone can use the configurations or use the LLM that we
+203:24
+
+have built in, although it is based on that grounding context? Can only view it. Okay. Okay. Because I have not given VNet and all, right? That time I have just used the by default one.
+203:37
+
+So in initial when you set up, that time you have to give all the features. Okay, deployment is in progress.
+203:50
+
+Hello. Sir, I have raised the hand. I can share my screen now whenever you are free. Yeah. Just a minute. This is the last part. One shot without giving break.
+204:14
+
+I think we have completed fine. That's better. Yeah. Okay, now go to the resource. Because you guys will miss the flow.
+204:27
+
+That's why I have not given break, and I thought I'll complete this part. Okay, so here default domain is there. You can click this domain.
+204:42
+
+So will it give the default UI chat? Correct. Okay. Chat window.
+204:56
+
+Cloud is very big thing, okay? So I'm not covering everything. Mainly, I'm covering from GenAI and Agentic perspective. Similarly, if you go in the AWS, there are so many things there, you may get confused.
+205:12
+
+So learn the specific things, what is required for GenAI and Agentic. Don't go for admin or some other role.
+205:27
+
+Just wait, it will take some time. So it's going on. Meanwhile, let me see my friend
+205:39
+
+screen what is happening. Can you share your screen? Sahana, just stop your screen. Once it will come, you can just share again. Yeah. Meanwhile, I'm getting one call.
+205:52
+
+Buddy, you can share.
+206:07
+
+Sorry. Satish, I'm making you panelist. Go ahead.
+207:25
+
+Prashanth is saying, "Himanshu, any idea why we are creating RAG directly in cloud instead of creating VS code?" Any idea? VS code is a pro code. No, here I'm doing low code. Have you done? Have you written any code, my friend?
+207:43
+
+Prashant? But we can copy this as Python code? Oh, so this is not code, no. If you wanted to do pro code, you can do in VS Code. You can only use the API key and all, and you can use
+207:59
+
+cloud. Are you attending my Project Batch, Prashant, in the evening? No. Yes, then why you are asking this question? I have created, no dot environment there.
+208:12
+
+I have taken all the API and everything, and I'm writing code, and then I'm connecting with a cloud. Chitis. So
+208:26
+
+here, when we go to the models- Not model. Click on agent. Okay. Click on agent. Click your name, Chitis Rag.
+208:38
+
+Go down, click on the knowledge. Knowledge, click on add. Oh, okay. Connect the Foundry. Give the name. Connect it. It's working, no?
+208:52
+
+Yeah. How about pro? From your- I was going to inside the models. No problem. It's first time, no? So once you explore, you will learn. Yeah. It's- Okay, but please write augmentation. Because if you don't write, citation and all will not come.
+209:05
+
+So here- Yes ... instruction you have to give very carefully. Okay. Yeah. Voice mode also there, you can enable it. So if you wanted a chatbot, who is here speaking, like Alexa and all you have seen? Yeah. Same thing will happen. You can put your microphone, ask a speak, and they will
+209:20
+
+hear, and they will speak the same thing. Yeah, he'll reply according to that. Ah. Yeah. Okay. Yeah. Can I stop? Yes. Sahana? Yeah.
+209:34
+
+Game or still going on? Deployment center, QK Start, click on QK Start.
+209:47
+
+New website, Rag application, Azure, Azure net, this tutorial, instruction, services. Go down. App services, this.
+210:05
+
+Concept security integrated with App Services. Can you click in the left side integrate AI with App Services? Chatbot with Rag application, click this.
+210:20
+
+This is descriptions given. I'm not interested. No problem. Go on top, right side, top, right side, get started with Azure.
+210:38
+
+Sign in. Try with this sign in.
+210:50
+
+Oh, so app, you can see Sahana app is coming. Click this. Click that application. Where?
+211:06
+
+Domain right side. Default domain is coming now. Deployment center, I have developed why this is coming. Your web application running and waiting for your content.
+211:18
+
+Your web application is live, but we don't have your content yet. If you are already deployed, it could take up to five minutes content. So this, you have to wait for a while, okay? Just now we did it. So you will get just like a ChatGPT
+211:34
+
+application. Okay? And then you ask any questions, you will get the answer. So just wait. It will take 10, 15 minutes. Actually, I wanted to reach here, and then I wanted to give a break. Yeah, but it's already 1:40, so I
+211:49
+
+think you have to just wait, and then you can try it. Someone rightly said we have a six hours break, no? 7:00 PM we start again. Correct. You have a break now. You can enjoy. And, evening, Himanshu, what I need, I have
+212:04
+
+shown you, right? You already log in on Azure, right? So I may need your API key and all. So you have to give me the API key so that I will give you. Yeah. Okay. Sure. Go with the pay as go, and pay charges is 6,000, 7,000.
+212:19
+
+So I don't want to pay that much for one project batch. Sure. We will not reimburse that amount, so I wanted to use your credential. Sure. We can do that. Okay. Mm. So are you clear, guys? Everybody, you can just do these applications, wait
+212:34
+
+five, 10 minutes, and then you have to click. It automatically get enabled, and you can ask questions just like a ChatGPT, and that is Rag-related ChatGPT. Okay, this is called end-to-end perspective.
+212:50
+
+How I have taken the data, I have stored it, I have done chunking, embedding a storage. And then I've created a agent, connected with the knowledge database, checked this. I'm getting citations, I'm getting all answer.
+213:02
+
+Now just deploy it, give these applications to other user, and they can also consume it. Yeah? But there are applications there. Here by default is there. When you create a subscription, that time you have to read all the functionality.
+213:15
+
+So if you wanted how many member they have access. Yeah? So if you select five members, then five members, they need a ID only. They have to also register, and then you have to give the ID and like that. You have to go in the private endpoint, like that you have to do it.
+213:29
+
+Never, ever go for public version in organization. Always go with a private one. Yeah, because you- Okay ... don't want, there is a amount involved there. See, just abuse- We can also limit to certain token-
+213:43
+
+Absolutely, yeah ... we can also give a token limit. You have to limit So that's it. I hope you understood. Some glance you got it. Now, maybe tomorrow I'll teach you something more
+213:56
+
+advanced in the Azure itself, so that you can see so many things, like how you will create a agent and other stuff. Agent already you have seen. Only thing I wanted, you can do a more explore.
+214:10
+
+So I will not teach you the low code, I will teach you pro code. Makes sense? Because pro code will help you. Low code, anybody can do it. Yeah. Okay. There are few hands there. Jivas, what is your query, my
+214:22
+
+friend? Misraji, bolie. Sir, I have configured agent and knowledge bases, but still I'm getting wrong answer.
+214:38
+
+To kuch galti ki honge. Dekhiye kya galti hua hai. Aapne prompt achchse nahi dale ho. You have to write a prompt documentation. Nahi, prompt copy karke dala hai, sir, same prompt. Same dala hai to mujhe dekhna padega ki kya problem hai.
+214:52
+
+I have to see it. Chalo. We'll check it later, Dheeraj. Dheeraj saying, "Jivas just share the screenshot what you have given." Let me see it.
+215:05
+
+One more? I need a break now because it's more than three hours. Or kya hai, or kya hai? Koi kisiko questions hai? Dheeraj Mahajan, you have raised hand. Pradhan, you have raised hand.
+215:19
+
+So I have a one question. While creating the app, so I just missed that part. So in the publish option also do need to we check code or container runtime stack? So that option I need to be
+215:35
+
+check. So what need to select over there? So can you share my screen? Can we do it tomorrow because already it's 1:45 now. No worries. If anybody know the option, I can just do it and
+215:49
+
+try to remember it. So just want to know the option is that, so we have a publish option is there. So we need to select code or container. So which to be select in the runtime stack or something?
+216:04
+
+If anybody knows, that's fine. Where you are asking? When we create a web app. Web app, what you want? So there is a instance details, and there's a one option is a publish.
+216:16
+
+So in publish, we have to select code or container over there. If quickly I can share my screen, if somebody- Achcha, code. Yeah. I've got it. Code, you have to select code. And in runtime stack, Java, Python or something?
+216:30
+
+Python. Python 3.12. 3.12. And the rest options are the default, right? Correct, yes. And region, we have the Sweden only. Here I have given. No, you can take a screenshot. See, publishing mode, code, runtime stack Python 1.3.
+216:44
+
+Okay. Okay, all this part is given. Here. Yeah? Okay, thank you. I will do that. Thank you. Chalo.
+216:59
+
+All right, guys. Thank you very much. Prashant, Dheeraj, aap dono bhi hath raise kara the. Do you have any questions? Yeah. Hi, sir. Mm-hmm.
+217:13
+
+Sir, like you said, this is no code. I understood, sir, but in real-time when we join any company, we can't create directly in the cloud, right? Just for deployment we'll be using this cloud. No. When you join the company, your client will come, you will not put directly in
+217:25
+
+the pro code. No, you will create a POC. You can show them. Okay. They are happy- The PO- You can say, "Okay, sir, I will-" Okay, POC will be done on this cloud as we- Of course ... done today? Correct. Okay. When you do the free code, when they said they are happy with the
+217:40
+
+process and all, then they can say, "We have 70,000, 100,000 documents there." Correct. That 100,000 you cannot upload in the Blob storage. No. Okay. So you need to create a proper code and all, they will give in share drive
+217:54
+
+somewhere else, and you need to connect it and do it. So they don't write code. Okay. Sir, do we have any- Okay. Now I got it ... do we have any Git repository for reference of this, how we can integrate this with our
+218:07
+
+project? No, I have there, but I'll share some material only because I'm not uploading anything in Git. People are misusing it as well. Okay. Last thing, sir, we have to delete all the services if we keep it for
+218:22
+
+today only and there's a charge? You have a free account right now, no? You have a free account, so no need to worry. You can continue. But tomorrow I'll tell you, you have to delete everything. Okay. There's a charge involved, by the way.
+218:36
+
+So I definitely suggest to all my friend, please go and delete it and just practice once again so that you remember it. But you have uploaded three documents, so charge is there.
+218:49
+
+So it will charge something in your account. So one thing, so for tomorrow, furthermore, we need all these things set up all ready before further going, right? If you don't delete, there is no need to. If you don't delete, everything remains same, then we can directly start from here.
+219:03
+
+Okay, fine. Yeah? Sir, last question, sir. Sir, I've updated the agent and knowledge base, but whatever question I ask, it says, "It's not in the knowledge base." So do we need to configure anything in knowledge
+219:18
+
+base again because already I did with the web- Knowledge base you have to do it. No knowledge base you have to do it ... Yeah, I did Azure AI Search index was created, sir, already. So do we need to give any prompt there, or do we need to select model, chat completion model or something?
+219:34
+
+Oh, you have to select now which model you have used. 5.5 mini. Right? GPT 5 mini. So you can select that model, then you have to do it. Okay, so I already selected Azure AI Search index. Now I need to update only model and I can search it.
+219:48
+
+Or do we need to give any instructions there or description about it? No, nothing? For a knowledge base, you have to select based on RAG, not AI Search. Right? Two knowledge bases we have done today. First is AI Search and next is RAG.
+220:02
+
+So if you select RAG, you will get the answer. Okay. We were talking AI Search part. No, this- RAG? No, sir. The question we are asking within the
+220:17
+
+GPT model- In Foundry you are asking ... yeah, in Foundry. Foundry, you need not to do it. You can just create a knowledge base first, knowledge database. There you have to select which you have to connect with
+220:31
+
+Azure AI Search. Then you have to create agent, and agent you have to connect with the knowledge database. It will work. Their instruction is there, you have to write a prompt. There only you can see, "Give me the citation." If the answer is not given, please
+220:45
+
+say, "I don't know." Like that you have to answer. Okay. If it is not working, just watch the recording, follow the same instruction. Still facing issue? Ask me tomorrow.
+220:59
+
+Chalo. That's it, guys. Thank you very much all. Bye. And Sahana, thank you very much for sharing the screen and whole session you have taken. So thank you. The credit goes to you. No, sir. Thank you for teaching us this.
+221:13
+
+Chalo. It was so insightful today. Yeah. Thank you, everybody. Bye. Take care. Bye.

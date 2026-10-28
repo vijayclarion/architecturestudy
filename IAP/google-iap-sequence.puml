@@ -1,0 +1,89 @@
+@startuml google-iap-sequence
+title Google Play IAP - recommended end-to-end flow (consumables)
+autonumber
+skinparam sequenceMessageAlign left
+skinparam responseMessageBelowArrow true
+
+actor       Player
+participant "Moskha Unity Game\n(Unity IAP)"            as Unity
+participant "Google Play\n(on device)"            as Play
+participant "Backend" as API
+database    "Moksha Database"    as DB
+participant "Google Play\nDeveloper API"          as GApi
+queue       "Pub/Sub\n(RTDN)"                     as PubSub
+
+== 1. Buy on device ==
+Player -> Unity : Tap "Buy 1000 gems"
+Unity -> Play : InitiatePurchase(productId,\n obfuscatedAccountId = hash(userId))
+Play -> Player : Payment sheet (card / UPI / wallet)
+Player -> Play : Confirm payment
+
+alt Payment completes later (UPI / cash) -> Google state PENDING (2)
+    Play --> Unity : Purchase PENDING
+    Unity -> Player : "Payment processing..." (grant nothing)
+    note over Play, Unity : When payment completes, Play delivers the\npurchase again as PURCHASED (continue below).\nIf it never completes it is cancelled - no charge.
+end
+
+Play --> Unity : Purchase PURCHASED\n(receipt: purchaseToken, orderId, productId)
+Unity -> Unity : ProcessPurchase -> return Pending\n(keep transaction open, do NOT grant locally)
+
+== 2. Server validation (validate-google-purchase) ==
+Unity -> API : POST /api/purchase/validate-google-purchase\nJWT + {productId, purchaseToken, packageName}
+API -> API : userId from JWT\ncheck productId in server catalog\npackageName == configured package
+
+API -> DB : Find by purchaseToken
+alt Token already processed for SAME user
+    DB --> API : existing (Purchased)
+    API --> Unity : 200 OK {status: AlreadyGranted, seenBefore: true}
+    note right of Unity : Idempotent retry (crash / lost response).\nClient just finishes the purchase (step 3).
+else Token belongs to ANOTHER user
+    API --> Unity : 409 Conflict
+else New token
+    API -> GApi : purchases.products.get(package, productId, token)
+    alt Google 400/404/410 (fake or expired token)
+        GApi --> API : error
+        API -> DB : log attempt (does NOT block token)
+        API --> Unity : 422 Invalid purchase
+    else Google 5xx / timeout
+        GApi --> API : error
+        API --> Unity : 503 Retry later (nothing stored)
+    else purchaseState = 2 (PENDING)
+        GApi --> API : pending
+        API -> DB : upsert state = Pending
+        API --> Unity : 202 Pending (keep transaction open)
+    else purchaseState = 1 (CANCELLED)
+        GApi --> API : cancelled
+        API -> DB : save state = Cancelled
+        API --> Unity : 422 Cancelled
+    else purchaseState = 0 (PURCHASED)
+        GApi --> API : orderId, purchaseTime, consumptionState,\nacknowledgementState, obfuscatedExternalAccountId,\npurchaseType (test?), quantity
+        API -> API : obfuscatedExternalAccountId == hash(userId)?
+        group Single DB transaction
+            API -> DB : INSERT purchase_transaction\n(state = Purchased, UNIQUE purchase_token)
+            API -> DB : Grant rewards to wallet / inventory
+        end
+        API -> GApi : purchases.products.consume(package, productId, token)
+        GApi --> API : 204 OK
+        API -> DB : MarkAsConsumed() (IsConsumed = true, ConsumedAt)
+        API --> Unity : 200 OK {status: Granted, rewards, newBalance}
+    end
+end
+
+== 3. Finish on device ==
+Unity -> Play : ConfirmPendingPurchase(product)
+note right of Play : Clears Unity's local queue.\nConsume already done server-side.
+Unity -> Player : Show 1000 gems
+
+== 4. Safety net (background job, every few hours) ==
+API -> DB : Find Purchased AND IsConsumed = false (older than 1h)
+API -> GApi : purchases.products.consume (retry)
+API -> DB : MarkAsConsumed()
+note over API : Alert if any purchase is close to the\n3-day limit (Google auto-refunds after that).
+
+== 5. Refund / chargeback (any time later) ==
+GApi -> PubSub : voidedPurchaseNotification(purchaseToken)
+PubSub -> API : POST /api/google/rtdn (push)
+API -> GApi : (or poll) voidedpurchases.list
+API -> DB : state = Refunded
+API -> DB : Deduct granted gems (balance may go negative),\nflag account if repeated
+@enduml

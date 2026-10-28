@@ -1,0 +1,53 @@
+@startuml Topic8_MultiAgent_Cost_and_Fit
+title Topic 8 - Multi-Agent Cost & Fit\n(Default is ONE agent; multi-agent must EARN its cost)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+
+:Considering multiple agents for a task;
+
+#LightCyan:Recall the COST MULTIPLIERS;
+note right
+  Baseline = plain chat turn = **1x** tokens
+  Single agent in a loop      = **~4x**
+  Multi-agent system          = **~15x**
+  Costs don't overlap - they STACK.
+end note
+
+partition "WHERE THE 15x COMES FROM (3 stages)" {
+  :1. Orchestrator overhead\n(planning + delegating, before real work);
+  :2. Parallel fan-out\n(each subagent repeats setup + reasons alone);
+  :3. Result stitching\n(orchestrator merges outputs = another model pass);
+}
+
+#Yellow:Apply the 3-QUESTION FIT TEST;
+if (Q1: Split into PARALLEL directions\nthat barely touch each other?) then (NO)
+  #Pink:Use a SINGLE agent;
+  stop
+else (YES)
+  if (Q2: Does each piece fit its OWN context\nwithout shared state passed back & forth?) then (NO)
+    #Pink:Use a SINGLE agent;
+    stop
+  else (YES)
+    if (Q3: Valuable enough to justify a bill\nseveral times higher?) then (NO)
+      #Pink:Use a SINGLE agent;
+      stop
+    else (YES to ALL THREE)
+      #LightGreen:Multi-agent has a real shot -\nuse it, and match models to roles;
+      note right
+        Soften cost by MATCHING MODELS TO ROLES:
+        * Opus 4.8 -> orchestrator (planning/merging)
+        * Sonnet 4.6 / Haiku 4.5 -> scoped workers
+      end note
+      stop
+    endif
+  endif
+endif
+
+:== GOOD FIT vs POOR FIT ==\n* GOOD: breadth-first work - many INDEPENDENT lines\n  of inquiry (e.g. research many sources at once)\n* POOR: tightly-coupled work - each step depends on\n  the last, all need the SAME shared context;
+
+:== THE CODING TRAP (exam favorite) ==\nA codebase LOOKS big, so people assume multi-agent.\nBut files depend on each other; changes must stay\nconsistent. That COUPLING means a single agent often\nfits coding better. SIZE != PARALLELISM.\n\nFraming: default is ONE agent. Multi-agent is the thing\nyou JUSTIFY, never the thing you assume.;
+
+@enduml

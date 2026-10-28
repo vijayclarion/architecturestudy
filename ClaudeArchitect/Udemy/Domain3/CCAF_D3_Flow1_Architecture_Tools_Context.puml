@@ -1,0 +1,198 @@
+@startuml D3_Flow1_Architecture_Tools_Context
+' ============================================================
+' DOMAIN 3 — FLOW 1: What Claude Code Is + Tools + Setup +
+' Context + Permission Modes  (Topics 1–5)
+' CORE SPINE: agentic CLI -> plan/act loop -> tools -> context
+' budget -> permission mode gates every action.
+' EXAM-CRITICAL ORDERING: pre-tool-use HOOK fires FIRST,
+' THEN permission check, THEN the tool runs.
+' ============================================================
+title Domain 3 · Flow 1 — Architecture, Tools, Setup, Context, Permission Modes (T1–5)\n(Agentic CLI -> plan/act loop -> tool -> context budget -> mode gate)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+skinparam activityDiamondBackgroundColor #FFF6CC
+
+start
+
+' ---------- TOPIC 1: WHAT CLAUDE CODE IS ----------
+partition "T1 · What Claude Code IS" {
+  :You run `claude` in your TERMINAL\ne.g. "fix the failing tests";
+  #LightCyan:It opens files, edits them, runs the test\ncommand, reads errors, fixes again — autonomously;
+  note right
+    == THE ONE BIG IDEA ==
+    Claude Code = an AGENTIC CLI. "Claude with hands."
+    * NOT a chat window, NOT autocomplete
+    * Contractor you hand a key to  (vs Copilot = spell-checker)
+    * Runs ARBITRARY bash, reads any permitted file,
+      edits across MANY files in one task
+    * Copilot/plugins have NO shell access
+  end note
+}
+
+' ---------- THE PLAN / ACT LOOP ----------
+partition "T1 · The Plan / Act Loop" {
+  repeat
+    :PLAN — decide next step;
+    :TOOL CALL — do it;
+    :OBSERVE — read the result;
+    note right
+      Loop = Plan -> Tool call -> Observe -> loop.
+      This loop is what enables SELF-CORRECTION
+      (vs a single-shot answer that can't recover).
+    end note
+  repeat while (Done or need clarification?) is (NO — keep going)
+  ->YES;
+}
+
+' ---------- CONTEXT WINDOW ----------
+partition "T1/T4 · Context Window (finite, shared budget)" {
+  :History + every tool result + CLAUDE.md\nALL compete for the SAME finite window;
+  note right
+    == CONTEXT BUDGET ==
+    * Verbose CLAUDE.md STEALS space from code + tool output
+    * When it fills: content is COMPACTED (summarised),
+      not silently deleted, not a crash
+    == MEMORY / STATELESSNESS ==
+    * New sessions do NOT auto-recall
+    * ONLY DISK survives between sessions
+    * CLAUDE.md loaded ONCE at session start, then RESIDENT
+      all session (re-sent behind the scenes each turn)
+    * Close terminal -> history gone; only disk persists
+  end note
+}
+
+' ---------- TOPIC 2: TOOL SYSTEM ----------
+partition "T2 · The Tool System (9 built-ins, task-driven each loop step)" {
+  #LightYellow:Pick the right tool for THIS step;
+  note right
+    == 9 BUILT-IN TOOLS ==
+    Read   — view a file (files, NOT dirs; use Bash `ls`); zero risk
+    Write  — create new / full rewrite (overwrites ALL lines)
+    Edit   — surgical change to lines (other lines untouched)
+    Bash   — any shell cmd; most powerful + most dangerous, no undo
+    Glob   — find files by NAME pattern (all *.test.ts)
+    Grep   — search TEXT inside files (where payments API is called)
+    WebSearch — close a knowledge gap (library changed after cutoff)
+    WebFetch  — pull a specific URL you supply
+    Agent  — spawn a SUB-AGENT with its OWN context window
+    ----
+    EXAM TRAP — Edit vs Write is NOT code-vs-noncode:
+    50-line config, change port 3000->8000 ->
+    Edit fixes 1 line, keeps 49; Write overwrites all 50.
+    Read-before-Edit avoids stale assumptions.
+  end note
+}
+
+' ---------- TOPIC 3: STARTING A PROJECT / /init ----------
+partition "T3 · Starting a Project · /init" {
+  :Run `claude` from PROJECT ROOT\n(root = default scope boundary);
+  :Run `/init` -> auto-generates a STARTER CLAUDE.md;
+  note right
+    /init detects 4 things:
+    1. project name  2. key files / entry points
+    3. languages & frameworks  4. suggested rules
+    ----
+    EXAM POINT: /init output is a STARTING POINT,
+    never a finished config. Review REQUIRED:
+    * verify stack (misreads polyglot repos)
+    * add what it can't infer (branching, security paths,
+      team conventions, coverage)
+    * remove noise (every line costs the window)
+    Shipping the raw draft = a liability.
+  end note
+}
+
+' ---------- TOPIC 4: MANAGING CONTEXT ----------
+partition "T4 · Adding & Managing Context" {
+  :4 ways context enters (all spend the SAME budget):\nfile path · @-refs · pasted URL · inline instructions;
+  if (Does this content CHANGE what Claude would do?) then (YES)
+    #LightGreen:INCLUDE — targeted (the 2 files that matter);
+    note left
+      TARGETED INCLUSION = a HABIT (a dial).
+      Include: architecture decisions, conventions,
+      test rules, known constraints, security paths.
+      Small accurate context BEATS large noisy one.
+    end note
+  else (NO — noise / secret / build artifact)
+    #Pink:EXCLUDE via DENY RULE in settings.json;
+    note right
+      DENY RULES = a GUARDRAIL (a wall).
+      Dual purpose (both get tested):
+      1. SECURITY — .env can NEVER enter the session
+      2. EFFICIENCY — no node_modules / build output
+      ----
+      FILE SEPARATION TRAP:
+      deny rules live in settings.json, NOT CLAUDE.md.
+      CLAUDE.md = instructions (can be ignored/forgotten)
+      settings.json = permissions (enforced pre-tool)
+    end note
+  endif
+  :Compaction: when full, Claude SUMMARISES older\nturns (gist survives, verbatim doesn't);
+  note right
+    Two triggers: auto near the limit, or `/compact`.
+    Put a COMPACT INSTRUCTION in CLAUDE.md naming
+    what must always survive (a task ID / file path).
+  end note
+}
+
+' ---------- TOPIC 5: PERMISSION MODES + THE GATE ORDER ----------
+partition "T5 · Permission Modes (session-wide dial)" {
+  :A pending Edit / Bash / etc. is about to run;
+
+  #Orange:GATE 1 — pre-tool-use HOOK fires FIRST;
+  note right
+    ============================================
+    EXAM-CRITICAL ORDERING (both are pre-exec gates):
+      pre-tool-use HOOK  ->  PERMISSION check  ->  tool runs
+    Hook is CODE YOU control; permission is config you SET.
+    ============================================
+  end note
+
+  #Orange:GATE 2 — PERMISSION check (by mode + deny rules);
+  note right
+    == 6 MODES ==
+    default      — reads free; every edit/cmd ASKS (safest)
+    accept edits — writes in working dir w/o asking; review via git diff
+    plan         — read-only; proposes; on approve EXITS into chosen mode
+    don't ask    — auto-DENIES anything not pre-approved (locked pipelines)
+    bypass       — skips prompts ENTIRELY (isolated container/VM only)
+    auto         — cuts routine prompts BUT a CLASSIFIER reviews each action
+    ----
+    3 anchors: mode is SESSION-WIDE · only the WORKING DIR is
+    auto-approvable · PROTECTED paths (.git, Claude's config)
+    are never auto-approved.
+    Switch: shift+tab cycles default->accept edits->plan;
+    or a launch flag; or a settings default. You set it via
+    CONTROLS, not by asking Claude in chat.
+    ----
+    auto vs bypass: bypass has NOTHING watching;
+    auto has a SUPERVISOR classifier that blocks escalation.
+  end note
+
+  if (Allowed by hook AND permission?) then (YES)
+    #LightGreen:Tool RUNS;
+  else (NO)
+    #Pink:BLOCKED before any effect;
+  endif
+}
+
+stop
+
+floating note left
+  == FLOW 1 SPINE ==
+  Agentic CLI -> Plan/Act loop -> pick a TOOL ->
+  everything shares one CONTEXT budget ->
+  every action passes HOOK then PERMISSION.
+  ----
+  == HIGH-YIELD FACTS ==
+  * Loop = Plan/Tool/Observe -> self-correction
+  * Only DISK survives sessions
+  * Edit = surgical; Write = full overwrite
+  * /init = starter, never finished
+  * deny rules -> settings.json (NOT CLAUDE.md)
+  * ORDER: hook -> permission -> tool
+  * auto = supervised; bypass = unsupervised
+end note
+
+@enduml

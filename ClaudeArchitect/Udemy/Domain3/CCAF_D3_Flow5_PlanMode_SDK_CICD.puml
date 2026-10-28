@@ -1,0 +1,161 @@
+@startuml D3_Flow5_PlanMode_SDK_CICD
+' ============================================================
+' DOMAIN 3 — FLOW 5: Plan Mode + Iteration + Agent SDK + CI/CD
+' (Topics 19–20, 24–25)
+' CORE IDEAS:
+'  * Plan mode = read-only THINK phase -> approval gate -> execute.
+'  * SDK vs API: SDK = full AGENT LOOP; API = single completion.
+'  * CI/CD: the -p flag = non-interactive; forget it -> job HANGS.
+' ============================================================
+title Domain 3 · Flow 5 — Plan Mode, Agent SDK & CI/CD (T19–20, 24–25)\n(Think->approve->execute · SDK=agent loop vs API=one call · -p or it hangs)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+skinparam activityDiamondBackgroundColor #FFF6CC
+
+start
+
+' ---------- TOPIC 19–20: PLAN MODE ----------
+partition "T19 · Plan Mode (separate THINKING from DOING)" {
+  :Enter plan mode;
+  note right
+    Two entry paths (both just set the permission mode):
+    * shift+tab cycles default -> accept edits -> PLAN
+      (whole session STAYS in plan until you cycle out)
+    * `/plan` prefix on ONE request, then returns to prior mode
+    Plan mode = a PERMISSION MODE, not a separate tool.
+  end note
+  #LightCyan:Read-only: reads relevant files, reasons, produces a PROPOSAL;
+  note right
+    A well-formed plan has 3 parts:
+    1. ORDERED numbered steps (not a paragraph of intentions)
+    2. FILES TOUCHED — every file named explicitly
+    3. RISKS / assumptions called out
+    Missing any -> push back before approving.
+    e.g. "rename User->Account": step1 edit models/user.ts;
+    step2 update 15 named imports; step3 run tests;
+    risk: assuming type unused in mobile package.
+  end note
+}
+
+partition "T19–20 · The Approval Gate (primary quality checkpoint)" {
+  if (Read the plan critically — approve, edit, or reject?) then (APPROVE)
+    #LightGreen:Session EXITS plan mode -> executes in the chosen mode;
+    note left
+      Check before approving: scope matches intent?
+      file paths correct for real layout? risks you can
+      resolve from domain knowledge? Approving WITHOUT reading
+      defeats the whole purpose ("fast is fine, absent isn't").
+    end note
+  elseif (EDIT) then
+    #LightYellow:Trim scope / reorder / add a step, THEN approve;
+    note right
+      Editing is faster than a full re-plan. Claude executes
+      YOUR version, not the original.
+    end note
+  else (REJECT)
+    #Pink:Restate intent more precisely -> re-plan;
+  endif
+  :During execution, if an assumption BREAKS -> RE-PLAN;
+  note right
+    Re-plan trigger: expected file missing / codebase assumption
+    wrong. If it breaks only ONE step -> patch & proceed; if it
+    undermines downstream steps -> re-plan.
+    FAILURE MODE: silent improvisation — Claude adapts around an
+    unexpected state instead of surfacing it. FIX (behavioural):
+    "if anything contradicts the plan, pause and tell me first."
+    Habits: short plans (5-8 steps), named files, explicit risks.
+  end note
+  #LightBlue:WHEN to plan: cross-file refactors · schema/API changes · ambiguous asks;
+  note right
+    Skip it for a single mechanical fix / typo / instantly
+    reversible REPL work. Heuristic: undo in 10s -> skip;
+    30 min to unwind -> plan first.
+    Pairing: subagent investigates -> main agent plans ->
+    hook validates -> staged human review.
+  end note
+}
+
+' ---------- TOPIC 24: AGENT SDK ----------
+partition "T24 · The Claude Agent SDK (was: Claude Code SDK)" {
+  :Import the SDK into your OWN program;
+  note right
+    Same Claude Code capabilities as the CLI, but YOUR CODE
+    drives instead of a human. Call methods to start sessions,
+    pass prompts as strings, stream output + tool events.
+    Configure at creation: model, tool categories, working dir,
+    env vars, system prompt; inject file contents; set tool
+    permissions; append follow-up prompts mid-session.
+    Use case: a bot opens a session when a PR lands, streams the
+    review, posts it as a GitHub comment — no human typing.
+  end note
+  if (Do you need the full AGENT LOOP?) then (YES)
+    #LightGreen:Use the SDK;
+    note right
+      SDK = manages the whole loop: multi-step tool use, file
+      edits, shell commands, streaming. One prompt -> it handles
+      everything in between + real-time observability.
+    end note
+  else (NO — one model call)
+    #LightYellow:Use the direct API;
+    note right
+      Direct API = prompt in, completion out. No session state,
+      no tool orchestration unless you build it. Also choose the
+      API if you're building your OWN agent framework.
+    end note
+  endif
+}
+
+' ---------- TOPIC 25: CI/CD ----------
+partition "T25 · Claude Code in CI/CD (the -p flag)" {
+  if (Is a human present to answer prompts?) then (NO — automated pipeline)
+    #LightGreen:Pass the -p flag (print / non-interactive mode);
+    note right
+      -p = one-shot: take prompt, run the FULL agentic loop
+      non-interactively, print result to stdout, exit with a
+      status code. Companions: --output-format json (parseable),
+      stream-json (live events), --allowed-tools (scope),
+      --resume / --continue (build on a past session).
+      Contract: stdout = result; exit 0 = success, non-zero = fail.
+    end note
+  else (YES — workstation)
+    #LightYellow:Interactive mode (default REPL) — mutually exclusive with -p;
+  endif
+  #Pink:FORGET -p -> Claude opens an interactive session and WAITS\n-> the job HANGS, burns runner minutes, times out;
+  note right
+    == STRUCTURING AUTOMATED TASKS (4 principles) ==
+    1. ATOMIC — one task, one outcome (don't lint + doc in one call)
+    2. SELF-CONTAINED — no memory of previous runs; include context
+    3. STRUCTURED OUTPUT (JSON) — next step parses, not text-scrapes
+    4. IDEMPOTENT — pipelines retry; same run -> same result
+    ----
+    GitHub: use the OFFICIAL Claude Code action (install-github-app)
+    — trigger by mentioning @claude in an issue/PR. Store the API
+    key as a GitHub Actions SECRET. A raw `claude -p` step is just
+    generic SDK automation, NOT the documented integration.
+    SECURITY: minimum necessary permissions — unattended runs mean
+    narrow scope limits blast radius. Always set a step TIMEOUT.
+  end note
+}
+
+stop
+
+floating note left
+  == FLOW 5 SPINE ==
+  Plan mode = read-only THINK -> approval gate (approve/edit/reject)
+  -> execute, re-plan if assumptions break.
+  SDK drives the AGENT LOOP from code; API = a single completion.
+  CI/CD needs -p (non-interactive) or the job hangs.
+  ----
+  == HIGH-YIELD FACTS ==
+  * Plan mode IS a permission mode (shift+tab / --permission-mode plan)
+  * Good plan = ordered steps + named files + explicit risks
+  * Undo in 10s -> skip planning; 30 min -> plan
+  * SDK = full agent loop + streaming; API = one call, no session
+  * "Agent SDK" was formerly "Claude Code SDK"
+  * -p = print/non-interactive; forget it -> HANG
+  * atomic · self-contained · JSON output · idempotent
+  * GitHub -> official action + API key as a secret
+end note
+
+@enduml

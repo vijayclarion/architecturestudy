@@ -1,0 +1,55 @@
+@startuml refund-sequence
+title Google Play IAP - refund / chargeback handling
+autonumber
+skinparam responseMessageBelowArrow true
+
+actor       Player
+actor       "Support /\nDeveloper"               as Dev
+participant "Google Play"                         as Play
+queue       "Pub/Sub\n(RTDN topic)"               as PubSub
+participant "API\n/api/google/rtdn"               as API
+participant "Refund job\n(daily)"                 as Job
+database    "PostgreSQL"                          as DB
+participant "Google Play\nDeveloper API"          as GApi
+
+== A. Something voids the purchase ==
+alt Player requests refund (~48h, Play Store)
+    Player -> Play : Request refund
+else Developer refunds (Play Console order management)
+    Dev -> Play : Refund order
+else Bank chargeback / Google fraud action
+    Play -> Play : Void purchase
+else Not consumed within 3 days
+    Play -> Play : Auto-refund + revoke
+end
+Play -> Player : Money returned
+
+== B. Real-time notification ==
+Play -> PubSub : voidedPurchaseNotification\n{purchaseToken, orderId, refundType}
+PubSub -> API : HTTPS push (OIDC JWT from Pub/Sub)
+API -> API : Verify Pub/Sub JWT + packageName
+API -> DB : Find transaction by purchaseToken
+alt Not found or already Refunded
+    API --> PubSub : 200 OK (ack, nothing to do)
+else Found (Purchased)
+    group Single DB transaction
+        API -> DB : state = Refunded,\nstore voidedSource / voidedReason / voidedAt
+        API -> DB : Reverse granted rewards\n(ledger entry: -1000 gems, balance may go negative)
+        API -> DB : refund_count++ for user;\nflag account if over threshold
+    end
+    API --> PubSub : 200 OK (ack)
+end
+note right of PubSub : Non-2xx -> Pub/Sub retries.\nHandler must be idempotent.
+
+== C. Reconciliation (catches missed notifications) ==
+Job -> GApi : voidedpurchases.list(startTime = last run - overlap)
+GApi --> Job : voidedPurchases[] {token, orderId, voidedSource, voidedReason}
+loop each voided purchase
+    Job -> DB : Same idempotent refund logic as step B
+end
+
+== D. Player next opens the game ==
+Player -> API : Login / get wallet
+API --> Player : Balance (may be negative)\n+ message about reversed purchase
+note right of Player : Policy choice: block spending until balance >= 0,\nor restrict purchases / ban after repeated refunds.
+@enduml

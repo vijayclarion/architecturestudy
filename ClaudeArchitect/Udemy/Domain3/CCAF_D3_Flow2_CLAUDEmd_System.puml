@@ -1,0 +1,229 @@
+@startuml D3_Flow2_CLAUDEmd_System
+' ============================================================
+' DOMAIN 3 — FLOW 2: The CLAUDE.md System
+' Hierarchy + Precedence + Subdirectory + Exclusion +
+' Instruction Design + Team Patterns  (Topics 6–11)
+' CORE TRAP 1: load ORDER is NOT a precedence rule — genuine
+'   CLAUDE.md conflicts are NON-DETERMINISTIC.
+' CORE TRAP 2: for settings.json PERMISSIONS, layers MERGE and
+'   DENY beats ALLOW from ANY layer (even user).
+' ============================================================
+title Domain 3 · Flow 2 — The CLAUDE.md System (T6–11)\n(4 scopes concatenated · conflicts = non-deterministic · deny always wins)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+skinparam activityDiamondBackgroundColor #FFF6CC
+
+start
+
+' ---------- TOPIC 6: FOUR SCOPES ----------
+partition "T6 · The 4 CLAUDE.md Scopes (loaded broad->narrow, ALL AT ONCE)" {
+  :1. MANAGED POLICY — org-wide, system path;
+  note right
+    * Loads FIRST · CANNOT be excluded
+    * Deployed centrally by IT / device mgmt
+    * The ONLY real ENFORCEMENT mechanism
+    * OUTSIDE the repo
+    e.g. "never log customer PII"
+  end note
+  :2. USER SCOPE — ~/.claude/CLAUDE.md;
+  note right
+    * Personal prefs across ALL your projects
+    * NEVER shared, by design (not in git)
+    * OUTSIDE the repo
+    e.g. "short answers, no emoji"
+  end note
+  :3. PROJECT SCOPE — CLAUDE.md at repo root;
+  note right
+    * VERSION-CONTROLLED / committed
+    * Every contributor gets it IDENTICALLY
+    * INSIDE the repo (the shared one)
+    e.g. "spaces not tabs, every fn needs a test"
+  end note
+  :4. LOCAL SCOPE — CLAUDE.local.md;
+  note right
+    * In the repo but GITIGNORED
+    * Personal tweaks for ONE project
+    * INSIDE the repo (not committed)
+    e.g. "verbose debug output for me only"
+  end note
+  #LightCyan:All 4 CONCATENATED into one instruction set\n— nothing is erased;
+}
+
+' ---------- TOPIC 7: PRECEDENCE / CONFLICT (the big trap) ----------
+partition "T7 · Precedence & Conflict Resolution" {
+  if (Do two instructions genuinely CONFLICT?) then (YES)
+    #Pink:NON-DETERMINISTIC — Claude may follow EITHER;
+    note right
+      == THE BIG TRAP ==
+      Load ORDER is NOT a precedence rule.
+      You CANNOT count on closer/more-specific winning.
+      e.g. user says semicolons, project says none -> unpredictable.
+      FIX: don't write the conflict. If overlap is possible,
+      state precedence EXPLICITLY in the MORE SPECIFIC file
+      (project/local) — never in user (invisible to teammates).
+    end note
+  else (NO — complementary)
+    #LightGreen:BOTH simply apply (the common case);
+    note left
+      user "be concise" + project "always add type hints"
+      -> both apply. Overlap resolution is the EXCEPTION.
+    end note
+  endif
+  :Verify what's loaded:\n`/memory` lists files · `/context` inspects loaded;
+  note right
+    No automatic startup printout of loaded files.
+    An "instructions loaded" hook can log it if you want.
+    ----
+    CLAUDE.md vs AUTO-MEMORY:
+    CLAUDE.md = hand-authored config, loaded fresh each
+      session, counts vs window, never self-edits.
+    Auto-memory = separate store in home dir, keyed to the
+      git repo, stays on your machine, accumulates on its own.
+    "Treat CLAUDE.md like a config file, not a journal."
+  end note
+}
+
+floating note right
+  == TWO KILLER SCOPE TRAPS ==
+  1. Org-wide enforcement = MANAGED POLICY ONLY.
+     Putting "never commit secrets" in ONE project's
+     CLAUDE.md leaves 40 other repos uncovered.
+     Importing/symlinking = SHARING, not ENFORCING.
+  2. Team standards in USER config = the silent killer.
+     "always write tests" in YOUR user file works on
+     YOUR machine; teammate's machine loads THEIR user
+     file (no such rule) -> drift, no error, no warning.
+     FIX: team needs it -> committed PROJECT CLAUDE.md.
+  ----
+  Audience test: whole company -> managed;
+  just me, everywhere -> user; the team/repo -> project.
+end note
+
+' ---------- TOPIC 8: SUBDIRECTORY CLAUDE.md ----------
+partition "T8 · Subdirectory CLAUDE.md (scoped, LAZY-loaded)" {
+  :Drop a CLAUDE.md inside a subfolder (e.g. /frontend);
+  if (Does Claude READ a file inside that folder?) then (YES)
+    #LightGreen:Subdir CLAUDE.md loads NOW (lazy) and ADDS to root;
+    note right
+      == 2 EXAM POINTS ==
+      1. It ADDS to root config, never REPLACES it.
+         Parent rules stay active; subdir file read LAST —
+         but read-last does NOT guarantee winning
+         (contradiction -> non-deterministic again).
+      2. No registration/manifest — PLACEMENT is the scope.
+         Audit rules just by where files live.
+      e.g. /frontend: hooks start "use", PascalCase components,
+      co-located tests. Invisible while in /infra.
+    end note
+  else (NO — never read a file there)
+    #LightGray:Subdir file stays OUT of context;
+  endif
+}
+
+' ---------- TOPIC 9: EXCLUDING FILES (settings.json permissions) ----------
+partition "T9 · Excluding Files & Content (settings.json)" {
+  :Write READ DENY entries in settings.json (glob syntax);
+  note right
+    Real mechanism = read deny rule in settings.json.
+    Glob: one * = one path segment; ** = across dirs.
+    Highest-value: deny read of .env, .env.*, secrets/**,
+    ~/.ssh, cloud cred folders.
+  end note
+  #LightCyan:PERMISSION rules MERGE across all 4 setting layers;
+  note right
+    ============================================
+    PERMISSIONS ≠ ordinary settings:
+    * Ordinary setting (model, theme): higher layer
+      OVERRIDES lower (managed>local>project>user). One wins.
+    * PERMISSION rules: MERGE across layers, and
+      DENY is evaluated BEFORE allow.
+      -> a DENY in ANY layer (even user) blocks an
+         ALLOW in managed. DENY ALWAYS WINS.
+    (This is settings.json + DETERMINISTIC —
+     different from CLAUDE.md's non-deterministic conflicts.)
+    ============================================
+  end note
+  :Know the BOUNDARY of deny;
+  note right
+    Deny blocks Claude's OWN tools: read, edit, @-mention,
+    shell reads (cat/head). It does NOT block an arbitrary
+    SUBPROCESS — a Python script Claude runs can still open
+    the file. For real enforcement -> SANDBOXING.
+    ----
+    TWO MYTHS TO RETIRE:
+    * No .claudeignore file exists — never has.
+    * Claude Code does NOT respect .gitignore —
+      ignored files are fully readable unless denied.
+  end note
+}
+
+' ---------- TOPIC 10: INSTRUCTION DESIGN ----------
+partition "T10 · Instruction Design (what actually gets followed)" {
+  :Write each directive: SPECIFIC · ACTIONABLE · UNAMBIGUOUS;
+  note right
+    NOT "use consistent naming"
+    BUT "all module files use snake_case".
+    If you can't VERIFY it was followed, rewrite it.
+    Concise bullets are followed more reliably than
+    prose buried in paragraphs (and cost fewer tokens).
+    Mental model: a STYLE-GUIDE CHECKLIST, not a design doc.
+  end note
+  if (Can Claude know this ONLY if you tell it?) then (YES = repo-specific)
+    #LightGreen:ENCODE it;
+    note left
+      Encode: language/runtime versions, style conventions,
+      test requirements, commit format, team process,
+      known anti-patterns, security rules.
+      Value = stop re-explaining + stop re-suggesting
+      what you already ruled out. Decisions, not education.
+    end note
+  else (NO = general knowledge / linter's job)
+    #Pink:SKIP it;
+    note right
+      Skip: general programming, stdlib behaviour,
+      anything the linter/formatter already enforces
+      (Black handles format -> no format rules).
+      Test: delete the line — would behaviour change
+      in a way that matters? No -> cut.
+    end note
+  endif
+}
+
+' ---------- TOPIC 11: TEAM PATTERNS ----------
+partition "T11 · Common CLAUDE.md Patterns for Real Teams" {
+  :Apply the right pattern per context;
+  note right
+    Front-end: component naming, CSS method, state mgmt, a11y
+    Back-end : API design, DB/ORM policy, error format
+    Full-stack/monorepo: shared types, import limits, boundaries
+    SECURITY (every project): no hard-coded creds, secrets via
+      env/manager, .env commit policy, approved auth —
+      place EARLY & prominently so it survives context pressure.
+    ----
+    2 ANTI-PATTERNS:
+    a. NARRATIVE CLAUDE.md — rules buried in prose -> missed
+       under pressure. Use bullets, one rule per line.
+    b. TOOL DUPLICATION — re-encoding what Black/ESLint already
+       enforce -> a 2nd source of truth that DRIFTS.
+    Rule: let tools enforce what tools can; CLAUDE.md fills gaps.
+  end note
+}
+
+stop
+
+floating note left
+  == FLOW 2 SPINE ==
+  4 scopes concatenated (broad->narrow) -> conflicts in
+  CLAUDE.md are NON-DETERMINISTIC -> subdir files ADD & load
+  lazily -> exclusion is settings.json DENY (merges, deny wins)
+  -> write specific/verifiable directives -> encode only
+  repo-specific decisions -> apply team patterns, avoid the
+  narrative & tool-duplication anti-patterns.
+  ----
+  == DON'T CONFUSE THE TWO CONFLICT RULES ==
+  CLAUDE.md (natural language)  -> non-deterministic
+  settings.json permissions     -> deterministic, DENY wins
+end note
+
+@enduml

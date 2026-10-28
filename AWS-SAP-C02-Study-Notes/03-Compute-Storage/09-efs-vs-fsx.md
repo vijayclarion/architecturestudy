@@ -50,6 +50,25 @@ flowchart LR
     MT3 --> EFS
 ```
 
+### Network & Security Architecture (How It Mounts)
+
+```
+EFS is a REGIONAL service (one filesystem per region).
+You create a MOUNT TARGET in each AZ you want to use.
+
+  - Mount target lives in a subnet within your VPC
+  - EC2 connects to the mount target in ITS OWN AZ via NFS
+  - Instances across AZs all reach the SAME filesystem,
+    each through their local mount target
+
+SECURITY LAYERS:
+  - Security Group → attached to the MOUNT TARGET (not the
+    filesystem). Controls which instances can reach it.
+  - NACLs → apply at the SUBNET level, filter traffic before
+    it reaches the mount target.
+  → You manage a security group on EACH mount target.
+```
+
 ### Key EFS Features
 
 ```
@@ -128,6 +147,25 @@ flowchart LR
     EC2W[Windows EC2] -->|SMB| FSXW[FSx for Windows]
     EC2L[Linux EC2 with CIFS] -->|SMB| FSXW
     ONPREM[On-prem Windows clients] -->|SMB via DX/VPN| FSXW
+```
+
+### Network & Security Architecture (vs EFS)
+
+```
+KEY DIFFERENCE from EFS:
+  - EFS uses MOUNT TARGETS (a separate resource per AZ)
+  - FSx uses an ELASTIC NETWORK INTERFACE (ENI) directly
+    in your subnet(s) — like an EC2's ENI, but AWS-managed.
+
+  - The file system's DNS name maps to the ENI's private IP.
+  - Instances in the subnet connect to that ENI via SMB.
+
+SECURITY:
+  - Security Group → attached to the FSx ENI(s) (same idea
+    as a security group on an EC2 instance's ENI).
+  - NACLs → apply at the subnet level, same as EFS.
+  ⚠️ Do NOT modify/delete the ENI — breaks connectivity
+     permanently.
 ```
 
 ### Key FSx Windows Features
@@ -244,6 +282,21 @@ USE: High-performance NFS for Linux
 ```
 
 ---
+
+## Concurrent Access (Multiple Instances, Same File)
+
+```
+When two EC2 instances in different AZs write to the same
+file, the filesystem handles it via PROTOCOL-LEVEL LOCKING:
+
+  - EFS  → file locking built into NFS v4.1
+  - FSx  → file locking built into SMB
+
+You don't manage this manually — the filesystem enforces
+locks so one writer proceeds while others wait, preventing
+corruption. This is what makes these true SHARED filesystems
+(vs EBS, which is single-attach by default).
+```
 
 ## Decision Tree
 

@@ -1,0 +1,156 @@
+@startuml D3_Flow4_Hooks
+' ============================================================
+' DOMAIN 3 — FLOW 4: Hooks
+' Lifecycle events + cadence + blocking + exit codes +
+' implementation + real-world applications (Topics 18, 21–23)
+' CORE FRAME: group events by CADENCE (session/turn/tool);
+'   ask "can it BLOCK or only OBSERVE?"
+' EXAM #1 TRAP: exit 2 BLOCKS; exit 1 / any other = non-blocking
+'   (the tool STILL RUNS). Hooks run at SHELL level, outside
+'   Claude's context — cannot be prompted away.
+' ============================================================
+title Domain 3 · Flow 4 — Hooks (T18, 21–23)\n(Cadence: session/turn/tool · block vs observe · exit 2 blocks)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+skinparam activityDiamondBackgroundColor #FFF6CC
+
+start
+:A hook = a script YOU register to run at a named\nlifecycle event (register in settings.json, NOT CLAUDE.md);
+#LightCyan:Runs at SHELL level, OUTSIDE Claude's context window;
+note right
+  == WHY HOOKS EXIST ==
+  Claude can't see, override, or be prompted to skip a hook.
+  Deterministic: fires EVERY time on every matching event.
+  Prompt instructions can be rephrased-around or forgotten;
+  a registered hook cannot. This is the hard security boundary.
+end note
+
+' ---------- CADENCE FRAME ----------
+partition "T18 · Group events by CADENCE (outer->inner, slow->fast)" {
+  #LightYellow:SESSION (once each): session start / session end;
+  note right
+    OBSERVE-ONLY (bookends). No single action to veto.
+    session start = set up / load context on entry.
+    session end   = tear down / clean up on exit.
+  end note
+  #LightYellow:TURN (once each): prompt submit / stop;
+  note right
+    BOTH can BLOCK.
+    prompt submit (before Claude reads it) -> reject / reshape.
+    stop = END-OF-TURN, NOT end-of-session; fires MANY times
+    per session (once per agent turn). A blocking stop keeps
+    the agent working. It sees the FULL result of the turn.
+  end note
+  #LightYellow:TOOL (every call): pre-tool-use / post-tool-use;
+  note right
+    Fire MANY times per turn (wrap each tool the agent runs).
+    pre-tool-use  = fires BEFORE the tool -> CAN BLOCK (the gate)
+    post-tool-use = fires AFTER  the tool -> CANNOT block
+                    (already ran) -> react / log / format / test
+    "Pre guards. Post reacts." Prevention ALWAYS needs pre-tool-use.
+    Special: pre-compact (can block, protect from summarising);
+    notification (observe-only, ROUTES alerts out).
+    ~30 events exist; you need the 4 common + the cadence frame.
+  end note
+}
+
+' ---------- BLOCK vs OBSERVE decision ----------
+partition "The One Question: BLOCK or OBSERVE?" {
+  if (Do you need to STOP an action?) then (YES = gate)
+    #LightGreen:Pick a BLOCKING event (pre-tool-use / stop / pre-compact / prompt-submit);
+  else (NO = record/alert)
+    #LightBlue:Pick an OBSERVE-ONLY event (post-tool-use / session / notification);
+    note right
+      Keeps the hook out of the critical path.
+      notification's ONLY job = route alerts to Slack/PagerDuty/
+      webhook. It CANNOT block. Exam pairing:
+      "block an action" -> ALWAYS pre-tool-use;
+      "surface an alert externally" -> notification. Never mix.
+    end note
+  endif
+}
+
+' ---------- EXIT CODES (the #1 trap) ----------
+partition "T21–22 · Exit Codes (highest-frequency trap)" {
+  if (Hook exit code?) then (0)
+    #LightGreen:CONTINUE — action proceeds, structured output read;
+  elseif (2) then
+    #Pink:BLOCK — action stopped, stderr fed back to Claude as the reason;
+    note right
+      ONLY exit 2 blocks (for events allowed to block).
+    end note
+  else (1 or any other)
+    #Orange:NON-BLOCKING error — logged, but the tool STILL RUNS;
+    note right
+      == THE #1 TRAP (both directions) ==
+      * Want to enforce a block but return 1 -> it does NOT block.
+      * Accidental exit 2 in a LOGGING hook -> blocks EVERY call;
+        looks exactly like "Claude refusing to act" — but the
+        real cause is a misconfigured exit code.
+      Fails SILENTLY -> always test every exit path first.
+    end note
+  endif
+}
+
+' ---------- IMPLEMENTATION ----------
+partition "T22 · Implementing Hooks (settings, scripts, gotchas)" {
+  :Register in settings.json: event + command/script path;
+  note right
+    Multiple hooks on one event run IN PARALLEL (don't assume
+    ordering); identical handlers deduped.
+    Pre-tool-use gets call context as JSON on stdin
+    (session id, cwd, event, tool name, tool input).
+    Inline one-liners for trivial logging; EXTERNAL SCRIPT for
+    anything with logic (testable, version-controlled, reviewable).
+    ----
+    3 GOTCHAS (all fail silently):
+    1. accidental exit 2 -> blocks everything
+    2. slow hook -> every tool call waits on it (HOOK TIMEOUT);
+       slow/unreachable service stalls the session
+    3. wrong event type (post-tool-use when you needed pre)
+    3 SAFETY PATTERNS:
+    * allow-list (unknown = blocked; conservative default)
+    * block-list (name the dangerous; unknown implicitly allowed)
+    * dry-run (log what it WOULD block; enforce once confident)
+  end note
+}
+
+' ---------- APPLICATIONS ----------
+partition "T23 · Real-World Hook Applications (pattern -> hook type)" {
+  #LightGreen:Match each pattern to its lifecycle event;
+  note right
+    POST-tool-use : auto-format (Black/Prettier after write),
+                    run tests after edit (scope to src/ paths),
+                    audit log, cost/token tracking
+    PRE-tool-use  : safety net — block rm -rf / DROP TABLE (exit 2)
+    STOP          : notify Slack when a long batch job finishes
+    ----
+    LOGGING NUANCE (subtle, tested):
+    pre-tool-use log = INTENT (captures BLOCKED attempts too)
+      -> good for catching policy violations.
+    post-tool-use log = RESULTS (what actually succeeded).
+    Many teams run BOTH for a complete intent->execution picture.
+  end note
+}
+
+stop
+
+floating note left
+  == FLOW 4 SPINE ==
+  Hook = shell-level script at a named event (outside context) ->
+  place it by CADENCE (session/turn/tool) -> ask BLOCK or OBSERVE ->
+  enforce with EXIT 2 -> register in settings.json -> match the
+  application pattern to pre/post/stop/notification.
+  ----
+  == HIGH-YIELD FACTS ==
+  * Runs at SHELL level; can't be prompted away; fires every time
+  * Cadence nesting: session (observe) / turn (block) / tool (pre=block, post=observe)
+  * "stop" = end-of-TURN, fires many times per session
+  * notification = route only, never blocks
+  * exit 0 = go · exit 2 = BLOCK · exit 1/other = non-blocking (runs anyway)
+  * register in settings.json; multiple hooks run in parallel
+  * pre-log = intent (incl. blocked) · post-log = results
+end note
+
+@enduml

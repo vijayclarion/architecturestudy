@@ -1,0 +1,46 @@
+@startuml Topic1_Agents_vs_Workflows_vs_Chatbots
+title Topic 1 - Agents vs Workflows vs Chatbots\n(Defining question: WHO controls the control flow, and WHEN?)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+
+:Incoming task / request;
+
+if (Can the full sequence of steps\nbe written in advance?) then (YES - path is knowable)
+  if (Does it need any tools / actions,\nor just a text reply?) then (Just text in -> out)
+    #LightBlue:**CHATBOT**;
+    note right
+      * Stateless text generator
+      * NO tools, NO memory beyond context
+      * Cannot act in the world
+    end note
+  else (Needs fixed sequence of steps)
+    #LightGreen:**DETERMINISTIC WORKFLOW**;
+    note right
+      * Developer fixes control flow at DESIGN TIME
+      * Model only fills in content
+      * Model NEVER decides what happens next
+      * "compile time": path fixed in advance
+      * TRAP: Prompt chaining LOOKS agentic
+        but is STILL a workflow
+    end note
+  endif
+else (NO - path must adapt)
+  #Orange:**AGENTIC SYSTEM**;
+  note right
+    * Control flow EMERGES at RUNTIME
+    * Model chooses next step from its reasoning
+    * DEFINING TRAIT: runtime tool selection
+    * Higher autonomy = higher cost + risk
+  end note
+endif
+
+:== ACTION-ENVIRONMENT GAP ==\n* Native output = TEXT only\n* Can DESCRIBE an action, cannot DO it\n* BRIDGE across the gap = TOOL USE;
+
+:== AUGMENTED LLM ==\n1. Retrieval -> what it KNOWS\n2. Tools -> what it can DO\n3. Memory -> what it REMEMBERS\n* Single agent = augmented LLM in a loop\n* Build agents LESS often than you think;
+
+stop
+
+@enduml

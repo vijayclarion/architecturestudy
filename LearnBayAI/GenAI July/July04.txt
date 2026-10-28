@@ -1,0 +1,2446 @@
+Hi, everyone. Good morning. Good morning.
+04:41
+
+Okay. Let me share my screen.
+04:54
+
+Okay. How are you guys? Everybody all okay? I have seen most of you joined my project batch, so good. Very good.
+05:07
+
+You will learn completely different from what you are learning here. Here, I'm giving more focus on the fundamental basics, the POC part, so that you can understand how things work. And there I will focus more on use cases.
+05:20
+
+Yeah. Complete hands-on sessions, how you will work in organizations, how you can understand the architecture, how you can draw the architecture, what are the features available there in cloud.
+05:35
+
+So I'll try to cover AWS, Azure, and GCP, all three part in project session. So, definitely I wanted you all, my friend, please join that session. Yeah?
+05:50
+
+7 to 9, two hours only. So I don't think that will create a problem. And more importantly, you will get a perspective, right? So when you go for interview and all, you can clearly say, "Yes, I have done those projects. I know all the applications." They
+06:03
+
+mostly ask you about the cloud services. What is for that? So today is, again, very important sessions there. I definitely recommend it. Everybody, please join.
+06:18
+
+Yeah? Great. So how are the things going, guys, here? Did you understand how cloud or this agentic AI works, how you can use AutoGen, CrewAI,
+06:31
+
+LangGraph, right? One use cases also I have done end-to-end. I'll go more deeper in the project sessions, but did you get some idea?
+06:47
+
+So here also, once batch get completed, you will get a project session. But I wanted you guys, why you will wait for the once batch get completed, then you join. If you have a bandwidth, you can join it. If it is very hard to join in evening, then you have to wait.
+07:07
+
+Yeah, but project will go separately, this will go separately. Timing is different, right? Evening shift, I think you can easily manage. Badri, you have raised hand.
+07:22
+
+Yes. Yes, sir. Can you hear me? Yes. Yeah, sir. So, just a basic question, nothing more about into the
+07:36
+
+concept part. So I have tried all those things which you have taught the last and previous week. So, I'm not getting memorized regarding the coding part.
+07:50
+
+So how it- Coding, you need not to worry too much. See, nowadays, if you go for these role and all, definitely they will not ask you the coding part. They just ask you the concept. And also they will check whether you have done such real use cases or
+08:04
+
+not. Yeah? But coding, how you remember? The simple answer is you have to practice. Okay, so I have picked one use cases. You can just do it similar. Same case, you can do it by your own.
+08:19
+
+Wherever you get stuck, you can see my code. Second time, you can pick some different dataset or some organization dataset and try to build it. Then the learning happen. At one go, you will not remember all these thing.
+08:31
+
+Okay, awesome. Because it's not kind of crash course, right? So you have to give your effort also. Yeah, sir. When I can see your code, I can understand what you have done, all those parts.
+08:43
+
+But when I'm trying to do, I'm facing some issues over there. It will happen. Because you are learning language, right? So when you learn any new things,
+08:57
+
+you don't expect that you get expertise at one go. Okay? Only thing is you have to practice. My code, you have to practice three, four times at a certain level of interval. 15 days later, 20
+09:10
+
+days later, one month later, you have to pick the same project, agentic RAG system. Do it by your own. Understand, make the architecture also. What I have to do next? Mm. Understand. Don't learn depth learning. Why?
+09:25
+
+Because if you go in the LangChain alone, no, you get confused. You will not crack interview also, and you will not command over that because there are so many documents there. We are living in a digital transformation world. We have a GPT.
+09:39
+
+GPT itself, Cloud, GPT, Gemini, they are generating more than any books, the content and all. So you don't go like that. The way I'm teaching you, that much part you have to know very thoroughly.
+09:52
+
+Okay? Yes, sir. So shall I start, guys? So today, I have covered the agentic RAG system. Now there are few advanced topics there, like fine-tuning
+10:05
+
+models, tool calling, function calling, MCP, A2A. Yeah? So what I'm going to do here, I'm taking some deep learning concept so that you can understand. I have not covered deep learning, so you can understand
+10:18
+
+some basic of deep learning, what are the features there, and then I will jump into transformer learning, right? So transformer model, and then I will jump into fine-tuning model. Is it okay?
+10:30
+
+Yes, no? Great. Revision and all, I would suggest, Abu, you can watch recording, right? Because if I go again the revision and all--
+10:46
+
+If you have any specific query, you can feel free to ask me. But my request to you all, please watch recording also. Yeah, five minutes, I don't think that will justify those topics and all. Diraj MCP, I will cover.
+10:59
+
+MCP, A2A, these things, I will cover it. Don't worry. Okay, shall I start deep learning, and then I will go the link is how deep learning there, right? Then you will understand CNN, RNN, LSTM, GRU, and then I will move into transformer
+11:15
+
+model, and then fine-tuning. So you will understand, okay, how I will use the GenAI or agentic AI, and there I can do the fine-tuning model. Okay, and then I will cover all the related topic called tool calling,
+11:30
+
+MCP, all these things. Shall we? Perfect. So let me open my Word. So is it visible, right, guys, everybody, all my friend?
+11:43
+
+Are you able to see my screen? Yeah? Perfect. So let me go in the one step back and-
+11:58
+
+I hope you all have understanding what is ML, machine learning. So now, machine learning, I have covered few things that there is a rule-based algorithm.
+12:12
+
+Rule-based means you can see the pattern, you can see the if else conditions. Machine learning or ML means what? See, we do not write fixed rule manually. Please remember, rule-based means you can write a fixed rule, but machine
+12:27
+
+learning, you cannot make a fixed rule. Instead, what we are doing, whatever the data we have, we give the data to our computer, to our system, to our algorithm, and asking them, "You have to learn the pattern
+12:41
+
+from the data, and you can give me the answers." Like what I said, let's say you wanted to predict a house price. Simple. A simple use case is you wanted to predict a house price. Now, how you will do it? You have a data set.
+12:54
+
+You have house size is big or is medium or is low, and you can decide price is high or low. Is location is good or not? On that basis, if the location is very good,
+13:09
+
+price is high. If house is very old, they will reduce the price. This is normally happen. What machine learning will do-- This is normal. If anybody, you can ask to any third party.
+13:21
+
+You can check with your friends, you can check with your colleagues, you can decide. How you will decide it, you can say if the location is prime location, the price definitely increases. The price get increased. If the house is very old, the
+13:34
+
+price get decreased. You can say their sizes, house sizes. Size is bigger, the price is bigger; size is lesser, the price is lesser. So these are the manual approach that we are doing it.
+13:48
+
+But in real time, when you do some use cases and all, it's very difficult for us to analyze it. Why? Because there are lots of features available there. It's very difficult because there are lots of factors there.
+14:02
+
+There are N number of factors you will get it. Now, what machine learning do? You will give the historical data. You will give the historical data to a machine. Like you can say we have a size, we have a location
+14:16
+
+for last 10 years or 20 years. How old the property is, what is the bedroom size there. And there are so many, et cetera. There are so many datas there. And on that basis, you have to predict
+14:31
+
+the actual price. So what machine ML do? ML will learn the pattern. They will learn the pattern. Okay?
+14:45
+
+How they will learn? What is the size? And then accordingly, they are comparing with the price. What is the location versus this price? So is there any correlations there or not?
+14:58
+
+Is it directly proportional or inversely proportional relations there? How old that property is? Whether location affects the price or not, whether size affects the price or not, whether age affects the price or not, whether it's a
+15:11
+
+two-BHK, three-BHK, four-BHK, what is how many bedrooms there. And then for new house, when the client, they will say, "Hey, I wanted to buy a house", and those listed features there, that is the size, that is the location and all, can you
+15:26
+
+please predict what would be the right price there? So what machine learning will do? Machine learning is basically using the mathematical models. By the help of algorithm, by the help of computers, they learn from the
+15:41
+
+data without direct instruction. They identify the pattern. That's why I said historical data. And then they will make a prediction that can improve over time. That can improve over time. Simple.
+15:54
+
+You can say, let's say we have X equal to input data. And Y is my output data. X, let's say we have house size. Let's say this is
+16:09
+
+house size. House size. And Y is my price. Price of the house. So simple algorithm, what algorithm do? You guys have seen it. We have something called Y equal to-- You can
+16:22
+
+simply write WX+B. That's the functions there. Here, X is what? X is nothing. It's called input variable. X is what? You can say it's an input variable.
+16:36
+
+W is what? W is called weight. Or you can say it's a features, or you can say it's a slope. B is what? It's called bias.
+16:52
+
+Or you can say the constant, intercept values. And Y is what? That is what I wanted to predict. It's called predicted output. Predicted output. Correct? This is what you have seen,
+17:08
+
+guys, in simple machine learning when I have covered it? Yes or no? And like that, you have a different algorithm there. If you have a regression problem, you can go by this. If you have a classification problem, you can go by the different approach.
+17:20
+
+Now moving back to deep learning. So machine learning, you guys have seen. How deep learning actually works? So this is what is AI. This is world. You can see AI is the world.
+17:33
+
+Artificial intelligence. This part is ML, and this is what is deep learning. As name suggest, deep learning.
+17:48
+
+As name suggest, deep stand for. Deep means hidden layer. Hidden layer. So deep learning means multiple layer neural
+18:00
+
+network to learn complex pattern from the data set. Deep learning is a specialized version of machine learning And that uses the neural network.
+18:13
+
+Neural network. Yeah? Means there are many layers available there. Many layers there. Please understand. Yeah? Why the name suggested deep neural network? Neural means brain, right?
+18:26
+
+You know that? Neural means brain, and network means connection. Connection, right? So how brain get connected with the multiple layers. Yeah? They have connected with the human brain.
+18:40
+
+So initially in 1990s, right? The deep learning 1990 to 2010, you can say that's the invention period there, right? Lots of researcher,
+18:53
+
+they spend lots of time on the deep learning, and they started working on feedforward neural network, hidden neural network, and they have done lots of experiment they have taken up. Now they study the animal's brain, elephant brain,
+19:05
+
+even ant brains, right? And they found that human is the brilliant creatures there in the Earth, right? So why not I can consider the human brain and the similar kind of pattern, the computer, they have to also.
+19:20
+
+We also have to build it. And how human brain is thinking, can I also build AI? AI can also think like that. And that's normally happened. So where we can use the deep learning? Deep learning, when you have a complex architecture
+19:32
+
+there. Complex models there, complex data there. One part. Second, when you have a image data set there. Yeah? Or when you have a text data there.
+19:46
+
+Text data there. Yeah? So these data, not a simple data, right? When I say image, image means what? It's a pixel. Pixel, right? So wherever there is a image there, wherever there is
+19:59
+
+a text data there, you have audio data there. Yeah? You have a video data there. Yeah? So then, we started working on the deep neural network. And then, of course, there are lots of powerful models came, called
+20:12
+
+language translation, large language model. Yeah? And we are using a different set of models. Please remember, there is no difference in machine learning and deep learning. Both can solve the problem. What is the difference?
+20:26
+
+Machine learning, we are using when we have a simple kind of data set there. Let's say we have a tabular data there. We have rows and columns there. What about this? What about this? If there
+20:39
+
+is a emoji there. Hmm? If there is a image there. If there is audio there, what happen then? Yeah? In this case, we prefer to use deep neural network. So there is certain difference there, right? Please understand.
+20:54
+
+Anybody say what is the basic difference in machine learning and deep learning? You can say the simple definition is, difference is, machine learning, we are using manual approach.
+21:08
+
+Manual approach. Deep learning, we are using automation approach. Automation approach. Okay, why we are saying automation approach?
+21:22
+
+Why we are saying automation approach? Reason is, here we have a multilayer perceptrons there. Yeah? We have a hidden layer there. Hidden layer means you don't have control. Yeah?
+21:37
+
+Second difference is machine learning learns pattern. Learns patterns from the data set.
+21:49
+
+Deep learning also learn the patterns. Yeah? But they are learning basis the neural network connections. Learning the patterns basis the neural network. Network
+22:04
+
+with many layers. Many layers. Many hidden layers, please remember. Many hidden layers. Yeah? Third part is
+22:18
+
+data requirement, guys. Data requirement. So when you have a small data, you can say a smaller data, a smaller data or medium data.
+22:30
+
+Hmm? Medium data, then we have to do it. Deep learning usually need large data set.
+22:43
+
+Large data set. Okay? Fourth part, feature engineering. When you do a feature engineering, my dear friend, you have a full control.
+22:56
+
+Yeah? Human means we often create feature manually.
+23:09
+
+Manually, okay? Let's say Titanic data set you guys have seen, right? There is a sibling and a spouse data there, parents and childrens data there. Why not we can merge it and create a new features, right? And we can mention relatives. Yeah?
+23:22
+
+So all the features we have to combine, yes or no. So you have to convert into binary format. Yeah, that's how the feature engineering works. Means you have a full control, you have a full visibility. If you guys remember the random forest when I covered it, or a decision tree, there
+23:36
+
+is a feature importance. And what feature importance do? You will get full clarity which variable is significant and which variable are not. Yeah, that is normally happen. Here,
+23:51
+
+model learn. Model learns feature automatically. Automatically, right? What is
+24:06
+
+meaning of this? Meaning is, let's say we have input data here, X1, X2, X3, X4 Yeah, let's say there are four variables there, and you have to write
+24:19
+
+a hidden layer here. Hidden layer one, hidden layer two, hidden layer three, hidden layer four, hidden layer five, hidden layer six, seven, eight, and finally, output. Now, what happened here?
+24:32
+
+Yeah, this is called hidden layer one. Hidden layer two. Hidden layer three. Yeah, and this is called output. This is called input. So what happened internally, you have no clarity.
+24:45
+
+You have no clue. And that's why we also say it's a black box. Okay? We can say it's a black box algorithm. Like that it happened.
+25:00
+
+This model gets connected with this. Like that, hidden layer works.
+25:12
+
+Connected with this. And then finally, output you will get like that. This is called Yi hat. Mm? So here,
+25:27
+
+let's say there are four input data there. You have written three just for a dummy purpose, I have written. Ideally, you will get hundreds of layers, hundreds of neurons. Here three, here two, and then finally one.
+25:40
+
+So how the weight calculation happen, or you can say parameter. The parameter we are saying
+25:54
+
+four into three. Four multiply three. So four input layer and three hidden layer, right? Four into three means 12 connection happen. 12 weight get created, guys. Everywhere there is a weight get
+26:07
+
+connected. So how many? Four threes are 12. And there are three biases also there. So you can say three bias. Plus, again, three into three. Three into three is the? Weight calculation, plus three
+26:22
+
+bias. Yeah? This is second part. This is first part. Again, how many three input? You can say three into two, plus two bias. And plus last two,
+26:37
+
+multiply one and plus one bias. Okay? Now if you add it, how much, guys? Four threes are 12, plus three, 15. So you can say four threes are 12 plus 15,
+26:50
+
+plus three threes are nine, 12, three twos are six to eight, and three. So you can say 15 and 12, 27. 30, 38. So there are 38 parameter get created. Now, what is happening
+27:07
+
+inside? What is happening inside? Of course, there is a maths there. You can say, okay, summation and activation functions. Yeah? But you have no control. If I ask you, okay, this output comes
+27:22
+
+for what features? You have no clarity, and that is why here I'm saying the model learns feature automatically. You have no visibility. Yeah? That's the second difference. And the first part, what I mentioned, manual approach.
+27:38
+
+Reason is feature engineering. Here, you have a full control. Which variable I have to consider, which variable I have not considered. Right? Deep learning, it's an automation approach because you don't have control. Model learns the pattern automatically, and then they are deciding which
+27:51
+
+feature would be the significant or not. If you ask me which feature, you will not get clarity. Hm? Next part, guys. Next part, ML and deep learning.
+28:06
+
+Where you can apply the ML and deep learning? Yeah. Next part, point number five is software. Software. Guys, normally in machine learning, you can use Sklearn.
+28:20
+
+Sklearn. You will use NumPy. Mm? You will use Pandas. You will use Matplotlib. Mm? Seaborn,
+28:34
+
+et cetera. Right? In deep learning, what are the software there? We have TensorFlow. TensorFlow. We have Keras.
+28:47
+
+We have PyTorch. Mm? We have NLTK, Natural Language Toolkit package. We have SpaCy. Mm? We have Tiano, et cetera. These are the
+28:59
+
+software you will get it. Six difference is hardware. Machine learning happily work on CPU, but when you use deep learning, you need a hardware called GPU machine,
+29:15
+
+graphical processing unit or tensor processing unit. Yeah. Tensor processing unit is not very famous, but I heard by 2030 and onwards, this will beat GPU also, but let's see.
+29:30
+
+So, it's usually often use graphical processing and TPU. It's not that TensorFlow will not work with the CPU machine, but it is very slow. One GPU is equal to 100 CPU. Please understand.
+29:42
+
+That much powerful tool I needed. Mm? Point number seven is very significant, called interpretability. Interpretability. What is meaning of interpretability?
+29:57
+
+Interpretability means in machine learning, you have a full control. You can explain this variable is doing what. When I ask these questions, you can see this. We have size, we have a location, we have age, we have bedroom, and you can
+30:10
+
+draw this architecture by the help of this weight or slope value. You have a full clarity. Y is impacting, and who is impacting more? Which input variable? You have a full clarity. You can say, "Hey, their weight is very high, hence this variable, the age or
+30:23
+
+location, or maybe the size is impacting more, and basically the size the price get increased, or basically the location price get increased." Yeah? Sometimes you will see in the prime location, even the building is very old, but still the prices remain same. Yeah, so there is hardly a matter, but
+30:38
+
+location matters a lot. Yeah? Some of the house is very good, the size is very big, but the location is not good. The crime rate is very high. You will see suddenly price get reduced. So here, full interpretability there.
+30:54
+
+Machine learning, you have a full control there. But deep learning, guys, but in deep learning, my dear friend, it is very difficult. Yeah, it is hard to explain.
+31:07
+
+And why? Because we have a hidden layer there. You have no controls. Hmm? As I told you, this works very good when you have a tabular data, when you have a structured data,
+31:22
+
+SQL kind of data set. Hmm? RDBMS data. You have rows and column. But what happen when you have a image? What happen when you have a speech,
+31:36
+
+you have a text data? Hmm? You have a video data. It is very hard, guys, to use the ML. Even ML will also work with image. It's not new. But your accuracy, the performance is very poor. Yeah?
+31:49
+
+If you go in the ImageNet data set and you can say that's the biggest- ImageNet.
+32:03
+
+ImageNet data set. Wikipedia. If you go here, guys, you can see in 2012 is the year. In 2012 is the year when everybody started working
+32:16
+
+significant of deep learning. On September 30, 2012, a CNN AlexNet model achieved top 5 error 15% in the ImageNet in 2012 challenges, more than
+32:29
+
+10.8% lower than that the runner-up was machine learning algorithm. Using CNN model was feasible due to GPU machine
+32:43
+
+during training. So, you know who was the second positions there in 2012? They used the machine learning algorithm, and their error rate was 25% in this. And first time the AlexNet model is not very good model. It's a poor model.
+32:55
+
+But when they use that AlexNet model by the help of a GPU machine, their accuracy, the error rate got reduced 25% to 15% only. Imagine, guys, you can pass 100 image
+33:10
+
+and 85 image machine is predicting correctly. Yeah? And that's the year in 2015, AlexNet was outperformed by Microsoft, a very deep CNN, over 100 layers. They use 100 layers.
+33:22
+
+Right? And that's the year there, right? Suddenly, people started to pay attention, not just within AI community. Yeah. Means not only the Google, Meta company, Microsoft company, Baidu company, they started working on it,
+33:36
+
+but across the technology industry as a whole, everybody started thinking it. Yeah. According to The Economist. You can see that's the innovations there. So please remember what happened.
+33:51
+
+They found, oh, even we have a very complex problems there, where machine learning is failed to give the correct answer, deep learning is able to give the answer. Hmm. For that, what kind of problems we are solving? Like I said, here you can use the
+34:03
+
+regression problem. You can use the regression problem. You can use classification problem. Hmm. You can use random forest model, decision tree model. Or you can use support vector machine, K-nearest neighbor, these
+34:18
+
+algorithms there. But if you go here, the same problem, my dear friend, go here and with the same problem, you can solve by multi-layer perceptron model or deep neural network or artificial neural network. Hmm. You can use CNN,
+34:31
+
+convolutional neural network, recurrent neural network, long short-term memory. Hmm. Gated recurring unit. Or we have a transformer model. Transformer
+34:46
+
+model. Yeah, et cetera. We have a GPU model, right? So these are the things there. Or, you can just say that we have both model. Yeah, that word would be better.
+35:01
+
+So these are the algorithm there, and by this we can say this is what is there. Did you get some idea, guys, why we prefer to use it? If you are working in industry, what you think? Mostly you will get-- Now, these kind of data, nowadays, if you get it,
+35:13
+
+even the tabular data and all, just a cakewalk for you. You have seen by the help of prompt alone, I can write all the code. Yeah? It's very good for the tabular data, structured data if you wanted a granular analysis.
+35:29
+
+If you wanted interpretability is very high. You have a full control of each variable. You can go use the regression model, use the logistic regression, decision tree, random forest, XGBoost. Amazing algorithm there.
+35:42
+
+But what when you have a huge variables there? I have a 500 variables, 5,000 variables here. How many variables there? How many variables there, my dear friend? You can just see. Now tell me, when we have
+35:55
+
+more than 14 million images there, 14 million means 140 lakh image there, and we have more than 20,000 categories there, features there. Do you think ML is able to solve this problem?
+36:09
+
+Do you think any human, they can control 20,000 categories, guys, variables? They can read it one by one? No, right? It's very difficult. And then we are going to use this model.
+36:22
+
+And there you can give 20,000 image means there are thousands of dog categorized there. What are the breeds there? Different breeds there. So even though you can use a machine learning, machine learning will not go and categorize, okay, this dog, which breed
+36:35
+
+they are. This cat, which geographical cat there? No visibility. Yeah, traditional machine learning have no capability to solve the problem, but by the help of deep
+36:49
+
+neural network, you can solve and you can get better answer. Make sense, guys? What I'm trying to say here, everybody? Yeah? I'm saying you have to go and classify the image.
+37:03
+
+Cat versus dog, X-ray disease detections, ultrasound detections, MRI detections, brain tumor detections. Yeah? Machine learning failed to give the right answer.
+37:16
+
+But you can go and use the CNN, use the computer vision approach, and you will get very good result. Yeah? If you-- I'm saying, "Hey, can you please go and do the object detections?" You can detect whether-- There are lots of things there on the road.
+37:29
+
+You have to detect whether car there or bike there or bicycle there or human there or male or female, anything. You can go use the-- There is a model called YOLO model in deep learning, Y-O-L-O,
+37:43
+
+You Only Look Once. You can apply this algorithm and the machine will categorize, give the boundary box and they can say, "Hey, this is a person. Hey, this is a vehicle. Hey, this is a car." Yeah? In person, you can go more granular. They can say it's a male or female.
+37:56
+
+If you wanted more age also, they will categorize, okay, how old they are, how old this one. Yeah? You just imagine, that kind of things we can do it. Mm-hmm. You can say, I wanted to do a machine learning translation.
+38:10
+
+So people is speaking English, and I wanted to translate into Hindi or Tamil or French or German, right? You can go and use the deep learning concept called encoder-decoder, transformer model, GPT model. Yeah? You can say, I wanted to do a text
+38:24
+
+generations. I wanted to do summarization. Yeah? You can easily go and use the deep learning, the foundation model called transformer model. You can say, "Hey, I wanted to do a sentiment analysis. I'm working in a e-commerce company, and
+38:39
+
+there it really matters a lot when customer writing a feedback. So the feedback is a positive or a negative, I wanted to analyze it." Yeah? Initially, now we have a definitely very strong model there, but initially, deep learning given a very good model called
+38:54
+
+RNN, LSTM, transformer model. In today's world, we have amazing algorithm there. Make sense?
+39:10
+
+Everyone?
+39:23
+
+Yeah? I'm just giving a perspective. Try to understand, guys. Mm-hmm. Time series forecasting. There are so many machine learning model there. You can go use ARIMA model, SARIMA model, ARIMA X model,
+39:41
+
+SARIMA X model, AR model. Yeah? There are so many models there. But you know when you use a deep learning model, you can easily predict correct prediction happen. LSTM model, GRU model, they are the better than the any
+39:55
+
+ARIMA models and all. We have, one model is called date model. And now we are living in a gen AI world, you can do even better, no? Than those models.
+40:10
+
+Medical, guys. Nowadays, lots of, no? Especially in hospitals and all, you will see deep learning extensively used. CNN, computer visions, extensively they are using.
+40:27
+
+You wanted to analyze whether the patient has a tumor or not. Oh, there are so many MRI scan there, right? They can find correct informations. You can say, I wanted to extract the data documentations.
+40:39
+
+I wanted to do a summarization. I wanted to do translation. I wanted to do transformation. Machine learning is able to do it? Perhaps no. Deep learning, you will get very good answer.
+40:55
+
+Did you understand the perspective, guys? All, my friend. I just wanted to give a high-level perspective. At least you can speak, someone ask you, "Hey, what is the difference between ML and deep learning?" Are you able to point out, you can say, "Hey, these are the
+41:10
+
+point one, two, three, four, five." Will you able to categorize them and tell them that here we are using different software, here I'm doing. And as I say, machine learning, deep learning, no different. Can I solve the regression problem by deep learning? Of course, you can do it.
+41:22
+
+But which is better? I wanted more granular interpretability. Will you prefer ML or deep learning? When I use the more interpretability, of course I will go by ML, right? But when you have a huge data, we have a 20,000 variable,
+41:37
+
+you have 14 million data set. Is it possible human can read that much data manually? Possible? No, right? You can change your approach. Make sense? Everybody, are you with me?
+41:52
+
+Okay. Great. Now, what are the topics we are in? Deep learning. So broadly, guys, those points you have to know.
+42:11
+
+One is called-- Point number one is called deep neural network. This is also called artificial neural network. Someone say ANN, someone is saying DNN. If you ask me, I always prefer to say deep neural network or
+42:25
+
+multilayer perception. This model, mainly for regression and classification problem. Regression and classification problem.
+42:39
+
+Okay So the problem here I have given, ImageNet dataset. What kind of problem? You have to identify that image is which category. Now, what is this, guys? Can I say it's a classification problem?
+42:54
+
+It's a classification problem. You have more than 20,000 categories there, and your task is you can just see the 12 million or 14 million images, and you can build an algorithm,
+43:08
+
+and that algorithm, whenever any new image will come, your machine can automatically they can understand, they can say, "Hey, this is that image. This is dog, this is elephant, this is cat, this is horse." Like that, you will get the answer.
+43:21
+
+Yeah? Can I say this is classification problem? Yeah? So here you can go and use the multilayer perceptron model. Yeah, I'll go deeper. Don't worry.
+43:36
+
+I'll go deeper, I'll explain to you, but you try to understand this. Second part, my friend. Second part, CNN and computer vision.
+43:48
+
+Computer vision. And here there is connections there. If you don't know deep neural network multilayer perceptron, you will not able to understand CNN. Yeah, because there are so many things there that you have to know.
+44:02
+
+Today I'll speak all the terms so that when someone is speaking, you can understand what they are trying to say here, what is the meaning. I don't want you guys to be expert in the deep learning, but at least you
+44:16
+
+can understand. You have a visibility. I'll show you some use cases also. Yeah? Of course, I'm 100% sure you will not use these techniques. You always prefer to go and use any agentic AI model.
+44:28
+
+Hmm? But understand where we can apply these deep learning. So deep learning when you have image dataset. When you have image dataset, and in image you have to classify.
+44:44
+
+You have to classify. So CNN is basically, if you ask me, I can say it's a supervised machine learning. Yeah? It's a kind of supervised. Computer vision, it's a kind of unsupervised
+44:57
+
+machine learning. Yeah? Because you have an image, you have to tell them, make the boundary box. Boundary box. Means you can see the human face, and you have to
+45:09
+
+detect. Yeah, it's called detection. Detect model. Yeah? You can say it's a anomaly model. Anomaly detection.
+45:24
+
+Detection model. Yeah, you have to make a boundary box. There is a highway there, and there are lots of vehicle going on. Now you have to build such algorithm where you have to identify, oh, which vehicle is going on? So in a one day, how many vehicle is traveling?
+45:39
+
+Each vehicle, what is their number plate? How many number plate is coming from that particular state or particular city? Yeah? Whether the driver, they wear the belt or not. Or they are riding a bike, whether they wear helmet or not.
+45:56
+
+These kind of analysis, if you wanted, I need a computer vision, I need a CNN approach. Come on, my dear friend, everybody. Make sense what I'm talking?
+46:10
+
+No? Yeah, I am saying you have to do a face recognition. You have to do a face recognition.
+46:24
+
+Face recognition. You have to do document image processing, bulk image processing. There are so many documents there, and there you have to do image processing.
+46:37
+
+Hmm? You have a medical team, extensively, they are using image analysis. And best case study is brain tumor. Hmm?
+46:53
+
+Cancer detections. So these kind of problems, if you get it, you have to go and use those model. Make sense? Can everybody give me yes?
+47:07
+
+Great. Point number three. Third model in deep learning you have to know, which is called RNN.
+47:27
+
+RNN. Recurrent neural network. See, this is also neural network, and this is third type of neural network. Yeah? This is called recurrent
+47:41
+
+neural network. Okay? Why we use these kind of neural network?
+47:57
+
+Because if you have a image, guys, image you will get a pixel, and pixel is nothing itself, a kind of number. Okay? Any pixel has some number. Yeah?
+48:09
+
+Their range is zero to 255. That's the pixel there. Their color, you will get either gray color or you will get RGB color. Okay? Red, green, blue. The combination of RGB, you will get any colors.
+48:22
+
+Right? The gray is black and white. That's the gray color. So there are two type of channel there. It's called channel. How many channel? Two channel, gray channel or RGB channel. Yeah?
+48:37
+
+If you wanted to see the colorful image, you can go by RGB. If you wanted to see black and white, you can go with the gray. And each cell has some limitations, number limitation, zero to 255.
+48:52
+
+Yeah? Now, if you already know the number, guys, the maths is simple or not? Tell me. Maths, ideally, they know number, right? Yes or no? If you know the number, if you know the pixel value, it is very
+49:05
+
+easy or not? Tell me. You have seen some image. Heartbeat, guys. You have seen such kind of heartbeat. Yes or no? Have you seen that?
+49:20
+
+Especially in the COVID dataset, guys. Lots of heartbeat, they have seen, okay, who all impacted in the COVID. What are the chances there they have a heart attack? Hmm?
+49:33
+
+Now, when I say this heart attack, this image, can I say this image is also a number, guys? It's also number. Yes or no? But what happen if you have a text data?
+49:45
+
+What happen if you have a text data? Tabular data, no problem. Regression classification, you have a tabular data. When you have a tabular data, only thing, you have a huge dataset, you can go and use the deep neural network.
+49:59
+
+Yeah, it's very easy and straightforward. CNN is another neural network. They can read the image, they can read the face recognition, anomaly detections. Yeah? Boundary box model and all.
+50:12
+
+And that is pixel. But what if you have a text data? Hmm? What if you have a sequential data? Sequential data. Why I'm saying sequential data?
+50:25
+
+Guys, I'm saying here, "Hi, my name is..." If I'm writing here, "Hi, my name is Sundaram." Let's say I'm writing, "Hi, my name is Sundaram."
+50:38
+
+Please tell me, sequence matters or not, guys? If I write, "My hi Sundaram" is name. Is there any make sense? Tell me.
+50:50
+
+Has no make sense, no? But this has a make sense or not? Everybody, please. So can I say text data is a sequential dataset? Sequence really matter or not? Any language you can speak, you can talk, you really need a
+51:04
+
+sequential data or not? Hmm? Hmm? I'm saying simply, let's say,
+51:19
+
+I'm saying, hey, any sentence you can make it. Any sentence you can make it, without sequence possible.
+51:34
+
+Any sentence in any language, I'm saying. Sequential really matter or not? So when you build this kind of neural network, sequential data is really required. Hmm? I'm saying a stock price prediction.
+51:46
+
+A stock price prediction. Guys, if you pick a stock price prediction, you really need a sequential data or not? Past data or not? And that past would be in the month by month. Can I say we need a seasonality data?
+52:02
+
+Seasonality data, we need a trend data. Hmm? Only then you can predict it. Sequential price, stock price prediction and all. You know why? Because that is working basis the time.
+52:16
+
+Hmm? You are saying sensor reading. Sensor reading. It really matters a lot, right? It should be in sequential order. You have audio signal.
+52:30
+
+Audio signal. Right? How you will use it? So RNN is one of the best model there, initially. Today, if you ask me, in GenAI comparatively, RNN is very
+52:43
+
+poor model because RNN, LSTM, GRU has lots of limitations there. But when GenAI comes, if you ask me,
+52:57
+
+one is called text data and another is called image dataset. There are two events that happen, image side and text side. Text side, too much. NLP side, too much. Most of the organization, they are working on these cases: RAG,
+53:09
+
+multi-model RAG, graph RAG, other so and so on. And image side also you will get it. Yeah? So what happened, guys? RNN, why RNN is very good model? Because RNN, normally what is their
+53:22
+
+objective is, if you write, "I live in Bangalore."
+53:36
+
+Okay? I speak, fill in the blank. So that fill in the blank is what? It should be a word, right? What word will come? Word is nothing, it's called text.
+53:48
+
+At that time, you have to follow the sequence order, right? You cannot write anything. So let's say, I say, "I speak English," "I speak Hindi." Right? So what happen? There is a patterns there. So that kind of prediction, what is the next
+54:01
+
+word predictions there? That time, RNN come into picture and they are giving the answer. Make sense, guys? But RNN had some limitations. So RNN has given a couple of more models.
+54:15
+
+Please understand, LSTM is not a separate, it's a part of RNN. Gated recurring unit is not a separate model, it's a part of RNN. RNN had some limitations. Some limitation.
+54:29
+
+Okay, what kind of limitations they have? They forget very easily. Yeah? The past word, sentence. Yeah? They don't have a previous memory. They can only remember the current sentence.
+54:43
+
+And hence RNN, it's very difficult to trust on the RNN model. So what they did, they enhanced their model capability, and they have used LSTM. LSTM is stand for Long-
+54:59
+
+Short-term memory. Okay? You have seen Ghajini, right? What happened? Every 15-minute they forget.
+55:12
+
+RNN is actually behaving like Ghajini. So that solution, LSTM, given. LSTM, what they did, RNN, they forget. They forget
+55:25
+
+the long-term sentence. Long-term sentence or information. Okay? So LSTM is the next version of RNN.
+55:39
+
+What LSTM do? They has a controls memory. They have developed three kind of memory, guys. One is called forget gate. Forget
+55:56
+
+gate. Second, input gate. Input gate, and third is called output gate. So LSTM decide which sentence I have to forget it, means
+56:09
+
+which information is your older information. Let's say you play five match. You play five match. First match, you made zero.
+56:24
+
+Second match, you make 12 run. Third match, you make 50. Fourth, let's say 100, and fifth, let's say 120. If I ask you what is your highest score, right? You can say 120.
+56:37
+
+Or if I ask you what is your lowest score? You can say zero. Okay? So you remember all the part. This is normally LSTM do. Now, LSTM will decide. Let's say you made 250.
+56:51
+
+So you have to say 250, but you always refer the latest one. So this both are same. You can say, "Okay, I will forget that one." I can say that also I made it. Okay, so LSTM has more control. So base is
+57:07
+
+the input if the information is required, right? They forget unless needed. Yeah? They will write the important notes, that is called input gate, and base is this, they have to generate the output.
+57:21
+
+So I have-- When you, not now but earlier, extensively, I was using time series forecasting, text classification, speech recognition, sequential prediction model, and all, by the help of
+57:35
+
+LSTM. But LSTM has also one limitations. They can maximum, they can predict 30 words correctly. Yeah? 30 words. So if I'm writing, "Hey,
+57:47
+
+I live in Bangalore, I speak," and then there are 30 words machine will generate without taking my support. So they can say, "I speak English and Hindi. I have done this course. I have that much
+57:59
+
+year of experience. Yeah, I worked so and so company. I taught so and so classes. My student is working there." So like that, they can generate or till 30 words.
+58:14
+
+But what happened, I am saying, please generate 100 words. Please generate 500 words. Please write a complete essay. Please write a complete blog. That time, LSTM has no capability, they
+58:27
+
+forget. Yeah? And this model is very old model. This model, I think if I'm not wrong, this came 1977. This model came in 1997. This model, '70 came,
+58:40
+
+1970. This is 1997, and this model came in 2014. So this is called gated recurring unit. Gated
+58:53
+
+recurrent unit. Okay, this is exactly like the long-short-term memory, but only some enhancement they have done it. Yeah, so they said rather we can say forget gate and input gate, why not we can
+59:06
+
+combine together and make one gate, because this is little complicated. So they said, why not I can make one is up gate, update gate, and second is called reset gate.
+59:19
+
+Reset gate. Okay, so there are two gates there. Rather than forget gate, input gate, output gate, you can say update gate and reset gate. Yeah? So
+59:34
+
+they also predict sequential modeling, but this is just a simpler version of LSTM. Anybody say, what is GRU? GRU, no difference. That's a simpler version. So here there are three gates there. Here we have a two gates there.
+59:46
+
+They can also predict 30 words. GRU also predict 30 words. But GRU is the simpler or faster model than LSTM, because their processing is very high.
+60:00
+
+But you can say, is it possible GRU is giving better answer? No. Yeah? It's not. I have seen sometime you will get that LSTM will give better answer. Sometimes GRU will give
+60:13
+
+the better answer. So there is no research paper there. They have given confidently, no, that model is good or bad. Okay? So this is the model number next. Are you guys clear? Let me see the chat. Are you guys clear?
+60:27
+
+What is multilayer perceptron or deep neural network, then CNN, computer vision, then RNN, LSTM, GRU. Makes sense? All my friend.
+60:41
+
+Yeah? Great. Okay. Then what happened, how to solve this problem? There is a model came, guys, encoder-decoder.
+60:53
+
+Encoder-decoder So in encoder-decoder, we have so many models there. Let's say translation. So here you can say, "I
+61:11
+
+am teaching GenAI." So this is your
+61:27
+
+which sentence? It's called encoder model. Encoder. Encoder means input. Okay? How decoder works? "Mai
+61:41
+
+GenAI jan raha hu." Okay? So this is called decoder model.
+61:53
+
+Decoder model. Please understand, the sequence is different, right? "I am teaching GenAI." "Mai GenAI padha raha hu." The sequence. GenAI is the last here, here it's coming second.
+62:08
+
+Make sense? So like that now, you can say it's called encoder-decoder model or input-output model. Encoder-decoder model. So if you wanted to solve such kind of problems, my dear friend, you need
+62:20
+
+an encoder-decoder model, especially the translation. But is it right to say that encoder model can solve only translation problem? No. They can solve the parts of speech
+62:34
+
+tagging. Parts of speech tagging. Means if I ask you, what is I? So you can say, "Hey, I is a pronoun." What is am? You can say it's a helping verb. What is teaching?
+62:48
+
+You can say it's a gerund. Okay, or you can say it's a verb fourth form. Okay. You can say verb plus ing. What is this? You can say it's a noun. Right? So if you wanted to do a tagging, you can go and use the parts of a speech
+63:02
+
+tagging. If you wanted to do a name entity recognition. Name entity recognition, NER. Let's say I'm writing a sentence here, example, Apple is good for health.
+63:17
+
+Apple is good for health. Second example I'm writing here, Apple is planning
+63:30
+
+to buy Samsung. Now, guys, here Apple, and here also Apple there. First Apple is a noun, right?
+63:45
+
+We are talking about noun, because apple is a fruit. Fruit is good for health. Second Apple is an organization name. It's not a fruit. Here you can say it's a fruit.
+63:58
+
+Yeah? But here the same Apple, same spelling, but the context gets changed. Here I'm saying Apple is planning to buy Samsung. So Apple is organization, Samsung is organization. Yeah? So by the help of advanced model
+64:13
+
+called transformer model, they have given the context. So when you read the sentence, on that basis you can say Apple is a fruit or Apple is an organization when you read it. And that's why encoder-decoder model has very significant role.
+64:28
+
+And then on that basis, we have transformer model came. Transformer model came in 2017, guys. And that's the
+64:43
+
+foundation. I can say that's the foundation of GenAI. That time Google didn't expect that I become very popular. GenAI become different industry altogether.
+64:55
+
+Most of the company, they will shift into GenAI. A transformer model when it came in 2000, late 2000, I can say November 2017, right? And this paper becomes so amazing so that in next year two model came.
+65:10
+
+One is called BERT model and another is called GPT model. BERT is called next word prediction. Next word prediction.
+65:25
+
+And GPT is for fill in the blank. Fill in the blank. This is called encoder model. Input model. This is called decoder model.
+65:38
+
+This model developed by Google, Deep Mind. Deep Mind. And this model developed by OpenAI. OpenAI actually founded in 2015. Google is early
+65:57
+
+2000. Yeah? But after that, once GPT came, Google didn't do too much promotion, you can say, and that's why GPT become
+66:11
+
+very famous. Even I remember in 2019, that company bought to shut down. But somehow, the CEO who convinced
+66:23
+
+Microsoft Satya Nadella. He has given the proposal, and they have funded $1 billion. And today you can see one of the competitor there in the world.
+66:36
+
+Yeah, because 2019, Elon Musk, they decided to run their own show, so they bought a Twitter, which name is called X now. And they have Grok model, G-R-O-K.
+66:49
+
+They have started the Grok model. So they stopped funding to OpenAI, and OpenAI bought to shut down. But somehow, Sam Altman, they convince to the Microsoft company and funded them.
+67:02
+
+So transformer model actually understanding the context. There are so many things. I'll discuss this paper. The paper name is called Attention All You Need to Know. Attention-
+67:14
+
+All you need. If you have a bandwidth, you can go and read it. Otherwise, I will discuss this paper. It's very significant that everybody should. Now I'll take a pause.
+67:28
+
+Anybody have any questions, you can go ahead and ask me, okay? And I will discuss. Hmm? So who will ask?
+67:40
+
+Sai Ganes, go ahead, my friend.
+67:54
+
+Are you there, Sai? Please ask questions. No question, go ahead. Cities? Unmuted. Yeah. I understood what you said.
+68:13
+
+Just wanted to know that we discussed in last class that we will start today with the memories and the tools about the GenAI part. Correct. So I wanted to cover that part-
+68:26
+
+Okay ... but it's a little complex. So I thought, okay, why not I can give a background for transformer and all, and then I will go, I will cover first transformer model-- Oh, sorry, fine-tuning, and then I will cover the-
+68:40
+
+Okay ... tool calling. Okay. Just to know the context why we started this. Exactly. So that's why I asked. Thank you. Because, if I can say, "Okay, later I will cover it," so you may get confused how this thing works, what is weight-
+68:53
+
+Okay ... what is optimization and all. So in context of that- Then should be some- ... we need to know this. Exactly. Yeah. Got it. To feel connected, no? Otherwise, you can't know. Yeah. Actually, I was just started little bit late, and
+69:06
+
+then I was just thinking about that, why don't we start that and- No problem. Thank you. John? Hello, sir. I was going to
+69:20
+
+unraise my hand because you already answered my question. Because I was thinking, as a business analyst who is only interested to run AI projects in the future.
+69:34
+
+So for me, I just want to understand the pipeline, how things work, how detail I should be going in. So that was always in my mind, so- No need to, only you have to know the background.
+69:49
+
+I also don't want to run the show in deep learning too much. I just wanted to give some background, basic, some fundamental things, and then I'll give more focus on GenAI part only, and Agentic AI part only.
+70:01
+
+I don't want to spend much time here. So this is because it's a first day, that's why I'm going little deep dive so that you can understand the terminology. And when someone says CNN, someone say GRU, LSTM, you can understand, oh, what kind of query I can solve the problem.
+70:15
+
+Okay, that's the only thing. Definitely, yeah. Don't give too much- Okay ... understanding. Only you know high level and fundamental things. That's it. So sir, in terms of coding, how much should we know?
+70:30
+
+Because of late the coding has been- Nobody will ask you coding. Only Python coding, people are asking. Any interview you can go for GenAI related, nobody will ask coding for ML or deep learning. Only few
+70:42
+
+company I have seen, if their project, their client, they are working on the traditional deep learning concept, then only they can give you some use cases. I have seen some of the company like Delight,
+70:56
+
+one project there, and they have given the case study, and they said, "Okay, you can go ahead and do it." So that's a client-specific. 99% organization, they wanted you have to one language, you have to know one language, which is called Python.
+71:08
+
+Python also basic, not the same method. Basic means you have to know NumPy, Panda, you have to know loop function so that you can write a condition, you know how to write a class.
+71:21
+
+If you know that part, fair enough. Then they wanted- Yes, sir ... the expectation is you have to know very thoroughly GenAI and Agentic, as much as possible. You have to know memory, you have to know tool calling, you have to know
+71:34
+
+MCP, you have to know how to build a bit different rack. That is what their intention is. Okay, sir. Very clear. And thank you for- There is a purpose I'm giving it, so that once you come-- Because you
+71:47
+
+guys have enrolled a course, so you have a knowledge. Anybody say it's not like a black box. When someone say transformer, you can, oh, they're talking about the algorithm. Machine can understand the context and then they can generate it.
+72:00
+
+So if apple is there, apple is a fruit or apple is a company organization, your algorithm only know when they read the context. Make sense? Yeah. Hmm? When someone says-
+72:14
+
+Thank you very much, sir. Yeah ... apple, right? So bank is a financial institution. It's a RBI or bank of river. So they are talking about bank for what? Spelling is same, but bank is which context?
+72:26
+
+River context or the financial institute context? That part you have a visibility when you have to learn transformer. And GenAI, Agentic is nothing, that's a foundation of transformer only.
+72:38
+
+Their root is transformer only. Clear? Yes, sir. Yeah. Thank you, sir. Prashant?
+72:51
+
+Hi, sir. Good morning. Mm-hmm. Sir, has we covered already GenAI, like the GPT model works based on the question similarity, right? Like the word, the embedding- That part covered. Yeah. Yes, sir. We're going to have time today. So how
+73:05
+
+DL works in the same way? Because, by giving data only, we are also extracting or predicting the output. So what is the background work which DL networks are doing? In RAG, you have seen embedding, right?
+73:20
+
+Yes ... how embedding means text data get converted into number. Okay. That part, if you wanted to know, you have to know a transformer model. You have to understand the background. Okay. To understand transformer, you have to know deep learning and all.
+73:33
+
+That is why- Okay ... session is mostly to understand how the text get converted into number, what is the maths behind that, all this thing. Okay, Mahesh. Thank you.
+73:47
+
+Naresh? Hello. No question? Sir. No. Hello, sir. Good morning. So sir, can you explain the MLP one more time, multi-layer perceptron?
+74:02
+
+I'll go in deep dive. Right now- Yeah ... MLP is nothing. When you have a tabular data and you have a too many columns, then I prefer to go MLP model. Now, what is MLP? I'll come. So sir- I'll cover that part.
+74:16
+
+Okay, I've not started. I just given some perspective what kind of use cases you will get it. What is MLP? How perceptron works? That all, I'll speak in a while. Okay. Thank you, sir. Vani?
+74:30
+
+Yes, sir. What's here? Sir, we started with the RNN. Your voice is not audible at all. Sir. Hello? Is it with me only or everybody? Yeah, now it's audible.
+74:43
+
+Okay. Sir, we started with the RNN and LSTM. So RNN also, we can predict the, by using RNN we can predict the next word. That is my question, one.
+74:56
+
+Second- You can predict, but very less. Yeah, very less. If I'm giving, "Hi," I can speak, fill in the blank, machine can say English. Okay. And- But if I say, if I ask my past, what
+75:09
+
+is my qualifications? How many year of experience I have? Machine will not give answer. Okay. So, sir, in that case, LSTM is a advanced version of RNN, we can say. So LSTM can work in
+75:21
+
+that case? LSTM can work, but maximum 30 words you can generate. Okay. Do you want only 30 words? No. Sir, so my point is, in that case, we are not able to understand the context
+75:35
+
+if we are not using transformer, right? Mm-hmm. When we use RNN and LSTM. Mm-hmm. So, when we use LSTM, right? So, is there is no limit, like we are talking about limit of 30
+75:50
+
+word in LSTM to generate? Transformer, yes. We can do it, and they can understand the context. That's why the new model came, BERT model. So BERT stand for Bidirectional Encoder
+76:06
+
+Representation of Transformer model. So BERT, what they can do, they can read left to right, right to left, and then they will predict. They will generate what would be the right answer. Okay, so there is no limit in BERT, right? If you use encoder BERT.
+76:21
+
+There is no limit, but the problem is, their approach is very slow. Today, I'm giving 5,000 pages PDF and saying- Mm ... "Please read, and then you have to generate it." BERT is very slow then. Why?
+76:35
+
+Because BERT has limitation. The BERT large model can generate maximum 1,024 token. But LLM has, you have seen, right? 8,192 token you can generate it. There is a chunking mechanism there.
+76:47
+
+You can reduce, and you can create a multiple bucket, and then they can read all this thing and give the answer. Okay. And there are new tech-- When you, I told you RAG, you have seen, right? I can use re-anchor method, I can use RAG fusion method, I can use
+77:01
+
+hybrid approach, key value, key search approach. So there are tons of approach there that is more advanced than BERT and GPT model. Okay. So- That's why I said it's a foundations.
+77:14
+
+That term foundation came and it completely changed the landscape. Everybody talking about this. Oh, because LSTM older one, everybody started working on encoder, decoder, this transformer bot and
+77:27
+
+all. Okay. So sir, when we talked about GenAI, this part is yet to be covered by you, but still, where we use the transformer in GenAI?
+77:40
+
+When we do a fine-tuning, then you will know the maths. Okay. Okay, thanks. Actually, when I say GenAI, when I say LLM- Mm-hmm ... LLM is what? It's a transformer only, no? Yes.
+77:53
+
+So in GenAI, even you are using prompt engineering, everywhere you are using GPT model. So that GPT model, actually, how they understand and they are generating it, that's the advanced version of transformer model, no? Yes.
+78:06
+
+As a user, you are using it. Now, you are, as a developer, you understand the maths also. Okay. Himanshu, what's here?
+78:21
+
+Hello? Yes. Sir, in this one, GPT is responsible to predict the next word, and BERT is responsible to fill in the blanks because it is
+78:34
+
+bi-directional. Mm-hmm. I think you have written opposite, right? No problem, change it. No, typing mistake. Okay. No problem. And secondly-- Yes, correct. And secondly, I wanted to know, in
+78:47
+
+transformers, will you, because I don't understand the multi-head attention, all that, will you be covering that, right? I will cover. Thank you. I will go through the attention paper, and everything I'll explain.
+79:00
+
+Okay, great. Thank you so much. What is self-attention mechanism, what is multi-head attention mechanism, how many encoders there, how many decoders there, everything we'll cover. Okay, and one final thing. I was reading a article about Google open
+79:13
+
+knowledge foundation or knowledge base, whatever, right? That they will replace RAG going forward. Later on, if you have bandwidth, if you can touch base on that, on what exactly- RAG already covered most. RAG, you already know it. Some advanced RAG I have not covered.
+79:26
+
+That use cases, I will do it, like graph RAG and- Okay This one, or CRAG. Yeah? CRAG, yes. Conversion of industry. CRAG you have full understanding, right? That is correct. Yes, I have.
+79:38
+
+Because I have explained anything else then RAG is the upper end. There I spend lots of time. I have covered all the parts very deep dive. How the- Yes. Yes ... indexing part works, what are the chunking method there, what are the
+79:51
+
+embedding methods there, how many types of data with the database there, how RAG is working, what are the advanced techniques there. That all part you have to know. Mark my word, any interview you can go, that questions will come.
+80:06
+
+Got it. And similar thing happen in the next topic. But to understand that level, I wanted foundation. Okay. Thank you. What else? Is there anyone left? Let me see the last question. Dires. Yes, Dires?
+80:20
+
+Dires, are you there? Yeah. I'm audible, sir? Yes, yes. Yes. So sir, from MLP till transformer, so what I understand that this model are
+80:38
+
+solving a specific problem, and there was a specific use case which you are trying to solve. After that, when industry built the foundation model, they wanted to create a general purpose pre-trained model which will have solved all the problem which was there, and it was very generic.
+80:51
+
+And that's how GPT came into picture. But my question now is that in this foundational model, definitely they have used transformer as a foundation to focus on the specific task. But-
+81:06
+
+Mm-hmm ... but in the context, what they do? They just increase the additional hidden layers to have more trained, like more parameters so that context can be there-
+81:18
+
+That's what they did it. That's what they did it. So if you see the older model also, they actually work like that only. See if I'm going here and I'm showing you CNN models,
+81:31
+
+Wikipedia. So...
+81:44
+
+Or let me write it Keras model then. Keras models.
+81:57
+
+One minute. Keras
+82:12
+
+application. Yeah, see this. So as in they grow, they started all the researcher, they started working on it. They started giving more layers, and that is why the parameter get increased. So initial exception model, how many parameter there?
+82:28
+
+22.9 million. VGG-16, how many there? 138.4 million. VGG-19, how many there? You're able to see that? 43 model.
+82:44
+
+So, there are some time-consuming happened. You can see the GPU, how much time it takes. So, the more model they are giving there, performance-wise, you can see the performance-wise, there is no difference happen.
+82:57
+
+Even VGG-16, less parameter there, but performance slightly better there. So they skipped this. They said, "No, I will not go with this." Then Resonet model is a smaller model, time taken-wise, too much
+83:12
+
+comparatively this one, but their performance get increased. It's a 25 million only, but the performance 92%. But the time consuming is too much. When they use exception model. You can see exception model is 22.9 parameter only, but the timing
+83:24
+
+is very high. So, whenever you build a model, you have to first you can see the time. Second part, you can see the complexity. Okay? Or cost. So, they just wanted to balance it.
+83:38
+
+So initially, there are models there, you can just see that. So we have a different parameters there. From a small parameter also there, like a small model called MobileNet model. Is a very small, 4.3 million parameter.
+83:53
+
+Yeah, but their performance is comparatively good. Very small model, but you can see why I will go that much parameter I will build when we have these models there? So they have validated the timing also and the performance also.
+84:06
+
+So they said, "Why not I can go and use it?" Size also, you can see that is very less size, MB size. This is too much MB. So, different model. There are hundreds of model came, and how they are working, only thing they are increasing the layers, hidden layers and
+84:20
+
+all. And like that it works. Understood? So fundamentally, after the transformer model, because we were able to do parallel processing, the only challenge was the compute. So the more compute you give, the more efficient
+84:36
+
+your model builds. Yes. That's the foundation- And the other thing- ... actually, and basically this they enhance So one more thing, sir. Now I'm in
+84:48
+
+somewhere I'm hearing the word like large context model. So what is that? I know they are saying it's assisting the research model, but what is the fundamental difference from CMM, LLM?
+85:01
+
+Large context. What a large context window you are saying? I am- Large context window ... I'm hearing-- Yeah, I'm hearing the word large context modeling all this. I'm not sure what it means, so I thought of asking.
+85:14
+
+No, large context is different thing. That is a GenAI part. So when you wanted to generate a large context and all. So there are two things there. One, I have covered the large context window. So at one go you can pass all the model rather than you can do
+85:27
+
+vector database and then you can connect with the RAG system. Why not I can put all the large context information and we'll give to the GPT and we'll ask them. You can do the embedding, and then you have to generate the output.
+85:42
+
+That's called long context. Another is outputs part also is coming large context informations So what they do? You have a few sentence only, but by the help of GenAI, you can generate a one paragraph.
+85:56
+
+You can just write a name, like you have seen so many low-code platform. They use exactly the same thing. So I don't know whether you guys have used Gamma or not. Gamma AI. Guys, have you ever used it?
+86:09
+
+Gamma application. So see, I'm just writing here, create, generate this, and I will write very less. This is called large context or documents or large context information. I'm writing,
+86:28
+
+make a presentation about GAN, generative adversarial networks. Now, how many cards you wanted? How many? You can see.
+86:42
+
+If you go the ultra version, you can make 75 slides. I'm going free right now. Which? Classic or a studio? Let's say I'm going classic. Default, you can see, yes. Default you wanted. Default, traditional or at all.
+86:55
+
+So just go with the default. Which language? So if you wanted Hindi, English, any language, you can give it right now. Let's say I'm giving English only. And just go and generate it, and see the magic.
+87:09
+
+Very simple line. And how it is working? This is the LLM only. So they have given the generation for 10 pages. Now, you wanted each pages how much information? Minimal, concise, very detailed, very extensive.
+87:21
+
+You have to write. Let's say I'm saying concise only. Do you want title and all? You have to just do it. And here you can say, okay, you wanted give emoji or scene or some auto scale, which LLM model you wanted to use it.
+87:36
+
+So see here, different LLM model there. Okay, let's say I'm saying auto-select model, which is the best, where the less token gets generated or created. I'm generating it and you can see 10 pages. This is called large context. So that LLM do.
+87:48
+
+And see here, the presentation is ready. Only certain tweaks you can do, and work done. Everybody, are you able to see that? Just one line I have written.
+88:03
+
+And they are writing full PPT presentations getting prepared. Happy, guys?
+88:18
+
+See the magic. And then you have to go and download it, make a presentation mode, and this is your presentation. Go and give the presentations in front of your stakeholder. Right, let's
+88:37
+
+see. So how many GANs there? What are this? So GAN versus this, two parts generations, how you will generate it.
+88:51
+
+So everything they have prepared it. All this part you have-- See this. So basically, sir, this is a kind of agentic system, right? So it is- It is kind of large context generations by the help of
+89:06
+
+LLM. Agent also you can create. It's not agent right now, I have used GenAI only, but agent also there. So you can say, "Hey, I wanted to create a agent here." Okay, so you have to add the Fabric, you can export it, you can analyze it, you can
+89:20
+
+do it. Some agent also will come. So let me put exit. You have to share here. You can just export, import. Some agent also there, you can write and say, "Can you please add here, change this language to something?" So that agent
+89:33
+
+will do it. So it's a mix of both. But when it's a large context generations and all, this is what normally happen. Correct. Guys, any doubt in GenAI? Sorry, deep learning.
+89:48
+
+Problem happen when I'm teaching deep learning, you guys are asking something else. I'm going here and there. But it's good. At least you are asking, so by this way, I'm telling you these are the application also, you can go and explore it.
+90:03
+
+Hello? Yes. Sir, I have one doubt, whether each model is meant to train with some parameters. Some 120 million parameters. So these parameters are same as which you have said it at the beginning.
+90:16
+
+The hidden layer concept. Correct. Is it the same? Maths is same. Maths remains same. Okay. So, at the beginning, you said that it is the hidden layers, there are 38 parameters. So it is same as that 120 million parameters you have-
+90:31
+
+120 million, 4 billion parameter. Okay. That's the only techniques they are using it. Okay. Sir, thank you. Guys, everybody, can you please write yes, no on chat
+90:44
+
+window. Comfortable? If yes, tell me yes. Great. Now I'm going little granular details. Okay?
+90:58
+
+So first model is-- So once this will complete, I will jump the fine-tuning. Pept model.
+91:12
+
+And in Pept, I will cover LoRA and QLoRA. Low-ranking adaptations, quantize low-ranking adaptations
+91:28
+
+method. And some other techniques also I'll cover, Hugging Face, OpenAI. There you will see so many techniques, supervised, unsupervised techniques and all
+91:40
+
+reinforcement learning techniques and all. And then we'll cover tool calling, function calling
+91:55
+
+MCP, A to A. Okay? How everything gets connected. So these are the very advanced topic, but yeah, you will be able to understand all this thing. Then observability,
+92:09
+
+guardrail, responsible AI. Okay? Et cetera. And a few pending topic, RAG types, like graph RAG,
+92:26
+
+think I've not covered yet, and C-RAG. Okay, this part also I'll cover it. Happy? And then you are ready. If I will deliver that much topic, you are ready to get a job. Please attend the weekend project session.
+92:41
+
+Because there I will teach you in a complete different mode, the architect level. You will understand full concept how architect work, what are the
+92:56
+
+components there, where I can apply the back end, the front end, the observability, the cost part, the RBAC model, some different Cosmo DB and all. So all part we will cover. And my target is to
+93:08
+
+touch all three part, Azure, AWS and GCP. So that when you go, they have a confidence, yes, you know all these thing, you are the right candidate. And of course, once you get a job, you have a two choice.
+93:23
+
+You can connect with me if you are ready to give a party, otherwise you can enjoy. Yeah. AI Gateway, I'll cover today itself, everything. Yeah? So very good topic you have written. I'll cover that architecture, complete holistic view I'll give you.
+93:38
+
+Take care everybody, all my friend. Could you please touch base about the
+93:56
+
+harness mechanism and loop? Yeah, loop engineering we'll cover it. Harness mechanism, something will come, but let's see. Okay? Loop engineering will come there, guys. Don't worry, that is there.
+94:09
+
+So guys, now coming back to the first topic, which is called in deep learning, first topic name is? What is the first topic name, guys?
+94:26
+
+Multilayer perceptron or deep neural network or artificial neural network. Okay. First thing first,
+94:40
+
+you will get how the architecture works. Please understand. You will get feature one, feature two and feature three. Okay? Means there are three independent variable there.
+94:55
+
+Let's say it's a room size. Just I'm giving. This is room size, this is location, this is age. Hmm? You wanted to buy a house.
+95:10
+
+So this is called input layer. Now, here you will get a hidden layer. Very simple maths I'm explaining you so that you all can understand.
+95:23
+
+This is the output. This is called hidden layer. This is called output layer.
+95:35
+
+Now what will happen, this input layer connected with both the hidden layer. This also, and this also.
+95:53
+
+So how many connections there? Two connections, then there are two weight get calculated. W11 and W12, two weight get connected. Second hidden layer.
+96:06
+
+Feature two connecting with hidden layer one and connecting with hidden layer two. How many weight? We can say weight two one, weight two two.
+96:24
+
+This is the third hidden layer. You can say third features connected with first hidden layer, third feature connecting with... How many weight, guys? You can say weight
+96:36
+
+31 and weight 32. Okay? If I ask you how many weight, everybody, how many weight? Can I say there are six weight? W11, W12,
+96:50
+
+W21, W22, W31, W32. Now whatever the result will come,
+97:04
+
+whatever the calculations happen, here that is called output one and output two. Now how the output will come? For that, there is a match there. First, it's called a step function.
+97:16
+
+What is called? This summation is nothing, it's called a step function. A step method. Means the calculations happen, this part,
+97:30
+
+we can say this part equal to F1W plus F2W
+97:45
+
+plus F3W3. Okay, you will get some value. Make sense, guys? Now, internally what happen,
+97:57
+
+there you can apply the activation function. Here you can apply the activation function This f is nothing, it's called activation function.
+98:10
+
+Now, I'm giving intuitions. Let me take the image.
+98:25
+
+Artificial intelligence versus human intelligence, or you can say neural
+98:40
+
+network versus human brain. Go to the image, pick this. Let me take here this one. Okay?
+98:54
+
+Guys, you can see this. Now, this is a biological brain. Okay? It's called biological brain.
+99:07
+
+Biological brain. And this is artificial brain, artificial brain.
+99:21
+
+We can say neural network for AI, this is neural network for human. Dendrite means, let's say there are some ice there.
+99:34
+
+Okay, let's say there is ice there. When any human, they can touch that ice, that will go to the cell body. Yeah. Means nucleus or cell body, it will go to the cell body.
+99:46
+
+Yeah. There are lots of cell, millions or billions of cells there in human body, right? When you touch the ice, guys, touch is a tangible or intangible? Can I say it's intangible? Feeling is a intangible, guys.
+100:00
+
+When you touch this, that is called dendrite, means information is coming to your cell body. It is passing out. Axon means it's passing out, the calculation happen.
+100:12
+
+Exactly same thing happen here. When information, this input will go, the feature variable, it will go. There is a step function get applied, and then activation function will tell you that this axon
+100:25
+
+means it will pass out. It's kind of activation function. And the terminal load means, axon terminal means it will tell you it's a cold. When you have a hot water,
+100:39
+
+when any human can touch. So this information is called dendrites. When any human, they can touch it, it will go into your body. Body can realize, right? There are some match there, and on that basis you can say, "Hey, this is hot."
+100:52
+
+Yes or no, guys? Whether hot and cold is a feeling. When you touch it, internally, something happen, and then you can say yes. Exactly same thing happen here also. This is the simplest intuitions, guys.
+101:07
+
+I'm giving a very simplest intuitions, how you can relate. Yeah. But if you are really interested to go and learn it, there is a Hubel and Wiesel, right? The researcher there. They won the Nobel Prize. So if you have a bandwidth,
+101:20
+
+you can go and read their blogs. Hubel and Wiesel.
+101:36
+
+Wiesel, some name is there. Wiesel experiment, Wikipedia. So first they have taken a cat. You can just go and read it.
+101:49
+
+There are lots of... You will get it. So they have taken a cat. They, given anesthesia to that cat, and then they started learning how brain is, visual area in brain is working, how that
+102:02
+
+is passing and all. Very nice tutorials there, and they won the 1981, the Nobel Prize. Yeah. See, in 1981, Hubel become a founding member of World Cultural this. This, this, this. Somewhere is written there, you can go and read it.
+102:15
+
+He was co-recipient Wiesel 1981 Nobel Prize in Physiology or Medicines here by this. Who? The Hubel and Wiesel, both professors, right? They won the...
+102:32
+
+And they have given the cortex, right? Or how your brain is remembering all the words. Right? Everything is given. Please, when you have a bandwidth, please go and read it. Amazing research paper. So CNN is totally based on this, these two.
+102:46
+
+Because of them, we are leveraging and learning all these things. Yeah, you can just think how the vision and our cortex body, the primary visual cortex, all these things, they have explained it.
+102:59
+
+So here I'm just giving it, what it will happen internally, and then finally they will give the output. Okay, and that's what the f- or this will do it. Now I have written one more layer. So this layer get
+103:13
+
+connected with this and this. So this is called W21, this is called W2, this is W3. So how many weight here?
+103:25
+
+W1 and W31. And then finally, you will get the output, which is called Yi hat. Now how many weight, guys? One, two, three, four, five, six, seven, eight. Now, this is just a simplest idea. How weight calculation happen?
+103:37
+
+A weight calculation, you can say weight calculation happen, input data, multiply how many neurons there. So how many neurons are there? Input is three, neurons is
+103:53
+
+two. Plus, here how many output is there? You can say again, two, right? One and two, and multiply. So you can say total weight is six to eight.
+104:05
+
+How many bias get created? Yeah? Bias is one and two, and plus one. Three. So what is total parameter? Total parameter equal to weight plus bias.
+104:19
+
+So you can say eight plus three. So total 11 parameter there. Whatever things you have seen in this algorithm. Whatever the parameters you are seeing it,
+104:34
+
+that millions. Even you will get billions also. If you go here, and you can just type LLM model, Wikipedia, and whatever the large language model you can see here, if you go
+104:47
+
+down. I think some other research paper there, you will get billions of model.
+105:02
+
+Okay, here you can see. GPT. Yeah? This BERT model is 3.3 billion. Or plus number of parameter is 0.3 billion parameter. T5, 11 billion parameter. XLNet, 0.3
+105:16
+
+billion parameter. GPT-2, 1.5 billion parameter. Yeah, you can see GPT-Nano, 2.7. You can go the latest one to 2025, right? You can see DeepSeek.
+105:31
+
+They have used 671 billion. Yeah? Now there are trillion model also there, see? Qimi in 2026. In Jan '20, the release date is, they are planning, one trillion parameter,
+105:43
+
+guys. Purpose sizes. Just imagine. Yeah, how much there, 17 billion. Yeah? Plan is 17 billion parameters. So like the models there, right?
+105:58
+
+A GLM 5.2 in June of '16. Ideally, it should be '26. 744 billion parameter there, MIT has released. So you can just imagine how the parameter get calculated, that's the way there. Okay?
+106:11
+
+So what happened? Whenever input data feature variable get connected with a hidden layer, there are two maths there. One is called a step function, second is activation function. Yeah? This is the neural network works.
+106:26
+
+That's the way they are to work on neural network. So what is the step number one is? Step number one is, you can say step number one. Step number one
+106:40
+
+is what is my Y equal to? You can say W1F1 plus W2F2 plus W3F3.
+106:53
+
+This is the step one. Let's say this one, I am saying a step function. Yeah, this one I'm saying a step function equal to summation equal to this. Second step is, step number two, you can say activation function Z equal to.
+107:05
+
+You can say activation function summation. Okay? So Z equal to, you will get activation function of summation.
+107:22
+
+Yeah, summation name, if you wanted to give Y, you can give Y. Yeah? Like that, and then you will get output. You mean to say, what is this? Can you please explain? I am saying here, guys, you have input data 1, X1,
+107:36
+
+X2. Here I'm saying X1 plus X2, and here I'm saying output, which is called Y. Condition is,
+107:49
+
+this is called perception model. Perceptron model. This model came in early 1960 only. Just imagine how old the model is.
+108:04
+
+So one professor there, who has given. It's a Russian mathematician, so they have given that whatever model is there in deep neural network, that is nothing, it's a perceptron model only. So what they said, they have given a
+108:17
+
+concept. Let's say X1 plus X2 is greater than one. Okay, then my answer is, or let's say greater than one, my answer is yes.
+108:32
+
+Otherwise, no. Hmm? Now here X is one, one, one, zero, zero, one, zero, zero. Mind the value.
+108:45
+
+If you add it, 1 plus 1, 2. 0 plus 1, 1. 1, 0 plus 1, 1. 0 plus 0, 0. Now here two is coming, your answer is yes. Here, one is coming, answer is no.
+108:59
+
+No and no. So this is what exactly activation function there. Yeah, what they will do? If I'm saying here you have, let's say, 10,
+109:12
+
+20, and 30 there, and there is a hidden layer there. Okay, hidden layer there. And this is your output, YI hat. My actual value, YI equal to 100 there. Now, when you connect with the
+109:24
+
+bias, when you connect with the weight value, let's say, I'm saying weight equal to 111. Now what happened? What happened, guys? Activation function. And then you can say activation function.
+109:38
+
+So 10 multiply 1 plus 20 multiply 1 plus 30 multiply 1. You can say 10 plus 30, 30, 60 only. Here your actual value is 100, but I am getting here 60 only.
+109:53
+
+So what is the error? That is called loss value. Please remember. So loss equal to, you can say, actual minus predicted. Means 100 minus 60, which is called 40 error, I got it.
+110:08
+
+Now this error you can rectify. This approach is called- Or this approach is called, what I have mentioned here, this approach is called feed forward neural network. What is it called, guys? Feed
+110:22
+
+forward neural network. Okay, so what is the meaning of feed forward? Input data connected with weight and biases, then the algorithm happens, step function, activation function, and then output will come.
+110:36
+
+That left-to-right process is called feed forward neural network. Now I am getting a loss value. What it will do? It will go back. It will go back, and they will update the weight value.
+110:51
+
+They will update the weight value. It will go back. Yeah. It's called go back. And that go back, what they will do? They will update the weight value.
+111:03
+
+Yeah. This weight value update happens so that my loss value would be exact zero. Exact zero. Please remember these questions will come, hmm, in case someone asks you. Exact zero or closer to zero?
+111:17
+
+Closer to zero. Yeah. This update weight, so that your loss value should be exact zero or closer to zero.
+111:34
+
+Then you can say my model is very good. So we are using two methods. One is called derivatives method. Derivatives method,
+111:47
+
+and another is called memoization method. Memoization method. Okay? This approach is called back propagation approach.
+112:00
+
+Propagation method. Okay, what back propagation do? They will update the weight. So let's say I'm updating the weight here. Okay, I'm saying, please go and update the weight. So here,
+112:13
+
+two, two and two. Okay? Two, two, or let's say here one. Hmm. Iteration happened, and we are calculating, and after doing this we are
+112:26
+
+seeing this. So what happened? 10 multiply 2 plus 20 multiply 1 and plus 30 multiply 2. Now what is the value? 20, 40, 100. Now what is my loss
+112:38
+
+value? Loss equal to 100 minus 100 means 0. Okay? So this approach is called back propagation method. Back propagation method by the help of derivative
+112:50
+
+function. Yeah. That is called chain rule. Okay? Back propagation is nothing, it's called chain rule. If you guys know calculus, you have learned chain rule, and another is called memoization, means fixing the value. Yeah?
+113:06
+
+Then you will get, and this method was given in 2006 by the modern deep learning father. Modern deep learning
+113:21
+
+father, name called Geoffrey Hinton. Geoffrey Hinton. Okay? You can just go and type this. I hope you guys know him.
+113:34
+
+If you don't know, please remember, follow him on LinkedIn. Go, there are lots of videos available on YouTube, you can watch them. Geoffrey Hinton, this guy, he's the father of.
+113:46
+
+If you go and see their history and all, initially they were working in University of Toronto, he was the professor there, and six months he worked in the
+114:00
+
+Google Brain also since from 2013 to 2023, he worked Google Brain as a HOD, right? Or as a head. He worked on it, and he has given the back propagation method algorithm in
+114:14
+
+2006. He started working in 1986 itself. If you see here history and all, right? I hope you guys, all guys have learned Pythagoras theorem and all. So his grandfather was, they have developed all these things, and he's
+114:29
+
+amazing personality, guys. And now we are saying he's the father of modern deep learning. He has developed the AlexNet model, right? He's a student in 2013, one Indian guy, Nitish Srivastava. Yeah. Who has published a paper called Dropout
+114:43
+
+Concept. And he won the Nobel Prize in 2024, last to last year. Right? He won the Nobel Prize because of his contributions. Maybe it took too much time, but because of them, he has given this, and that's the whole architecture there, like
+114:59
+
+that the back propagation model came in 2006. Because in 1990, deep learning become a big failure. I
+115:14
+
+remember in 1970, guys, or '80, there were big hype there, everybody talking about AI. What happened? AI will do this, AI will do that, AI will reduce the
+115:26
+
+human job, all these things. But when it came 1990, it become a big failure. We can say AI winter here. Winter here. Because that time GPU was not there,
+115:40
+
+graphical processing unit was not there. That time ReLU activation function not there. That time optimization techniques not there. That time data was not there. Too much data, we need it. Today, Google can claim that, "I have more data than Indian government.
+115:54
+
+I have more data than USA government." Yeah. But that time data was not available there, and that's why deep learning become a big failure. But he trusted himself. He said, "The day will come when we will work with the huge data set, and
+116:10
+
+that time machine learning will not work." So that is why you will see now 1990 to 2010 Yeah, 1990 to 2010, guys, there are
+116:24
+
+more than thousands paper developed in machine learning alone. I have seen more than 200 research paper developed on KNN and support vector machine and random forest alone. But he trusted himself. He said, whatever happened,
+116:37
+
+he has spent almost 20 years, guys. 1986, he has started working, and 2006, he published a paper called Backpropagation. When he trusted, he said, "Okay, when we have a huge data, how we can solve
+116:53
+
+the regression problem or classification problem or image-related problem and all, I definitely need a backpropagation method," and he started working. In his career, 20 years he have spent for this model,
+117:06
+
+this paper alone. Imagine, one person, they can work maximum 40 years. Yeah? Or extraordinary, then you can say government declared for 58 or 60 years is a retire, and he has spent that
+117:20
+
+much. His half life they spent for this model alone. And because of him, we are privileged and we are talking about GenAI, Agent TK, all this thing, but
+117:34
+
+what is the foundation? Foundation is this only. Are you guys clear? So how feedforward neural works? Feedforward neural means you can do left to right, and then you can see how much loss there. That is called feedforward neural network.
+117:47
+
+Your target is my loss, my error rate should be zero, or exact, or closer to zero. For that, you have to go back. You can use the chain rule or use the memoization method. Yeah? Combination of chain rule and memoization, and then you have to update the
+118:01
+
+weight, and then you can calculate this. So that, backpropagation, and it keep iterating. That iteration word is called epoch. Epoch is nothing, it's called fancy word,
+118:17
+
+guys. So wherever you hear the word epoch, you can say, oh, there is one backpropagation, then one feedforward network also there. Because backpropagation will only give the weight updation, and then feedforward neural network will give the final answer.
+118:30
+
+So that's the process, it's called epoch, means iterations. Yeah? Epoch is nothing, it's called iterations. Are you guys clear what is weight, what is a step function, what is activation function, what is loss, what is feedforward neural network, what
+118:45
+
+is backpropagation method? Everybody. Come on, or too much? Hmm? Please remember.
+119:00
+
+So what perceptron is, guys? Perceptron is the simplest neural network unit. Yeah? Think like a basic decision maker, like this model. This is called perceptron model. Okay?
+119:19
+
+We should approve a loan. Let's say question is there, shall we approve that loan? So what happened? One is you can see what is the salary, what is the credit score, their civil score there, whether they have taken existing loan or not. Like that you can say feature one, feature two,
+119:34
+
+feature three. You have a three weight: weight one, weight two, weight three. And then you can go and build the step functions, activation function, and then you have to take basic activation function,
+119:49
+
+yes, approved or not approved. Yeah? So if their limit will cross that part, let's say here I have given, if the value is coming x plus x2 is greater than one, then yes, loan get approved. Similar parameter you have to give, and then you can decide, yes, loan get approved
+120:02
+
+or not. Either you can say reject or accept. That is what happen basis of perceptron model. But perceptron model get failed. What get failed? Biggest failure happen in 1960.
+120:16
+
+First winter year happen in 1960 itself, when the professor or the researcher, they have given the perceptron model and they claim themself that my model can solve any
+120:30
+
+classifications problem, any regression problem by the help of perceptron model. Yeah? But it become failed. Why? Because if the data, if you have a different kind of data there, what you will do?
+120:45
+
+Where the algorithm will not work properly, when we have a multiple features there, what you will do? Will that concept works? So then multilayer perceptron comes.
+120:59
+
+Perceptron comes. What multilayer perceptron do? They said, "Hey, I will not take only one hidden layer. Why not I can take a
+121:11
+
+multilayer?" Perceptron means one layer only. Multilayer means multiple layers. So if I have X1, X2, X3, X4, and here we have multiple layers there.
+121:25
+
+First hidden layer, I have hundreds of neurons, let's say. Hundreds of neurons. Second hidden layer, I have one hidden layer, two hidden layer, three hidden layer.
+121:38
+
+Let's say I have 50 neurons. And then finally, hidden layer, the final output. Okay, you can say this is my final output. So what happened? There are two hidden layer I have taken.
+121:52
+
+Hidden layer one, hidden layer two. Each input data get connected with hundreds of neurons. Each input data connected with hundreds of neuron.
+122:04
+
+Hundreds of neuron. This 100 output, you will get it. You will get 100 output. This 100 output get connected with hundreds of this. And then finally, you will get the output, and this is what is called Yi.
+122:17
+
+Now you know the concept, what perceptron has given. You can exactly use the same thing. You can say, hey, how many weights there? Or what is the total parameter? You can say total parameter is
+122:31
+
+four input data, multiply hundreds neuron, plus 100 bias. This is my first layer connection done. You will get 100 output. Each 100 output
+122:45
+
+get connected with 100 neurons, plus 100 no bias. Plus how many output? 100 output. You can say 100 output, multiply with one hidden layer. So one weight plus one bias,
+122:58
+
+and that's the total parameter, 400 plus 1, 500. Here, 100, 100. You can say 100000 and 100, so you can say one. And then 100 plus 101. And like that you can say
+123:13
+
+total parameter is 601 and 10. So you can say 10,061. 601 parameter get calculated. Now how simple it is, guys. How simple? You can easily go and do it. So multi-perceptron model is
+123:28
+
+nothing, you can say, more than one hidden layer, more than one neurons. We can take any number of neurons, we can take any number of hidden layer, and we can iterate any number of times. That is what is called
+123:43
+
+multi-layer perceptron is. Anybody say, "What do you mean by multilayer perceptron?" In a simple language you can say, "Boss, multi-layer perceptron means a fully connected dense
+123:59
+
+layer." What it will do, it will transforming all the input data with one hidden layer, whatever the output will come, connecting with another hidden layer, and so on and so on till the output comes.
+124:11
+
+And they can find the relationship, they can apply the feedforward neural network, they can check the loss value. If there is output is there, they can use the backpropagation method by the help of optimization method, and then finally they will give the answer.
+124:25
+
+That's what is called multilayer perceptron. Then another question will come, then why we are saying artificial neural network? Artificial neural network is nothing. It's called perceptron model only, guys. That's the nomenclature only.
+124:40
+
+Deep neural network is nothing, it's called multilayer perceptron. That is why I don't want to say artificial. Artificial means it's any neural network inspired by the human brain. So initially in 1960, we
+124:53
+
+people say ANN, artificial neural network. But as the brain, we develop lots of model and all, we change to saying ANN to deep neural network.
+125:07
+
+Means multiple hidden layer. So ANN is a part of deep neural network. N is a part of multilayer perceptron. Deep learning, multilayer perceptron, and deep neural network, both are same,
+125:20
+
+just a nomenclature. So whatever you prefer, you can say like that. Make sense all, my friend? Did you understand?
+125:33
+
+Now I can see lots of friends saying, "Break, break, break, break." I have written 50, you can typing mistake, just think about it. Let's say here I have written 100 only. Don't worry about too much, 100 only. You can just calculate.
+125:47
+
+Here 50, then you can say 50 plus 50. Fine? How do we select the number of neurons in the neutral layer?
+126:00
+
+In the neutral layer. There are methods there. Okay, there are methods there that we are doing it, but just holistic idea I'm giving you. Okay? Because if I go that much deeper, then I think you get confused.
+126:15
+
+So simply you can say, okay, base is your experience, you have given 100, and you will see loss value. Is there any automatic method there? Yes. We have automatic method there. That also you can try, and machine will choose what is the best hidden layer, I have to take it, and will give this.
+126:31
+
+Okay? There is automatic method there that will decide. Guys, all my friend, are you with me or too much? Can we take a break now? A small break.
+126:48
+
+And then I will talk about CNN, RNN, or can I pick one huge cases today for deep neural network or multilayer perceptron? Is it okay? So that you will get some glimpse also how coding works.
+127:04
+
+Everybody. Use cases? Okay.
+127:24
+
+Easy use cases, but after break. Fine. So guys, if you wanted, you can go enjoy your break. So we have a break time now. Take 20 minutes.
+127:44
+
+Meanwhile, I'll take a query. So Badri, you have raised hand, please un-raise it if there is no question. Farhan, over to you. Hi, sir.
+127:58
+
+Mm-hmm. So we are always taking this bias value based on the number of hidden layers, right? Right. So usually when we say bias in the sense, like, so we cannot predict the exact value, so we give some kind of buffer. Is it right?
+128:11
+
+Bias in the sense? Not like that. You can say some intercept value I have to give it. So let's say salary. So if anybody has a fresher, they have a zero year of experience, but still they can get some amount, no? Mm-hmm. Yeah. So that's the benchmarking. So that is called bias Like that, we
+128:27
+
+are doing it. Okay, so is it always the same as the hidden layer we used? Because whenever, even in the last time when we- We are mostly, yeah. We are always giving it, say, if let's say there are 100 neurons I'm giving, 100 bias also we are giving it.
+128:43
+
+Yeah. So it's always like this, right? So it will not change. Correct. Yeah. Like that parameter only get calculated. Okay. Yeah. Okay?
+128:57
+
+Who else? Nobody? Chalo. So guys, one more friend there, who is this? Shivaji. Yes, Shivaji? Yes, sir. Sir, when perceptron get fails,
+129:10
+
+the one layer you said- Perceptron got failed when you have a different kind of model state. Let's say I'm saying, some housing price data set you can take it, let's say. A simple.
+129:25
+
+Now housing price, here, what have you noticed? When I have given X1, X2, X3.
+129:40
+
+X1, X2, X3, and if I am drawing one neuron only, and you are getting the output. Correct? Yes.
+129:54
+
+Now the relationship is going always is a convex layer. What is meaning of convex? A straightforward. X1 plus W1, plus X2,
+130:06
+
+W2, plus X3, W3, which is called, let's say I'm saying Y. Now activation function of Y, which is called Z, and whatever result will come, that result will decide whether they fail or pass.
+130:19
+
+Yeah. Correct or not? Yes. Now this relationship is straightforward, the calculation. You can say X1 multiply with this, X2 multiply. Yeah? But it's not mandatory. You can say the location,
+130:36
+
+the size, the age always vary, sometime. Sometime location is, if I give the multiple neurons, is it happening or not? Here, location importance is very less.
+130:49
+
+Or the same location, we have a two different builder there. Can I say the price matters? Yes. Yeah? So location is not always a constant. You can say location also vary. Size also matters.
+131:03
+
+Age also matters. If you are in the prime locations and two apartments there, here age hardly matters. If you want, you are in Delhi, let's say you wanted to buy a house in CP, Connaught place. Even it's older, the price would be very high or not?
+131:17
+
+Yes, sir. Yeah? But the same property, if you go and buy somewhere in Delhi, some other location, let's say Rohini, you can go in different sector. Very old.
+131:32
+
+Or Narela you can go and there you wanted to buy. Or somewhere Najafgarh side you can go and buy it. So then the price matters a lot. Mm. It depends. Like that it works. Size also, if you go in the village area, rural
+131:47
+
+area, the size is very high, but the price is very less. Yes. So this is why not I can do multilayer perceptron and all the pros and cons we can see and we have to do it. So we don't trust in the convex layer, we always trust in the
+132:00
+
+non-convex layer. Other another concept there, I'm not going that much deeper. So this is the another concept there. This is called loss function, and this is called iterations.
+132:15
+
+So the weight part, weight will go. If this part is coming, it's a straight, right? Immediately if you go lesser the loss value, better the model. Yes or no? Yeah. It's called convex, so it's straightforward, but
+132:30
+
+what happen if your layer is coming like that? Now, you can say this is. Your weight will come down here. So that is the local minima value. Here, this is called local minima.
+132:42
+
+Now, if your local minima, but here local minima is what? Your machine get stuck here only. No. But loss value, this is the lesser one. Mm. Convex layer. Sorry, non-convex layer. Non-convex.
+132:57
+
+Okay, so this is called local minima, this is called global minima. So there are lots of local minima there, but which is the lesser one? And for that, we are using optimization method. So there are multiple optimization there.
+133:12
+
+AdaGrad, AdaDelta, RMSProp, Adam, NAdam. There are so many things there. I'm not going that much deeper, otherwise you all get confused. But if you guys are interested, I have given 100 hours lecture on deep learning alone. You can go and watch this
+133:24
+
+recording. But here I'm just giving a prospective. Okay. Just like that it works, and that is why we can say perceptron model get failed. You just think, no, I'm saying where the loss, my error is very less. If you use perceptron model, you can say this is my
+133:39
+
+loss value. Mm. Here my original loss is this, which model is good? This one or this one? First model or second one? Always- Second. Mm. No one will you reach here? No. Why?
+133:54
+
+Because you are perceptron model. Perceptron means only one layer there. Yes. So it's stuck here only. But if I use multiple, so you have a different prospective also. No? Different prospective also. So definitely you can reach here by the help of
+134:06
+
+different optimization. Of course, we can use Adam or Momentum and some other RMSProp, the combination, and then we'll reach here. That's a techniques. But broader perspective is perceptron, multilayer perceptron can only do this part.
+134:20
+
+Perceptron model cannot do it. Okay, sir. Got it. Thank you, sir.
+134:35
+
+Okay. Thank you, guys. So we'll connect at what? It's 12:43, so we'll be back at 1:00, guys. 1:00 PM. Everybody, are you with me?
+134:49
+
+1:00 PM. Thank you. And then I'll pick one use case. It's very simple use cases and how Perceptron code-- Code-wise, it's very easy, four or five line code only, and you feel very happy. Yeah?
+135:04
+
+Thank you
+135:18
+
+All
+147:29
+
+right, my friend, I'm back now. Are you there, everybody? Okay. I'll show you one use case, how you will use it.
+151:57
+
+Just see the pattern. Anyway, you know GenAI, so you can write a prompt and ask them that please use multi-layer perceptron, provide the code for this particular dataset. The GenAI, they will
+152:13
+
+generate a code, and you have to go through it. Okay? And that's what you can do it, but you have to know also how we can do it. So
+152:26
+
+folder, deep learning.
+152:39
+
+Multi-layer perceptron model. Okay? So
+153:20
+
+a step you have to remember, guys. One, import required libraries.
+153:35
+
+So what is the first libraries you have to import? You can say import NumPy as NP, import Panda as PD,
+153:48
+
+and import OS. Import matplotlib.pyplot, okay, .pyplot as PLT.
+154:00
+
+Import Seaborn as SMS. So this is machine learning package. You can say why I'm doing it, but intentionally because if you import some data set, some basic thing is required, you have to go and do this part.
+154:15
+
+Yeah, it's not necessary you have to do, but for self-study you can do it. But main packages you have to import for TensorFlow. So you can say import TensorFlow as TF,
+154:29
+
+and you can say from TensorFlow import Keras. Keras is a wrapper, okay? TensorFlow came in 2015, and
+154:43
+
+I remember in 2015 when I was working in this industry, there is another perception going on. So if you know TensorFlow, you will get a job in Google.
+154:55
+
+Yeah, it's so complicated there. And another perception is there, Google has developed a TensorFlow intentionally for their employ only. Yeah, but later in 2016, when Meta company, they merge PyTorch, right? With Theano and all, so it become very popular,
+155:07
+
+then TensorFlow also merge with the Keras. Yeah? So Keras is a wrapper. Keras is Keras and TensorFlow, we are using it for developer. If you are a researcher, right, you are writing a thesis, you wanted a granular level code understanding, you
+155:23
+
+can go use the TensorFlow only. But the activities I can do with Keras and TensorFlow, just I will write five-line code. But if you write TensorFlow alone, if you don't use Keras, you have to write hundreds of line code. So it's a way difficult, right?
+155:39
+
+So that's why we prefer to use TensorFlow and Keras together. Yeah? So this is the package, guys, that you have to import it. This you already know it. These two package you have to install. No?
+155:53
+
+For deep learning, TensorFlow and the TensorFlow import Keras. Are you guys with me? Okay.
+156:06
+
+So just wait. I'm using CPU version. Can I change or can I go into Google Colab and use it? It's working, but it will take time ideally, but that's fine.
+156:18
+
+So once it got installed, you can say from keras.model import Sequential model.
+156:31
+
+Yeah. There are two models there. One is called functional model and sequential model. Functional model we prefer to use in RNN, LSTM, GRU model, and sequence and model we prefer to use in multilayer perceptron and CNN model. Yeah? But if you have some
+156:44
+
+complexity there, you can go and use the functional. So what sequential is this? This is nothing. It's a connecting one layer to another layer. That's the meaning. So first connection happen, input data connected with hidden one,
+156:59
+
+not hidden two. But functional layer has no directions. They can use X1 to H21 also, or X3 with H1 also, X2 with H2 also. Like that it
+157:13
+
+works. So I'm using sequential model. Second part is, you can say keras.layer from keras.layers
+157:25
+
+import Dense layer. Dense means fully connected layer. Means each input layer connect with all hidden neuron network. First hidden layer, each output get connected with second hidden layer, right? So like that, that is called dense layer.
+157:38
+
+Then you can say flatten. Flatten is nothing. At the end, you have to calculate the parameter. Okay? That is called flatten. Dropout. Dropout, like I said, you know the Nitis Srivastava, they have published a paper
+157:55
+
+in 2013 by the help of Professor Geoffrey Hinton, and he has written this concept, right? So dropout is nothing. You can say reducing the complexity and disabled
+158:08
+
+few neurons. So all neuron, let's say 100 neuron I have given. So dropout means you can say 30% dropout. Means out of 100, 70 neuron will work and 30 neuron get disabled. So what happen? Computational time get increased.
+158:21
+
+Okay? It's kind of random forest approach they have used it. And then you can say batch normalization. So batch normalization is nothing. You guys know the
+158:36
+
+standardizations, right? Standardization, what it will do? It will reduce the value minus three to plus three, or you can say min-max approach, zero to one, right? So this is exactly batch normalization do.
+158:48
+
+So whenever you can calculate and you get the value, it would be very bigger, right? Because here you can see what is the output will come. So let's say if my input is 1,000, input is 1,000. So 1,000 input plus weight, then you have to add it, so
+159:01
+
+it's a very big number. So that big number you have to reduce it. For that, we are using batch normalization. Okay? Please remember this. So this is called, guys, the basic package there. Yeah, what I have done,
+159:16
+
+TensorFlow, and on the top of it, I am using Wrapper because I'm a programmer. I'm a data scientist, so I prefer to use this. I'm not doing granular level research work. And these are the dependent packages there.
+159:29
+
+Are you clear what is the meaning of import required libraries? Everyone? Yeah. If you are fine, then you can go second part, you can say load the data.
+159:42
+
+So whatever data you have. Okay, let's say I'm going here, and I'm saying Keras dataset. Keras dataset. So Keras dataset, let's say we have MNIST or digit classification data
+159:55
+
+there. Okay? We have CIFAR-10, a small image dataset there, CIFAR-100, a small dataset there, IMDb movie review sentiment dataset there. Here, a router, newswire,
+160:11
+
+classification dataset there, fashion MNIST dataset there, California housing price dataset there, Boston housing price dataset there, right? So any data you can go and take it. Let's say I'm taking MNIST dataset. So how many dataset?
+160:24
+
+We have 60,000. And what is the color? Which channel? Gray scale channel, right? Means black and white there. What is the pixel size? 28 by 28 there. So I'm just picking this dataset. Okay, so you can say I'm picking the Keras
+160:37
+
+dataset. Okay, so you can say, you can go here and say from keras.datasets import. Which data? MNIST dataset.
+160:52
+
+Okay, this MNIST digit dataset, I'm taking MNIST dataset. So you can go and execute this. Okay? I've taken the dataset, how it looks like. You can see the dataset looks like this. Copy here, paste.
+161:07
+
+Paste here. So X-train, Y-train, input data. You can say training data, and X-test, Y-test is our test data. Input data, what is the shape?
+161:24
+
+Train data, we have 60,000, and test data, we have 10,000. 60,000 dependent categories and 10,000, the test data is there. So you can go and see it.
+161:37
+
+So we have total 60,000 image there for training, and 10,000 we have given for test data. So that data I'm taking here. Go and execute this. You can say
+161:50
+
+MNIST dataset, load data, execute here. Okay. So,
+162:03
+
+even I will not write this. I can write here print X-train.shape, Y-train.shape,
+162:16
+
+X-test.shape, Y-test.shape. Yeah. You can see we have 60,000 eight-by-eight pixel size and 60,000 dependent image, means zero to nine numbers there.
+162:30
+
+Yeah, MNIST dataset is nothing, guys. You can go here and type here MNIST dataset. So this is the MNIST dataset there. You can see the number.
+162:44
+
+Yeah, number is nothing, it's a pixel value. This is number, guys. How number is calculated. Yeah, this is the pixel value. So you can see the number, right? This is number, actually. Copy the image
+162:58
+
+and paste here. Paste here. Yeah? So see this. This is three. So three, actually you feel
+163:11
+
+it's a three, but this is nothing, a pixel value there. Yeah, so if you increase the pixel value, that is denoted by three. Yeah? So let's say I'm just taking this number. Hmm? So how this number works, this is the way you can say, "I wanted to do
+163:26
+
+it." Okay? Now let me show you. You can say plt.figure,
+163:42
+
+fig size equal to 12 length and 12 height. np.random.seed.
+163:54
+
+Let's say anything, I'm writing 123. And then you can say idx equal to numpy.random.rand
+164:08
+
+integer, and I wanted to take zero to 60,000 values, and any nine numbers you have to give it.
+164:20
+
+For i in a range of whatever the length I have given idx equal to plt.subplot,
+164:35
+
+and let's say I wanted three row, three column, and the column and row will work i +1. Then plt.title.
+164:49
+
+You can say Y-train, idx, and here you can take i.
+165:03
+
+Great data equal to np.reshape X train
+165:18
+
+idx And the pixel size is 28 by 28.
+165:30
+
+plt.imshow, I wanted to see the image, you can say "grid": Data, color map equal to gray color.
+165:45
+
+All right. plt.show. See guys? Parentheses does not match in the parentheses line number seven.
+165:59
+
+So line number seven. So I have done-- Sorry. I have to put one more caps bracket.
+166:15
+
+Yeah. So see this? So this number actually color-coding there, but as a human you can read it, it's a four, it's six, it's three, it's eight, it's five, it's three. So there are different ways there, right? You can write it, some numbers. Yeah?
+166:31
+
+So this number, I have to predict when you can give something, right? Your machine is able to identify this 60,000 image or not. So we are passing the 60,000 image input data, training data. Once my model is done, then I will pass this
+166:45
+
+10,000 data, and I will ask, tell me what number it is. And you know, right, pixel value range is from 0 to 255 there. Yeah? So you can say I wanted to implement this part. So first thing first, what you do, please remember,
+167:00
+
+whenever you start processing, what is the thumb rule there? First you have to import the required libraries. Second part is you have to load the data set. Third part is you have to do preprocessing. Right? Preprocessing meaning is, preprocessing the
+167:16
+
+data meaning is feature importance is mandatory. Feature scaling is mandatory in multi-layer perceptron. You have to convert into
+167:32
+
+0 to 1. Otherwise, the value range, pixel range is coming 0 to 255. Calculation is very heavy. So you have to use the 0 to 1. Okay? Once you have done that part,
+167:45
+
+preprocessing part, then you can define the model. Define the model. Either you can go by sequential model,
+168:00
+
+which is preference. Or you can use functional architect.
+168:13
+
+Yeah? Architecture. Once you define the sequential model, then you have to compile the model. Compile means execute the model.
+168:25
+
+Compile the model. Once execution done, you can fit the model, means automatically get us started, and then you can track them. You can evaluate
+168:37
+
+or track the model performance. Model performance for both
+168:51
+
+training and test, and it's a complete automation method. Okay, please remember, this is the thumb rule, guys, that you have to remember it whenever you can do it. Just see how simple it is. Import this package.
+169:04
+
+I have just taken a data set. Yeah, any data set there for that matter. I intentionally taken a image data set so that you feel the difference, okay, different kind of problem you can solve it. Then what I have done, you can go and scale the data. Okay?
+169:20
+
+Scaling part is a mandatory part. Yeah? If you don't scale the data, it is difficult. So, I can show you. Let's say I'm taking here the image data set is X train data set.
+169:33
+
+If I'm taking a X train data, and here let's say I'm saying index number 0, see this. What happened? You are getting now some value when I say here, some value is coming here,
+169:46
+
+right? See this pixel value. So what is there? This is the color coding is there. So cell number one is complete 0, two is 0, like that in between somewhere numbers there. And maximum number is 255, minimum number is 0.
+170:00
+
+Yeah? That's the things there. So how you will scale it? You can say I will divide by 255. Just think now, what is the maximum value? 255. If I divide by 255 divide by 255,
+170:14
+
+maximum value is what? One only. Minimum value is 0 divide by 255. What is the minimum value? 0. So to handle the pixel value, to scaling the pixel value, it's very easy or not, guys. You can just divide by 255. So you can say, okay,
+170:28
+
+whatever the value I'm getting here. Yeah, you can say preprocessing. Yeah? Feature scaling. This is also called mean max approach.
+170:44
+
+So you can say X-train equal to whatever the X-train data there. I wanted to divide by 255.0 so that I will get into float value.
+171:02
+
+X-test, whatever the value is there, you can say X-test divide by 255. This is called a scale. Now, if I write the same thing,
+171:17
+
+you can see the value will come 0 and 1 only. You will not get some higher side value. Because the calculation is very complex then, see? All the value is 0 point, see? The decimal 0.1. You will not get more than 1. Yeah, that one is the
+171:29
+
+threshold value maximum. Okay, I have done that part. There is no changes in the color coding. Now same thing happen. Even I scale the data, and now I'm checking here. Now I'll show you. I'm copy and paste here. Visualization-wise,
+171:44
+
+number-wise, no changes. Same thing happened. See, the same thing you will get as it is, no changes at all. Only changes is, guys, you can see here. When I have done this,
+172:00
+
+once we have done it, this value is coming, the value, cell value is coming something else. But now cell value is coming between zero to one only. But the range, the value range didn't change. That is remain same. Okay? That is remain same.
+172:12
+
+Yeah? So you can say I wanted to go and do that part. Make sense, everybody? Now, once this part is done, you can say, "Okay, fine. I'm ready to build the model."
+172:28
+
+Okay, I'm ready to build the model. So what you have to do, you can see. See this. I'm saying X_train.
+172:40
+
+Or you can say here, you can do one thing. This Y data right here, whatever the Y there,
+172:55
+
+this is my question to all of you. This 10,000 image, how many total variables there? How many total numbers there, guys? The number is zero to nine.
+173:09
+
+Zero, one, two, three, four, five, six, seven, eight, nine. Right? Total number, how many existing there? 10. Nine, 10 only, right? Zero to this. This then is a classification problem, or it's a regression problem?
+173:25
+
+To identify what this number is, they will give either zero to nine only. Can I say it's a multi-class classification problem? My output is maximum 10.
+173:37
+
+Yes or no? So, if it is classification problem, can I convert into classification format? Right now it's a number. If I say, if I go here
+173:50
+
+and I'm saying, hey, Y_train, index number one, let's say. Yeah? I'm getting zero. I'm saying Y_train index number zero. It's coming five.
+174:04
+
+If you get any number, yeah, any number you can say, you will get either zero to nine only, yes or no? Either zero to nine only, my friend? Zero, one, two, three, four, five, but you will not get any value
+174:20
+
+less than zero or any value more than nine. Or you will not get decimal value also. Can I say it's a category 10, category numbers there? So you have to convert into category so you can label them. You can say
+174:35
+
+label the dependent variable. Since, because it's a classification problem. Okay? So you can say Y_train
+174:48
+
+one equal to keras.utils.to_categorical.
+175:04
+
+And here you can pass Y_train. And how many category? Maximum 10 category. Copy this, paste here, Y_test
+175:17
+
+one equal to Y_test. Execute this. Okay? Now, if I can say, what is this Y_train?
+175:30
+
+There is no difference. Five only. What is this? There is no difference. If I say what is this, no difference. But now this will consider as a five is a category. Four is a category, not a number. Are you guys with me?
+175:43
+
+Why I have done this part, this basic concept? You have to first you understand whether it's a regression or classification. Now you can go and build the model. Okay? This is called preprocessing part done.
+175:58
+
+Now you can say building a model. So how you will build it? You can say model equal to none. Means nothing I have given it. Now you can say, okay, how you build a
+176:10
+
+model? I'm building a model basically the sequential model. So you can say, I have to take a sequential package, sequential model. Okay, you can say I wanted to use the sequential. Sequential means line by line, step by step.
+176:25
+
+So I'm using sequential model. Now you can say model.add. You wanted to fully connected model, you can say fully connected model, so dense layer. Dense means fully connected layer.
+176:39
+
+How many hidden layer you wanted to give in first model? Let's say I'm giving 128. See, someone asked me this question also in class, that how we can decide how many hidden layer we have to give. Always you can go this way, two to the power n way.
+176:52
+
+So either you can write a two in, then n equal to one, two, three, four, five. This is the way there. Right? So two or four neuron or you
+177:08
+
+can say eight neuron, 16 neuron. Like that you can say 32, 64, 128. Yeah, the more deeper questions there. So here we have a 60,000 image there,
+177:21
+
+that's why I'm going 120. But you can go maximum 256 and 564. That is maximum. Suggestion is don't go beyond that. Okay, this is what the model you have to choose it.
+177:34
+
+So here I'm going first hidden layer 128 neuron, I'm giving it. Input dimension equal to, let's say I'm giving 784.
+177:48
+
+784. Activation is? Activation function, we have so many activation there, guys. Yeah, but my suggestion is whenever you write a hidden layer, you always give ReLU.
+178:00
+
+If ReLU will not work, then only you can put leaky ReLU. Otherwise, always you have to give ReLU activation function. Don't give tanh, hyperbolic, or don't give the sigmoid. Otherwise vanishing gradient problem happen.
+178:13
+
+In 1990, the biggest failure happen deep neural network because that time only two activation function, there are tanh, hyperbolic or sigmoid. And both range you know that, right? Sigmoid range is
+178:27
+
+minus one to plus one, or 10-- Sorry, zero to one or tanh, hyperbolic is minus one to plus one. So that is why you can go and give the ReLU function activation function came in 2012 and it become very famous.
+178:40
+
+So I'm going to use it this. Now you can say why I have given 784. What is the pixel size there, guys? 28 by 28. Now if you multiply 28 by 28, how much?
+178:55
+
+8 into? 64? 16. 16. 32 thing, 8 and 2 into 2 is 4, 3, 7. So that is why I have given input
+179:08
+
+dimension is this. Are you clear how I have given this 784? Because the pixel is 28 by 28. How you know that? How you know that? You can see here. Pixel size is 120-- Sorry, 28 by 28.
+179:22
+
+So input size, always you have to give into flatten way. Now someone ask me what is the meaning of flatten? Right. Flatten is nothing. If we have a pixel size is there, if we have to--
+179:36
+
+Pixel size is there, let's say, this is the pixel size, right? 12, 28. 28 rows and 28 columns. Okay, columns.
+179:50
+
+Hmm? So this meaning is flatten, means you can convert this into one line only. So this 28, then this 28, this still 28, that is called. So how this will work, that is called flatten.
+180:03
+
+Flatten, are you clear what is meaning of flatten? Hmm? Column to row. Correct.
+180:17
+
+So you can go and do this. Now first hidden layer done, now you can say second hidden layer. Model.add, dense, fully connected, guys.
+180:30
+
+How many hidden layer you wanted to give it now? Let's say I'm just building a architecture like that. Just see the architecture now, it's very easy for you then. So
+180:44
+
+ideally my pixel is, picture is this. My picture is this, 28 by 28. So I have converted this 784 so that this 784 cell
+180:56
+
+will come. 1, 2, 3, 4. So how many input data? 784 input data there. How many hidden layer I have given? I have given 128 hidden layer, means that much neuron I have given.
+181:09
+
+And then finally output, it's a classification, so how many output? One. Can I say up to 9? Can I say there are 10 output? Yes or no? So you have to write dense layer fully connected is 10.
+181:23
+
+Please understand. Now, activation. If you have a multi, right? So here you can say any one answer will come. It's a classification problem, guys.
+181:38
+
+So out of 10, any one will come, finalize it, whether it's a zero or 1 or 2, and do something like that it will come. Yeah? So you have to use here activation function equal to softmax. Don't use sigmoid. Please remember, sigmoid is
+181:51
+
+not the correct one. Sigmoid you can use when you have a binary classification. We have a multi-class classification, you can write softmax. Are you guys clear? What softmax will do, it will give you the probability score.
+182:06
+
+So out of 0 to 9, yeah, these questions will come. Please remember, sometime someone ask you. So if you have a multi-class classification, which activation function you will use, you can say, "I will use softmax." What softmax will do?
+182:20
+
+So it will say, what is the best value is there when you predict this image? What image this? So this softmax will give the probability 0 is, let's say 0.01%, 0.02%,
+182:33
+
+0.6%, 0.9%, 0.001%, 0.002%. Like that it will come, and when you accumulate it, the total final value will come 100%. Yeah? So you can say 09, something like that.
+182:48
+
+Now when you check it, let's say 2 probability is very high. So your answer will come as a 2. Like that we have to predict it. That's called probability score. So they will provide, they will give the answer for all 10,
+183:03
+
+and where the highest probability there and accumulated value is this, that is what will come. Now if I ask you a generic math, model.summary, how many parameter you will create, guys?
+183:17
+
+How many parameter get created? Can I say? Input data is how much? 728? Yes or no? Hidden layer, how many I have given? 784?
+183:30
+
+Yeah? Then output, how much I have given? 10. Now if I say what is the total parameter, will you say 728 multiply- Sorry, hidden layer I have given 128, right?
+183:42
+
+Can I write, guys? 128 plus 128, this is my one. Second part is 128 output you will get, multiply 10 and plus 10. Yes or no? Can I say that much
+183:56
+
+parameter gets created? Hmm? So if I go here and I can execute it, you can see this. So total parameter is coming. You know here, dense first is
+184:09
+
+10,000, second is this. When you accumulate it, it is coming, total trainable parameter 101,770. Yeah, if I can solve this, you can say
+184:23
+
+1,728 is input. Multiply 128 weight plus 128 biases, plus
+184:36
+
+128 output multiply with 10 and plus 10 bias. If I execute this, something, some mistakes happen. One minute.
+184:48
+
+728 this, and then this. What mistake I did?
+185:01
+
+So 194,000. Why 94,000 is coming? What mistake? 728-- 784 it should be, right? I have given 728, sorry. It should be 784, okay?
+185:15
+
+Yeah. So you can see 101,770. Are you guys clear, guys, everybody? How maths works? Yeah? This is called total parameter.
+185:31
+
+Now what you have to do, you build the model. See how simple it is, guys. What I have done, model equal to sequential, hidden layer, activation function ReLU. If you wanted to give one more activation function, you can copy and
+185:44
+
+paste here. Right? Don't write input layer now. Why input layer you will not write it? Because input layer first time only coming, then second hidden layer. Second hidden layer automatically get connected with this. Yeah?
+185:59
+
+But this is simple one, I'm not using it. 28 by 28 only, so one hidden layer is enough. Now you can fit the-- First you can compile the model and then fit the model. So you can say compile
+186:13
+
+the model. So how you will do, you can say model.compile. Parenthesis bracket, optimizer. What it will do, compile model means they will calculate the
+186:26
+
+loss value, then they will apply the backpropagation method where optimizer, best optimizer is Adam, guys. Okay? Loss value, how you will calculate the loss? If it is regression problem, you can simply calculate mean squared error or
+186:38
+
+mean absolute error. Because it's a classification problem, you can say categorical cross entropy value. Categorical cross entropy value. If it is binary class, you can say binary class
+186:54
+
+categorical cross entropy. All right? How you will judge the model? How you will judge the model, guys? You can say by the help of accuracy.
+187:09
+
+So metrics equal to accuracy. Hmm? If you wanted precision recall, you can write a precision recall. Go ahead, execute this, model compile done. Now, see, line by line, step by step, how many line I have written?
+187:22
+
+First line, sequential model. Second line, hidden layer. Third line, output. Fourth line, compile, and fifth line, fit the model. Five line code, your work done,
+187:38
+
+and it will give you better than machine learning, no response. If you use machine learning, you will not get such a brilliant answer. You can say model.fit, X_train, y_train. This is my training data.
+187:52
+
+Right? Then you can say, validation. I wanted to validate the data. What are my validation data? You can say validation is X_test and y_test. Okay, that's my validation data. So here,
+188:05
+
+you can see I have taken y_train and y_test. Okay? Because it's a categorical value, so you can copy-paste y_test. Don't write y_train, otherwise it will create a problem, because I have converted
+188:21
+
+into category, and then you have to give the category. So what machine will do, they will only take this data, and then basis this, they will validate the data here, and then finally they will compare with this and they can say how much accuracy there. Internally, they will do.
+188:37
+
+Okay, so you can say, I will do validation data. Now, how many backpropagation you wanted to do? You can say epochs. Epochs means iterations, and let's say I'm giving 10 iterations. Yeah? Batch size.
+188:51
+
+Batch size equal to, let's say I'm giving here 128. Means one layer I can give maximum 128, just like a chunking method you have seen. Here I'm using batch size. Yeah? Means bucket-wise, I'm sending a data. That's it, guys.
+189:04
+
+Go and enjoy this. See? 10 iteration I have given means 10 time backpropagation will work, and they will give the final answer. What error happened? Uh,
+189:19
+
+training equal to true, mask equal to, the input invalid data shape incompatible. Flatten Flatten,
+189:31
+
+why I will do here? It's a multilayer perceptron. No, it's not CNN. CNN, we will do flatten, right? Here automatically- But you're in- ... data I have converted. Mm-hmm. Input data already I have converted.
+189:46
+
+Uh- Same value Yeah, Yasin is right. Reshape we should do, right? Yasin is right.
+190:00
+
+Reshape I have to do. Do I need reshape? I need reshape. Okay. Because here,
+190:12
+
+y_train1. See? This is the problem. So when I change here, when I have taken y_train0, it's coming five. But when I convert this, it's saying zero point this.
+190:27
+
+Yeah? This is coming zero point this. So that is-- Actually, this is not correct. Make sense, guys? This actually is not correct. So if I go here,
+190:41
+
+and I can say y_train.shape, it is coming 10, right? So there are 10 values I'm getting here. But here,
+190:56
+
+if I take the same thing, y_train1, and I can say, "What is the shape?" You can say nothing is there. Yeah? So that is the problems
+191:08
+
+there, so we have to do the reshaping also. Okay, we have to go and do the reshaping. So let me do a reshaping as well.
+191:24
+
+Reshape, so you can say X_train equal to X_train. Because you can see X_train.shape is,
+191:41
+
+X_train.shape equal to, I'm getting 28 by 28. So what I'm doing here, I'm saying X_train equal to X_train.reshape
+191:54
+
+60,000 image there. In X_train, all 60,000 I wanted to convert into 784 only. Okay? Not a 28 by 28.
+192:08
+
+Similarly, X_test because when we do a calculation, we have to say all 10,000,
+192:22
+
+I have to convert this. So execute here. Now what is this? X_train is a number. Pixel value is a number. You have to convert this X_train equal to
+192:34
+
+X_train.dtype. Again, sets a float value. Otherwise, they consider number, and number will not give the right answer.
+192:48
+
+Copy, paste. And you can see here. Just basic tricks, guys. That's what is called preprocessing.
+193:00
+
+Test. Execute this. Okay. Now if I can show you, it get convert into 784.
+193:16
+
+Correct? 784 I'm getting here. Now what we have to do, let me go and do this.
+193:31
+
+Let me use here validation data. Okay. Why also need it? Why Y is required?
+193:45
+
+Variable non-first call function decoded TensorFlow.function. Train validation data equal to this, equal to this.
+193:57
+
+Let me one thing. Just give me a minute, guys. Restart the session. Upload the data.
+194:29
+
+This
+194:41
+
+is coming number. Now here already I'm converting this, so y_train1 and y_test1. Can I do one thing?
+195:32
+
+With this.
+195:47
+
+If I don't write 10, this by this Train.
+196:03
+
+Test. Very cool here. Yes. Automatically get convert this, right?
+196:15
+
+Check this. What is the shape there? 10 by 10 is coming.
+196:28
+
+Okay, execute this. Parameter is correct. Now it's working, so shape is not required. Now you can see, guys.
+196:40
+
+First time when I build a model, my training accuracy is coming 83. Yeah, and test accuracy is coming 94. You can see accuracy is keep increasing to 100%, loss value is keep decreasing to 0%. Yeah, because loss means error,
+196:54
+
+accuracy means 100. And 10 times automatically is happening, and you can see 83% to 99%. I have built a model and it is coming. Validation error, when we have first iteration happen,
+197:08
+
+83% accuracy we got it, validation 94%. But the 10 times when we use the epoch, yeah, iterations, my training accuracy is coming 99% and test accuracy is coming 97%. You can see the loss value initially
+197:22
+
+59%, and it reaches to 0.02, means 2% error rate. Initially, error rate was 19%, now error rate is 7%. Are you guys with me, my friend? How it is working?
+197:38
+
+Huh? Everyone? Yeah? So you can say like that, you can go and perform it, guys. And then next time you can ask, "Boss, give me any input data.
+197:55
+
+I'm ready to give the answer," and you will get the value. What is recall@F1 score? That you will not use it here, but if you wanted to go and use that part, that also you can do it.
+198:09
+
+You can say model.evaluate and then you have to perform it. Okay, but normally we are using the accuracy and loss value only in deep learning. We are not going and using the techniques because
+198:23
+
+here my main purpose is how accurately my model is performing. So this part is called loss value, how much error my model generating. So error values are closer to zero, very good.
+198:36
+
+Loss value. Or if it is accuracy, then you can say accuracy value always. So this is called accuracy, yeah? And this is called loss value. Or instead of writing like that, you can say like...
+198:48
+
+Are you with me? In machine learning, we are using that concept. Here, there is no need to go by that method.
+199:06
+
+Are you with me, guys? Now, go and pick any dataset. Any dataset and just write this five, six line code, and that will work. You will get better answer.
+199:18
+
+Yeah. These are the basic things. Yeah, preprocessing, only thing you have to remember, if it is image, you can divide by 255. Okay? And then here the model building, compile the model
+199:32
+
+where you can use the optimization techniques and how you will judge the model by the categorical entropy and accuracy, and then you can validate, evaluate the model, fit the model, evaluate the model, and you can decide.
+199:48
+
+Mohammed Yasin is saying vanishing gradient versus exploding gradient. Vanishing gradient went, what happened? Your accuracy is not improving. Let's say your accuracy is coming 70%, or let's say 30%, 60%. So each time you can do, every time you will see your
+200:01
+
+answer is 60% only. There is no changes. That is called vanishing gradient problem. Exploding gradient problem, here you are getting 60%. Second iteration, it will give 95%. Third iteration, it will give 20%.
+200:15
+
+Again, you will get 98%. Again, you will get 30%. Again, you will get 95%. Again, you will get 25%. Here, you will get 80%. That is called exploding gradient problem. So in RNN,
+200:29
+
+yeah, there you will see mostly exploding gradient problem and multi-layer perceptron, mostly you will get vanishing gradient. What is meaning of vanishing gradient problem? Your accuracy will not improve. Yeah, you can say how you can say if I can change the model here.
+200:42
+
+If I can write here model equal to... If I am writing here model, let's say instead of ReLU, I'm saying softmax. Okay, or then hyperbolic,
+200:58
+
+sigmoid, and then hyperbolic. Go and execute this, same thing. Copy, paste.
+201:13
+
+I'm not using the best optimizer, leaving it. I'm going and doing the by default one. Copy, paste.
+201:26
+
+Do this. You can see. Okay, this is simple data, so here also it working,
+201:39
+
+even though I have given sigmoid, but sometime what happen, no improvement you will not see at all. Okay, same answer you will get it. So I can pick some another data and I can show you that part, but that's normally the vanishing gradient happen.
+201:52
+
+Exploding gradient means too much fluctuation happen. So how you can understand? You can go by this method. Okay? So this is my lowest loss value.
+202:06
+
+Vanishing gradient means it is not going, right? Your model, you can do whatever you want it to do, it is stuck here only. Yeah? So if I use here in this model, if I use here optimization equal to...
+202:20
+
+RMSprop is good. I don't want to use RMSprop. I wanted to use optimizion in multilayer perceptron.
+202:48
+
+Okay. Sir, even increasing the batch size, will it resolve the exploding gradient problem? We are generalizing it more.
+203:06
+
+Increasing the batch size? Oh, that will do the- Will it reduce explode- That will also do it, but let's say I'm just removing it. I'm not giving the batch size. Okay. So everything I'm passing at one go. Here I'm giving
+203:19
+
+what I can give. Let's say gradient descent, I'm giving it. Okay? And
+203:31
+
+this is called sigmoid, is fine, or let me take a tanh hyperbolic. Let's see. So you're passing entire 60,000 at once. Yeah.
+203:45
+
+And removing this input. And just one example I'm showing you, so that you can see how it is working.
+203:58
+
+SGD is not good. Adam. AdaGrad. Now see this.
+204:12
+
+This is also working fine here, because the dataset is a simple one.
+204:28
+
+We'll see this problem when we actually take a RGB image and then try to flatten it and then do it. You can try another one. You can try another one. We have this one, MNIST data or CIFAR-100, you can take it.
+204:42
+
+Okay, where we have a 50,000, but 32 by 32 color training dataset there. Color means RGB. So here, if you try this model now, and you can try it, you will get pathetic result.
+204:55
+
+Yeah? So here you can see the accuracy is very less, 87, 88, 89, 90, but 1, 1% it's increasing. Yeah, but you can see when I have used this model, first time itself 87, second iteration itself is giving
+205:08
+
+55. But here you can see, even doing multiple iteration 10 times, it got stuck in the 91% only. Yeah, but this is simple data because it's a gray image, right? It's a black and white.
+205:22
+
+That is why you are getting that much accuracy. If it is RGB, you will get very, very pathetic also. So maybe tomorrow when I pick some CNN cases or some other model in RNN, I'll show you that both the vanishing gradient and exploding gradient
+205:35
+
+problem. But simple, anybody ask you, vanishing gradient means your accuracy is not improving at all. Your loss value remains same. Okay? Even here, you can see my loss value is still same, right?
+205:49
+
+It's starting here, 30.3%, 0.3%, 0.3% till 0.3% only. Yeah? Here, my accuracy is, you can say 0.3% to 0.2% only. 29% is still loss values there. Because of
+206:03
+
+intentionally I have removed the activation function ReLU to tanh hyperbolic. Second challenges I have given it here, optimizer, I have not used Adam, I use AdaGrad. Even I can use
+206:17
+
+stochastic gradient descent, that is also not good. Yeah? Or you can put mini gradient descent, that is also not good. So that is why. And also, batch size, I have removed it.
+206:32
+
+So that is why you can see that is there. But 90% is still good accuracy. It's not bad. But loss value is very high, 30% and 29%. On the other hand, here you can see my loss value 0.2 and
+206:46
+
+0.7. So definitely you don't prefer to go 30% loss value. This is kind of vanishing gradient problem. Are you clear? Exploding gradient problem, Mohammed, what happened?
+207:00
+
+It's executing. It will never reach to the minimum point. This is called exploding gradient. This is called exploding gradient problem. It will iterate 100 of time, but it will not reach to the minimum point.
+207:14
+
+Okay? Vanishing gradient means it is keep iterating, but it somewhere get stuck here only. It will never reach here. That is called vanishing gradient. Only slightly improvement happen. So in machine learning, if you ask me what is the biggest problem?
+207:31
+
+High variance and high bias. In deep learning, what is the biggest challenge? Vanishing gradient or exploding gradient problem. Yeah. So anybody ask you this question, you can say vanishing gradient means no improvement.
+207:47
+
+Exploding gradient means huge improvement, but it will not reach to the minimum loss value. Yeah?
+208:01
+
+So that's it, guys. I think you understood some basic part, right? Tomorrow I'll go more deep dive, and if time permits, I'll start your-- Not tomorrow, I don't want to cover tomorrow the transformer model.
+208:13
+
+I'll be there in the some use cases in CNN and one use cases for LSTM, so that you can see how LSTM works and how CNN works. And next week I will go deep dive
+208:28
+
+this one. Yeah? Sir, I have a kind request. I would appreciate if you can consider it. I'm joining abroad and it is 5:00 PM. This, when it is start at 8:00 PM. Wednesday when the class
+208:42
+
+finished, so when a class extended, I'm not able to focus on the class. There's this from the next week. Would you kindly consider? Yeah, I will complete the session at 1:30. Only Saturday I'll start our session
+208:56
+
+at 10:15 or 10:30. I told you two weeks earlier also, so that part only you have to consider. Sunday sharp 10:00 AM I will start, guys, in Indian time, IST time.
+209:10
+
+Yeah? And noted your point. I will try to complete, wrap up our batch at 1:30 only. All right. Thank you very much.
+209:23
+
+Sir, one question. Let me share the- Sir, one question, just quickly. Mm-hmm. Sir, here you have used model sequential, right? So for this Keras and
+209:35
+
+TensorFlow, can we use the transformer also using this package or- Transformer, how you will use it? Transformer mostly we will use for text data. Here I'm using image data sets. Why you will use transformer? No,
+209:47
+
+I'm talking about this package. Can we use this package for transformer model also? I know the data set will be different for transformer modeling. Mm. From the package perspective. Transformer package you are saying? You can do it, but what is the use here?
+210:00
+
+What you will do? There is a separate package for transformer like TensorFlow? Yeah. So we will- Okay ... use accelerator, we will use transformer, so those packages there. Okay, there's a separate package.
+210:14
+
+Got you. Multi-layer perceptron code. Sample.
+210:27
+
+What I have written. This PDF.
+210:43
+
+All right, guys. So that's it for today. You can enjoy your day, and we'll see you tomorrow, sharp 10:00 AM. In evening, if you guys are interested, please join. I'll try to cover some architecture, AI, landing zone,
+210:56
+
+all these things, so that you will get more clarity. Yeah, and some coding part also there, so that also I will cover. Class notes.
+211:12
+
+News. Today is 4th July 2026.
+212:17
+
+Okay. Uploaded. And I'll share some material also for my PPT, right? Which I have prepared. So if you have a bandwidth, you can go and see this, otherwise you can read a research paper and all, it's okay.
+212:40
+
+That much knowledge enough. Yeah, if you are really interested to go more deeper, how weight calculation happened, what are the optimization techniques there, what is the maths behind that, what is chain rule, what is memoization, then please go and read it.
+212:54
+
+I will not cover that part because it's a too deep dive in. But that much information, whatever I have given, that is fair enough. If you go for genie role, you can easily crack it in case if they ask anything about this. Tomorrow I'll go more
+213:10
+
+deeper. I'll pick some more complex use cases, and will show you how you can leverage and use the genie and solve this. Okay? Bye and take care, guys. See you tomorrow.

@@ -1,0 +1,106 @@
+@startuml SAML_Federation_ADFS_STS
+title SAML 2.0 Federation: On-prem AD + ADFS -> AWS STS -> DynamoDB\n(Example: alice@corp.example.com, AWS account 111122223333)
+
+autonumber
+skinparam sequenceMessageAlign left
+skinparam responseMessageBelowArrow true
+
+actor "Alice\n(Browser)" as User
+
+box "Corporate Data Center (On-prem)" #EEF4FF
+  participant "Custom App\n(orders.corp.example.com)" as App
+  participant "ADFS\n(adfs.corp.example.com)\nSAML IdP / issuer" as ADFS
+  database "Active Directory\n(Domain Controllers)" as AD
+end box
+
+box "AWS Account 111122223333" #FFF4E5
+  participant "IAM SAML Provider\nsaml-provider/CorpADFS\n(stores ADFS metadata + public cert)" as IdP
+  participant "AWS STS" as STS
+  participant "IAM Role\nrole/DynamoReadRole" as Role
+  database "DynamoDB\nOrders table" as DDB
+end box
+
+== One-time setup (done by admins, before any login) ==
+ADFS -> IdP : Admin uploads ADFS FederationMetadata.xml into IAM\n(creates arn:aws:iam::111122223333:saml-provider/CorpADFS)
+note over IdP
+  This is AWS's stored record of the ADFS it trusts.
+  It holds ADFS's public signing certificate.
+  AWS never calls ADFS or AD at runtime.
+end note
+IdP -> Role : Role trust policy names the SAML provider as Principal
+note over Role
+  Trust policy (who may assume):
+  {
+    "Effect": "Allow",
+    "Principal": { "Federated":
+      "arn:aws:iam::111122223333:saml-provider/CorpADFS" },
+    "Action": "sts:AssumeRoleWithSAML",
+    "Condition": { "StringEquals": {
+      "SAML:aud": "https://signin.aws.amazon.com/saml" } }
+  }
+  Permissions policy (what it can do):
+    dynamodb:GetItem, dynamodb:Query on table/Orders
+end note
+ADFS -> ADFS : Admin configures AWS as a Relying Party Trust\n+ claim rules mapping AD group "AWS-Dynamo-Readers"\n-> SAML Role attribute
+
+== Runtime: user login (authentication happens ON-PREM) ==
+User -> App : Opens orders.corp.example.com
+App --> User : Not logged in -> redirect to ADFS login page
+User -> ADFS : GET ADFS sign-in page
+ADFS --> User : Login page (served by ADFS, not AD)
+User -> ADFS : Submit alice@corp.example.com + password
+ADFS -> AD : Validate credentials (Kerberos/LDAP)
+AD --> ADFS : Valid. Groups: AWS-Dynamo-Readers
+note right of AD
+  AD = source of truth for identity.
+  This is the ONLY place the
+  password is checked.
+end note
+
+ADFS -> ADFS : Build SAML assertion (XML) and\nSIGN it with ADFS private key
+note over ADFS
+  Assertion includes:
+  - Subject / NameID: alice@corp.example.com
+  - Attribute .../SAML/Attributes/RoleSessionName = alice
+  - Attribute .../SAML/Attributes/Role =
+      "arn:aws:iam::111122223333:role/DynamoReadRole,
+       arn:aws:iam::111122223333:saml-provider/CorpADFS"
+  - Audience, NotOnOrAfter (expiry)
+  - Digital signature
+end note
+ADFS --> User : Signed SAML assertion (base64)
+User -> App : POST SAML assertion to app
+
+== Exchange assertion for temporary AWS credentials ==
+App -> STS : sts:AssumeRoleWithSAML(\n  SAMLAssertion = <base64>,\n  RoleArn = ...:role/DynamoReadRole,\n  PrincipalArn = ...:saml-provider/CorpADFS )
+note right of App
+  This call is UNSIGNED:
+  the app has no AWS keys yet.
+  The signed assertion IS the proof.
+end note
+
+STS -> IdP : Look up the SAML provider named in PrincipalArn
+IdP --> STS : ADFS public certificate
+STS -> STS : Validate the ASSERTION (not the password):\n1. Signature valid with ADFS cert? (genuine, untampered)\n2. Not expired? Audience correct?\n3. Role + provider pair present in assertion?
+STS -> Role : Check trust policy: does it allow\nFederated principal saml-provider/CorpADFS\nto call sts:AssumeRoleWithSAML?
+Role --> STS : Allowed
+
+STS --> App : Temporary security credentials:\nAccessKeyId (ASIA...), SecretAccessKey,\nSessionToken, Expiration (default 1 hour)
+
+== Use the credentials ==
+App -> DDB : Query Orders table\n(request signed with SigV4 using temp creds)
+DDB -> Role : IAM evaluates role PERMISSIONS policy\n(assumed-role/DynamoReadRole/alice)
+Role --> DDB : dynamodb:Query allowed
+DDB --> App : Order items
+App --> User : Render orders page
+
+note over User, DDB
+  Summary of who does what:
+  - AD: authenticates the user (checks password)
+  - ADFS: translates AD identity into a signed SAML assertion
+  - IAM SAML Provider: AWS-side record of the trusted ADFS (public cert)
+  - STS: validates the assertion signature + role trust policy, issues temp creds
+  - IAM Role: trust policy = WHO can assume; permissions policy = WHAT they can do
+end note
+
+@enduml

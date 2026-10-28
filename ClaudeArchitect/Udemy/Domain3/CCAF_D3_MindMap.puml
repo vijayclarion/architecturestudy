@@ -1,0 +1,128 @@
+@startmindmap D3_MindMap
+' ============================================================
+' DOMAIN 3 — CLAUDE CODE · MASTER MIND MAP (Topics 1–25)
+' One-glance revision map. Bold = the fact most likely tested.
+' ============================================================
+title Domain 3 — Claude Code · Master Mind Map (T1–25)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 10
+
+* Domain 3\nClaude Code
+** F1 · Architecture & Setup
+*** T1 What it IS
+**** Agentic CLI = "Claude with hands"
+**** NOT chat / NOT autocomplete
+**** Contractor vs Copilot spell-checker
+**** Loop = Plan -> Tool -> Observe -> self-correct
+**** Only DISK survives sessions
+**** CLAUDE.md loaded once, then RESIDENT
+*** T2 Tool System (9)
+**** Read Write Edit Bash
+**** Glob(name) Grep(text)
+**** WebSearch WebFetch Agent
+**** **Edit=surgical · Write=full overwrite**
+*** T3 /init
+**** starter CLAUDE.md (name, entry pts, stack, rules)
+**** **starter, NEVER finished -> review required**
+*** T4 Managing context
+**** 4 inputs: path · @ref · URL · inline
+**** include = changes behaviour (a DIAL)
+**** exclude via deny rule (a WALL)
+**** **deny rules -> settings.json, NOT CLAUDE.md**
+**** compaction = summarise (auto or /compact)
+*** T5 Permission modes
+**** default · accept edits · plan
+**** don't ask · bypass · auto
+**** **ORDER: hook -> permission -> tool**
+**** **auto = supervised · bypass = unsupervised**
+**** session-wide · working dir only · protected paths
+** F2 · The CLAUDE.md System
+*** T6 4 scopes (concatenated)
+**** managed (org, can't exclude, ONLY enforcement)
+**** user (~/.claude, never shared)
+**** project (repo root, COMMITTED, shared)
+**** local (CLAUDE.local.md, gitignored)
+*** T7 Precedence
+**** **CLAUDE.md conflict = NON-DETERMINISTIC**
+**** complementary = both apply
+**** /memory lists · /context inspects
+**** vs auto-memory (self-accumulating, on disk)
+**** Trap: org rule -> managed only
+**** Trap: team rule in user file -> DRIFT
+*** T8 Subdirectory CLAUDE.md
+**** LAZY: loads on a READ in that folder
+**** ADDS to root, never replaces
+**** placement = the scope (no manifest)
+*** T9 Excluding files
+**** read deny in settings.json (glob: * vs **)
+**** **PERMISSIONS MERGE · DENY beats ALLOW (any layer)**
+**** deny != subprocess -> need sandboxing
+**** no .claudeignore · .gitignore NOT respected
+*** T10 Instruction design
+**** specific · actionable · unambiguous
+**** encode only what Claude can't know
+**** test: delete line -> behaviour change?
+*** T11 Team patterns
+**** front/back/full-stack + SECURITY (early)
+**** anti: narrative doc · tool duplication
+** F3 · Commands / Skills / Subagents
+*** Stack: CLAUDE.md < SKILLS < SUBAGENTS
+*** T12 Slash commands
+**** filename = keyword · body = prompt
+**** $ARGUMENTS = dynamic
+**** scope by location (project=shared, user=personal)
+*** T13 Command design
+**** narrow scope · verb-noun names
+**** distribute: commit / managed settings
+**** don't duplicate CLAUDE.md
+*** T14 What skills are
+**** description-matched, auto-loads
+**** commands = SUBSET of skills
+**** build if: frequency+complexity+reusability
+*** T15 Authoring skills
+**** a DIRECTORY: .claude/skills/<name>/skill.md
+**** **front matter OPTIONAL · body always loads**
+**** **DESCRIPTION drives matching (like D2 tools)**
+**** allowed=pre-approve · disallowed=REMOVE (asymmetric)
+**** no trigger/version/author fields
+*** T16-17 Subagents
+**** autonomous worker, own context+tools
+**** orchestrator pattern; parallel / oversized tasks
+**** structured returns · never swallow errors
+** F4 · Hooks
+*** Shell-level, outside context, can't prompt away
+*** T18 Cadence
+**** session (observe) · turn (block) · tool
+**** **pre=block · post=react (already ran)**
+**** stop = end-of-TURN (many/session)
+**** notification = route only
+*** T21 Four common events
+**** pre-tool-use · post-tool-use · stop · notification
+**** block an action -> ALWAYS pre-tool-use
+*** T22 Exit codes / impl
+**** **0=go · 2=BLOCK · 1/other=non-blocking (runs)**
+**** register in settings.json · parallel · timeout
+**** allow-list / block-list / dry-run
+*** T23 Applications
+**** post: format, test, audit, cost
+**** pre: safety net (rm -rf, DROP TABLE)
+**** pre-log=intent · post-log=results
+** F5 · Plan / SDK / CI-CD
+*** T19-20 Plan mode
+**** read-only think -> approval gate -> execute
+**** IS a permission mode (shift+tab / /plan)
+**** good plan = steps + named files + risks
+**** undo 10s->skip · 30min->plan
+**** re-plan on broken assumption; watch improvisation
+*** T24 Agent SDK
+**** (was Claude Code SDK)
+**** your CODE drives; streams events
+**** **SDK = agent loop · API = one completion**
+*** T25 CI/CD
+**** **-p = non-interactive; forget it -> HANG**
+**** atomic · self-contained · JSON · idempotent
+**** GitHub: official action + API key secret
+**** minimum permissions · step timeout
+
+@endmindmap

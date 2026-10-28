@@ -1,0 +1,48 @@
+@startuml Topic3_Agentic_Loop
+' ============================================================
+' TOPIC 3: The Agentic Loop (the engine)
+' Feedback LOOP, not a pipeline. 4 stages. Tool lifecycle
+' is NESTED inside the ACTION + OBSERVATION stages.
+' ============================================================
+title Topic 3 — The Agentic Loop\n(FEEDBACK LOOP, not a pipeline — enables adaptation)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+
+start
+
+:Task begins;
+
+repeat
+  #LightCyan:**1. PERCEPTION**\ntake in current state\n(request + full context so far);
+  #LightCyan:**2. REASONING**\nthink about what to do next\n(decide the next move);
+  #Orange:**3. ACTION**\nusually a TOOL CALL\n(<- tool_use block from Topic 2);
+  note right
+    The single tool-use ROUNDTRIP
+    from Topic 2 lives INSIDE the
+    Action + Observation stages.
+    One heartbeat of the loop.
+  end note
+  #Orange:**4. OBSERVATION**\nresult comes back\n(<- tool_result block from Topic 2);
+  :Append action + observation + reasoning\nto the **CONTEXT WINDOW**\n(ephemeral working memory — see note below);
+repeat while (Task NOT done?) is (loop back — feed result into next PERCEPTION)
+->done;
+
+stop
+
+floating note left
+  == CONTEXT WINDOW = WORKING MEMORY ==
+  * Fills up every turn (calls, results, reasoning)
+  * Agent's scratchpad for THIS task
+  * EPHEMERAL: vanishes at session end
+    unless deliberately persisted
+  * FINITE: fills up on long tasks (problem for later domain)
+  ....
+  == FEEDBACK LOOP vs PIPELINE ==
+  * Pipeline = runs start->finish ONCE, straight line (= a workflow)
+  * Loop = comes BACK around; each observation informs next decision
+  * That circularity is what lets the agent ADAPT
+    (recover from a failed tool, react to a surprising result)
+end note
+
+@enduml

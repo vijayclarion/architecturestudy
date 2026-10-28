@@ -1,0 +1,1697 @@
+Hi, everyone. Let me enable the chat window. Yes. Everybody, are you able to hear me?
+20:13
+
+Say yes, no. Yes. Great.
+20:28
+
+Okay. So guys, anybody have any questions? You wanted to talk to me, please go ahead, raise your hand. We'll start in five minutes. Yes,
+20:52
+
+Manoj. Yes, Manoj? Hi, sir. Can you hear me? Yes. Yeah. So my query is that, so suppose for a company we create an application,
+21:05
+
+which contain different roles. So, means like for example, there is one employee role, manager role, and then it keeps on increasing. For that we use router. So based on role, it will show a different
+21:19
+
+output or different response. So can we also apply in a single application, multiple level of guardrails, so that an employee can see only his level of information, manager can see about his level of information, and director, and so
+21:33
+
+on? Yeah. You can write a prompt very nicely, clear instruction, and you can do it. So then how we will- Very recent. Yeah. Yes, sir. Please come. So very recently, one project we did it where the customer, they have given
+21:49
+
+clear instruction that they don't want anybody can see the vice president, directors' performance rating and all. So that time, when we build the application, we have clearly
+22:03
+
+mentioned on the guardrail that if their designation is this or if they ask questions about this, so first what LLM will do, they have to check their designation. Let's say you're asking employee ID one, two, three. What is their last year performance or what was...
+22:16
+
+So what LLM will do, they will first go and check their performance. Performance in the sense what designations they have. If the designation is, let's say, vice president, director, so they will say, "Sorry, I'm not authorized to give the answer.
+22:32
+
+If you really wanted to know, you have to raise a ticket." So the ticket options get opened. You have to submit all the details, that will go to the authorizer. It will trigger to the mail. The authorizer, they will see the person, they are a
+22:47
+
+genuine, let's say they are a senior vice president, then definitely they have to see, right? So they will see who has raised this concern. They wanted to know it. And on that basis you can do it. So you have to create one checkpoint.
+23:00
+
+Did you get what I'm saying? Yeah. So you mean to say I have to create a checkpoint that first I have to check- Yeah ... his designation. Yeah. And based on that we have to give a response. But we can do it for multiple levels as well, or is it only for- Multiple level. Yeah. Multiple levels you can do it.
+23:14
+
+Okay. Okay, sir. And so when you design it, that time itself you have to write the parameter and all. Okay, sir. Okay. Thank you.
+23:27
+
+What this other question is? Lalit is saying, "Hello, sir. From past two weeks, I'm trying to connect with you offline to discuss my career-related things like career
+23:42
+
+gap. I have asked my coordinator to book one slot but replies you are not available, so please." So who is your coordinator, Lalit?
+23:54
+
+Satya. Satya, I don't know. Who is Satya? Ask them. Manju you can contact, right? You can say that, "I need to connect with Chandrabhan." Tomorrow you can connect it. I will inform. Yeah.
+24:11
+
+Who else? Anybody else? Animesh, over to you. Yeah. Hi, sir. Yesterday, we created one web app, right?
+24:31
+
+And created one domain to map it. But what is the code which we have to deploy? Because right now, what I'm saying is the same as it was yesterday. Your web app is running
+24:47
+
+and waiting for your content. Hmm. Same, no? Whatever you did it. So web is working or not? No, it is not working. It is showing the same error
+25:00
+
+as yesterday. It's not working? Not working. Okay, Sana is saying not working. What is the issue for you, Animesh?
+25:14
+
+It is the same error which Sana got yesterday actually. Your web app is running and waiting for the content. The same message, that your web app is live, but we don't have any content yet.
+25:29
+
+You have to connect with that knowledge source and all. I'll show you today. Okay, don't worry. Okay. Thank you.
+25:41
+
+Penali Gadre, I will discuss. Okay? Just leave this topic for the time being. We'll talk that part. Okay? Otherwise, there is no make sense to tell you all these things right now. I will cover. It's a separate topic, so
+25:56
+
+Gadre, you have to know it. Yes, Kavita? Hello. Hemadivil?
+26:10
+
+Yes. Yes, sir. Actually, this is my first class for yours. Can you just tell me where are we in this sessions? So first tell us the why you are joining this batch then.
+26:23
+
+You have to wait, no, you have to join the new batch. This batch is going to close now. Okay. So I think I have completed most of the topic. Mm-hmm. Now we are on the last phase only. So- Okay ... I don't know.
+26:37
+
+If they have given a recording, then you can go and watch the recording classes and all, and then only you will reach. Otherwise, lots of confusion happen. Okay. Yeah. Fine, sir. Yeah. Gen AI completed, agentic AI completed, cloud I have covered,
+26:50
+
+fine-tuning covered. Now only few bit and pieces topics are left, and then we'll do the project session. Okay. I'll go to the recordings then. Yeah. Yes.
+27:04
+
+Thank you. Chalo. Guys, shall we start? One more friend is there, Sanmuk Priya. Yes. Go ahead. Yeah. Good morning, sir. Yes.
+27:17
+
+Actually, I need your guidance on my career actually. If you tell me when will you available, then I'll connect with you, sir. Actually, I have a career break. Mm-hmm.
+27:29
+
+See, one, two, three session I can take it in one day, not more than that. So you can check with Manju. I think two people already booked the slot, right? Okay.
+27:41
+
+Just now, Lalit said that I wanted to connect, so he is there, but you can also check with Manju. Okay, sir. Visible there, then you can connect tomorrow and we'll discuss. Otherwise, day after tomorrow you can connect with him.
+27:54
+
+Okay. Actually, last week I have attend the interview in Infosys. Mm-hmm. So I got rejected there. So I don't know which post I have to apply. Then I need your guidance on
+28:06
+
+this. According to that, I can- Whenever you apply or you need career guidance and all, first thing first, you should be on LinkedIn. Right? You ping me the JD, and then you have an appointment. Then I will guide you, I'll help you that how you will prepare, what questions,
+28:20
+
+what is their company expectation and all. Okay, sir. Okay, sir. It is good for me that I can understand the role, then I will suggest you. If you come blank- Thanks ... I don't want to give a generic answer.
+28:34
+
+I wanted to give a specific answer. For that, you have to share the JD. Yeah, anyway, you can ask Manju to set up a call, maybe tomorrow or day after tomorrow, and then we'll discuss. Okay? Okay, sir. Okay, sir. Thank you, sir.
+28:47
+
+Chalo. So guys, shall we start now? Okay. So what I'm going to do today, I'm discussing
+29:02
+
+the pro code today. Okay? So how you will use Azure, how you will use Azure services. Azure services.
+29:18
+
+So just you will use the endpoint. Endpoint. Okay, you will use the API, you will use the LLM model. Okay? These things you have to take it, and then you have to
+29:31
+
+write the pro code. Okay? Yesterday you have seen low code, where I have loaded the data in blob storage. By the help of Azure AI search, we have done the indexing, right?
+29:44
+
+Chunking, embedding part, and then you have checked also. Then by the help of Foundry, right, OpenAI, we have used a different model. We have created a agent as well, and then you have checked. Right? When you ask questions, if that is related, then they are giving the
+29:59
+
+citation as well as they are giving the response. If you ask out of the syllabus questions or out of document questions, they said simply, "I don't know." Right? And then last part, we did the app part, but app, I think you have
+30:14
+
+not connected with the dataset, that's why throwing an error. So that part we'll do it. That is just a low code part. Mm? Low code is basically for POC purpose. POC purpose.
+30:27
+
+Point of concept or proof. So when you do a POC, when you give the POC to your client, you can just give a glimpse that how this is working. But in real time, when you do it, mostly you will use pro code.
+30:39
+
+Low code, if you use it, the industry, they prefer to use Copilot Studio. So I'll try to teach you in project batch. When I cover the project, one
+30:53
+
+agent, I will do it in Copilot Studio, and you can see how simple it is. So this is also a low code, actually. So you can create the knowledge, you can write the skills, you can write their behavior, all these things, you can do it here.
+31:07
+
+And then you can create a Dataverse, power automate. All these things you have to do it. So this is also very good, a fantastic tool. And there are tons of, so many project you will see, industry, especially Microsoft, they are shifting completely in the Copilot Studio.
+31:21
+
+But if you have a very complex architecture and all, you have to use pro code. So as a GenAI leaders or GenAI architect or GenAI developer,
+31:38
+
+you should know pro code as well. So that is why the entire sessions from beginning, you have seen it. When I started, I mostly focus on the pro code only. Each time we discuss the pro code part so that your concept as well as you be familiar
+31:50
+
+with the code and all. So today, I'm using the Azure AI services, but how you will write a Python code, and there you can just utilize this part. So for that, what I'm going to do it, I'm picking a graph rack.
+32:06
+
+Okay? If I'm not wrong, guys, please correct me. Simple rack or a traditional rack. Traditional rack, you guys have seen it.
+32:22
+
+Yesterday also when I used the pro code, POC, I have used the traditional rack system. Multi-model rack.
+32:34
+
+I have covered it. Agentic rack, you guys have seen it. Agentic rack. Rag with evaluation, you guys have seen it with evaluation metrics, eval metrics. Correct?
+32:48
+
+These are the things I have covered. Yes or no? Graph rack, I think I have not covered it. I said I'll cover it in the coming session. Is it right, guys? All my friend?
+33:02
+
+Okay. Super. So first thing first, you have to understand what is graph rack. Okay, what is graph rack? Traditional rack, you all know it. In you are working in organization and they have so many documents there, let's
+33:16
+
+say thousands of documents there. What organization wanted, they wanted to convert all the documents into chunking. That chunk you have to convert into vector database, and that you have to store into vector database.
+33:29
+
+And then on the top of it, you have to build a retrieval augmentation generation pattern. That's the basic flow for simple or traditional rack system. And any questions user will ask pertaining to that particular documents, your rack system
+33:43
+
+is much capable of giving the answer. Now here the question comes, what is graph rack? Or why we need a graph rack? Okay, the question is why we need a graph rack.
+33:59
+
+Because, my friend, there is certain limitations there. There is certain limitations you will get it in the traditional rack.
+34:13
+
+What is the limitations there? They can only find, or you can say it does not understand
+34:31
+
+deeper relationship. So wherever there is a deep understanding there. There is a granular details I needed.
+34:48
+
+Then it is very difficult, guys, to give the answer. It is very difficult. Okay? Just give me a minute. Let me take a water. Just one minute, guys.
+35:02
+
+Okay.
+35:20
+
+So my friend, what I'm saying, if you wanted a deeper relation, when you ask a deeper questions where rag is unable to give the answer. Rag is unable to give the answer, then you have to go and use the graph rack.
+36:07
+
+What graph rack do? What graph rack will do? The graph rack
+36:23
+
+This is just an advanced version of RAG only. But the meaning graph, what they will do,
+36:44
+
+instead of storing only text data. The text we are doing a chunk and then we are restoring into vector database. The graph word, what it will do, they can create an entity.
+36:58
+
+Entities. So we have different entities there. And there they will make a relationship. Relationship. Okay? What is the relation in entity one, entity two, entity three, entity
+37:12
+
+four, and so on, right? They will find the relationship. They will also see the connection. That is why we are saying graph, right? So they can see what is the connections there. And basis the connection, they can communicate it.
+37:27
+
+They will communicate. So anybody asks you the architecture, right? You remember the RAG architecture. Same architecture, but there is some additional things there, which is called graph. And what graph will do, we have entities, we have a
+37:43
+
+relationship, we have a connection, and this is the connections, this is the relationship. Your RAG system, your application, they will communicate, right? You can say communicate
+37:57
+
+with the LLM, finding the relationship, connecting this, and then they will give the answer. Okay? So just you can-- Let me take an example.
+38:13
+
+Let's say I'm saying here, Sundaram. Okay, let's say Sundaram is working as a genie. Genie architect. Architect.
+38:26
+
+Right? Now, Sundaram is a part of, let's say I'm saying Microsoft. Hmm? Now, if I say Sundaram
+38:40
+
+is reports to Himanshu. Himanshu. Okay? Now I said Himanshu is reports to Manoj. Yeah? Now what happened, guys? What happened?
+38:55
+
+If I ask you, right, what graph will do? They will create a relationship. So here, Sundaram is there. Sundaram reports to
+39:10
+
+whom? You can say Himanshu. Himanshu reports to whom? You can say Manoj. Okay, you can see the relationship, how the relationship will work, right?
+39:23
+
+Now, Sundaram works in Microsoft. Himanshu also work in Microsoft, and Manoj also work in Microsoft. Okay? So we can say all are working in the Microsoft.
+39:36
+
+Now, if I ask you, what is the relationship between Sundaram and Manoj, right? Sundaram and Manoj. This graph RAG, they can see it, and they can say the relationship is Sundaram is the employee and
+39:48
+
+Manoj is the super boss of Sundaram. Right? So how we can say super boss? Because Himanshu is reporting to Manoj and Sundaram is actually reporting to Himanshu, and that's the relations they will find it. That granular details if you wanted,
+40:03
+
+right, to see it, you have to go and build the RAG system, graph RAG system. If you use simple RAG, and then you can ask what is the relationship between Sundaram and Manoj? They will not give the answer.
+40:17
+
+Okay, so you know why graph RAG is required? Anybody ask you, then you can say, this is the hierarchical report. Right? This is the hierarchical report where we can say that Sundaram actually
+40:32
+
+reports to Himanshu. Himanshu reports to Manoj. Hence, we can say Himanshu is the super boss of Sundaram. And this relationship is called graph RAG relationship. Make sense, guys? What they will do, they will understand the
+40:44
+
+relationship, right? They will understand the relationship. They will use the multiple, right, multi-hop reasoning. They will build the graph.
+40:59
+
+Yeah? So what they will do, and then they will use the reasoning. They will use the enterprise knowledge. Right? So that the organization, they can understand very well. They can go deeper, and then they have to give the answer.
+41:11
+
+Wherever the question comes, why, how, right? These questions, RAG, simple RAG is unable to give the answer. But graph RAG, they will do it. Graph RAG means simply you can say there is an entity, there is a
+41:26
+
+relationship. What is entity? Organization is the entity. Microsoft is the entity. All three are working, so there is a connection. Okay? What graph RAG will do, they will find the relationship.
+41:39
+
+Now, once we know the entity, then they can say all three are working in the same organization. Now what is the relation? Do we have any relation, direct relations with this? No. So do we have any connections? Yes. Sundaram reports to Himanshu, Himanshu reports to this.
+41:53
+
+So they can see the connection. They can see the relationship as well as connections. And once they get the connections, then easily they can communicate it, and they will give the answer, "Hey, this is what the answer is." Are you guys with me? Did you understand why we are using graph RAG?
+42:06
+
+Some make sense? Hmm?
+42:22
+
+Very good. Now there is one more concept there, guys, which is called CRAG. Okay, there is called CRAG.
+42:37
+
+CRAG. Okay, CRAG is nothing. C stands for corrective. Corrective RAG, retrieval-augmentation generation. Yeah? Now, what corrective RAG will do, this is similar like a
+42:51
+
+traditional RAG. Okay? Simple. Right? Corrective RAG is just only one steps there. In RAG, when I say RAG, what RAG do? You can say they are retrieving it.
+43:05
+
+They are retrieving it, and then they are generating the answer. Generated answer. That's called RAG system. CRAG, on the other hand, you can say the retriever part is there. Right? It's not that new. And once we retrieve it,
+43:18
+
+right, they will validate also. There is one more layers there, which is called validate. Once the validation happen, in case there is a problem there, they will correct it.
+43:34
+
+And then finally they will generate it. That is the additional things there, and that is why we can say CRAG. So here, please remember, one, validate and correct. These two parts are there, which is called CRAG.
+43:46
+
+Now you can say, "What do you mean?" Let's say I'm asking the questions, right? How many employee-- Let's say I'm saying, how many employees
+44:00
+
+are in department Gen AI? Let's say I'm asking. So you are working in organization and the question is, how
+44:13
+
+many employees actually working in the department of Gen AI or data science? So first thing first, what you have to do. Right? What you have to do, you can say, you can retrieve
+44:25
+
+the chunk. Retrieved chunk. And there, let's say old information is saying, old information is saying
+44:38
+
+that there are total employees, let's say 100. But as per latest report, latest report,
+44:50
+
+actual employees working on the organization is 150. Now, if you just go and use the retrieval system, there is error happen.
+45:05
+
+So what CRAG will do, they will first check the source. Okay, what they will do, they will check the source. They will check the source. Then they will check the confidence score.
+45:18
+
+Confidence score, how confident you are. And then they will do the check retrieval part, retrieval quality. Okay? And then they will retrieve additional evidence before generating the answer.
+45:30
+
+So they will correct it. They can say, "Hey, when the company started, of course, that time there were 100 employed there. But after that, some hiring happened last week." Yeah, that detail is also there, that retrieval will
+45:47
+
+validate it. That's why I said, what is the source you are taking? How confident you are? Right? They will check the reference, the retrieval quality as well, and then finally they will give the answer. So what is the benefit? Please remember for interview purpose,
+46:00
+
+anybody say what is the benefit? What is the benefit? Why we are using it? Like I said, what is the benefit for GraphRAG? RAG cannot give granular details. RAG cannot give the entity relationship connection detail.
+46:15
+
+If you ask, what is the relationship between Sundaram and Manoj? The RAG is not able to give the answer. Yeah? Maybe RAG will say that Sundaram is also working in Microsoft and Manoj is also working in Microsoft.
+46:29
+
+Yeah, but believe me, you will not get correct answer. But if you use the GraphRAG, their answer will come, Sundaram and Manoj both are working in the Microsoft. However, Manoj is a super boss of Sundaram.
+46:42
+
+Yeah? So which department, that means which department is working, his boss and their bosses, and like that it works. But CRAG, what it will do? CRAG, the benefit is, it's not a graph
+46:55
+
+RAG. It's a RAG only, but the benefit is less hallucination. Less hallucination. Okay? Because they will correct. There are two checks inbuilt you have to add it.
+47:07
+
+Your chances is better accuracy. Right? There is a self-check mechanism there. Self-check mechanism there. Mechanism there.
+47:21
+
+Okay? And this is better compliance purpose. Better compliance use case. So if you are working in industry, especially the banking, healthcare, legal, government,
+47:35
+
+where wrong answer cannot be tolerate. You are working in bank and any customer they can do a fraudulent. It's very difficult because there is a threshold value they have given.
+47:49
+
+Accuracy should be 99.9%. In healthcare, you cannot tolerate it. So where toleration power is very, very less, you can go and use the CRAG. That's how the CRAG works.
+48:01
+
+Multi-model, you guys already know it, where you have input data as a text, audio, video, PDF, diagram, images, so and so on, and everything you wanted to take it, you can go and use the multi-model.
+48:14
+
+Anybody have any questions? Did you understand what is graph RAG? What is CRAG? CRAG mainly we are using for auditor purpose. Right? CRAG, mostly we are doing when we wanted to verify everything before
+48:27
+
+answering. So CRAG, of course, little costly, but here you have to do the verifications everything, and then you have to go and use the-- Give the answer. Graph RAG is a detective. They can understand the relationship between
+48:43
+
+people. They can understand the relationship between department. They can understand the granular details. And then they will find the relationship, they can see the connections, and then only they will generate the answer.
+48:58
+
+I wanted everybody, you chat window say, yes, you are comfortable now. Anybody ask you, what is traditional RAG? What is CRAG? What is graph RAG? What is multi-model RAG? Are you in the position to tell me or not?
+49:12
+
+Will you able to give the answer confidently? Super. Great. But sometimes, CRAG, they will ask you on the top of it,
+49:25
+
+why I need this CRAG? Why not you can go and do it the metrics part itself where here there is a limitations, right? Here there is a limitations there. You can check the hallucination, you can check the accuracy.
+49:40
+
+But why not I can check everything? You can say, "Boss, that also we can do it, but this is why better?" Because in case we are not building a evaluation metrics and we just wanted to build a RAG applications,
+49:52
+
+of course, CRAG is better than the simple RAG or traditional RAG, because here inbuilt self-check mechanism is there. And what self-check mechanism will do, they will check the hallucination, they will check the retrieval precision value, context precision value,
+50:07
+
+contextual recall value, contextual relevancy score. Yeah? They will also check is there any guardrails there. They will also check, do we have how much hallucination percentage coming, and then finally, they will generate the answer. That is why CRAG is important.
+50:22
+
+I'll take a pause. Anybody have any questions, please ask. Otherwise, I'm happy, I'll show you the code part. Okay, how we can work on it. So Sai Ganes, over to you, my friend.
+50:39
+
+Hello. Sir, can you hear me? Yes, sir. So in the graph RAG, I just want to know whether if the BR, first of all, we are after loading the document, we are
+50:53
+
+doing the chunking part. Mm-hmm. Once the chunking means in the chunking, in somewhat if we do some sentence-based means, there will be not much information, right? If again, we will do the chunking from into graph, I mean graph database means
+51:05
+
+how does it get that relationship? So what we are doing, we are creating a graph database there. Okay, so what is meaning of graph database? I'll show you today which industry
+51:19
+
+using extensively is called Neo4j. Okay? Neo4j is nothing, it's called graph database. Graph
+51:32
+
+database. Okay, what graph database will do, they will create a nodes. They will create a relationship. And bases their properties.
+51:45
+
+Right? So let's say you have a SQL dataset. SQL dataset, normally what happen? So RDBMS dataset, you have a customer table, you have order table, you have product table. Right? And we need a JSON file.
+52:00
+
+Neo4j is just a extension. What they do, they will find the relationship with all the tables, and Neo4j much faster than any other tools. So they will see the relationship.
+52:14
+
+So how it works, let me show you. Neo4j
+52:28
+
+graph database. Go to image. See this. So here, anybody ask these questions, right?
+52:43
+
+You can see how the relationship there. So if tomorrow anyone is asking these questions that, hey, the application, what is the relation with the managed strategic initiative? They will say which application, designing application, ERP applications.
+52:57
+
+Somewhere there is a connections there, and finally they will give the answer. Somewhere there is a connections there, finally they will give the answer. Okay? Somewhere there is a connections there, finally they will give the answer. So like that it works.
+53:13
+
+So they will make a graph, actually. So what nodes will do, node represent entity, such as people, product, locations. Right? And other data projects. So these people, applications,
+53:25
+
+infrastructure, process, these are called nodes. Relationship, what it will do, they will connect node and define how the entities are related to each other. Right? And properties are key value pairs,
+53:38
+
+that store the additional, just like a metadata is there. Nodes and relationship. So this is very good. I'll share one presentations also, but let me show you one very simple example,
+53:52
+
+Neo4j database with Ramayana dataset.
+54:04
+
+I've seen one example where the Ramayana example's there, okay? What happen? There is a relationship is drawn there, and I'm just giving some perspective here. So what happen?
+54:22
+
+There is a questions came that what is the relationship between Janaka and Dasaratha? Dasaratha.
+54:36
+
+Right? In Ramayana. So if you guys know Ramayana, you know Janaka, their daughter is Sita. And Dashrath, their son is Ram.
+54:48
+
+And Sita and Ram has the relationship husband and wife. Yes or no? They are a couple. So now the relationship between this and this, they can easily draw it. If you ask this question, what is the relationship between
+55:02
+
+Janak and Dashrath? RAG is not able to give the answer unless or until you can build the graph RAG. So I'll show you this part. But did you understand the perspective?
+55:16
+
+Yes, sir, but I just want to know whether after the document loading, is there any chunking embedding happen or directly it is creating the graph, that entity extraction relationship- We will use- ... from the document itself.
+55:29
+
+No, no. So we will do the chunking embedding, as well as we will do the separate relationship also, and then we will use it. Okay, so additional things happened.
+55:42
+
+Okay. So parallelly, they will do the graph relationship and as well as the chunking embedding. Correct. Yeah. Okay. Got it. Thank you. There is a Cypher query language there. This graph, RAG, actually using the separate language which is called
+55:55
+
+Cypher query language. Cypher query language, just like a SQL. Okay, Cypher query language, just like a SQL. How SQL database works, similar Cypher query language will work, and
+56:09
+
+they will give the relationship. So there are two things happen. Okay. So let me open the PPT.
+56:24
+
+Mm. RAG. Graph RAG with Neo4j. Okay. So guys, see this.
+56:40
+
+So, you will get some perspective. So this is the GraphRAG: Back to Our Roots. So why the header is given Back to Our Roots? This is very old concept. It's not a new concept.
+56:55
+
+The graph concept came very early. Okay, you can say the 2000 itself, but in 2012, the Google engineers, they have explored it. So you can see this slide, it's saying Google launches world
+57:08
+
+largest search engine in June 26, 2000. What actually we are doing it, right? When you go in the Google and you ask something, they will give you a different link, and you have to click it.
+57:21
+
+Meaning somewhere they wanted to see the relationship. Google now enable internet user to search more than one billion URL, providing quick and easy access to 560 million full text index web pages
+57:36
+
+and 500 million partially indexed URL. So Google is based on variety of innovative technology, including sophisticated text matching and its advanced patent pending technology
+57:50
+
+called PageRank, which ensure that the most important result always come first, right? That's how the Google engine works. Now, in the year of 2012. Okay, May 16,
+58:03
+
+2012, here, this is the link there. Okay, if you go and click it, you can see this is the link there, guys. In the year of May 2012, Amit Singhal, he was the senior vice president,
+58:16
+
+engineering department in Google. He was working as a senior vice president, and he has published this editorial. Okay, "Introduce the Knowledge Graph: Things, not a String." Yeah, so that time itself, this model came.
+58:31
+
+We are in 2026, my friend, it's more than 14 years old model. GraphRAG is very popular since 2025. So you can expect when you go, when you have a complex query, you have to use the
+58:46
+
+GraphRAG. So what they have done, if you see this visualizations. You can go and read it. I'll share the PPT. You can see here, guys. When someone is asking questions.
+59:01
+
+When someone asks questions here, what is this? Taj Mahal. In Google, if you search Taj Mahal, you can see how many details you will get. You will get a different link, different link about Taj Mahal, different link.
+59:15
+
+They will also give you the Taj Mahal, some basic descriptions. What is the height? When it opened? What is the current address? What is the architecture style? What is the phone number? What is the architect?
+59:28
+
+Name. And similar historical place also they have given. You can see when you ask just one question, Taj Mahal, you just not realize it how many information I'm getting here.
+59:42
+
+When someone is asking different question called Marie Curie, you can see when she born, when she died, what is her spouse name, children name, discovered, what discovery they did it, what are educations,
+59:57
+
+and similar personality also, they have given it. So that is what the relationship they are finding it. Okay, they are finding the relationship. So I wanted you guys please go through this editorial. It's a six-minute read only. It will not take five minutes read
+60:13
+
+only. So it will not take more time. Please read it. Now you can see how this thing happened. When anybody's asked Taj Mahal, they are giving address, they are giving architecture name, construction
+60:28
+
+started, height, when it opened, architecture style, what is the coordinates, what is the latitude and longitude, what is the area, what is the phone number, how many visitor visited till 20-- in one year.
+60:41
+
+What is the governing body? So all these things, they give it. And this is how the graph works. Next slide you can see when I ask- Or Moscon Center, right? So they are finding the relationship. Who is the CEO?
+60:55
+
+Where the headquarter is there, right? Where were the other offices there? So all these relationship, properties, name after, right? All these things, connections, they are giving it. Yeah.
+61:08
+
+This connection is called graph RAG. As I said, it's a very old concept. So in 2000, when Google launched, for basically for text search only. In 2008, somewhere Yahoo,
+61:20
+
+Netscape, these are the company came, and they started using the algorithm. They used PageRank. Right? Similarly, 2012, the knowledge graph introduced, and they are creating a graph. And as the invention
+61:33
+
+started, as the technology grow, in 2020, or even I can say '17, right, the transformer model came, and 2022, '23, the era of LLM and
+61:48
+
+graph RAG. So graph RAG, actually, if you ask me, in 2025 onwards, graph RAG demand is too high. Okay? Any complex query there and you wanted to build a RAG system, you don't go, you can go and use the graph RAG system,
+62:02
+
+and you can easily do it. So how the journey has started, right? The graph RAG era 2024 onwards. So that's the era, but 2025 onwards, company has started working on it.
+62:18
+
+So what is graph RAG? Graph RAG is the RAG where the R part include traversal through the knowledge graph, right? Means they are retrieving it via the connections, via the
+62:30
+
+node, via the relationship, via the connections, via the communication. Right? It provide more contextual knowledge that might otherwise be missed with the same old-school RAG that people are familiar with.
+62:43
+
+So like I said, if you ask some difficult questions, the simple RAG will not give the answer. But graph RAG, if you go, they will see the connections. They will use the node, they will use the entity, and then they will give it. So what exactly does graph RAG solve?
+62:57
+
+Let's say take one example RAG use case. So there is a hotels, name is called Contoso Travels, is an agency that has multiple documents containing review of various hotels, the offer given by customers that have
+63:13
+
+used their hotel service in the past. Right? So this is a consulting company. They are providing a, just like a trip and all. So they have a most of customers there, and they have given a review. So there are certain hotels there.
+63:28
+
+Those customer, they visited on it, and then they are giving the review. That okay, how was their experience, how they rated to that hotels, right? What was the good facility they have given, right? All kind of things they ask. Now they are looking to build a RAG
+63:43
+
+chatbot for improving customer experience and recommendation system. Yeah? So let's say there are thousands of customers there, and they have given a review for, let's say, 100 or 50 hotels there.
+63:58
+
+Okay, how they will do it? So solution is if the user is asking question, "What is the review of the Creek Hotel in Dubai?" Okay, so there is a hotel in Creek Hotel in Dubai. If any user is asking what is the review,
+64:13
+
+RAG is very much able to give the answer. But if I ask, "Is the Wokingham Hotel in London suited in the pleasant vacation experience?" Again, RAG is able to give the answer, yes. Yeah, what facility does Kensington Hotel provides?
+64:25
+
+RAG is able to give the answer. So these are the straightforward question. But if you go and change the question, you can say, "Which hotel are reviewed by XYZ reviewer?" Now the XYZ, let's say they have visited hundreds of hotel. Out of 150, they have given a
+64:40
+
+review and all. Right? These all part how you will find it by the help of graph RAG. Only traditional RAG is not able to give the correct answer. Next question, what hotels are located nearby the Creek Hotels in Dubai?
+64:56
+
+Yeah. So this simple RAG will not give the answer. The multi-model RAG only can give the answer. Okay, just to give you
+65:10
+
+Okay, guys. So you can see if you ask these type of query. The question is coming, give me a list of all hotels that have complimentary breakfast, including in their special packages. Right?
+67:59
+
+So simple RAG will not able to give the answer, but this graph RAG, what they will do, they will first find out how many employee they have given a review. Now, what review, where they mention the complimentary. So they will go in the granular details
+68:12
+
+and then fetch the data and give the answer. That is why questions that it fails to answer by the help of simple Naive RAG or simple or traditional RAG. But if I use graph RAG, I can give the
+68:27
+
+answer. Okay? So wherever there is a complicated questions there, wherever there is a granular details you need it, you have to go and use the graph RAG. This is the architecture I'm going to use, guys, for graph RAG.
+68:40
+
+I will use here retrieve documents, means you have a vector database, by the help of Azure AI search. I will use it and will do the embedding and all. Here, user will ask questions.
+68:53
+
+The ChatGPT or LLM model, they will give the answer, they will summarize it. And what they will do, they will not only see the embedding part, they will also see the relationship, entity-node relationship
+69:06
+
+by the help of database and then give the answer. So who asked the questions? I think my friend, someone asked me these questions. So chunking and embedding happened here. Vector database, they will find the relationship here, and by the help of
+69:20
+
+here, we will use text embedding. Here, we will use the relationship. And then by the help of LLM, they will generate the answer, whatever user will ask query. So both things will happen, chunking plus embedding. Right? And here, the relationship,
+69:35
+
+entity relationship, connection and communication. So communication part will not come here. You can say connection, relationship, entity, or node, and then LLM will give the communicated.
+69:51
+
+That's how the work will go. This is the architecture for graph RAG. Anyone have any questions, guys, please ask. Otherwise, I'll show you the case study. So let me see. Yoges has raised hand.
+70:04
+
+Where is Yogi? Yes. Tell me. Yogi sir. Yeah. Hi, Suresh. Hmm. This is Yogi. Now, as we are talking about the graph RAG.
+70:18
+
+So just want to understand that which type of graph or is there any instance which is used to understand the legacy product code base actually? Because when I saw in our organization, they have shown us some graph like it's showing all the relationship,
+70:32
+
+from where the function is called and the whole hierarchy of calling the code-based functions. So in that case, which graph? It's been how this being implemented and all that. I'll show you. In Neo4j when I use, no?
+70:48
+
+Mm-hmm. You will see it, how we are able to use it. Okay. Hmm. Main thing is concept. So you are clear the concept, right? Yeah. Why we are using graph RAG, right? Yeah. Now, how we'll do the practical hands-on, I'll show you now.
+71:02
+
+Okay. So same Neo4j graph can be used to understand the code base also? Correct. So Neo4j is another applications we will use it. Okay. We'll connect with the vector database, and from here I will take all the data,
+71:16
+
+and here they will find the relationship. Okay. So let's say there are hundreds of documents there. They will see is there any connection for one document with hundreds. And all connections part, they will draw it. You can see the visualization. They will find the connection relationship
+71:28
+
+node. Okay. Prashant? Hi, sir. Good morning. Morning. Sai Ganesh, Yogesh, please unraise your hand.
+71:41
+
+It's good, right? I have a visibility that who ask questions and... Yeah. Go ahead, Prashant. In multimodal RAG, like you said, when client is not satisfied with accuracy and all, we move to fine-tuning, right?
+71:57
+
+So after RAG, instead of fine-tuning, we need to use CRAG or graph RAG now? Or- No. Fine-tuning is different thing, my friend. Fine-tuning, let's say your RAG, any RAG you build, either a graph RAG, multimodal RAG- Okay
+72:10
+
+... CRAG. That is not giving as per your expected answer. Then what- Okay. Then only fine-tuning will do? It's not that fine-tuning you do, then you can do graph RAG. No. In beginning itself, you can say what RAG I have to use it.
+72:22
+
+Okay, sir. Okay. Shall I use graph RAG or multimodal RAG or traditional RAG or no CRAG, I have to use it. Yes. Understood, sir. Okay, sir. Thank you. Dhiraj?
+72:36
+
+Yeah. Sir, I think what part is very much clear. On the how part- How I'm going to do it, I'll show you ... yeah, just from the intuition perspective. So when we see a traditional RAG, we say that we will do loading, we'll do
+72:49
+
+chunking, and we will create chunks, similarity vector database for the similarity search. Right? So in this graph search, we are saying that we will be extracting entities- We'll be extracting relationship, and then we'll be storing that
+73:03
+
+in the store graph. Here also we are doing the same thing. So when I say this one, AI search what? Can I say chunking there, plus embedding there, plus vector database there?
+73:17
+
+Okay. When user is asking query, it will retrieve here, but they will not retrieve from here also. They will find the retrieval part here also. So you can see the LLM, they are not taking information from vector database only. They are taking information from here also.
+73:29
+
+So your raw data, one get stored here in Azure AI Search means embedding part, and one in Neo4j also. So there are two times the data get stored. Here they will see the relationship, granular details,
+73:44
+
+complex relationship, and here they will do the simple RAG system. And then they will take a details and combine with- So we'll be using some kind of aggregator to pull it from both? We'll be using some kind of aggregator? Absolutely. That's why I said it's a complex problem.
+73:58
+
+So when you have a complex query, then you have to go into it. So of course, there is a relationship. LLM will not retrieve- And, sir, on this- ... from the vector database. They will retrieve from Neo4j as well.
+74:13
+
+Okay, got you, sir. And, sir, on the CRAG, when you say that we need to take a corrective steps, I think we have read that evaluation matrices or what all things evaluation we can do to improve. That's the evaluation metrics there in CRAG.
+74:26
+
+So we'll be using the same concept there to improve the correctness? Same concept. Absolutely. Yeah. Okay. Thank you, sir. No problem. Who else?
+74:39
+
+Kumud? Yeah. Hi, sir. I just want to know something. How this is going to implement in Azure side? Do we require the hybrid retrieval over there,
+74:53
+
+like we have seen right in the last project? So everything, like how we will implement this in Azure side? Same, sir. Same. Only additional part we are adding here for Neo4j, for entity node relationship connection.
+75:07
+
+Remaining RAG- There we can replace it from the Azure Cosmos DB, right, sir? Or we can use Neo4j. All right, sir. Your Cosmos DB is a different thing. That is when you build the applications, that time you can say, "I wanted to store
+75:20
+
+the API key. I wanted to store the memory." For that we are using Cosmos DB. But for the graph, RAG also, sir, we can use the Neo4j Azure also? So we'll connect. No, Neo4j we'll connect with this.
+75:34
+
+So you will see how LLM get connected here. So Neo4j is a separate application. If I can go here. Neo4j. So what is this? Connect data as it is stored with
+75:48
+
+Neo4j. So it's a kind of a storage. Very powerful. Perform powerful, complex query at scale and speed with our graph data performance. Most of the company, they are using it.
+76:04
+
+Neo4j desktop download, documentations, database, Aura database, storage, everything. So we'll cover that part today. You will see it. Most of the company, if you go here, these are the company, they are using Neo4j extensively for
+76:17
+
+complex query and all. You can just Google. These are the company, they are using it. Four, five company, I already worked on it, and I have done hands-on with Neo4j. Okay. So I know how significant it is.
+76:31
+
+So I'll show you this part. Okay? Yeah, sure, sir. Thank you. Naresh? Hi, sir.
+76:46
+
+Am I audible, sir? Yes. Question. Sir, this relationship building, the entity extraction relationship building between those entities, that is done on the completely on raw data. Consider we have 10 documents which are related to
+76:58
+
+each other. Mm-hmm. Okay? That is done completely on raw data before embedding it- Raw data. Raw data. Yeah. Okay. That is separate kind of database, right? Like similar to Chroma database. Neo4j is a database, actually.
+77:13
+
+Okay. Graph-related- Yes ... database, right? Yeah. Okay. On top of it, based on the query, it will fetch the retrieved documents which are in chunks and embedded format. And then here also, from Neo4j,
+77:28
+
+based on the query itself, we will extract the entity and then relationship, and then we are giving to LLM in order to get the proper response, right? This is my understanding. Is right? Yeah. Correct. I'll show you. No, you will get better understanding.
+77:43
+
+Oh, okay. Just wait for a while. Okay. Thank you, sir. Next, Usahana. Yes, sir. So most of my questions are actually answered.
+77:57
+
+But in Neo4j, is it only the raw data gets stored or even the embeddings get stored in Neo4j? You will see it. Just wait. I'll show you. Oh, okay.
+78:09
+
+Yeah. And also chunking embedding happens in a different way in this graph, right? No, here chunking and this thing will not happen. That's why we said here we will use Cypher query. Cypher query is just like a SQL query.
+78:22
+
+Okay. So if you have a SQL data set, how you are writing, right? Select all from table A to table B. Yes. Right? We're not embedding it. We are just calling them and you are getting the response. Same thing happen here also.
+78:36
+
+So the LLM is very much capable of understanding the Cypher query language, and they will give the answers. I'll show you that part. Okay. It also has like in SQL, we have foreign key relationships.
+78:48
+
+I'll come to that. But just wait. Okay. Sure. Yeah. Just wait for a bit. Okay. Farhan and Dheeraj, both are unmuted. Go one by one and ask quickly. Hi. My question is regarding that does
+79:02
+
+the Node4j also follow some graphical entity like just we do with the line graph? We have a nodes, edges and conditional edges. Does it follow the same thing when trying to-
+79:17
+
+Same thing. No, that is what I'm saying. No, same thing. Just wait I'll write a code and I'll show you. Same thing, no different. That's what I said. Node, relationship, what graph will do. So when I say graph, actually there are four things happen.
+79:29
+
+So when I say graph, what graph will do actually? There is an entity, means node. There is a relationship. There is a connection. That's the graph will do. Where you will do these relationship?
+79:46
+
+Where you will do this relationship by the help of Neo4j. Okay, so I'll show you this, but just wait. Give me 10, 15 minutes, you will get clarity. One last question. So if we don't want to implement
+79:58
+
+Node4j, so what should the alternative solution? Can we do it using some LangGraph and storing these data- No, LangGraph is not for this. LangGraph is for
+80:13
+
+agent. So when you create a router and all, you can use LangGraph. LangGraph is not for database connections, relationship, entity. Okay. So if you don't use Neo4j, you can use Azure
+80:25
+
+services only, but that is not giving perfect answer. That is why industry, they prefer to use Neo4j. Neo4j is the leaders for relational database. Okay? Okay.
+80:41
+
+So there is a cost involved there, but you will get a free-- I started with free. So you will get the free resource. But if you are interested, you can just go see that, all these things, AuraDB, Aura Graph, you will do it.
+80:54
+
+In organization, they will give you access. You need not to worry about this. Okay? Tell you, Parhan, do you have any questions? Sir, almost all question answered. Just one question.
+81:09
+
+So in Neo4j, you said, right? So if we search for some particular, for example, if it's a Taj Mahal or something, so it deriving all that from the website, right? But we say it's a hallucination. It will handle better,
+81:22
+
+but will it bring unwanted- Where I say hallucination? That is for CRAG, no? This is Graph Rag I'm saying. Graph Rag, I said if you wanted granular detail, if you wanted relationship, what is the relation with Sundaram versus
+81:37
+
+Manoj? That example I have given, no? Yeah, but so it will have hallucination. Hallucination when you use GenAI, definitely you have a hallucination also, you can handle it.
+81:52
+
+Mm. Okay, you will use. If not, then you can use the evaluation metrics. There you can check all part. Okay. Mm. Yeah.
+82:05
+
+No problem, just wait for a while. I'll show you code and you will see it. So Visual Studio.
+82:17
+
+Folder. Desktop. Rag. Graph Rag.
+82:39
+
+So see, guys, this is the code there. Okay, this is the code there. So I have taken a dataset. Here we have a review data there.
+82:55
+
+Okay, here we have review. So just I have taken five customer details. So these are the customer, they have written a review. Average place, great location. The hotel name is the Creek Hotel, place
+83:09
+
+is Dubai, UAE. When they have given a review? 1st March 2018. They mention, "I stayed here twice last year. Room was booked by a company I was doing business with the
+83:21
+
+DXP. First of all, the hotel is in great location in the middle of Bur Dubai. Lots of shopping nearby. Many restaurant. Relatively close to the Creek. Easy to get taxis.
+83:35
+
+Within walking distance a lot. Not sure of how easy it is to get to now due to construction, et cetera, but not bad in the last year. The hotel is one of the older places in Dubai, and
+83:50
+
+it looks it. Kind of like 1970s holiday in that has not been updated. Reception was efficient, if a bit indifferent. The porter was
+84:05
+
+good. I had one BR once and one BR suite once. Both were clean, if a bit worn. About what you would expect from the
+84:18
+
+older three." No problem with-- No, this is just a message they have written. Yeah, so some sample I have taken for you to show you how Graph Rag works. When you do the real-time job, you will
+84:31
+
+get all kinds of millions of review you will get, and then you have to build the applications. So here they have written, "If with different friends, no problem. Clean sheet and this nice size for price." Actually, this.
+84:43
+
+You can see all the details they have given. Some notable facilities are sofa, TV, hot shower bath. Reviewer is this. So he has written, and what are the facility they are giving, these things they have mentioned.
+85:00
+
+Budget, nice location, okay room, fair services. Overall, an average place for the price, especially if you are in the Dubai for business or are on a budget. So something like that, they have mentioned it.
+85:12
+
+Similarly, we have another customers here. Yeah, another customer, they have written something. So they said good value, clean and convenient. The Kingston Hotel, Oslo, and this. I stayed two nights here and consider it is very good.
+85:28
+
+It good value for money. I would centrally stay this, blah, blah. They have mentioned it, right? So you can see these are the reviews there. Now, this is the graph there, right? So we have a different type of data there.
+85:41
+
+These are customer reviews. You can see how the connection will work, right? So one is Azure AI Search, another is Neo4j. So these dataset get stored here also and here also.
+85:56
+
+What LLM will do, they will connect with the Neo4j as well. They will connect with the Azure AI, and then they will see the relationship, and finally, they can generate a Cypher query and give the answer. Okay, so what you have to do the first part, you have to go and install the OpenAI.
+86:09
+
+Okay, the first part is you have to install the OpenAI. Now, before doing the OpenAI and all, you have to create a environment. Okay? You have to create a environment. So that is the
+86:26
+
+mandatory part. So here you can go and just create a environment. Create dot environment. Not in review.
+86:40
+
+This. Dot environment. Okay. And you can go here. It's in review or what? Outside there.
+86:55
+
+Yeah. And in review, you can please go here and give the details.
+87:09
+
+Azure OpenAI. Equal to what?
+87:21
+
+Azure OpenAI Endpoint. Endpoint
+87:38
+
+in GPT engine. Mm. Neo4j
+87:57
+
+username and Neo4j password. Okay, Neo4j password.
+88:27
+
+Okay, these detail you have to take it, guys. Mm? Azure OpenAI API key, you already know it. You will go in the Azure OpenAI, create a foundry, right? You have seen how we can take the API key and endpoint, my friend.
+88:42
+
+You can take it from there. GPT engine is nothing which model you are using. Let's say GPT-5 mini you are using it, you can say GPT-5 mini. You can use text embedding part also.
+88:57
+
+It's not there. Here you can say text embedding. Text embedding at 002 or anything you wanted to write, you can write it.
+89:32
+
+Fine, so you have to write this part. Now, this is what you can take it from where in the Azure portal. Just give this. You need not to go in the Azure. You just create it, take that API key
+89:46
+
+point, endpoint, GPT engine model, which version you are using. So here, you have to write a version also. But I have directly given the version, so you can change the version also. What is the API version you are using it?
+90:00
+
+So that API version you have to mention here. Okay. You can create API version as well, which version you are using it. So this part you have to take. Neo4j username and password.
+90:13
+
+What you do, guys, everybody, you can go click Aura login. So I wanted some of my friend take a lead again. I'm sharing the code with you all. Can you please take a lead
+90:27
+
+and we'll do it?
+90:40
+
+Anyone, any volunteer? Umut, you will try?
+91:01
+
+Umut, you have raised hand, will you try? Where is Himanshu? Is not talking. Himanshu, are you there? Yes. Himanshu? Yeah. So,
+91:19
+
+okay, I will try. Share your screen now. Yeah, just a moment Let me make you panelist, and let me share the code also.
+91:33
+
+Just a moment. Let me upload this GraphRag first. Drive link.
+91:46
+
+Shall I go ahead and share my screen now? One minute.
+92:15
+
+You can share the screen. Let me create a folder. 26th July 2026.
+92:27
+
+RAM GraphRag. Review architecture, GraphRag.
+92:50
+
+Now please share your screen. Yeah, already sharing. Please download 26th July folder. Just a moment. Yeah.
+93:05
+
+Okay. And everybody, you also have to download, right? Neo4j. It's a free of cost, and it will really help you. I wanted you all, my friend, when you prepare a CV there, you have to mention
+93:25
+
+GraphRag. Okay? You can mention, "I have worked on GraphRag as well." Download everything, including reviews data. Trying to. One second.
+93:37
+
+Just give me a moment.
+94:11
+
+Just a second.
+94:32
+
+So this is the one. Now you can go in the... Leave this part. You have downloaded, no? Yeah. First you can go there, the GraphRag portal.
+94:45
+
+Neo4j, right? Neo4j, yeah. First one? Yeah. Click this.
+95:01
+
+Everybody, please follow the same thing. I hope everyone able to see the screen. Yes, no? Yeah. Please follow the same approach. You can log in with this Neo4j.
+95:18
+
+Go little slow, Himanshu, so that everybody will follow you. Okay, now just maximize it little.
+95:33
+
+Can you maximize it little bit? Yeah. So see, they will ask some personal detail. Okay, so Himanshu Verma, company name is LearnBay. Just write no LearnBay.
+95:48
+
+And when you are doing it, right side you can see how the connection happened, right? The entity name in, organization name, and work at, right? So that's the relationship. Add this, build a graph-powered application, yes.
+96:03
+
+Here you can see architect, tech lead. Knowledge graph, generative AI, right? Just click anywhere, no problem.
+96:20
+
+Gen AI. Create a free instance. Guys, please see this here you have to say create a free instance. You need not to pay even a single rupee. Yeah, on free version, it's a lifetime free, but one
+96:33
+
+instance is only at one go you can do it. Hold on. Just wait. Okay, click on download to continue. But before that, you have to wait now. Yeah.
+96:47
+
+Everyone please confirm once done.
+97:01
+
+Slow please. It's very slow. Just log in, right? You can just follow the same thing, option, and then you will reach here. There you can download the TXT file.
+97:13
+
+Here its username and password is coming.
+97:26
+
+Done. Now, Himanshu, please go in VS Code. Create one .environment file.
+97:45
+
+.environment file. Yes. Maximize it. Very small. It's me only or everybody?
+97:57
+
+No, it's my laptop. My screen is 32 inch, so it is like- Yeah, it's very small. Yeah. Resolution is small. Remove the bottom terminal node. Remove it.
+98:09
+
+And the right side chat session is there, that also you can close it. Now can you maximize it? Yes. Is it better now? No. Now it is okay.
+98:23
+
+One more time. Can you do it one more time? One more time, zoom. Zoom in. Super. Here, what you do, first thing first, you have to write it,
+98:35
+
+azure_openai. It is their own code. Please go in the GraphRAG. Can you go in the graphrag.python? graphrag.py? Okay. It's not- Same. Here also, fine.
+98:50
+
+Can you copy this? These three you want, right? The- No, go down. Okay. No, go on the code.
+99:04
+
+Here, just one minute. Go little up. Little up. GPT engine there. Copy the GPT engine. Copy it. Go to Environment, Paste here.
+99:22
+
+Remove everything. GPT engine equal to, say, GPT-4. GPT-5, which one you have installed yesterday? Uh- GPT-5 mini, right? Yes. So type GPT-5 mini. Super.
+99:36
+
+Don't give a single quote. Remove the double quote or single quote. Just say GPT engine equal to GPT-5 mini. This is correct? Remove that double quote.
+99:52
+
+Okay. Correct. Next is azure_openai endpoint. Let me take it from here only. Hmm. Azure OpenAI endpoint. Copy all these things. You already have taken?
+100:05
+
+Paste here. Very good. I hope you have not deleted, right? No. Super. So I need OpenAI endpoint. I need OpenAI API key. That's it. Remaining you can remove it, not required.
+100:21
+
+What about the cost? Just remove the double quote. I don't need double quote. And when you share this code with everyone, you need not to share its
+100:35
+
+end .environment only. This API key, don't share with anybody. Or else, if you are sharing, maybe you can delete it from your- Yeah ... portal so that nobody can misuse it.
+100:49
+
+Now go next. Enter. Go to the code first, graphrag.py. Go to the code. Go down. Down.
+101:05
+
+Go down. Neo4j first. Down. This is Cypher query. I'll tell you all these things. Copy the Neo4j username.
+101:22
+
+Neo4j username, Neo4j password, and Neo4j URI. Yes, password and URI as well.
+101:37
+
+Neo4j URI. Equal to. Now, when you go in the Neo4j, you have downloaded something. Go to the download part.
+101:50
+
+You have downloaded no txt file? Yes. Open this. You can save this txt file in your GraphRAG where you have done it. Here you can copy the username.
+102:03
+
+What username you have given? This one. Mm-hmm. So this username is nothing. It's called URI. In place of URI, you can put the username. Okay. Okay, password. Copy the password.
+102:15
+
+Yes. Paste there. And where username is there, just write neo4j. That's it. A small letter neo4j. Okay.
+102:31
+
+neo4j. Okay. Guys, this is the mandatory part that you have to take it. Now you can close this Excel file. Yeah. Environment, save it. No, don't close, save it.
+102:44
+
+Saved. Give times to others also so that they can confirm. Everybody, did you get this Neo4j username, Neo4j password, Neo4j URI?
+102:57
+
+How to get password, that is what he did it. No? He download it. Go there. Here how to do it, click on the instance.
+103:11
+
+Okay, you can see Create instance. Click on the Create. So already created. You can see? Can you click Connect? So connect is, you can see Running is there. A status, are you able to see Running? No, leave this part. Running.
+103:24
+
+Here, UID there. Are you able to see the UID, guys? This UID is nothing. It's called URI. Neo4j name is nothing, Neo4j. And password, you got it when you create something.
+103:38
+
+So that time you downloaded it. When you log in they will ask you. If you don't know, you have to delete it. You can go and recreate.
+103:53
+
+Everyone?
+104:05
+
+One more time, please. One more time, please. You can do it, no, Dheeraj? Can you share your screen? You will try so that others will see it or anybody wanted?
+104:19
+
+Okay. So let me... Dheeraj, just raise your hand so that I can make you panelist. Yes, go ahead. Share your screen.
+104:38
+
+Is my screen visible now? So, you reached here. Have you logged in? Yes. Okay. So I'm in the instance. I have seen this instance.
+105:00
+
+And- Have you done... Oh, when you have reached here, you got some download button. Did you download something, the TXT file? No, I didn't. Okay, not yet. I didn't download. Okay.
+105:13
+
+Go to the free instances. Right side, three dot is there. Right side, three dot there. Connect. After connect, three dot there. Delete this, go to bottom, delete.
+105:25
+
+Free instances. Oh. Type the name of instances, not this one. What is the name there? Copy the name first. Yeah. That button you have to click. No, then copy there. Okay.
+105:39
+
+Delete and type there. So action will be reversible. We will delete your instance and-
+105:56
+
+Instances, the visible, delete. Why it's not coming? Delete free instances. You will delete the instance associated snap. Why it is not coming? Instance below. Now what is the name there?
+106:08
+
+Free instance. Copy the free instance. This is the name. Mm-hmm.
+106:21
+
+Okay. Okay. Refresh the page. Just wait. Wait.
+106:33
+
+So in case, guys, first time you are not downloading right, then you have to delete it and recreate. At one time you can create one Aura Database only because I'm using free version. Okay? Now refresh the page,
+106:51
+
+my friend. Okay, create a instance. I think it will take some time. Wait.
+107:06
+
+Click on free. Now go. Here instance zero one is there. Click on the create instance. Okay, please download first.
+107:21
+
+Please download first. Already you have downloaded earlier also. So anyway, take the latest one because first one you deleted, no? So it will not work.
+107:33
+
+Okay, and here you have ID, you have password, and you have neo4j username. Got you, sir. Username you can mention neo4j only. Okay, got you, sir. Okay.
+107:48
+
+Thank you. Manshu, sir, please back to the pavilion. Mm, neither yours. Profile picture is very good.
+108:01
+
+Good. Others, please confirm. Wow, see how handsome Dheeraj is.
+108:21
+
+Good. Hello, Manshu Verma representing you for multi represented. Hello, Desia. So- Yeah.
+108:35
+
+I've shared it here. If anyone wants to copy it, they can. Please just paste in chat window. Ah.
+108:47
+
+Now, any other question, guys, anybody have? Someone ask how I can get the Azure part. Do you want me to tell you again Azure? You can go in the Azure, create a Azure AI search first instances, and then you
+109:10
+
+have to create Azure OpenAI or Azure Foundry. There you have to do that part. Okay? Yes, sir. Yes, sir. You have raised hand? Got it. One question. So can we use a Google Colab instead of using our
+109:26
+
+notebooks, Jupyter Notebook? Colab you cannot because I'm using, I'm connecting with the cloud, so Colab will not work. Colab is just a interface, but there is no connection.
+109:40
+
+Please remember Colab you cannot connect with Azure. Colab is a Google product, so you can connect with the GCP. Okay, sir?
+109:53
+
+Azure AWS, you will not able to connect it. Neo4j, you will not able to do it. So that's why you have to use VS Code. Perfect. Now,
+110:07
+
+this, Himanshu, don't go here. This is .py file. I have to go in the .IPython notebook. Okay?
+110:19
+
+Sir, once again, can you please show the database creation part? I missed that. In Neo4j console. Which one? This one?
+110:32
+
+Yeah. What are we supposed to do here? We cannot do anything. We can just create instances, create environment in virtual database, and there we have to write username, user
+110:44
+
+ID, and password, so that whatever data there, everything will come automatically here as well, as well as in cloud Azure. So you just log in here, okay? And
+110:57
+
+download the user ID password, and that you have to create a .environment, and there you have to update. Yeah. That is done. So, sometime back you were deleting
+111:12
+
+the instance here, right? I deleted because he missed it. Dheeraj missed it, right? He didn't download the password and all. Oh. So that's why I said, okay, delete the free instance and create again
+111:25
+
+the instances. Understood. That is what we... Okay? Visual Studio . Okay, guys, so first thing first, what you do,
+111:37
+
+close this. Go one by one step. This is architecture, okay? Whenever you use Visual Studio, in here, if you want to install the packages, go down. This is architecture, okay? Leave this part from here onwards.
+111:52
+
+So here, don't write exclamatory sign. You can write percent sign. Percent and then you can say pip install OpenAI, okay? Then only it will work. So just click this,
+112:06
+
+download it again, because in your system you are doing, say, Python. Python. No, no, that's okay. No Jupyter Notebook. Enable now.
+112:18
+
+Okay. Yes. Okay, it's executing. Just wait.
+112:31
+
+It will take time because you are using CPU machine, right? It's not a GPU machine. Yeah.
+112:51
+
+Anybody have any doubt in between, please feel free to ask, okay? I'm explaining you code line by line. On Python environment, click this. Create Python environment. Already we created. Remove this.
+113:07
+
+You can say Python 1.3. Python 1.4, fourth one. Third one now. This one right here. This one, yeah.
+113:20
+
+Hello. You don't have. "Running shell Python 1.3 require the IPython kernel package." Okay. I'll install it.
+113:33
+
+You are using first time VS Code? No, this is the desktop. I recently got reinstalled Windows and all. In organization, you will use VS Code only.
+113:51
+
+Yeah. This is not keeps you Google Colab. Yeah. In my office laptop, I have VS Code, but not in the personal one. This is the personal one. No problem.
+114:05
+
+Yes, now it is enabled. Guys, shall we take a break now? And once we back from break, then we will
+114:21
+
+discuss. Meanwhile, Himanshu, what you do, all the installation part, you can do it, and then you go for break. Sure. Here, it's not VS Code, so don't worry. It will not disconnect it. Just install the pip part. That's it.
+114:36
+
+Already- From here onward ... already done. Yeah. Once, I will explain you line by line. Yeah. Dear? Guys, shall we take a break now? Otherwise, you will say yesterday also I have not taken break, today again you are
+114:49
+
+doing this. Not acceptable. Can I take a break? Okay. So let me take a break. Otherwise, you can sit three hours. I don't want to sit here at one go.
+115:04
+
+So 20 minutes break. Enjoy your tea, coffee. We'll be back at 12:30, guys, okay? And in one hour, I'll explain this part.
+115:19
+
+Okay? See you at 12:30, guys. Thank you.
+115:32
+
+All right, guys, I'm back now. Are you there, my friend? Yes.
+136:23
+
+Great. Shilo. Himanshu, sir, are you back? Yes. Yeah. Please share your screen.
+136:35
+
+Go on top, yeah. So these two installations then. Guys, first package is for OpenAI LLM model, and the second package is for Dot environment, where you have created
+136:53
+
+the password and all. Yeah, so both you have to install first, then go down. Here I'm saying from OpenAI import Azure OpenAI. Because I'm writing a pro code. This is
+137:05
+
+called pro code. Everything you have written in Python, just where there is an API requirement there, where there is a connection required there, I'm taking Azure part. So you can say from OpenAI import AzureOpenAI, import operating
+137:20
+
+system from Dot environment, import load Dot environment. So whatever you have created in Dot environment, everything loaded in your system, and you can execute it. Please execute line number three.
+137:34
+
+Okay, done. Two means successfully connected. Okay? Now you can see create AzureOpenAI client. So what I have done, first I have mentioned AzureOpenAI endpoint. So AzureOpenAI endpoint. Can you please copy this AzureOpenAI
+137:48
+
+endpoint, Himanshu? Yes. Go in the environment, see whether same name you have written or not. Yes. AzureOpenAI. Copy, paste. Anything a spelling mistake, then it will not work.
+138:03
+
+It is there. Same, huh? Yes. Good. Second is AzureOpenAI endpoint. That is also same? Yeah, already matched. Okay. Already matched. Perfect. It is same, yeah. So guys, we are creating AzureOpenAI endpoint and
+138:17
+
+AzureOpenAI key. And what OS means operating system, and then get environment means where environment I have given that name. So this get connected, and the formula is AzureOpenAI API key
+138:32
+
+equal to OpenAI API key, API version. Now, version how you will know it? Himanshu, can you go in your yesterday code? Go to yesterday code. Yes.
+138:44
+
+You can see which version there, 2025. Yeah. Copy this version and paste there. Make sure you have to write the right version. Okay? It will not work otherwise. Change this version. Yeah. Now Azure endpoint equal to whatever the endpoint you have given.
+138:57
+
+Now execute this. Done. Okay, that means your Azure cloud get connected. Revati, please unraise your hand now. It's keep coming in my eyes. I thought you have a question, so please unraise it. Yeah. Thank you.
+139:12
+
+So guys, this is what the connection there. Okay, that is the only pro code you have to do it. Now, anything you will write in Jupyter Notebook, everything it will connect with the cloud. Okay? How simple it is, you can see I have created
+139:25
+
+environment file there we have given endpoint API key and which GPT model I'm using it and what is their version. Yeah, and then three things I have taken from Neo4j. So Azure part, I have just taken, and here I have written a formula, and this is
+139:40
+
+what I get it. Version from where did you get the version? So if you remember yesterday, when I taught you OpenAI, can you go in the OpenAI, see Gemini model there, and here version is there.
+139:54
+
+Are you able to see that? So when you go in the deployment, you will get the version here. Yeah, you have to write the right version, otherwise it will create a problem. Okay, come back. Very good.
+140:06
+
+Next part, ontology list. Ontology means I'm just creating the connections. That's why I said ontology list. So what I have done here, you can see I'm creating my own function, is called define, and where I have written identify relationship
+140:19
+
+and node. So- Yeah? This prompt, when you use the graph rag, you have to be careful. You can write anything you wanted, but you can give to your ChatGPT or
+140:34
+
+GitHub copilot, ask them, reframe it. Yeah, so this concept is called few-shot learning. Yeah, this concept is called few-shot learning. What I have done, I have just given some example.
+140:48
+
+Entity means hotel, location, facility, customer type, reviewer. Relationship means hotel. Let's say Crick Hotel. Then I have mentioned is located in, and location is Dubai,
+141:00
+
+right? So relationship how happen? Hotel has relationship with location. Hotel has relationship with facility. Hotel has relationship with customer type. Hotel has relationship with reviewer. Right?
+141:13
+
+So this is just a few shot learning I have mentioned here. Entity relationship. And how it looks like? Example output I said, Crick Hotel is located in Dubai. Crick Hotel has facility,
+141:26
+
+swimming pool. Crick Hotel has customer business. So these are few-shot learning I have written. Next time when you ask this thing, your LLM is very smart. They will write whatever the document you will give.
+141:40
+
+See, this is just a example, but let's say tomorrow you have one million data there, one million review there. It's very difficult, right? So if you write this few-shot learning, that's why few-shot learning has a very significant... If you guys remember, I covered few-shot prompt
+141:52
+
+engineering techniques in beginning itself, and I told you few-shot learning will help you a lot. Yeah? So this example I have given. Then what happen? Whenever you build a graph, right, the relationship, the entity versus relations by the help of node, by the
+142:07
+
+help of edge, get connected. And you will then cipher query when you write it, when you use the Neo4j, automatically it get connected. Yeah. What is the above? Just go a little up, Himanshu. Yeah, you can read here.
+142:22
+
+System prompt means what? Persona. So I have mentioned assistant is the name entity recognition expert. So first line I have given a persona. Yeah? Second, I said the assistant can identify name entities such
+142:35
+
+as person, place, or things. The assistant can also identify entity relationship, which describe how entity relate to each other. Example, married to, located in, held by. Identify the name entity
+142:49
+
+and the entity relationship present in the text by returning comma-separated list of tuple representing the relationship between two entities in the format like entity, relationship, entity. Yeah? So hotel relationship is located,
+143:05
+
+entity is place, Dubai. Yeah, only generate tuple. Tuple means fixed, right? Tuple is immutable. If you know Python, right, we have a list in tuples there. So tuple is immutable. So once you create tuple, you cannot change
+143:21
+
+it. Right? From the list of entity and the possible entity relationship listed below, return only the generated tuple in the comma-separated tuple, separated by a new line for each tuple. Yeah, so this is just a format you have to remember.
+143:35
+
+Whenever you build a graph rag, you have to just write this. Maybe entity and relationship what I have given, you can change it as per the documents, and you can just enable your LLM so that they behave like that. Go down.
+143:49
+
+And then here, user prompt. What user prompt we wanted? I said identify the name entity and entity relationship in the hotel reviewer text above. Return the entity and entity relationship in a tuple separated by
+144:05
+
+comma. Return only generated tuples in the comma-separated tuple, separated by a new line for each tuple. Right? Now, what is file text? So here I said chat completion response equal to the function is called
+144:17
+
+azure_openai_client.chat.completion.create. This is the function, you know it, right? When I covered the ChatGPT. Model equal to, you can say get environment GPT model. Which model?
+144:31
+
+GPT-5 mini. Role is system, and role equal to user content.
+144:45
+
+All right. Temperature I have given zero means I don't want creative response. I wanted deterministic response. And whatever the result will come, I want it to store in the ontology. Ontology means where we can see the entity relationship with entity.
+144:57
+
+You can append here, you will get the answer, then print and return it. Can you execute this? Done. This is basic Python, guys, basic GenAI first day when I covered the ChatGPT, right? That time I have used this
+145:14
+
+function. If this is done, the next part I am giving the reviewer folder. In reviewer, let's say I've just given some example, like 01, 02, right? These are the dataset there.
+145:29
+
+So I'm saying please take all the data one by one. Just five data there, that's why I have written five times, but let's say tomorrow you have thousands of documents there, millions of documents there. Just use the for loop and you have to do it, Python function.
+145:42
+
+Yeah, can you execute it? This is where the exact... Okay, there is some issue here. Okay. So why issue is there? Can you go there? Resource not found.
+145:55
+
+Resource not found. Where the path is? Can you go in the folder? No, go to the folder. Review. What you have given?
+146:07
+
+26th July, open this. Review this. Reading. Environment file. No, not Neo4j. Neo4j I have not used
+146:20
+
+yet. I think it is somewhere here, the function Relationship and node. Can you go up? Define function not working, I think. Yes, this one. I think you have not. Can you execute this? This is not executed, I think.
+146:32
+
+I can execute it. It is executed now. Executed.
+146:47
+
+This function is editing out. GPT Indian. What is error message? Error code this, error code this. Resource not found. This
+146:59
+
+one, chat completion. Okay, maybe the version is the problem. Whatever the previous version was, shall I just try it once? Maybe. Where is that version?
+147:15
+
+Yeah. Here now. Sorry, my bad. This is the version. Version is same only.
+147:31
+
+Mm-hmm. In your code-- Just give me a second. This also.
+147:49
+
+Just checking it once again. No, so for that, I have used GPT-4o. It's not GPT, this one. But then the key is incorrect, no? It might not
+148:13
+
+be right. That key is not taking. I think key is correct.
+148:25
+
+API key is correct only. It is coming. Let's see the file also.
+148:41
+
+Oh, why? File also is there. It's just the function only which is causing issue.
+149:17
+
+Can you execute now?
+149:33
+
+It is still giving the same problem. Error code.
+149:50
+
+One second. Can you do one thing? Can you show me where you have saved it? Where you saved the data? Can you go in the folder?
+150:06
+
+Yes. Go to the folder 26th July. Yes. 26th July, here you have saved it. Okay. Go to the file. This is the file?
+150:19
+
+No, in VS Code. Yeah. File is there? On top. File. VS Code, File, Edit, Selection on top.
+150:32
+
+Okay. Yes. The open folder. Give the right path. Open folder. This, yeah, and say Select folder.
+150:44
+
+Okay. Okay. And graph rag is there. Go here. And you can say .reviews. That is correct. Now open dot, then I'm going reviews
+150:59
+
+and finding it. So there is a problem in your GPT engine model. So can you go in the Visual Studio? Sorry, in Azure? Yeah.
+151:13
+
+Azure Foundry and click on Deployment. This is there. Deployment. Now, what is the issue there? I think here-
+151:30
+
+Opening the details. This is the- Copy the endpoint. Paste there. Go to this one.
+151:44
+
+Should we not give it in quotes? Single quote? No. Double quotes only. No. Remove this. Remove and paste here.
+151:58
+
+Remove the OpenAI version one. OpenAI. This one? Till OpenAI only you can take .com. Okay.
+152:12
+
+.com. Yeah. That slash is required. Put the forward slash. And show me the API key.
+152:25
+
+Copy this, paste there Hmm. Okay.
+152:37
+
+GPT-5 mini. Okay, now copy-paste. Control C. Go there, GraphRAG.
+152:49
+
+Go a little up. Execute this line. Done. Okay, this is fine.
+153:03
+
+Done. API key done. Ontology done. Execute this. Okay, done. Now try this line.
+153:16
+
+Error code, this message resource not found. Do one thing. Change this GPT model. Can you go in the GPT? Go to the deployment. Click on deployment.
+153:33
+
+Deploy one. Type GPT-4 only. All model, click on all model first. Say GPT-4. GPT-4.
+153:48
+
+I think there is 4o mini, something like that. o4 or something. No, not o4 I need. I need GPT-4. Is this the same? No, this is o4 mini there. Type GPT.
+154:05
+
+GPT. -4. -4 is not there. No, I think that is the same name, o4 mini is, maybe. No, that is different one.
+154:20
+
+Type five, GPT-5. Now click this and install it.
+154:34
+
+Will this be available for free, this thing? Let me see. Just check, no? No, it's not available. Yeah. They have this. So you can take then
+154:47
+
+o4 mini. Try this. Yeah. Oh, deprecated. This is also deprecated. Let me see if there is any other mini model.
+154:59
+
+o4 mini, GPT-5 mini. This one. o4 mini. This is also deprecated, I think. Click this. Yeah.
+155:13
+
+So deprecated. But still, can you deploy this GPT-4? When it's deprecated, what is happening? Let me see. Click the deploy.
+155:26
+
+Agent available due to insufficient quota. Okay. One thing I tried with this version when I tried now, earlier, it was working.
+155:38
+
+Maybe, one second. Where is that version thing I'm doing? This one. Just trying this out once to be...
+155:53
+
+Now it is 400, so okay, version is correct only. I think there is some endpoint issue only that I'm- So which email ID you have used? It is the same one, right?
+156:17
+
+Yes. The email address is same. Everything is same only. Shall we try it once? Are you sure codes is not required? I mean- Not required. You can just do it. No, it's keep changing also. Try this.
+156:31
+
+Can you give the code and see? Here we are not giving code. In project I have given, that's why you are seeing, right? So just try it.
+156:43
+
+I'm just going to try here only for now. This is fine. This again.
+156:57
+
+This, this, this. No.
+157:11
+
+This is not coming actually. Shall I check here? Load. Mm-hmm.
+157:29
+
+Since
+157:56
+
+we are not using OpenAI endpoint, we are using Azure OpenAI endpoint. Endpoint is not connecting actually.
+158:17
+
+Hmm.
+158:31
+
+Get environment GPT engine could not return environment this.
+159:02
+
+Go to the GPT engine. Yes. I'm just checking what it is returning also. So that. It is returning 5 mini only, no?
+159:16
+
+But they're considering as object, right? Remove the quote everywhere. Don't write in quote.
+159:31
+
+Quotes is also removed.
+159:52
+
+And can I try this? Is it happening with others also? Sahana, you have a API key, right? Can you try this?
+160:08
+
+For me also, I'm getting the same issue. Same error? Yeah. Then I have to do something.
+160:21
+
+Could it be related to permission? Also permission only, this is not working. 404 error means it's not connecting, actually. Correct.
+160:43
+
+But for me, I'm getting a different error, not related to resource. It is saying API version not supported. Hmm. But on the same line.
+160:55
+
+What there issues there? Oh, then what we have to do?
+161:08
+
+We have to do some modification in the code. Okay? Yeah. Because when I used it, I have used GPT 4o or four model. Now I'm using 5 mini.
+161:23
+
+Their version is not supporting. So can you go in the code? Can you comment the version? Can you comment the version part, and then can you execute it?
+161:37
+
+Don't give the version. Okay, now try this. No, this will not even work. API
+161:49
+
+key. Version is this.
+162:03
+
+Which one we have to try? I'm just thinking. Can you try something else, some GPT? Go into all model. Let me see. Can you click on the deploy one?
+162:17
+
+Yes. It's kept changing. That's the problem there. Otherwise, there is no problem in the code and all. I have done it earlier.
+162:32
+
+Type GPT. Type GPT. Dash, hold on. GPT chat latest. Can we use this? Can you try this one?
+162:50
+
+Yeah. It's supporting. No. Let me-- I
+163:04
+
+might need to disable that 5.1. Shall I do that once? Can you check, is there GPT-4, anything is available there, GPT-4, 4o, 4o mini?
+163:16
+
+Grok and all, I don't need it. Then I will change complete code. No. Google Gemini, Microsoft. And what are the GPT available there? Type GPT only.
+163:37
+
+GPT real time, GPT-5, 4o is disabled. Yeah. Must be disabled only. That's also deprecated. When it got deprecated? Very recently.
+163:54
+
+Yeah. Because I have used GPT-4, 4o model. Can you try GPT-5.1?
+164:08
+
+I think I might need to... Yeah. Shall I stop my-- I need to delete my current GPT-5. Maybe that's the issues there. Yeah. Shall I just go ahead and delete it first?
+164:20
+
+Please. That's right. Maybe it's not supporting. Now go deploy this. Yes.
+164:34
+
+Custom setting. Set your own SKU quota, PT. Click this custom setting. Version
+164:53
+
+There's upgrade new version available. What is there? Once the current version expire. New version, global standard.
+165:06
+
+That's the problem. You have free, no? So free, there is a restrictions there. They are not giving all the features. Just a second. Let me just quickly create a new project first, and then try and
+165:20
+
+deploy it once. Maybe in the new project, it might be there. Just a second.
+165:32
+
+Okay, this is fine. Test in playground, view deployments. Deploy a base model. Let's do that. GPT-5.1.
+166:19
+
+Deploy. Oh, no. Still- No, there is insufficient quota because you have a free version, no? So they are not allowing actually. 4.1 is available. Can you check GPT 4.1?
+166:37
+
+4.1 mini, this one? Yes, try this. Even you can try 4.1 also, that is fine. Deprecated this model, or AR. This is what?
+166:51
+
+Let me see if I'm still able to, almost able to work. The deprecating cannot use. Cannot use one deployments. Well,
+167:04
+
+then which one I have to use, GPT? This, I have to try one by one.
+167:19
+
+Let's see. 5 mini only. Let me try it again one more time.
+167:42
+
+Okay. Deployments. This one. Okay, let me try this one. Try this. Product endpoint.
+168:16
+
+Still API. This is the one, right? That goes here, endpoint?
+168:28
+
+Right. Okay. Can you please refer the sample code given below? Oh, yes. Thank you. Let me try with this full API once.
+168:42
+
+Yeah, give full API, maybe that's the... API key, I will take it from here. API key remains same. Let's see the version also.
+168:56
+
+2025087. This is the version or... Okay, let me see.
+169:08
+
+Version is there only. Yeah, it's same only. What I will do now is I will just again load the environment.
+169:23
+
+Okay. Just to be sure, I'll print the key. It is not taking the new key, is it? Yeah, it is not taking the new key.
+169:37
+
+You can close this, reopen. Yes.
+169:50
+
+Okay. Yeah, now it took. Let's see. This is fine. Now function is run.
+170:11
+
+Then okay, this is fine. Now let's see. Something is happening. It errored out again. Same.
+170:25
+
+Source not found. Then I can do one thing then. I think I have to log in with the paid one, okay? And I'll show you this part. So code-wise there is no problem, but the problem is connection.
+170:38
+
+Yeah? Yeah. So can I quickly explain you the code, guys? Or can I park it here, in the next session I'll explain you this code when I will do it?
+170:51
+
+Yeah, the reason is if you fix it, and then you have to again do the whole thing again, so- Makes sense to do overall together. We'll park it here for a few minutes. Correct. So I'll do it. I'll take the paid version,
+171:03
+
+because free resource, most of the package got deprecated. So I think I will go the paid version, and then I'll show you. Yeah, it's not supporting actually. So leave this part for me.
+171:18
+
+In next session, I'll show you how it works. Yeah? Only just go down, Himanshu, I'll show you this few things. So guys, you can see this is the basic code I have written. Then here I have created a Cypher query. So Cypher query is nothing.
+171:30
+
+This is just like the SQL query. Or a YML file or XML file, same way Cypher query works. So go down, and you can see how Cypher query looks like. Now you can see how I will generate the Cypher query.
+171:44
+
+You have to just write a prompt, give to ChatGPT and ask them: Can you please create a Cypher query? So Cypher query example is coming like that because it's very difficult for you to write it. First, it's a new language. Let's say Go language, Ruby language,
+171:59
+
+Julia language. These are the new language there. So if you are not sure, you can just write a prompt and you can say, this relationship entity, can you convert into Cypher format? So you can see same thing there. CH means Cypher.
+172:14
+
+Hotel name is Creek Hotel, is located where? Location is Dubai. Yeah, but that is written in the Cypher query. So Cypher query is a human-readable format. You have to give it.
+172:29
+
+So this part I have taken a support from ChatGPT, and then I have written. If you don't write this few short learning, you will not get answer. Okay, now go down.
+172:41
+
+Okay, this is simple Cypher, Azure client completion, same thing, I'm using it. Whatever the code you have written above, go down. Go down. So I have created a Cypher list is blank.
+172:55
+
+Now here when I do it, all the file get converted into entity, relationship entity into Cypher query format. Okay, that's called Cypher query format. Next.
+173:08
+
+As all the data get connected this, and they have created a Cypher query. And now you have to download the Neo4j. In Neo4j, I have just created Aura database.
+173:21
+
+So whatever the raw data there. Your raw data. Okay? Please remember, raw data, everything will go in the Neo4j, and they will make a relationship. How they will do it? You can see the code. So that part, you can just park it for me.
+173:34
+
+In next session, I'll explain you. Yeah, after that, all things is very simple. Go down. Down. So here you can see Cypher query we have written.
+173:48
+
+Model, relationship examples, and how this will work. And some example question is, what hotel are reviewed by this person? An example I have given that hotel reviewer, and
+174:01
+
+then their name, and return this. Strictly to the above output format. Means I wanted Cypher query format only. Then only Neo4j you can extract the data and give to
+174:15
+
+LLM. Now I have used LLM GPT engine model. Same system and content, user and content, temperature equal to this, and you can go and execute it. Now when I ask this question, which hotel are visited by business?
+174:29
+
+My machine is able to convert that part into Cypher query. You can see hotel customer type, and the businessman returned this. Next part you can see when I ask question which hotel
+174:43
+
+has a best facility using Query4J and they are giving this part. It looks like SQL query. You can see match hotel facility, return H. And order by the name into descending order, which is the maximum time
+174:57
+
+there. So you can see where they are able to do the creating the Cypher query format. Now, this is just a same code which I have written above. I'm using for authentication purpose. Go down.
+175:12
+
+So when you execute this line, after that when you go in the Neo4j you can see there are 40. This is just a sample example I have taken from my screen. So I got node 42 relationship I'm getting here.
+175:26
+
+So these are the relationship. In right side you can see when I say facility, connection with has facility with hotel, all the details we are getting here. Go down. So these are some graph I have shown you.
+175:39
+
+So if you say, "Hey, I wanted to see the relationship between facility hotel and what facility they have given." So it will come facility, has facility. The hotel, let's say one hotel I have taken, Kingston Hotel.
+175:53
+
+So what are the facility they are giving it? So all the facility connected with the graph rack. You can go down, and then you can go and ask query. So this is the final system prompt.
+176:08
+
+Here I said, if user will ask any questions, give the answer in this way. Now you can go and ask it. I have asked above questions. You can see, go little up.
+176:21
+
+And let's say here I'm asking questions. So I wanted to show you this part in your Neo4j. So right now if you execute it, you will not get any connection. Can you go in the Neo4j, Himanshu? A portal.
+176:39
+
+Here you can see, guys, there is a query there. So this part you will see the relationship, what query is there. Everything you will get it.
+176:52
+
+Dashboard will tell you the connection. Graph analysis there. It's everywhere you will get this part. This part is missing. So once I cover in the next session, I'll take the paid one. You will see how simple it is. Comparatively graph,
+177:04
+
+traditional RAG or multi-model RAG, this is a little difficult. It's a little complicated. But It's not that you don't know, right? You have to know it.
+177:19
+
+You can tell that boss, we can do like that. Okay? So this is what I have done here. I'm just parking this part because I'm getting, the API is not supporting right
+177:33
+
+now. So maybe in the next session, I'll do it, and next week I'll target what? MCP A2A and the tool calling and function
+177:46
+
+calling part, guys. Okay. And then guardrail. One quick question. Here we are extracting the records, and when you're actually passing the records here, it says the Neo4j data, the query that you got, that result you are passing here, right?
+177:59
+
+Correct. Yeah. Eventually. We can also pass the retrieved chunks using the traditional RAG? That final answer I have given, no? You can see the final answer equal to. That is connecting for what? The GPT model, Azure OpenAI model only.
+178:14
+
+So there- Okay ... they are fetching it and then getting the result from Neo4j also, and then finally we are getting the answer. So you can see the final answer equal to, right, final system prompt
+178:28
+
+and final- Yes ... user prompt. Yes. Okay, that part we are passing here. Okay. I was saying that in the final, this user prompt, we can also use a normal traditional to retrieve the normal chunks as well along
+178:40
+
+with this one- Correct. Yeah ... to make it more. Okay, so that we can give more rich information. Yeah. Okay. Okay. All my friend. So that's it for today.
+178:53
+
+So we will get to know CRAG, correction RAG. CRAG already I explained you the query part. Query just two more activities you can do. Code, I will show you in the next session, Sanjay,
+179:07
+
+how you can use it, see that. Okay, it's very easy. Just one additional part you will do in the simple RAG and it will work. Okay, so you should know that part. So in case tomorrow anybody asks you this question, you are not alone,
+179:19
+
+right? You don't think that, okay, I've not seen it. So I'll show you that part also. Some bugs definitely comes, like today came, right? Because of API issue is there. So you have to go the paid one, and then
+179:34
+
+you have to fix it. Okay? Sir, how, Hi, sir. It works for the version this. It's work for you. Okay, I don't know.
+179:46
+
+Can you try that, Himanshu? I don't think it will work because he used GPT 5 mini, and the version if I will give older one, I don't think it will work. Just try 24, 10, 21. I don't think.
+180:01
+
+API version change 2024, 1021. 1021. Execute this.
+180:26
+
+No, leave this. It's a problem with the API key only. Okay? So that's it for today. We'll see you again on the next week, and then we'll cover this part.
+180:52
+
+So I'll come back again in Azure and I'll show you both part, how you can go in the Neo4j and you can see the graph RAG and all, and how I can go in the Azure here, and there also, I'll show you.
+181:05
+
+You can go in the indexing and any question you can ask, everything it convert there. So both part I wanted to show you, and then connection also you will see it. Is it okay? So you have to practice now. You have a five-day,
+181:17
+
+there is no class, so please revise all this thing. Two weeks, I'll take where I will cover all the topics, and then I'll go in the capstone project in your batch.
+181:32
+
+Okay? So thank you guys. Thank you very much. See you tomorrow. Or not tomorrow, in Saturday. If you guys are in project batch, we'll connect at evening, 7:00 PM.
+181:44
+
+Fine? Sure. Thank you, sir.
+182:00

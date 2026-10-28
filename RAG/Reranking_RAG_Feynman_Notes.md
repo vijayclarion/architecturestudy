@@ -63,7 +63,7 @@ The single most important distinction: **when does the query meet the chunk?**
 - Query and chunk are encoded **separately**, each into its own vector.
 - Comparison is done afterward by measuring the angle between vectors (cosine similarity).
 - Because chunk vectors are **precomputed once** and stored, you can scan millions in milliseconds.
-- **Weakness:** the query and chunk never "see" each other during encoding, so nuance is lost.
+- **Weakness:** the query and chunk never "see" each other during encoding, so nuance **can't be captured** (it was never available to lose — the two were sealed in separate boxes before they met).
 - **Used for:** Stage 1 retrieval.
 
 > Analogy: a dating agency matching people purely by comparing pre-filled questionnaires. Fast, but no real chemistry test.
@@ -106,7 +106,7 @@ Concatenate with special marker tokens:
 - `[CLS]` is an empty "notepad" token at the front that will collect a summary of the whole pair.
 
 ### Step 2 — Attention fires across the boundary
-Because query and chunk are now in **one** sequence, attention lets the query word "weeks" look directly at the chunk's "26 weeks". The model computes things like *"the question asks for a duration, and this passage has a number + time unit → match."*
+Because query and chunk are now in **one** sequence, attention lets the query word "weeks" look directly at the chunk's "26 weeks". We can *interpret* this as the model noticing *"the question asks for a duration, and this passage has a number + time unit → match"* — but that's a story we project onto the attention pattern, not something the model spells out in words.
 
 **This cross-talk is exactly what a bi-encoder cannot do**, because in a bi-encoder the two were sealed in separate boxes before they ever met.
 
@@ -119,6 +119,8 @@ The `[CLS]` vector is passed through a tiny final layer to produce a single rele
 ```
 [CLS] vector → linear layer → sigmoid → 0.97
 ```
+
+> **Note:** many production rerankers skip the squash entirely and just sort by the raw score `z` (the logit). The final ranking is identical either way — the sigmoid only makes the number human-readable as a 0–1 "confidence."
 
 **Summary to remember:** query and chunk go in *together* → attention connects them → one score comes out.
 
@@ -151,7 +153,7 @@ z = 1.68 + 1.12 + 1.62 − 0.24 − 0.5
 z = 3.68
 ```
 
-`z` is the raw, unbounded "evidence tally." This is the same dot-product idea from cosine similarity — multiply matching positions, sum them — but with **learned** weights instead of another vector.
+`z` is the raw, unbounded "evidence tally." This is a dot product too — multiply matching positions, sum them — but a **different** one from cosine similarity. Cosine takes the dot product of *two vectors* (query against chunk). Here the dot product is of *one vector* (the `[CLS]` summary) against a set of **learned weights** — the chunk is measured against a trained ruler, not against the query directly.
 
 ### Move 2 — Sigmoid squash
 `z` could be any number, but a score must live between 0 and 1. The sigmoid bends it into range:
@@ -207,7 +209,7 @@ Only the top 3 reranked chunks go to the LLM. The sick-leave chunk that fooled c
 - It's an easy, high-value add-on to an existing Naive RAG pipeline.
 
 **Costs / trade-offs:**
-- Adds latency (~100–500ms per query) since the cross-encoder runs per candidate.
+- Adds latency (typically a few hundred milliseconds per query) since the cross-encoder runs per candidate.
 - Only helps if Stage 1 retrieval is decent — if the right chunk isn't in the top 20, reranking can't recover it.
 - Choosing how many candidates to retrieve (20? 50?) is a tuning knob.
 

@@ -1,0 +1,256 @@
+@startuml D2_PartA_Tool_Design_Flow
+' ============================================================
+' DOMAIN 2 — PART A: TOOL DESIGN (Topics 1–11)
+' FULL FLOW: from a request arriving to a correctly-routed,
+' validly-formed, well-scoped tool call.
+' CORE TRAP: the DESCRIPTION is the primary routing signal,
+' NOT the name, schema, or output type.
+' ============================================================
+title Domain 2 · Part A — Tool Design (Topics 1–11)\n(Request -> correct ROUTING -> valid INPUTS -> scoped, controlled call)
+
+skinparam defaultFontSize 13
+skinparam roundcorner 12
+skinparam activityDiamondBackgroundColor #FFF6CC
+
+start
+
+:User request arrives\ne.g. "find my March orders";
+
+' ---------- TOPIC 1: HOW CLAUDE SELECTS TOOLS ----------
+partition "T1 · How Claude SELECTS Tools" {
+  :Claude reads EVERY tool DESCRIPTION in context;
+  #LightCyan:Does SEMANTIC MATCHING\n(intent of request vs MEANING of each description);
+  note right
+    == THE ONE BIG IDEA ==
+    DESCRIPTION = the PRIMARY ROUTING SIGNAL.
+    * Name = a hint for HUMANS reading code
+    * Schema / output type = matter, but do NOT route
+    Re-evaluated FRESH every turn (prior call = irrelevant).
+    Can't keyword-stuff: it matches MEANING, not word count.
+    ----
+    WHY USED : Claude has many tools; something must pick one.
+    SOLVES   : the routing problem — right tool for this intent.
+    EXAMPLE  : "find my March orders" -> matches get_order_history.
+    WHO CALLS: the MODEL selects; your app only runs the winner.
+  end note
+}
+
+if (Description makes ONE tool the obvious winner?) then (YES)
+  #LightGreen:**CORRECT CALL** — right tool, immediately;
+else (NO — weak/overlapping descriptions)
+  #Pink:One of 3 BAD OUTCOMES;
+  note right
+    == 4 ROUTING OUTCOMES (name them) ==
+    1. CORRECT CALL — precise description
+    2. MISROUTE — wrong tool (overlap / no specificity)
+    3. NO CALL — nothing matched the intent
+    4. FALLBACK — Claude asks user to clarify
+       (the SAFE failure — better than a confident wrong call)
+    ----
+    == 3 DESCRIPTION FAILURE MODES ==
+    a. VAGUE INTENT — says WHAT, not WHEN to use
+    b. MISSING SCOPE — never says what it WON'T handle
+    c. NO OUTPUT SIGNAL — never says what it RETURNS
+    "processes data" hits ALL THREE at once.
+  end note
+endif
+
+' ---------- TOPIC 2: WRITING DESCRIPTIONS ----------
+partition "T2 · Writing Descriptions that ROUTE" {
+  :Write description with 3 REQUIRED components;
+  note right
+    1. WHAT the tool does
+    2. WHEN to use it — and WHEN NOT (negative scoping)
+    3. WHAT it returns
+    ....
+    WEAK:  "handles orders"
+    STRONG:"Retrieves customer order history by
+            customer ID and date range; returns a
+            list of orders with status + timestamps.
+            Use for purchase history, NOT billing."
+    (Applies to CLIENT, SERVER, and MCP tools alike.)
+    ----
+    WHY USED : the description IS the routing signal (T1).
+    SOLVES   : misroute / no-call from vague or overlapping text.
+    EXAMPLE  : add "Use for purchase history, NOT billing" to
+               separate get_orders from get_invoices.
+    WHO CALLS: YOU (tool author) write it; the MODEL reads it.
+  end note
+}
+
+' ---------- TOPICS 3–5: SCHEMA CORRECTNESS ----------
+partition "T3–T5 · Getting the ARGUMENTS right" {
+  :T3 · Design INPUT SCHEMA for precision\n(start_date : string YYYY-MM-DD, described);
+  note right
+    Description picks the RIGHT TOOL.
+    Schema fills the ARGUMENTS correctly.
+    Every ambiguity left in = a malformed call at runtime.
+    ----
+    WHY USED : routing picks the tool; the args still need shape.
+    SOLVES   : malformed / ambiguous calls the backend rejects.
+    EXAMPLE  : start_date : string, "ISO YYYY-MM-DD" (described).
+    WHO CALLS: YOU define the schema; the MODEL fills the values.
+  end note
+
+  :T4 · REQUIRED vs OPTIONAL + ENUMS + CONSTRAINTS;
+  note right
+    * Mark REQUIRED only if tool can't run without it
+      (extra required fields => Claude invents values)
+    * ENUM: status in [pending, shipped, delivered]
+      => Claude physically can't pass "in transit"
+    * CONSTRAINTS: min/max on page_size
+    Moves validation from your CODE into the SCHEMA.
+    ----
+    WHY USED : narrow what the model is allowed to produce.
+    SOLVES   : invented values, out-of-range args, bad enums.
+    EXAMPLE  : status enum [pending,shipped,delivered] => Claude
+               physically cannot pass "in transit".
+    WHO CALLS: YOU set required/enums/limits; MODEL must obey.
+  end note
+
+  #Yellow:T5 · STRICT TOOL USE;
+  note right
+    Strict mode CONSTRAINS GENERATION (like autocorrect),
+    it does NOT reject after the fact (not spellcheck).
+    => Claude can only PRODUCE a conforming call.
+    If info EXISTS -> lands in right field, right type.
+    If info is MISSING -> Claude ASKS or re-routes,
+    it does NOT fire a call with the field blank.
+    ----
+    WHY USED : the MODEL generates args; they may not conform.
+    SOLVES   : structurally invalid calls (bad type, missing req,
+               unknown enum, extra param).
+    EXAMPLE  : forces status into the enum set, not free text.
+    WHO CALLS: a MODE you enable; it constrains the MODEL.
+    KEY      : guarantees VALID, not RIGHT — model can still
+               pick the wrong room. Schema+descriptions -> right.
+  end note
+}
+
+' ---------- TOPICS 6–7: FAILURE HANDLING ----------
+partition "T6–T7 · When the CALL comes back" {
+  if (Tool errored?) then (YES)
+    #LightBlue:T6 · Return a USEFUL error\n(what went wrong + what to do next);
+    note right
+      Errors are written for the MODEL, not a log file.
+      BAD:  "error: request failed"
+      GOOD: "No customer with that ID —
+             verify ID or search by email."
+      => gives Claude its next move.
+      ----
+      WHY USED : the error text is what Claude reasons on next.
+      SOLVES   : blind retries / dead-ends from generic errors.
+      EXAMPLE  : "room unavailable — try 10:30 or Room B".
+      WHO CALLS: YOUR tool/server writes it; the MODEL consumes it.
+    end note
+
+    :T7 · Decide RETRY vs not;
+    note right
+      RETRY only TRANSIENT faults (timeout, rate limit)
+      => back off + retry.
+      DON'T retry deterministic faults (bad ID) — wasted tokens.
+      PARTIAL SUCCESS: asked 50, got 30 ->
+      return the 30 + say which 20 failed & why.
+      TRAP: silently returning partial data as if complete.
+      ----
+      WHY USED : not every failure is worth trying again.
+      SOLVES   : wasted tokens/latency on doomed calls; infinite loops.
+      EXAMPLE  : timeout=TRANSIENT->retry+backoff; bad date=CORRECT
+               & re-call; room taken=CHANGE approach (new room/time).
+      WHO CALLS: hard CAP = APP code (deterministic); soft stop =
+               MODEL judgement. Enforce in code, guide via prompt.
+    end note
+  else (NO)
+    #LightGreen:Result returned to Claude;
+  endif
+}
+
+' ---------- TOPICS 8–11: SCOPING & CONTROL ----------
+partition "T8–T11 · SCOPING & CONTROL (design-time)" {
+  :T8 · SCOPE tools PER AGENT (least privilege);
+  note right
+    Every tool def sits in context EVERY turn.
+    Give each agent ONLY the tools its job needs.
+    Fewer tools => cheaper + sharper routing
+    (fewer look-alikes to confuse).
+    Research subagent gets search+read, NOT delete/refund.
+    ----
+    WHY USED : capability is GRANTED, never inherited from parent.
+    SOLVES   : (1) cost+routing noise (2) BLAST RADIUS — an agent
+               CANNOT do what it was never given (injection/error safe).
+    EXAMPLE  : product-Q&A subagent has NO refund tool, so a poisoned
+               doc can't trigger a refund.
+    WHO CALLS: YOU (architect) assign per agent at design time.
+  end note
+
+  :T9 · SELECTION HEURISTICS & FAILURES;
+  note right
+    Heuristics: closest semantic match wins;
+    specific beats general.
+    3 FAILURES (all from fuzzy boundaries):
+    * OVERLAPPING — 2 tools mean the same thing
+    * HALLUCINATED — nothing fits, Claude invents a call
+    * OVER-CALLING — calls tools nobody asked for
+    Fix for all three: sharper description boundaries.
+    ----
+    WHY USED : name/predict the ways selection goes wrong.
+    SOLVES   : diagnosing WHY a wrong tool fired.
+    EXAMPLE  : two "search" tools overlap -> misroute; fix = add
+               "NOT for..." scoping to each.
+    WHO CALLS: MODEL exhibits the failure; YOU fix the descriptions.
+    NOTE     : Claude can't fabricate a NEW tool name — it forces the
+               CLOSEST existing tool. That's the real hazard.
+  end note
+
+  :T10 · CONTROL TOOL SELECTION (tool_choice);
+  note right
+    * auto  — Claude decides (default)
+    * any   — must call SOME tool (Claude picks which)
+    * named — must call THIS specific tool
+    * none  — call nothing
+    Use "named" for pipelines where every request
+    must hit the same tool (e.g. extraction).
+    ----
+    WHY USED : sometimes you must OVERRIDE the model's discretion.
+    SOLVES   : non-determinism where a step must ALWAYS call a tool.
+    EXAMPLE  : extraction pipeline pins tool_choice=named(extract).
+    WHO CALLS: YOU set it in the API request; it binds the MODEL.
+  end note
+
+  :T11 · TOOL SEARCH for LARGE catalogs;
+  note right
+    Can't load 200 tool defs — context + accuracy collapse.
+    Load ONE search tool instead:
+    Claude describes need -> search returns the few
+    relevant defs -> those enter context -> Claude calls.
+    "Know the catalog," don't memorize the library.
+    (Two-step: FIND the tool, then USE the tool.)
+    ----
+    WHY USED : huge catalogs blow the context + wreck routing.
+    SOLVES   : loading 200 defs at once (cost + accuracy collapse).
+    EXAMPLE  : Claude needs "refund" -> search returns 3 defs ->
+               those enter context -> Claude calls the right one.
+    WHO CALLS: MODEL calls the search tool, then the found tool;
+               YOU provide the single search entry point.
+  end note
+}
+
+#LightGreen:Correct tool · valid inputs · scoped · controlled;
+stop
+
+floating note left
+  == PART A EXAM TRAPS (memorize cold) ==
+  1. PRIMARY ROUTING SIGNAL = the DESCRIPTION.
+     Distractors: name / schema / output type / signature — ALL wrong.
+     A perfect name + clean schema STILL misroutes if the desc is vague.
+  2. Classic collision: a tool named "search" (web? db? file? vector?)
+     — only the DESCRIPTION disambiguates.
+  3. STRICT MODE constrains generation; it does NOT reject afterward.
+  4. FALLBACK is a GOOD failure (ask) vs MISROUTE (confident wrong).
+  5. More tools = more cost AND more misrouting => least privilege.
+  ----
+  Flow in one line: DESCRIPTION routes -> SCHEMA/STRICT validate ->
+  ERRORS/RETRY recover -> SCOPE + tool_choice + tool_search control.
+end note
+
+@enduml

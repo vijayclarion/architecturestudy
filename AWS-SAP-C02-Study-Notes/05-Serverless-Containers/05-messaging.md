@@ -417,3 +417,130 @@ flowchart TD
 > **"Need to ingest 10,000 IoT messages/sec, process in real time for anomaly detection, AND archive all to S3 for later batch analytics."**
 >
 > ✅ **Kinesis Data Streams** for ingestion + real-time consumers → **Kinesis Firehose** subscribes to the stream and writes to S3.
+
+---
+
+## 🧠 Gaps & Clarifications (Self-Review Notes)
+
+> Points I got tangled on when reviewing — reinforced here.
+
+### FIFO vs Standard — don't flip them
+```
+❌ WRONG (my initial mix-up):
+   "Standard is FIFO / first-in-first-out with 300 TPS limit"
+
+✅ RIGHT:
+   STANDARD  = unlimited throughput, best-effort order, duplicates possible
+   FIFO      = strict order + exactly-once, 300 TPS (3,000 batched, 70k+ high-throughput)
+   
+   Standard = flexible & fast. FIFO = strict & ordered (and slower).
+```
+
+### Deduplication ID (FIFO only)
+```
+- Prevents duplicate delivery: same dedup ID sent twice → delivered once.
+- TWO ways to provide it:
+    1. Application supplies its own MessageDeduplicationId explicitly
+    2. Content-based dedup — AWS hashes the message body automatically
+- Dedup window = 5 minutes.
+```
+
+### Message Group ID (FIFO only)
+```
+- Groups related messages so they process IN ORDER within the group.
+- Different group IDs → processed IN PARALLEL by different consumers.
+- Order is determined by ARRIVAL TIME in the queue — you do NOT send an order field.
+
+WHY IT'S USEFUL (the bit that wasn't clicking):
+   e-commerce orders: 10 messages, 5 for customer A, 5 for customer B.
+   - Single group for all 10 → one consumer, serial, slow.
+   - group="customer-A" + group="customer-B" → two consumers in parallel,
+     each keeping its own customer's order intact.
+   => You get ordering WITHIN a group AND throughput ACROSS groups.
+```
+
+### Visibility Timeout vs Delay Queue — different things
+```
+VISIBILITY TIMEOUT: kicks in AFTER a consumer pulls a message.
+   Message hidden from others while being processed (default 30s, max 12h).
+   Consumer crashes before deleting → message reappears for another consumer.
+   => About handling FAILED / in-progress processing.
+
+DELAY QUEUE: set WHEN the message is sent.
+   Message stays invisible for N seconds (0–900) before ANY consumer can see it.
+   => About intentional POSTPONEMENT.
+```
+
+### Long Polling vs Short Polling
+```
+SHORT: asks "any messages?" → returns immediately, empty if none → keep re-asking.
+LONG : asks and holds the connection open up to 20s waiting for a message.
+
+WHICH TO USE: default to LONG polling — cheaper (fewer empty calls) and efficient.
+   Short polling only if you truly need zero-delay instant checks (rare).
+```
+
+### How an app connects to SQS (security)
+```
+- App authenticates with IAM credentials (access key + secret, or an IAM role).
+- Attach an IAM policy granting specific actions on specific queues:
+    sqs:SendMessage, sqs:ReceiveMessage, sqs:DeleteMessage, etc.
+- AWS checks these permissions on every call → least-privilege control per app.
+```
+
+### SNS vs EventBridge — why keep SNS if EventBridge does more?
+```
+Both are pub/sub. Difference is complexity vs power:
+   SNS         = simpler, lighter, lower latency, massive throughput,
+                 wider subscriber types (SMS, email, mobile push).
+                 Best for straightforward fan-out / notifications.
+   EventBridge = rich content-based pattern filtering, schema registry,
+                 many AWS-service sources, partner buses, archive/replay.
+                 Best for intelligent routing across services.
+
+SOURCES:
+   SNS         → your application publishes to a topic intentionally.
+   EventBridge → ingests from many sources (CloudWatch, Lambda, SNS, S3, EC2,
+                 custom apps) into an event bus, then rules route to targets.
+```
+
+### Kinesis — messages are NOT removed on consume
+```
+- Data stays in the SHARD for the retention period (default 24h, up to 365 days).
+- Consuming does NOT delete it (unlike SQS where consume = gone).
+- Each consumer tracks its OWN position (sequence number) in the shard.
+- Multiple consumers read the SAME ordered data independently → replay possible.
+- Ordering is strict WITHIN a shard, none across shards.
+- Partition key hashes to a shard → same key = same shard = ordered.
+- Consumer limits: Standard shared = 5 max; Enhanced Fan-Out = 20 (dedicated 2 MB/s each).
+```
+
+### "Data stream" — what the term means
+```
+A continuous flow of data over time (a "river" of records), as opposed to
+discrete batches. Kinesis Data Streams ingests, briefly stores, and serves
+this flowing data to real-time consumers.
+```
+
+### Kinesis Firehose vs Data Streams
+```
+FIREHOSE: fully managed delivery — auto-captures and ships data to
+   S3 / Redshift / OpenSearch / Splunk. No consumers to manage, no code for ETL.
+   Near-real-time (min 1-min buffer). Use when you just need to FUNNEL data out.
+DATA STREAMS: you run custom consumers for real-time processing. More control.
+```
+
+### MSK (Managed Kafka) — is it similar to Kinesis?
+```
+Yes — both are real-time streaming with per-partition ordering & replay.
+   MSK     = AWS-managed Apache Kafka. Choose if already invested in Kafka
+             or need the Kafka ecosystem (Connect, Streams, MirrorMaker).
+   Kinesis = AWS-native alternative, more integrated. Better for greenfield AWS.
+```
+
+### EventBridge Scheduler — scheduled tasks
+```
+Yes — EventBridge can run scheduled tasks via cron or rate expressions.
+   e.g. trigger a Lambda daily at 3pm, or send an SNS notification hourly.
+   Replaces the old CloudWatch Events scheduling. No separate scheduler needed.
+```

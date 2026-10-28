@@ -1,0 +1,276 @@
+@startuml Domain4_PromptEngineering
+' ============================================================
+'  CCA-F  |  DOMAIN 4 — PROMPT ENGINEERING
+'  Activity diagram: every lesson shown as a step in ONE
+'  worked example — an invoice-extraction pipeline.
+'  Each node carries: PURPOSE + EXAMPLE from that lesson.
+' ============================================================
+
+skinparam backgroundColor #FDFDFB
+skinparam shadowing false
+skinparam ArrowColor #37474F
+skinparam ArrowThickness 1.2
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 12
+
+skinparam activity {
+  BackgroundColor #E8F0FE
+  BorderColor #4A6FA5
+  BorderThickness 1.3
+  FontColor #1A2B45
+  DiamondBackgroundColor #FFF3E0
+  DiamondBorderColor #E8A33D
+  DiamondFontColor #5A3E1B
+  StartColor #2E7D32
+  EndColor #B23B3B
+  BarColor #4A6FA5
+}
+skinparam noteBackgroundColor #FFFDF3
+skinparam noteBorderColor #D9C88A
+skinparam partitionBorderColor #B0BEC5
+
+title **CCA-F · Domain 4 — Prompt Engineering**\nOne pipeline, every topic: building a reliable invoice-extraction system
+
+start
+
+' ================= BUILD THE PROMPT =================
+partition "**A · Structure the Prompt**" {
+
+  :**XML Tags to Structure Prompts**;
+  note right
+    **Purpose:** unambiguous open/close boundaries the
+    model is trained to respect — beats markdown/dashes.
+    **Example:** wrap the job in <instructions>, the invoice
+    in <document_content>, samples in <examples>.
+    **Trap:** tags are clarity, NOT injection defence.
+  end note
+
+  :**Document Structure Patterns**\n(multi-part tasks);
+  note right
+    **Purpose:** each source gets its own labelled block so
+    output can be attributed to the right document.
+    **Example:** <document index="1"><source>ACME.pdf</source>
+    <document_content>…</document_content></document>.
+    **Trap:** attribution is a STRUCTURE problem, not model size.
+  end note
+}
+
+' ================= EXAMPLES / FEW-SHOT =================
+partition "**B · Teach by Example**" {
+
+  if (Output varies\nand instructions\ncan't fix it?) then (yes)
+    :**Why Examples Work**\n(pattern matching + format anchoring);
+    note right
+      **Purpose:** an example fixes format, tone, reasoning
+      & scope at once; anchors the FIRST output token.
+      **Example:** show one filled invoice→JSON pair.
+      **Trap:** few-shot = 2+; more is NOT linearly better.
+    end note
+
+    :**Designing High-Quality\nFew-Shot Examples**;
+    note right
+      **Purpose:** examples must mirror real production
+      inputs; put the BEST example LAST (recency weight).
+      **Example:** 3 diverse invoices incl. 1 edge case
+      (missing PO number).
+      **Trap:** contamination — fix by REMOVING the bad
+      example, never by instructing around it.
+    end note
+  else (no — well-defined task)
+    :Stay **zero-shot**\n(clear instructions only);
+  endif
+}
+
+' ================= REASONING DEPTH =================
+partition "**C · Control Reasoning**" {
+
+  if (Task needs\nmulti-step\nreasoning?) then (yes)
+    :**Chain-of-Thought**\n(visible reasoning in the prompt);
+    note right
+      **Purpose:** elicitation phrase IS the mechanism —
+      "think step by step" before answering.
+      **Example:** reason about tax lines before totalling.
+      **Trap:** lives in PROMPT TEXT, no API flag; and it
+      does NOT help creative / simple-lookup tasks.
+    end note
+
+    if (Prompt-level CoT\nnot enough?) then (escalate)
+      :**Extended Thinking**\n(thinking parameter, adaptive+effort);
+      note right
+        **Purpose:** internal reasoning via API; set type
+        =adaptive, effort low→medium→**high(default)**→x-high→max.
+        **Example:** raise effort for a 40-line invoice with
+        split shipments.
+        **Trap:** thinking tokens are BILLED + count against
+        context; max_tokens caps thinking+output TOGETHER.
+      end note
+    else (no)
+    endif
+  else (no)
+  endif
+}
+
+' ================= STEERING OUTPUT =================
+partition "**D · Steer the Output**" {
+
+  :**Steering Model Output**\n(supersedes Prefilling);
+  note right
+    **Purpose:** on 4.6+ flagships prefilling → HTTP 400.
+    Steer via system prompt / structured outputs / strict tools.
+    **Example:** set tone + format defaults in system prompt;
+    put "just this once, as a table" in the user turn.
+    **Trap:** Prefill still works on pre-4.6 (Haiku 4.5) —
+    NOT a blanket removal. Don't oversteer (conflicting signals).
+  end note
+
+  note left
+    **Prefilling** (legacy): partial assistant turn commits the
+    first token. Format-anchoring ONLY — never refusal bypass.
+  end note
+
+  :**Temperature / top_p / top_k**\n(legacy sampling);
+  note right
+    **Purpose:** old dials for randomness; current models
+    REJECT non-default values with a 400 error.
+    **Example:** instead of temp 0, ask plainly for
+    "consistent, deterministic" extraction.
+    **Trap:** temp 0 was never a universal safe default.
+  end note
+}
+
+' ================= CONVERSATION MGMT =================
+partition "**E · Manage the Conversation**" {
+
+  if (Task ambiguous, staged,\nor needs human review?) then (yes)
+    :**Multi-Turn Interactions**;
+    note right
+      **Purpose:** dialogue beats one prompt when ambiguous,
+      interdependent, review-gated, or too long.
+      **Example:** one clarifying turn — "Which currency?" —
+      before extracting.
+      **Trap:** ask ONE targeted question, not an intake form.
+    end note
+
+    :**Conversation State &\nContext Management**;
+    note right
+      **Purpose:** manage accumulation, drift, noise.
+      **Example:** re-anchor framing each turn; partial reset
+      carrying only key decisions forward.
+      **Trap:** reset BEFORE the window truncates silently.
+    end note
+  else (no — single call)
+  endif
+}
+
+' ================= STRUCTURED OUTPUT =================
+partition "**F · Guarantee the Shape**" {
+
+  :**JSON Mode /\nStructured Outputs**;
+  note right
+    **Purpose:** constrained decoding guarantees schema-valid
+    JSON during generation — no parse/retry loop.
+    **Example:** format.type=json_schema + your invoice schema.
+    **Trap:** guarantees CONTAINER, not judgment.
+  end note
+
+  :**Schema Design for\nReliable Extraction**;
+  note right
+    **Purpose:** required vs optional + precise descriptions
+    drive correct values.
+    **Example:** mark PO optional (not every invoice has one);
+    describe "total = grand total incl. tax".
+    **Trap:** required field with no data → hallucinated value.
+  end note
+
+  :**Structured Outputs Limits**;
+  note right
+    **Purpose:** only an enforceable SUBSET compiles; SDK
+    transforms the rest (strip→fold into description→validate).
+    **Example:** maximum:100 not enforced by decoding; enum is.
+    **Trap:** request-wide caps — 20 strict tools, 24 optional
+    params, 16 union params.
+  end note
+
+  :**Tool Definitions for\nStructured Data**\n(strict tool use);
+  note right
+    **Purpose:** strict:true guarantees tool-call ARGUMENTS
+    match the input schema (name, types, required present).
+    **Example:** record_invoice(vendor, total, due_date) as a
+    tool call — no string to parse.
+    **Trap:** structured outputs shapes the TEXT reply;
+    strict tools shape the ARGUMENTS. Often use BOTH.
+  end note
+}
+
+' ================= VALIDATION =================
+partition "**G · Validate & Retry**" {
+
+  :**Validation Loops &\nHallucination Prevention**;
+  note right
+    **Purpose:** extract→validate→re-prompt on failure (loop),
+    plus grounding to stop confabulation.
+    **Example:** re-include the invoice text; correct ONLY the
+    failing field; cite the source line per field.
+    **Trap:** validating at the END with no re-prompt path;
+    temperature reduction does NOT fix grounding gaps.
+  end note
+
+  :**Validation Gates &\nRetry Strategy**;
+  note right
+    **Purpose:** gates decide pass/block; bounded retries with
+    backoff avoid infinite loops.
+    **Example:** stop after N retries → route to human review.
+  end note
+
+  ' ---- the two guarantee gaps every schema lesson warns about ----
+  if (Check **stop_reason** first) then (refusal / max_tokens)
+    :Handle exception\n(refusal = 200 + refusal;\nmax_tokens = truncated JSON);
+    note right
+      **Trap (repeated across lessons):** schema guarantee
+      BREAKS on a safety refusal or a max-tokens cutoff.
+      Always check stop_reason before trusting the payload.
+    end note
+    :Re-prompt / raise limit\n**(loops back to validate)**;
+    note right #FFE0E0
+      Red path = retry loop back into
+      the validation step above.
+    end note
+  else (ok)
+  endif
+
+  if (All validation\nlayers pass?) then (no)
+    #FFE0E0:Targeted re-prompt\n(specific error + source text)\n**(loops back to validate)**;
+  else (yes)
+  endif
+}
+
+' ================= MULTI-PASS =================
+partition "**H · Review**" {
+
+  if (High-stakes output?) then (yes)
+    :**Multi-Pass Review**\n(one pass isn't enough);
+    note right
+      **Purpose:** separate passes each catch a different
+      error class — generate, then critique, then refine.
+      **Example:** pass 2 checks totals add up; pass 3 checks
+      values match the source.
+      **Trap:** stacking passes on low-stakes work = wasted cost.
+    end note
+  else (no)
+  endif
+}
+
+:**Reliable structured JSON**\nready for the downstream pipeline;
+
+stop
+
+legend right
+  |= Colour |= Meaning |
+  |<#E8F0FE>| Topic / activity |
+  |<#FFF3E0>| Decision point |
+  |<#FFE0E0>| Failure → retry |
+  **Read top-to-bottom:** each partition (A–H) is a phase of
+  Domain 4; the red arrows are the validation retry loops.
+endlegend
+
+@enduml

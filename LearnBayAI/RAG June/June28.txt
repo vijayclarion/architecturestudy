@@ -1,0 +1,1456 @@
+Hi,
+00:10
+
+everyone. Good evening. Am I audible, guys? All my dear friend? Yes. Okay, great.
+02:42
+
+Let me share my screen.
+02:54
+
+Okay. So I'm just waiting a couple of more minutes and then we'll proceed, so that other participant will also join.
+03:47
+
+Okay. So let me start then.
+04:21
+
+All right, great. So what I'm going to do today, I'm picking a real-time project in GenAI. Just expecting that you guys have completed GenAI and Agentic AI.
+05:06
+
+And so can you please use chat window, and confirm that everybody, you are comfortable with Generative AI and Agentic AI?
+05:20
+
+Yes, perfect. Great. So, first thing first, you have to understand what kind of project I'm doing it. So, in this batch, what I'll do, I'll pick
+05:39
+
+maybe five to seven project or five to 10 project, which is real-time project. Once you get a job, you have to perform like that only. So we'll include deployment part also in this batch.
+05:53
+
+Sounds okay, guys? The real-time project. If you get a job, you will get such kind of task. Your client will say, "Okay, you have to do it." So I am going in the perspective of architect framework.
+06:07
+
+So we'll use the architect. So how you will build an architecture? How you can build the architecture,
+06:20
+
+how you can design them. Plus, we'll do the production. Production-grade enterprise.
+06:32
+
+Enterprise grade project. Okay. Real-time hands-on.
+06:48
+
+So whatever you have learnt in class, mostly we use POC. So that you can get some understanding how things works, what we are doing it. But today, the approach would be different. So I'm just expecting.
+07:04
+
+That's why I've asked it. I'm expecting you know prompt engineering. Okay, you all know prompt engineering. Some of you may have learnt from me.
+07:18
+
+And there are friends, you have learned from different faculty, but expectation is you have to have a knowledge of prompt engineering. You have to have a knowledge of RAG system.
+07:33
+
+Okay? You have to know agentic RAG system. And especially when I say production enterprise-grade project, I'm expecting
+07:47
+
+that you have a knowledge of LangGraph. Okay? For observability point of view, I'll use LangSmith as well. Yeah?
+08:01
+
+And I'll do the deployment part as well. So I can use the cloud.
+08:14
+
+Azure services. In the next project, I'll try to cover AWS and GCP so that anything comes in your plate when you go for job and
+08:31
+
+all, you can easily speak the same language. But today's agenda or the first project agenda is I'm using Azure services. I will explain you different services, how you can go and use it.
+08:47
+
+And what is the usage, how you can leverage and use the LangChain, LangGraph and LangSmith in the cloud factory.
+09:01
+
+Sounds okay? Are you sharing something? Your screen is not visible. My screen is not visible, guys. Are you guys able to see my screen or no?
+09:14
+
+It's visible, no? Or you people are saying no? Yeah. Perfect. Okay. So
+09:30
+
+GenAI project.
+09:45
+
+Okay. So this is the project, guys. I hope it's visible, everybody.
+10:08
+
+Hmm? So I'm just using this project. So please try to understand what kind of project is this, how we will go ahead.
+10:22
+
+If you guys have ever used Azure AI, then it's very good. If you've not, no need to worry, we'll cover everything. If you guys have already used and your free version subscriptions
+10:35
+
+completed in Azure, I definitely request everybody, you have to be ready. You can spend some money from your credit card. So each project, if you do it hands-on here in class itself, it is
+10:49
+
+very significant. It will really help you when you go for on job or when you go for interview. You can justify that, "Yes, I have done the project." You can justify it.
+11:02
+
+So what is the project is all about? You can see in this project you will build a sophisticated multi-model AI system designed to solve a massive enterprise, edit manual video auditing instead of
+11:15
+
+human batch watching hours of footage to find regulatory violations. You will engineer an autonomous agent that does it in second. What is meaning is,
+11:30
+
+you will build an AI system. Okay? Please understand the problem statement because when you go for interview, if you want, you can try to use this. So you are going to build
+11:44
+
+an AI system. You are going to build an AI system. What AI system will do? That will automatically watch any video, let's say YouTube videos
+11:58
+
+Let's say you are watching some YouTube videos, or some course you are doing, or anywhere you can go.
+12:13
+
+Now, what happened, in YouTube video, there are some compliance violations there. Okay? There are compliance violation there. Compliance violation there.
+12:27
+
+Now, you may ask what is meaning of compliance violation? Means, you have seen some adult content there, some ad is coming, and that ad, you don't want to see it. Right? Or something, in many,
+12:40
+
+there are hours of videos uploaded there. Yeah? Even in TV also you can see some news is going on, some series going on, some serials there, and suddenly you will get lots of ad will come.
+12:54
+
+So normally what happen, the people manually watch hours of video recording. Right? And then they try to find the issues. Yeah? On that particular videos, let's say I'm recording my video and I'm posting on YouTube.
+13:08
+
+Now, did I follow the instruction? Did I follow the compliance? Or is there any policy violations there? Is there any fraudulent there? I'm saying, "Hey," you know,
+13:24
+
+"pick this, my account number, and you can send some money and all." Or something, I'm just targeting some people and telling something. So, is there any fraudulent happen? Is there any policy violence there?
+13:37
+
+Is there any operational mistakes there? Hmm? Now you can just imagine, if I'm saying, hey, you have total 5,000 hours videos there. 5,000 hours video
+13:49
+
+there. Okay? Your task is you can go and watch these videos, and then tell me whether they follow the compliance or not. Now, what happened is, if you watch 5,000, first thing first, can I say
+14:03
+
+it is very slow to complete this? It will take lots of time or not? First part. When you watch that 5,000 hours video, it takes lots of time.
+14:19
+
+It is very costly also. Yeah? Lots of internet required. The data. And why I'm saying very costly? Because let's say one person cannot complete
+14:31
+
+5,000 hours watching. If you are working organization or enterprise environment, what happen? We need multiple employees, and you have to segregate. Each employee you can give a task that minimum, within a week you have to
+14:44
+
+watch minimum that much hours. And how many employee you needed? Just imagine. Yeah? So what I'm going to do here, what is my goal here? What is my goal here? Instead of watching
+14:58
+
+manually, why not I can build a AI system? Why not I can build a AI system, that can do the work automatically. In a second instead of hours. Here I say 5,000
+15:13
+
+hours. Why not I can build a agent, and that agent will watch that all 5,000 video in a second, and they will tell us that, hey, what is the content there, whether they
+15:28
+
+follow the compliance or not. Is there any fraudulent things they talk about? Is there any, the guardrail activities there? Is there any risk there? Whether operational mistakes
+15:40
+
+there or not. So all kind of things we have to do it. So in a nutshell, what we are trying to achieve here, we wanted to replace manual video auditing with an intelligent AI system.
+15:52
+
+That can detect issues automatically and generate report. That's what my intention is. Did you understand the first part? First paragraph, what is the objective here? Everybody, all my friend.
+16:08
+
+Hmm? Crystal clear? All my friend, what is the objective? Yeah, you just think about. You can go and pick any YouTube video, and you can see
+16:23
+
+suddenly some ads coming. Right? You can see some examples I'm giving here. Some examples I'm sharing here. Let's say this is the YouTube videos there.
+16:39
+
+Now, if you go in this YouTube video, see here. So there is a ad will go, and
+16:55
+
+one of the two types in a stream video ads are campaign that shows up with a video stream. A skipping. So at certain point of time you have seen. At least 20 second or 30 second that video will go.
+17:08
+
+And then again, the second video get started, third video get started. Then only a Skip button comes. You have noticed, when you watch a YouTube and all, the Skip button comes, and then you have to skip it. But that much time you have to watch it.
+17:22
+
+And I'm talking about the guardrail. Okay? I'm talking about the AI responsible. Yeah? So if that thing is there, you can see another example. Here a skip ad will come. So how this escape, you can see
+17:36
+
+ad one or two. So first ad, it will go 28 second. Then second ad will come, and once second ad again get completed, then only you can click the Skip button. Otherwise, it will go on. Three minutes, five minutes, like that it is there.
+17:49
+
+So they last for 11 second or longer, and after five second, the viewer has option to escape at the end and continue watching the video. This is normally happen or not?
+18:03
+
+You have noticed. Now, I don't want to see this. I want it to fetch all the data, whatever available there, I want it to fetch it in my system. So what is the objective here? You have to understand what
+18:16
+
+is happening in this video. Yeah? And manually not possible. As I said, it's a huge video there, so why not I can build an agent and I can put into agent and, I'm asking to agent, "Hey, you can go and watch this, and please
+18:30
+
+tell me what is happening in this video." There are certain rules there. I'm using the word guardrail. So guardrail, there are so many things there. You can say, if I am going here,
+18:44
+
+Amazon Guardrail. Guardrail. You can see there are lots of policies available there. There are lots of policies there. So that all guardrail you have to follow.
+18:56
+
+You have to follow, choose the best model, use cases, accelerate the agent productions, Amazon Bedrock, write new copy, Streamlit. You can see there are lots of things there that you have to take care.
+19:10
+
+Amazon Bedrock documentations, you have to read the documentation, view the demos, all these things. So I wanted to implement there. And you have to identify, is there anything wrong going on that video?
+19:24
+
+Like YouTube had some restrictions there, you know that. You cannot upload some violent kind of things. You cannot do it. You cannot copy-paste some other content and you can paste there.
+19:37
+
+You cannot download some other video and you can post there. Can you see there are some rule and regulations there? Hmm? So this is what the restrictions there.
+19:54
+
+Okay, that is what the task is that you have to follow it. Everybody? So what is the task here? Why not I can build an agent? Why not I can build an agent, and the agent will generate a report.
+20:06
+
+So what is the idea here? You will act as a cloud AI architect. Why I use the word cloud means Azure I'm using it. So you can behave, you can work like an architect. You will leverage Azure Video Indexer.
+20:19
+
+So what you will do, you can use the video indexer. I'll show you how you can leverage, how you can utilize this. You can leverage Azure Video Indexer. This is one of the services there,
+20:32
+
+to ingest raw video files. So any YouTube link you can give it, and you will see your agent, they will fetch all the content, all the transcriptions in your system. Everything, they will do it.
+20:45
+
+So how these things works, you can go and paste the URL. Let's say YouTube URL. You can go and paste it.
+20:59
+
+Now, what happened? What happened, guys? There is a protocol there, HTTPS. Just one minute. Just give me one minute, guys.
+21:13
+
+Okay.
+21:32
+
+So what I'm saying here, my friend, I'm saying let's say you can take any URL, YouTube URL, you can paste it. And that is HTTP. That's the protocol we follow. HTTP, something is there.
+21:57
+
+Okay? Now, you have to watch that video. You can watch that video manually, and then you have to decide. Here I'm saying no, not required. Agent will do it. Right? And why agent will do? For audit purpose.
+22:09
+
+Right? So they will run, and they will do the auditing. Now how things works. You can check this AI, they will check this video, whether they follow the compliance or not.
+22:25
+
+Whether they follow the compliance or not. How you will do it? So back-end, I will write a code. Back-end, I'll do all these things for users. Let's say I will give the front-end parts. I will use front-end code.
+22:38
+
+I will use front-end here, and I'll show you. I can use FastAPI. Because I'm building a production-ready, enterprise production-ready system. So that's why I will not use a Streamlit.
+22:52
+
+Streamlit is for POC purpose. Yes, I'm not going to use a Streamlit. I'm using FastAPI. So FastAPI is a front-end part, where you can see how agent will work.
+23:07
+
+So what is this, guys? What is this? Here we are talking about the video is my dataset. Can I say video is my dataset? Everybody? Can I say video is my dataset?
+23:20
+
+Yeah? So in video, what happened? You can extract the transcript. Okay, you can extract the transcript. That transcript means whenever video is there,
+23:33
+
+what you have to do, you can convert into audio. Audio is nothing. Can I say it's a kind of transcript? Hmm? And this transcript, how is it happen? For that, we will use these services. Azure Video Indexer.
+23:49
+
+Azure Video Indexer is nothing. What it will do, guys, by the help of this Azure Video Indexer, what it will do, the AI will watch the video, and then they will
+24:04
+
+extract. They will extract transcript. Transcript. Okay? Transcript means what was said on that particular video.
+24:19
+
+That's called a script. That's called a script. Okay? And also one services we will use is called OCR. What is OCR? OCR is nothing. It's called text
+24:33
+
+reading, right, in this area. So by the help of OCR, we can utilize it. So you can see what it's saying. You will act as a cloud AI architect. Mm.
+24:46
+
+You will leverage Azure video indexes. This is nothing. It's called services. Services, infrastructure services to ingest. Ingest means you have to upload the raw video files.
+25:00
+
+What it will do, Azure video index, sir, they will extract the transcript in OCR data. Okay? Are you guys clear, this part? Right. So what is the purpose here? The output.
+25:13
+
+Whatever the output, I will get it. They will generate a structure report, so they can say what violation happened in this video. Where it happened, which line or which
+25:26
+
+second you have to go, which minutes you have to go, and where you have to check it. Why the violations happened. So all reason your agent will get. Now how that system works in simple terms, guys, how this
+25:41
+
+system works. So your input data is what? Can I say my input data is, my friend, URL? URL? YouTube video? Yeah. So you have to upload the raw video file. That is your input data.
+25:54
+
+Okay? Now this input data, you have to convert video into data part. You have to first convert the video into data by the help of Azure video services. And what Azure video indexer will do,
+26:10
+
+first thing first, in video, you have a speech there. You have a speech there, so you have to convert into text. Mm. Or whatever the text in video there. Sometime you have seen no script,
+26:25
+
+no transcript also going on. If you watch a movie, there is a translation going on. If the movie is in French, you will get translations in English. Transcript, guys. That is what is OCR.
+26:41
+
+Yeah? So one, you can extract the speech, whatever the actor or actress is speaking, along with whatever the transcript is going on, both the data you have to take it by the help of Azure video indexer services. Or simple, I am saying Azure
+26:55
+
+services I'm using it. Now what happen, what system will do? They understand the content. What happened, guys? They understand the content, how it is working.
+27:10
+
+So AI read and understand what people, what actor or actress are saying, what is shown in the video. If advertisement going on, what advertisement going on.
+27:24
+
+Yeah? They will check against rule. The system compare the content with what company policy is there, what compliance rule database there. And for that,
+27:37
+
+we will use different services. One is called using LangGraph. Why LangGraph? Because I'm building a enterprise production-ready system, GenAI model. I'm not using POC. So whenever you use enterprise production or project, right, then you have to use the
+27:49
+
+LangGraph system. Second, I'm using agentic system. You will build a stateful orchestrator pipeline that cross-references the video content against the database
+28:05
+
+for off-complex compliance rule using RAG system, retrieval-augmentation generation system. Yeah? So what I'm going to do here, I'm using a RAG approach. I'm using the RAG approach, and what RAG approach will do, they will do
+28:17
+
+a searching, plus by the help of AI reasoning we are implementing it, AI reasoning. Makes sense. Hmm.
+28:32
+
+And on that basis, my friend, on that basis, the intelligence system will work. On that basis, the intelligence system works. So AI agent, we have to create a workflow. Why workflow? Because I'm using LangGraph. Can I expect everybody you know LangGraph, guys?
+28:45
+
+You have learned LangGraph? Hmm. How we'll come know later. First understand the problem, one. How we'll come there. First understand the problem statement, how part, that's why I'm here, no?
+29:02
+
+That's why the problem is there. You get a question, no, problem statement, immediately you will say how. That's you will provide a solution, right? That's what the architect role is. Hmm.
+29:16
+
+So what you will do, right, what system will do, guys? AI agent, they will create a workflow. And workflow, you have to create a kind of router. That router will tell you, is it the complaint
+29:29
+
+or not complaint? Is it violating the rule or not violating the rule? And then on that basis, you have to generate a report, the final output, and the final output will come right into
+29:45
+
+JSON compliance report. So what it's saying, crucially, this report focus on production grade AI. Production grade. As I told you, it's a real-time project. You won't just generate answer. You will trace every
+29:59
+
+step of the reasoning process using LangSmith. Now why we are using LangSmith? Okay, why we are using LangSmith? That is the another part that you have to understand. So LangSmith we are using
+30:15
+
+for observability purpose. Observability purpose. It's for tracing purpose. It's for tracing purpose, guys. It's for logging purpose.
+30:28
+
+Are you guys with me? Why we will use it? LangSmith for observability purpose, tracing purpose, logs generations, what is happening. Okay, so this is another services.
+30:42
+
+You will learn the LangSmith also, how we will use it, how we can use the observability. So you will trace every step of the reasoning process using LangSmith, and monitor the
+30:54
+
+system's health with Azure Application Insight. This is, again, another services there. I don't know whether you guys have worked on it or not. But in Azure services, there is something called Azure Application Insight
+31:08
+
+as well, guys. Hmm. So one, Azure Video Indexer. What they will do? They will generate a OCR, and they will generate
+31:20
+
+a data. A speech to text. And this for transcript. Second service agent is Azure Application Insight.
+31:35
+
+So what Insight will do? They will monitor the system. They will check the health checks. What tools I'm using here? The complex tool LangGraph to make a router, to make a decision
+31:48
+
+systems, and for observability purpose, we are using LangSmith. Okay, lots of learning happen. I'll give some research paper also, you have to go and read it so that you will get more clarity. Now transforming unstructured video
+32:01
+
+into a structure actionable JSON compliance report. So what is the output we wanted? The final output, what agent will do it, they will create a structure compliance report, and the format would be JSON compliance format.
+32:16
+
+Make sense? Make sense? So far, so good?
+32:32
+
+Okay. Next. Here, I use the word here multi-model AI system. What is meaning of multi-model AI system? Guys, you have a URL. You have URL video. Can I say you have video there?
+32:46
+
+This is one input. Video, that means you have audio also there. And you have in text also there, transcript, guys, translations. You have seen any video you can play.
+33:01
+
+You wanted to see their transcript also. So can I say input data, more than one input data will consider a multi-model system or not? Come on, tell me. Did you guys learn multi-model RAG system? Everybody?
+33:14
+
+Multi-model RAG system? Hmm. Okay. So this is what the multi-model.
+33:28
+
+Now, how I can do the automations here? How we can do the automations here. So, there is no manual effort. Please remember, I'm going to build a complete automation. So no need for human to watch the
+33:41
+
+video. AI will do everything automatically. You need not to go and watch. AI will take care all these things. So how things works actually. So we will use multiple steps here.
+33:56
+
+We will use multiple steps. Plus, I will use logic flow. And when I say logic flow, LangGraph will help us.
+34:11
+
+There is a topic called state. There is a topic called node. Edge. Conditional edge.
+34:24
+
+A starting point, end point. And here you can build a router agent. Here you can build a parallelism agent. Here you can do different
+34:36
+
+conditions you can give it. Have you heard this term logic, guys? Hmm. In LangGraph, what LangGraph will do, they can create a orchestration system.
+34:50
+
+Okay? Now, it's very important, every step of AI decision is tracked by the help of
+35:03
+
+LangSmith. Every step we will do a tracking. We will do a monitoring. What monitoring will do? They have to track how system is working.
+35:16
+
+And for that, what applications we will use it? What applications we will use it? We'll use the Azure Application Insight. A Azure Application Insight.
+35:29
+
+Application Insights. Documentation. It's your performance monitoring, end-to-end it's your monitoring.
+35:48
+
+End-to-end performance monitoring. So you can just go and see that how this-- Everything, I'll show you. How the tracing happen. You can see how the tracing happen. All part, guys, they will do it. So what it will do,
+36:00
+
+eliminate waste and avoid surprise with the granular cost breakdown across the entire cloud environment. We'll use a different-- This is the performance metrics. All these things simplify onboarding, how things works, all part
+36:14
+
+you will get to. This is the official website, Amazon Analysys, Azure Analysys Services. Okay, you can go in the official website. Get started creating, deploying, and managing application across multiple cloud,
+36:27
+
+on-premises, and at edge with scalable, cost-efficient Azure services. Okay, and these are the services there. The payment part I'll discuss later, but this is normally we build.
+36:40
+
+Clear? All my dear friend. So far so good. Or which project you have picked on?
+36:55
+
+Pick simple RAG-based system or agent AI. Azure is a cloud services. Hmm?
+37:08
+
+So in one line, guys, what is this project? We are building an AI system or agentic AI system that automatically analyze video. They will check the compliance rule, and
+37:21
+
+then they will generate the violation report without human effort, without human intervention. That's the real-time case study is there. Lots of company, they will approach you. When you work as an architect, lots of organization, they will approach
+37:36
+
+you and they can say, "I'm getting so many videos" or "I have so many reports, so many PDFs there. Can you please build such system where my system can generate a report and they can say what is their insight?
+37:51
+
+Can you please summarize it? Can you please make certain rules?" This is what the real business use case is there. Yeah? In banking, financial institution, insurance section,
+38:07
+
+right? Fraud monitoring calls happen, video calls happen. Healthcare, you will see there are lots of procedure compliance there. Hmm? Doctors will not go and directly they will start the surgery. There are certain rules there they have to follow, and then surgery happen.
+38:19
+
+In media, there is a content moderations happen. You have heard, right? When demonetizations happen. Yeah, some of the news channel, they said there is a chip there in the rupees, in 2,000 rupees.
+38:34
+
+Have you heard? It's a kind of, right? It's wrong informations. So they have to be careful, right? Content, that is called content moderizations. So if you are working as an architect in
+38:48
+
+media industry, you have to do it, right? If you are working in insurance, you are working in, let's say big four company, PwC, E&amp;Y, Deloitte, KPMG, these are the very significant things there that you have to take care.
+39:01
+
+Because you are spending, consuming is there, expensive is too much there. Yeah, it's critical for regularizations, regulations, compliance. Yeah? So you have to take care of this.
+39:16
+
+It is applicable everywhere, Prashant. It's not for one domain. That's why I'm taking name, whether you work in banking, finance, insurance, healthcare, media, auditing, services. Everywhere this
+39:31
+
+type of project you will get it. Your client will come and they said, "Hey, this is what I'm looking for it." Yeah? Because we are living in digital transformation world.
+39:45
+
+Yeah? And because compliance checking is time-consuming, compliance checking is very expensive. That is why you have to build an AI agent, and AI agent, right, they can do this. So what I'm going
+39:58
+
+to do here, I'm building an AI system that automatically process these video. You will see that automatically they will understand the content. They will compare the compliance rule. Yeah?
+40:14
+
+And then finally, they will generate a detailed report within a second. That's what the objective is. Are you guys with me, everybody? All my friend? Yes, no?
+40:26
+
+Anyone have any doubt? Let me see the chat window. Anybody have any doubt?
+40:38
+
+Focus on this topic, Naga, right now. Otherwise, getting deviated, no? You are not interested this project? Why you are going jumping other project and all? We'll go there, no. One project not completed, can you pick that project also?
+40:51
+
+Pick that project also. One project, if you learn thoroughly, completely end to end, believe me, it will help you a lot. That is equal to 100 projects.
+41:05
+
+And don't worry, any interview you can go one project if you speak very thoroughly end to end. No? Believe me, it will help you a lot. Okay?
+41:18
+
+Guys, so how the architecture works. So you can see, so Azure ecosystems get hands-on. So I'm using the Azure ecosystem, right? Azure AI. You will get a hands-on experience with the full
+41:34
+
+suite Video Indexer, Open AI, AI Search, and App Insight. Okay, so I'm going to use all these things. So here, if you ask me what are the infrastructure I'm going to use here, guys?
+41:47
+
+In infrastructure, I'm using here Azure services. What are the services? Video Indexer, Open AI for LLM purpose, Foundry, I will use it.
+42:03
+
+AI Search, I will use it. App Insight, I will use it. Storage, I will use it. AI services, I will use it. AI Indexer, Azure. Azure AI services, right? For indexing purpose.
+42:17
+
+Yeah? So these are the services I'm going to use it. Okay? And for agentic AI purpose, what I'm using? Agentic AI purpose, I'm using LangGraph.
+42:32
+
+Agentic AI purpose, I'm using the LangGraph. For observability, for traceability, what I'm using? I'm using LangSmith. Okay, I'm using LangSmith for observability. Yeah, for tracking purpose.
+42:45
+
+For monitoring purpose, I'm using here App Insight. Yeah? So when the deployment happen, you will see how we can monitor them. Are you guys with me? So far,
+42:59
+
+so good? Mm. OpenAI, I will use GPT-4o model. GPT-4o model.
+43:12
+
+Yeah, that's the LLM. Another LLM model I will use, text embedding. Text embedding 3 small. Okay? So I will use text-3 embedding,
+43:26
+
+a small one. Okay, so for one service is for generation, another service is for embedding. So both services I'm going to use here. Mm.
+43:39
+
+Everyone? Okay. So anybody ask you these questions, please remember these topics. Okay, please remember this.
+43:56
+
+Insert. One,
+44:09
+
+I'm using a storage account where I will upload the PDF. I will upload the video.
+44:33
+
+Okay? Second, I will use OpenAI, where I will use LLM model plus embedding model. Yeah? Then I will use AI search.
+44:45
+
+Yeah. For what? They will remember the PDF data or text data. Yeah? I will use video indexer.
+44:58
+
+For what video indexer is for? Transcript plus OCR, and a
+45:14
+
+speech-to-text. Mm. I'm using here application insight. For what they will do?
+45:26
+
+Health checks. They will trace the logs. Okay? Then I will use LangSmith
+45:40
+
+for track the observability. Okay? So these are the infra, guys. Anybody say what are the infra you are using
+45:54
+
+infrastructure? These are the infrastructure I'm using here. Infra. Okay? These are the infra. What are the agentic
+46:06
+
+AI system I'm using? LangChain and LangGraph.
+46:19
+
+Yeah? Plus, I'm building a RAG system. Make sense? Make sense. So here you can see in this module what I'm going to do here,
+46:31
+
+fundamental understanding of the project, I hope you are clear now. Deep dive into project understanding, so you are clear how the project will work. Now deep dive means what? So you can just think
+46:45
+
+about you are working in organization, yeah? So there is a video there. Or you can say this is input.
+46:57
+
+Video input there. Yeah? It would be CCTV. It would be recording. It would be URL. Yeah? Anything.
+47:10
+
+This video, by the help of Azure Video Indexer, indexer, what it will do? They will convert a speech to text.
+47:26
+
+Yeah? The OCR part, they will convert text from video. So that is the second phase we will use it. Mm.
+47:41
+
+Once I get this part, then you have to do preprocessing. Preprocessing. Yeah? So what preprocessing means? Whatever the transcript there,
+47:55
+
+plus whatever you will extract text data by the help of OCR, there you have to do a preprocessing. Mm. How? What you will do then? You can say, "I will use the
+48:08
+
+LangGraph." Means, what is meaning of LangGraph? AI workflow. Okay? What AI workflow will do? They will control
+48:21
+
+step by step. A step logic Logic. Yeah? What does LangGraph do? They can create a starting point, end point, in between logic, node one, node
+48:35
+
+two, node three. So we can say the logic, we can control it. And by the help of this logic, we can manage the AI decision flow. Manage the AI decision flow.
+48:48
+
+Decision flow. Everybody? All my friend? Are you with me? So this is the step number one. This is step number two, this is step number three, this is step number four.
+49:02
+
+Okay? Now, once you get this managed flow and all, right? What happened, you can use two services. One is called Azure AI Search.
+49:15
+
+Yeah? What Azure AI Search will do, they can do the indexing. Means you can say vector database. So whatever the data you get it, right? Whatever the preprocessing transcript this part will done, by
+49:30
+
+the help of logic, you have to convert into vector database. And the another service, you can say Azure OpenAI. OpenAI. Means foundry, I will use it. Right? Why? Because I wanted to do a reasoning also.
+49:45
+
+Yeah? Once this part is done, then you have to aggregate them, and the next part you can say I will. By the help of LangGraph, by the help of orchestration, I will check the rule.
+50:01
+
+Check rules. Hmm? I will identify the violation. Identify the violation. I will make a decision engine. They will see the compliance.
+50:13
+
+And then, once this will do, then finally the report gets generated. Report gets generated. That's the architecture there. So as a programmer, right, as an architect, your role is
+50:26
+
+this. Now, when this report gets generated, you have to put two things. One, LangSmith for observability purpose, for debugging purpose, you are doing
+50:39
+
+logging. Right? You will trace them, and you can use the app insight, Azure app insight for monitoring purpose. So both thing, tracing and monitoring both will happen in this report. Yeah?
+50:52
+
+So you can simply say we start by taking the video as an input. Right? Then Azure video indexer, they will convert video into text. Right? They will convert video into
+51:08
+
+text. Right? And then they will extract any visible content. Right? After that, what you will do, you can do a preprocessing data, which is sent to AI workflow.
+51:22
+
+AI workflow means LangGraph. Okay? LangGraph engine. Yeah? And it is used by LangGraph, which controls the entire process, because I will use the logic.
+51:35
+
+Right? Then the system, right, uses the Azure AI Search for indexing purpose. Yeah? For Azure OpenAI to understand the content and then making the decision. So I need a foundry.
+51:47
+
+Yeah? I need a LLM. And based on this, the system identify. Right? The system identify is there any compliance there. Is there any compliance violation is happening?
+52:01
+
+Is there any compliance violation has occurred? And on that basis, they will generate a structure report here in the JSON format. In the JSON format. And finally, once report gets generated, we use
+52:14
+
+LangSmith. Why? That they will track how AI made a decision, and Azure AI applications are inside, they will monitor the system prompt or performance. Are you guys clear now? Will you speak the same language when you go for interview?
+52:28
+
+If you wanted, you can take a screenshot because I will delete it. If you wanted, you can take a screenshot and please make, pick, pen and copy and write it very nicely in your A4 sheet.
+52:44
+
+Because if you go for architecture role, you have to showcase this skill set. Everyone?
+52:56
+
+If you want, you can take a screenshot, guys. Hmm? So what happened here? What happened? Can I erase this? Everybody?
+53:11
+
+Yes, okay. Thank you. So in a nutshell, can I say there is a video. I have to extract them.
+53:31
+
+I can extract the data. Then I will use the AI workflow. LangGraph. Once this part is done,
+53:45
+
+yeah, I will set a rule. You can say rule validation. Validation. And then the decision will happen. Decision will happen. And then finally report gets generated.
+53:57
+
+And this report, there is some monitoring parameter also there. Side by side, monitoring will also work. Yeah? So this is the high level is there. This is the high level, you have to do it.
+54:11
+
+Hmm? Now, when I say video input layer, right? This is the starting point. Please remember, this is the starting point. Any video comes into the system called CCTV
+54:25
+
+footage, call recording. Okay, audio videos, some recording videos. So that is your raw data. That is your source data.
+54:39
+
+And everything is called downstream. Depends on this. This is video we want to analyze by the help of Agentic AI. What? Here, extract the data. Azure Video Indexer.
+54:52
+
+That is called data extraction layer. What it will do? It will convert video into a structured data format so that LLM can easily understand. So first part, a speech convert to text, that is called transcript.
+55:06
+
+Text inside the video. So when there is a video there, you can extract using OCR because there is an image there. There is a metadata, you will get a timestamp, you will get a speaker you will see. Some actor or actress there is speaking.
+55:20
+
+Some scene, you will see that. So what is the rule here is, you have to convert unstructured video to a structured format. And why it is important? Because AI model cannot directly understand
+55:34
+
+raw video easily. So first things first, we have to convert into the text, plus text would be into a structured format. And this layer translate video into-- the AI
+55:46
+
+can understand it. So this is very significant. Like RAG system when you build it, you cannot go directly and you can use the RAG, Retrieval-Augmented Generation. First you have raw data. You can
+56:00
+
+load them, you can chunk them, you can embed them. Then you have to store somewhere vector database, and after that only you can do it. Same thing happened here also. Make sense, guys? Huh?
+56:13
+
+Difficult? Simple?
+56:28
+
+Guys who is attending my first session, I know you may feel that which batch I joined too much complexity there in this project and all, but I'll try my level best to explain you line by line.
+56:42
+
+Initially, first time, you may feel difficulties, because to be very honest, this is a real-time project. So suddenly you come from POC to real-time project, you may feel some challenges, but don't worry.
+56:56
+
+When I write a code, everything you will be able to understand. Whether you have already attended my session or not, you know me or not, hardly matter. Believe me, you will be able to understand.
+57:11
+
+Only request to all of you, you have five days' time. Please watch recording again and try to understand the problem statement. Try to understand the approach I told you, because this is what you will speak
+57:24
+
+in interview. When someone say, "Have you done any real-time production grade, your enterprise grade applications on Genia or Agentic or anything?" And you can say, "Yes, I have built multi-agent system.
+57:37
+
+I have built the orchestration. I have used the LangGraph, I have used the LangSmith. I have used the different services in cloud." So if you watch my recording and you can just translate in your sentence and write it in your notebook, lifetime you will not forget.
+57:50
+
+Can you please try this part, guys? Are you giving me confidence? Yes, I will do it. Yeah, don't worry. I'll cover everything, but this is what I'm looking from all of
+58:08
+
+you. You have to give me that much confidence, guys. Okay?
+58:22
+
+Great. Thank you, everybody. So
+58:34
+
+you can see what I'll do. Project setups, I will integrate the Azure AI services, so you guys will go, and different services I have taken a name. You will see how I will integrate, how I will take their endpoint, their key,
+58:47
+
+their other parameter. How, by the help of LangGraph, we will build a core logic, like how you will see the state nodes, age conditional is, all these things. Defining the LangGraph
+59:01
+
+nodes, how you will build a workflow, building document indexer, building video indexer, and then you have to integrate deployment and monitoring. All this part I'm going to do here. Then you will see triggering workflow pipeline,
+59:15
+
+check output, and LangSmith tracing. So you will see in LangSmith how the tracing happen. I'm using the front-end code as a FastAPI. So whatever the back-end code, I will write it. The front-end, you will see I will use FastAPI.
+59:30
+
+Back-end, and then OpenTelemetry. Final execution, checking out the Azure application insight. And then, my dear friend,
+59:44
+
+you know how you will test it? So we will use cloud platform where I am going to use it Microsoft Azure. These are the services I will use it. Video Indexer, AI Search, OpenAI, and App Insight.
+59:56
+
+Orchestrator, I'm using LangGraph, a stateful agent. It's a production-grade rating orchestration. Observability, I'm using LangSmith, where LLM tracing happen, logging get created. It's your app insight.
+60:08
+
+In Azure also, you will see there is an app insight there. There, system monitoring happen. Model, I'm going to use GPT 4o, or you can use 5.4. Any model, you can use it. Language, I'm talking about Python.
+60:22
+
+So if anybody thinking about Java, C++, or different language called Ruby. I'm not using, I'm using Python only. Are you clear, everybody?
+60:34
+
+Can everybody say yes, then I will go ahead, I will do the setup part Are you guys enjoying
+60:47
+
+or boring? Super, very good. So what you do guys, please
+60:59
+
+create one folder in your system, okay? Please go and create one folder. So let's say desktop, I have created one folder, the name I have given here. The name I have given Project Batch GenAI.
+61:13
+
+Okay, you can create one folder here. Yeah? Once you create this folder, you can go and open the Visual Studio.
+61:26
+
+I hope everybody have a Visual Studio there. Can I expect everybody have a Visual Studio? VS Code, guys? It's a mandatory.
+61:40
+
+Yes. Those who they have not used Visual Studio, please make sure you can download today. Yeah, it is mandatory. Now, first thing first, how you will set up a project and you have to perform
+61:55
+
+it. Right? There are some PDF also I have given it. I'll share the PDF, Pani. Yeah, just focus what I'm doing right now, focus that part.
+62:07
+
+When there is a requirement, I'll give you. Okay?
+62:21
+
+So, let me use the Visual Studio. You can go and select the path. You can go in the file. The folder is Desktop
+62:33
+
+Project Batch GenAI. This is my folder there. Okay. This is my folder there. You can see here the folder name is given this.
+62:48
+
+Yeah. First thing first, what you have to do here, guys, you can create a-- Just go in the terminal node, new terminal. New terminal.
+63:03
+
+And go back. Okay, go back. Let's say I'm going cd.., what happened? Where I reached,
+63:16
+
+you can see Desktop. Okay, Desktop. Just give me a minute, guys. I'm getting one call. Meanwhile, everybody, please be ready. Open your Visual Studio and go to the Desktop.
+63:29
+
+Okay.
+63:49
+
+Guys, everybody, have you opened it? So I just reached here in the Desktop, right? Now what you do, you can say mkdirectory, and you have to write some project name. Let's say I'm saying GenAI.
+65:46
+
+GenAI Project. Project. Mm? Or GenAI Pipeline. Pipeline.
+66:02
+
+So what I have done, I have created a directory, right? And the name is called GenAI Directory, is this. Okay? Now you have to go here in the GenAI directory.
+66:16
+
+You can say here cd GenAI Pipeline. Okay. So I reached here in this project.
+66:29
+
+I reached here in this project. GenAI Directory Project. Yeah, always you can open and just create a GenAI directory like that only, guys. Okay. So you can see I have created here a dummy GenAI pipeline folder
+66:43
+
+And inside, I'm doing all the part. So I have just created a make directory, MK directory, and then inside, I have reached here. Now, there are some dependencies there. Okay?
+66:58
+
+There are some dependencies there that you have to install it. Everybody, you are following me?
+67:11
+
+Good. Let me increase this. Now here, you can write, there is a UV init
+67:25
+
+applications there. Yeah? So you have to go and install that part. So for that, there is a curl LS, SF,
+67:38
+
+HTTP, S, and you can say astral.sh. UV install
+67:51
+
+SH. SH. Install this. It's saying the SH is not recognized, the name called CM cmdlet script file. No problem.
+68:03
+
+You can say UV init dash, dash application. Okay. So here, initialize the project GenAI pipeline.
+68:17
+
+You can go here in this folder. Are you able to see that? When I have written UV init process, the Git get created, Git ignore, Python version, main file, py project, README file.
+68:30
+
+Everything got created, all my friend? Mm-hmm. Oh, anywhere you can give it, no
+68:44
+
+problem. Anywhere you can give it, no problem.
+68:58
+
+Mm-hmm. So I have just initialized this. Okay. This is not working, no problem. There's space there. Without a space, you have to give it. Okay, here don't give a space, but I'm directly using it, so that's
+69:19
+
+fine. There is a problem in this. No problem, you can leave this. You can just say UV init applications. Yeah? I'm using this one. Now, let me go here so that it's easy for you.
+69:32
+
+Desktop. Let me close this. Visual Studio.
+69:46
+
+GenAI pipeline. Okay. So these are the... There is a problem there in my VS Code also.
+70:06
+
+I will restart this, no problem. But meanwhile, let me use it this. So guys, this is GenAI pipeline. I reached here. Yeah?
+70:19
+
+I have created here, Git init Python version main.py, project2ml and README file. Everything got created here. Okay? Now inside GenAI pipeline,
+70:32
+
+inside, I wanted to create one more directory, you can say MK directory backend. Okay? So you can say here, GenAI pipeline, I have created one more
+70:45
+
+backend. It's a blank now. Yeah? So I'm going in this backend. You can say CD backend. Okay? I enter in the backend here. Now, in the
+70:59
+
+backend, I wanted to create four more folder. So you can say MK directory, data. Data means raw data, the PDF I will put it. In PDF, I have lots of links there, video there.
+71:12
+
+Then you can say a script, then you can say source, and then you can say test. Enter. A script is spelling wrong.
+71:25
+
+So data, a script,
+71:46
+
+source, test. Saying positional parameter cannot be found except augment a script.
+72:00
+
+Okay, let me write caps later.
+72:13
+
+In line number one, this MK directory data. Okay, so data get created.
+72:34
+
+MK directory. Source, test.
+72:48
+
+Source, mkdir test, mkdir script.
+73:01
+
+Yeah, fine. So you can see, guys, I've just created here data, script, source, and test. Right?
+73:13
+
+So mine is working. Okay. So it's working very good. No problem. So I have just done one by one. Maybe I'm using PowerShell, that's why it's happening. No problem. You can use Git also, Bash also, it
+73:27
+
+will work. Yeah? Guys, all my friend, are you with me? You have created here backend, data, script, source, test. Hmm? Now in script, you can go in the script, and in script you have to create one
+73:39
+
+more folder. Okay, you can go and create one more folder here. Here you can say inside, and you can say, index
+73:53
+
+documents.py. Okay? I've just create a script inside what? Index document. Okay, that is what I'm doing here.
+74:06
+
+Everyone. Hmm?
+74:20
+
+Now, you can see the backend. We have a source file there. In source you can go
+74:33
+
+and create first in source, you have to create one folder called...
+74:47
+
+What I have to create here? Let's say I'm creating here init. Okay. So I am just creating a constructor file, guys, okay?
+75:02
+
+In it nothing is, it's called constructor file. Okay, so I'm just creating here. In source, you can go and create, one you have to create API. Let me do one thing.
+75:15
+
+Folder, source, API. Source, graph,
+75:30
+
+and source, you can say, services. Okay. So I have created here a script source.
+75:44
+
+Something wrong with...
+75:57
+
+Rather
+76:23
+
+I can do manually. Let me do one thing. Okay, I'll do this part later. First what I'm doing here, I'm just creating an environment here. Okay, so you can go and create here .environment,
+76:43
+
+.env. Okay? Now go here in the .environment, and what are the services I need to use it? What are the services I need to use it? You can use all the services name.
+76:56
+
+So first part, guys, whatever the video there or PDF there, you can store somewhere. So can I say I have to create a Azure storage? Can I say I have to create a Azure storage?
+77:11
+
+So you can say Azure storage. So here you can write Azure storage account name.
+77:27
+
+Okay? So you have to give your storage account name. Hmm? So let me write here double quote, and I will paste here my Azure storage name.
+77:40
+
+Second part, guys, Azure OpenAI. So in Azure OpenAI, what all things you needed? One, you need API key. Yeah?
+77:58
+
+Azure OpenAI key, Azure endpoint, Azure
+78:13
+
+OpenAI API version, Azure version,
+78:29
+
+Azure OpenAI chat deployment. Deployment equal to blank.
+78:42
+
+Okay, so these four services I need for LLM purpose. Hmm? These four services I need for LLM purpose.
+78:55
+
+Next is storage means I will use blob storage, where I can upload the data. I will convert into structured format. OpenAI,
+79:10
+
+I'm using LLM model. You can say I wanted to use the embedding model as well. So you can say add,
+79:24
+
+this for clarity, Azure OpenAI
+79:39
+
+embedding deployment. So which model? You can say text embedding 3 small. Okay, let me take 3 small.
+79:51
+
+All right. Next is you can say
+80:04
+
+Azure AI Search for knowledge base.
+80:16
+
+Knowledge storage. Knowledge base. So you can say Azure search endpoint.
+80:28
+
+Second, Azure API key, and third is Azure search index name. Okay? So these three services I needed.
+80:43
+
+Azure AI Search is vector database, knowledge base. That's why I said knowledge base. Okay, so vector database is nothing, it's a knowledge vector database, where I will do the indexing and all.
+80:57
+
+Fine, Nishant? Yeah, vector knowledge database. You can say vector knowledge database. Next,
+81:14
+
+Azure Video Indexer
+81:32
+
+to identify authorization. Okay? So you can say
+81:45
+
+Azure Video index name,
+81:59
+
+Azure Video Index location, Azure
+82:12
+
+Video subscription key or subscription ID. I'll show you where you will get all the details. Azure
+82:24
+
+Video Index account ID and Azure
+82:37
+
+resource group. Resource group. So these are the services you needed.
+82:49
+
+Okay? For observability purpose, what I have to use it? Observability or monitoring purpose.
+83:03
+
+Monitoring and logging. Okay, so you can say
+83:19
+
+application App Insight or you can say application.
+83:31
+
+This is the problem. Oh, it's enabled. GitHub is enabled, so automatically it's coming. Application
+83:51
+
+Insight connection string. Connection string. So it will trace this. Now, monitoring and logging.
+84:04
+
+And last part, you have to use the LangSmith. LangSmith for tracing purpose.
+84:18
+
+Tracing and orchestration purpose. So you can say LangSmith API key. LangSmith
+84:30
+
+or LangSmith API. So you can say LangSmith this. Then you can use
+84:43
+
+LangChain API key, LangChain endpoint.
+84:58
+
+Langchain project. And you have to assign the project name. Anything you wanted, you can give it. Okay?
+85:13
+
+LangSmith. Let me take it. Langchain. Here also you can take the Langchain.
+85:26
+
+Let me do this. Langchain tracing
+85:40
+
+Vito video. Okay. So these are the part, guys, that you have to take it.
+85:53
+
+Everyone. Now please, you can use this so that it's very easy for everyone.
+86:05
+
+Can you put in this code? Yeah. Let me copy this. Everyone.
+86:21
+
+Go ahead. Okay? All my friend,
+86:33
+
+can you please create environment and paste there? You have to use-- Everybody will use your own credential. Okay?
+86:48
+
+Don't have permission to copy-paste? Then what I can do? I also don't have options. Can I...?
+87:14
+
+No problem. I'll share this, right? I will upload it so you can use it. Just see this one by one and then you will understand. Now, very important part, guys. Very, very important part is the architect.
+87:35
+
+Okay. Let me reduce the font size.
+87:50
+
+Azure Multi-Model
+88:05
+
+Architect. Please understand, if you are able to do one part, you will able to do other part also. Okay? So phase one.
+88:20
+
+This is phase one, is called entry point. Phase two,
+88:35
+
+we can build our orchestrator. Orchestration. And phase three
+88:49
+
+is called Azure Infra plus managed.
+89:02
+
+Okay? Then phase four, you can say external
+89:15
+
+intelligent plus intelligence plus observability. Okay.
+89:30
+
+This is the fourth phase. I'll show you how the architecture works. Mm-hmm. I'll discuss that part in a while. But first you understand the entry point. So what I'll do,
+89:46
+
+we have something called main.py file. You can see when I have created here, main.py file came here. What this main.py file will do, this is nothing, it's called
+90:00
+
+CLI digger. Then this main.py file will connect with the FastAPI
+90:16
+
+server in back-end, and then front-end, I will use Telemetro.
+90:30
+
+Okay. So I will connect with this FastAPI server. Orchestration, what I'm using, I'm building a RAG system, Retrieval-Augmentation Generation. And what workflow I'm using here?
+90:43
+
+Workflow equal to LangGraph. That's the orchestration system I'm building. Now this RAG system, what is my
+90:58
+
+raw data is I will use video Processor. Yeah? YouTube
+91:11
+
+DLP and indexer. Indexer. Then
+91:24
+
+system will retrieve the engine. Retrieve engine. Okay? This will come into orchestration,
+91:37
+
+and we'll do the auditing also. You can say compliance. Compliance auditors. Auditors.
+91:50
+
+So in orchestration, there are four phases there. In entry point, there are two points there. In Azure infrastructure, what I'm using here, one, I'm using the services called Azure Blob Storage.
+92:03
+
+Blob storage. Right? For temporary video for a storage purpose.
+92:19
+
+Second, what service I will use? Azure Video Index. What it will do? OCR Plus
+92:33
+
+transcript. Third, Azure AI Search,
+92:47
+
+okay, for vector database. This will sit here in Azure infrastructure, which will manage it. Now,
+93:00
+
+this fast API services, get connected with a RAG workflow. Okay? This fast services
+93:13
+
+server, they will check the compliance auditing as well. So whatever the report they are generating it, creating it, it is correct or not correct. Here, guys,
+93:26
+
+external intelligence plus observability, how things work. You have YouTube video source.
+93:39
+
+You have Azure OpenAI LLM model plus embedding model.
+93:56
+
+Embedding model. You have Azure Application
+94:10
+
+Insight for logs and matrices.
+94:24
+
+And you have LangSmith for tracing and debugging purpose.
+94:36
+
+I'm just explaining you so that it's very easy. Everything will feed in your brain, and when you do it, you have to follow that way only. Of course, you can use draw.ig. You always use
+94:51
+
+the same thing in different format. You can say draw.io. Okay. And here you can make a flowchart.
+95:05
+
+So whatever I have done it, the same flowchart you can make it here. Yeah, it's free of cost, and then you can download and share with your engineers or you can explain to your client. Okay.
+95:19
+
+Now, this YouTube source is what? The retrieve engine. Okay? It gets retrieved here.
+95:31
+
+This YouTube source, the video, the RAG flow, that gets connected there. And this YouTube video, you can say the compliance part will also work, and that is what the
+95:44
+
+processing you will do it. Okay, so that's the source data get connected with orchestrator. Yeah? This retrieval part, this retrieval engine, you can say this retrieval engine
+95:57
+
+will connect with the Azure OpenAI. Right? Why? Because for embedding purpose. Retrieval only works when there is embedding happen. Yeah, so you can say we'll do the embeddings.
+96:12
+
+So retrieval engine works with the embedding, and we will use this method. Now, you can use the LLM also. LLM, so that compliance auditor, they will read it, they will understand
+96:25
+
+the content. Okay? This fast API, you can see one connection, RAG orchestrator, another connection here, compliance auditor, and the third connection is-- Let me change the color.
+96:39
+
+Third connection is Azure applications insight. Right? For log and matrices. The back end, it will trace it, and in back end, they will also trace in the LangSmith as well.
+96:53
+
+Okay, this is the architectures there. This is the architectures there. Now, this YouTube processing, what it will do, whatever the indexer will go, it get stored here. Yeah, it's a temporary file
+97:09
+
+In blob storage, you get a storage here. This you do Azure Video Indexer. This will go and back, right? So it will process by the help of Azure Video Indexer.
+97:25
+
+Once OCR in transaction created, you will get the insight. Insight, it will come back. Yeah? Retrieval engine, what it will do? By the help of Azure AI Search vector database, the query,
+97:38
+
+whatever user will write the query, they will give the information from there. Are you clear how the architecture works, guys? How you will design it, how you will make a frame.
+97:51
+
+Anyone have any doubt, please tell me. Hmm? Tom, we'll tell you the main.py file, how it is work, or
+98:04
+
+what is the CLI trigger state. Just the entry point I said, what I have done, UV. In it I have created main dot, pipe file got created. When I will write it, you will see how CLI trigger works.
+98:18
+
+Everybody?
+98:38
+
+Hmm. Observability is there, right? Observability is there because we wanted to trace them. So that's why I have created a separate folder. So you can see how many things I have done here. One part.
+99:06
+
+This is part one. Let's increase the threshold thickness. One. Second is orchestration. Third is infra, and fourth is this one, where you have a source data.
+99:22
+
+And that's why I mentioned external. Source data is external data. Is your application insight for login matrices when output report gets generated. LangSmith is, again, external. There you will trace and debugging, you can do it.
+99:35
+
+Is your OpenAI LLM embedding, we will do it because whatever the source data will go, and this is the whole architecture there that you have to connect it. Like that. That's why this is the main toughest job there that you have to do it.
+99:49
+
+So if your foundation is clear, writing code and all, just like a cakewalk, guys. Four, five line you have to do it. Work done, finish, your job is okay. Hmm. Now, what you guys have to
+100:04
+
+do it. What is the task for all of you? The first task I wanted to give you, please go here and say LangSmith.
+100:18
+
+LangSmith API key. Okay? Please log in here in the LangSmith. Yeah. This is the platform for agent engineering.
+100:31
+
+Okay, most of the company, they are using this. If you want it, you can just read the LangSmith observability documents also. Very nicely written. Okay, very nicely written. Create an account. Try LangSmith.
+100:45
+
+You have to click the Try LangSmith. Then you have to go, click the Google. Go to here. Mar Sundaram. Continue.
+100:59
+
+Okay? And Technical LangSmith, get started. It's saying LangSmith code first and experience designed for developer observability evaluation
+101:13
+
+deployment, 5,000 free trace per month. So go with 5,000. This one recommended. Okay, you can say get started. I have started here. Now, whatever the project, you will do it. I will connect all these things. See, tracing.
+101:25
+
+Yeah? Monitoring, data set experiment, evaluator, annotation, everything you will see it, you will get in your... So you feel that, oh, real-time job I am doing it.
+101:41
+
+Okay, so this part you have to register it. Second, what I want from all of you, please go here in the Azure. Azure login.
+101:55
+
+And please register yourself. If you guys have already logged in, very good. If not, please get started with Azure. Yeah? Here, pay as you go and try Azure for free.
+102:07
+
+If you guys have a free account, please go and click the free one. Or if you have already used it, two months completed, go pay as you go. So you have to give your credit card credential and all, and then create a subscriptions, and you have to do it. Yeah?
+102:20
+
+Can I expect these two things when you connect next time? Means coming Saturday, you have to do it with me so that you can feel the
+102:36
+
+difference, how it is working, what the real time in industry, how you will do it, and everything I'm doing it. From back-end, front-end, deployment, all part. And the coming session, guys, I will pick many more project where I will cover everything, whether be it
+102:48
+
+AWS or GCP, Vortex AI, Bedrock, any tools you can take know in cloud, I wanted you guys feel very, very comfortable in GenAI and Agentic project. I'll do the fine-tuning also.
+103:04
+
+I'll use the MCP server here also. Agent-to-agent talks also. Hmm? Are you happy? Shall I go this way or can I go little POC kind
+103:19
+
+of things? So
+103:35
+
+these are the things required. If you are able to do it, very good. That's why I have given a name also. So when you log in, in Azure storage, you can create instances and just
+103:51
+
+create a storage name. Yeah, any name you can give it. Go in Azure OpenAI, go to Foundry, you will get open. First, you can download two models, LLM model and embedding model. Okay?
+104:04
+
+So here, chat deployment, I'm saying GPT-4o mini. GPT-4o. Okay, I have written this. So you can see which version is there when you do it, what is the endpoint there, and what is the API key there.
+104:17
+
+Yeah, text embedding already I have written. Azure AI Search. When you go into Azure AI Search, there you will get endpoint, you will get API key and indexer name you have to write. You can say backend code.
+104:32
+
+Let's say this is what I have written indexer name. Yeah? So these two point only you have to copy-paste. When you go in the video indexer, just create instances, and then you will go in the key, you will get video index name.
+104:47
+
+You will get location. Everything you will get in the first page itself. Subscription ID also you will get, account ID also you will get, and resource group name also you will get it. Yeah. When you go here in observability, you can go just
+105:00
+
+type in Azure. Just type application insight. You will create a instances and you will get connection string name. You can copy-paste here. And these four thing you will get it here.
+105:14
+
+You will get it here. Okay? So when you create it, you have to go and do it. So I will cover these parts. Right here you can say create a project. Explore this. So you have to go and just create a first project. You can write it.
+105:26
+
+All part you will get it here. Yeah. So I'm just parking this part for now. Coming Saturday, I'll show you because it's very easy for everybody. You can follow me. So I'll show how you can go and fetch the data, and
+105:39
+
+then you have to do it. Once setup part is done, I will just write a few line of code. I will just use the LangGraph, what you have learnt in class, how you build the RAG system. Similar thing, I will create a state.
+105:52
+
+I will create the nodes, I will create a edge, and then connect it. And anything you can give, the video, the PDF, they will read it within a second, and you will get the answer.
+106:06
+
+All right? When I can expect. I'm not the responsible expect and all. You have to go and check with LearnBay. I'm only here to give a lecture. I am only here to
+106:23
+
+solve your doubt and all. The backend work, don't expect to me that I am the responsible, I will download all these things. For that, we have a dedicated team there. Ideally, you have already taken a classes. It's not the first time.
+106:39
+
+How you are getting recording, I think it will take 12 hours, right? Next day you get a recording. So you have to wait. Okay?
+106:51
+
+If you are not getting, please check with the LearnBay. Ask them where I will get it. So guys, for interest of time, we have a seven minute.
+107:04
+
+Anybody wanted to talk to me, please raise hand. I'm happy to unmute and take your query. Go ahead. So the first person is Himanshu. Yes, Himanshu? Sir, in the architecture diagram that you shared,
+107:17
+
+if you can go there. Once the data is ingested, it is present in the temporary file in the Azure infrastructure, which is your Azure blob storage. Correct. Now when the Azure Video Indexer will run, it will automatically take it from
+107:31
+
+temp file, right? It will be a connection between this blob storage and video indexer. Is my understanding correct? Yeah, absolutely. Okay. And also one more thing. When we say we are doing this YouTube video compliance, and then we will retrieve that
+107:45
+
+transcript and the images from this, are we doing frame by frame? Because if it's a long video, then it's a lot of images. Ideal image-- video means image only, so it's going frame by frame,
+108:01
+
+60 frame per second. So if it is like a three-hour long video, then we are talking about lots of images. Of course, yes. But I will not use that one because I'm
+108:15
+
+using CPU memory. For that, I have to use GPU. Okay. Then there is another cost there. But in real-time, see, you understand the concept. Real-time anyway you will get a GPU memory, you can use it. Okay. If you know how to drive a car, if you're able to drive 5 kilometer, you are
+108:28
+
+able to drive 5,000 kilometer. Yes or no? That is correct. So that is you have to know how to drive a car, how we can run a real-time project. Like that you have to learn it. Once you get only difference is data, you will get so many dataset.
+108:43
+
+That's the only difference, no? Yes. Got it. Yeah, otherwise everything is same. No, only this part is too much. So if this part is too much, you need a hard disk. Hmm. You need a hard disk. It should be GPU, correct?
+108:57
+
+Correct. So you can use the NVIDIA, you can use H100 or something NVIDIA, 6500, something like that. It will work. All right. Thank you. Okay.
+109:13
+
+Umes? Good evening, sir. And first of all, great session. I literally, thoroughly enjoyed it, and I was excited
+109:25
+
+throughout. I had a question. So in our organization, we make use of this Azure only for the AI thing, but they use Azure Blob Storage for storing
+109:38
+
+the files and Azure index along with the indexer for storing the indexes. So is there a difference between storing the indexes, I mean, vector in the indexes and blob storage?
+109:53
+
+Both are different. So blob storage means just storage, your raw data. Okay. So raw data, let's say PDF. So that data you can upload there. Uh-huh. Now that PDF, you will do the processing, you will do indexing. So how you will do it? Okay. You have to use the Azure AI Search. There I will use.
+110:06
+
+That's why I have written separately. Okay. Azure indexer, and Azure Blob Storage, and Azure AI Search. So all three are separate services. This is separate services. This is separate services. So when I-
+110:20
+
+So that- ... go in the next sessions- Uh-huh ... each part you will get to know. This is raw data. Okay? This part will do the indexing, so that PDF get converted into embedding. Mm-hmm. Okay. So that is one of the features where you can index them.
+110:33
+
+You can do the preprocessing. It's kind of preprocessing. So I will use- Understood ... the different functions here. All right. Yes. Thank you. Yeah. Thank you so much.
+110:47
+
+All right. Couple of hands there. Yes, Shreyas. You guys are in my batch or a different batch? Umesh?
+110:59
+
+No, sir, I'm from the morning batch. I was there in today's morning session as well for Gen AI. In my batch only. Yes. So I talked to Manju, and he enrolled me for this. I mean, he granted access me to
+111:13
+
+this session as well. But yeah, I- Manju I know it. Arvind I know it. In my batch only. Most of the faces I can see in my batch. No, I speak less in the morning sessions. Okay. So yeah. No problem.
+111:26
+
+I do ask questions in chat, but conversation is less, yeah. Okay. No problem. But thank you, sir. This was great. Shreyas, are you there? Guys, you can take a screenshot this one also, everybody.
+111:38
+
+This is very, very im-- Please take a screenshot. Hello, sir. Yes, Shreyas, go ahead. Just for the thing, before coming to next class,
+111:52
+
+I mean, I am done with RAG and the multi-model RAG. I just wanted to finish this Lang graphs or agentic stuff. Can you just tell me which are the topics that are very necessary to attend the next class?
+112:05
+
+Like- I don't know because you guys are coming from different batch, right? Yeah. You have a different batch there- Yes ... who has not attended my session. So you don't worry.
+112:18
+
+You can just come with a fresh mind, just see what is happening, how things works. Because if you go by like that, "No, first I have to complete this, then I will join," then there is a problem. Okay. So you can, whatever you are learning in class, enjoy the POC perspective.
+112:30
+
+And here you can see the real time, how you will do in the hands-on when you get a job. So that part you will get it. Maybe little complex, but I'll try to explain you in a simple way so that you can understand it. Awesome.
+112:44
+
+But for that, don't give some clause or you can say, "No, there is a caveat. I have to complete that, then only it possible." No, not like that. Okay, sir. You can enjoy your batch, whatever you will get. Focus on- No, sir.
+112:56
+
+The reason is, I have five more days. I have five days to attend. Just for that I ask you, sir. So that's why I said no, focus on fundamental things. Whatever you are learning this batch, you can just enjoy.
+113:09
+
+Okay. Sure. And just see how things works, how you will do it when you get a job and all. So you will learn it. Many more things will there. Because if I pick all these things one by one, it will go another two, three months. Then only you will complete and reach here.
+113:21
+
+So forget about this thing. Sure, sir. Okay. Thank you, sir. Thank you. What else? Arvind? Hello, sir. So this--
+113:35
+
+Actually so much to take in. How do I recall all of this when attending an interview? Do you know Feynman techniques?
+113:49
+
+Did you hear the story of Feynman techniques? Yes, sir. Did you read coding? I've heard of that person, but- Follow their instruction. Feynman, Richard Feynman
+114:03
+
+techniques. Okay, take a print out, and where you are studying now, take this part.
+114:17
+
+What they said? Pick and study a topic. So any topic you are learning, explain the topic to someone like a child who is unfamiliar with the topic, and at their level of understanding, okay? Use simple language.
+114:30
+
+Means your local language. Don't speak English. Whatever your local language there, speak it. Identify any gap in your understanding. So when you explain no, you will get to know is there any gap
+114:44
+
+there. And return to the literature to understand better. Again, you have to revise it. So wherever you get stuck, let's say tomorrow you can go and explain RAG architecture, right? When you do it, something somewhere you get stuck.
+114:56
+
+Let's say chunking, you are explaining it. And chunking, someone ask different question. So what you do, you can revise. You go back, watch my recording again, and then you can do it. So this is the way to learn it. Okay, I really appreciate it and I'm
+115:10
+
+following. This is the way I am learning it. So whenever any new topic comes, first I'm reading the documents, research paper. I'm trying to understand what is this. Then I'm explaining in my way, right? Then I'm just seeing is there any gap there in my understanding? Yes.
+115:23
+
+Then again, I'm reading the research paper. So this is two, three times you will do, you feel very comfortable. Yeah? And more importantly, don't take too much load. Wherever you have a bandwidth, you can watch recording.
+115:39
+
+Wherever you have a time, you can do it. Make friendship, talk as much as possible, this one. That is what only suggestion I wanted to give. Otherwise, you all are professional, right? Sir, next week,
+115:51
+
+we have the same class at the same time, or is it just for this week we have this setting? So this week only, sir. This is what you want. How many times I can say this thing? Every Saturday, Sunday, 7:00 to 9:00.
+116:04
+
+This is just half classes I have done. I will complete here only. What kind of question you are asking? Of course, Saturday, Sunday, 7:00 to 9:00 PM, I'll take a session. So here I have done this part. Saturday again, I will do the next step.
+116:20
+
+So I will continue this project, no? In beginning, I said I will pick 5 to 10 project, like that. Okay. Sir,
+116:32
+
+. Go ahead, Rohit. Thank you. Hello, sir. Am I audible? Yeah. Hmm. Hello. Go ahead, Rohit. I can hear you.
+116:44
+
+Actually, I was working on one project. One, I'm facing lot of issues while document preprocessing. I'll connect with you personally. Just wanted to check with you, while processing
+116:57
+
+question papers, and those are in the format of OCR documents- Can you park this question and ask in class, or maybe you can talk to me offline? Here, project related any issue- Yeah ... because this is two-hour session only.
+117:10
+
+I don't want to take anything related to OCR- Okay, sir. Okay. I'll ask in your- ... here, but- Ask in class. Yeah. Thank you. Palani, well?
+117:24
+
+No? Dheeraj, last question. Yeah. Sorry, can you go back to that architecture which you have just shown? Yeah.
+117:41
+
+Mm-hmm. Okay. So sir, here, your orchestration, in the orchestration, the RAG workflow LangGraph, once we have stored the Azure Blob storage and we have done the OCR transcript and the embedding using the
+117:54
+
+AI vector search, vector DB, why the connection need to happen to the source for the RAG implementation and the LangGraph implementation? So this YouTube video, where you will store it?
+118:09
+
+That we have already stored in the Azure Blob, right? Temporarily. Oh, so Azure Blob, when you do it, you will do the indexer part. You will pre-process or not. Correct. So pre-processing comes where? In orchestrator page?
+118:24
+
+Correct. This data, where you will store in the infra. Infra is Blob storage. Mm-hmm. External source is YouTube. Okay. But once we have taken from external source to Azure
+118:36
+
+Blob storage- Yeah ... do we really need this connection? Because that's already there, right? We'll be doing the further processing from the Blob storage only, right? Correct. So that's what we do. No. Azure Blob storage,
+118:49
+
+what Blob storage will do? What it will do? You have to do this part- It will temporarily store the video. Yeah ... index, and then it will give to the here video processing and indexer. Okay? This is the processing happen,
+119:03
+
+and then you will get the insight. Insight means OCR and transcript, whatever there. And that's what the retrieval engine is there. Right? There you will use the LangGraph workflow, and this workflow, you will get all this part.
+119:17
+
+And sir, what is compliance auditor part section is? What it is doing? Compliance means rule, set of rules. So you will see the guardrail part. Okay, guardrail. This is guardrail. Guardrails. And sir, where we will be doing the evaluation and the testing?
+119:30
+
+Because there is a folder you have created for testing also, right? Oh, so here the-- When you do the Azure App insight, they will trace the matrices. Okay. Okay? They will check all this part. Okay. Thank you.
+119:44
+
+Okay. All right, guys. So thank you very much. Bye and take care. See you again on Saturday. Yeah? Till then, please practice your basic. Okay?
