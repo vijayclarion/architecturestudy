@@ -1,0 +1,25 @@
+## Agent Loop 
+ - Loop
+   - Perceive
+     - Context
+   - Reasoning
+      - LLM Reasoning
+   - Action 
+      - Tool Call
+   - Obervation
+     - Tool result to LLM
+ - stop_reason
+    - LLM Return 
+    - Value
+       - end_turn
+         - stop loop
+       - too_use
+         - tool call
+ - Model-Driven Decision-Making
+    - Claude
+       - adapts to situations
+       - decide which tool to call.
+ - Anti-Patterns
+    - code checks natural language response from claude
+    - code stops after a fixed count
+    - code uses response.content[0].type == "text"

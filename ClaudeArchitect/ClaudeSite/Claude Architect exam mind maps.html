@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Claude Architect exam mind maps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#EAEFF1; --surface:#FFFFFF; --ink:#18232C; --muted:#56646F; --rule:#C7D1D7;
+  --trap:#B3261E; --trap-bg:#FCEBE8; --hook:#5B3FA0; --hook-bg:#F0EBFA; --ex:#22694A; --ex-bg:#E4F2EA;
+  --code-bg:#E3E9EC;
+  --d1:#0E6A86; --d2:#3B4CAD; --d3:#56700F; --d4:#93356A; --d5:#9A5300;
+  --accent: var(--d1);
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#121A20; --surface:#1B252D; --ink:#E4EAEE; --muted:#9AA8B2; --rule:#33424D;
+    --trap:#FF8A80; --trap-bg:#3A1F1E; --hook:#C3AEF5; --hook-bg:#2A2340; --ex:#7FD3A6; --ex-bg:#183027;
+    --code-bg:#26323B;
+    --d1:#4FB7D6; --d2:#8C99F0; --d3:#A7C450; --d4:#E58BBB; --d5:#F0A54D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#121A20; --surface:#1B252D; --ink:#E4EAEE; --muted:#9AA8B2; --rule:#33424D;
+  --trap:#FF8A80; --trap-bg:#3A1F1E; --hook:#C3AEF5; --hook-bg:#2A2340; --ex:#7FD3A6; --ex-bg:#183027;
+  --code-bg:#26323B;
+  --d1:#4FB7D6; --d2:#8C99F0; --d3:#A7C450; --d4:#E58BBB; --d5:#F0A54D;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%; scroll-padding-top: env(safe-area-inset-top, 0px)}
+body{margin:0; min-height:100%; background:var(--paper); color:var(--ink);
+  font-family:"Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif; font-size:15px; line-height:1.45}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:10; background:var(--paper)}
+h1,h2,.tab,.task-card{font-family:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif}
+
+header{padding:28px clamp(16px,4vw,48px) 0}
+h1{font-size:clamp(26px,4vw,40px); line-height:1.05; margin:0 0 6px; font-weight:700; letter-spacing:-0.01em}
+.lede{margin:0; color:var(--muted); max-width:62ch}
+
+nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin:22px 0 0; padding:0}
+.tab{appearance:none; border:2px solid var(--rule); background:var(--surface); color:var(--ink);
+  border-radius:999px; padding:7px 14px 7px 8px; font-size:14px; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:8px; text-align:left}
+.tab .num{display:inline-grid; place-items:center; width:24px; height:24px; border-radius:50%; background:var(--c); color:var(--surface); font-weight:700; font-size:13px}
+.tab[aria-selected="true"]{border-color:var(--c); background:color-mix(in srgb, var(--c) 12%, var(--surface))}
+.tab:focus-visible,.btn:focus-visible,.node-btn:focus-visible,input:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+
+.toolbar{position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:var(--paper);
+  display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; padding:14px clamp(16px,4vw,48px); border-bottom:1px solid var(--rule); margin-top:18px}
+.btn{appearance:none; border:1px solid var(--rule); background:var(--surface); color:var(--ink); border-radius:8px; padding:6px 12px; font:inherit; font-size:14px; cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn[aria-pressed="true"]{background:var(--trap-bg); border-color:var(--trap); color:var(--trap); font-weight:700}
+.search{flex:1 1 200px; max-width:320px; border:1px solid var(--rule); background:var(--surface); color:var(--ink); border-radius:8px; padding:6px 10px; font:inherit; font-size:14px}
+.legend{display:flex; gap:12px; flex-wrap:wrap; font-size:13px; color:var(--muted); margin-left:auto}
+.legend span{display:inline-flex; align-items:center; gap:5px}
+.sw{width:12px; height:12px; border-radius:3px; display:inline-block; border:2px solid}
+.sw.c{border-color:var(--rule); background:var(--surface)}
+.sw.t{border-color:var(--trap); background:var(--trap-bg)}
+.sw.e{border-color:var(--ex); background:var(--ex-bg)}
+.sw.h{border-color:var(--hook); background:var(--hook-bg)}
+
+main{padding:24px clamp(16px,4vw,48px) 60px}
+.map-wrap{overflow-x:auto; padding-bottom:12px}
+.status{color:var(--muted); font-size:14px; margin:0 0 14px}
+
+/* ===== Tree (horizontal mind map) ===== */
+ul.tree, ul.kids{list-style:none; margin:0; padding:0}
+li.n{display:flex; align-items:center; position:relative}
+ul.kids{display:flex; flex-direction:column; padding-left:22px; position:relative}
+ul.kids::before{content:""; position:absolute; left:0; top:50%; width:22px; border-top:2px solid var(--accent); opacity:.55}
+ul.kids > li{padding:4px 0 4px 22px}
+ul.kids > li::before{content:""; position:absolute; left:0; top:50%; width:22px; border-top:2px solid var(--accent); opacity:.55}
+ul.kids > li::after{content:""; position:absolute; left:0; top:0; bottom:0; border-left:2px solid var(--accent); opacity:.55}
+ul.kids > li:first-child::after{top:50%}
+ul.kids > li:last-child::after{bottom:50%}
+ul.kids > li:only-child::after{display:none}
+ul.kids > li:first-child{padding-top:0}
+ul.kids > li:last-child{padding-bottom:0}
+ul.kids > li:first-child::before, ul.kids > li:first-child::after{}
+
+.card{position:relative; z-index:1}
+.root-card{background:var(--accent); color:var(--surface); border-radius:18px; padding:16px 18px; width:200px; flex:none}
+.root-card .d{font-size:13px; opacity:.85}
+.root-card h2{margin:2px 0 0; font-size:21px; line-height:1.15; font-weight:700}
+
+.node-btn{appearance:none; font:inherit; color:inherit; cursor:pointer; text-align:left; display:flex; align-items:center; gap:8px; width:100%}
+.task-card{flex:none; width:230px}
+.task-card .node-btn{background:color-mix(in srgb, var(--accent) 14%, var(--surface)); border:2px solid var(--accent); border-radius:12px; padding:9px 12px; font-weight:700; font-size:15px; line-height:1.2}
+.topic-card{flex:none; width:230px}
+.topic-card .node-btn{background:var(--surface); border:1.5px solid color-mix(in srgb, var(--accent) 55%, var(--rule)); border-radius:10px; padding:7px 11px; font-weight:700; font-size:14px; line-height:1.25}
+.count{margin-left:auto; flex:none; font-size:12px; font-weight:700; min-width:24px; height:22px; padding:0 6px; border-radius:11px; display:inline-grid; place-items:center;
+  background:color-mix(in srgb, var(--accent) 20%, transparent); color:var(--ink); font-family:"Atkinson Hyperlegible",sans-serif}
+.count.open{background:transparent; border:1.5px solid color-mix(in srgb, var(--accent) 45%, transparent)}
+.trapdot{flex:none; width:8px; height:8px; border-radius:50%; background:var(--trap)}
+
+.leaf{width:min(380px, 70vw); background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--rule); border-radius:6px; padding:6px 10px; font-size:14px}
+.leaf .tag{display:inline-block; font-size:11.5px; font-weight:700; padding:0 6px; border-radius:4px; margin-right:6px; vertical-align:1px}
+.leaf.trap{border-color:color-mix(in srgb, var(--trap) 35%, var(--rule)); border-left-color:var(--trap); background:var(--trap-bg)}
+.leaf.trap .tag{background:var(--trap); color:var(--surface)}
+.leaf.ex{border-left-color:var(--ex); background:var(--ex-bg); border-color:color-mix(in srgb, var(--ex) 30%, var(--rule))}
+.leaf.ex .tag{background:var(--ex); color:var(--surface)}
+.leaf.hook{border-left-color:var(--hook); background:var(--hook-bg); border-color:color-mix(in srgb, var(--hook) 30%, var(--rule)); font-style:italic}
+.leaf.hook .tag{background:var(--hook); color:var(--surface); font-style:normal}
+code{font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size:.88em; background:var(--code-bg); padding:1px 4px; border-radius:4px; overflow-wrap:anywhere}
+mark{background:color-mix(in srgb, var(--accent) 35%, transparent); color:inherit; border-radius:2px; padding:0 1px}
+
+.empty{color:var(--muted); padding:20px 0}
+
+@media (max-width: 760px){
+  li.n{display:block}
+  ul.kids{padding-left:16px; margin-top:6px}
+  ul.kids::before{display:none}
+  ul.kids > li{padding:4px 0 4px 18px}
+  ul.kids > li::before{top:20px; width:16px}
+  ul.kids > li::after{top:0; bottom:0}
+  ul.kids > li:first-child::after{top:0}
+  ul.kids > li:last-child::after{bottom:auto; height:20px}
+  ul.kids > li:only-child::after{display:block; bottom:auto; height:20px}
+  ul.kids > li:first-child{padding-top:4px}
+  .root-card,.task-card,.topic-card{width:100%}
+  .leaf{width:100%}
+  .legend{margin-left:0}
+}
+@media (prefers-reduced-motion: no-preference){
+  ul.kids.fresh{animation:grow .18s ease-out}
+  @keyframes grow{from{opacity:0; transform:translateX(-6px)} to{opacity:1; transform:none}}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Claude Architect exam mind maps</h1>
+  <p class="lede">One map per domain, built from your revision notes. Click a task statement to open its topics, then a topic to see the rules, examples, exam traps and memory hooks.</p>
+  <nav class="tabs" role="tablist" aria-label="Exam domains" id="tabs"></nav>
+</header>
+<div class="toolbar">
+  <button class="btn" id="expandAll" type="button">Expand all</button>
+  <button class="btn" id="collapseAll" type="button">Collapse all</button>
+  <button class="btn" id="trapsOnly" type="button" aria-pressed="false">Traps only</button>
+  <input class="search" id="search" type="search" placeholder="Search this domain" aria-label="Search this domain">
+  <div class="legend" aria-label="Legend">
+    <span><i class="sw c"></i>Concept or rule</span>
+    <span><i class="sw e"></i>Example</span>
+    <span><i class="sw t"></i>Exam trap</span>
+    <span><i class="sw h"></i>Memory hook</span>
+  </div>
+</div>
+<main>
+  <p class="status" id="status" aria-live="polite"></p>
+  <div class="map-wrap"><div id="map"></div></div>
+</main>
+<script>
+// Notation: leaf strings. "! " = exam trap, "> " = example, "~ " = memory hook, otherwise concept/rule.
+// Topic: [title, [leaves]]  Task: [title, [topics]]
+const DOMAINS = [
+{ id:"domain-1", short:"Domain 1", name:"Agentic Architecture & Orchestration", tasks:[
+ ["Agent loop",[
+  ["Loop cycle",["Perceive: build the context","Reason: LLM reasoning","Act: make a tool call","Observe: feed the tool result back to the LLM"]],
+  ["`stop_reason` drives the loop",["`end_turn` → stop the loop","`tool_use` → run the tool call, then continue","Model-driven: Claude adapts and decides which tool to call"]],
+  ["Anti-patterns",["! Parsing Claude’s natural-language reply to decide when to stop","! Stopping after a fixed iteration count","! Checking `response.content[0].type == \"text\"` instead of `stop_reason`"]]
+ ]],
+ ["1.2 Orchestration patterns",[
+  ["Hub-and-spoke",["Coordinator is the hub; subagents are the spokes","All communication flows through the coordinator","Subagents never talk to each other directly","Benefits: observability, consistent error handling, controlled information flow"]],
+  ["Isolation principle (most misunderstood)",["Subagents don’t inherit the coordinator’s history","No shared memory between invocations","Everything a subagent needs must be in its prompt","> Web search subagent called twice: the second call knows nothing of the first","~ Subagent “ignores” context? Check it was ever passed. Don’t blame the model"]],
+  ["Coordinator responsibilities",["Dynamic subagent selection: invoke only what the query needs","Research scope partitioning: distinct subtopics, less duplication","Iterative refinement loops: find gaps, re-delegate","Centralised communication routing"]],
+  ["Narrow decomposition failure",["Coordinator splits a topic too narrowly and misses whole categories","> “AI in creative industries” covers only visual arts; music, writing and film missing","Root cause is the coordinator, not the subagents: trace to the origin","Fix: better decomposition, not more subagents"]],
+  ["Exam heuristics & traps",["Overlapping, duplicated results → poor scope partitioning","Gap noticed after results return → re-delegate, don’t just filter","Simple query sent through every subagent → missing dynamic selection","! Direct subagent-to-subagent communication breaks observability","! Adding more subagents to fix a decomposition problem"]]
+ ]],
+ ["1.3 Subagent invocation & context passing",[
+  ["Task tool",["The tool a coordinator calls to spawn a subagent","Coordinator’s `allowedTools` must include \"Task\"","! Good subagent definitions but none ever run → check `allowedTools` first"]],
+  ["AgentDefinition fields",["description: read by the coordinator to pick a subagent","system prompt: the subagent’s standing instructions","tool restrictions: tools limited to the role","! Vague description (“Helper agent”) → poor selection"]],
+  ["Three context-passing rules",["Pass complete findings; subagents can’t look up earlier results","Structured data separating content from metadata: claim, source_url, document_name, page_number, confidence","Goal-oriented prompts (goal + quality criteria), not step-by-step procedures","~ Goal-oriented prompts enable subagent adaptability"]],
+  ["Attribution failure",["Symptom: synthesis output has claims with no sources","Cause: coordinator passed content without metadata","Fix the coordinator’s context passing to include metadata","~ The synthesis agent cannot cite sources it was never given","! “Always cite sources” in the synthesis prompt can’t create missing data","! Giving the synthesis agent its own search access bypasses the architecture"]],
+  ["Parallel spawning",["Emit multiple Task calls in one coordinator response","Sequential spawning adds needless latency","Only for independent subagents; synthesis must still wait for research"]],
+  ["fork_session vs --resume",["fork_session: independent branch from a shared baseline","--resume: continue the same session","~ Fork to diverge, resume to continue"]]
+ ]],
+ ["1.4 Workflow enforcement & handoff",[
+  ["Enforcement spectrum",["Prompt guidance: probabilistic, non-zero failure rate","Programmatic enforcement (hooks, gates): deterministic, model can’t bypass","~ Prompts guide; code guarantees"]],
+  ["Decision rule",["Financial, security, compliance → programmatic","Formatting, tone, style → a prompt is fine","~ Money, security or law → code"]],
+  ["Prerequisite gates",["`process_refund` blocked until `get_customer` returns a verified ID","Blocked call returns an error and steers the agent back into order","It checks that a step happened, not just data validity"]],
+  ["The 8% skip scenario",["Prompt says “verify first” but the agent skips it in 8% of refunds","Answer: prerequisite gate on `process_refund`","! Enhanced system prompt: still probabilistic","! Few-shot examples: still probabilistic","! Routing classifier: changes which agent, not how it behaves"]],
+  ["Multi-concern requests",["Decompose into distinct items","Investigate in parallel with shared context (same customer, same order)","Synthesise one unified resolution","> Damaged item + double charge + address change → 3 investigations, 1 reply","! Handling items one at a time, or dropping minor items"]],
+  ["Structured handoff to a human",["The human has no access to the transcript, so the handoff must be self-contained","Five fields: customer ID, conversation summary, root cause analysis, refund amount, recommended action","! Options that look complete but miss one field (often refund amount or root cause)"]]
+ ]],
+ ["1.5 Agent SDK hooks",[
+  ["Lifecycle",["Model decides to call a tool","PreToolUse: block, modify or redirect the call","Tool executes (money moves, data changes)","PostToolUse: transform the result","Model processes the result"]],
+  ["PostToolUse: normalisation",["Give the model clean, consistent data","Unix timestamps → ISO 8601","Numeric codes → readable strings","> Status `3` becomes \"shipped\""]],
+  ["PreToolUse: policy enforcement",["Stop a forbidden action before it happens","> `process_refund(amount=750)` over $500 → block and redirect to human escalation","> International transfer blocked until the AML check has passed"]],
+  ["Hooks vs prompts",["Hooks: deterministic, for rules that must hold 100% of the time","Prompts: probabilistic, for preferences and soft rules","Golden test: one failure causes financial loss or legal risk → hook"]],
+  ["Traps",["! PostToolUse to block a policy violation: too late, action already happened","! PreToolUse for normalisation: no result exists yet","! Prompts for mandatory compliance","! Not normalising mixed tool output formats"]],
+  ["Memory hooks",["~ Pre = Prevent, Post = Polish, Prompts = Preferences","~ PreToolUse is a gate on actions; PostToolUse is a filter on results","~ Money or law? Hook it."]]
+ ]],
+ ["1.6 Task decomposition",[
+  ["Fixed sequential pipeline (prompt chaining)",["Predetermined steps; each takes the previous output","Best for code reviews, document processing, data extraction","Consistent and easy to debug, but can’t adapt to surprises","> Invoice: read → extract → validate → output"]],
+  ["Dynamic adaptive decomposition",["Subtasks generated from what is discovered","Best for legacy exploration, unfamiliar debugging, security audits","Loop: plan, act, observe, reassess","Less predictable, harder to estimate time"]],
+  ["Selection rule",["Steps known in advance → fixed pipeline","Open-ended, unknown scope → dynamic decomposition","! Using tools doesn’t make a task open-ended; ask whether the steps are known"]],
+  ["Attention dilution",["Too many items in one pass; structural, not a capacity issue","Happens even when everything fits in context","Symptoms: early files detailed, later shallow; pattern flagged in one file, approved in another; obvious bugs missed"]],
+  ["Multi-pass fix",["Per-item local passes give consistent depth","Cross-item integration pass catches data flow and pattern consistency","> File A returns `null` instead of `[]`; File B loops over it. Only integration catches it","! Bigger context window or better prompt doesn’t fix dilution","! Batching without an integration pass"]],
+  ["Memory hooks",["~ Known steps, fixed chain. Unknown scope, adaptive plan.","~ Dilution is structural: fix the structure, not the window","~ Local passes for depth, integration pass for links"]]
+ ]],
+ ["1.7 Session state",[
+  ["Three options",["`--resume <name>`: continue a named session; nothing has changed","`fork_session`: branches from a shared baseline to compare approaches","Fresh start + summary injection: files changed, or history is cluttered"]],
+  ["Stale context problem",["Old tool results stay in a resumed history","Symptoms: recommends changes already made, cites removed code, contradictory advice","A note on resume doesn’t remove old data; history holds two versions"]],
+  ["Targeted re-analysis",["Re-analyse only the files that changed","> 3 of 50 files changed: re-read the 3, trust the summary for the 47","! Full re-exploration when only a few files changed"]],
+  ["Traps",["! Resuming after file changes","! Using fork_session to fix stale context: the fork inherits the stale data","! Fork when resume is enough, or resume when comparing approaches"]],
+  ["Memory hooks",["~ Resume = same road, nothing moved","~ Fork = fork in the road, try both paths","~ Fresh + summary = new road, carry the map, leave the old photos"]]
+ ]]
+]},
+{ id:"domain-2", short:"Domain 2", name:"Tool Design & MCP Integration", tasks:[
+ ["2.1 Tool interface design",[
+  ["Descriptions drive selection",["The description is the primary selection mechanism, not extra metadata","The model sees only the tool name and description, never the code"]],
+  ["Five elements of a good description",["What it does","Inputs: formats, types, constraints","Example queries","Edge cases and limitations","Boundaries against similar tools","~ Does, Inputs, Examples, Edges, Boundaries","! Minimal descriptions like “Retrieves customer information”"]],
+  ["Misrouting",["The agent calls the wrong tool because two tools look alike","> “Where’s my delivery? My email is …” goes to `get_customer` instead of `lookup_order`","Fix for a small toolkit: expand both descriptions, especially boundaries"]],
+  ["Count tools before choosing a remedy",["Few tools, one confusable pair → better descriptions or rename","Many tools (exam: 18 vs 4–5) → split by role or consolidate (Task 2.3)","Rewriting 22 descriptions leaves decision complexity untouched"]],
+  ["Splitting & renaming",["Split a broad tool into purpose-specific tools with input/output contracts","> `analyse_document` → `extract_data_points`, `summarise_content`, `verify_claim_against_source`","~ If the description needs “or”, consider splitting","Rename to remove overlap at the interface level without changing the implementation","> `analyse_content` → `extract_web_results`"]],
+  ["System prompt interactions",["Keyword instructions can create tool associations that override good descriptions","> “Always check customer details first” pulls every query to `get_customer`","Fix: replace keyword triggers with case-based guidance","! Descriptions fixed but misrouting continues → check the system prompt"]],
+  ["Wrong answers",["! Few-shot examples to fix misrouting","! Routing classifier as the first step","! Consolidating tools first for a small confusable pair"]]
+ ]],
+ ["2.2 Structured error responses",[
+  ["`isError` flag",["Every tool failure sets `isError: true`","Tells the model to reason about recovery","! Error text returned with `isError: false` is treated as real data"]],
+  ["Four error categories",["Transient (timeout, rate limit): retryable, retry with backoff","Validation (bad format, missing field): fix input, make a new call","Business (policy violation, limit exceeded): alternative workflow or escalate","Permission (access denied): escalate or use other credentials","Only transient is retryable","~ TVBP: Try, Verify, Break-rule, Permit","Malformed input = validation; valid but not allowed = business"]],
+  ["Error metadata",["`errorCategory`, `isRetryable`, `description` with recovery guidance","Category and `isRetryable` must agree","! Generic “Operation failed” with no metadata"]],
+  ["Access failure vs valid empty result (most critical)",["Access failure: couldn’t reach data → `isError: true`, consider retry","Valid empty result: query ran, nothing found → `isError: false`, don’t retry","Key question: did the tool get an answer, even an empty one?","Empty marked as error → wasted retries, wrong escalations","Failure marked as empty → false answers (“You have no orders”)"]],
+  ["Propagation in multi-agent systems",["Subagents recover locally from transient failures","Propagate only what can’t be resolved locally","Include partial results and what was attempted","A failed retry doesn’t change the category","! Silent suppression: empty list returned as success","! Terminating the whole workflow on one failure"]]
+ ]],
+ ["2.3 Tool distribution & tool_choice",[
+  ["Tool overload",["Keep each agent to 4–5 role-scoped tools (exam contrast: 18)","More tools = more decision complexity, less reliable selection","Out-of-role tools get misused","> Synthesis agent with `search_web` starts searching instead of synthesising"]],
+  ["Split or consolidate",["Genuinely different jobs → split across role-scoped agents","Variations of one job → one parameterised tool","> 19 transforms → `transform_data(operation=…)`","! Moving tools to a second MCP server: boundaries are invisible to the model"]],
+  ["`tool_choice` modes",["`\"auto\"`: may reply in text; model picks","`\"any\"`: must call a tool; model picks from several schemas","Forced `{type:\"tool\", name:\"X\"}`: you pick; mandatory first step","~ auto risk: no tool call · any risk: wrong tool · forced: exactly one","! Using `\"auto\"` when structured output is required","Real-world note: newer models reject `any`/forced with a 400, but the exam tests all three"]],
+  ["Scoped cross-role tools",["Routing every simple request via the coordinator adds 2–3 round trips, up to 40% latency","Give a scoped slice of another role’s capability","> Synthesis gets `verify_fact`: 85% simple lookups direct, 15% complex via coordinator"]],
+  ["Constrained tools (least privilege)",["> `load_document` (validates URLs) instead of generic `fetch_url`","Benefit comes from validation, not the name","Coordinator manages (Task, review_output, request_revision); it doesn’t produce"]]
+ ]],
+ ["2.4 MCP server integration",[
+  ["Scoping hierarchy",["`.mcp.json` (project root): version-controlled, shared with the team","`~/.claude.json` (home): personal, experimental servers","Tools from all servers are discovered at connection time; no activation step","! Team-wide servers in `~/.claude.json`","! Experimental servers in `.mcp.json`"]],
+  ["Environment variable expansion",["`${VARIABLE_NAME}` in `.mcp.json`: the name, never the value","Each developer sets the value locally (shell, .env, secrets manager)","Benefits: safe to commit, personal credentials, rotation without config changes, no secrets in history","! Pasting tokens in config; “it’s a private repo” is no defence"]],
+  ["MCP resources",["Resource = read-only catalogue the agent sees straight away","~ Resource = table of contents; tool = turning to the page","Typical: issue summaries, doc hierarchies, database schemas","> Without a schema resource: 41 discovery calls before real work","! Not exposing content catalogues as resources"]],
+  ["Build vs use",["Evaluate community servers first (Jira, GitHub, Slack, Notion)","Build custom only for proprietary systems or team-specific workflows","! “Build it ourselves for full control” is not a valid reason"]],
+  ["MCP tool descriptions",["Sparse descriptions → agent prefers built-ins like Grep","Include: what it does, what it returns, when to use it, how it compares to built-ins"]]
+ ]],
+ ["2.5 Built-in tools",[
+  ["Tools at a glance",["Grep: search file contents","Glob: find files by name or path pattern","Read: load one whole file","Edit: targeted change to unique text","Write: output a complete file","~ Grep = guts, Glob = labels"]],
+  ["Edit vs Read + Write",["Try Edit first: precise, low context cost","Edit fails when the text isn’t unique","Fallback: Read the file, then Write the whole modified file","! Read + Write for every change wastes context","~ Edit first, rewrite last"]],
+  ["Incremental codebase understanding",["Grep for entry points → Read those files → follow imports → Grep again for wrappers","Never read all files upfront","~ Justify every Read"]],
+  ["Tracing wrapper modules",["Functions can be re-exported under new names","> `processRefund` re-exported as `issueRefund` via a barrel file","Grep each exported name and imports of the barrel module","~ Follow the names"]],
+  ["Deprecation scenario",["Grep `legacyAuth` (plus aliases) to find callers","Then Glob for their tests (`**/login.test.*`)","~ Callers then tests: Grep then Glob"]],
+  ["Traps",["! Glob to find function callers (use Grep)","! Grep to find files by extension (use Glob)","! Grep only for the original function name"]]
+ ]]
+]},
+{ id:"domain-3", short:"Domain 3", name:"Claude Code Configuration & Workflows", tasks:[
+ ["3.1 CLAUDE.md hierarchy",[
+  ["Three levels",["User `~/.claude/CLAUDE.md`: personal, not in git","Project `.claude/CLAUDE.md` or root `CLAUDE.md`: team, in git (both valid)","Directory `packages/x/CLAUDE.md`: that folder’s exceptions","~ User = me · Project = team via git · Directory = this folder"]],
+  ["@ imports",["`@path/to/file.md` on its own line","Share standards without duplication","! `@import docs/x.md` is wrong; there is no @import keyword"]],
+  ["`.claude/rules/`",["Topic files instead of one huge CLAUDE.md","Instructions (guidance), not checks or linters","Optional YAML frontmatter with path scoping"]],
+  ["`/memory`",["Shows which memory files are loaded","Diagnoses inconsistent behaviour","Does not load anything; location determines loading","~ /memory verifies; location determines"]],
+  ["Traps",["! New joiner lacks conventions → they were in user-level config; move to project and commit","! Deleting the joiner’s user file fixes nothing","! Directory-level doesn’t automatically cover nested subdirectories","! 50+ directories → one path-scoped rule, not 50 CLAUDE.md files"]]
+ ]],
+ ["3.2 Custom slash commands & skills",[
+  ["Unified Skills system",["Skill: directory + `SKILL.md`; name from the directory","Command: flat `.md` in `.claude/commands/`; name from the filename","Both create identical `/commands`","`.claude/skills/` is canonical; commands kept for backward compatibility","! `.claude/skills/deploy.md` (flat file) creates no command","~ Skills live in folders, commands live in files"]],
+  ["Scoping",["Project `.claude/skills/…`: shared via git","User `~/.claude/skills/…`: personal only","~ `~` means “me”","Personal tweak of a team skill: copy to `~/.claude/skills/` with a different name"]],
+  ["Skills vs CLAUDE.md (most tested)",["CLAUDE.md: always loaded, universal standards","Skills: on demand, task-specific workflows","! Task procedures in CLAUDE.md waste context every session","! Universal standards in a skill get missed","~ CLAUDE.md = rulebook you always carry; skill = tool you pick up"]],
+  ["Frontmatter",["`context: fork`: run in an isolated sub-agent context; keeps noisy output out of the main chat","`allowed-tools`: exam answer = restricts the skill’s tools (read-only skill: Read, Grep, Glob)","`argument-hint`: prompts the developer for parameters","~ context: fork = do the messy work in another room"]],
+  ["Watch-list",["Skills are authored files; Claude doesn’t create them at runtime","`argument-hint` is for the developer, not the agent"]]
+ ]],
+ ["3.3 Path-specific rules",[
+  ["Rule file syntax",["Markdown in `.claude/rules/` with `paths:` YAML frontmatter","> `paths: [\"**/*.test.tsx\"]`","Multiple globs allowed"]],
+  ["Core rules",["Load by file path, not topic","Load only when editing matching files","Root CLAUDE.md always loads","Rules = conventions; skills = on-demand procedures"]],
+  ["Comparisons",["Tests across 60 directories → one glob rule, not 60 CLAUDE.md files","Terraform conventions → `terraform/**/*` rule, not root CLAUDE.md","> Editing `Button.tsx`: root loads 4,500 tokens; scoped rules load 0"]],
+  ["Traps",["! “Most token-efficient” for file-type conventions → path-scoped rules","! Check the glob matches: `Button.tsx` doesn’t match `**/*.test.tsx`","! “Apply automatically when editing” → rules, not skills"]]
+ ]],
+ ["3.4 Plan mode vs direct execution",[
+  ["Golden rule",["Choose by ambiguity, not difficulty","Know the correct approach → direct execution","Design choices to make → plan mode","> Hard race condition, cause known → direct","> “Add notifications” (email, push, in-app?) → plan"]],
+  ["Plan mode signals",["Large-scale or architectural change","10+ files with multiple valid approaches","Exploring an unfamiliar codebase safely","Plan mode reads and analyses; it does not modify files"]],
+  ["Explore subagent",["Verbose discovery in its own context; returns only a summary","Protects the main context window","~ Explore = isolate + summarise = save context"]],
+  ["Hybrid",["Plan to decide, then execute to implement","> 30-file library migration: plan wrapper-first strategy, then apply","~ Plan THEN direct, not plan OR direct"]],
+  ["Traps",["! Plan mode for a single-file bug with a clear stack trace","! Starting direct when complexity is already stated (“restructure the monolith”)","! Verbose discovery in the main chat instead of Explore"]]
+ ]],
+ ["3.5 Iterative refinement",[
+  ["Concrete input/output examples",["Use when interpretation is inconsistent","2–3 varied before/after pairs","Model generalises from examples better than prose","> `03/14/2025 → 2025-03-14`","! Rewriting the prose more precisely"]],
+  ["Test-driven iteration",["Use for complex transformations","Write tests first: happy path, edge cases, error cases","Share failures: “Expected X, got Y”"]],
+  ["Interview pattern",["Use in unfamiliar domains","Claude asks about requirements, edge cases, constraints first","> New to VAT rules → interview, not examples"]],
+  ["Batch vs sequential feedback",["Interacting issues → one message","Independent issues → one at a time","Test: does fixing A change the right fix for B?","> Error shape + logging batched; naming separate"]],
+  ["Keyword cues",["~ “inconsistent / varies” → examples","~ “complex, many edge cases” → tests first","~ “unfamiliar, might miss requirements” → interview","~ “depends on / affects” → batch · “unrelated” → sequential"]]
+ ]],
+ ["3.6 CI/CD integration",[
+  ["`-p` (`--print`)",["Non-interactive: prompt in, result out, exit","Without it the CI job hangs indefinitely","! `CLAUDE_HEADLESS=true` and `--batch` don’t exist","! Redirecting stdin from /dev/null is not the answer","~ Pipeline hangs → -p. Every time."]],
+  ["Structured output",["`--output-format json` plus `--json-schema`","Enables inline PR comments and severity filtering","! JSON without a schema can change shape between runs","~ JSON gives the format; the schema gives the guarantee"]],
+  ["Independent review instance",["The generating session is biased towards its own decisions","Review with a separate `claude -p` given only the diff","~ Fresh session, fresh eyes"]],
+  ["Incremental review",["Include prior findings","Report only new or still-unaddressed issues","Duplicates erode developer trust"]],
+  ["CLAUDE.md in CI",["Read in CI exactly as in interactive mode","Document testing standards, fixtures, coverage, review criteria","Missing it → low-value boilerplate tests"]],
+  ["Batch API vs real-time",["Batch: up to 24 h, no latency SLA","Blocking pre-merge checks → real-time","Overnight report, weekly audit → Batch","! Batching pre-merge review to save cost","~ Someone waiting → real-time; nobody waiting → Batch"]]
+ ]]
+]},
+{ id:"domain-4", short:"Domain 4", name:"Prompt Engineering & Structured Output", tasks:[
+ ["4.1 Explicit criteria & false positives",[
+  ["Explicit categories vs vague instructions",["Name categories to flag and to skip","> Flag: bugs, security vulnerabilities. Skip: style, local patterns","Vague words (“be conservative”) give fewer findings, not fewer wrong ones","~ The model should ask “Which category?”, not “How cautious?”"]],
+  ["Trust destruction",["False positives in one category make developers distrust all categories","> Docs category 60% precise → 98%-precise security findings ignored too","! “Developers will just ignore the noisy category”"]],
+  ["Disable, iterate, re-enable",["Switch the noisy category off now","Improve its prompt with code examples","Re-enable once precision improves","! Keeping it live to collect data","! Removing it permanently"]],
+  ["Severity calibration",["Anchor each severity level with a code snippet","> Critical: unsanitised user input in SQL","! Prose-only severity definitions"]],
+  ["Confidence filtering fails",["Self-reported confidence is poorly calibrated","Confident when wrong, unsure when right","Criteria first; confidence only for routing, never deleting","! “Filter findings below 80% confidence”"]]
+ ]],
+ ["4.2 Few-shot prompting",[
+  ["Core rule",["Inconsistent output → few-shot examples first","Claude knows the rule; it needs to see the target","! More instructions, confidence thresholds or lower temperature"]],
+  ["Three deployment triggers",["Inconsistent formatting","Inconsistent judgement on borderline cases","Empty fields when the data is in narrative text"]],
+  ["Construction rules",["2–4 targeted, varied examples","Each example shows reasoning for why that choice won","> Live `sk-live` key in a test file → Critical: reach outweighs location","! Fewer than 2 or more than 4 examples"]],
+  ["Generalisation vs pattern-matching",["Without reasoning → literal pattern-matching","With reasoning → the decision principle transfers to new cases","Varied document structures reduce hallucination in extraction"]],
+  ["Technique map",["Inconsistent format → few-shot","Malformed JSON → `tool_use` + schema","Fabricated values → nullable fields","Wrong tool → better descriptions first, then few-shot","Sum mismatch → validation-retry loop","~ Field empty but data exists → few-shot · field filled but data absent → nullable"]]
+ ]],
+ ["4.3 Structured output with tool_use",[
+  ["Reliability hierarchy",["`tool_use` + JSON schema eliminates syntax errors","Prompt-based JSON can break (missing bracket, trailing comma, prose wrapper)","! “Prompting for JSON is enough in production”"]],
+  ["`tool_choice` decision",["Tools optional → `auto`","Output mandatory, type unknown → `any`","Specific step must run → forced named tool","! `auto` when structured output is mandatory"]],
+  ["Semantic errors schemas can’t stop",["Sum discrepancy","Field placement error","Fabrication of absent values","! “tool_use guarantees correct data”: only well-formed data"]],
+  ["Optional & nullable fields",["Required fields pressure the model to fabricate","Optional: field may be absent","Nullable: always present, value `null`","! Making every field required"]],
+  ["Enum patterns",["`unclear`: not enough information to decide","`other` + detail string: clear but unlisted category","Normalisation rules in the prompt (ISO dates, plain numbers)","! `other` without a detail field"]]
+ ]],
+ ["4.4 Validation, retry & feedback loops",[
+  ["Retry with error feedback",["Send the original document, the failed extraction and the specific error","! Naive retry or “refine the prompt” without the error is still blind"]],
+  ["Retry boundary",["Retry when the value exists in the source but was wrong","Don’t retry when the data is absent: keep null, human review if critical","! Pressing for a value can cause fabrication"]],
+  ["Self-correction fields",["`stated_total` + `calculated_total` (not one difference field)","`conflict_detected` boolean for contradictory sources → human review"]],
+  ["`detected_pattern`",["Record what in the input triggered each finding","Analyse dismissal rates per pattern; refine only the noisy pattern","> ORM `.filter()` concatenation dismissed 85% → refine that pattern"]],
+  ["Syntax vs semantic",["Syntax (wrong shape, missing required field) → prevented by tool_use","Semantic (wrong values) → validators such as Pydantic + retry","~ Structure is free with tool_use; correctness is your job","! “We use tool_use, so no validation needed”"]]
+ ]],
+ ["4.5 Batch processing",[
+  ["Batches API facts",["50% cheaper","Up to 24 h, no latency SLA","No multi-turn tool calling","Match results by `custom_id`, never by order"]],
+  ["Matching rule",["Someone blocked waiting → synchronous","Nobody waiting → batch","! Batch for pre-merge checks to save 50%"]],
+  ["SLA planning",["Buffer = SLA − 24 h","> 30 h SLA → 6 h buffer → submit every 4–6 h","! “Submit 24 h before the deadline” ignores waiting time"]],
+  ["Failure handling",["Resubmit only failures, by `custom_id`, with a targeted fix","Fixes: chunk large docs, simplify prompt, add format examples","! Resubmitting the whole batch"]],
+  ["Refine first",["Test on 5–10 representative documents","> 90% first pass = 100 retries; 60% = 400","! Submit everything and fix later"]],
+  ["Tool loops",["A workflow needing a tool mid-request → synchronous API","! “It’s background work, so batch is fine”"]]
+ ]],
+ ["4.6 Multi-instance & multi-pass review",[
+  ["Self-review limitation",["Same session retains its reasoning context and defends its decisions","Use an independent instance with only output + requirements","! “Be extremely critical” or extended thinking in the same session"]],
+  ["Multi-pass architecture",["Per-file local passes for consistent depth","Cross-file integration pass for data flow and contradictions","> `payment.py` sends pence, `refund.py` expects pounds"]],
+  ["Bigger context window",["Attention quality, not context size","! Switching to a bigger-window model to fix dilution"]],
+  ["Confidence routing & calibration",["High confidence → developers; low → human review","Raw confidence is poorly calibrated","Calibrate with a labelled validation set, band by band","> Only ≥0.95 proved 94% correct → threshold 0.95, not 0.8"]]
+ ]]
+]},
+{ id:"domain-5", short:"Domain 5", name:"Context Management & Reliability", tasks:[
+ ["5.1 Context window management",[
+  ["Purpose",["Right facts, right place, no noise, every request","Golden rule: every fix is structural","! “Use a bigger context window” or “tell the model to pay attention”"]],
+  ["Progressive summarisation trap",["Summaries keep the gist, drop precision","At risk: amounts, dates, percentages, IDs, customer-stated expectations","> “$247.83 for order #8891” becomes “a refund for a recent order”"]],
+  ["Persistent case facts block (most important)",["Structured, prepended to every prompt","Outside summarised history, never summarised","One entry per issue, each with a status","Label customer claims as customer-stated","! “Store the facts” alone is an incomplete answer"]],
+  ["Lost in the middle",["Beginning and end are processed reliably; the middle is under-attended","Fix: key findings summary at the beginning + explicit section headers","! “Please read all findings carefully” prompt reminder"]],
+  ["Tool result trimming",["Trim before the result enters history","In the tool itself, or a PostToolUse hook for third-party tools","> 42 order fields cut to 5","! Keeping everything “just in case”"]],
+  ["Full conversation history",["The API is stateless; send complete history every request","Context editing = deliberate, controlled clearing","! Silently truncating old messages to save tokens"]],
+  ["Upstream agent optimisation",["Upstream agents return structured data: facts, citations, relevance scores","Required metadata: dates, source locations, method","~ Treat “summarise” as a warning sign; prefer structured extraction"]]
+ ]],
+ ["5.2 Escalation & ambiguity resolution",[
+  ["Three valid triggers",["Customer explicitly asks for a human → escalate immediately, no investigation","Policy gap (policy is silent) → escalate","Can’t make progress (tool error, no access) → escalate after trying","~ Asks, Absent, Stuck"]],
+  ["Policy gap vs violation",["Silent policy → escalate","> Competitor price match, policy covers own-site only","Policy says no → explain, don’t escalate","> Refund on day 45 with a 30-day policy"]],
+  ["Unreliable triggers",["Sentiment: frustration doesn’t track complexity; fails both ways","Self-reported confidence: confident on hard cases, unsure on easy ones","! Escalating because the customer is angry","! Confidence-threshold escalation"]],
+  ["Frustration nuance",["The case decides whether to escalate; emotion decides how warmly to respond","Frustrated but resolvable → acknowledge, then resolve","Customer reiterates they want a human → escalate"]],
+  ["Ambiguous customer matching",["Several matches → ask for email, phone or order number","! Picking the most recent or most active account (privacy violation)"]],
+  ["Fixing escalation behaviour",["First: explicit criteria + few-shot examples in the system prompt","Prompt optimisation first, architecture later","! Deploying a classifier before improving the prompt"]]
+ ]],
+ ["5.3 Error propagation",[
+  ["Purpose",["Handle locally where possible, report honestly where not, make gaps visible in the final output"]],
+  ["Structured error context (4 parts)",["Failure type (transient, validation, business, permission)","What was attempted: query, parameters, target system","Partial results","Alternatives: coordinator-level options","! “What was attempted = 3 retries” is not enough","! Alternatives like “exponential backoff” are local, not coordinator options"]],
+  ["Rules",["Recover locally first","Propagate only what survives local recovery","Retry access failures; accept valid empty results","Never terminate the whole pipeline for one failure","Annotate coverage gaps in the final synthesis"]],
+  ["Worst anti-patterns",["! Silent suppression: `{results: [], status: \"success\"}` after a timeout","! Workflow termination wastes completed work","! Silently omitting a topic in the final report"]],
+  ["Memory hook",["~ Recover locally → report fully → keep going → tell the reader where the gaps are"]]
+ ]],
+ ["5.4 Codebase exploration & context degradation",[
+  ["Context degradation",["Specifics fade into generic “typical patterns”","Caused by verbose discovery output piling up","Findings are buried, not deleted; not a token-limit problem","! Bigger context window or switching model"]],
+  ["Scratchpad files (primary fix)",["Write key findings to a file: classes, paths, dependency chains","Read it before every exploration step","! Starting a scratchpad only once degradation appears"]],
+  ["Subagent delegation",["Primary benefit: context isolation","Only condensed results return to the main agent","! “Main benefit is parallel speed”"]],
+  ["Summary injection between phases",["Next-phase subagents inherit nothing (cold start)","Summarise Phase 1 and inject into Phase 2’s initial context","! “Phase 2 can see Phase 1’s work”"]],
+  ["Proactive /compact",["Condense context at regular points","! Waiting until the context is nearly full"]],
+  ["State manifests for crash recovery",["Explored paths, key findings, next steps","Written continuously, one manifest per agent","Coordinator assigns paths, then reads and injects on resume","! “The agent reports its state when it crashes”"]],
+  ["Memory hook",["~ Write it down, split it up, pass it on, compact early"]]
+ ]],
+ ["5.5 Human review & confidence calibration",[
+  ["Aggregate metrics trap",["97% overall can hide 40%+ error on some document types","High-volume easy docs dominate the average","! Automating on one overall accuracy figure"]],
+  ["Segment accuracy",["Validate by document type and by field","Automate strong segments; keep review for weak ones","> Invoice dates 99% vs handwritten receipt dates 60%"]],
+  ["Stratified random sampling",["Sample every stratum: doc type, confidence band, field","Must include high-confidence items: the blind spot","> Layout change causes confident misreads; only sampling catches it","! Sampling only low-confidence items"]],
+  ["Field-level calibration",["Raw scores aren’t calibrated","Calibrate per field type and document type","> 0.90 = 94% for dates, 82% for amounts"]],
+  ["Labelled validation sets",["Human-verified ground truth","No ground truth → no calibration → no trusted thresholds"]],
+  ["Reviewer capacity",["Lowest calibrated confidence first, dynamic ordering","! Even spread or chronological order"]],
+  ["Memory hooks",["~ Break it down · sample the confident · check the score · riskiest first"]]
+ ]],
+ ["5.6 Provenance & multi-source synthesis",[
+  ["Why provenance matters",["Every claim traceable to its exact source","Attribution dies quietly during summarisation unless preserved"]],
+  ["Five claim-source elements",["Claim","Source URL","Document name","Relevant excerpt (source’s own words, not a description)","Publication date (most missed)","~ C-U-D-E-D","! Page number is not one of the five"]],
+  ["Conflicts: dual attribution",["Same period, different values → report both with full attribution","Let the consumer decide","! Picking one value","! Averaging (a number neither source reported)"]],
+  ["Temporal awareness",["Different dates often mean a trend, not a conflict","Check the dates before calling it a conflict","> 8% in 2023, 12% in 2024 → growth accelerating","! Flagging a dated trend as a data quality issue"]]
+ ]]
+]}
+];
+
+</script>
+<script>
+(function(){
+  const colors = ["--d1","--d2","--d3","--d4","--d5"];
+  const KIND = {"! ":"trap","> ":"ex","~ ":"hook"};
+  const TAG = {trap:"Trap", ex:"Example", hook:"Hook"};
+
+  // Build normalised trees
+  const trees = DOMAINS.map((d,di)=>({
+    id:d.id, short:d.short, name:d.name, color:colors[di],
+    tasks:d.tasks.map((t,ti)=>({id:`${di}-${ti}`, title:t[0],
+      topics:t[1].map((tp,pi)=>({id:`${di}-${ti}-${pi}`, title:tp[0],
+        leaves:tp[1].map(s=>{const p=s.slice(0,2); const k=KIND[p]||"c"; return {kind:k, text:k==="c"?s:s.slice(2)};})
+      }))
+    }))
+  }));
+
+  const state = {d:0, open:new Set(), traps:false, q:""};
+  const $ = id=>document.getElementById(id);
+
+  function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  function fmt(s){
+    // split by backticks into code spans, escape, highlight query
+    const parts = s.split("`");
+    return parts.map((p,i)=>{let h=esc(p); h=hl(h); return i%2? `<code>${h}</code>` : h;}).join("");
+  }
+  function hl(h){
+    if(!state.q) return h;
+    const q = state.q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+    return h.replace(new RegExp(`(${q})`,"gi"),"<mark>$1</mark>");
+  }
+  const matchQ = s => !state.q || s.toLowerCase().includes(state.q.toLowerCase());
+  const leafOk = l => (!state.traps || l.kind==="trap") && matchQ(l.text);
+
+  function tabs(){
+    const nav=$("tabs"); nav.innerHTML="";
+    trees.forEach((t,i)=>{
+      const b=document.createElement("button");
+      b.className="tab"; b.type="button"; b.setAttribute("role","tab");
+      b.setAttribute("aria-selected", i===state.d);
+      b.style.setProperty("--c", `var(${t.color})`);
+      b.innerHTML=`<span class="num">${i+1}</span>${esc(t.name)}`;
+      b.onclick=()=>{ if(location.hash!=="#"+t.id) location.hash=t.id; else select(i); };
+      nav.appendChild(b);
+    });
+  }
+
+  function render(){
+    const t=trees[state.d];
+    document.documentElement.style.setProperty("--accent", `var(${t.color})`);
+    const filtering = state.traps || !!state.q;
+    let shownLeaves=0, total=0, traps=0;
+    let html=`<ul class="tree"><li class="n"><div class="card root-card"><div class="d">${t.short}</div><h2>${esc(t.name)}</h2></div><ul class="kids">`;
+    let anyTask=false;
+    t.tasks.forEach(task=>{
+      const taskMatch = matchQ(task.title) && !state.traps;
+      let topicsHtml=""; let taskHasTrap=false; let taskCount=0;
+      task.topics.forEach(tp=>{
+        total+=tp.leaves.length; traps+=tp.leaves.filter(l=>l.kind==="trap").length;
+        const hasTrap = tp.leaves.some(l=>l.kind==="trap"); if(hasTrap) taskHasTrap=true;
+        const topicMatch = matchQ(tp.title) && !state.traps;
+        const leaves = filtering ? tp.leaves.filter(l=> leafOk(l) || (topicMatch || taskMatch) && (!state.traps||l.kind==="trap")) : tp.leaves;
+        if(filtering && !leaves.length && !topicMatch && !taskMatch) return;
+        taskCount++;
+        const open = filtering || state.open.has(tp.id);
+        let inner="";
+        if(open && leaves.length){
+          shownLeaves+=leaves.length;
+          inner=`<ul class="kids${state.fresh===tp.id?" fresh":""}">`+leaves.map(l=>`<li class="n"><div class="card leaf ${l.kind}">${l.kind!=="c"?`<span class="tag">${TAG[l.kind]}</span>`:""}${fmt(l.text)}</div></li>`).join("")+`</ul>`;
+        }
+        topicsHtml+=`<li class="n"><div class="card topic-card"><button class="node-btn" type="button" data-id="${tp.id}" aria-expanded="${open}">${hasTrap?'<span class="trapdot" title="Has exam traps"></span>':""}<span>${fmt(tp.title)}</span><span class="count ${open?"open":""}">${open?"−":tp.leaves.length}</span></button></div>${inner}</li>`;
+      });
+      if(filtering && !taskCount) return;
+      anyTask=true;
+      const open = filtering || state.open.has(task.id);
+      html+=`<li class="n"><div class="card task-card"><button class="node-btn" type="button" data-id="${task.id}" aria-expanded="${open}"><span>${fmt(task.title)}</span><span class="count ${open?"open":""}">${open?"−":task.topics.length}</span></button></div>${open?`<ul class="kids${state.fresh===task.id?" fresh":""}">${topicsHtml}</ul>`:""}</li>`;
+    });
+    html+=`</ul></li></ul>`;
+    $("map").innerHTML = anyTask? html : `<p class="empty">Nothing in this domain matches “${esc(state.q)}”. Try a shorter word, or clear the search.</p>`;
+    const status = state.traps ? `Showing ${shownLeaves} exam traps in ${t.name}.` :
+      state.q ? `${shownLeaves} matching points for “${state.q}”.` :
+      `${t.tasks.length} task statements, ${total} points, ${traps} of them exam traps.`;
+    $("status").textContent = status;
+  }
+
+  function select(i){ state.fresh=null; state.d=i; state.open.clear(); tabs(); render(); window.scrollTo({top:0}); }
+
+  $("map").addEventListener("click",e=>{
+    const b=e.target.closest(".node-btn"); if(!b || state.traps || state.q) return;
+    const id=b.dataset.id; if(state.open.has(id)){state.open.delete(id); state.fresh=null;} else {state.open.add(id); state.fresh=id;}
+    render();
+    const again=document.querySelector(`.node-btn[data-id="${id}"]`); if(again) again.focus({preventScroll:true});
+  });
+  $("expandAll").onclick=()=>{ state.fresh=null; trees[state.d].tasks.forEach(t=>{state.open.add(t.id); t.topics.forEach(p=>state.open.add(p.id));}); render(); };
+  $("collapseAll").onclick=()=>{ state.open.clear(); render(); };
+  $("trapsOnly").onclick=e=>{ state.traps=!state.traps; e.currentTarget.setAttribute("aria-pressed",state.traps); render(); };
+  $("search").addEventListener("input",e=>{ state.q=e.target.value.trim(); render(); });
+
+  function fromHash(){
+    const h=location.hash.slice(1); const i=trees.findIndex(t=>t.id===h);
+    select(i<0?0:i);
+  }
+  window.addEventListener("hashchange",fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>
